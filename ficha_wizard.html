@@ -14,7 +14,7 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="css/sb-admin-2.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="bg-gradient-primary">
@@ -27,24 +27,28 @@
                     <form id="msform">
                         <!-- progressbar -->
                         <ul id="progressbar">
-                            <li class="active" id="account"><strong>DOMICILIO</strong></li>
-                            <li id="personal"><strong>DATOS FAMILIARES</strong></li>
-                            <li id="payment"><strong>DATOS PROFESIONALES Y ACADÉMICOS</strong></li>
-                            <li id="confirm"><strong>DATOS LABORALES</strong></li>
+                            <li class="active" id="account"><strong></strong></li>
+                            <li id="personal"><strong></strong></li>
+                            <li id="student"><strong></strong></li>
+                            <li id="student"><strong></strong></li>
+                            <li id="student"><strong></strong></li>
+                            <li id="book"><strong></strong></li>
+                            <li id="payment"><strong></strong></li>
+                            <li id="confirm"><strong></strong></li>
                         </ul>
                         <!-- <div class="progress">
                             <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
                         </div> <br> fieldsets -->
                         <fieldset>
                             <div class="form-card">
-                                <!-- <div class="row">
+                                <div class="row">
                                     <div class="col-7">
-                                        <h2 class="fs-title">Datos del domicilio:</h2>
+                                        <h2 class="fs-title">DOMICILIO:</h2>
                                     </div>
-                                    <div class="col-5">
+                                    <!-- <div class="col-5">
                                         <h2 class="steps">Seccion 1 - 4</h2>
-                                    </div>
-                                </div> -->
+                                    </div> -->
+                                </div>
                                 <div class="form-group row">
                                     <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
                                         <label for="exampleInputEmail1">Tipo de Via</label>
@@ -98,12 +102,10 @@
                                         <input class="form-control form-control-user" type="text" name="fname" placeholder="Zona"/> 
                                     </div>
 
-<<<<<<< HEAD
                                     <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">
                                         <label>Número</label> 
                                         <input class="form-control form-control-user" type="text" name="fname" placeholder="Número"/> 
                                     </div>
-=======
                                         <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
                                             <label for="exampleInputEmail1">Departamento</label>
                                             <select class="form-control form-control-user" style="padding: inherit;" id="Departamento">
@@ -121,7 +123,6 @@
                                             </select> 
                                           </div>
                                           <br>
->>>>>>> 9cc2af397e8657801348f31080209aea139275fd
 
                                     <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
                                         <label for="exampleInputEmail1">Departamento</label>
@@ -185,16 +186,17 @@
                             </div>
                             <input type="button" name="next" class="next action-button" value="Next" />
                         </fieldset>
+
                         <fieldset>
                             <div class="form-card">
-                                <!-- <div class="row">
+                                <div class="row">
                                     <div class="col-7">
                                         <h2 class="fs-title">DATOS FAMILIARES:</h2>
                                     </div>
-                                    <div class="col-5">
+                                    <!-- <div class="col-5">
                                         <h2 class="steps">Seccion 2 - 4</h2>
-                                    </div>
-                                </div> -->
+                                    </div> -->
+                                </div>
                                 <div class="form-group row">
                                     <div class="table-responsive">
                                         <table class="table table-bordered" id="dynamic_field">
@@ -233,14 +235,106 @@
         
                         <fieldset>
                             <div class="form-card">
-                                <!-- <div class="row">
+                                <div class="row">
                                     <div class="col-7">
-                                        <h2 class="fs-title">Image Upload:</h2>
+                                        <h2 class="fs-title">DATOS PROFESIONALES Y ACADÉMICOS</h2>
                                     </div>
-                                    <div class="col-5">
+                                    <!-- <div class="col-5">
                                         <h2 class="steps">Step 3 - 4</h2>
+                                    </div> -->
+                                </div>
+                                <fomr class="user">
+                                    <label class="fieldlabels">Email: *</label> 
+                                    <input class="form-control form-control-user" type="email" name="email" placeholder="Email Id" /> 
+                                    <label class="fieldlabels">Username: *</label> 
+                                    <input type="text" name="uname" placeholder="UserName" /> 
+                                    <label class="fieldlabels">Password: *</label> 
+                                    <input type="password" name="pwd" placeholder="Password" /> 
+                                    <label class="fieldlabels">Confirm Password: *</label> 
+                                    <input type="password" name="cpwd" placeholder="Confirm Password" />
+                                </fomr>
+                            </div> <input type="button" name="next" class="next action-button" value="Submit" /> <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                        </fieldset>
+
+                        <fieldset>
+                            <div class="form-card">
+                                <div class="row">
+                                    <div class="col-7">
+                                        <h2 class="fs-title">DATOS PROFESIONALES Y ACADÉMICOS II</h2>
                                     </div>
-                                </div> -->
+                                    <!-- <div class="col-5">
+                                        <h2 class="steps">Step 3 - 4</h2>
+                                    </div> -->
+                                </div>
+                                <fomr class="user">
+                                    <label class="fieldlabels">Email: *</label> 
+                                    <input class="form-control form-control-user" type="email" name="email" placeholder="Email Id" /> 
+                                    <label class="fieldlabels">Username: *</label> 
+                                    <input type="text" name="uname" placeholder="UserName" /> 
+                                    <label class="fieldlabels">Password: *</label> 
+                                    <input type="password" name="pwd" placeholder="Password" /> 
+                                    <label class="fieldlabels">Confirm Password: *</label> 
+                                    <input type="password" name="cpwd" placeholder="Confirm Password" />
+                                </fomr>
+                            </div> <input type="button" name="next" class="next action-button" value="Submit" /> <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                        </fieldset>
+
+                        <fieldset>
+                            <div class="form-card">
+                                <div class="row">
+                                    <div class="col-7">
+                                        <h2 class="fs-title">DATOS PROFESIONALES Y ACADÉMICOS III</h2>
+                                    </div>
+                                    <!-- <div class="col-5">
+                                        <h2 class="steps">Step 3 - 4</h2>
+                                    </div> -->
+                                </div>
+                                <fomr class="user">
+                                    <label class="fieldlabels">Email: *</label> 
+                                    <input class="form-control form-control-user" type="email" name="email" placeholder="Email Id" /> 
+                                    <label class="fieldlabels">Username: *</label> 
+                                    <input type="text" name="uname" placeholder="UserName" /> 
+                                    <label class="fieldlabels">Password: *</label> 
+                                    <input type="password" name="pwd" placeholder="Password" /> 
+                                    <label class="fieldlabels">Confirm Password: *</label> 
+                                    <input type="password" name="cpwd" placeholder="Confirm Password" />
+                                </fomr>
+                            </div> <input type="button" name="next" class="next action-button" value="Submit" /> <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                        </fieldset>
+
+                        <fieldset>
+                            <div class="form-card">
+                                <div class="row">
+                                    <div class="col-7">
+                                        <h2 class="fs-title">IDIOMAS:</h2>
+                                    </div>
+                                    <!-- <div class="col-5">
+                                        <h2 class="steps">Step 3 - 4</h2>
+                                    </div> -->
+                                </div>
+                                <fomr class="user">
+                                    <label class="fieldlabels">Email: *</label> 
+                                    <input class="form-control form-control-user" type="email" name="email" placeholder="Email Id" /> 
+                                    <label class="fieldlabels">Username: *</label> 
+                                    <input type="text" name="uname" placeholder="UserName" /> 
+                                    <label class="fieldlabels">Password: *</label> 
+                                    <input type="password" name="pwd" placeholder="Password" /> 
+                                    <label class="fieldlabels">Confirm Password: *</label> 
+                                    <input type="password" name="cpwd" placeholder="Confirm Password" />
+                                </fomr>
+                            </div> <input type="button" name="next" class="next action-button" value="Submit" /> <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                        </fieldset>
+
+                        <fieldset>
+                            <div class="form-card">
+                                <div class="row">
+                                    <div class="col-7">
+                                        <h2 class="fs-title">DATOS LABORALES:</h2>
+                                    </div>
+                                    <!-- <div class="col-5">
+                                        <h2 class="steps">Step 3 - 4</h2>
+                                    </div> -->
+                                </div>
                                 <fomr class="user">
                                     <label class="fieldlabels">Email: *</label> 
                                     <input class="form-control form-control-user" type="email" name="email" placeholder="Email Id" /> 
@@ -288,7 +382,7 @@
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
+    <script src="js/sb-admin-2.js"></script>
     <script>
 
         $(document).ready(function(){

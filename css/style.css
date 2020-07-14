@@ -186,6 +186,10 @@ p {
     content: "\f0b1"
 }
 
+#progressbar #list:before {
+    font-family: FontAwesome;
+    content: "\f03a"
+}
 
 #progressbar li:before {
     width: 50px;

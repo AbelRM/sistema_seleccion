@@ -19,6 +19,7 @@
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.css" rel="stylesheet">
   <!-- <link rel="stylesheet" href="css/style.css"> -->
+  <link rel="stylesheet" href="css/style.css">
 
 </head>
 
@@ -232,69 +233,47 @@
               <!-- Basic Card Example -->
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">NUEVA CONVOCATORIA</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">AGREGAR DATOS PERSONAL REQUERIDO</h6>
                 </div>
                 <div class="card-body">
-                  <form action="">
+                  <form action="" method="POST">
                     <div class="form-group">
                         <h6 class="m-0 font-weight-bold text-danger">Datos de la convocatoria</h6>
                         <hr class="sidebar-divider">
                     </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-2 col-sm-12">
-                            <label for="inputState">Tipo de concurso</label>
-                            <select id="inputState" class="form-control">
-                                <option selected>Elegir...</option>
-                                <option value="cas">C.A.S.</option>
-                                <option value="276">Contrato 276</option>
-                                <option value="practicante">Practicante</option>
-                            </select>
-                        </div>
-                        <div class="form-group col-md-2 col-sm-12">
-                            <label for="inputEmail4">N° de convocatoria</label>
-                            <input type="text" class="form-control" placeholder="001-2020">
-                        </div>
-                        <div class="form-group col-md-8 col-sm-12">
-                            <label for="inputEmail4">Ubicación del lugar a elaborar</label>
-                            <input type="text" class="form-control" placeholder="Ubicación">
-                        </div>
-                        <div class="form-group col-md-3 col-sm-6">
-                            <label for="inputEmail4">Fecha de inicio</label>
-                            <input type="date" class="form-control">
-                        </div>
-                        <div class="form-group col-md-3 col-sm-6">
-                            <label for="inputEmail4">Fecha de fin</label>
-                            <input type="date" class="form-control">
-                        </div>
-                    </div>
                     <div class="form-group">
-                        <h6 class="m-0 font-weight-bold text-danger">Porcentajes de la convocatoria</h6>
-                        <hr class="sidebar-divider">
-                    </div>
-                    <div class="form-row">
-                        <label for="staticEmail" class="col-lg-2 col-md-4 col-sm-2 form-group col-form-label">% curricular</label>
-                        <div class="col-lg-1 col-md-2 col-sm-1">
-                            <input type="number" class="form-control" id="por_curricular">
-                        </div>
-
-                        <label for="staticEmail" class="col-lg-2 col-md-4 col-sm-2 form-group col-form-label">% entrevista</label>
-                        <div class="col-lg-1 col-md-2 col-sm-1">
-                            <input type="number" class="form-control" id="por_entrevista">
-                        </div>
-
-                        <label for="staticEmail" class="col-lg-2 col-md-4 col-sm-2 form-group col-form-label">% examen</label>
-                        <div class="col-lg-1 col-md-2 col-sm-1">
-                            <input type="number" class="form-control" id="por_entrevista">
-                        </div>
-
-                        <label for="staticEmail" class="col-lg-2 col-md-4 col-sm-2 form-group col-form-label">% discapacidad</label>
-                        <div class="col-lg-1 col-md-2 col-sm-1">
-                            <input type="number" class="form-control" id="por_entrevista">
-                        </div>
-
-                        <label for="staticEmail" class="col-lg-2 col-md-4 col-sm-2 form-group col-form-label">% Lic. Militar</label>
-                        <div class="col-lg-1 col-md-2 col-sm-1">
-                            <input type="number" class="form-control" id="por_entrevista">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="dynamic_field">
+                                <thead>
+                                    <tr class="bg-danger" style="text-align:center; font-size:0.813em;">
+                                        <th scope="col">CANTIDAD</th>
+                                        <th scope="col">CARGO</th>
+                                        <th scope="col">REMUNERACIÓN S/.</th>
+                                        <th scope="col">FUENTE FINANCIAMIENTO</th>
+                                        <th scope="coL">META</th>
+                                        <th scope="col">ACCIONES</th>
+                                
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><input type="text" name="name[]" placeholder="CANTIDAD" class="form-control name_list" /></td>
+                                        <td>
+                                            <!-- <input type="text" name="name[]" placeholder="Nivel" class="form-control name_list" /> -->
+                                            <select class="form-control name_list" name="name[]">
+                                                <option value="basico">NIVEL BASICO</option>
+                                                <option value="intermedio">NIVEL INTERMEDIO</option>
+                                                <option value="avanzado">NIVEL AVANZADO</option>
+                                                </select>
+                                        </td>
+                                        <td><input type="text" name="name[]" placeholder="Ejemplo: 2000" class="form-control name_list" /></td>
+                                        <td><input type="text" name="name[]" placeholder="RECURSOS ORDINARIOS" class="form-control name_list" /></td>
+                                        <td><input type="text" name="name[]" placeholder="Ejemplo: 002" class="form-control name_list" /></td>
+                                        <td><button type="button" name="add" id="add" class="btn btn-primary"> + </button></td>
+                                    </tr>
+                                </tdody>
+                            </table>
+                        
                         </div>
                     </div>
                     <div class="form-group d-flex justify-content-end">
@@ -364,6 +343,43 @@
 
   <!-- Custom scripts for all pages-->
   <script src="js/sb-admin-2.js"></script>
+
+  <script>
+
+        $(document).ready(function(){
+            var i = 1;
+    
+            $('#add').click(function () {
+                i++;
+                $('#dynamic_field').append('<tr id="row'+i+'">' +
+                                            '<td><input type="text" name="name[]" placeholder="CANTIDAD" class="form-control name_list" /></td>' +
+                                            '<td><input type="text" name="name[]" placeholder="CANTIDAD" class="form-control name_list" /></td>' +
+                                            '<td><input type="text" name="name[]" placeholder="Ejemplo: 2000" class="form-control name_list" /></td>' +
+                                            '<td><input type="text" name="name[]" placeholder="RECURSOS ORDINARIOS" class="form-control name_list" /></td>' +
+                                            '<td><input type="text" name="name[]" placeholder="Ejemplo: 002" class="form-control name_list" /></td>' +
+                                            '<td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td>' +
+                                            '</tr>');
+            });
+            
+            $(document).on('click', '.btn_remove', function () {
+                var id = $(this).attr('id');
+               $('#row'+ id).remove();
+            });
+    
+            // $('#submit').click(function(){
+            //     $.ajax({
+            //         url:"name.php",
+            //         method:"POST",
+            //         data:$('#add_name').serialize(),
+            //         success:function(data)
+            //         {
+            //             alert(data);
+            //             $('#add_name')[0].reset();
+            //         }
+            //     });
+            // });
+        });
+    </script>
 
 </body>
 

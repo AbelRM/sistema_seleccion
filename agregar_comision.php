@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>SB Admin 2 - Blank</title>
+  <title>AGREGAR COMISION - SISTEMA SELECCION (DIRESA-TACNA)</title>
 
   <!-- Custom fonts for this template-->
   <link rel="icon" type="image/png" href="img/icono_diresa.png" />

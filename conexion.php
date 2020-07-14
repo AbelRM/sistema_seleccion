@@ -5,7 +5,7 @@ $username="root";
 $password="123456";
 $dbname="sistema_seleccion";
 
-$con=mysqli_connect("host=$hostname user=$username password=$password dbname=$dbname");
+$con=mysqli_connect($hostname, $username, $password, $dbname);
 
 if(!$con){
     echo "<p>Error de conexion</p>";
@@ -13,6 +13,6 @@ if(!$con){
 else{
 	echo "Conexión exitosa";
 }
-mysqli_close($enlace);
+// mysqli_close($con);
 
 ?>

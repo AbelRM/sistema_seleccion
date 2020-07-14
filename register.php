@@ -37,7 +37,10 @@
               <div class="text-center">
                 <h1 class="h4 text-gray-900 mb-4">CREAR CUENTA</h1>
               </div>
-              <form action="" method="" class="user">
+              <?php
+                  include 'conexion.php';
+              ?>
+              <form action="procesos/guardar_registro.php" method="POST" class="user">
                 <div class="form-group row">
                   <div class="col-md-5 col-sm-6 mb-2 mb-sm-0">
                     <label for="exampleInputEmail1">Nombres</label>

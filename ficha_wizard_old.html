@@ -124,6 +124,24 @@
                                             </select> 
                                           </div>
                                           <br>
+
+
+                                    <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
+                                        <label for="exampleInputEmail1">Departamento</label>
+                                        <select class="form-control form-control-user" style="padding: inherit;" id="Departamento">
+                                        <option value="AVENIDA">Tacna</option>
+                                        <option value="JIRON">Moquegua</option>
+                                        <option value="CALLE">Unidad vecinal</option>
+                                        <option value="PASAJE">Conjunto habitacional</option>
+                                        <option value="ALAMEDA">Asentamiento humano</option>
+                                        <option value="MALECON">Cooperativa</option>
+                                        <option value="OVALO">Residencial</option>
+                                        <option value="PASAJE">Zona industrial</option>
+                                        <option value="PARQUE">Grupo</option>
+                                        <option value="PLAZA">Caserio</option>
+                                        <option value="CARRETERA">Fundo</option>
+                                        </select> 
+                                    </div>
                                     <br>
 
                                     <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
@@ -168,9 +186,8 @@
                                     </div>
                                 </div>   
                             </div>
-                            <input type="button" name="next" class="next action-button" value="Siguiente" />
+                            <input type="button" name="next" class="next action-button" value="Next" />
                         </fieldset>
-
 
                         <fieldset>
                             <div class="form-card">
@@ -220,7 +237,7 @@
                             <div class="form-card">
                                 <div class="row">
                                     <div class="col-7">
-                                        <h2 class="fs-title">DATOS PROFESIONALES Y ACADÉMICOS I:</h2>
+                                        <h2 class="fs-title">DATOS PROFESIONALES Y ACADÉMICOS I</h2>
                                     </div>
                                     <!-- <div class="col-5">
                                         <h2 class="steps">Step 3 - 4</h2>
@@ -253,7 +270,7 @@
                                     </div>
                                 </div> 
                             </div>
-                            <input type="button" name="next" class="next action-button" value="Siguiente" /> <input type="button" name="previous" class="previous action-button-previous" value="Atrás" />
+                            <input type="button" name="next" class="next action-button" value="Next" /> <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
                         </fieldset>
 
                         <fieldset>
@@ -265,164 +282,50 @@
                                     <!-- <div class="col-5">
                                         <h2 class="steps">Seccion 2 - 4</h2>
                                     </div> -->
-                                </div>                           
-
-                                <div class="table-responsive">
-                                    <label>Estudios Superiores (Universitario - Tecnico)</label> 
-                                    <table class="table table-bordered" id="dynamic_field_5">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">Centro Estudios</th>
-                                                <th scope="col">Especialidad</th>
-                                                <th scope="col">Fecha Inicio</th>
-                                                <th scope="col">Fecha Termino</th>
-                                                <th scope="col">Nivel Alcanzado</th>
-                                                <th scope="col">Acción</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td><input type="text" name="name_5[]" placeholder="Centro Estudios" class="form-control name_list" /></td>
-                                                <td><input type="text" name="name_5[]" placeholder="Especialidad" class="form-control name_list" /></td>
-                                                <td><input type="date" name="name_5[]" placeholder="Fecha Inicio" class="form-control name_list" /></td>
-                                                <td><input type="date" name="name_5[]" placeholder="Fecha Termino" class="form-control name_list" /></td>
-                                                <td>
-                                                        
-                                                    <select class="form-control name_list" name="name_5[]">
-                                                        <option value="Magister">Magister</option>
-                                                        <option value="Doctorado">Doctorado</option>
-                                                        <option value="Egresado">Egresado</option>
-                                                        <option value="Estudiante">Estudiante</option>
-                                                      </select>
-                                                </td>    
-                                                <td><button type="button" name="add_5" id="add_5" class="btn btn-primary"> + </button></td>
-                                            </tr>
-                                        </tdody>
-                                    </table>          
                                 </div>
+                                <div class="form-group row">
 
-                                <div class="table-responsive">
-                                    <label>Estudios Posgrado (Maestria - Doctorado)</label> 
-                                    <table class="table table-bordered" id="dynamic_field_6">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">Centro Estudios</th>
-                                                <th scope="col">Especialidad</th>
-                                                <th scope="col">Fecha Inicio</th>
-                                                <th scope="col">Fecha Termino</th>
-                                                <th scope="col">Nivel Alcanzado</th>
-                                                <th scope="col">Acción</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td><input type="text" name="name_6[]" placeholder="Centro Estudios" class="form-control name_list" /></td>
-                                                <td><input type="text" name="name_6[]" placeholder="Especialidad" class="form-control name_list" /></td>
-                                                <td><input type="date" name="name_6[]" placeholder="Fecha Inicio" class="form-control name_list" /></td>
-                                                <td><input type="date" name="name_6[]" placeholder="Fecha Termino" class="form-control name_list" /></td>
-                                                <td>
-                                                        
-                                                    <select class="form-control name_list" name="name_6[]">
-                                                        <option value="Magister">Magister</option>
-                                                        <option value="Doctorado">Doctorado</option>
-                                                        <option value="Egresado">Egresado</option>
-                                                        <option value="Estudiante">Estudiante</option>
-                                                      </select>
-                                                </td>    
-                                                <td><button type="button" name="add_6" id="add_6" class="btn btn-primary"> + </button></td>
-                                            </tr>
-                                        </tdody>
-                                    </table>
-                                    
-                                </div>
+                                    <div class="col-md-9 col-sm-6 mb-2 mb-sm-0">
+                                        <label> Profesion</label> 
+                                        <input class="form-control form-control-user" type="text" name="fname" placeholder="Indicar profesion"/> 
+                                    </div>
 
+                                    <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
+                                        <label>Fecha de colegiatura</label> 
+                                        <input class="form-control form-control-user" type="date" name="fname" placeholder="Fecha"/> 
+                                    </div>
+
+                                    <div class="col-md-6 col-sm-6 mb-2 mb-sm-0">
+                                        <label>Lugar de colegiatura</label> 
+                                        <input class="form-control form-control-user" type="text" name="fname" placeholder="Lugar"/> 
+                                    </div>
+
+                                    <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
+                                        <label>Fecha de colegiatura habilitado</label> 
+                                        <input class="form-control form-control-user" type="date" name="fname" placeholder="Fecha"/> 
+                                    </div>
+                                    <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
+                                        <label>Número</label> 
+                                        <input class="form-control form-control-user" type="text" name="fname" placeholder="Número"/> 
+                                    </div>
+
+                                </div> 
                             </div>
-                            <input type="button" name="next" class="next action-button" value="Siguiente" /> <input type="button" name="previous" class="previous action-button-previous" value="Atrás" />
+                            <input type="button" name="next" class="next action-button" value="Next" /> <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
                         </fieldset>
 
                         <fieldset>
                             <div class="form-card">
                                 <div class="row">
                                     <div class="col-7">
-                                        <h2 class="fs-title">DATOS PROFESIONALES Y ACADEMICOS III:</h2>
+                                        <h2 class="fs-title">DATOS PROFESIONALES Y ACADÉMICOS III</h2>
                                     </div>
                                     <!-- <div class="col-5">
-                                        <h2 class="steps">Seccion 2 - 4</h2>
+                                        <h2 class="steps">Step 3 - 4</h2>
                                     </div> -->
                                 </div>
-
-                                <div class="table-responsive">
-                                    <label>Especialización - Diplomados</label> 
-                                    <table class="table table-bordered" id="dynamic_field_7">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">Centro Estudios</th>
-                                                <th scope="col">Especialidad</th>
-                                                <th scope="col">Fecha Inicio</th>
-                                                <th scope="col">Fecha Termino</th>
-                                                <th scope="col">Nivel Alcanzado</th>
-                                                <th scope="col">Acción</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td><input type="text" name="name_7[]" placeholder="Centro Estudios" class="form-control name_list" /></td>
-                                                <td><input type="text" name="name_7[]" placeholder="Especialidad" class="form-control name_list" /></td>
-                                                <td><input type="date" name="name_7[]" placeholder="Fecha Inicio" class="form-control name_list" /></td>
-                                                <td><input type="date" name="name_7[]" placeholder="Fecha Termino" class="form-control name_list" /></td>
-                                                <td>
-                                                        
-                                                    <select class="form-control name_list" name="name_7[]">
-                                                        <option value="Magister">Magister</option>
-                                                        <option value="Doctorado">Doctorado</option>
-                                                        <option value="Egresado">Egresado</option>
-                                                        <option value="Estudiante">Estudiante</option>
-                                                      </select>
-                                                </td>  
-                                                <td><button type="button" name="add_7" id="add_7" class="btn btn-primary"> + </button></td>
-                                            </tr>
-                                        </tdody>
-                                    </table>             
-                                </div>
-
-                                <div class="form-group row">
-                                    <label>Cursos - Seminarios</label> 
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered" id="dynamic_field_8">
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col">Centro Estudios</th>
-                                                    <th scope="col">Especialidad</th>
-                                                    <th scope="col">Fecha Inicio</th>
-                                                    <th scope="col">Fecha Termino</th>
-                                                    <th scope="col">Nivel Alcanzado</th>
-                                                    <th scope="col">Acción</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td><input type="text" name="name_8[]" placeholder="Centro Estudios" class="form-control name_list" /></td>
-                                                    <td><input type="text" name="name_8[]" placeholder="Especialidad" class="form-control name_list" /></td>
-                                                    <td><input type="date" name="name_8[]" placeholder="Fecha Inicio" class="form-control name_list" /></td>
-                                                    <td><input type="date" name="name_8[]" placeholder="Fecha Termino" class="form-control name_list" /></td>                   
-                                                    <td>
-                                                        
-                                                        <select class="form-control name_list" name="name_8[]">
-                                                            <option value="Magister">Magister</option>
-                                                            <option value="Doctorado">Doctorado</option>
-                                                            <option value="Egresado">Egresado</option>
-                                                            <option value="Estudiante">Estudiante</option>
-                                                          </select>
-                                                    </td>  
-                                                    <td><button type="button" name="add_8" id="add_8" class="btn btn-primary"> + </button></td>
-                                                </tr>
-                                            </tdody>
-                                        </table>
-                                        <!-- <input type="button" name="submit" id="submit" class="btn btn-success" value="GUARDAR" /> -->
-                                    </div>
-                                </div>
-                            </div>
-                            
+                                
+                            </div> 
                             <input type="button" name="next" class="next action-button" value="Siguiente" /> <input type="button" name="previous" class="previous action-button-previous" value="Atrás" />
                         </fieldset>
 
@@ -733,7 +636,6 @@
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.js"></script>
-
     <script>
 
         $(document).ready(function(){
@@ -878,7 +780,7 @@
         });
     </script>
 
-    <script>
+<script>
     $(document).ready(function(){
         var i = 1;
         $('#add_5').click(function () {
@@ -954,7 +856,8 @@
                                                 '<td><input type="text" name="name_8[]" placeholder="Especialidad" class="form-control name_list" /></td>' +
                                                 '<td><input type="date" name="name_8[]" placeholder="Fecha Inicio" class="form-control name_list" /></td>' +
                                                 '<td><input type="date" name="name_8[]" placeholder="Fecha Termino" class="form-control name_list" /></td>' +
-                                                '<td><select class="form-control name_list" name="name_8[]"><option value="Magister">Magister</option><option value="Doctorado">Doctorado</option> <option value="Egresado">Egresado</option> <option value="Estudiante">Estudiante</option> </select></td>'+
+                                                '<td><select class="form-control name_list" name="name_8[]"><option value="Magister">Magister/option><option value="Doctorado">Doctorado</option> <option value="Egresado">Egresado</option> <option value="Estudiante">Estudiante</option> </select></td>'+
+                                                '<td><input type="text"  name="name_8[]" placeholder="Nivel Alcanzado" class="form-control name_list"/></td>'  +
                                                 '<td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td>'+  '</tr>');
         });
         
@@ -965,7 +868,5 @@
  
     });
     </script>
-
-
 </body>
 </html>

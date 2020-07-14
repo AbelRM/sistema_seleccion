@@ -55,17 +55,17 @@ p {
     -moz-box-shadow: none !important;
     -webkit-box-shadow: none !important;
     box-shadow: none !important;
-    border: 1px solid #673AB7;
+    border: 1px solid #4e73df;
     outline-width: 0
 }
 
 #msform .action-button {
     width: 100px;
-    background: #673AB7;
+    background: #4e73df;
     font-weight: bold;
     color: white;
-    border: 0 none;
-    border-radius: 0px;
+    border: 1px solid transparent;
+    border-radius: 0.35rem;
     cursor: pointer;
     padding: 10px 5px;
     margin: 10px 0px 10px 5px;
@@ -74,7 +74,7 @@ p {
 
 #msform .action-button:hover,
 #msform .action-button:focus {
-    background-color: #311B92
+    background-color: #254fcc;
 }
 
 #msform .action-button-previous {
@@ -82,8 +82,8 @@ p {
     background: #616161;
     font-weight: bold;
     color: white;
-    border: 0 none;
-    border-radius: 0px;
+    border: 1px solid transparent;
+    border-radius: 0.35rem;
     cursor: pointer;
     padding: 10px 5px;
     margin: 10px 5px 10px 0px;
@@ -92,7 +92,7 @@ p {
 
 #msform .action-button-previous:hover,
 #msform .action-button-previous:focus {
-    background-color: #000000
+    background-color: #3b3b3b;
 }
 
 .card {
@@ -158,7 +158,7 @@ p {
 
 #progressbar #payment:before {
     font-family: FontAwesome;
-    content: "\f030"
+    content: "\f072"
 }
 
 #progressbar #confirm:before {
@@ -168,14 +168,22 @@ p {
 
 #progressbar #student:before {
     font-family: FontAwesome;
-    content: "\f19d"
+    content: "\f0c0"
 }
-
-
 
 #progressbar #book:before {
     font-family: FontAwesome;
     content: "\f02d"
+}
+
+#progressbar #home:before {
+    font-family: FontAwesome;
+    content: "\f015"
+}
+
+#progressbar #work:before {
+    font-family: FontAwesome;
+    content: "\f0b1"
 }
 
 

@@ -19,6 +19,11 @@
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.css" rel="stylesheet">
   <!-- <link rel="stylesheet" href="css/style.css"> -->
+  <style>
+    #total  {font-weight:bold;}
+    .red    {border-color:red;}
+    .green  {border-color:green;}
+  </style>
 
 </head>
 
@@ -271,31 +276,55 @@
                         <h6 class="m-0 font-weight-bold text-danger">Porcentajes de la convocatoria</h6>
                         <hr class="sidebar-divider">
                     </div>
-                    <div class="form-row">
-                        <label for="staticEmail" class="col-lg-2 col-md-4 col-sm-2 form-group col-form-label">% curricular</label>
-                        <div class="col-lg-1 col-md-2 col-sm-1">
-                            <input type="number" class="form-control" id="por_curricular">
+                    <div class="form-row" id="contenido">
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label for="staticEmail" class="col-sm-6 col-form-label">% CURRICULAR:</label>
+                          <div class="col-sm-2">
+                            <input type="text" class="form-control" id="curricular">
+                          </div>
+                          <label for="staticEmail" class="col-sm-4 col-form-label">%</label>
                         </div>
-
-                        <label for="staticEmail" class="col-lg-2 col-md-4 col-sm-2 form-group col-form-label">% entrevista</label>
-                        <div class="col-lg-1 col-md-2 col-sm-1">
-                            <input type="number" class="form-control" id="por_entrevista">
+                        <div class="form-group row">
+                          <label for="staticEmail" class="col-sm-6 col-form-label">% ENTREVISTA:</label>
+                          <div class="col-sm-2">
+                            <input type="text" class="form-control" id="entrevista">
+                          </div>
+                          <label for="staticEmail" class="col-sm-4 col-form-label">%</label>
                         </div>
-
-                        <label for="staticEmail" class="col-lg-2 col-md-4 col-sm-2 form-group col-form-label">% examen</label>
-                        <div class="col-lg-1 col-md-2 col-sm-1">
-                            <input type="number" class="form-control" id="por_entrevista">
+                        <div class="form-group row">
+                          <label for="staticEmail" class="col-sm-6 col-form-label">% EXÁMEN ESCRITO:</label>
+                          <div class="col-sm-2">
+                            <input type="text" class="form-control" id="escrito" value="0">
+                          </div>
+                          <label for="staticEmail" class="col-sm-4 col-form-label">%</label>
                         </div>
-
-                        <label for="staticEmail" class="col-lg-2 col-md-4 col-sm-2 form-group col-form-label">% discapacidad</label>
-                        <div class="col-lg-1 col-md-2 col-sm-1">
-                            <input type="number" class="form-control" id="por_entrevista">
+                        <hr class="sidebar-divider">
+                        <div class="form-group row">
+                          <label for="staticEmail" class="col-sm-6 col-form-label">TOTAL DEL PORCENTAJE:</label>
+                          <div class="col-sm-2">
+                            <input type="text" class="form-control" id="total" disabled="true">
+                          </div>
+                          <label for="staticEmail" class="col-sm-4 col-form-label">%</label>
                         </div>
-
-                        <label for="staticEmail" class="col-lg-2 col-md-4 col-sm-2 form-group col-form-label">% Lic. Militar</label>
-                        <div class="col-lg-1 col-md-2 col-sm-1">
-                            <input type="number" class="form-control" id="por_entrevista">
+                        
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label for="staticEmail" class="col-sm-6 col-form-label">% POR DISCAPACIDAD:</label>
+                          <div class="col-sm-2">
+                            <input type="text" class="form-control" id="por_discapacidad" value="15">
+                          </div>
+                          <label for="staticEmail" class="col-sm-4 col-form-label">%</label>
                         </div>
+                        <div class="form-group row">
+                          <label for="staticEmail" class="col-sm-6 col-form-label">% LIC. MILITAR:</label>
+                          <div class="col-sm-2">
+                            <input type="text" class="form-control" id="militar" value="10">
+                          </div>
+                          <label for="staticEmail" class="col-sm-4 col-form-label">%</label>
+                        </div>
+                      </div>
                     </div>
                     <div class="form-group d-flex justify-content-end">
                         <button type="submit" class="btn btn-primary">Registrar</button>
@@ -364,6 +393,8 @@
 
   <!-- Custom scripts for all pages-->
   <script src="js/sb-admin-2.js"></script>
+  <script src="js/sumar.js"></script>
+
 
 </body>
 

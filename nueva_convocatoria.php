@@ -276,38 +276,37 @@
                         <h6 class="m-0 font-weight-bold text-danger">Porcentajes de la convocatoria</h6>
                         <hr class="sidebar-divider">
                     </div>
-                    <div class="form-row" id="contenido">
+                    <div class="form-row">
                       <div class="col-md-6">
                         <div class="form-group row">
                           <label for="staticEmail" class="col-sm-6 col-form-label">% CURRICULAR:</label>
                           <div class="col-sm-2">
-                            <input type="text" class="form-control" id="curricular">
+                            <input type="text" class="form-control sumar" id="curricular" >
                           </div>
                           <label for="staticEmail" class="col-sm-4 col-form-label">%</label>
                         </div>
                         <div class="form-group row">
                           <label for="staticEmail" class="col-sm-6 col-form-label">% ENTREVISTA:</label>
                           <div class="col-sm-2">
-                            <input type="text" class="form-control" id="entrevista">
+                            <input type="text" class="form-control sumar" id="entrevista" >
                           </div>
                           <label for="staticEmail" class="col-sm-4 col-form-label">%</label>
                         </div>
                         <div class="form-group row">
                           <label for="staticEmail" class="col-sm-6 col-form-label">% EXÁMEN ESCRITO:</label>
                           <div class="col-sm-2">
-                            <input type="text" class="form-control" id="escrito" value="0">
+                            <input type="text" class="form-control sumar" id="escrito" value="0" >
                           </div>
                           <label for="staticEmail" class="col-sm-4 col-form-label">%</label>
                         </div>
                         <hr class="sidebar-divider">
                         <div class="form-group row">
                           <label for="staticEmail" class="col-sm-6 col-form-label">TOTAL DEL PORCENTAJE:</label>
-                          <div class="col-sm-2">
+                          <div class="col-sm-3">
                             <input type="text" class="form-control" id="total" disabled="true">
                           </div>
-                          <label for="staticEmail" class="col-sm-4 col-form-label">%</label>
+                          <label for="staticEmail" class="col-sm-3 col-form-label">%</label>
                         </div>
-                        
                       </div>
                       <div class="col-md-6">
                         <div class="form-group row">

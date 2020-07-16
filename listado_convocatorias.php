@@ -4,6 +4,7 @@
 <head>
 
   <meta charset="utf-8">
+  
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
@@ -236,29 +237,60 @@
             <div class="card-header py-3">
               <h6 class="m-0 font-weight-bold text-primary">LISTADO DE CONVOCATORIAS</h6>
             </div>
+
+            <?php
+            include 'conexion.php';
+            include 'modal_ver_convocatoria.php';
+            ?>
+
             <div class="card-body">
               <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                  <thead>
+                <thead>
                     <tr>
                       <th>N°</th>
                       <th>Tipo concurso</th>
                       <th>N° convocatoria</th>
-                      <th>Unidad ejecutora</th>
+                      <th>Direccion</th>
                       <th>Fecha de inicio</th>
+                      <th>Acciones</th>
                       
                     </tr>
                   </thead>
-                  <tfoot>
-                    <tr>
-                      <th>N°</th>
-                      <th>Tipo concurso</th>
-                      <th>N° convocatoria</th>
-                      <th>Unidad ejecutora</th>
-                      <th>Fecha de inicio</th>
-                      
-                    </tr>
-                  </tfoot>
+
+                  <?php
+                      $sql = "SELECT * FROM convocatoria";
+
+                      $query=mysqli_query($con, $sql);
+
+                      while ($row= MySQLI_fetch_array($query))
+                      {
+                        $idcargo=$row['idcon'];
+                        $tipocon=$row['tipo_con'];
+                        $cargo=$row['num_con'];
+                        $direccion=$row['direc_ejectiva_iddireccion'];
+                        $fecha=$row['fech_ini'];
+                  ?>
+
+                        <tr>
+                        <td><?php echo $idcargo; ?></td>
+                        <td><?php echo $tipocon; ?></td>
+                        <td><?php echo $cargo; ?></td>
+                        <td><?php echo $direccion; ?></td>
+                        <td><?php echo $fecha; ?></td>
+                        
+                        <td>
+                        <div metod="POST" class="col-md-11 text-center">
+                        <input type="hidden" value="<?php echo $idcargo;?>" name="id">
+                        <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#adenda"> Ver</button>                     
+                        </div>
+                        
+                        </td>
+
+                        <?php
+                        }
+                        ?>
+
                   <tbody>
                     
                   </tbody>

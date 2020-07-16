@@ -24,7 +24,6 @@
 </head>
 
 <body id="page-top">
-
   <!-- Page Wrapper -->
   <div id="wrapper">
 
@@ -242,42 +241,44 @@
                         <hr class="sidebar-divider">
                     </div>
                     <div class="form-group">
-                        <div class="table-responsive">
-                            <table class="table table-bordered" id="dynamic_field">
-                                <thead>
-                                    <tr class="bg-danger" style="text-align:center; font-size:0.813em;">
-                                        <th scope="col">CANTIDAD</th>
-                                        <th scope="col">CARGO</th>
-                                        <th scope="col">REMUNERACIÓN S/.</th>
-                                        <th scope="col">FUENTE FINANCIAMIENTO</th>
-                                        <th scope="coL">META</th>
-                                        <th scope="col">ACCIONES</th>
-                                
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td><input type="text" name="name[]" placeholder="CANTIDAD" class="form-control name_list" /></td>
-                                        <td>
-                                            <!-- <input type="text" name="name[]" placeholder="Nivel" class="form-control name_list" /> -->
-                                            <select class="form-control name_list" name="name[]">
-                                                <option value="basico">NIVEL BASICO</option>
-                                                <option value="intermedio">NIVEL INTERMEDIO</option>
-                                                <option value="avanzado">NIVEL AVANZADO</option>
-                                                </select>
-                                        </td>
-                                        <td><input type="text" name="name[]" placeholder="Ejemplo: 2000" class="form-control name_list" /></td>
-                                        <td><input type="text" name="name[]" placeholder="RECURSOS ORDINARIOS" class="form-control name_list" /></td>
-                                        <td><input type="text" name="name[]" placeholder="Ejemplo: 002" class="form-control name_list" /></td>
-                                        <td><button type="button" name="add" id="add" class="btn btn-primary"> + </button></td>
-                                    </tr>
-                                </tdody>
-                            </table>
-                        
-                        </div>
+                      <div class="table-responsive">
+                        <table class="table table-bordered" id="dynamic_field">
+                            <thead>
+                              <tr class="bg-danger" style="text-align:center; font-size:0.813em;">
+                                <th scope="col">CANTIDAD</th>
+                                <th scope="col">CARGO</th>
+                                <th scope="col">REMUNERACIÓN S/.</th>
+                                <th scope="col">FUENTE FINANCIAMIENTO</th>
+                                <th scope="coL">META</th>
+                                <th scope="col">ACCIONES</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                  <td><input type="text" name="name[]" placeholder="CANTIDAD" class="form-control name_list" /></td>
+                                  <td>
+                                    <select name="cargo" class="form-control" id="cargo">
+                                      <option value="" disabled selected>Elegir</option>
+                                      <?php
+                                        include_once('conexion.php');
+                                        $sql = mysqli_query($con,"SELECT * from cargo") or die("Problemas en consulta").mysqli_error();
+                                        while ($registro=mysqli_fetch_array($sql)) {
+                                          echo "<option value=\"".$registro['idcargo']."\">".$registro['cargo']."</option>";
+                                        }
+                                      ?>
+                                    </select>
+                                  </td>
+                                  <td><input type="text" name="name[]" placeholder="Ejemplo: 2000" class="form-control name_list" /></td>
+                                  <td><input type="text" name="name[]" placeholder="RECURSOS ORDINARIOS" class="form-control name_list" /></td>
+                                  <td><input type="text" name="name[]" placeholder="Ejemplo: 002" class="form-control name_list" /></td>
+                                  <td><button type="button" name="add" id="add" class="btn btn-primary"> + </button></td>
+                                </tr>
+                            </tdody>
+                        </table>
+                      </div>
                     </div>
                     <div class="form-group d-flex justify-content-end">
-                        <button type="submit" class="btn btn-primary">Registrar</button>
+                        <button type="submit" class="btn btn-primary">SIGUIENTE</button>
                     </div>
                   </form>  
                   
@@ -345,41 +346,39 @@
   <script src="js/sb-admin-2.js"></script>
 
   <script>
-
-        $(document).ready(function(){
-            var i = 1;
-    
-            $('#add').click(function () {
-                i++;
-                $('#dynamic_field').append('<tr id="row'+i+'">' +
-                                            '<td><input type="text" name="name[]" placeholder="CANTIDAD" class="form-control name_list" /></td>' +
-                                            '<td><input type="text" name="name[]" placeholder="CANTIDAD" class="form-control name_list" /></td>' +
-                                            '<td><input type="text" name="name[]" placeholder="Ejemplo: 2000" class="form-control name_list" /></td>' +
-                                            '<td><input type="text" name="name[]" placeholder="RECURSOS ORDINARIOS" class="form-control name_list" /></td>' +
-                                            '<td><input type="text" name="name[]" placeholder="Ejemplo: 002" class="form-control name_list" /></td>' +
-                                            '<td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td>' +
-                                            '</tr>');
-            });
-            
-            $(document).on('click', '.btn_remove', function () {
-                var id = $(this).attr('id');
-               $('#row'+ id).remove();
-            });
-    
-            // $('#submit').click(function(){
-            //     $.ajax({
-            //         url:"name.php",
-            //         method:"POST",
-            //         data:$('#add_name').serialize(),
-            //         success:function(data)
-            //         {
-            //             alert(data);
-            //             $('#add_name')[0].reset();
-            //         }
-            //     });
-            // });
+    $(document).ready(function(){
+        var i = 1;
+        $('#add').click(function () {
+            i++;
+            $('#dynamic_field').append('<tr id="row'+i+'">' +
+                                        '<td><input type="text" name="name[]" placeholder="CANTIDAD" class="form-control name_list" /></td>' +
+                                        '<td><input type="text" name="name[]" placeholder="CANTIDAD" class="form-control name_list" /></td>' +
+                                        '<td><input type="text" name="name[]" placeholder="Ejemplo: 2000" class="form-control name_list" /></td>' +
+                                        '<td><input type="text" name="name[]" placeholder="RECURSOS ORDINARIOS" class="form-control name_list" /></td>' +
+                                        '<td><input type="text" name="name[]" placeholder="Ejemplo: 002" class="form-control name_list" /></td>' +
+                                        '<td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td>' +
+                                        '</tr>');
         });
-    </script>
+        
+        $(document).on('click', '.btn_remove', function () {
+            var id = $(this).attr('id');
+            $('#row'+ id).remove();
+        });
+
+        // $('#submit').click(function(){
+        //     $.ajax({
+        //         url:"name.php",
+        //         method:"POST",
+        //         data:$('#add_name').serialize(),
+        //         success:function(data)
+        //         {
+        //             alert(data);
+        //             $('#add_name')[0].reset();
+        //         }
+        //     });
+        // });
+    });
+  </script>
 
 </body>
 

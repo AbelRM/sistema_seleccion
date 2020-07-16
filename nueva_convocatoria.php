@@ -240,7 +240,7 @@
                   <h6 class="m-0 font-weight-bold text-primary">NUEVA CONVOCATORIA</h6>
                 </div>
                 <div class="card-body">
-                  <form action="">
+                  <form action="procesos/guardar_nueva_convo.php" method="POST" >
                     <div class="form-group">
                         <h6 class="m-0 font-weight-bold text-danger">Datos de la convocatoria</h6>
                         <hr class="sidebar-divider">
@@ -248,7 +248,7 @@
                     <div class="form-row">
                         <div class="form-group col-md-2 col-sm-12">
                             <label for="inputState">Tipo de concurso</label>
-                            <select id="inputState" class="form-control">
+                            <select name="tipo_con" id="tipo_con" class="form-control">
                                 <option selected>Elegir...</option>
                                 <option value="cas">C.A.S.</option>
                                 <option value="276">Contrato 276</option>
@@ -257,19 +257,30 @@
                         </div>
                         <div class="form-group col-md-2 col-sm-12">
                             <label for="inputEmail4">N° de convocatoria</label>
-                            <input type="text" class="form-control" placeholder="001-2020">
+                            <input type="text" class="form-control" name="convocatoria" id="convocatoria" placeholder="001-2020">
                         </div>
                         <div class="form-group col-md-8 col-sm-12">
                             <label for="inputEmail4">Ubicación del lugar a elaborar</label>
-                            <input type="text" class="form-control" placeholder="Ubicación">
+                            <select name="ubicacion" class="form-control" id="ubicacion" placeholder="Ubicación">
+                              <option value="" disabled selected>Elegir</option>
+                                <?php
+                                  include_once('conexion.php');
+                                  $sql = mysqli_query($con,"SELECT * from direc_ejectiva") or die("Problemas en consulta").mysqli_error();
+                                  while ($registro=mysqli_fetch_array($sql)) {
+                                    echo "<option value=\"".$registro['iddireccion']."\">".$registro['nombre']."</option>";
+                                  }
+                                  // mysqli_close($con);
+                                ?>
+                            </select>
+                      
                         </div>
                         <div class="form-group col-md-3 col-sm-6">
                             <label for="inputEmail4">Fecha de inicio</label>
-                            <input type="date" class="form-control">
+                            <input type="date" name="fech_ini" id="fech_ini" class="form-control">
                         </div>
                         <div class="form-group col-md-3 col-sm-6">
                             <label for="inputEmail4">Fecha de fin</label>
-                            <input type="date" class="form-control">
+                            <input type="date" name="fech_fin" id="fech_fin" class="form-control">
                         </div>
                     </div>
                     <div class="form-group">
@@ -281,21 +292,21 @@
                         <div class="form-group row">
                           <label for="staticEmail" class="col-sm-6 col-form-label">% CURRICULAR:</label>
                           <div class="col-sm-2">
-                            <input type="text" class="form-control sumar" id="curricular" >
+                            <input type="text" class="form-control sumar" name="curricular" id="curricular" >
                           </div>
                           <label for="staticEmail" class="col-sm-4 col-form-label">%</label>
                         </div>
                         <div class="form-group row">
                           <label for="staticEmail" class="col-sm-6 col-form-label">% ENTREVISTA:</label>
                           <div class="col-sm-2">
-                            <input type="text" class="form-control sumar" id="entrevista" >
+                            <input type="text" class="form-control sumar" name="entrevista" id="entrevista" >
                           </div>
                           <label for="staticEmail" class="col-sm-4 col-form-label">%</label>
                         </div>
                         <div class="form-group row">
                           <label for="staticEmail" class="col-sm-6 col-form-label">% EXÁMEN ESCRITO:</label>
                           <div class="col-sm-2">
-                            <input type="text" class="form-control sumar" id="escrito" value="0" >
+                            <input type="text" name="escrito" class="form-control sumar" id="escrito" value="0" >
                           </div>
                           <label for="staticEmail" class="col-sm-4 col-form-label">%</label>
                         </div>
@@ -312,24 +323,23 @@
                         <div class="form-group row">
                           <label for="staticEmail" class="col-sm-6 col-form-label">% POR DISCAPACIDAD:</label>
                           <div class="col-sm-2">
-                            <input type="text" class="form-control" id="por_discapacidad" value="15">
+                            <input type="text" class="form-control" name="por_discapacidad" id="por_discapacidad" value="15">
                           </div>
                           <label for="staticEmail" class="col-sm-4 col-form-label">%</label>
                         </div>
                         <div class="form-group row">
                           <label for="staticEmail" class="col-sm-6 col-form-label">% LIC. MILITAR:</label>
                           <div class="col-sm-2">
-                            <input type="text" class="form-control" id="militar" value="10">
+                            <input type="text" class="form-control" name="militar" id="militar" value="10">
                           </div>
                           <label for="staticEmail" class="col-sm-4 col-form-label">%</label>
                         </div>
                       </div>
                     </div>
                     <div class="form-group d-flex justify-content-end">
-                        <button type="submit" class="btn btn-primary">Registrar</button>
+                        <button type="submit" class="btn btn-primary">SIGUIENTE</button>
                     </div>
-                  </form>  
-                  
+                  </form> 
                 </div>
               </div>
 

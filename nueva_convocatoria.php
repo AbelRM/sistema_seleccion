@@ -336,8 +336,8 @@
                         </div>
                       </div>
                     </div>
-                    <div class="form-group d-flex justify-content-end">
-                        <button type="submit" class="btn btn-primary">SIGUIENTE</button>
+                    <div class="form-row d-flex justify-content-end">
+                        <button type="submit" class="btn btn-danger">SIGUIENTE</button>
                     </div>
                   </form> 
                 </div>

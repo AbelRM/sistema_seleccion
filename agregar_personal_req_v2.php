@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -235,14 +236,14 @@
                   <h6 class="m-0 font-weight-bold text-primary">AGREGAR DATOS PERSONAL REQUERIDO</h6>
                 </div>
                 <div class="card-body">
-                  <form action="" method="POST">
+                  <form method="POST">
                     <div class="form-group">
                         <h6 class="m-0 font-weight-bold text-danger">Datos de la convocatoria</h6>
                         <hr class="sidebar-divider">
                     </div>
                     <div class="form-group">
                       <div class="table-responsive">
-                        <table class="table table-bordered" id="dynamic_field">
+                        <table class="table table-bordered" id="tabla">
                             <thead>
                               <tr class="bg-danger" style="text-align:center; font-size:0.813em;">
                                 <th scope="col">CANTIDAD</th>
@@ -254,10 +255,10 @@
                               </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                  <td><input type="text" name="name[]" placeholder="CANTIDAD" class="form-control name_list" /></td>
+                                <tr class="fila-fija">
+                                  <td><input type="text" name="cantidad[]" placeholder="CANTIDAD" class="form-control name_list" /></td>
                                   <td>
-                                    <select name="cargo" class="form-control" id="cargo">
+                                    <select name="cargo[]" class="form-control" id="cargo">
                                       <option value="" disabled selected>Elegir</option>
                                       <?php
                                         include_once('conexion.php');
@@ -268,19 +269,85 @@
                                       ?>
                                     </select>
                                   </td>
-                                  <td><input type="text" name="name[]" placeholder="Ejemplo: 2000" class="form-control name_list" /></td>
-                                  <td><input type="text" name="name[]" placeholder="RECURSOS ORDINARIOS" class="form-control name_list" /></td>
-                                  <td><input type="text" name="name[]" placeholder="Ejemplo: 002" class="form-control name_list" /></td>
-                                  <td><button type="button" name="add" id="add" class="btn btn-primary"> + </button></td>
+                                  <td><input type="text" name="remuneracion[]" placeholder="Ejemplo: 2000" class="form-control name_list" /></td>
+                                  <td><input type="text" name="fuente_finac[]" placeholder="RECURSOS ORDINARIOS" class="form-control name_list" /></td>
+                                  <td><input type="text" name="meta[]" placeholder="Ejemplo: 002" class="form-control name_list" /></td>
+                                  <td class="eliminar"><input type="button" class="btn btn-danger" value=" - "></td>
                                 </tr>
                             </tdody>
                         </table>
                       </div>
                     </div>
-                    <div class="form-group d-flex justify-content-end">
-                        <button type="submit" class="btn btn-primary">SIGUIENTE</button>
+                    <div class="row d-flex justify-content-center">
+                        <div class="form-inline p-2">
+                            <button id="adicional" name="adicional" type="button" class="btn btn-warning"> AGREGAR FILA (+) </button>
+                        </div>
+                        <div class="form-inline p-2">
+                            <input type="submit" name="insertar" class="btn btn-primary" value="Guardar"/>
+                        </div>
+                        <!-- <input type="hidden" id="idcon" name="idcon" value="<?php echo $idcon; ?>"> -->
+                    </div>
+                    <div class="row d-flex justify-content-end">
+                      <?php
+                        $idcon = $_GET['convocatoria_idcon'];
+                      ?>
+                      <a class="btn btn-danger" role="button" href="agregar_comision.php?convocatoria_idcon=<?php echo $idcon; ?>">Siiguiente</a>
                     </div>
                   </form>  
+                  <?php
+                        //////////////////////// PRESIONAR EL BOTÓN //////////////////////////
+                                       
+                        if(isset($_POST['insertar']))
+                        {
+                            $items1 = ($_POST['cantidad']);
+                            $items2 = ($_POST['cargo']);
+                            $items3 = ($_POST['remuneracion']);
+                            $items4 = ($_POST['fuente_finac']);
+                            $items5 = ($_POST['meta']);
+                        
+                        ///////////// SEPARAR VALORES DE ARRAYS, EN ESTE CASO SON 5 ARRAYS UNO POR CADA INPUT (ID, NOMBRE, CARRERA Y GRUPO////////////////////)
+                            while(true) {
+
+                                //// RECUPERAR LOS VALORES DE LOS ARREGLOS ////////
+                                $item1 = current($items1);
+                                $item2 = current($items2);
+                                $item3 = current($items3);
+                                $item4 = current($items4);
+                                $item5 = current($items5);
+                                
+                                ////// ASIGNARLOS A VARIABLES ///////////////////
+                                $cantidad=(( $item1 !== false) ? $item1 : ", &nbsp;");
+                                $cargo=(( $item2 !== false) ? $item2 : ", &nbsp;");
+                                $remuneracion=(( $item3 !== false) ? $item3 : ", &nbsp;");
+                                $fuente_finac=(( $item4 !== false) ? $item4 : ", &nbsp;");
+                                $meta=(( $item5 !== false) ? $item5 : ", &nbsp;");
+
+                                //// CONCATENAR LOS VALORES EN ORDEN PARA SU FUTURA INSERCIÓN ////////
+                                $valores='("'.$cantidad.'","'.$remuneracion.'","'.$fuente_finac.'","'.$meta.'","'.$cargo.'","'.$idcon.'"),';
+
+                                //////// YA QUE TERMINA CON COMA CADA FILA, SE RESTA CON LA FUNCIÓN SUBSTR EN LA ULTIMA FILA /////////////////////
+                                $valoresQ= substr($valores, 0, -1);
+                                
+                                ///////// QUERY DE INSERCIÓN ////////////////////////////
+                                // include_once('conexion.php');
+                                $sql = "INSERT INTO personal_req (cantidad, remuneracion, fuente_finac, meta, cargo_idcargo, convocatoria_idcon) 
+                                VALUES $valoresQ";
+
+                                $sqlRes=$con->query($sql) or mysqli_error($con);
+
+                                // Up! Next Value
+                                $item1 = next( $items1 );
+                                $item2 = next( $items2 );
+                                $item3 = next( $items3 );
+                                $item4 = next( $items4 );
+                                $item5 = next( $items5 );
+                                
+                                // Check terminator
+                                if($item1 === false && $item2 === false && $item3 === false && $item4 === false && $item5 === false) break;
+                
+                            }
+                        }
+                  ?>
                   
                 </div>
               </div>
@@ -344,41 +411,21 @@
 
   <!-- Custom scripts for all pages-->
   <script src="js/sb-admin-2.js"></script>
-
-  <script>
-    $(document).ready(function(){
-        var i = 1;
-        $('#add').click(function () {
-            i++;
-            $('#dynamic_field').append('<tr id="row'+i+'">' +
-                                        '<td><input type="text" name="name[]" placeholder="CANTIDAD" class="form-control name_list" /></td>' +
-                                        '<td><input type="text" name="name[]" placeholder="CARGO" class="form-control name_list" /></td>' +
-                                        '<td><input type="text" name="name[]" placeholder="Ejemplo: 2000" class="form-control name_list" /></td>' +
-                                        '<td><input type="text" name="name[]" placeholder="RECURSOS ORDINARIOS" class="form-control name_list" /></td>' +
-                                        '<td><input type="text" name="name[]" placeholder="Ejemplo: 002" class="form-control name_list" /></td>' +
-                                        '<td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td>' +
-                                        '</tr>');
+    <script>
+        $(function(){
+            // Clona la fila oculta que tiene los campos base, y la agrega al final de la tabla
+            $("#adicional").on('click', function(){
+                $("#tabla tbody tr:eq(0)").clone().removeClass('fila-fija').appendTo("#tabla");
+            });
+            
+            // Evento que selecciona la fila y la elimina 
+            $(document).on("click",".eliminar",function(){
+                var parent = $(this).parents().get(0);
+                $(parent).remove();
+            });
         });
-        
-        $(document).on('click', '.btn_remove', function () {
-            var id = $(this).attr('id');
-            $('#row'+ id).remove();
-        });
+    </script>                                       
 
-        // $('#submit').click(function(){
-        //     $.ajax({
-        //         url:"name.php",
-        //         method:"POST",
-        //         data:$('#add_name').serialize(),
-        //         success:function(data)
-        //         {
-        //             alert(data);
-        //             $('#add_name')[0].reset();
-        //         }
-        //     });
-        // });
-    });
-  </script>
 
 </body>
 

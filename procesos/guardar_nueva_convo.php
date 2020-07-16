@@ -18,7 +18,7 @@
     if ($con->query($sql) == TRUE) {
         $idcon=mysqli_insert_id($con);
         // echo $idcon;
-        header('Location: ../agregar_personal_req.php?convocatoria_idcon='.$idcon);
+        header('Location: ../agregar_personal_req_v2.php?convocatoria_idcon='.$idcon);
     } else {
         echo "Error: ".$sql. "<br>".$con->error;
     }

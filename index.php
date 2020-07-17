@@ -46,7 +46,7 @@
                     <img src="public/img/logo_diresa.png" alt="Logo de diresa" style="max-width: 100%; height: auto;">
                   </div>
                   
-                  <form action="procesos/autenticar.php" method="POST" class="user">
+                  <form action="procesos/autenticar_v2.php" method="POST" class="user">
                     <div class="form-group">
                       <input type="text" class="form-control form-control-user" id="dni" name="dni" placeholder="Ingrese su DNI...">
                     </div>

@@ -11,7 +11,7 @@ if(!$con){
     echo "<p>Error de conexion</p>";
 }
 else{
-	echo "Conexión exitosa";
+	//echo "Conexión exitosa";
 }
 // mysqli_close($con);
 

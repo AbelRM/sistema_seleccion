@@ -67,11 +67,12 @@
                   </div>
                   <div class="col-md-6 col-sm-6 mb-2 mb-sm-0">
                     <label for="exampleInputEmail1">Contraseña</label>
-                    <input type="password" style="padding: inherit;" class="form-control form-control-user" id="clave" name="clave">
+                    <input type="password" style="padding: inherit;" class="form-control form-control-user" id="clave" name="clave" required="true"><span class="help-block"></span>
                   </div>
                   <div class="col-md-6 col-sm-6 mb-2 mb-sm-0">
                     <label for="exampleInputEmail1">Confirmar ontraseña</label>
-                    <input type="password" style="padding: inherit;" class="form-control form-control-user" id="confi_clave" name="confi_clave">
+                    <input type="password" style="padding: inherit;" class="form-control form-control-user" id="confi_clave" name="confi_clave" required="true"><span class="help-block"></span>
+                    <label id="mensaje_error" class="control-label col-md-12 text-danger" style="display: block;">Las constraseñas si coinciden</label>
                   </div>
                 </div>
                 <div class="form-group row d-flex justify-content-center">
@@ -84,7 +85,7 @@
                 <a class="small" href="forgot-password.php">¿Olvidaste tu contraseña?</a>
               </div>
               <div class="text-center">
-                <a class="small" href="login.php">Ya tienes una cuenta? Ingresa!</a>
+                <a class="small" href="index.php">Ya tienes una cuenta? Ingresa!</a>
               </div>
             </div>
           </div>
@@ -103,7 +104,29 @@
 
   <!-- Custom scripts for all pages-->
   <script src="public/js/sb-admin-2.min.js"></script>
+  <script>
+    $(document).ready(function () {
+    $('#mensaje_error').hide();  
+    });
 
+      var cambioDePass = function() {
+          var cont = $('#clave').val();
+          var cont2 = $('#confi_clave').val();
+          if (cont == cont2) {
+              $('#mensaje_error').hide();
+              $('#mensaje_error').attr("class", "control-label col-md-12 text-success");
+              $('#mensaje_error').show();
+              $('#mensaje_error').html("Las constraseñas si coinciden");
+          } else {
+              $('#mensaje_error').attr("class", "control-label col-md-12 text-danger");
+              $('#mensaje_error').html("Las constraseñas no coinciden");
+              $('#mensaje_error').show();
+          }
+      }
+
+    $("#clave").on('keyup', cambioDePass);
+    $("#confi_clave").on('keyup', cambioDePass);
+  </script>
 </body>
 
 </html>

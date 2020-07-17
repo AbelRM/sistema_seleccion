@@ -12,12 +12,12 @@
   <title>Registro de sistema de postulacion DIRESA TACNA</title>
 
   <!-- Custom fonts for this template-->
-  <link rel="icon" type="image/png" href="img/icono_diresa.png" />
+  <link rel="icon" type="image/png" href="public/img/icono_diresa.png" />
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
   <!-- Custom styles for this template-->
-  <link href="css/sb-admin-2.min.css" rel="stylesheet">
+  <link href="public/css/sb-admin-2.min.css" rel="stylesheet">
 
 </head>
 
@@ -30,120 +30,48 @@
         <!-- Nested Row within Card Body -->
         <div class="row">
           <div class="col-lg-4 d-none d-lg-flex justify-content-center">
-            <img src="img/register.png" style="max-width: 100%; margin: auto;" alt="Imagen de formulario registro">
+            <img src="public/img/register.png" style="max-width: 100%; margin: auto;" alt="Imagen de formulario registro">
           </div>
           <div class="col-lg-8">
             <div class="p-4">
               <div class="text-center">
                 <h1 class="h4 text-gray-900 mb-4">CREAR CUENTA</h1>
               </div>
-              <?php
-                  include 'conexion.php';
-              ?>
-              <form action="procesos/guardar_registro.php" method="POST" class="user">
+              
+              <form action="procesos/guardar_user.php" method="POST" class="user">
                 <div class="form-group row">
-                  <div class="col-md-5 col-sm-6 mb-2 mb-sm-0">
+                  <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
                     <label for="exampleInputEmail1">Nombres</label>
-                    <input type="text" style="padding: inherit;" class="form-control form-control-user" id="nombres" aria-describedby="emailHelp">
+                    <input type="text" style="padding: inherit;" class="form-control form-control-user" id="nombres" name="nombres" >
                     <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
                   </div>
-                  <div class="col-md-5 col-sm-6 mb-2 mb-sm-0">
-                    <label for="exampleInputEmail1">Apellidos</label>
-                    <input type="text" style="padding: inherit;" class="form-control form-control-user" id="apellidos" aria-describedby="emailHelp">
+                  <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
+                    <label for="exampleInputEmail1">Apellido paterno</label>
+                    <input type="text" style="padding: inherit;" class="form-control form-control-user" id="ape_pat" name="ape_pat" >
+                  </div>
+                  <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
+                    <label for="exampleInputEmail1">Apellido materno</label>
+                    <input type="text" style="padding: inherit;" class="form-control form-control-user" id="ape_mat" name="ape_mat">
                   </div>
                   <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">
                     <label for="exampleInputEmail1">DNI</label>
-                    <input type="text" style="padding: inherit;" maxlength="8"  class="form-control form-control-user" id="dni" aria-describedby="emailHelp">
+                    <input type="text" style="padding: inherit;" maxlength="8"  class="form-control form-control-user" id="dni" name="dni">
                   </div>
-                  <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
-                    <label for="exampleInputEmail1">RUC</label>
-                    <input type="text" style="padding: inherit;" class="form-control form-control-user" id="ruc" aria-describedby="emailHelp">
-                  </div>
-                  <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
-                    <label for="exampleInputEmail1">Fecha de Nacimiento</label>
-                    <input type="date" style="padding: inherit;" class="form-control form-control-user" id="fech_nac" aria-describedby="emailHelp">
-                  </div>
-                  <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
+                  <div class="col-md-5 col-sm-6 mb-2 mb-sm-0">
                     <label for="exampleInputEmail1">Correo electronico</label>
-                    <input type="text" style="padding: inherit;" class="form-control form-control-user" id="correo" aria-describedby="emailHelp">
+                    <input type="email" style="padding: inherit;" class="form-control form-control-user" id="correo" name="correo">
                   </div>
-                  <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
-                    <label for="exampleInputEmail1">Departamento</label>
-                    <input type="text" style="padding: inherit;" class="form-control form-control-user" id="departamento" aria-describedby="emailHelp">
-                  </div>
-                  <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
-                    <label for="exampleInputEmail1">Provincia</label>
-                    <input type="text" style="padding: inherit;"  class="form-control form-control-user" id="provincia" aria-describedby="emailHelp">
-                  </div>
-                  <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
-                    <label for="exampleInputEmail1">Distrito</label>
-                    <input type="text" style="padding: inherit;" class="form-control form-control-user" id="distrito" aria-describedby="emailHelp">
-                  </div>
-                  <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
-                    <label for="exampleInputEmail1">Telefono fijo</label>
-                    <input type="text" style="padding: inherit;" class="form-control form-control-user" id="telefono" aria-describedby="emailHelp">
-                  </div>
-                  <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
+                  <div class="col-md-5 col-sm-6 mb-2 mb-sm-0">
                     <label for="exampleInputEmail1">Nro. Celular</label>
-                    <input type="text" style="padding: inherit;" class="form-control form-control-user" id="celular" aria-describedby="emailHelp">
-                  </div>
-                  <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
-                    <label for="exampleInputEmail1">Grupo Sanguíneo</label>
-                    <input type="text" style="padding: inherit;" class="form-control form-control-user" id="sangre" aria-describedby="emailHelp">
+                    <input type="text" style="padding: inherit;" class="form-control form-control-user" id="celular" name="celular" >
                   </div>
                   <div class="col-md-6 col-sm-6 mb-2 mb-sm-0">
-                    <label for="exampleInputEmail1">Enfermedades y alergias</label>
-                    <input type="text" style="padding: inherit;" class="form-control form-control-user" id="enfermedades" aria-describedby="emailHelp">
-                  </div>
-                  <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
-                    <label for="exampleInputEmail1">En emergencia</label>
-                    <input type="text" style="padding: inherit;" placeholder="Parentesco" class="form-control form-control-user" id="sangre" aria-describedby="emailHelp">
-                    
-                  </div>
-                  <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
-                    <label for="exampleInputEmail1">llamar a</label>
-                    <input type="text" style="padding: inherit;" placeholder="Nro. celular" class="form-control form-control-user" id="sangre" aria-describedby="emailHelp">
-                  </div>
-                  <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
-                    <label for="exampleInputEmail1">Estado Civil</label>
-                    <select class="form-control form-control-user" style="padding: inherit;" id="estado_civil">
-                      <option value="SOLTERO">Soltero</option>
-                      <option value="CASADO">Casado</option>
-                      <option value="VIUDO">Viudo</option>
-                      <option value="DIVORCIADO">Divorciado</option>
-                      <option value="CONVIVIENTE">Conviviente</option>
-                    </select>
-                  </div>
-                  <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
-                    <label for="exampleInputEmail1">Discapacidad</label>
-                    <select class="form-control form-control-user" style="padding: inherit;" id="discapacidad">
-                      <option value="0">NO</option>
-                      <option value="1">SI</option>
-                    </select>
-                  </div>
-                  <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
-                    <label for="exampleInputEmail1">Tipo de discapacidad</label>
-                    <select class="form-control form-control-user" style="padding: inherit;" id="tip_discapacidad">
-                      <option value="FISICA">Fisica</option>
-                      <option value="SENSORIAL">Sensorial</option>
-                      <option value="MENTAL">Mental</option>
-                      <option value="INTELECTUAL">Intelectual</option>
-                    </select>
-                  </div>
-                  <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
-                    <label for="exampleInputEmail1">Servicio Militar</label>
-                    <select class="form-control form-control-user" style="padding: inherit;" id="serv_civil">
-                      <option value="0">NO</option>
-                      <option value="1">SI</option>
-                    </select>
-                  </div>
-                  <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
                     <label for="exampleInputEmail1">Contraseña</label>
-                    <input type="password" style="padding: inherit;" class="form-control form-control-user" id="contraseña">
+                    <input type="password" style="padding: inherit;" class="form-control form-control-user" id="clave" name="clave">
                   </div>
-                  <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
+                  <div class="col-md-6 col-sm-6 mb-2 mb-sm-0">
                     <label for="exampleInputEmail1">Confirmar ontraseña</label>
-                    <input type="password" style="padding: inherit;" class="form-control form-control-user" id="confirmar">
+                    <input type="password" style="padding: inherit;" class="form-control form-control-user" id="confi_clave" name="confi_clave">
                   </div>
                 </div>
                 <div class="form-group row d-flex justify-content-center">
@@ -153,10 +81,10 @@
               </form>
               <hr>
               <div class="text-center">
-                <a class="small" href="forgot-password.html">¿Olvidaste tu contraseña?</a>
+                <a class="small" href="forgot-password.php">¿Olvidaste tu contraseña?</a>
               </div>
               <div class="text-center">
-                <a class="small" href="login.html">Ya tienes una cuenta? Ingresa!</a>
+                <a class="small" href="login.php">Ya tienes una cuenta? Ingresa!</a>
               </div>
             </div>
           </div>
@@ -174,7 +102,7 @@
   <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
   <!-- Custom scripts for all pages-->
-  <script src="js/sb-admin-2.min.js"></script>
+  <script src="public/js/sb-admin-2.min.js"></script>
 
 </body>
 

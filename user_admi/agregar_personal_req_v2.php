@@ -189,7 +189,7 @@
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
-                <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
+                <!-- <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60"> -->
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -253,7 +253,7 @@
                     </div>
                     <div class="form-group col-md-3 col-sm-12">
                       <label for="inputEmail4">Tipo de convocatoria</label>
-                      <input type="text" class="form-control" value="<?php echo $fila['tip_con'] ?>" disabled="true">
+                      <input type="text" class="form-control" value="<?php echo $fila['tipo_con'] ?>" disabled="true">
                     </div>
                     <div class="form-group col-md-6 col-sm-12">
                       <label for="inputEmail4">Dirección ejecutora</label>
@@ -265,7 +265,7 @@
                     </div>
                     <div class="form-group col-md-3 col-sm-6">
                         <label for="inputEmail4">Fecha de fin</label>
-                        <input type="date" class="form-control" value="<?php echo $fila['fech_fin'] ?>" disabled="true">
+                        <input type="date" class="form-control" value="<?php echo $fila['fech_term'] ?>" disabled="true">
                     </div>
 
                   </div>
@@ -394,13 +394,7 @@
       <!-- End of Main Content -->
 
       <!-- Footer -->
-      <footer class="sticky-footer bg-white">
-        <div class="container my-auto">
-          <div class="copyright text-center my-auto">
-            <span>Copyright &copy; AMS, DIRESA - 2020</span>
-          </div>
-        </div>
-      </footer>
+      <?php include 'footer.php'; ?>
       <!-- End of Footer -->
 
     </div>

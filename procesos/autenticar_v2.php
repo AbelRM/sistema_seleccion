@@ -22,7 +22,7 @@ if(!$consulta){
 //este else sobra
 else { 
 
-    header("Location: ../user_admi/index.php?dni='.$dni");
+    header("Location: ../user_admi/index.php?dni=$dni");
 
 } 
 

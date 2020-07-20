@@ -250,9 +250,9 @@
                             <label for="inputState">Tipo de concurso</label>
                             <select name="tipo_con" id="tipo_con" class="form-control">
                                 <option selected>Elegir...</option>
-                                <option value="cas">C.A.S.</option>
-                                <option value="276">Contrato 276</option>
-                                <option value="practicante">Practicante</option>
+                                <option value="C.A.S.">C.A.S.</option>
+                                <option value="P.E. 276">Provisión Externa 276</option>
+                                <option value="PRACTICANTE">Practicante</option>
                             </select>
                         </div>
                         <div class="form-group col-md-2 col-sm-12">
@@ -265,9 +265,9 @@
                               <option value="" disabled selected>Elegir</option>
                                 <?php
                                   include_once('conexion.php');
-                                  $sql = mysqli_query($con,"SELECT * from direc_ejectiva") or die("Problemas en consulta").mysqli_error();
+                                  $sql = mysqli_query($con,"SELECT * from ubicacion") or die("Problemas en consulta").mysqli_error();
                                   while ($registro=mysqli_fetch_array($sql)) {
-                                    echo "<option value=\"".$registro['iddireccion']."\">".$registro['nombre']."</option>";
+                                    echo "<option value=\"".$registro['iddireccion']."\">".$registro['direccion_ejec']." - ".$registro['equipo_ejec']."</option>";
                                   }
                                   // mysqli_close($con);
                                 ?>
@@ -354,13 +354,7 @@
       <!-- End of Main Content -->
 
       <!-- Footer -->
-      <footer class="sticky-footer bg-white">
-        <div class="container my-auto">
-          <div class="copyright text-center my-auto">
-            <span>Copyright &copy; AMS, DIRESA - 2020</span>
-          </div>
-        </div>
-      </footer>
+      <?php include 'footer.php'; ?>
       <!-- End of Footer -->
 
     </div>

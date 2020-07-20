@@ -237,7 +237,6 @@
             <div class="card-header py-3">
               <h6 class="m-0 font-weight-bold text-primary">LISTADO DE CONVOCATORIAS</h6>
             </div>
-
             <?php
             include '../conexion.php';
             include 'modal_ver_convocatoria.php';
@@ -252,43 +251,47 @@
                       <th>Tipo concurso</th>
                       <th>N° convocatoria</th>
                       <th>Direccion</th>
-                      <th>Fecha de inicio</th>
                       <th>Acciones</th>
                       
                     </tr>
                   </thead>
-
                   <?php
                       $sql = "SELECT * FROM convocatoria";
-
                       $query=mysqli_query($con, $sql);
-
                       while ($row= MySQLI_fetch_array($query))
                       {
-                        $idcargo=$row['idcon'];
-                        $tipocon=$row['tipo_con'];
-                        $cargo=$row['num_con'];
-                        $direccion=$row['direccion_ejec_iddireccion'];
-                        $fecha=$row['fech_ini'];
-                  ?>
-
-                        <tr>
-                        <td><?php echo $idcargo; ?></td>
+                        // $idcargo=$row['idcon'];
+                        // $tipocon=$row['tipo_con'];
+                        // $cargo=$row['num_con'];
+                        // $direccion=$row['direccion_ejec_iddireccion'];
+                        // $fecha=$row['fech_ini'];
+                      ?>
+                      <tr>
+                        <td><?php echo $row['idcon'] ?></td>
+                        <td style="font-size: 16px;"><?php echo $row['tipo_con'] ?></td>
+                        <td style="font-size: 14px;"><?php echo $row['num_con'] ?></td>
+                        <td style="font-size: 14px;"><?php echo $row['direccion_ejec_iddireccion'] ?></td>
+                        <td>
+                          <a href="verconvocatoria.php?id=<?php echo $row['idcon'] ?>"><button type="button" class="btn btn-warning" id="editar" style="margin: 1px;"><i class="fa fa-eye"></i></button></a>
+                          <!-- <a href="editar_proyecto.php?id=<?php echo $fila['id'] ?>"><button type="button" class="btn btn-success" id="editar" style="margin: 1px;"><i class="fa fa-edit"></i></button></a> -->
+                          
+                        </td>
+                        <!-- <td><?php echo $idcargo; ?></td>
                         <td><?php echo $tipocon; ?></td>    
                         <td><?php echo $cargo; ?></td>
                         <td><?php echo $direccion; ?></td>
                         <td><?php echo $fecha; ?></td>
                         
                         <td>
-                        <form method="POST" action="verconvocatoria.php">
-                        <input type="hidden" value="<?php echo $idcon; ?>" name="id">
-                        <button type="submit" class="btn btn-success btn-sm"><i class="fa fa-pencil-square-o"> </i>&nbsp; Ver</button><p></p>
-							          </form>
-                        </td>
-
-                        <?php
-                        }
-                        ?>
+                          <form method="POST" action="verconvocatoria.php">
+                          <input type="hidden" value="<?php echo $idcon; ?>" name="id">
+                          <button type="submit" class="btn btn-success btn-sm"><i class="fa fa-pencil-square-o"> </i>&nbsp; Ver</button><p></p>
+                          </form>
+                        </td> -->
+                      </tr>
+                      <?php
+                      }
+                      ?>
 
                   <tbody>
                     

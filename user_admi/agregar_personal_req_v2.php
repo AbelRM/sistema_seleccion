@@ -236,7 +236,6 @@
                   <?php
 
                     $idcon = $_GET['convocatoria_idcon'];
-                
                     include_once('conexion.php');
                     $sql="SELECT * FROM convocatoria where idcon=$idcon";
                     $datos=mysqli_query($con,$sql);

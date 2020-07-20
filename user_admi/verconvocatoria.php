@@ -237,55 +237,50 @@
               <!-- Basic Card Example -->
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">CONVOCATORIA</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">CONVOCATORIA SELECCIONADA</h6>
                 </div>
-
                 <div class="card-body">    
-                    
                 <?php 
-              
-              $idcon=$_POST['id'];
-              
-              $sql="SELECT * FROM convocatoria WHERE idcon='".$idcon."' ";
+                    $idcon=$_GET['id'];
+                    $sql="SELECT * FROM full_convocatoria WHERE idcon='".$idcon."' ";
+                    $result=mysqli_query($con,$sql);
+                    $fila=mysqli_fetch_array($result);
 
-              $result=mysqli_query($con, $sql);
-              while ($rw=mysqli_fetch_array($result))
-              {
-                      $tipo_con=$rw['tipo_con'];
-                      $num_con=$rw['num_con'];
-                      $dir_ejec=$rw['direccion_ejec_iddireccion'];
-                      $fech_ini=$rw['fech_ini'];
-                      $fech_term=$rw['fech_term'];
-                      $porcen_eva_cu=$rw['porcen_eva_cu'];
-                      $porce_entrevista=$rw['porce_entrevista'];
-                      $porce_exa_escrito=$rw['porce_exa_escrito'];
-                      $porce_discapacidad=$rw['porce_discapacidad'];
-                      $porce_sermilitar=$rw['porce_sermilitar'];                       
-              }
-              ?>
-
-
+                    // while ($rw=mysqli_fetch_array($result))
+                    // {
+                    //       $tipo_con=$rw['tipo_con'];
+                    //       $num_con=$rw['num_con'];
+                    //       $dir_ejec=$rw['direccion_ejec_iddireccion'];
+                    //       $fech_ini=$rw['fech_ini'];
+                    //       $fech_term=$rw['fech_term'];
+                    //       $porcen_eva_cu=$rw['porcen_eva_cu'];
+                    //       $porce_entrevista=$rw['porce_entrevista'];
+                    //       $porce_exa_escrito=$rw['porce_exa_escrito'];
+                    //       $porce_discapacidad=$rw['porce_discapacidad'];
+                    //       $porce_sermilitar=$rw['porce_sermilitar'];                       
+                    // }
+                ?>
                  <form method="POST" >
-                    <input type="hidden" value="<?php echo $idcon; ?>" name="id">
+                    <input type="hidden" value="<?php echo $fila["con_con"]; ?>" name="id">
                         <div class="form-group">
                              <h6 class="m-0 font-weight-bold text-danger">Datos de la convocatoria</h6>
                              <hr class="sidebar-divider">
                         </div>
                         <div class="form-row">
 
-                            <div class="form-group col-md-4 col-sm-12">
+                            <div class="form-group col-md-3 col-sm-12">
                                 <label for="disabled-input">Tipo de concurso</label>           
-                                <input type="text" class="form-control"  name="tipo_con" value="<?php echo $tipo_con; ?>" disabled="true">                                          
+                                <input type="text" class="form-control"  name="tipo_con" value="<?php echo $fila["tipo_con"]; ?>" disabled="true">                                          
                              </div>
 
-                             <div class="form-group col-md-4 col-sm-12">
+                             <div class="form-group col-md-3 col-sm-12">
                                 <label for="disabled-input">N° de convocatoria</label>           
-                                <input type="text" class="form-control"  name="num_con" value="<?php echo $num_con; ?>" disabled="true">                                          
+                                <input type="text" class="form-control"  name="num_con" value="<?php echo $fila["num_con"]; ?>" disabled="true">                                          
                              </div>
 
-                             <div class="form-group col-md-4 col-sm-12">
+                             <div class="form-group col-md-6 col-sm-12">
                                 <label for="disabled-input">Direccion Ejecutiva</label>           
-                                <input type="text" class="form-control"  name="direccion_ejec_iddireccion" value="<?php echo $dir_ejec; ?>" disabled="true">                                          
+                                <input type="text" class="form-control"  name="direccion_ejec_iddireccion" value="<?php echo $fila['direccion_ejec']." ".$fila['equipo_ejec'];  ?>" disabled="true">                                          
                              </div>
 
                              <div class="form-group col-md-4 col-sm-12">
@@ -364,51 +359,55 @@
                                     </div>
 
                         </div>
-
-                        <div class="form-group">
-                                        <h6 class="m-0 font-weight-bold text-danger">Comision</h6>
-                                        <hr class="sidebar-divider">
-                                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                <thead>
-                                    <tr>
-                                    <th>Cargo</th>
-                                    <th>Nombre</th>
-                                    <th>Apellidos</th>
-                                    
-                                    </tr>
-                                </thead>
-
-
-                                <?php
-                                              
-                                    $sql = "SELECT * FROM comision";
-
-                                    $query=mysqli_query($con, $sql);
-
-                                    while ($row= MySQLI_fetch_array($query)){
-                                        $idcomisionn=$row['idcomision'];
-                                        $cargo_funcio=$row['cargo_funcio'];
-                                        $nombre=$row['nombre'];
-                                        $apellidos=$row['apellidos'];
-                                ?>
-
+                      <div class="row">
+                        <div class="col-md-6 col-sm-12" >
+                          <div class="form-group">
+                            <h6 class="m-0 font-weight-bold text-danger">Comision</h6>
+                            <hr class="sidebar-divider">
+                            <div class="card-body">
+                            
+                              <div class="table-responsive">
+                                  <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
                                         <tr>
-                                        <td><?php echo $cargo_funcio;?></td>
-                                        <td><?php echo $nombre;?></td>
-                                        <td><?php echo $apellidos;?></td>
-                                        <?php
-                                        }
-                                        ?>	
-                                <tbody>
-                                </tbody>
-                                </table>
-                            </div>
-                            </div>
-                        </div>
+                                        <th>Cargo</th>
+                                        <th>Nombre</th>
+                                        <th>Apellidos</th>
+                                        
+                                        </tr>
+                                    </thead>
 
-                        <div class="form-group">
+
+                                    <?php
+                                                  
+                                        $sql = "SELECT * FROM comision";
+
+                                        $query=mysqli_query($con, $sql);
+
+                                        while ($row= MySQLI_fetch_array($query)){
+                                            $idcomisionn=$row['idcomision'];
+                                            $cargo_funcio=$row['cargo_funcio'];
+                                            $nombre=$row['nombre'];
+                                            $apellidos=$row['apellidos'];
+                                    ?>
+
+                                            <tr>
+                                            <td><?php echo $cargo_funcio;?></td>
+                                            <td><?php echo $nombre;?></td>
+                                            <td><?php echo $apellidos;?></td>
+                                            <?php
+                                            }
+                                            ?>	
+                                    <tbody>
+                                    </tbody>
+                                  </table>
+                              </div>
+
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                          <div class="form-group">
                                         <h6 class="m-0 font-weight-bold text-danger">Personal Requerido</h6>
                                         <hr class="sidebar-divider">
                                         <div class="card-body">
@@ -448,8 +447,9 @@
                                 </table>
                             </div>
                             </div>
+                          </div>                      
                         </div>
-
+                      </div>
                  </form>
             </div>
 

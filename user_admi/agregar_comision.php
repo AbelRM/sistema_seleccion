@@ -322,13 +322,10 @@
   <!-- Bootstrap core JavaScript-->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
   <!-- Core plugin JavaScript-->
   <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
   <!-- Custom scripts for all pages-->
   <script src="js/sb-admin-2.js"></script>
-
     <script>
 
         $(document).ready(function(){
@@ -348,19 +345,6 @@
                 var id = $(this).attr('id');
                $('#row'+ id).remove();
             });
-    
-            // $('#submit').click(function(){
-            //     $.ajax({
-            //         url:"name.php",
-            //         method:"POST",
-            //         data:$('#add_name').serialize(),
-            //         success:function(data)
-            //         {
-            //             alert(data);
-            //             $('#add_name')[0].reset();
-            //         }
-            //     });
-            // });
         });
     </script>
 

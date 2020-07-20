@@ -234,7 +234,6 @@
                 </div>
                 <div class="card-body">
                   <?php
-
                     $idcon = $_GET['convocatoria_idcon'];
                     include_once('conexion.php');
                     $sql="SELECT * FROM convocatoria where idcon=$idcon";
@@ -315,13 +314,12 @@
                             <button id="adicional" name="adicional" type="button" class="btn btn-warning"> AGREGAR FILA (+) </button>
                         </div>
                         <div class="form-inline p-2">
-                            <input type="submit" name="insertar" class="btn btn-primary" value="Guardar"/>
+                            <input type="submit" name="insertar" class="btn btn-primary" value="GUARDAR"/>
                         </div>
                         <!-- <input type="hidden" id="idcon" name="idcon" value="<?php echo $idcon; ?>"> -->
                     </div>
                     <div class="row d-flex justify-content-end">
-                      
-                      <a class="btn btn-danger" role="button" href="agregar_comision.php?convocatoria_idcon=<?php echo $idcon; ?>">Siiguiente</a>
+                      <a class="btn btn-danger" role="button" href="agregar_comision.php?convocatoria_idcon=<?php echo $idcon; ?>">Siguente</a>
                     </div>
                   </form>  
                   <?php
@@ -408,7 +406,7 @@
   </a>
 
   <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <!-- <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -424,7 +422,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 
   <!-- Bootstrap core JavaScript-->
   <script src="vendor/jquery/jquery.min.js"></script>
@@ -435,20 +433,20 @@
 
   <!-- Custom scripts for all pages-->
   <script src="js/sb-admin-2.js"></script>
-    <script>
-        $(function(){
-            // Clona la fila oculta que tiene los campos base, y la agrega al final de la tabla
-            $("#adicional").on('click', function(){
-                $("#tabla tbody tr:eq(0)").clone().removeClass('fila-fija').appendTo("#tabla");
-            });
-            
-            // Evento que selecciona la fila y la elimina 
-            $(document).on("click",".eliminar",function(){
-                var parent = $(this).parents().get(0);
-                $(parent).remove();
-            });
-        });
-    </script>                                       
+  <script>
+      $(function(){
+          // Clona la fila oculta que tiene los campos base, y la agrega al final de la tabla
+          $("#adicional").on('click', function(){
+              $("#tabla tbody tr:eq(0)").clone().removeClass('fila-fija').appendTo("#tabla");
+          });
+          
+          // Evento que selecciona la fila y la elimina 
+          $(document).on("click",".eliminar",function(){
+              var parent = $(this).parents().get(0);
+              $(parent).remove();
+          });
+      });
+  </script>                                       
 
 
 </body>

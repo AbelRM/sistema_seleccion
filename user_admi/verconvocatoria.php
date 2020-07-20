@@ -261,7 +261,7 @@
                     // }
                 ?>
                  <form method="POST" >
-                    <input type="hidden" value="<?php echo $fila["con_con"]; ?>" name="id">
+                        <input type="hidden" value="<?php echo $fila["con_con"]; ?>" name="id">
                         <div class="form-group">
                              <h6 class="m-0 font-weight-bold text-danger">Datos de la convocatoria</h6>
                              <hr class="sidebar-divider">
@@ -293,17 +293,12 @@
                                 <input type="text" class="form-control"  name="fech_term" value="<?php echo $fech_term; ?>" disabled="true">                                          
                              </div>
 
-                        
-
-
-
                          </div>
 
                         <div class="form-group">
-                                        <h6 class="m-0 font-weight-bold text-danger">Porcentaje de la convocatoria</h6>
-                                        <hr class="sidebar-divider">
-                                    </div>
-
+                          <h6 class="m-0 font-weight-bold text-danger">Porcentaje de la convocatoria</h6>
+                          <hr class="sidebar-divider">
+                        </div>
                                 <div class="form-row" id="contenido">
                                     <div class="col-md-12">
                                         
@@ -365,7 +360,6 @@
                             <h6 class="m-0 font-weight-bold text-danger">Comision</h6>
                             <hr class="sidebar-divider">
                             <div class="card-body">
-                            
                               <div class="table-responsive">
                                   <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
@@ -376,8 +370,6 @@
                                         
                                         </tr>
                                     </thead>
-
-
                                     <?php
                                                   
                                         $sql = "SELECT * FROM comision";

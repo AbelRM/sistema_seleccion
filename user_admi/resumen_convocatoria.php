@@ -233,7 +233,7 @@
               <!-- Basic Card Example -->
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">AGREGAR DATOS DE LA COMISIÓN </h6>
+                  <h6 class="m-0 font-weight-bold text-primary">RESUMEN DE LA CONVOCATORIA AGREGADA</h6>
                 </div>
                 <div class="card-body">
                   <?php
@@ -269,140 +269,73 @@
                         <input type="date" class="form-control" value="<?php echo $fila['fech_term'] ?>" disabled="true">
                     </div>
                   </div>
-                  <!-- SE ESTA MOSTRANDO LA PARTE DE PERSONAL REQUERIDO -->
-                  <div class="form-group">
-                      <h6 class="m-0 font-weight-bold text-danger">Datos del personal requerido</h6>
-                      <hr class="sidebar-divider">
-                  </div>
-                  <table id="bootstrap-data-table" class="table table-striped table-bordered">
-                    <thead>
-                        <tr>
-                            <th>Cantidad</th>
-                            <th>Cargo</th>
-                            <th>Remuneración</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    <?php
-                      $idcon = $_GET['convocatoria_idcon'];
-                      include_once('conexion.php');
-                      $sql="SELECT * FROM total_personal_req where convocatoria_idcon=$idcon";
-                      $result=mysqli_query($con,$sql);
-                      while($fila=mysqli_fetch_array($result)){   
-                    ?>
-                    <tr>
-                        <td style="font-size: 16px;"><?php echo $fila['cantidad'] ?></td>
-                        <td style="font-size: 14px;"><?php echo $fila['cargo'] ?></td>
-                        <td style="font-size: 14px;"><?php echo $fila['remuneracion'] ?></td>
-                      
-                    </tr>
-                    <?php
-                    }
-                    ?>
-                    </tbody>
-                    
-                  </table>
-
-                  <form method="POST">
+                    <!-- SE ESTA MOSTRANDO LA PARTE DE PERSONAL REQUERIDO -->
                     <div class="form-group">
                         <h6 class="m-0 font-weight-bold text-danger">Datos del personal requerido</h6>
                         <hr class="sidebar-divider">
                     </div>
-                    <div class="form-group">
-                      <div class="table-responsive">
-                        <table class="table table-bordered" id="tabla">
-                            <thead>
-                              <tr class="bg-danger" style="text-align:center; font-size:0.813em;">
-                                <th scope="col">Cargo</th>
-                                <th scope="col">Nombres</th>
-                                <th scope="col">Apellidos</th>
-                                <th scope="col">Área usuaria</th>
-                                <th scope="col">Acciones</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                                <tr class="fila-fija">
-                                  <td>
-                                    <select class="form-control name_list" name="cargo_funcio[]" id="cargo_funcio[]">
-                                      <option value="" disabled selected>Elegir</option>
-                                      <option value="PRESIDENTE">Presidente</option>
-                                      <option value="MIEMBRO">Miembro</option>
-                                    </select>
-                                  </td>
-                                  <td><input type="text" name="nombre[]" id="nombre[]"  placeholder="Nombres completos" class="form-control name_list" /></td>
-                                  <td><input type="text" name="apellidos[]" id="apellidos[]" placeholder="Apellidos completos" class="form-control name_list" /></td>
-                                  <td><input type="text" name="area_user[]" id="area_user[]" placeholder="Area usuario que proviene" class="form-control name_list" /></td>
-                                  <td class="eliminar"><input type="button" class="btn btn-danger" value=" - "></td>
-                                </tr>
-                            </tdody>
-                        </table>
-                      </div>
-                    </div>
-                    <div class="row d-flex justify-content-center">
-                        <div class="form-inline p-2">
-                            <button id="adicional" name="adicional" type="button" class="btn btn-warning"> AGREGAR FILA (+) </button>
-                        </div>
-                        <div class="form-inline p-2">
-                            <input type="submit" name="insertar" class="btn btn-primary" value="GUARDAR"/>
-                        </div>
-                        <!-- <input type="hidden" id="idcon" name="idcon" value="<?php echo $idcon; ?>"> -->
-                    </div>
-                    <div class="row d-flex justify-content-end">
-                      
-                      <a class="btn btn-danger" role="button" href="resumen_convocatoria.php?convocatoria_idcon=<?php echo $idcon; ?>">Siguente</a>
-                    </div>
-                  </form>  
-                  <?php
-                        //////////////////////// PRESIONAR EL BOTÓN //////////////////////////
-                                       
-                        if(isset($_POST['insertar']))
-                        {
-                            $items1 = ($_POST['cargo_funcio']);
-                            $items2 = ($_POST['nombre']);
-                            $items3 = ($_POST['apellidos']);
-                            $items4 = ($_POST['area_user']);
+                    <table id="bootstrap-data-table" class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Cantidad</th>
+                                <th>Cargo</th>
+                                <th>Remuneración</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <?php
+                        $idcon = $_GET['convocatoria_idcon'];
+                        include_once('conexion.php');
+                        $sql="SELECT * FROM total_personal_req where convocatoria_idcon=$idcon";
+                        $result=mysqli_query($con,$sql);
+                        while($fila=mysqli_fetch_array($result)){   
+                        ?>
+                        <tr>
+                            <td style="font-size: 16px;"><?php echo $fila['cantidad'] ?></td>
+                            <td style="font-size: 14px;"><?php echo $fila['cargo'] ?></td>
+                            <td style="font-size: 14px;"><?php echo $fila['remuneracion'] ?></td>
                         
-                        ///////////// SEPARAR VALORES DE ARRAYS, EN ESTE CASO SON 5 ARRAYS UNO POR CADA INPUT (ID, NOMBRE, CARRERA Y GRUPO////////////////////)
-                            while(true) {
-
-                                //// RECUPERAR LOS VALORES DE LOS ARREGLOS ////////
-                                $item1 = current($items1);
-                                $item2 = current($items2);
-                                $item3 = current($items3);
-                                $item4 = current($items4);
-                                
-                                ////// ASIGNARLOS A VARIABLES ///////////////////
-                                $cargo_funcio=(( $item1 !== false) ? $item1 : ", &nbsp;");
-                                $nombre=(( $item2 !== false) ? $item2 : ", &nbsp;");
-                                $apellidos=(( $item3 !== false) ? $item3 : ", &nbsp;");
-                                $area_user=(( $item4 !== false) ? $item4 : ", &nbsp;");
-
-                                //// CONCATENAR LOS VALORES EN ORDEN PARA SU FUTURA INSERCIÓN ////////
-                                $valores='("'.$cargo_funcio.'","'.$nombre.'","'.$apellidos.'","'.$area_user.'","'.$idcon.'"),';
-
-                                //////// YA QUE TERMINA CON COMA CADA FILA, SE RESTA CON LA FUNCIÓN SUBSTR EN LA ULTIMA FILA /////////////////////
-                                $valoresQ= substr($valores, 0, -1);
-                                
-                                ///////// QUERY DE INSERCIÓN ////////////////////////////
-                                // include_once('conexion.php');
-                                $sql = "INSERT INTO comision (cargo_funcio, nombre, apellidos,area_user, convocatoria_idcon) 
-                                VALUES $valoresQ";
-
-                                $sqlRes=$con->query($sql) or mysqli_error($con);
-
-                                // Up! Next Value
-                                $item1 = next( $items1 );
-                                $item2 = next( $items2 );
-                                $item3 = next( $items3 );
-                                $item4 = next( $items4 );
-                                
-                                // Check terminator
-                                if($item1 === false && $item2 === false && $item3 === false && $item4 === false) break;
-                
-                            }
+                        </tr>
+                        <?php
                         }
-                  ?>
-                  
+                        ?>
+                        </tbody>
+                    </table>
+                    <!-- SE ESTA MOSTRANDO LA PARTE DE LA COMISION ENCARGADA -->
+                    <div class="form-group">
+                        <h6 class="m-0 font-weight-bold text-danger">Datos de la comisión asignada</h6>
+                        <hr class="sidebar-divider">
+                    </div>
+                    <table id="bootstrap-data-table" class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Cargo</th>
+                                <th>Nombres</th>
+                                <th>Área usuaria</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <?php
+                        $idcon = $_GET['convocatoria_idcon'];
+                        include_once('conexion.php');
+                        $sql2="SELECT * FROM comision where convocatoria_idcon=$idcon";
+                        $result2=mysqli_query($con,$sql2);
+                        while($fila2=mysqli_fetch_array($result2)){   
+                        ?>
+                        <tr>
+                            <td style="font-size: 16px;"><?php echo $fila2['cargo_funcio'] ?></td>
+                            <td style="font-size: 14px;"><?php echo $fila2['nombre']." ".$fila2['apellidos'] ?></td>
+                            <td style="font-size: 14px;"><?php echo $fila2['area_user'] ?></td>
+                        
+                        </tr>
+                        <?php
+                        }
+                        ?>
+                        </tbody>
+                    </table>
+                    <div class="form-group d-flex justify-content-center">
+                      <a class="btn btn-danger" data-toggle="modal" data-target="#confirmacion">FINALIZAR</a>
+                    </div>
                 </div>
               </div>
 
@@ -432,21 +365,28 @@
   </a>
 
   <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
+  <div class="modal fade" id="confirmacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+    <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="mySmallModalLabel">SE CREO CORRECTAMENTE</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <img src="img/check.gif" alt="Visto bueno a la acción" width="130" height="100">
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="modal-footer">
+                <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button> -->
+                <a type="button" class="btn btn-danger" href="listado_convocatorias.php">ACEPTAR</a>
+            </div>
         </div>
-        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="login.html">Logout</a>
-        </div>
-      </div>
     </div>
   </div>
 
@@ -473,5 +413,4 @@
   </script>
 
 </body>
-
 </html>

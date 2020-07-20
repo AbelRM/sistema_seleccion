@@ -228,7 +228,7 @@
         <!-- Begin Page Content -->
         <div class="container-fluid">
         <?php 
-                include '../conexion.php';?>
+                include 'conexion.php';?>
           <!-- <h1 class="h3 mb-4 text-gray-800">Blank Page</h1> -->
           <div class="row">
 
@@ -283,14 +283,14 @@
                                 <input type="text" class="form-control"  name="direccion_ejec_iddireccion" value="<?php echo $fila['direccion_ejec']." ".$fila['equipo_ejec'];  ?>" disabled="true">                                          
                              </div>
 
-                             <div class="form-group col-md-4 col-sm-12">
+                             <div class="form-group col-md-3 col-sm-12">
                                 <label for="disabled-input">Desde</label>           
-                                <input type="text" class="form-control"  name="fech_ini" value="<?php echo $fech_ini; ?>" disabled="true">                                          
+                                <input type="text" class="form-control"  name="fech_ini" value="<?php echo $fila["fech_ini"]; ?>" disabled="true">                                          
                              </div>
 
-                             <div class="form-group col-md-4 col-sm-12">
+                             <div class="form-group col-md-3 col-sm-12">
                                 <label for="disabled-input">Hasta</label>           
-                                <input type="text" class="form-control"  name="fech_term" value="<?php echo $fech_term; ?>" disabled="true">                                          
+                                <input type="text" class="form-control"  name="fech_term" value="<?php echo $fila["fech_term"]; ?>" disabled="true">                                          
                              </div>
 
                         
@@ -310,7 +310,7 @@
                                     <div class="form-group row">
                                             <label for="staticEmail" class="col-sm-6 col-form-label">% DE EVALUACION CURRICULAR:</label>
                                             <div class="col-sm-1">
-                                            <input type="text" class="form-control" id="porcen_eva_cu" value="<?php echo $porcen_eva_cu; ?>" >
+                                            <input type="text" class="form-control" id="porcen_eva_cu" value="<?php echo $fila["porcen_eva_cu"]; ?>" >
                                             </div>
                                             <label for="staticEmail" class="col-sm-4 col-form-label">%</label>
                                         </div>
@@ -318,7 +318,7 @@
                                         <div class="form-group row">
                                             <label for="staticEmail" class="col-sm-6 col-form-label">% DE EVALUACION DE ENTREVISTA:</label>
                                             <div class="col-sm-1">
-                                            <input type="text" class="form-control" id="porce_entrevista" value="<?php echo $porce_entrevista; ?>"> 
+                                            <input type="text" class="form-control" id="porce_entrevista" value="<?php echo $fila["porce_entrevista"]; ?>"> 
                                             </div>
                                             <label for="staticEmail" class="col-sm-4 col-form-label">%</label>
                                         </div>
@@ -326,7 +326,7 @@
                                         <div class="form-group row">
                                             <label for="staticEmail" class="col-sm-6 col-form-label">% DE EVALUACION DE EXÁMEN ESCRITO:</label>
                                             <div class="col-sm-1">
-                                            <input type="text" class="form-control" id="porce_exa_escrito" value="<?php echo $porce_exa_escrito; ?>">
+                                            <input type="text" class="form-control" id="porce_exa_escrito" value="<?php echo $fila["porce_exa_escrito"]; ?>"> 
                                             </div>
                                             <label for="staticEmail" class="col-sm-4 col-form-label">%</label>
                                         </div>
@@ -334,7 +334,7 @@
                                         <div class="form-group row">
                                             <label for="staticEmail" class="col-sm-6 col-form-label">% DE EVALUACION POR DISCAPACIDAD:</label>
                                             <div class="col-sm-1">
-                                            <input type="text" class="form-control" id="porce_discapacidad" value="<?php echo $porce_discapacidad; ?>">
+                                            <input type="text" class="form-control" id="porce_discapacidad" value="<?php echo $fila["porce_discapacidad"]; ?>">
                                             </div>
                                             <label for="staticEmail" class="col-sm-4 col-form-label">%</label> 
                                         </div>
@@ -343,7 +343,7 @@
                                         <div class="form-group row">
                                             <label for="staticEmail" class="col-sm-6 col-form-label">% DE EVALUACION DE LIC. MILITAR:</label>
                                             <div class="col-sm-1">
-                                            <input type="text" class="form-control" id="porce_sermilitar" value="<?php echo $porce_sermilitar; ?>">
+                                            <input type="text" class="form-control" id="porce_sermilitar" value="<?php echo $fila["porce_sermilitar"]; ?>">
                                             </div>
                                             <label for="staticEmail" class="col-sm-4 col-form-label">%</label> 
                                         </div>
@@ -423,18 +423,15 @@
                                 
 
                                 <?php
-
-
-                                
-                                              
+          
                                     $sql = " SELECT * FROM Personal_req ";
 
                                     $query=mysqli_query($con, $sql);
 
                                     while ($row= MySQLI_fetch_array($query)){
                                         $cantidad=$row['cantidad'];
-                                        $cargo=$row['cargo_id'];
-                                ?>
+                                        $cargo=$row['cargo_idcargo'];
+                                 ?>
 
                                         <tr>
                                         <td><?php echo $cantidad;?></td>

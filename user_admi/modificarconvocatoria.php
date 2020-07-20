@@ -4,24 +4,26 @@
 <head>
 
   <meta charset="utf-8">
-  
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>SB Admin 2 - Tables</title>
+  <title>NUEVA CONVOCATORIA - SISTEMA SELECCION (DIRESA-TACNA)</title>
 
-  <!-- Custom fonts for this template -->
+  <!-- Custom fonts for this template-->
   <link rel="icon" type="image/png" href="img/icono_diresa.png" />
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
-  <!-- Custom styles for this template -->
+  <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.css" rel="stylesheet">
-
-  <!-- Custom styles for this page -->
-  <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+  <!-- <link rel="stylesheet" href="css/style.css"> -->
+  <style>
+    #total  {font-weight:bold;}
+    .red    {border-color:red;}
+    .green  {border-color:green;}
+  </style>
 
 </head>
 
@@ -32,7 +34,7 @@
 
     <?php 
       include 'menu.html';
-    ?>
+      ?>
 
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
@@ -44,11 +46,9 @@
         <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
           <!-- Sidebar Toggle (Topbar) -->
-          <form class="form-inline">
-            <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-              <i class="fa fa-bars"></i>
-            </button>
-          </form>
+          <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+            <i class="fa fa-bars"></i>
+          </button>
 
           <!-- Topbar Search -->
           <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
@@ -227,79 +227,141 @@
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
+        <?php 
+                include 'conexion.php';?>
+          <!-- <h1 class="h3 mb-4 text-gray-800">Blank Page</h1> -->
+          <div class="row">
 
-          <!-- Page Heading -->
-          <!-- <h1 class="h3 mb-2 text-gray-800">Tables</h1>
-          <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p> -->
+            <div class="col-lg-12">
 
-          <!-- DataTales Example -->
-          <div class="card shadow mb-4">
-            <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">LISTADO DE CONVOCATORIAS</h6>
-            </div>
-            <?php
-            include '../conexion.php';
-            include 'modal_ver_convocatoria.php';
-            ?>
+              <!-- Basic Card Example -->
+              <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                  <h6 class="m-0 font-weight-bold text-primary">CONVOCATORIA SELECCIONADA</h6>
+                </div>
+                <div class="card-body">    
+                <?php 
+                    $idcon=$_GET['id'];
+                    $sql="SELECT * FROM full_convocatoria WHERE idcon='".$idcon."' ";
+                    $result=mysqli_query($con,$sql);
+                    $fila=mysqli_fetch_array($result);
 
-            <div class="card-body">
-              <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                <thead>
-                    <tr>
-                      <th>N°</th>
-                      <th>Tipo concurso</th>
-                      <th>N° convocatoria</th>
-                      <th>Direccion</th>
-                      <th>Acciones</th>
-                      
-                    </tr>
-                  </thead>
-                  <?php
-                      $sql = "SELECT * FROM convocatoria";
-                      $query=mysqli_query($con, $sql);
-                      while ($row= MySQLI_fetch_array($query))
-                      {
-                        // $idcargo=$row['idcon'];
-                        // $tipocon=$row['tipo_con'];
-                        // $cargo=$row['num_con'];
-                        // $direccion=$row['direccion_ejec_iddireccion'];
-                        // $fecha=$row['fech_ini'];
-                      ?>
-                      <tr>
-                        <td><?php echo $row['idcon'] ?></td>
-                        <td style="font-size: 16px;"><?php echo $row['tipo_con'] ?></td>
-                        <td style="font-size: 14px;"><?php echo $row['num_con'] ?></td>
-                        <td style="font-size: 14px;"><?php echo $row['direccion_ejec_iddireccion'] ?></td>
-                        <td>
-                          <a href="verconvocatoria.php?id=<?php echo $row['idcon'] ?>"><button type="button" class="btn btn-warning" id="editar" style="margin: 1px;"><i class="fa fa-eye"></i></button></a>
-                          <a href="modificarconvocatoria.php?id=<?php echo $row['idcon'] ?>"><button type="button" class="btn btn-success" id="editar" style="margin: 1px;"><i class="fa fa-pen"></i></button></a>
-                          <!-- <a href="editar_proyecto.php?id=<?php echo $fila['id'] ?>"><button type="button" class="btn btn-success" id="editar" style="margin: 1px;"><i class="fa fa-edit"></i></button></a> -->
-                          
-                        </td>
-                        <!-- <td><?php echo $idcargo; ?></td>
-                        <td><?php echo $tipocon; ?></td>    
-                        <td><?php echo $cargo; ?></td>
-                        <td><?php echo $direccion; ?></td>
-                        <td><?php echo $fecha; ?></td>
+                    // while ($rw=mysqli_fetch_array($result))
+                    // {
+                    //       $tipo_con=$rw['tipo_con'];
+                    //       $num_con=$rw['num_con'];
+                    //       $dir_ejec=$rw['direccion_ejec_iddireccion'];
+                    //       $fech_ini=$rw['fech_ini'];
+                    //       $fech_term=$rw['fech_term'];
+                    //       $porcen_eva_cu=$rw['porcen_eva_cu'];
+                    //       $porce_entrevista=$rw['porce_entrevista'];
+                    //       $porce_exa_escrito=$rw['porce_exa_escrito'];
+                    //       $porce_discapacidad=$rw['porce_discapacidad'];
+                    //       $porce_sermilitar=$rw['porce_sermilitar'];                       
+                    // }
+                ?>
+                 <form method="POST" >
+                    <input type="hidden" value="<?php echo $fila["con_con"]; ?>" name="id">
+                        <div class="form-group">
+                             <h6 class="m-0 font-weight-bold text-danger">Datos de la convocatoria</h6>
+                             <hr class="sidebar-divider">
+                        </div>
+                        <div class="form-row">
+
+                            <div class="form-group col-md-3 col-sm-12">
+                                <label for="disabled-input">Tipo de concurso</label>           
+                                <input type="text" class="form-control"  name="tipo_con" value="<?php echo $fila["tipo_con"]; ?>" >                                          
+                             </div>
+
+                             <div class="form-group col-md-3 col-sm-12">
+                                <label for="disabled-input">N° de convocatoria</label>           
+                                <input type="text" class="form-control"  name="num_con" value="<?php echo $fila["num_con"]; ?>" >                                          
+                             </div>
+
+                             <div class="form-group col-md-6 col-sm-12">
+                                <label for="disabled-input">Direccion Ejecutiva</label>           
+                                <input type="text" class="form-control"  name="direccion_ejec_iddireccion" value="<?php echo $fila['direccion_ejec']." ".$fila['equipo_ejec'];  ?>">                                          
+                             </div>
+
+                             <div class="form-group col-md-3 col-sm-12">
+                                <label for="disabled-input">Desde</label>           
+                                <input type="date" class="form-control"  name="fech_ini" value="<?php echo $fila["fech_ini"]; ?>" >                                          
+                             </div>
+
+                             <div class="form-group col-md-3 col-sm-12">
+                                <label for="disabled-input">Hasta</label>           
+                                <input type="date" class="form-control"  name="fech_term" value="<?php echo $fila["fech_term"]; ?>" >                                          
+                             </div>
+
                         
-                        <td>
-                          <form method="POST" action="verconvocatoria.php">
-                          <input type="hidden" value="<?php echo $idcon; ?>" name="id">
-                          <button type="submit" class="btn btn-success btn-sm"><i class="fa fa-pencil-square-o"> </i>&nbsp; Ver</button><p></p>
-                          </form>
-                        </td> -->
-                      </tr>
-                      <?php
-                      }
-                      ?>
 
-                  <tbody>
-                    
-                  </tbody>
-                </table>
-              </div>
+
+
+                         </div>
+
+                        <div class="form-group">
+                                        <h6 class="m-0 font-weight-bold text-danger">Porcentaje de la convocatoria</h6>
+                                        <hr class="sidebar-divider">
+                                    </div>
+
+                                <div class="form-row" id="contenido">
+                                    <div class="col-md-12">
+                                        
+                                    <div class="form-group row">
+                                            <label for="staticEmail" class="col-sm-6 col-form-label">% DE EVALUACION CURRICULAR:</label>
+                                            <div class="col-sm-1">
+                                            <input type="text" class="form-control" id="porcen_eva_cu" value="<?php echo $fila["porcen_eva_cu"]; ?>" >
+                                            </div>
+                                            <label for="staticEmail" class="col-sm-4 col-form-label">%</label>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label for="staticEmail" class="col-sm-6 col-form-label">% DE EVALUACION DE ENTREVISTA:</label>
+                                            <div class="col-sm-1">
+                                            <input type="text" class="form-control" id="porce_entrevista" value="<?php echo $fila["porce_entrevista"]; ?>"> 
+                                            </div>
+                                            <label for="staticEmail" class="col-sm-4 col-form-label">%</label>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label for="staticEmail" class="col-sm-6 col-form-label">% DE EVALUACION DE EXÁMEN ESCRITO:</label>
+                                            <div class="col-sm-1">
+                                            <input type="text" class="form-control" id="porce_exa_escrito" value="<?php echo $fila["porce_exa_escrito"]; ?>"> 
+                                            </div>
+                                            <label for="staticEmail" class="col-sm-4 col-form-label">%</label>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label for="staticEmail" class="col-sm-6 col-form-label">% DE EVALUACION POR DISCAPACIDAD:</label>
+                                            <div class="col-sm-1">
+                                            <input type="text" class="form-control" id="porce_discapacidad" value="<?php echo $fila["porce_discapacidad"]; ?>">
+                                            </div>
+                                            <label for="staticEmail" class="col-sm-4 col-form-label">%</label> 
+                                        </div>
+             
+
+                                        <div class="form-group row">
+                                            <label for="staticEmail" class="col-sm-6 col-form-label">% DE EVALUACION DE LIC. MILITAR:</label>
+                                            <div class="col-sm-1">
+                                            <input type="text" class="form-control" id="porce_sermilitar" value="<?php echo $fila["porce_sermilitar"]; ?>">
+                                            </div>
+                                            <label for="staticEmail" class="col-sm-4 col-form-label">%</label> 
+                                        </div>
+                                                  
+                                    </div>
+
+
+
+                        </div>              
+                 </form>
+
+                 <div class="text-right">
+                                        <button type="submit" class="btn btn-success">
+                                            <i class="fa fa-plus"></i> Guardar
+                                        </button>
+                                    </div>
             </div>
+
           </div>
 
         </div>
@@ -309,7 +371,13 @@
       <!-- End of Main Content -->
 
       <!-- Footer -->
-      <?php include 'footer.php'; ?>
+      <footer class="sticky-footer bg-white">
+        <div class="container my-auto">
+          <div class="copyright text-center my-auto">
+            <span>Copyright &copy; AMS, DIRESA - 2020</span>
+          </div>
+        </div>
+      </footer>
       <!-- End of Footer -->
 
     </div>
@@ -350,14 +418,9 @@
   <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
   <!-- Custom scripts for all pages-->
-  <script src="js/sb-admin-2.min.js"></script>
+  <script src="js/sb-admin-2.js"></script>
+  <script src="js/sumar.js"></script>
 
-  <!-- Page level plugins -->
-  <script src="vendor/datatables/jquery.dataTables.min.js"></script>
-  <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
-  <!-- Page level custom scripts -->
-  <script src="js/demo/datatables-demo.js"></script>
 
 </body>
 

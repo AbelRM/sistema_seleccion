@@ -239,7 +239,7 @@
             </div>
 
             <?php
-            include 'conexion.php';
+            include '../conexion.php';
             include 'modal_ver_convocatoria.php';
             ?>
 
@@ -268,23 +268,22 @@
                         $idcargo=$row['idcon'];
                         $tipocon=$row['tipo_con'];
                         $cargo=$row['num_con'];
-                        $direccion=$row['direc_ejectiva_iddireccion'];
+                        $direccion=$row['direccion_ejec_iddireccion'];
                         $fecha=$row['fech_ini'];
                   ?>
 
                         <tr>
                         <td><?php echo $idcargo; ?></td>
-                        <td><?php echo $tipocon; ?></td>
+                        <td><?php echo $tipocon; ?></td>    
                         <td><?php echo $cargo; ?></td>
                         <td><?php echo $direccion; ?></td>
                         <td><?php echo $fecha; ?></td>
                         
                         <td>
-                        <div metod="POST" class="col-md-11 text-center">
-                        <input type="hidden" value="<?php echo $idcargo;?>" name="id">
-                        <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#adenda"> Ver</button>                     
-                        </div>
-                        
+                        <form method="POST" action="verconvocatoria.php">
+                        <input type="hidden" value="<?php echo $idcon; ?>" name="id">
+                        <button type="submit" class="btn btn-success btn-sm"><i class="fa fa-pencil-square-o"> </i>&nbsp; Ver</button><p></p>
+							          </form>
                         </td>
 
                         <?php

@@ -9,19 +9,21 @@ include '../conexion.php';
 // $conn= mysqli_connect("server", "mi_usuario", "mi_contraseña", "mi_bd");
 
 // añadiría un limit 1 a la consulta pues solo esperamos un registro
-$consulta = mysqli_query ($con, "SELECT * FROM user WHERE dni = '$nombre' AND clave = '$password'");  
+$consulta = mysqli_query ($con, "SELECT * FROM user WHERE dni = '$dni' AND clave = '$password'");  
 
 // esto válida si la consulta se ejecuto correctamente o no
 // pero en ningún caso válida si devolvió algún registro
 if(!$consulta){ 
-    //echo "Usuario no existe " . $nombre . " " . $password. " o hubo un error ";
+    echo "Usuario no existe " . $dni . " hubo un error ";
     echo mysqli_error($mysqli);
     // si la consulta falla es bueno evitar que el código se siga ejecutando
     exit;
 } 
 //este else sobra
 else { 
-    header("Location: ../user_admi/index.php");
+
+    header("Location: ../user_admi/index.php?dni='.$dni");
+
 } 
 
 // validemos pues si se obtuvieron resultados 

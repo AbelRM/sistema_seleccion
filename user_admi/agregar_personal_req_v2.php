@@ -1,9 +1,6 @@
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -236,9 +233,45 @@
                   <h6 class="m-0 font-weight-bold text-primary">AGREGAR DATOS PERSONAL REQUERIDO</h6>
                 </div>
                 <div class="card-body">
+                  <?php
+
+                    $idcon = $_GET['convocatoria_idcon'];
+                
+                    include_once('conexion.php');
+                    $sql="SELECT * FROM convocatoria where idcon=$idcon";
+                    $datos=mysqli_query($con,$sql);
+                    $fila= mysqli_fetch_array($datos);
+                  ?>
+                  <div class="form-group">
+                      <h6 class="m-0 font-weight-bold text-danger">Datos de la convocatoria</h6>
+                      <hr class="sidebar-divider">
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group col-md-3 col-sm-12">
+                      <label for="inputEmail4">Número de convocatoria</label>
+                      <input type="text" class="form-control" value="<?php echo $fila['num_con'] ?>" disabled="true">
+                    </div>
+                    <div class="form-group col-md-3 col-sm-12">
+                      <label for="inputEmail4">Tipo de convocatoria</label>
+                      <input type="text" class="form-control" value="<?php echo $fila['tip_con'] ?>" disabled="true">
+                    </div>
+                    <div class="form-group col-md-6 col-sm-12">
+                      <label for="inputEmail4">Dirección ejecutora</label>
+                      <input type="text" class="form-control" value="<?php echo $fila['direccion_ejec_iddireccion'] ?>" disabled="true">
+                    </div>
+                    <div class="form-group col-md-3 col-sm-6">
+                        <label for="inputEmail4">Fecha de inicio</label>
+                        <input type="date" class="form-control" value="<?php echo $fila['fech_ini'] ?>" disabled="true">
+                    </div>
+                    <div class="form-group col-md-3 col-sm-6">
+                        <label for="inputEmail4">Fecha de fin</label>
+                        <input type="date" class="form-control" value="<?php echo $fila['fech_fin'] ?>" disabled="true">
+                    </div>
+
+                  </div>
                   <form method="POST">
                     <div class="form-group">
-                        <h6 class="m-0 font-weight-bold text-danger">Datos de la convocatoria</h6>
+                        <h6 class="m-0 font-weight-bold text-danger">Datos del personal requerido</h6>
                         <hr class="sidebar-divider">
                     </div>
                     <div class="form-group">
@@ -288,9 +321,7 @@
                         <!-- <input type="hidden" id="idcon" name="idcon" value="<?php echo $idcon; ?>"> -->
                     </div>
                     <div class="row d-flex justify-content-end">
-                      <?php
-                        $idcon = $_GET['convocatoria_idcon'];
-                      ?>
+                      
                       <a class="btn btn-danger" role="button" href="agregar_comision.php?convocatoria_idcon=<?php echo $idcon; ?>">Siiguiente</a>
                     </div>
                   </form>  

@@ -242,61 +242,66 @@
                 <div class="card-body">    
                 <?php 
                     $idcon=$_GET['id'];
-                    $sql="SELECT * FROM full_convocatoria WHERE idcon='".$idcon."' ";
+                    
+                    $sql="SELECT * FROM convocatoria WHERE idcon='".$idcon."' ";
                     $result=mysqli_query($con,$sql);
-                    $fila=mysqli_fetch_array($result);
+                    
+                    //$fila=mysqli_fetch_array($result);
 
-                    // while ($rw=mysqli_fetch_array($result))
-                    // {
-                    //       $tipo_con=$rw['tipo_con'];
-                    //       $num_con=$rw['num_con'];
-                    //       $dir_ejec=$rw['direccion_ejec_iddireccion'];
-                    //       $fech_ini=$rw['fech_ini'];
-                    //       $fech_term=$rw['fech_term'];
-                    //       $porcen_eva_cu=$rw['porcen_eva_cu'];
-                    //       $porce_entrevista=$rw['porce_entrevista'];
-                    //       $porce_exa_escrito=$rw['porce_exa_escrito'];
-                    //       $porce_discapacidad=$rw['porce_discapacidad'];
-                    //       $porce_sermilitar=$rw['porce_sermilitar'];                       
-                    // }
-                ?>
-                 <form method="POST" action="procesos/modificarconvoca.php">
-                    <input type="hidden" value="<?php echo $fila["con_con"]; ?>" name="id">
+                  while ($rw=mysqli_fetch_array($result))
+                     {
+                          $tipo_con=$rw['tipo_con'];
+                          $num_con=$rw['num_con'];
+                          $añocon=$rw['año_con'];
+                          $dir_ejec=$rw['direccion_ejec_iddireccion'];
+                          $fech_ini=$rw['fech_ini'];
+                          $fech_term=$rw['fech_term'];
+                          $porcen_eva_cu=$rw['porcen_eva_cu'];
+                          $porce_entrevista=$rw['porce_entrevista'];
+                          $porce_exa_escrito=$rw['porce_exa_escrito'];
+                          $porce_discapacidad=$rw['porce_discapacidad'];
+                          $porce_sermilitar=$rw['porce_sermilitar'];                       
+                    }
+                    ?>
+
+                 <form action="procesos/modificarconvoca.php" method="POST">
+                    <input type="hidden" value="<?php echo $idcon; ?>" name="id">
                         <div class="form-group">
                              <h6 class="m-0 font-weight-bold text-danger">Datos de la convocatoria</h6>
                              <hr class="sidebar-divider">
                         </div>
+                        
                         <div class="form-row">
 
-                            <div class="form-group col-md-3 col-sm-12">
-                                <label for="disabled-input">Tipo de concurso</label>           
-                                <input type="text" class="form-control"  name="tipo_con" value="<?php echo $fila["tipo_con"]; ?>" >                                          
+                            <div class="form-group col-md-4 col-sm-12">
+                                <label for="disabled-input" class=" form-control-label" >Tipo de concurso</label>           
+                                <input type="text" class="form-control"  name="tipo_con" value="<?php echo $tipo_con; ?>" >                                          
                              </div>
 
-                             <div class="form-group col-md-3 col-sm-12">
-                                <label for="disabled-input">N° de convocatoria</label>           
-                                <input type="text" class="form-control"  name="num_con" value="<?php echo $fila["num_con"]; ?>" >                                          
+                             <div class="form-group col-md-4 col-sm-12">
+                                <label for="disabled-input" class=" form-control-label" >N° de convocatoria</label>           
+                                <input type="text" class="form-control"  name="num_con" value="<?php echo $num_con; ?>" >                                          
+                             </div>
+
+                             <div class="form-group col-md-4 col-sm-12">
+                                <label for="disabled-input" class=" form-control-label" >Año</label>           
+                                <input type="text" class="form-control"  name="año_con" value="<?php echo $añocon; ?>">                                          
                              </div>
 
                              <div class="form-group col-md-6 col-sm-12">
-                                <label for="disabled-input">Direccion Ejecutiva</label>           
-                                <input type="text" class="form-control"  name="direccion_ejec_iddireccion" value="<?php echo $fila['direccion_ejec']." ".$fila['equipo_ejec'];  ?>">                                          
+                                <label for="disabled-input" class=" form-control-label">Direccion Ejecutiva</label>           
+                                <input type="text" class="form-control"  name="direccion_ejec_iddireccion" value="<?php echo $dir_ejec; ?>">                                          
                              </div>
 
                              <div class="form-group col-md-3 col-sm-12">
-                                <label for="disabled-input">Desde</label>           
-                                <input type="date" class="form-control"  name="fech_ini" value="<?php echo $fila["fech_ini"]; ?>" >                                          
+                                <label for="disabled-input" class=" form-control-label" >Desde</label>           
+                                <input type="date" class="form-control"  name="fech_ini" value="<?php echo $fech_ini; ?>" >                                          
                              </div>
 
                              <div class="form-group col-md-3 col-sm-12">
-                                <label for="disabled-input">Hasta</label>           
-                                <input type="date" class="form-control"  name="fech_term" value="<?php echo $fila["fech_term"]; ?>" >                                          
+                                <label for="disabled-input" class=" form-control-label">Hasta</label>           
+                                <input type="date" class="form-control"  name="fech_term" value="<?php echo $fech_term; ?>" >                                          
                              </div>
-
-                        
-
-
-
                          </div>
 
                         <div class="form-group">
@@ -310,7 +315,7 @@
                                     <div class="form-group row">
                                             <label for="staticEmail" class="col-sm-6 col-form-label">% DE EVALUACION CURRICULAR:</label>
                                             <div class="col-sm-1">
-                                            <input type="text" class="form-control" id="porcen_eva_cu" value="<?php echo $fila["porcen_eva_cu"]; ?>" >
+                                            <input type="text" class="form-control" id="porcen_eva_cu" value="<?php echo $porcen_eva_cu; ?>" >
                                             </div>
                                             <label for="staticEmail" class="col-sm-4 col-form-label">%</label>
                                         </div>
@@ -318,7 +323,7 @@
                                         <div class="form-group row">
                                             <label for="staticEmail" class="col-sm-6 col-form-label">% DE EVALUACION DE ENTREVISTA:</label>
                                             <div class="col-sm-1">
-                                            <input type="text" class="form-control" id="porce_entrevista" value="<?php echo $fila["porce_entrevista"]; ?>"> 
+                                            <input type="text" class="form-control" id="porce_entrevista" value="<?php echo $porce_entrevista; ?>"> 
                                             </div>
                                             <label for="staticEmail" class="col-sm-4 col-form-label">%</label>
                                         </div>
@@ -326,7 +331,7 @@
                                         <div class="form-group row">
                                             <label for="staticEmail" class="col-sm-6 col-form-label">% DE EVALUACION DE EXÁMEN ESCRITO:</label>
                                             <div class="col-sm-1">
-                                            <input type="text" class="form-control" id="porce_exa_escrito" value="<?php echo $fila["porce_exa_escrito"]; ?>"> 
+                                            <input type="text" class="form-control" id="porce_exa_escrito" value="<?php echo $porce_exa_escrito; ?>"> 
                                             </div>
                                             <label for="staticEmail" class="col-sm-4 col-form-label">%</label>
                                         </div>
@@ -334,7 +339,7 @@
                                         <div class="form-group row">
                                             <label for="staticEmail" class="col-sm-6 col-form-label">% DE EVALUACION POR DISCAPACIDAD:</label>
                                             <div class="col-sm-1">
-                                            <input type="text" class="form-control" id="porce_discapacidad" value="<?php echo $fila["porce_discapacidad"]; ?>">
+                                            <input type="text" class="form-control" id="porce_discapacidad" value="<?php echo $porce_discapacidad; ?>">
                                             </div>
                                             <label for="staticEmail" class="col-sm-4 col-form-label">%</label> 
                                         </div>
@@ -343,9 +348,9 @@
                                         <div class="form-group row">
                                             <label for="staticEmail" class="col-sm-6 col-form-label">% DE EVALUACION DE LIC. MILITAR:</label>
                                             <div class="col-sm-1">
-                                            <input type="text" class="form-control" id="porce_sermilitar" value="<?php echo $fila["porce_sermilitar"]; ?>">
+                                            <input type="text" class="form-control" id="porce_sermilitar" value="<?php echo $porce_sermilitar; ?>">
                                             </div>
-                                            <label for="staticEmail" class="col-sm-4 col-form-label">%</label> 
+                                            <label for="staticEmail" class="col-sm-4 col-form-label">%</label>       
                                         </div>
                                                   
                                     </div>

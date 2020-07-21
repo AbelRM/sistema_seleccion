@@ -305,7 +305,7 @@
                                     <div class="form-group row">
                                             <label for="staticEmail" class="col-sm-6 col-form-label">% DE EVALUACION CURRICULAR:</label>
                                             <div class="col-sm-1">
-                                            <input type="text" class="form-control" id="porcen_eva_cu" value="<?php echo $fila["porcen_eva_cu"]; ?>" >
+                                            <input type="text" class="form-control" id="porcen_eva_cu" value="<?php echo $fila["porcen_eva_cu"]; ?>" disabled="true">
                                             </div>
                                             <label for="staticEmail" class="col-sm-4 col-form-label">%</label>
                                         </div>
@@ -313,7 +313,7 @@
                                         <div class="form-group row">
                                             <label for="staticEmail" class="col-sm-6 col-form-label">% DE EVALUACION DE ENTREVISTA:</label>
                                             <div class="col-sm-1">
-                                            <input type="text" class="form-control" id="porce_entrevista" value="<?php echo $fila["porce_entrevista"]; ?>"> 
+                                            <input type="text" class="form-control" id="porce_entrevista" value="<?php echo $fila["porce_entrevista"]; ?>" disabled="true"> 
                                             </div>
                                             <label for="staticEmail" class="col-sm-4 col-form-label">%</label>
                                         </div>
@@ -321,7 +321,7 @@
                                         <div class="form-group row">
                                             <label for="staticEmail" class="col-sm-6 col-form-label">% DE EVALUACION DE EXÁMEN ESCRITO:</label>
                                             <div class="col-sm-1">
-                                            <input type="text" class="form-control" id="porce_exa_escrito" value="<?php echo $fila["porce_exa_escrito"]; ?>"> 
+                                            <input type="text" class="form-control" id="porce_exa_escrito" value="<?php echo $fila["porce_exa_escrito"]; ?>" disabled="true"> 
                                             </div>
                                             <label for="staticEmail" class="col-sm-4 col-form-label">%</label>
                                         </div>
@@ -329,7 +329,7 @@
                                         <div class="form-group row">
                                             <label for="staticEmail" class="col-sm-6 col-form-label">% DE EVALUACION POR DISCAPACIDAD:</label>
                                             <div class="col-sm-1">
-                                            <input type="text" class="form-control" id="porce_discapacidad" value="<?php echo $fila["porce_discapacidad"]; ?>">
+                                            <input type="text" class="form-control" id="porce_discapacidad" value="<?php echo $fila["porce_discapacidad"]; ?>" disabled="true">
                                             </div>
                                             <label for="staticEmail" class="col-sm-4 col-form-label">%</label> 
                                         </div>
@@ -338,7 +338,7 @@
                                         <div class="form-group row">
                                             <label for="staticEmail" class="col-sm-6 col-form-label">% DE EVALUACION DE LIC. MILITAR:</label>
                                             <div class="col-sm-1">
-                                            <input type="text" class="form-control" id="porce_sermilitar" value="<?php echo $fila["porce_sermilitar"]; ?>">
+                                            <input type="text" class="form-control" id="porce_sermilitar" value="<?php echo $fila["porce_sermilitar"]; ?>" disabled="true">
                                             </div>
                                             <label for="staticEmail" class="col-sm-4 col-form-label">%</label> 
                                         </div>

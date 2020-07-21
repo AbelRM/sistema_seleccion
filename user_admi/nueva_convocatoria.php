@@ -246,7 +246,7 @@
                         <hr class="sidebar-divider">
                     </div>
                     <div class="form-row">
-                        <div class="form-group col-md-2 col-sm-12">
+                        <div class="form-group col-lg-2 col-md-4 col-sm-12">
                             <label for="inputState">Tipo de concurso</label>
                             <select name="tipo_con" id="tipo_con" class="form-control">
                                 <option selected>Elegir...</option>
@@ -255,11 +255,23 @@
                                 <option value="PRACTICANTE">Practicante</option>
                             </select>
                         </div>
-                        <div class="form-group col-md-2 col-sm-12">
+                        <div class="form-group col-lg-2 col-md-4 col-sm-6">
                             <label for="inputEmail4">N° de convocatoria</label>
-                            <input type="text" class="form-control" name="convocatoria" id="convocatoria" placeholder="001-2020">
+                            <input type="text" class="form-control" name="num_con" id="num_con" placeholder="001">
                         </div>
-                        <div class="form-group col-md-8 col-sm-12">
+                        <div class="form-group col-lg-2 col-md-4 col-sm-6">
+                            <label for="inputEmail4">Año de convocatoria</label>
+                            <input type="text" class="form-control" name="anio_con" id="anio_con" placeholder="2020">
+                        </div>
+                        <div class="form-group col-lg-3 col-md-4 col-sm-6">
+                            <label for="inputEmail4">Fecha de inicio</label>
+                            <input type="date" name="fech_ini" id="fech_ini" class="form-control">
+                        </div>
+                        <div class="form-group col-lg-3 col-md-4 col-sm-6">
+                            <label for="inputEmail4">Fecha de fin</label>
+                            <input type="date" name="fech_fin" id="fech_fin" class="form-control">
+                        </div>
+                        <div class="form-group col-lg-12 col-md-12 col-sm-12">
                             <label for="inputEmail4">Ubicación del lugar a elaborar</label>
                             <select name="ubicacion" class="form-control" id="ubicacion" placeholder="Ubicación">
                               <option value="" disabled selected>Elegir</option>
@@ -274,14 +286,7 @@
                             </select>
                       
                         </div>
-                        <div class="form-group col-md-3 col-sm-6">
-                            <label for="inputEmail4">Fecha de inicio</label>
-                            <input type="date" name="fech_ini" id="fech_ini" class="form-control">
-                        </div>
-                        <div class="form-group col-md-3 col-sm-6">
-                            <label for="inputEmail4">Fecha de fin</label>
-                            <input type="date" name="fech_fin" id="fech_fin" class="form-control">
-                        </div>
+                       
                     </div>
                     <div class="form-group">
                         <h6 class="m-0 font-weight-bold text-danger">Porcentajes de la convocatoria</h6>

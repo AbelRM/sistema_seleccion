@@ -355,7 +355,7 @@
 
                         </div>
                       <div class="row">
-                        <div class="col-md-6 col-sm-12" >
+                        <div class="col-md-12 col-sm-12" >
                           <div class="form-group">
                             <h6 class="m-0 font-weight-bold text-danger">Comision</h6>
                             <hr class="sidebar-divider">
@@ -367,6 +367,7 @@
                                         <th>Cargo</th>
                                         <th>Nombre</th>
                                         <th>Apellidos</th>
+                                        <th>Area Usuaria</th>
                                         
                                         </tr>
                                     </thead>
@@ -381,12 +382,14 @@
                                             $cargo_funcio=$row['cargo_funcio'];
                                             $nombre=$row['nombre'];
                                             $apellidos=$row['apellidos'];
+                                            $area_user=$row['area_user'];
                                     ?>
 
                                             <tr>
                                             <td><?php echo $cargo_funcio;?></td>
                                             <td><?php echo $nombre;?></td>
                                             <td><?php echo $apellidos;?></td>
+                                            <td><?php echo $area_user;?></td>
                                             <?php
                                             }
                                             ?>	
@@ -398,7 +401,7 @@
                             </div>
                           </div>
                         </div>
-                        <div class="col-md-6 col-sm-12">
+                        <div class="col-md-12 col-sm-12">
                           <div class="form-group">
                                         <h6 class="m-0 font-weight-bold text-danger">Personal Requerido</h6>
                                         <hr class="sidebar-divider">
@@ -408,25 +411,36 @@
                                 <thead>
                                     <tr>
                                     <th>Cantidad</th>
+                                    <th>Remuneracion</th>
+                                    <th>Fuente</th>
+                                    <th>Meta</th>                                 
                                     <th>Cargo</th>
-                                    
                                     </tr>
                                 </thead>
                                 
 
                                 <?php
+
+                                    $sql = " SELECT * FROM Personal_req INNER JOIN cargo ON cargo.idcargo = Personal_req.cargo_idcargo";
           
-                                    $sql = " SELECT * FROM Personal_req ";
+                                    
 
                                     $query=mysqli_query($con, $sql);
 
                                     while ($row= MySQLI_fetch_array($query)){
                                         $cantidad=$row['cantidad'];
-                                        $cargo=$row['cargo_idcargo'];
+                                        $remuneracion=$row['remuneracion'];
+                                        $fuente=$row['fuente_finac'];
+                                        $meta=$row['meta'];
+                                        $cargo=$row['cargo'];
+
                                  ?>
 
                                         <tr>
                                         <td><?php echo $cantidad;?></td>
+                                        <td><?php echo $remuneracion;?></td>
+                                        <td><?php echo $fuente;?></td>
+                                        <td><?php echo $meta;?></td>
                                         <td><?php echo $cargo;?></td>
                                         <?php
                                         }

@@ -260,7 +260,7 @@
                     //       $porce_sermilitar=$rw['porce_sermilitar'];                       
                     // }
                 ?>
-                 <form method="POST" >
+                 <form method="POST" action="procesos/modificarconvoca.php">
                     <input type="hidden" value="<?php echo $fila["con_con"]; ?>" name="id">
                         <div class="form-group">
                              <h6 class="m-0 font-weight-bold text-danger">Datos de la convocatoria</h6>
@@ -352,14 +352,16 @@
 
 
 
-                        </div>              
-                 </form>
+                        </div>  
 
-                 <div class="text-right">
+                         <div class="text-right">
                                         <button type="submit" class="btn btn-success">
                                             <i class="fa fa-plus"></i> Guardar
                                         </button>
-                                    </div>
+                         </div>            
+                 </form>
+
+                
             </div>
 
           </div>

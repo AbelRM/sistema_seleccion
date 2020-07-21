@@ -14,7 +14,7 @@
     VALUES ('".$dni."','".$nombres."','".$ape_pat."','".$ape_mat."','".$celular."','".$correo."','".$clave."','".$confi_clave."','1')";
 
     if ($con->query($sql) == TRUE) {
-        $idcon=mysqli_insert_id($con);
+        $iduser=mysqli_insert_id($con);
         // echo $idcon;
         header('Location: ../index.php');
     } else {

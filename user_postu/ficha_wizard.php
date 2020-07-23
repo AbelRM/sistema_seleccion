@@ -79,10 +79,10 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
                                             <select id="departamento_id" class="form-control" name="departamento_id" required>
                                               <option value="">-- SELECCIONE --</option>
                                               <?php foreach($countries as $c):?>
-                                              <option value="<?php echo $c->id; ?>"><?php echo $c->name; ?></option>
+                                              <option value="<?php echo $c->iddepartamento; ?>"><?php echo $c->departamento; ?></option>
                                               <?php endforeach; ?>
                                             </select> 
-                                        </div>
+                                     </div>
                                           <br><br>
 
                                        <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
@@ -94,12 +94,12 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
 
 
                                     <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
-                                        <label for="exampleInputEmail1">Distrito</label>
+                                        <label for="name1">Distrito</label>
                                         <select id="distrito_id" class="form-control" name="distrito_id" required>
                                         <option value="">-- SELECCIONE --</option>        
-                                        </select>
-                                    
+                                        </select>                                 
                                     </div>
+                                    
                                     <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">
                                         <label>Estado civil</label> 
                                         <select class="form-control" name="civil" id="civil">
@@ -198,6 +198,7 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
                                         <h2 class="fs-title">DOMICILIO:</h2>
                                     </div>
                                 </div>
+
                                 <div class="form-group row">
                                     <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
                                         <label for="exampleInputEmail1">Tipo de Via</label>
@@ -252,54 +253,29 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
                                         <label>Número</label> 
                                         <input class="form-control form-control-user" type="text" name="num_zona" id="num_zona" placeholder="Número"/> 
                                     </div>
+
                                     <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
-                                        <label for="exampleInputEmail1">Departamento</label>
-                                        <select class="form-control form-control-user" name="departamento" id="departamento">
-                                            <option value="AVENIDA">Tacna</option>
-                                            <option value="JIRON">Moquegua</option>
-                                            <option value="CALLE">Arequipa</option>
-                                            <option value="PASAJE">Conjunto habitacional</option>
-                                            <option value="ALAMEDA">Asentamiento humano</option>
-                                            <option value="MALECON">Cooperativa</option>
-                                            <option value="OVALO">Residencial</option>
-                                            <option value="PASAJE">Zona industrial</option>
-                                            <option value="PARQUE">Grupo</option>
-                                            <option value="PLAZA">Caserio</option>
-                                            <option value="CARRETERA">Fundo</option>
-                                        </select> 
-                                    </div>
+                                            <label for="name2">Departamento</label>
+                                            <select id="departamento_id1" class="form-control" name="departamento_id1" required>
+                                              <option value="">-- SELECCIONE --</option>
+                                              <?php foreach($countries as $c):?>
+                                              <option value="<?php echo $c->iddepartamento; ?>"><?php echo $c->departamento; ?></option>
+                                              <?php endforeach; ?>
+                                            </select> 
+                                     </div>
+
+                                     <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
+                                        <label for="name2">Provincia</label>
+                                        <select id="provincia_id1" class="form-control" name="provincia_id1" >
+                                        <option value="">-- SELECCIONE --</option>
+                                        </select>                                 
+                                        </div>
+
                                     <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
-                                        <label for="exampleInputEmail1">Provincia</label>
-                                        <select class="form-control form-control-user" name="provincia" id="provincia">
-                                        <option value="AVENIDA">Candarave</option>
-                                        <option value="JIRON">Jorge Basadre</option>
-                                        <option value="CALLE">Unidad vecinal</option>
-                                        <option value="PASAJE">Conjunto habitacional</option>
-                                        <option value="ALAMEDA">Asentamiento humano</option>
-                                        <option value="MALECON">Cooperativa</option>
-                                        <option value="OVALO">Residencial</option>
-                                        <option value="PASAJE">Zona industrial</option>
-                                        <option value="PARQUE">Grupo</option>
-                                        <option value="PLAZA">Caserio</option>
-                                        <option value="CARRETERA">Fundo</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
-                                        <label for="exampleInputEmail1">Distrito</label>
-                                        <select class="form-control form-control-user" name="distrito" id="distrito" >
-                                        <option value="AVENIDA">Urbanizacion</option>
-                                        <option value="JIRON">Pueblo Joven</option>
-                                        <option value="CALLE">Unidad vecinal</option>
-                                        <option value="PASAJE">Conjunto habitacional</option>
-                                        <option value="ALAMEDA">Asentamiento humano</option>
-                                        <option value="MALECON">Cooperativa</option>
-                                        <option value="OVALO">Residencial</option>
-                                        <option value="PASAJE">Zona industrial</option>
-                                        <option value="PARQUE">Grupo</option>
-                                        <option value="PLAZA">Caserio</option>
-                                        <option value="CARRETERA">Fundo</option>
-                                        </select>
-                    
+                                        <label for="name2">Distrito</label>
+                                        <select id="distrito_id1" class="form-control" name="distrito_id1" required>
+                                        <option value="">-- SELECCIONE --</option>        
+                                        </select>                                 
                                     </div>
 
                                     <div class="col-md-12 col-sm-6 mb-2 mb-sm-0">
@@ -1032,20 +1008,38 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
     <script type="text/javascript">
 	$(document).ready(function(){
 		$("#departamento_id").change(function(){
-			$.get("provincia.php","departamento_id="+$("#departamento_id").val(), function(data){
+			$.get("provincia.php","departamento_iddepartamento="+$("#departamento_id").val(), function(data){
 				$("#provincia_id").html(data);
 				console.log(data);
 			});
 		});
 
 		$("#provincia_id").change(function(){
-			$.get("distrito.php","provincia_id="+$("#provincia_id").val(), function(data){
+			$.get("distrito.php","provincia_idprovincia="+$("#provincia_id").val(), function(data){
 				$("#distrito_id").html(data);
 				console.log(data);
 			});
 		});
 	});
-</script>
+    </script>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#departamento_id1").change(function(){
+			$.get("provincia.php","departamento_iddepartamento="+$("#departamento_id1").val(), function(data){
+				$("#provincia_id1").html(data);
+				console.log(data);
+			});
+		});
+
+		$("#provincia_id1").change(function(){
+			$.get("distrito.php","provincia_idprovincia="+$("#provincia_id1").val(), function(data){
+				$("#distrito_id1").html(data);
+				console.log(data);
+			});
+		});
+	});
+    </script>
 
 </body>
 </html>

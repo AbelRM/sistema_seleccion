@@ -1,3 +1,12 @@
+<?php
+include "conexion.php";  
+//$db =  connect();
+$query=$con->query("select * from departamento");
+$countries = array();
+while($r=$query->fetch_object()){ $countries[]=$r; }
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,7 +43,7 @@
                 <div class="card px-4 pt-4 mt-3 mb-3" style="padding: 30px;">
                     <h2 id="heading">FICHA ÚNICA DE DATOS</h2>
                     <p>Para la contratación de personal dispuesto en el Decreto de Urgencia N° 029-2020</p>
-                    <form id="msform">
+                    <form id="msform" action="procesos/guardar_ficha.php">
                         <!-- progressbar -->
                         <ul id="progressbar">
                             <li class="active" id="user"><strong></strong></li>
@@ -63,6 +72,33 @@
                                     <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
                                         <label>Fecha de nacimiento</label> 
                                         <input class="form-control form-control-user" type="date" id="fech_nac" name="fech_nac"/> 
+                                    </div>
+                                    
+                                    <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
+                                            <label for="name1">Departamento</label>
+                                            <select id="departamento_id" class="form-control" name="departamento_id" required>
+                                              <option value="">-- SELECCIONE --</option>
+                                              <?php foreach($countries as $c):?>
+                                              <option value="<?php echo $c->id; ?>"><?php echo $c->name; ?></option>
+                                              <?php endforeach; ?>
+                                            </select> 
+                                        </div>
+                                          <br><br>
+
+                                       <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
+                                        <label for="name1">Provincia</label>
+                                        <select id="provincia_id" class="form-control" name="provincia_id" >
+                                        <option value="">-- SELECCIONE --</option>
+                                        </select>                                 
+                                        </div>
+
+
+                                    <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
+                                        <label for="exampleInputEmail1">Distrito</label>
+                                        <select id="distrito_id" class="form-control" name="distrito_id" required>
+                                        <option value="">-- SELECCIONE --</option>        
+                                        </select>
+                                    
                                     </div>
                                     <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">
                                         <label>Estado civil</label> 
@@ -98,6 +134,21 @@
                                     <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
                                         <label>N° cuenta bancaria</label> 
                                         <input class="form-control form-control-user" placeholder="Banco de la Nación" type="text" name="cuenta_banc" id="cuenta_banc"/> 
+                                    </div>
+                                    <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
+                                        <label>Suspensión de 4ta.</label> 
+                                        <select class="form-control" name="cuarta" id="cuarta">
+                                            <option value="NO" selected>NO</option>
+                                            <option value="SI">SI</option>
+                                        </select> 
+                                    </div>
+                                    <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
+                                        <label>Tipo de pensión</label> 
+                                        <select class="form-control" name="pension" id="pension">
+                                            <option value="NINGUNA" selected>Ninguna</option>
+                                            <option value="ONP" selected>ONP</option>
+                                            <option value="SPP">SPP</option>
+                                        </select> 
                                     </div>
                                     <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">
                                         <label>Discapacidad</label> 
@@ -592,14 +643,13 @@
                                             </tdody>
                                         </table>
                                     </div> 
-                                    <div class="row d-flex justify-content-center">
-                                        <!-- <input type="hidden" id="idcon" name="idcon" value="<?php echo $fila['idcon']; ?>"> -->
-                                        <div class="form-inline p-2">
-                                            <button id="adicional-6" name="adicional" type="button" class="btn btn-warning"> AGREGAR FILA (+) </button>
-                                        </div>
+                                </div>
+                                <div class="row d-flex justify-content-center">
+                                    <!-- <input type="hidden" id="idcon" name="idcon" value="<?php echo $fila['idcon']; ?>"> -->
+                                    <div class="form-inline p-2">
+                                        <button id="adicional-6" name="adicional" type="button" class="btn btn-warning"> AGREGAR FILA (+) </button>
                                     </div>
                                 </div>
-                                
                             </div> 
                             <input type="button" name="next" class="next action-button" value="Siguiente" /> <input type="button" name="previous" class="previous action-button-previous" value="Atrás" />
                         </fieldset>
@@ -611,68 +661,65 @@
                                         <h2 class="fs-title">DATOS LABORALES:</h2>
                                     </div>
                                 </div>
-                                <div class="form-group row">
-                                    
-                                    <div class="table-responsive">
-                                        <span>Experiencia laboral</span>
-                                        <table class="table table-bordered" id="tabla-7">
-                                            <thead>
-                                            <tr class="bg-danger" style="text-align:center; font-size:0.813em;">
-                                                <th scope="col">Institución / Empresa</th>
-                                                <th scope="col">Cargo / Actividad </th>
-                                                <th scope="col">Fecha inicio</th>
-                                                <th scope="col">Fecha fin</th>
-                                                <th scope="col">Acción</th>
+                                <div class="table-responsive">
+                                    <span>Experiencia laboral</span>
+                                    <table class="table table-bordered" id="tabla-7">
+                                        <thead>
+                                        <tr class="bg-danger" style="text-align:center; font-size:0.813em;">
+                                            <th scope="col">Institución / Empresa</th>
+                                            <th scope="col">Cargo / Actividad </th>
+                                            <th scope="col">Fecha inicio</th>
+                                            <th scope="col">Fecha fin</th>
+                                            <th scope="col">Acción</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="fila-fija-7">
+                                                <td><input type="text" name="institucion[]" placeholder="Nombre de la empresa" class="form-control name_list" /></td>
+                                                <td><input type="text" name="cargo[]" placeholder="Cargo o función" class="form-control name_list" /></td>
+                                                <td><input type="date" name="fech_ini[]"  class="form-control name_list" /></td>
+                                                <td><input type="date" name="fech_fin[]"  class="form-control name_list" /></td>
+                                                <td class="eliminar"><input type="button" class="btn btn-danger" value=" - "></td>
                                             </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr class="fila-fija-7">
-                                                    <td><input type="text" name="institucion[]" placeholder="Nombre de la empresa" class="form-control name_list" /></td>
-                                                    <td><input type="text" name="cargo[]" placeholder="Cargo o función" class="form-control name_list" /></td>
-                                                    <td><input type="date" name="fech_ini[]"  class="form-control name_list" /></td>
-                                                    <td><input type="date" name="fech_fin[]"  class="form-control name_list" /></td>
-                                                    <td class="eliminar"><input type="button" class="btn btn-danger" value=" - "></td>
-                                                </tr>
-                                            </tdody>
-                                        </table>
-                                    </div> 
-                                    <div class="row d-flex justify-content-center">
-                                        <input type="hidden" id="idcon" name="idcon" value="<?php echo $fila['idcon']; ?>">
-                                        <div class="form-inline p-2">
-                                            <button id="adicional-7" name="adicional" type="button" class="btn btn-warning"> AGREGAR FILA (+) </button>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="table-responsive">
-                                        <span>Labores de Docencia</span>
-                                        <table class="table table-bordered" id="tabla-8">
-                                            <thead>
-                                            <tr class="bg-danger" style="text-align:center; font-size:0.813em;">
-                                                <th scope="col">Centro de enseñanzas</th>
-                                                <th scope="col">Curso dictado</th>
-                                                <th scope="col">Fecha inicio</th>
-                                                <th scope="col">Fecha fin</th>
-                                                <th scope="col">Acción</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr class="fila-fija-8">
-                                                    <td><input type="text" name="centro_ense[]" placeholder="Nombre de la institución" class="form-control name_list" /></td>
-                                                    <td><input type="text" name="curso[]" placeholder="Curso dictado" class="form-control name_list" /></td>
-                                                    <td><input type="date" name="fech_ini[]"  class="form-control name_list" /></td>
-                                                    <td><input type="date" name="fech_fin[]"  class="form-control name_list" /></td>
-                                                    <td class="eliminar"><input type="button" class="btn btn-danger" value=" - "></td>
-                                                </tr>
-                                            </tdody>
-                                        </table>
-                                    </div> 
-                                    <div class="row d-flex justify-content-center">
-                                        <input type="hidden" id="idcon" name="idcon" value="<?php echo $fila['idcon']; ?>">
-                                        <div class="form-inline p-2">
-                                            <button id="adicional-8" name="adicional" type="button" class="btn btn-warning"> AGREGAR FILA (+) </button>
-                                        </div>
-                                    </div>
+                                        </tdody>
+                                    </table>
                                 </div> 
+                                <div class="row d-flex justify-content-center">
+                                    <input type="hidden" id="idcon" name="idcon" value="<?php echo $fila['idcon']; ?>">
+                                    <div class="form-inline p-2">
+                                        <button id="adicional-7" name="adicional" type="button" class="btn btn-warning"> AGREGAR FILA (+) </button>
+                                    </div>
+                                </div>
+                                
+                                <div class="table-responsive">
+                                    <span>Labores de Docencia</span>
+                                    <table class="table table-bordered" id="tabla-8">
+                                        <thead>
+                                        <tr class="bg-danger" style="text-align:center; font-size:0.813em;">
+                                            <th scope="col">Centro de enseñanzas</th>
+                                            <th scope="col">Curso dictado</th>
+                                            <th scope="col">Fecha inicio</th>
+                                            <th scope="col">Fecha fin</th>
+                                            <th scope="col">Acción</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="fila-fija-8">
+                                                <td><input type="text" name="centro_ense[]" placeholder="Nombre de la institución" class="form-control name_list" /></td>
+                                                <td><input type="text" name="curso[]" placeholder="Curso dictado" class="form-control name_list" /></td>
+                                                <td><input type="date" name="fech_ini[]"  class="form-control name_list" /></td>
+                                                <td><input type="date" name="fech_fin[]"  class="form-control name_list" /></td>
+                                                <td class="eliminar"><input type="button" class="btn btn-danger" value=" - "></td>
+                                            </tr>
+                                        </tdody>
+                                    </table>
+                                </div> 
+                                <div class="row d-flex justify-content-center">
+                                    <!-- <input type="hidden" id="idcon" name="idcon" value="<?php echo $fila['idcon']; ?>"> -->
+                                    <div class="form-inline p-2">
+                                        <button id="adicional-8" name="adicional" type="button" class="btn btn-warning"> AGREGAR FILA (+) </button>
+                                    </div>
+                                </div>
                             </div>
                             <input type="button" name="next" class="next action-button" value="Siguiente" /> <input type="button" name="previous" class="previous action-button-previous" value="Atrás" />
                         </fieldset>
@@ -832,7 +879,7 @@
                         
                         <fieldset>
                             <div class="form-card">
-                                <h2 class="purple-text text-center"><strong>COMPLETADO !</strong></h2> <br>
+                                <h2 class="purple-text text-center"><strong>YA CASI TERMINAMOS !</strong></h2> <br>
                                 <div class="row justify-content-center">
                                     <div class="col-6"> 
                                         <img src="img/confirmacion.png" alt="Imagen de confirmación" style="width: 100%; height: auto;"> 
@@ -840,12 +887,13 @@
                                 </div> <br><br>
                                 <div class="row justify-content-center">
                                     <div class="col-6 text-center">
-                                        <h5 class="purple-text text-center">Se ha registrado todo correctamente</h5>
+                                        <h5 class="purple-text text-center">Presione GUARDAR si esta seguro de haber concluido!</h5>
                                     </div>
                                 </div>
                             </div>
                             <input type="button" name="previous" class="previous action-button-previous" value="Atrás" />
                         </fieldset>
+                        <!-- <button type="submit" class="btn btn-danger m-2">GUARDAR</button> -->
                     </form>
                 </div>
             </div>
@@ -890,6 +938,7 @@
             });
         });
     </script> 
+
     <script>
         $(function(){
             // Clona la fila oculta que tiene los campos base, y la agrega al final de la tabla
@@ -904,6 +953,7 @@
             });
         });
     </script>
+
     <script>
         $(function(){
             // Clona la fila oculta que tiene los campos base, y la agrega al final de la tabla
@@ -918,6 +968,7 @@
             });
         });
     </script> 
+
     <script>
         $(function(){
             // Clona la fila oculta que tiene los campos base, y la agrega al final de la tabla
@@ -932,6 +983,7 @@
             });
         });
     </script>
+
     <script>
         $(function(){
             // Clona la fila oculta que tiene los campos base, y la agrega al final de la tabla
@@ -946,6 +998,7 @@
             });
         });
     </script>
+
     <script>
         $(function(){
             // Clona la fila oculta que tiene los campos base, y la agrega al final de la tabla
@@ -960,6 +1013,7 @@
             });
         });
     </script>
+
     <script>
         $(function(){
             // Clona la fila oculta que tiene los campos base, y la agrega al final de la tabla
@@ -974,6 +1028,24 @@
             });
         });
     </script>
+    
+    <script type="text/javascript">
+	$(document).ready(function(){
+		$("#departamento_id").change(function(){
+			$.get("provincia.php","departamento_id="+$("#departamento_id").val(), function(data){
+				$("#provincia_id").html(data);
+				console.log(data);
+			});
+		});
+
+		$("#provincia_id").change(function(){
+			$.get("distrito.php","provincia_id="+$("#provincia_id").val(), function(data){
+				$("#distrito_id").html(data);
+				console.log(data);
+			});
+		});
+	});
+</script>
 
 </body>
 </html>

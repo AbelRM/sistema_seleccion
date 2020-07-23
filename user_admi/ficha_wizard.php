@@ -1,3 +1,12 @@
+<?php
+include "conexion.php";  
+//$db =  connect();
+$query=$con->query("select * from departamento");
+$countries = array();
+while($r=$query->fetch_object()){ $countries[]=$r; }
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -68,6 +77,9 @@
                                         <option value="TROCHA">Trocha</option>
                                         </select>
                                     </div>
+
+                                    
+
                                     <br>
                                     <div class="col-md-7 col-sm-6 mb-2 mb-sm-0">
                                         <label>Nombre de via</label> 
@@ -109,59 +121,32 @@
 
 
                                         <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
-                                            <label for="exampleInputEmail1">Departamento</label>
-                                            <select class="form-control form-control-user" style="padding: inherit;" id="Departamento">
-                                              <option value="AVENIDA">Tacna</option>
-                                              <option value="JIRON">Moquegua</option>
-                                              <option value="CALLE">Arequipa</option>
-                                              <option value="PASAJE">Conjunto habitacional</option>
-                                              <option value="ALAMEDA">Asentamiento humano</option>
-                                              <option value="MALECON">Cooperativa</option>
-                                              <option value="OVALO">Residencial</option>
-                                              <option value="PASAJE">Zona industrial</option>
-                                              <option value="PARQUE">Grupo</option>
-                                              <option value="PLAZA">Caserio</option>
-                                              <option value="CARRETERA">Fundo</option>
+                                            <label for="name1">Departamento</label>
+                                            <select id="departamento_id" class="form-control" name="departamento_id" required>
+                                              <option value="">-- SELECCIONE --</option>
+                                              <?php foreach($countries as $c):?>
+                                              <option value="<?php echo $c->id; ?>"><?php echo $c->name; ?></option>
+                                              <?php endforeach; ?>
                                             </select> 
-                                          </div>
-                                          <br>
-                                    <br>
+                                        </div>
+                                          <br><br>
 
-                                    <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
-                                        <label for="exampleInputEmail1">Provincia</label>
-                                        <select class="form-control form-control-user" style="padding: inherit;" id="estado_civil">
-                                        <option value="AVENIDA">Candarave</option>
-                                        <option value="JIRON">Jorge Basadre</option>
-                                        <option value="CALLE">Unidad vecinal</option>
-                                        <option value="PASAJE">Conjunto habitacional</option>
-                                        <option value="ALAMEDA">Asentamiento humano</option>
-                                        <option value="MALECON">Cooperativa</option>
-                                        <option value="OVALO">Residencial</option>
-                                        <option value="PASAJE">Zona industrial</option>
-                                        <option value="PARQUE">Grupo</option>
-                                        <option value="PLAZA">Caserio</option>
-                                        <option value="CARRETERA">Fundo</option>
-                                        </select>
-                                    
-                                    </div>
+                                       <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
+                                        <label for="name1">Provincia</label>
+                                        <select id="provincia_id" class="form-control" name="provincia_id" >
+                                        <option value="">-- SELECCIONE --</option>
+                                        </select>                                 
+                                        </div>
+
 
                                     <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
                                         <label for="exampleInputEmail1">Distrito</label>
-                                        <select class="form-control form-control-user" style="padding: inherit;" id="estado_civil">
-                                        <option value="AVENIDA">Urbanizacion</option>
-                                        <option value="JIRON">Pueblo Joven</option>
-                                        <option value="CALLE">Unidad vecinal</option>
-                                        <option value="PASAJE">Conjunto habitacional</option>
-                                        <option value="ALAMEDA">Asentamiento humano</option>
-                                        <option value="MALECON">Cooperativa</option>
-                                        <option value="OVALO">Residencial</option>
-                                        <option value="PASAJE">Zona industrial</option>
-                                        <option value="PARQUE">Grupo</option>
-                                        <option value="PLAZA">Caserio</option>
-                                        <option value="CARRETERA">Fundo</option>
+                                        <select id="distrito_id" class="form-control" name="distrito_id" required>
+                                        <option value="">-- SELECCIONE --</option>        
                                         </select>
                                     
                                     </div>
+
 
                                     <div class="col-md-12 col-sm-6 mb-2 mb-sm-0">
                                         <label> Referencia</label> 
@@ -968,6 +953,25 @@
  
     });
     </script>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#departamento_id").change(function(){
+			$.get("provincia.php","departamento_id="+$("#departamento_id").val(), function(data){
+				$("#provincia_id").html(data);
+				console.log(data);
+			});
+		});
+
+		$("#provincia_id").change(function(){
+			$.get("distrito.php","provincia_id="+$("#provincia_id").val(), function(data){
+				$("#distrito_id").html(data);
+				console.log(data);
+			});
+		});
+	});
+</script>
+
 
 
 </body>

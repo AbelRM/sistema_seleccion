@@ -30,6 +30,8 @@ $sql= "UPDATE convocatoria SET  num_con='$numerocon',
 
 $result=mysqli_query($con,$sql);
 
+
+
 header('Location: ../listado_convocatorias.php');
 mysqli_close($con);  
 ?>

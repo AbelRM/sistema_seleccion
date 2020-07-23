@@ -254,7 +254,7 @@
                           $num_con=$rw['num_con'];
                           $añocon=$rw['año_con'];
                           $dir_ejec=$rw['direccion_ejec_iddireccion'];
-                          $fech_ini=$rw['fech_ini'];
+                          $fech_ini=$rw['fech_ini']; 
                           $fech_term=$rw['fech_term'];
                           $porcen_eva_cu=$rw['porcen_eva_cu'];
                           $porce_entrevista=$rw['porce_entrevista'];

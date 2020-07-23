@@ -5,7 +5,7 @@
 	$password=$_POST['clave'];
 
 
-	$sql="SELECT * FROM admin WHERE dni='".$dni."' AND clave='".$password."' ";
+	$sql="SELECT * FROM user WHERE dni='".$dni."' AND clave='".$password."' ";
 	$result=$con->query($sql);
 
 	$sql1=mysqli_query($con,"select * from tipo_user");
@@ -17,8 +17,8 @@
 		while ( $row=$result->fetch_assoc()) {
 			# code...
 			session_start();
-			$_SESSION['iduser']=$row["iduser"];
-			header("Location: ../user_admi/index.php");
+			$_SESSION['dni']=$row["dni"];
+			header("Location: ../user_admi/index.php?dni=$dni");
 		}
 	} else {
 
@@ -27,8 +27,8 @@
 			while ( $row=$result->fetch_assoc()) {
 			# code...
 			session_start();
-			$_SESSION['iduser']=$row["iduser"];
-			header("Location: ../user_postu/index.php");
+			$_SESSION['dni']=$row["dni"];
+			header("Location: ../user_postu/index.php?dni=$dni");
 		}
 
 		}

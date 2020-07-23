@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>NUEVA CONVOCATORIA - SISTEMA SELECCION (DIRESA-TACNA)</title>
+  <title>VER CONVOCATORIA - SISTEMA SELECCION (DIRESA-TACNA)</title>
 
   <!-- Custom fonts for this template-->
   <link rel="icon" type="image/png" href="img/icono_diresa.png" />
@@ -33,8 +33,13 @@
   <div id="wrapper">
 
     <?php 
-      include 'menu.html';
       include 'conexion.php';
+      $dni=$_GET['dni'];
+      $idcon=$_GET['id'];
+      $sql="SELECT * FROM full_convocatoria WHERE idcon='".$idcon."' ";
+      $result=mysqli_query($con,$sql);
+      $fila=mysqli_fetch_array($result);
+      include 'menu.php';
       ?>
 
     <!-- Content Wrapper -->
@@ -96,13 +101,7 @@
                   <h6 class="m-0 font-weight-bold text-primary">CONVOCATORIA SELECCIONADA</h6>
                 </div>
                 <div class="card-body">    
-                  <?php 
-                      $idcon=$_GET['id'];
-                      $sql="SELECT * FROM full_convocatoria WHERE idcon='".$idcon."' ";
-                      $result=mysqli_query($con,$sql);
-                      $fila=mysqli_fetch_array($result);
-                
-                  ?>
+                  
                 <form method="POST" >
                   <input type="hidden" value="<?php echo $fila["con_con"]; ?>" name="id">
                   <div class="form-group">
@@ -204,7 +203,7 @@
                               </thead>
                               <tbody>
                                 <?php    
-                                  $sql = "SELECT * FROM comision";
+                                  $sql = "SELECT * FROM comision where convocatoria_idcon='".$idcon."' ";
                                   $query=mysqli_query($con, $sql);
                                   while ($row= MySQLI_fetch_array($query)){
                                     $idcomisionn=$row['idcomision'];
@@ -242,7 +241,7 @@
                               <tbody>
                                 <?php
         
-                                  $sql = " SELECT * FROM total_personal_req ";
+                                  $sql = " SELECT * FROM total_personal_req where convocatoria_idcon='".$idcon."'";
 
                                   $query=mysqli_query($con, $sql);
 
@@ -268,10 +267,9 @@
                     </div>
                   </div>
                   <div class="d-flex justify-content-end">
-                    <a class="btn btn-danger" role="button" href="listado_convocatorias.php">Atrás</a>
+                    <a class="btn btn-danger" role="button" href="listado_convocatorias.php?dni=<?php echo $dni ?>">Atrás</a>
                   </div>
                 </form>
-                
             </div>
 
           </div>

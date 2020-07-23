@@ -27,15 +27,15 @@
 
     <?php     
       include 'conexion.php';
-       
+      
       $dni = $_GET['dni'];
-      $descrip=base64_decode($dni);
+      //$descrip=base64_decode($dni);
       include_once('conexion.php');
-      $sql="SELECT * FROM usuarios where dni=$descrip";
+      $sql="SELECT * FROM usuarios where dni=$dni";
       $datos=mysqli_query($con,$sql) or die(mysqli_error()); ;
       $fila= mysqli_fetch_array($datos);
   
-      include 'menu.html';
+      include 'menu.php';
       
     ?>
 

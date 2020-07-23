@@ -1,30 +1,3 @@
-<?php
-    require '../conexion.php';
-	
-    $nombres = $_POST['nombres'];
-    $ape_pat = $_POST['ape_pat'];
-    $ape_mat = $_POST['ape_mat'];
-    $dni = $_POST['dni'];
-    $correo = $_POST['correo'];
-    $celular = $_POST['celular'];
-	$clave = $_POST['clave'];
-	$confi_clave = $_POST['confi_clave'];
-
-	$sql= "INSERT INTO user (dni,nombres,ape_pat,ape_mat,celular,correo,clave,confi_clave,tipo_user_idtipo) 
-    VALUES ('".$dni."','".$nombres."','".$ape_pat."','".$ape_mat."','".$celular."','".$correo."','".$clave."','".$confi_clave."','1')";
-
-    if ($con->query($sql) == TRUE) {
-        $iduser=mysqli_insert_id($con);
-        $sql2= "INSERT INTO postulante (dni,nombres,ape_pat,ape_mat,celular,correo) 
-        VALUES ('".$dni."','".$nombres."','".$ape_pat."','".$ape_mat."','".$celular."','".$correo."')";
-        if ($con->query($sql2) == TRUE){
-            header('Location: ../index.php');
-        }else{
-            echo "Error";
-        }
-        
-    } else {
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -77,10 +50,3 @@
 </body>
 
 </html>
-<?php
-        //echo "Error: ".$sql. "<br>".$con->error;
-        //echo "Error";
-    }
-    $con->close();
-	
-?>

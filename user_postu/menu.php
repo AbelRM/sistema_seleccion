@@ -26,8 +26,8 @@
       <div id="collapseConvo" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
           <h6 class="collapse-header">Acciones:</h6>
-          <a class="collapse-item" href="listado_convocatorias.php?dni=$encrip">Listado convocatorias</a>
-          <a class="collapse-item" href="ficha_wizard.php">Ficha única de datos</a>
+          <a class="collapse-item" href="listado_convocatorias.php?dni=<?php echo $dni ?>">Listado convocatorias</a>
+          <a class="collapse-item" href="ficha_wizard.php?dni=<?php echo $dni ?>">Ficha única de datos</a>
           
         </div>
       </div>

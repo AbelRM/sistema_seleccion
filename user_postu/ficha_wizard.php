@@ -18,6 +18,16 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="bg-gradient-primary">
+    <?php   
+        include 'conexion.php';
+        
+        $dni = $_GET['dni'];
+        $descrip=base64_decode($dni);
+        $sql2="SELECT * FROM user where dni=$dni";
+        $datos=mysqli_query($con,$sql2) or die(mysqli_error()); ;
+        $fila= mysqli_fetch_array($datos);
+        // include 'menu.php';
+    ?>
     <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="col-12 col-sm-12 col-md-12 col-lg-10 col-xl-10 text-center p-0 mt-3 mb-2">
@@ -48,15 +58,15 @@
     
                                     <div class="col-md-5 col-sm-6 mb-2 mb-sm-0">
                                         <label>Nombres</label> 
-                                        <input class="form-control form-control-user" type="text" name="fname" value="" disabled="true"/> 
+                                        <input class="form-control form-control-user" type="text" value="<?php echo $fila['nombres']." ".$fila['ape_pat']." ".$fila['ape_mat']; ?>" disabled="true"/> 
                                     </div>
                                     <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
                                         <label>Fecha de nacimiento</label> 
-                                        <input class="form-control form-control-user" type="date"   /> 
+                                        <input class="form-control form-control-user" type="date" id="fech_nac" name="fech_nac"/> 
                                     </div>
                                     <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">
                                         <label>Estado civil</label> 
-                                        <select class="form-control" id="exampleFormControlSelect1">
+                                        <select class="form-control" name="civil" id="civil">
                                             <option selected>Elegir...</option>
                                             <option value="SOLTERO(A)">Soltero(a)</option>
                                             <option value="CASADO(A)">Casado(a)</option>
@@ -67,7 +77,7 @@
                                     </div>
                                     <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">
                                         <label>Sexo</label> 
-                                        <select class="form-control" id="exampleFormControlSelect1">
+                                        <select class="form-control" name="sexo" id="sexo">
                                             <option selected>Elegir...</option>
                                             <option value="MASCULINO">Masculino</option>
                                             <option value="FEMENINO">Femenino</option>
@@ -75,33 +85,32 @@
                                     </div>
                                     <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">
                                         <label>Cel. emergencia</label> 
-                                        <input class="form-control form-control-user" type="text"/> 
+                                        <input class="form-control form-control-user" type="text" name="num_emer" id="num_emer"/> 
                                     </div>
                                     <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
                                         <label>Parentesco</label> 
-                                        <input class="form-control form-control-user" placeholder="Nombre familiar" type="text"/> 
+                                        <input class="form-control form-control-user" placeholder="Nombre familiar" type="text" name="nomb_parent" id="nomb_parent"/> 
                                     </div>
                                     <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
                                         <label>R.U.C.</label> 
-                                        <input class="form-control form-control-user" type="text"/> 
+                                        <input class="form-control form-control-user" type="text" name="ruc" id="ruc"/> 
                                     </div>
                                     <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
                                         <label>N° cuenta bancaria</label> 
-                                        <input class="form-control form-control-user" placeholder="Banco de la Nación" type="text"/> 
+                                        <input class="form-control form-control-user" placeholder="Banco de la Nación" type="text" name="cuenta_banc" id="cuenta_banc"/> 
                                     </div>
                                     <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">
                                         <label>Discapacidad</label> 
-                                        <select class="form-control" id="exampleFormControlSelect1">
-                                            <option selected>Elegir...</option>
+                                        <select class="form-control" name="discapacidad" id="discapacidad">
+                                            <option value="NO" selected>NO</option>
                                             <option value="SI">SI</option>
-                                            <option value="NO">NO</option>
                                             
                                         </select>  
                                     </div>
                                     <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">
                                         <label>Tipo de discapacidad</label> 
-                                        <select class="form-control" id="exampleFormControlSelect1">
-                                            <option selected>Elegir...</option>
+                                        <select class="form-control" name="tip_discapacidad" id="tip_discapacidad">
+                                            <option value="NINGUNA" select>Ninguna</option>
                                             <option value="FISICA">Físicas</option>
                                             <option value="SENSORIAL">Sensoriales</option>
                                             <option value="MENTAL">Mentales</option>
@@ -110,7 +119,7 @@
                                     </div>
                                     <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">
                                         <label>Grupo sanguineo</label> 
-                                        <select class="form-control" id="exampleFormControlSelect1">
+                                        <select class="form-control" name="tip_sangre" id="tip_sangre">
                                             <option selected>Elegir...</option>
                                             <option value="AB+">AB+</option>
                                             <option value="AB-">AB-</option>
@@ -124,12 +133,13 @@
                                     </div>
                                     <div class="col-md-6 col-sm-6 mb-2 mb-sm-0">
                                         <label>Enfermedades/Alergias</label> 
-                                        <input class="form-control form-control-user" type="text" name="fname" placeholder="Separado por comas"/> 
+                                        <input class="form-control form-control-user" type="text" placeholder="Separado por comas" name="alergias" id="alergias"/> 
                                     </div>
                                 </div> 
                             </div>
                             <input type="button" name="next" class="next action-button" value="Siguiente" />
                         </fieldset>
+
                         <fieldset>
                             <div class="form-card">
                                 <div class="row">
@@ -140,7 +150,7 @@
                                 <div class="form-group row">
                                     <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
                                         <label for="exampleInputEmail1">Tipo de Via</label>
-                                        <select class="form-control form-control-user" style="padding: inherit;" id="estado_civil">
+                                        <select class="form-control form-control-user" name="tipo_via" id="tipo_via" id="estado_civil">
                                         <option value="AVENIDA">Avenida</option>
                                         <option value="JIRON">Jiron</option>
                                         <option value="CALLE">Calle</option>
@@ -157,16 +167,16 @@
                                     </div>
                                     <div class="col-md-7 col-sm-6 mb-2 mb-sm-0">
                                         <label>Nombre de via</label> 
-                                        <input class="form-control form-control-user" type="text" name="fname" placeholder="Via"/> 
+                                        <input class="form-control form-control-user" type="text" name="nomb_via" id="nomb_via" placeholder="Via"/> 
                                     </div>
                                     
                                     <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">
                                         <label>Número</label> 
-                                        <input class="form-control form-control-user" type="text" name="fname" placeholder="Número"/> 
+                                        <input class="form-control form-control-user" type="text" name="num_via" id="num_via" placeholder="Número"/> 
                                     </div>
                                     <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
                                         <label for="exampleInputEmail1">Tipo de Zona</label>
-                                        <select class="form-control form-control-user" style="padding: inherit;" id="estado_civil">
+                                        <select class="form-control form-control-user" name="tipo_zona" id="tipo_zona" id="estado_civil">
                                         <option value="AVENIDA">Urbanizacion</option>
                                         <option value="JIRON">Pueblo Joven</option>
                                         <option value="CALLE">Unidad vecinal</option>
@@ -184,16 +194,16 @@
 
                                     <div class="col-md-7 col-sm-6 mb-2 mb-sm-0">
                                         <label>Nombre de la zona</label> 
-                                        <input class="form-control form-control-user" type="text" name="fname" placeholder="Zona"/> 
+                                        <input class="form-control form-control-user" type="text" name="nomb_zona" id="nomb_zona" placeholder="Zona"/> 
                                     </div>
 
                                     <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">
                                         <label>Número</label> 
-                                        <input class="form-control form-control-user" type="text" name="fname" placeholder="Número"/> 
+                                        <input class="form-control form-control-user" type="text" name="num_zona" id="num_zona" placeholder="Número"/> 
                                     </div>
                                     <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
                                         <label for="exampleInputEmail1">Departamento</label>
-                                        <select class="form-control form-control-user" style="padding: inherit;" id="Departamento">
+                                        <select class="form-control form-control-user" name="departamento" id="departamento">
                                             <option value="AVENIDA">Tacna</option>
                                             <option value="JIRON">Moquegua</option>
                                             <option value="CALLE">Arequipa</option>
@@ -209,7 +219,7 @@
                                     </div>
                                     <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
                                         <label for="exampleInputEmail1">Provincia</label>
-                                        <select class="form-control form-control-user" style="padding: inherit;" id="estado_civil">
+                                        <select class="form-control form-control-user" name="provincia" id="provincia">
                                         <option value="AVENIDA">Candarave</option>
                                         <option value="JIRON">Jorge Basadre</option>
                                         <option value="CALLE">Unidad vecinal</option>
@@ -225,7 +235,7 @@
                                     </div>
                                     <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
                                         <label for="exampleInputEmail1">Distrito</label>
-                                        <select class="form-control form-control-user" style="padding: inherit;" id="estado_civil">
+                                        <select class="form-control form-control-user" name="distrito" id="distrito" >
                                         <option value="AVENIDA">Urbanizacion</option>
                                         <option value="JIRON">Pueblo Joven</option>
                                         <option value="CALLE">Unidad vecinal</option>
@@ -242,8 +252,8 @@
                                     </div>
 
                                     <div class="col-md-12 col-sm-6 mb-2 mb-sm-0">
-                                        <label> Referencia</label> 
-                                        <input class="form-control form-control-user" type="text" name="fname" placeholder="Indicar Avenida/Calle y/o Institucion cercana"/> 
+                                        <label>Referencia</label> 
+                                        <input class="form-control form-control-user" type="text" name="referencia" id="referencia" placeholder="Indicar Avenida/Calle y/o Institucion cercana"/> 
                                     </div>
                                 </div>   
                             </div>
@@ -251,52 +261,64 @@
                             <input type="button" name="previous" class="previous action-button-previous" value="Atrás" />
                         </fieldset>
 
-
                         <fieldset>
                             <div class="form-card">
                                 <div class="row">
                                     <div class="col-7">
                                         <h2 class="fs-title">DATOS FAMILIARES:</h2>
                                     </div>
-                                    <!-- <div class="col-5">
-                                        <h2 class="steps">Seccion 2 - 4</h2>
-                                    </div> -->
                                 </div>
-                                <div class="form-group row">
+                                <div class="form-group">
                                     <div class="table-responsive">
-                                        <table class="table table-bordered" id="dynamic_field">
+                                        <table class="table table-bordered" id="tabla">
                                             <thead>
-                                                <tr>
-                                                    <th scope="col">Nombres</th>
-                                                    <th scope="col">Apellidos</th>
-                                                    <th scope="col">Fecha Nacimiento</th>
-                                                    <th scope="col">N° DNI</th>
-                                                    <th scope="col">Parentesco</th>
-                                                    <th scope="col">Entidad que labora</th>
-                                                    <th scope="col">Acción</th>
-                                            
-                                                </tr>
+                                            <tr class="bg-danger" style="text-align:center; font-size:0.813em;">
+                                                <th scope="col">Nombres</th>
+                                                <th scope="col">Apellidos</th>
+                                                <th scope="col">Fecha Nacimiento</th>
+                                                <th scope="col">N° DNI</th>
+                                                <th scope="col">Parentesco</th>
+                                                <th scope="col">Entidad que labora</th>
+                                                <th scope="col">Acción</th>
+                                            </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td><input type="text" name="name[]" placeholder="Nombres" class="form-control name_list" /></td>
-                                                    <td><input type="text" name="name[]" placeholder="Apellidos" class="form-control name_list" /></td>
-                                                    <td><input type="date" name="name[]" placeholder="Fecha nacimiento" class="form-control name_list" /></td>
-                                                    <td><input type="text"  name="name[]" placeholder="N° DNI" class="form-control name_list" maxlength="8" /></td>
-                                                    <td><input type="text" name="name[]" placeholder="Parentesco" class="form-control name_list" /></td>
-                                                    <td><input type="text" name="name[]" placeholder="Nombre entidad" class="form-control name_list" /></td>
-                                                    <td><button type="button" name="add" id="add" class="btn btn-primary"> + </button></td>
+                                                <tr class="fila-fija">
+                                                    <td><input type="text" name="nombre[]" placeholder="Nombres" class="form-control name_list" /></td>
+                                                    <td><input type="text" name="apellidos[]" placeholder="Apellidos completos" class="form-control name_list"/></td>
+                                                    <td><input type="date" name="fecha_nac[]" class="form-control name_list" /></td>
+                                                    <td><input type="text" name="dni[]" maxlength="8" class="form-control name_list" /></td>
+                                                    <td>
+                                                        <select name="parentesco[]" class="form-control">
+                                                            <option value="" disabled selected>Elegir</option>
+                                                            <option value="PADRE">Padre</option>
+                                                            <option value="MADRE">Madre</option>
+                                                            <option value="HERMANO(A)">Hermano(a)</option>
+                                                            <option value="TIO(A)">Tio(a)</option>
+                                                            <option value="ABUELO(A)">Abeulo(a)</option>
+                                                        </select>
+                                                    </td>
+                                                    <td><input type="text" name="entidad[]" placeholder="Nombre entidad que elabora" class="form-control name_list" /></td>
+                                                    <td class="eliminar"><input type="button" class="btn btn-danger" value=" - "></td>
                                                 </tr>
                                             </tdody>
                                         </table>
-                                        <!-- <input type="button" name="submit" id="submit" class="btn btn-success" value="GUARDAR" /> -->
                                     </div>
+                                </div>
+                                <div class="row d-flex justify-content-center">
+                                    <!-- <input type="hidden" id="idcon" name="idcon" value="<?php echo $fila['idcon']; ?>"> -->
+                                    <div class="form-inline p-2">
+                                        <button id="adicional" name="adicional" type="button" class="btn btn-warning"> AGREGAR FILA (+) </button>
+                                    </div>
+                                    <!-- <div class="form-inline p-2">
+                                        <input type="submit" name="insertar_1" class="btn btn-primary" value="GUARDAR"/>
+                                    </div> -->
                                 </div>
                             </div>
                             <input type="button" name="next" class="next action-button" value="Siguiente" /> 
                             <input type="button" name="previous" class="previous action-button-previous" value="Atrás" />
                         </fieldset>
-        
+
                         <fieldset>
                             <div class="form-card">
                                 <div class="row">
@@ -311,315 +333,346 @@
     
                                     <div class="col-md-9 col-sm-6 mb-2 mb-sm-0">
                                         <label> Profesion</label> 
-                                        <input class="form-control form-control-user" type="text" name="fname" placeholder="Indicar profesion"/> 
+                                        <input class="form-control form-control-user" type="text" name="profesion" id="profesion" placeholder="Indicar profesion"/> 
                                     </div>
 
                                     <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
                                         <label>Fecha de colegiatura</label> 
-                                        <input class="form-control form-control-user" type="date" name="fname" placeholder="Fecha"/> 
+                                        <input class="form-control form-control-user" type="date" name="fech_cole" id="fech_cole"/> 
                                     </div>
 
                                     <div class="col-md-6 col-sm-6 mb-2 mb-sm-0">
                                         <label>Lugar de colegiatura</label> 
-                                        <input class="form-control form-control-user" type="text" name="fname" placeholder="Lugar"/> 
+                                        <input class="form-control form-control-user" type="text" name="lugar_cole" id="lugar_cole" placeholder="Lugar"/> 
                                     </div>
 
                                     <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
                                         <label>Fecha de colegiatura habilitado</label> 
-                                        <input class="form-control form-control-user" type="date" name="fname" placeholder="Fecha"/> 
+                                        <input class="form-control form-control-user" type="date" name="fech_habi" id="fech_habi" /> 
                                     </div>
                                     <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
-                                        <label>Número</label> 
-                                        <input class="form-control form-control-user" type="text" name="fname" placeholder="Número"/> 
+                                        <label>Número colegiatura</label> 
+                                        <input class="form-control form-control-user" type="text" name="num_cole" id="num_cole" placeholder="Número colegiatura"/> 
                                     </div>
                                 </div> 
                             </div>
                             <input type="button" name="next" class="next action-button" value="Siguiente" /> <input type="button" name="previous" class="previous action-button-previous" value="Atrás" />
                         </fieldset>
-
+                        <!-- ESTUDIOS SUPERIORES Y ESPECIALIZACIONES -->
                         <fieldset>
                             <div class="form-card">
                                 <div class="row">
                                     <div class="col-7">
                                         <h2 class="fs-title">DATOS PROFESIONALES Y ACADÉMICOS II:</h2>
                                     </div>
-                                    <!-- <div class="col-5">
-                                        <h2 class="steps">Seccion 2 - 4</h2>
-                                    </div> -->
-                                </div>                           
-
+                                </div> 
                                 <div class="table-responsive">
                                     <label>Estudios Superiores (Universitario - Tecnico)</label> 
-                                    <table class="table table-bordered" id="dynamic_field_5">
+                                    <table class="table table-bordered" id="tabla-2">
                                         <thead>
-                                            <tr>
-                                                <th scope="col">Centro Estudios</th>
-                                                <th scope="col">Especialidad</th>
-                                                <th scope="col">Fecha Inicio</th>
-                                                <th scope="col">Fecha Termino</th>
-                                                <th scope="col">Nivel Alcanzado</th>
-                                                <th scope="col">Acción</th>
-                                            </tr>
+                                        <tr class="bg-danger" style="text-align:center; font-size:0.813em;">
+                                            <th scope="col">Centro Estudios</th>
+                                            <th scope="col">Especialidad</th>
+                                            <th scope="col">Fecha Inicio</th>
+                                            <th scope="col">Fecha Termino</th>
+                                            <th scope="col">Nivel Alcanzado</th>
+                                            <th scope="col">Acción</th>
+                                        </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td><input type="text" name="name_5[]" placeholder="Centro Estudios" class="form-control name_list" /></td>
-                                                <td><input type="text" name="name_5[]" placeholder="Especialidad" class="form-control name_list" /></td>
-                                                <td><input type="date" name="name_5[]" placeholder="Fecha Inicio" class="form-control name_list" /></td>
-                                                <td><input type="date" name="name_5[]" placeholder="Fecha Termino" class="form-control name_list" /></td>
+                                            <tr class="fila-fija-2">
+                                                <td><input type="text" name="centro_estu[]" placeholder="Nombre de centro de estudios" class="form-control name_list" /></td>
+                                                <td><input type="text" name="especialidad[]" placeholder="Especialidad" class="form-control name_list" /></td>
+                                                <td><input type="date" name="fech_ini[]" class="form-control name_list"/></td>
+                                                <td><input type="date" name="fech_fin[]" class="form-control name_list"/></td>
                                                 <td>
-                                                        
-                                                    <select class="form-control name_list" name="name_5[]">
+                                                    <select name="nivel[]" class="form-control" id="cargo">
+                                                        <option value="" disabled selected>Elegir</option>
                                                         <option value="Magister">Magister</option>
                                                         <option value="Doctorado">Doctorado</option>
                                                         <option value="Egresado">Egresado</option>
                                                         <option value="Estudiante">Estudiante</option>
-                                                      </select>
-                                                </td>    
-                                                <td><button type="button" name="add_5" id="add_5" class="btn btn-primary"> + </button></td>
-                                            </tr>
-                                        </tdody>
-                                    </table>          
-                                </div>
-
-                                <div class="table-responsive">
-                                    <label>Estudios Posgrado (Maestria - Doctorado)</label> 
-                                    <table class="table table-bordered" id="dynamic_field_6">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">Centro Estudios</th>
-                                                <th scope="col">Especialidad</th>
-                                                <th scope="col">Fecha Inicio</th>
-                                                <th scope="col">Fecha Termino</th>
-                                                <th scope="col">Nivel Alcanzado</th>
-                                                <th scope="col">Acción</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td><input type="text" name="name_6[]" placeholder="Centro Estudios" class="form-control name_list" /></td>
-                                                <td><input type="text" name="name_6[]" placeholder="Especialidad" class="form-control name_list" /></td>
-                                                <td><input type="date" name="name_6[]" placeholder="Fecha Inicio" class="form-control name_list" /></td>
-                                                <td><input type="date" name="name_6[]" placeholder="Fecha Termino" class="form-control name_list" /></td>
-                                                <td>
-                                                        
-                                                    <select class="form-control name_list" name="name_6[]">
-                                                        <option value="Magister">Magister</option>
-                                                        <option value="Doctorado">Doctorado</option>
-                                                        <option value="Egresado">Egresado</option>
-                                                        <option value="Estudiante">Estudiante</option>
-                                                      </select>
-                                                </td>    
-                                                <td><button type="button" name="add_6" id="add_6" class="btn btn-primary"> + </button></td>
+                                                    </select>
+                                                </td>
+                                                <td class="eliminar"><input type="button" class="btn btn-danger" value=" - "></td>
                                             </tr>
                                         </tdody>
                                     </table>
-                                    
                                 </div>
+                                <div class="row d-flex justify-content-center">
+                                    <input type="hidden" id="idcon" name="idcon" value="<?php echo $fila['idcon']; ?>">
+                                    <div class="form-inline p-2">
+                                        <button id="adicional-2" name="adicional" type="button" class="btn btn-warning"> AGREGAR FILA (+) </button>
+                                    </div>
+                                    <!-- <div class="form-inline p-2">
+                                        <input type="submit" name="insertar" class="btn btn-primary" value="GUARDAR"/>
+                                    </div> -->
+                                </div>
+                                <div class="table-responsive">
+                                    <label>Estudios Posgrado (Maestria - Doctorado)</label> 
+                                    <table class="table table-bordered" id="tabla-3">
+                                        <thead>
+                                        <tr class="bg-danger" style="text-align:center; font-size:0.813em;">
+                                            <th scope="col">Centro Estudios</th>
+                                            <th scope="col">Especialidad</th>
+                                            <th scope="col">Fecha Inicio</th>
+                                            <th scope="col">Fecha Termino</th>
+                                            <th scope="col">Nivel Alcanzado</th>
+                                            <th scope="col">Acción</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="fila-fija-3">
+                                                <td><input type="text" name="centro_estu[]" placeholder="Nombre de centro de estudios" class="form-control name_list" /></td>
+                                                <td><input type="text" name="especialidad[]" placeholder="Especialidad" class="form-control name_list" /></td>
+                                                <td><input type="date" name="fech_ini[]" class="form-control name_list"/></td>
+                                                <td><input type="date" name="fech_fin[]" class="form-control name_list"/></td>
+                                                <td>
+                                                    <select name="nivel[]" class="form-control" id="cargo">
+                                                        <option value="" disabled selected>Elegir</option>
+                                                        <option value="Magister">Magister</option>
+                                                        <option value="Doctorado">Doctorado</option>
+                                                        <option value="Egresado">Egresado</option>
+                                                        <option value="Estudiante">Estudiante</option>
+                                                    </select>
+                                                </td>
+                                                <td class="eliminar"><input type="button" class="btn btn-danger" value=" - "></td>
+                                            </tr>
+                                        </tdody>
+                                    </table>
+                                </div> 
+                                <div class="row d-flex justify-content-center">
+                                    <input type="hidden" id="idcon" name="idcon" value="<?php echo $fila['idcon']; ?>">
+                                    <div class="form-inline p-2">
+                                        <button id="adicional-3" name="adicional" type="button" class="btn btn-warning"> AGREGAR FILA (+) </button>
+                                    </div>
+                                    <!-- <div class="form-inline p-2">
+                                        <input type="submit" name="insertar" class="btn btn-primary" value="GUARDAR"/>
+                                    </div> -->
+                                </div>                        
 
                             </div>
                             <input type="button" name="next" class="next action-button" value="Siguiente" /> <input type="button" name="previous" class="previous action-button-previous" value="Atrás" />
                         </fieldset>
-
+                        <!-- ESPECIALZIACION Y CURSOS -->
                         <fieldset>
                             <div class="form-card">
                                 <div class="row">
                                     <div class="col-7">
-                                        <h2 class="fs-title">DATOS PROFESIONALES Y ACADEMICOS III:</h2>
+                                        <h2 class="fs-title">DATOS PROFESIONALES Y ACADÉMICOS II:</h2>
                                     </div>
-                                    <!-- <div class="col-5">
-                                        <h2 class="steps">Seccion 2 - 4</h2>
-                                    </div> -->
-                                </div>
-
+                                </div> 
                                 <div class="table-responsive">
                                     <label>Especialización - Diplomados</label> 
-                                    <table class="table table-bordered" id="dynamic_field_7">
+                                    <table class="table table-bordered" id="tabla-4">
                                         <thead>
-                                            <tr>
-                                                <th scope="col">Centro Estudios</th>
-                                                <th scope="col">Especialidad</th>
-                                                <th scope="col">Fecha Inicio</th>
-                                                <th scope="col">Fecha Termino</th>
-                                                <th scope="col">Nivel Alcanzado</th>
-                                                <th scope="col">Acción</th>
-                                            </tr>
+                                        <tr class="bg-danger" style="text-align:center; font-size:0.813em;">
+                                            <th scope="col">Centro Estudios</th>
+                                            <th scope="col">Especialidad</th>
+                                            <th scope="col">Fecha Inicio</th>
+                                            <th scope="col">Fecha Termino</th>
+                                            <th scope="col">Nivel Alcanzado</th>
+                                            <th scope="col">Acción</th>
+                                        </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td><input type="text" name="name_7[]" placeholder="Centro Estudios" class="form-control name_list" /></td>
-                                                <td><input type="text" name="name_7[]" placeholder="Especialidad" class="form-control name_list" /></td>
-                                                <td><input type="date" name="name_7[]" placeholder="Fecha Inicio" class="form-control name_list" /></td>
-                                                <td><input type="date" name="name_7[]" placeholder="Fecha Termino" class="form-control name_list" /></td>
+                                            <tr class="fila-fija-4">
+                                                <td><input type="text" name="centro_estu[]" placeholder="Nombre de centro de estudios" class="form-control name_list" /></td>
+                                                <td><input type="text" name="especialidad[]" placeholder="Especialidad" class="form-control name_list" /></td>
+                                                <td><input type="date" name="fech_ini[]" class="form-control name_list"/></td>
+                                                <td><input type="date" name="fech_fin[]" class="form-control name_list"/></td>
                                                 <td>
-                                                        
-                                                    <select class="form-control name_list" name="name_7[]">
+                                                    <select name="nivel[]" class="form-control" id="cargo">
+                                                        <option value="" disabled selected>Elegir</option>
                                                         <option value="Magister">Magister</option>
                                                         <option value="Doctorado">Doctorado</option>
                                                         <option value="Egresado">Egresado</option>
                                                         <option value="Estudiante">Estudiante</option>
-                                                      </select>
-                                                </td>  
-                                                <td><button type="button" name="add_7" id="add_7" class="btn btn-primary"> + </button></td>
+                                                    </select>
+                                                </td>
+                                                <td class="eliminar"><input type="button" class="btn btn-danger" value=" - "></td>
                                             </tr>
                                         </tdody>
-                                    </table>             
+                                    </table>
                                 </div>
-
-                                <div class="form-group row">
-                                    <label>Cursos - Seminarios</label> 
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered" id="dynamic_field_8">
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col">Centro Estudios</th>
-                                                    <th scope="col">Especialidad</th>
-                                                    <th scope="col">Fecha Inicio</th>
-                                                    <th scope="col">Fecha Termino</th>
-                                                    <th scope="col">Nivel Alcanzado</th>
-                                                    <th scope="col">Acción</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td><input type="text" name="name_8[]" placeholder="Centro Estudios" class="form-control name_list" /></td>
-                                                    <td><input type="text" name="name_8[]" placeholder="Especialidad" class="form-control name_list" /></td>
-                                                    <td><input type="date" name="name_8[]" placeholder="Fecha Inicio" class="form-control name_list" /></td>
-                                                    <td><input type="date" name="name_8[]" placeholder="Fecha Termino" class="form-control name_list" /></td>                   
-                                                    <td>
-                                                        
-                                                        <select class="form-control name_list" name="name_8[]">
-                                                            <option value="Magister">Magister</option>
-                                                            <option value="Doctorado">Doctorado</option>
-                                                            <option value="Egresado">Egresado</option>
-                                                            <option value="Estudiante">Estudiante</option>
-                                                          </select>
-                                                    </td>  
-                                                    <td><button type="button" name="add_8" id="add_8" class="btn btn-primary"> + </button></td>
-                                                </tr>
-                                            </tdody>
-                                        </table>
-                                        <!-- <input type="button" name="submit" id="submit" class="btn btn-success" value="GUARDAR" /> -->
+                                <div class="row d-flex justify-content-center">
+                                    <input type="hidden" id="idcon" name="idcon" value="<?php echo $fila['idcon']; ?>">
+                                    <div class="form-inline p-2">
+                                        <button id="adicional-4" name="adicional" type="button" class="btn btn-warning"> AGREGAR FILA (+) </button>
                                     </div>
+                                    <!-- <div class="form-inline p-2">
+                                        <input type="submit" name="insertar" class="btn btn-primary" value="GUARDAR"/>
+                                    </div> -->
                                 </div>
+                                <div class="table-responsive">
+                                    <label>Cursos - Seminarios</label> 
+                                    <table class="table table-bordered" id="tabla-5">
+                                        <thead>
+                                        <tr class="bg-danger" style="text-align:center; font-size:0.813em;">
+                                            <th scope="col">Centro Estudios</th>
+                                            <th scope="col">Especialidad</th>
+                                            <th scope="col">Fecha Inicio</th>
+                                            <th scope="col">Fecha Termino</th>
+                                            <th scope="col">Nivel Alcanzado</th>
+                                            <th scope="col">Acción</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="fila-fija-5">
+                                                <td><input type="text" name="centro_estu[]" placeholder="Nombre de centro de estudios" class="form-control name_list" /></td>
+                                                <td><input type="text" name="especialidad[]" placeholder="Especialidad" class="form-control name_list" /></td>
+                                                <td><input type="date" name="fech_ini[]" class="form-control name_list"/></td>
+                                                <td><input type="date" name="fech_fin[]" class="form-control name_list"/></td>
+                                                <td>
+                                                    <select name="nivel[]" class="form-control" id="cargo">
+                                                        <option value="" disabled selected>Elegir</option>
+                                                        <option value="Magister">Magister</option>
+                                                        <option value="Doctorado">Doctorado</option>
+                                                        <option value="Egresado">Egresado</option>
+                                                        <option value="Estudiante">Estudiante</option>
+                                                    </select>
+                                                </td>
+                                                <td class="eliminar"><input type="button" class="btn btn-danger" value=" - "></td>
+                                            </tr>
+                                        </tdody>
+                                    </table>
+                                </div> 
+                                <div class="row d-flex justify-content-center">
+                                    <input type="hidden" id="idcon" name="idcon" value="<?php echo $fila['idcon']; ?>">
+                                    <div class="form-inline p-2">
+                                        <button id="adicional-5" name="adicional" type="button" class="btn btn-warning"> AGREGAR FILA (+) </button>
+                                    </div>
+                                    <!-- <div class="form-inline p-2">
+                                        <input type="submit" name="insertar" class="btn btn-primary" value="GUARDAR"/>
+                                    </div> -->
+                                </div>   
                             </div>
-                            
                             <input type="button" name="next" class="next action-button" value="Siguiente" /> <input type="button" name="previous" class="previous action-button-previous" value="Atrás" />
                         </fieldset>
-
+                        <!-- IDIOMAS -->
                         <fieldset>
                             <div class="form-card">
                                 <div class="row">
                                     <div class="col-7">
                                         <h2 class="fs-title">IDIOMAS:</h2>
                                     </div>
-                                    <!-- <div class="col-5">
-                                        <h2 class="steps">Step 3 - 4</h2>
-                                    </div> -->
                                 </div>
                                 <div class="form-group row">
                                     <div class="table-responsive">
-                                        <table class="table table-bordered" id="dynamic_field_2">
+                                        <table class="table table-bordered" id="tabla-6">
                                             <thead>
-                                                <tr>
-                                                    <th scope="col">Lenguaje extranjero</th>
+                                                <tr class="bg-danger" style="text-align:center; font-size:0.813em;">
+                                                    <th scope="col">Lenguaje de extranjero</th>
                                                     <th scope="col">Nivel</th>
                                                     <th scope="col">Acción</th>
-                                            
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td><input type="text" name="name_2[]" placeholder="Lenguaje" class="form-control name_list" /></td>
+                                                <tr class="fila-fija-6">
                                                     <td>
-                                                        <!-- <input type="text" name="name[]" placeholder="Nivel" class="form-control name_list" /> -->
-                                                        <select class="form-control name_list" name="name_2[]">
-                                                            <option value="basico">NIVEL BASICO</option>
-                                                            <option value="intermedio">NIVEL INTERMEDIO</option>
-                                                            <option value="avanzado">NIVEL AVANZADO</option>
-                                                          </select>
-
+                                                        <select name="lenguaje[]" class="form-control" >
+                                                            <option value="" disabled selected>Elegir</option>
+                                                            <option value="INGLES">Inglés</option>
+                                                            <option value="FRANCES">Frances</option>
+                                                            <option value="AYMARA">Aymara</option>
+                                                            <option value="QUECHUA">Quechua</option>
+                                                            <option value="PORTUGUES">Portugues</option>
+                                                        </select>
                                                     </td>
-                                                    
-                                                    <td><button type="button" name="add_2" id="add_2" class="btn btn-primary">Agregar + </button></td>
+                                                    <td>
+                                                        <select name="nivel[]" class="form-control">
+                                                            <option value="" disabled selected>Elegir</option>
+                                                            <option value="BASICO">Básico</option>
+                                                            <option value="INTERMEDIO">Intermedio</option>
+                                                            <option value="AVANZADO">Avanzado</option>
+                                                        </select>
+                                                    </td>
+                                                    <td class="eliminar"><input type="button" class="btn btn-danger" value=" - "></td>
                                                 </tr>
                                             </tdody>
                                         </table>
-                                        <!-- <input type="button" name="submit" id="submit" class="btn btn-success" value="GUARDAR" /> -->
+                                    </div> 
+                                    <div class="row d-flex justify-content-center">
+                                        <!-- <input type="hidden" id="idcon" name="idcon" value="<?php echo $fila['idcon']; ?>"> -->
+                                        <div class="form-inline p-2">
+                                            <button id="adicional-6" name="adicional" type="button" class="btn btn-warning"> AGREGAR FILA (+) </button>
+                                        </div>
                                     </div>
                                 </div>
                                 
                             </div> 
                             <input type="button" name="next" class="next action-button" value="Siguiente" /> <input type="button" name="previous" class="previous action-button-previous" value="Atrás" />
                         </fieldset>
-
+                        <!-- EXPERIENCIA LABORAL -->
                         <fieldset>
                             <div class="form-card">
                                 <div class="row">
                                     <div class="col-7">
                                         <h2 class="fs-title">DATOS LABORALES:</h2>
                                     </div>
-                                    <!-- <div class="col-5">
-                                        <h2 class="steps">Step 3 - 4</h2>
-                                    </div> -->
                                 </div>
-
                                 <div class="form-group row">
-                                    <h5>Experiencia laboral</h5>
+                                    
                                     <div class="table-responsive">
-                                        <table class="table table-bordered" id="dynamic_field_3">
+                                        <span>Experiencia laboral</span>
+                                        <table class="table table-bordered" id="tabla-7">
                                             <thead>
-                                                <tr>
-                                                    <th scope="col">Institucion/Empresa</th>
-                                                    <th scope="col">Cargo - Actividad desempeñada</th>
-                                                    <th scope="col">Fecha Inicio</th>
-                                                    <th scope="col">Fecha Fin</th>
-                                                    <th scope="col">Acción</th>
-                                            
-                                                </tr>
+                                            <tr class="bg-danger" style="text-align:center; font-size:0.813em;">
+                                                <th scope="col">Institución / Empresa</th>
+                                                <th scope="col">Cargo / Actividad </th>
+                                                <th scope="col">Fecha inicio</th>
+                                                <th scope="col">Fecha fin</th>
+                                                <th scope="col">Acción</th>
+                                            </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td><input type="text" name="name_3[]" placeholder="Nombre" class="form-control name_list" /></td>
-                                                    <td><input type="text" name="name_3[]" placeholder="Cargo" class="form-control name_list" /></td>
-                                                    <td><input type="date" name="name_3[]" placeholder="Fecha Inicio" class="form-control name_list" /></td>
-                                                    <td><input type="date"  name="name_3[]" placeholder="Fecha Fin" class="form-control name_list" /></td>
-                                                    
-                                                    <td><button type="button" name="add_3" id="add_3" class="btn btn-primary"> + </button></td>
+                                                <tr class="fila-fija-7">
+                                                    <td><input type="text" name="institucion[]" placeholder="Nombre de la empresa" class="form-control name_list" /></td>
+                                                    <td><input type="text" name="cargo[]" placeholder="Cargo o función" class="form-control name_list" /></td>
+                                                    <td><input type="date" name="fech_ini[]"  class="form-control name_list" /></td>
+                                                    <td><input type="date" name="fech_fin[]"  class="form-control name_list" /></td>
+                                                    <td class="eliminar"><input type="button" class="btn btn-danger" value=" - "></td>
                                                 </tr>
                                             </tdody>
                                         </table>
-                                        <!-- <input type="button" name="submit" id="submit" class="btn btn-success" value="GUARDAR" /> -->
+                                    </div> 
+                                    <div class="row d-flex justify-content-center">
+                                        <input type="hidden" id="idcon" name="idcon" value="<?php echo $fila['idcon']; ?>">
+                                        <div class="form-inline p-2">
+                                            <button id="adicional-7" name="adicional" type="button" class="btn btn-warning"> AGREGAR FILA (+) </button>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="table-responsive">
+                                        <span>Labores de Docencia</span>
+                                        <table class="table table-bordered" id="tabla-8">
+                                            <thead>
+                                            <tr class="bg-danger" style="text-align:center; font-size:0.813em;">
+                                                <th scope="col">Centro de enseñanzas</th>
+                                                <th scope="col">Curso dictado</th>
+                                                <th scope="col">Fecha inicio</th>
+                                                <th scope="col">Fecha fin</th>
+                                                <th scope="col">Acción</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr class="fila-fija-8">
+                                                    <td><input type="text" name="centro_ense[]" placeholder="Nombre de la institución" class="form-control name_list" /></td>
+                                                    <td><input type="text" name="curso[]" placeholder="Curso dictado" class="form-control name_list" /></td>
+                                                    <td><input type="date" name="fech_ini[]"  class="form-control name_list" /></td>
+                                                    <td><input type="date" name="fech_fin[]"  class="form-control name_list" /></td>
+                                                    <td class="eliminar"><input type="button" class="btn btn-danger" value=" - "></td>
+                                                </tr>
+                                            </tdody>
+                                        </table>
+                                    </div> 
+                                    <div class="row d-flex justify-content-center">
+                                        <input type="hidden" id="idcon" name="idcon" value="<?php echo $fila['idcon']; ?>">
+                                        <div class="form-inline p-2">
+                                            <button id="adicional-8" name="adicional" type="button" class="btn btn-warning"> AGREGAR FILA (+) </button>
+                                        </div>
                                     </div>
                                 </div> 
-                            
-                                <div class="form-group row">
-                                    <h5>Labores de docencia</h5>
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered" id="dynamic_field_4">
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col">Centro de enseñanzas</th>
-                                                    <th scope="col">Curso Dictado</th>
-                                                    <th scope="col">Fecha Inicio</th>
-                                                    <th scope="col">Fecha Fin</th>
-                                                    <th scope="col">Acción</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td><input type="text" name="name_4[]" placeholder="Nombre" class="form-control name_list" /></td>
-                                                    <td><input type="text" name="name_4[]" placeholder="Curso dictado" class="form-control name_list" /></td>
-                                                    <td><input type="date" name="name_4[]" placeholder="Fecha Inicio" class="form-control name_list" /></td>
-                                                    <td><input type="date"  name="name_4[]" placeholder="Fecha Fin" class="form-control name_list" /></td>
-                                                    
-                                                    <td><button type="button" name="add_4" id="add_4" class="btn btn-primary"> + </button></td>
-                                                </tr>
-                                            </tdody>
-                                        </table>
-                                        <!-- <input type="button" name="submit" id="submit" class="btn btn-success" value="GUARDAR" /> -->
-                                    </div>
-                                </div>
                             </div>
                             <input type="button" name="next" class="next action-button" value="Siguiente" /> <input type="button" name="previous" class="previous action-button-previous" value="Atrás" />
                         </fieldset>
@@ -808,238 +861,119 @@
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.js"></script>
-
     <script>
-
-        $(document).ready(function(){
-            var i = 1;
-    
-            $('#add').click(function () {
-                i++;
-                $('#dynamic_field').append('<tr id="row'+i+'">' +
-                    '<td><input type="text" name="name[]" placeholder="Nombres" class="form-control name_list" /></td>' +
-                    '<td><input type="text" name="name[]" placeholder="Apellidos" class="form-control name_list" /></td>' +
-                    '<td><input type="date" name="name[]" class="form-control name_list" /></td>' +
-                    '<td><input type="text" name="name[]" placeholder="N° DNI" class="form-control name_list" maxlength="8" /></td>' +
-                    '<td><input type="text" name="name[]" placeholder="Parentesco" class="form-control name_list" /></td>' +
-                    '<td><input type="text" name="name[]" placeholder="Entidad donde labora" class="form-control name_list" /></td>' +
-                    '<td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td>' +
-                    '</tr>');
+        $(function(){
+            // Clona la fila oculta que tiene los campos base, y la agrega al final de la tabla
+            $("#adicional").on('click', function(){
+                $("#tabla tbody tr:eq(0)").clone().removeClass('fila-fija').appendTo("#tabla");
             });
             
-            $(document).on('click', '.btn_remove', function () {
-                var id = $(this).attr('id');
-               $('#row'+ id).remove();
+            // Evento que selecciona la fila y la elimina 
+            $(document).on("click",".eliminar",function(){
+                var parent = $(this).parents().get(0);
+                $(parent).remove();
             });
-    
-            // $('#submit').click(function(){
-            //     $.ajax({
-            //         url:"name.php",
-            //         method:"POST",
-            //         data:$('#add_name').serialize(),
-            //         success:function(data)
-            //         {
-            //             alert(data);
-            //             $('#add_name')[0].reset();
-            //         }
-            //     });
-            // });
         });
     </script>
 
     <script>
-
-        $(document).ready(function(){
-            var i = 1;
-
-            $('#add_2').click(function () {
-                i++;
-                $('#dynamic_field_2').append('<tr id="row'+i+'">' +
-                    '<td><input type="text" name="name_2[]" placeholder="Nombres" class="form-control name_list" /></td>' +
-                    '<td><select class="form-control name_list" name="name_2[]"><option value="basico">NIVEL BASICO</option><option value="intermedio">NIVEL INTERMEDIO</option> <option value="avanzado">NIVEL AVANZADO</option> </select></td>'+
-                    '<td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td>' +
-                    '</tr>');
+        $(function(){
+            // Clona la fila oculta que tiene los campos base, y la agrega al final de la tabla
+            $("#adicional-2").on('click', function(){
+                $("#tabla-2 tbody tr:eq(0)").clone().removeClass('fila-fija-2').appendTo("#tabla-2");
             });
             
-            $(document).on('click', '.btn_remove', function () {
-                var id = $(this).attr('id');
-            $('#row'+ id).remove();
+            // Evento que selecciona la fila y la elimina 
+            $(document).on("click",".eliminar",function(){
+                var parent = $(this).parents().get(0);
+                $(parent).remove();
             });
-
-            // $('#submit').click(function(){
-            //     $.ajax({
-            //         url:"name.php",
-            //         method:"POST",
-            //         data:$('#add_name').serialize(),
-            //         success:function(data)
-            //         {
-            //             alert(data);
-            //             $('#add_name')[0].reset();
-            //         }
-            //     });
-            // });
         });
-    </script>
-
+    </script> 
     <script>
-
-        $(document).ready(function(){
-            var i = 1;
-
-            $('#add_3').click(function () {
-                i++;
-                $('#dynamic_field_3').append('<tr id="row'+i+'">' +
-                    '<td><input type="text" name="name_3[]" placeholder="Nombres" class="form-control name_list" /></td>' +
-                    '<td><input type="text" name="name_3[]" placeholder="Cargo" class="form-control name_list" /></td>'+
-                    '<td><input type="date" name="name_3[]" placeholder="Fecha Inicio" class="form-control name_list" /></td>'+
-                    '<td><input type="date" name="name_3[]" placeholder="Fecha Fin" class="form-control name_list" /></td>'+
-                    '<td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td>' +
-                    '</tr>');
+        $(function(){
+            // Clona la fila oculta que tiene los campos base, y la agrega al final de la tabla
+            $("#adicional-3").on('click', function(){
+                $("#tabla-3 tbody tr:eq(0)").clone().removeClass('fila-fija-3').appendTo("#tabla-3");
             });
             
-            $(document).on('click', '.btn_remove', function () {
-                var id = $(this).attr('id');
-            $('#row'+ id).remove();
+            // Evento que selecciona la fila y la elimina 
+            $(document).on("click",".eliminar",function(){
+                var parent = $(this).parents().get(0);
+                $(parent).remove();
             });
-
-            // $('#submit').click(function(){
-            //     $.ajax({
-            //         url:"name.php",
-            //         method:"POST",
-            //         data:$('#add_name').serialize(),
-            //         success:function(data)
-            //         {
-            //             alert(data);
-            //             $('#add_name')[0].reset();
-            //         }
-            //     });
-            // });
         });
     </script>
-
     <script>
-        $(document).ready(function(){
-            var i = 1;
-
-            $('#add_4').click(function () {
-                i++;
-                $('#dynamic_field_4').append('<tr id="row'+i+'">' +
-                    '<td><input type="text" name="name_4[]" placeholder="Nombre" class="form-control name_list" /></td>' +
-                    '<td><input type="text" name="name_4[]" placeholder="Curso dictado" class="form-control name_list" /></td>'+
-                    '<td><input type="date" name="name_4[]" placeholder="Fecha Inicio" class="form-control name_list" /></td>'+
-                    '<td><input type="date" name="name_4[]" placeholder="Fecha Fin" class="form-control name_list" /></td>'+
-                    '<td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td>' +
-                    '</tr>');
+        $(function(){
+            // Clona la fila oculta que tiene los campos base, y la agrega al final de la tabla
+            $("#adicional-4").on('click', function(){
+                $("#tabla-4 tbody tr:eq(0)").clone().removeClass('fila-fija-4').appendTo("#tabla-4");
             });
             
-            $(document).on('click', '.btn_remove', function () {
-                var id = $(this).attr('id');
-            $('#row'+ id).remove();
+            // Evento que selecciona la fila y la elimina 
+            $(document).on("click",".eliminar",function(){
+                var parent = $(this).parents().get(0);
+                $(parent).remove();
             });
-
-            // $('#submit').click(function(){
-            //     $.ajax({
-            //         url:"name.php",
-            //         method:"POST",
-            //         data:$('#add_name').serialize(),
-            //         success:function(data)
-            //         {
-            //             alert(data);
-            //             $('#add_name')[0].reset();
-            //         }
-            //     });
-            // });
         });
-    </script>
-
+    </script> 
     <script>
-    $(document).ready(function(){
-        var i = 1;
-        $('#add_5').click(function () {
-            i++;
-            $('#dynamic_field_5').append('<tr id="row'+i+'">' +
-                '<td><input type="text" name="name_5[]" placeholder="Centro Estudios" class="form-control name_list" /></td>'+
-                '<td><input type="text" name="name_5[]" placeholder="Especialidad" class="form-control name_list" /></td>' +
-                '<td><input type="date" name="name_5[]" placeholder="Fecha Inicio" class="form-control name_list" /></td>' +
-                '<td><input type="date" name="name_5[]" placeholder="Fecha Termino" class="form-control name_list" /></td>' +
-                '<td><select class="form-control name_list" name="name_5[]"><option value="Magister">Magister</option><option value="Doctorado">Doctorado</option> <option value="Egresado">Egresado</option> <option value="Estudiante">Estudiante</option> </select></td>'+
-                '<td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td>'+  '</tr>');
+        $(function(){
+            // Clona la fila oculta que tiene los campos base, y la agrega al final de la tabla
+            $("#adicional-5").on('click', function(){
+                $("#tabla-5 tbody tr:eq(0)").clone().removeClass('fila-fija-5').appendTo("#tabla-5");
+            });
+            
+            // Evento que selecciona la fila y la elimina 
+            $(document).on("click",".eliminar",function(){
+                var parent = $(this).parents().get(0);
+                $(parent).remove();
+            });
         });
-        
-        $(document).on('click', '.btn_remove', function () {
-            var id = $(this).attr('id');
-        $('#row'+ id).remove();
-        });
- 
-    });
     </script>
-
     <script>
-    $(document).ready(function(){
-        var i = 1;
-        $('#add_6').click(function () {
-            i++;
-            $('#dynamic_field_6').append('<tr id="row'+i+'">' +
-                '<td><input type="text" name="name_6[]" placeholder="Centro Estudios" class="form-control name_list" /></td>'+
-                '<td><input type="text" name="name_6[]" placeholder="Especialidad" class="form-control name_list" /></td>' +
-                '<td><input type="date" name="name_6[]" placeholder="Fecha Inicio" class="form-control name_list" /></td>' +
-                '<td><input type="date" name="name_6[]" placeholder="Fecha Termino" class="form-control name_list" /></td>' +
-                '<td><select class="form-control name_list" name="name_6[]"><option value="Magister">Magister</option><option value="Doctorado">Doctorado</option> <option value="Egresado">Egresado</option> <option value="Estudiante">Estudiante</option> </select></td>'+
-                '<td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td>'+  '</tr>');
+        $(function(){
+            // Clona la fila oculta que tiene los campos base, y la agrega al final de la tabla
+            $("#adicional-6").on('click', function(){
+                $("#tabla-6 tbody tr:eq(0)").clone().removeClass('fila-fija-6').appendTo("#tabla-6");
+            });
+            
+            // Evento que selecciona la fila y la elimina 
+            $(document).on("click",".eliminar",function(){
+                var parent = $(this).parents().get(0);
+                $(parent).remove();
+            });
         });
-        
-        $(document).on('click', '.btn_remove', function () {
-            var id = $(this).attr('id');
-        $('#row'+ id).remove();
-        });
- 
-    });
     </script>
-
-<script>
-    $(document).ready(function(){
-        var i = 1;
-        $('#add_7').click(function () {
-            i++;
-            $('#dynamic_field_7').append('<tr id="row'+i+'">' +
-                '<td><input type="text" name="name_7[]" placeholder="Centro Estudios" class="form-control name_list" /></td>'+
-                '<td><input type="text" name="name_7[]" placeholder="Especialidad" class="form-control name_list" /></td>' +
-                '<td><input type="date" name="name_7[]" placeholder="Fecha Inicio" class="form-control name_list" /></td>' +
-                '<td><input type="date" name="name_7[]" placeholder="Fecha Termino" class="form-control name_list" /></td>' +
-                '<td><select class="form-control name_list" name="name_7[]"><option value="Magister">Magister</option><option value="Doctorado">Doctorado</option> <option value="Egresado">Egresado</option> <option value="Estudiante">Estudiante</option> </select></td>'+
-                '<td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td>'+  '</tr>');
-        });
-        
-        $(document).on('click', '.btn_remove', function () {
-            var id = $(this).attr('id');
-        $('#row'+ id).remove();
-        });
- 
-    });
-    </script>
-
     <script>
-    $(document).ready(function(){
-        var i = 1;
-        $('#add_8').click(function () {
-            i++;
-            $('#dynamic_field_8').append('<tr id="row'+i+'">' +
-                '<td><input type="text" name="name_8[]" placeholder="Centro Estudios" class="form-control name_list" /></td>'+
-                '<td><input type="text" name="name_8[]" placeholder="Especialidad" class="form-control name_list" /></td>' +
-                '<td><input type="date" name="name_8[]" placeholder="Fecha Inicio" class="form-control name_list" /></td>' +
-                '<td><input type="date" name="name_8[]" placeholder="Fecha Termino" class="form-control name_list" /></td>' +
-                '<td><select class="form-control name_list" name="name_8[]"><option value="Magister">Magister</option><option value="Doctorado">Doctorado</option> <option value="Egresado">Egresado</option> <option value="Estudiante">Estudiante</option> </select></td>'+
-                '<td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td>'+  '</tr>');
+        $(function(){
+            // Clona la fila oculta que tiene los campos base, y la agrega al final de la tabla
+            $("#adicional-7").on('click', function(){
+                $("#tabla-7 tbody tr:eq(0)").clone().removeClass('fila-fija-7').appendTo("#tabla-7");
+            });
+            
+            // Evento que selecciona la fila y la elimina 
+            $(document).on("click",".eliminar",function(){
+                var parent = $(this).parents().get(0);
+                $(parent).remove();
+            });
         });
-        
-        $(document).on('click', '.btn_remove', function () {
-            var id = $(this).attr('id');
-        $('#row'+ id).remove();
-        });
- 
-    });
     </script>
-
+    <script>
+        $(function(){
+            // Clona la fila oculta que tiene los campos base, y la agrega al final de la tabla
+            $("#adicional-8").on('click', function(){
+                $("#tabla-8 tbody tr:eq(0)").clone().removeClass('fila-fija-8').appendTo("#tabla-8");
+            });
+            
+            // Evento que selecciona la fila y la elimina 
+            $(document).on("click",".eliminar",function(){
+                var parent = $(this).parents().get(0);
+                $(parent).remove();
+            });
+        });
+    </script>
 
 </body>
 </html>

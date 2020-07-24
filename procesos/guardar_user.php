@@ -70,7 +70,7 @@
 
 </html> -->
     <script languaje="javascript">
-        alert("Nombre de usuario y/o contraseña incorrecto");
+        alert("El usuario con el ".$dni." ya existe, intente de nuevo.");
         location.href = "../index.php";
     </script>
 <?php

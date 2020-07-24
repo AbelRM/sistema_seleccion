@@ -97,7 +97,7 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
                                         <select id="departamento_id" class="form-control" name="departamento_id" required>
                                             <option value="">-- SELECCIONE --</option>
                                             <?php foreach($countries as $c):?>
-                                                <option value="<?php echo $c->id; ?>"><?php echo $c->name; ?></option>
+                                                <option value="<?php echo $c->iddepartamento; ?>"><?php echo $c->departamento; ?></option>
                                             <?php endforeach; ?>
                                         </select> 
                                     </div>
@@ -253,7 +253,7 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
                                     </div>
 
                                     <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
-                                            <label for="name2">Departamento</label>
+                                            <label for="name2">Departamento actual</label>
                                             <select id="departamento_id1" class="form-control" name="departamento_id1" required>
                                               <option value="">-- SELECCIONE --</option>
                                               <?php foreach($countries as $c):?>
@@ -263,14 +263,14 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
                                      </div>
 
                                      <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
-                                        <label for="name2">Provincia</label>
+                                        <label for="name2">Provincia actual</label>
                                         <select id="provincia_id1" class="form-control" name="provincia_id1" >
                                         <option value="">-- SELECCIONE --</option>
                                         </select>                                 
                                         </div>
 
                                     <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
-                                        <label for="name2">Distrito</label>
+                                        <label for="name2">Distrito actual</label>
                                         <select id="distrito_id1" class="form-control" name="distrito_id1" required>
                                         <option value="">-- SELECCIONE --</option>        
                                         </select>                                 
@@ -511,7 +511,6 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
                                     </table>
                                 </div>
                                 <div class="row d-flex justify-content-center">
-                                    <input type="hidden" id="idcon" name="idcon" value="<?php echo $fila['idcon']; ?>">
                                     <div class="form-inline p-2">
                                         <button id="adicional-4" name="adicional" type="button" class="btn btn-warning"> AGREGAR FILA (+) </button>
                                     </div>
@@ -876,9 +875,6 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
                 $(parent).remove();
             });
         });
-    </script>
-
-    <script>
         $(function(){
             // Clona la fila oculta que tiene los campos base, y la agrega al final de la tabla
             $("#adicional-2").on('click', function(){
@@ -891,9 +887,6 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
                 $(parent).remove();
             });
         });
-    </script> 
-
-    <script>
         $(function(){
             // Clona la fila oculta que tiene los campos base, y la agrega al final de la tabla
             $("#adicional-3").on('click', function(){
@@ -906,9 +899,6 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
                 $(parent).remove();
             });
         });
-    </script>
-
-    <script>
         $(function(){
             // Clona la fila oculta que tiene los campos base, y la agrega al final de la tabla
             $("#adicional-4").on('click', function(){
@@ -921,9 +911,6 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
                 $(parent).remove();
             });
         });
-    </script> 
-
-    <script>
         $(function(){
             // Clona la fila oculta que tiene los campos base, y la agrega al final de la tabla
             $("#adicional-5").on('click', function(){
@@ -936,9 +923,6 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
                 $(parent).remove();
             });
         });
-    </script>
-
-    <script>
         $(function(){
             // Clona la fila oculta que tiene los campos base, y la agrega al final de la tabla
             $("#adicional-6").on('click', function(){
@@ -951,9 +935,6 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
                 $(parent).remove();
             });
         });
-    </script>
-
-    <script>
         $(function(){
             // Clona la fila oculta que tiene los campos base, y la agrega al final de la tabla
             $("#adicional-7").on('click', function(){
@@ -966,9 +947,6 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
                 $(parent).remove();
             });
         });
-    </script>
-
-    <script>
         $(function(){
             // Clona la fila oculta que tiene los campos base, y la agrega al final de la tabla
             $("#adicional-8").on('click', function(){
@@ -986,14 +964,14 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
     <script type="text/javascript">
         $(document).ready(function(){
             $("#departamento_id").change(function(){
-                $.get("provincia.php","departamento_id="+$("#departamento_id").val(), function(data){
+                $.get("provincia.php","departamento_iddepartamento="+$("#departamento_id").val(), function(data){
                     $("#provincia_id").html(data);
                     console.log(data);
                 });
             });
 
             $("#provincia_id").change(function(){
-                $.get("distrito.php","provincia_id="+$("#provincia_id").val(), function(data){
+                $.get("distrito.php","provincia_idprovincia="+$("#provincia_id").val(), function(data){
                     $("#distrito_id").html(data);
                     console.log(data);
                 });
@@ -1003,14 +981,14 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
     <script type="text/javascript">
         $(document).ready(function(){
             $("#departamento_id1").change(function(){
-                $.get("provincia.php","departamento_id="+$("#departamento_id1").val(), function(data){
+                $.get("provincia.php","departamento_iddepartamento="+$("#departamento_id1").val(), function(data){
                     $("#provincia_id1").html(data);
                     console.log(data);
                 });
             });
 
             $("#provincia_id1").change(function(){
-                $.get("distrito.php","provincia_id="+$("#provincia_id1").val(), function(data){
+                $.get("distrito.php","provincia_idprovincia"+$("#provincia_id1").val(), function(data){
                     $("#distrito_id1").html(data);
                     console.log(data);
                 });

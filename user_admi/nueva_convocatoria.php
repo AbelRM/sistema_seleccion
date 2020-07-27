@@ -271,6 +271,13 @@
                             <label for="inputEmail4">Fecha de fin</label>
                             <input type="date" name="fech_fin" id="fech_fin" class="form-control">
                         </div>
+                        <div class="form-group col-lg-2 col-md-4 col-sm-12">
+                            <label for="inputState">Estado convocatoria</label>
+                            <select name="estado" id="estado" class="form-control">
+                                <option value="ACTIVO" >ACTIVO</option>
+                                <option value="FINALIZADO">FINALIZADO</option>
+                            </select>
+                        </div>
                         <div class="form-group col-lg-12 col-md-12 col-sm-12">
                             <label for="inputEmail4">Ubicación del lugar a elaborar</label>
                             <select name="ubicacion" class="form-control" id="ubicacion" placeholder="Ubicación">

@@ -34,6 +34,7 @@
         include 'conexion.php';
         
         $dni = $_GET['dni'];
+        $idpostulante=$_GET['postulante_idpostulante'];
         //$descrip=base64_decode($dni);
         $sql2="SELECT * FROM usuarios where dni=$dni";
         $datos=mysqli_query($con,$sql2) or die(mysqli_error()); ;
@@ -98,48 +99,64 @@
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">LISTADO DE CONVOCATORIAS</h6>
+              <h6 class="m-0 font-weight-bold text-primary">DATOS DE LA FAMLIA</h6>
             </div>
             <div class="card-body">
-              <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                <thead>
-                    <tr>
-                      <th>N°</th>
-                      <th>Tipo concurso</th>
-                      <th>N° convocatoria</th>
-                      <th>Direccion</th>
-                      <th>Acciones</th>
-                      
-                    </tr>
-                  </thead>
-                  <?php
-                      $dni = $_GET['dni'];
-                      echo $dni;
-                      $sql = "SELECT * FROM full_convocatoria";
-                      $query=mysqli_query($con, $sql);
-                      while ($row= MySQLI_fetch_array($query))
-                      {
-                      ?>
-                      <tr>
-                        <td><?php echo $row['idcon'] ?></td>
-                        <td style="font-size: 16px;"><?php echo $row['tipo_con'] ?></td>
-                        <td style="font-size: 14px;"><?php echo $row['num_con']."-".$row['año_con']?></td>
-                        <td style="font-size: 14px;"><?php echo $row['direccion_ejec']." - ".$row['equipo_ejec']; ?></td>
-                        <td>
-                          <a href="verconvocatoria.php?id=<?php echo $row['idcon']?>&dni=<?php echo $dni?>"><button type="button" class="btn btn-warning" id="editar" style="margin: 1px;"><i class="fa fa-eye"></i></button></a>
-            
-                        </td>
-                      </tr>
-                      <?php
-                      }
-                      ?>
-                      <!-- <input type="hidden" id="dni" name="dni" value="<?php echo $dni; ?>"> -->
-                  <tbody>
+                <form action="procesos/guardar_familia.php" method="POST">
+                    <div class="form-card">
                     
-                  </tbody>
-                </table>
-              </div>
+                        <div class="form-group">
+                            <div class="table-responsive">
+                              <input type="hidden" id="dni_post" name="dni_post" value="<?php echo $dni; ?>"/>
+                              <input type="hidden" id="id_postulante" name="id_postulante" value="<?php echo $idpostulante; ?>"/>
+
+                              <label style="color:red; font-size:18px;">Los familiares agregados son aquellos que viven actualmente con usted, caso contrario colocar uno de referencia.</label>
+                                <table class="table table-bordered" id="tabla">
+                                    <thead>
+                                    <tr class="bg-danger" style="text-align:center; font-size:0.813em;">
+                                        <th scope="col">Nombres</th>
+                                        <th scope="col">Apellidos</th>
+                                        <th scope="col">Fecha Nacimiento</th>
+                                        <th scope="col">N° DNI</th>
+                                        <th scope="col">Parentesco</th>
+                                        <th scope="col">Entidad que labora</th>
+                                        <th scope="col">Acción</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="fila-fija">
+                                            <td><input type="text" name="nombre[]" placeholder="Nombres" class="form-control name_list" /></td>
+                                            <td><input type="text" name="apellidos[]" placeholder="Apellidos completos" class="form-control name_list"/></td>
+                                            <td><input type="date" name="fecha_nac[]" class="form-control name_list" /></td>
+                                            <td><input type="text" name="dni[]" maxlength="8" class="form-control name_list" /></td>
+                                            <td>
+                                                <select name="parentesco[]" class="form-control">
+                                                    <option value="" disabled selected>Elegir</option>
+                                                    <option value="PADRE">Padre</option>
+                                                    <option value="MADRE">Madre</option>
+                                                    <option value="HERMANO(A)">Hermano(a)</option>
+                                                    <option value="TIO(A)">Tio(a)</option>
+                                                    <option value="ABUELO(A)">Abuelo(a)</option>
+                                                </select>
+                                            </td>
+                                            <td><input type="text" name="entidad[]" placeholder="Nombre entidad que elabora" class="form-control name_list" /></td>
+                                            <td class="eliminar"><input type="button" class="btn btn-danger" value=" - "></td>
+                                        </tr>
+                                    </tdody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row d-flex justify-content-center">
+                            <div class="form-inline p-2">
+                                <button id="adicional" name="adicional" type="button" class="btn btn-warning"> Agregar fila (+) </button>
+                            </div>
+                            <div class="form-inline p-2">
+                                <input type="submit" name="insertar" class="btn btn-dark" value="Finalizar"/>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                
             </div>
           </div>
 
@@ -169,15 +186,15 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">¿Deseas cerrar sesión?</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
           <button class="close" type="button" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">×</span>
           </button>
         </div>
-        <div class="modal-body">Seleccione "Cerrar sesión" a continuación si está listo para finalizar su sesión actual.</div>
+        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
         <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-          <a class="btn btn-primary" href="../index.php">Cerrar sesión</a>
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+          <a class="btn btn-primary" href="login.html">Logout</a>
         </div>
       </div>
     </div>
@@ -199,6 +216,20 @@
 
   <!-- Page level custom scripts -->
   <script src="js/demo/datatables-demo.js"></script>
+  <script>
+    $(function(){
+        // Clona la fila oculta que tiene los campos base, y la agrega al final de la tabla
+        $("#adicional").on('click', function(){
+            $("#tabla tbody tr:eq(0)").clone().removeClass('fila-fija').appendTo("#tabla");
+        });
+        
+        // Evento que selecciona la fila y la elimina 
+        $(document).on("click",".eliminar",function(){
+            var parent = $(this).parents().get(0);
+            $(parent).remove();
+        });
+    });
+</script>
 
 </body>
 

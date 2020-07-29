@@ -97,7 +97,7 @@ p {
 
 .card {
     z-index: 0;
-    border: none;
+    /* border: none; */
     position: relative
 }
 
@@ -106,12 +106,16 @@ p {
     color: #673AB7;
     margin-bottom: 15px;
     font-weight: normal;
-    text-align: left
+    text-align: left;
 }
 
 .purple-text {
     color: #673AB7;
-    font-weight: normal
+    font-weight: normal;
+}
+.red-text {
+    color: #b7493a;
+    font-weight: bold;
 }
 
 .steps {

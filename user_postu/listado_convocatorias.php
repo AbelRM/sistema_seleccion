@@ -124,7 +124,7 @@
                       <tr>
                         <td><?php echo $row['idcon'] ?></td>
                         <td style="font-size: 16px;"><?php echo $row['tipo_con'] ?></td>
-                        <td style="font-size: 14px;"><?php echo $row['num_con']."-".$row['año_con']?></td>
+                        <td style="font-size: 14px;"><?php echo $row['num_con']."-".$row['anio_con']?></td>
                         <td style="font-size: 14px;"><?php echo $row['direccion_ejec']." - ".$row['equipo_ejec']; ?></td>
                         <td>
                           <a href="verconvocatoria.php?id=<?php echo $row['idcon']?>&dni=<?php echo $dni?>"><button type="button" class="btn btn-warning" id="editar" style="margin: 1px;"><i class="fa fa-eye"></i></button></a>

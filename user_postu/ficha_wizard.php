@@ -1,5 +1,6 @@
 <?php
 include "conexion.php";  
+session_start();
 //$db =  connect();
 $query=$con->query("select * from departamento");
 $countries = array();
@@ -41,21 +42,30 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
         <div class="row justify-content-center">
             <div class="col-12 col-sm-12 col-md-12 col-lg-10 col-xl-10 text-center p-0 mt-3 mb-2">
                 <div class="card px-4 pt-4 mt-3 mb-3" style="padding: 30px;">
-                    <h2 id="heading">FICHA ÚNICA DE DATOS</h2>
-                    <p>Para la contratación de personal dispuesto en el Decreto de Urgencia N° 029-2020</p>
+                    <div class="row">
+                        <div class="col-10">
+                            <h2 id="heading">FICHA ÚNICA DE DATOS</h2>
+                            <p>Para la contratación de personal dispuesto en el Decreto de Urgencia N° 029-2020</p>
+                        </div>
+                        <div class="col-2">
+                            <button class="btn btn-primary" data-toggle="modal" data-target="#logoutModal">Cerrar sesión</button>
+                        </div>
+                    </div>
                     <form id="msform" method="post" action="procesos/guardar_ficha.php">
                         <!-- progressbar -->
-                        <ul id="progressbar">
-                            <li class="active" id="user"><strong></strong></li>
-                            <li id="home"><strong></strong></li>
-                            <li id="student"><strong></strong></li>
-                            <!-- <li id="book"><strong></strong></li>
-                            <li id="book"><strong></strong></li>
-                            <li id="book"><strong></strong></li>
-                            <li id="payment"><strong></strong></li>
-                            <li id="work"><strong></strong></li>
-                            <li id="list"><strong></strong></li> -->
-                        </ul>
+                        <div class="row p-2">
+                            <div class="col-lg-2 col-md-2 col-sm-12 p-1">
+                                <img src="img/logo_diresa.png" style="width:100%; height:auto;" alt="">
+                            </div>
+                            <div class="col-lg-10 col-md-10 col-sm-12 p-1">
+                                <ul id="progressbar">
+                                    <li class="active" id="user"><strong></strong></li>
+                                    <li id="home"><strong></strong></li>
+                                    <li id="student"><strong></strong></li>
+                                    <li id="confirm"><strong></strong></li> 
+                                </ul>
+                            </div>
+                        </div>
                         <fieldset>
                             <div class="form-card">
                                 <div class="row">
@@ -93,7 +103,7 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
                                         </select> 
                                     </div>
                                     <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
-                                        <label for="name1">Departamento</label>
+                                        <label for="name1">Departamento nacimiento</label>
                                         <select id="departamento_id" class="form-control" name="departamento_id" required>
                                             <option value="">-- SELECCIONE --</option>
                                             <?php foreach($countries as $c):?>
@@ -103,7 +113,7 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
                                     </div>
 
                                     <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
-                                        <label for="name1">Provincia</label>
+                                        <label for="name1">Provincia nacimiento</label>
                                         <select id="provincia_id" class="form-control" name="provincia_id" >
                                             <option value="">-- SELECCIONE --</option>
                                         </select>                                 
@@ -111,7 +121,7 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
 
 
                                     <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
-                                        <label for="exampleInputEmail1">Distrito</label>
+                                        <label for="exampleInputEmail1">Distrito nacimiento</label>
                                         <select id="distrito_id" class="form-control" name="distrito_id" required>
                                             <option value="">-- SELECCIONE --</option>        
                                         </select>
@@ -180,10 +190,10 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
                                             <option value="0-">0-</option>
                                         </select>  
                                     </div>
-                                    <div class="col-md-6 col-sm-6 mb-2 mb-sm-0">
+                                    <!-- <div class="col-md-6 col-sm-6 mb-2 mb-sm-0">
                                         <label>Dirección actual</label> 
                                         <input class="form-control form-control-user" type="text" placeholder="Dirección actual..." name="direccion" id="direccion"/> 
-                                    </div>
+                                    </div> -->
                                     <div class="col-md-6 col-sm-6 mb-2 mb-sm-0">
                                         <label>Enfermedades/Alergias</label> 
                                         <input class="form-control form-control-user" type="text" placeholder="Separado por comas" name="alergias" id="alergias"/> 
@@ -258,8 +268,7 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
                                         <label>Número</label> 
                                         <input class="form-control form-control-user" type="text" name="num_zona" id="num_zona" placeholder="Número"/> 
                                     </div>
-
-                                    <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
+                                    <!-- <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
                                             <label for="name2">Departamento actual</label>
                                             <select id="departamento_id1" class="form-control" name="departamento_id1" required>
                                               <option value="">-- SELECCIONE --</option>
@@ -281,9 +290,25 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
                                         <select id="distrito_id1" class="form-control" name="distrito_id1" required>
                                         <option value="">-- SELECCIONE --</option>        
                                         </select>                                 
+                                    </div> -->
+                                    <!-- <div class="col-md-6 col-sm-6 mb-2 mb-sm-0">
+                                        <label>Domicilio actual</label> 
+                                        <input class="form-control form-control-user" type="text" name="direccion" id="direccion" placeholder="Direccion actual"/> 
+                                    </div> -->
+                                    <div class="col-md-2 col-sm-2 mb-2 mb-sm-0">
+                                        <label>Número</label> 
+                                        <input class="form-control form-control-user" type="text" name="numero" id="numero"/> 
+                                    </div>
+                                    <div class="col-md-2 col-sm-2 mb-2 mb-sm-0">
+                                        <label>Mz.</label> 
+                                        <input class="form-control form-control-user" type="text" name="manzana" id="manzana"/> 
+                                    </div>
+                                    <div class="col-md-2 col-sm-2 mb-2 mb-sm-0">
+                                        <label>Lt.</label> 
+                                        <input class="form-control form-control-user" type="text" name="lote" id="lote"/> 
                                     </div>
 
-                                    <div class="col-md-12 col-sm-6 mb-2 mb-sm-0">
+                                    <div class="col-md-6 col-sm-6 mb-2 mb-sm-0">
                                         <label>Referencia</label> 
                                         <input class="form-control form-control-user" type="text" name="referencia" id="referencia" placeholder="Indicar Avenida/Calle y/o Institucion cercana"/> 
                                     </div>
@@ -339,7 +364,6 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
                                     </div>
                                 </div>
                                 <div class="row d-flex justify-content-center">
-                                    <!-- <input type="hidden" id="idcon" name="idcon" value="<?php echo $fila['idcon']; ?>"> -->
                                     <div class="form-inline p-2">
                                         <button id="adicional" name="adicional" type="button" class="btn btn-warning"> AGREGAR FILA (+) </button>
                                     </div>
@@ -839,9 +863,9 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
                             <input type="button" name="next" class="next action-button" value="Siguiente" /> <input type="button" name="previous" class="previous action-button-previous" value="Atrás" />
                         </fieldset> -->
                         
-                        <!-- <fieldset>
+                        <fieldset>
                             <div class="form-card">
-                                <h2 class="purple-text text-center"><strong>YA CASI TERMINAMOS !</strong></h2> <br>
+                                <h3 class="purple-text text-center"><strong>YA CASI TERMINAMOS !</strong></h3> <br>
                                 <div class="row justify-content-center">
                                     <div class="col-6"> 
                                         <img src="img/confirmacion.png" alt="Imagen de confirmación" style="width: 100%; height: auto;"> 
@@ -849,15 +873,35 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
                                 </div> <br><br>
                                 <div class="row justify-content-center">
                                     <div class="col-6 text-center">
-                                        <h5 class="purple-text text-center">Presione GUARDAR si esta seguro de haber concluido!</h5>
+                                        <h5 class="purple-text text-center">Presione FINALIZAR si esta seguro de haber concluido!</h5>
+                                        <h6 class="red-text">NOTA: No se olvide luego llenar sus datos profesionales y experiencia laboral.</h6>
                                     </div>
                                 </div>
                             </div>
+                            <input type="submit" name="next" class="next action-button" value="Finalizar"/>
                             <input type="button" name="previous" class="previous action-button-previous" value="Atrás" />
-                        </fieldset> -->
+                        </fieldset>
                     </form>
                 </div>
             </div>
+        </div>
+    </div>
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">¿Desea cerrar sesión?</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+            </div>
+            <div class="modal-body">Seleccione "Cerrar sesión" a continuación si está listo para finalizar su sesión actual.</div>
+            <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+            <a class="btn btn-primary" href="../index.php">Cerrar sesión</a>
+            </div>
+        </div>
         </div>
     </div>
     <script src="vendor/jquery/jquery.min.js"></script>
@@ -986,7 +1030,7 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
             });
         });
     </script>
-    <script type="text/javascript">
+    <!-- <script type="text/javascript">
         $(document).ready(function(){
             $("#departamento_id1").change(function(){
                 $.get("provincia.php","departamento_iddepartamento="+$("#departamento_id1").val(), function(data){
@@ -1002,7 +1046,7 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
                 });
             });
         });
-    </script>
+    </script> -->
 
 </body>
 </html>

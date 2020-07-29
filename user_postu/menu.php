@@ -27,8 +27,7 @@
         <div class="bg-white py-2 collapse-inner rounded">
           <h6 class="collapse-header">Acciones:</h6>
           <a class="collapse-item" href="listado_convocatorias.php?dni=<?php echo $dni ?>">Listado convocatorias</a>
-          <a class="collapse-item" href="datos_comple.php?dni=<?php echo $dni ?>">Ficha única de datos</a>
-          
+     
         </div>
       </div>
     </li>
@@ -50,6 +49,28 @@
 
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
+    <!-- Heading -->
+    <div class="sidebar-heading">
+      DATOS
+    </div>
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseDat" aria-expanded="true" aria-controls="collapseDat">
+        <i class="fas fa-fw fa-cog"></i>
+        <span>Mis datos</span>
+      </a>
+      <div id="collapseDat" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+          <h6 class="collapse-header">Acciones:</h6>
+          <a class="collapse-item" href="actualizar_ficha.php?dni=<?php echo $dni ?>">Actualizar Ficha</a>
+          <a class="collapse-item" href="#">Ver Ficha</a>
+        </div>
+      </div>
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider d-none d-md-block">
+    
 
     <!-- Sidebar Toggler (Sidebar) -->
     <div class="text-center d-none d-md-inline">

@@ -17,10 +17,10 @@
     $tip_sangre = $_POST['tip_sangre'];
     $alergias = $_POST['alergias'];
     $distrito = $_POST['distrito_id'];
-    $direccion=$_POST['direccion'];
+    //$direccion=$_POST['direccion'];
 
     $sql = "UPDATE postulante SET fech_nac = '".$fech_nac."',estado_civil='".$civil."',sexo = '".$sexo."', celular_emer ='".$num_emer."',parentesco_emer='".$nomb_parent."',ruc ='".$ruc."',num_cuenta = '".$cuenta_banc."',
-    discapacidad = '".$discapacidad."', tipo_discap = '".$tip_discapacidad."',tipo_sangre = '".$tip_sangre."', alergias = '".$alergias."',suspension_cuarta = '".$cuarta."',seguro = '".$pension."',direccion = '".$direccion."',distrito_iddistrito = '".$distrito."' WHERE dni='".$dni_post."' ";
+    discapacidad = '".$discapacidad."', tipo_discap = '".$tip_discapacidad."',tipo_sangre = '".$tip_sangre."', alergias = '".$alergias."',suspension_cuarta = '".$cuarta."',seguro = '".$pension."',distrito_iddistrito = '".$distrito."' WHERE dni='".$dni_post."' ";
     mysqli_query ($con, $sql);   
 
     $prueba="SELECT * FROM postulante where dni=$dni_post";

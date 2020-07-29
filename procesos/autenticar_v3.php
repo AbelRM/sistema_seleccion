@@ -27,7 +27,8 @@ if($array['contar']>0){
         }else{
             //Aqui colocas el código que tu deseas realizar cuando el dato NO existe en la base de datos
             echo $idpostulante;
-            header("Location: ../user_postu/form_wizard/index.php?dni=$dni");
+            // header("Location: ../user_postu/form_wizard/index.php?dni=$dni");
+            header("Location: ../user_postu/ficha_wizard.php?dni=$dni");
         } 
    
 }else{

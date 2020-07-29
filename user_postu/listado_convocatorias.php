@@ -115,7 +115,7 @@
                   </thead>
                   <?php
                       $dni = $_GET['dni'];
-                      echo $dni;
+                      
                       $sql = "SELECT * FROM full_convocatoria";
                       $query=mysqli_query($con, $sql);
                       while ($row= MySQLI_fetch_array($query))

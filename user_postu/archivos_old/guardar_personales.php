@@ -17,7 +17,11 @@
     $tip_sangre = $_POST['tip_sangre'];
     $alergias = $_POST['alergias'];
     $distrito = $_POST['distrito_id'];
+<<<<<<< HEAD:user_postu/archivos_old/guardar_personales.php
     //$direccion=$_POST['direccion'];
+=======
+   // $direccion=$_POST['direccion'];
+>>>>>>> 454c99d3a4ee55ef6c6158aa748217edeb752f6a:user_postu/procesos/guardar_personales.php
 
     $sql = "UPDATE postulante SET fech_nac = '".$fech_nac."',estado_civil='".$civil."',sexo = '".$sexo."', celular_emer ='".$num_emer."',parentesco_emer='".$nomb_parent."',ruc ='".$ruc."',num_cuenta = '".$cuenta_banc."',
     discapacidad = '".$discapacidad."', tipo_discap = '".$tip_discapacidad."',tipo_sangre = '".$tip_sangre."', alergias = '".$alergias."',suspension_cuarta = '".$cuarta."',seguro = '".$pension."',distrito_iddistrito = '".$distrito."' WHERE dni='".$dni_post."' ";

@@ -43,6 +43,7 @@
         <div class="bg-white py-2 collapse-inner rounded">
           <h6 class="collapse-header">Acciones:</h6>
           <a class="collapse-item" href="#">Listado</a>
+          <a class="collapse-item" href="postular.php?dni=<?php echo $dni ?>">Postular</a>
           <a class="collapse-item" href="#">Postular</a>
         </div>
       </div>

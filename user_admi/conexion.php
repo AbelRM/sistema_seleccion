@@ -4,7 +4,7 @@ $hostname="localhost";
 $username="root";
 $password="123456";
 $dbname="sistema_seleccion";
-$root='3307';
+$root='3306';
 
 $con=mysqli_connect($hostname, $username, $password, $dbname,$root);
 

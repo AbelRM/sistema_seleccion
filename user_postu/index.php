@@ -1,7 +1,6 @@
 <?php
   include 'conexion.php';
   session_start();
-<<<<<<< HEAD
   if(empty($_SESSION['active'])){
     header("Location: ../index.php");
   }
@@ -16,10 +15,6 @@
 
 ?>
 
-=======
-
-?>
->>>>>>> 9c1c178c54e82feca3e48dfcd9698584b7c2925f
 <!DOCTYPE html>
 <html lang="en">
 
@@ -99,7 +94,7 @@
                   Actividad
                 </a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#cerrarsesion">
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                   Cerrar sesión
                 </a>
@@ -430,7 +425,7 @@
   </a>
 
   <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="cerrarsesion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">

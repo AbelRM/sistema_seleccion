@@ -1,6 +1,9 @@
 <?php
   include 'conexion.php';
   session_start();
+  if(empty($_SESSION['active'])){
+    header("Location: ../index.php");
+  }
 
 ?>
 <!DOCTYPE html>
@@ -162,7 +165,6 @@
                                             </div>
                                             
                                             <?php
-
                                                 include "conexion.php";
                                                 $total="SELECT * FROM total_lugar WHERE iddistrito=$distrito";
                                                 $respuesta=mysqli_query($con,$total) or die(mysqli_error());

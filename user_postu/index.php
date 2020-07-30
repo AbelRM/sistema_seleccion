@@ -1,6 +1,7 @@
 <?php
   include 'conexion.php';
   session_start();
+<<<<<<< HEAD
   if(empty($_SESSION['active'])){
     header("Location: ../index.php");
   }
@@ -15,6 +16,10 @@
 
 ?>
 
+=======
+
+?>
+>>>>>>> 9c1c178c54e82feca3e48dfcd9698584b7c2925f
 <!DOCTYPE html>
 <html lang="en">
 

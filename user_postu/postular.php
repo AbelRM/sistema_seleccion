@@ -98,47 +98,93 @@
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">LISTADO DE CONVOCATORIAS</h6>
+              <h6 class="m-0 font-weight-bold text-primary">POSTULAR</h6>
             </div>
             <div class="card-body">
               <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                <thead>
-                    <tr>
-                      <th>N°</th>
-                      <th>Tipo concurso</th>
-                      <th>N° convocatoria</th>
-                      <th>Direccion</th>
-                      <th>Acciones</th>
-                      
-                    </tr>
-                  </thead>
-                  <?php
-                      $dni = $_GET['dni'];
-                      
-                      $sql = "SELECT * FROM full_convocatoria";
-                      $query=mysqli_query($con, $sql);
-                      while ($row= MySQLI_fetch_array($query))
-                      {
-                      ?>
-                      <tr>
-                        <td><?php echo $row['idcon'] ?></td>
-                        <td style="font-size: 16px;"><?php echo $row['tipo_con'] ?></td>
-                        <td style="font-size: 14px;"><?php echo $row['num_con']."-".$row['anio_con']?></td>
-                        <td style="font-size: 14px;"><?php echo $row['direccion_ejec']." - ".$row['equipo_ejec']; ?></td>
-                        <td>
-                          <a href="verconvocatoria.php?id=<?php echo $row['idcon']?>&dni=<?php echo $dni?>"><button type="button" class="btn btn-warning" id="editar" style="margin: 1px;"><i class="fa fa-eye"></i></button></a>
-            
-                        </td>
-                      </tr>
-                      <?php
-                      }
-                      ?>
-                      <!-- <input type="hidden" id="dni" name="dni" value="<?php echo $dni; ?>"> -->
-                  <tbody>
+
+                <form action="procesos/guardar_postulante.php" method="post">
+
+                    <div class="form-card">                
+                           <!--  <input type="hidden" id="dni_post" name="dni_post" value="<?php echo $fila['dni']; ?>"> -->
+                            
+                            <div class="form-group row">
+
+                               
+
+                                <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
+                                    <div class="form-group">                                     
+                                         <div class="input-group-addon ">Convocatoria</div>
+                                            <div class="col-md-9" style="padding: 0;margin: 0;">
+                                                <select name="idcon" id="idcon" data-placeholder="Nivel" class="form-control">
+                                                <?php
+                                                $sql="SELECT * FROM convocatoria";
+                                                $res=mysqli_query($con,$sql);
+                                                while ($rw= mysqli_fetch_array($res)){
+                                                    echo "<option value=".$rw["idcon"].">".$rw["tipo_con"]."</option> ";
+                                                } 
+                                                ?>
+                                                 </select>
+                                            </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
+                                    <div class="form-group">                                     
+                                         <div class="input-group-addon ">DNI</div>
+                                            <div class="col-md-9" style="padding: 0;margin: 0;">
+                                                <select name="postula_id" id="postula_id"  class="form-control">
+                                                <?php
+                                                $sql="SELECT * FROM postulante";
+                                                $res=mysqli_query($con,$sql);
+                                                while ($rw= mysqli_fetch_array($res)){
+                                                    echo "<option value=".$rw["idpostulante"].">".$rw["dni"]."</option> ";
+                                                } 
+                                                ?>
+                                                </select>
+                                            </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
+                                    <div class="form-group">                                     
+                                         <div class="input-group-addon ">Cargo</div>
+                                            <div class="col-md-9" style="padding: 0;margin: 0;">
+                                                <select name="idcargo" id="idcargo"  class="form-control">
+                                                <?php
+                                                $sql="SELECT * FROM cargo";
+                                                $res=mysqli_query($con,$sql);
+                                                while ($rw= mysqli_fetch_array($res)){
+                                                    echo "<option value=".$rw["idcargo"].">".$rw["cargo"]."</option> ";
+                                                } 
+                                                ?>
+                                                 </select>
+                                            </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
+                                <div class="col-md-9" style="padding: 0;margin: 0;">
+                                    <label> N° Recibo</label> 
+                                    <input type="text" class="form-control" id="reciboid" name="reciboid"> 
+                                </div>
+                                </div>
+
+                                <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
+                                <div class="col-md-9" style="padding: 0;margin: 0;">
+                                    <label>Fecha Inscripcion</label> 
+                                    <input type="date" class="form-control" id="dateid" name="dateid" required>
+                                </div>      
+                                </div>                                             
+
+                        </div> 
+                    </div>
+                    <div class="form-actions form-group"><button type="submit" class="btn btn-info">Guardar</button>        
+                    </div>
                     
-                  </tbody>
-                </table>
+                </form>
+
               </div>
             </div>
           </div>
@@ -199,6 +245,16 @@
 
   <!-- Page level custom scripts -->
   <script src="js/demo/datatables-demo.js"></script>
+
+  <script>
+    jQuery(document).ready(function() {
+        jQuery(".standardSelect").chosen({
+            disable_search_threshold: 10,
+            no_results_text: "Oops, nothing found!",
+            width: "100%"
+        });
+    });
+</script>
 
 </body>
 

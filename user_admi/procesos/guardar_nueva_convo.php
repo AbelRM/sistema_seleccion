@@ -1,6 +1,8 @@
 <?php 
 
-    include '../conexion.php';
+
+
+    include "../conexion.php";
     $tipo_con = $_POST['tipo_con'];
     $num_con = $_POST['num_con'];
     $anio_con= $_POST['anio_con'];
@@ -12,9 +14,10 @@
     $escrito = $_POST['escrito'];
     $por_discapacidad = $_POST['por_discapacidad'];
     $militar = $_POST['militar'];
+    $estado = $_POST['estado'];
 
-    $sql= "INSERT INTO convocatoria (num_con,año_con,tipo_con,fech_ini,fech_term,porcen_eva_cu,porce_entrevista,porce_discapacidad,porce_sermilitar,porce_exa_escrito,direccion_ejec_iddireccion) 
-    VALUES ('".$num_con."','".$anio_con."','".$tipo_con."','".$fech_ini."','".$fech_fin."','".$curricular."','".$entrevista."','".$por_discapacidad."','".$militar."','".$escrito."','".$ubicacion."')";
+    $sql= "INSERT INTO convocatoria (num_con,anio_con,tipo_con,fech_ini,fech_term,porcen_eva_cu,porce_entrevista,porce_discapacidad,porce_sermilitar,porce_exa_escrito, estado,direccion_ejec_iddireccion) 
+    VALUES ('".$num_con."','".$anio_con."','".$tipo_con."','".$fech_ini."','".$fech_fin."','".$curricular."','".$entrevista."','".$por_discapacidad."','".$militar."','".$escrito."','".$estado."','".$ubicacion."')";
 
     if ($con->query($sql) == TRUE) {
         $idcon=mysqli_insert_id($con);

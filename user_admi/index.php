@@ -1,6 +1,21 @@
+<?php
+  include 'conexion.php';
+  session_start();
+  if(empty($_SESSION['active'])){
+    header("Location: ../index.php");
+  }
+
+  // if(!isset($_SESSION['rol'])){
+  //   header('location: ../index.php');
+  // }else{
+  //   if($_SESSION['rol'] != 2){
+  //     header('location: ../index.php');
+  //   }
+  // }
+
+?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
   <meta charset="utf-8">
@@ -27,7 +42,6 @@
 
     <?php 
       include 'menu.html';
-      include 'conexion.php';
     ?>
 
     <!-- Content Wrapper -->

@@ -1,3 +1,20 @@
+<?php
+  include 'conexion.php';
+  session_start();
+  if(empty($_SESSION['active'])){
+    header("Location: ../index.php");
+  }
+
+  // if(!isset($_SESSION['rol'])){
+  //   header('location: ../index.php');
+  // }else{
+  //   if($_SESSION['rol'] != 1){
+  //     header('location: ../index.php');
+  //   }
+  // }
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,7 +43,6 @@
   <div id="wrapper">  
 
     <?php     
-      include 'conexion.php';
       
       $dni = $_GET['dni'];
       //$descrip=base64_decode($dni);
@@ -421,7 +437,7 @@
         <div class="modal-body">Seleccione "Cerrar sesión" a continuación si está listo para finalizar su sesión actual.</div>
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-          <a class="btn btn-primary" href="../index.php">Cerrar sesión</a>
+          <a class="btn btn-primary" href="procesos/cerrar_sesion.php">Cerrar sesión</a>
         </div>
       </div>
     </div>

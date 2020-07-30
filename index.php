@@ -46,12 +46,15 @@
                     <img src="public/img/logo_diresa.png" alt="Logo de diresa" style="max-width: 100%; height: auto;">
                   </div>
                   
-                  <form action="procesos/autenticar_v3.php" method="POST" class="user">
+                  <form action="procesos/autenticar_v6.php" method="POST" class="user">
                     <div class="form-group">
-                      <input type="text" class="form-control form-control-user" id="dni" name="dni" placeholder="Ingrese su DNI...">
+                      <input type="text" class="form-control form-control-user" id="dni" name="dni" placeholder="Ingrese su DNI..." required pattern="[A-Za-z0-9_-]{1,15}">
                     </div>
                     <div class="form-group">
-                      <input type="password" class="form-control form-control-user" id="clave" name="clave" placeholder="Contraseña...">
+                      <input type="password" class="form-control form-control-user" id="clave" name="clave" placeholder="Contraseña..." required pattern="[A-Za-z0-9_-]{1,15}">
+                    </div>
+                    <div class="form-group">
+                    <?php echo isset($alert) ? $alert : '';?>
                     </div>
                     <div class="form-group row d-flex justify-content-center">
                       <button type="submit" class="btn btn-primary btn-user btn-block">Iniciar sesión</button>
@@ -87,6 +90,8 @@
 
   <!-- Custom scripts for all pages-->
   <script src="public/js/sb-admin-2.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+  <!-- <script src="public/js/alerta.js"></script> -->
 
 </body>
 

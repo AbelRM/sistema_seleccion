@@ -11,7 +11,7 @@
 	$confi_clave = $_POST['confi_clave'];
 
 	$sql= "INSERT INTO user (dni,nombres,ape_pat,ape_mat,celular,correo,clave,confi_clave,tipo_user_idtipo) 
-    VALUES ('".$dni."','".$nombres."','".$ape_pat."','".$ape_mat."','".$celular."','".$correo."','".$clave."','".$confi_clave."','1')";
+    VALUES ('".$dni."','".$nombres."','".$ape_pat."','".$ape_mat."','".$celular."','".$correo."',MD5('".$clave."'),MD5('".$confi_clave."'),'1')";
 
     if ($con->query($sql) == TRUE) {
         $iduser=mysqli_insert_id($con);

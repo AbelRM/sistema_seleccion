@@ -4,8 +4,9 @@ $hostname="localhost";
 $username="root";
 $password="123456";
 $dbname="sistema_seleccion";
+$root='3307';
 
-$con=mysqli_connect($hostname, $username, $password, $dbname);
+$con=mysqli_connect($hostname, $username, $password, $dbname,$root);
 
 if(!$con){
     echo "<p>Error de conexion</p>";

@@ -1,0 +1,9 @@
+.formulario{
+    display: block;
+}
+
+.formulario .card .card-header .titulo-card{
+    color: black;
+    font-weight: 600;
+    font-size: 1.15rem;
+}

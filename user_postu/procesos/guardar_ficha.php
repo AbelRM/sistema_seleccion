@@ -97,6 +97,7 @@
                 if($item1 === false && $item2 === false && $item3 === false && $item4 === false && $item5 === false && $item6 === false) break;
     
             }
+            session_start();
             header('Location: ../index.php?dni='.$dni_post);
         }else{
             echo "Error: " . $sql . "<br>" . $con->error;

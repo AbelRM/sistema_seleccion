@@ -918,7 +918,7 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
         $(function(){
             // Clona la fila oculta que tiene los campos base, y la agrega al final de la tabla
             $("#adicional").on('click', function(){
-                $("#tabla tbody tr:eq(0)").clone().removeClass('fila-fija').appendTo("#tabla");
+                $("#tabla tbody tr:eq(0)").clone().removeClass('fila-fija').appendTo("#tabla").find("input[type=text]").val("");
             });
             
             // Evento que selecciona la fila y la elimina 
@@ -930,7 +930,7 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
         $(function(){
             // Clona la fila oculta que tiene los campos base, y la agrega al final de la tabla
             $("#adicional-2").on('click', function(){
-                $("#tabla-2 tbody tr:eq(0)").clone().removeClass('fila-fija-2').appendTo("#tabla-2");
+                $("#tabla-2 tbody tr:eq(0)").clone().removeClass('fila-fija-2').appendTo("#tabla-2").find("input[type=text]").val("");
             });
             
             // Evento que selecciona la fila y la elimina 
@@ -942,7 +942,7 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
         $(function(){
             // Clona la fila oculta que tiene los campos base, y la agrega al final de la tabla
             $("#adicional-3").on('click', function(){
-                $("#tabla-3 tbody tr:eq(0)").clone().removeClass('fila-fija-3').appendTo("#tabla-3");
+                $("#tabla-3 tbody tr:eq(0)").clone().removeClass('fila-fija-3').appendTo("#tabla-3").find("input[type=text]").val("");
             });
             
             // Evento que selecciona la fila y la elimina 
@@ -954,7 +954,7 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
         $(function(){
             // Clona la fila oculta que tiene los campos base, y la agrega al final de la tabla
             $("#adicional-4").on('click', function(){
-                $("#tabla-4 tbody tr:eq(0)").clone().removeClass('fila-fija-4').appendTo("#tabla-4");
+                $("#tabla-4 tbody tr:eq(0)").clone().removeClass('fila-fija-4').appendTo("#tabla-4").find("input[type=text]").val("");
             });
             
             // Evento que selecciona la fila y la elimina 
@@ -966,7 +966,7 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
         $(function(){
             // Clona la fila oculta que tiene los campos base, y la agrega al final de la tabla
             $("#adicional-5").on('click', function(){
-                $("#tabla-5 tbody tr:eq(0)").clone().removeClass('fila-fija-5').appendTo("#tabla-5");
+                $("#tabla-5 tbody tr:eq(0)").clone().removeClass('fila-fija-5').appendTo("#tabla-5").find("input[type=text]").val("");
             });
             
             // Evento que selecciona la fila y la elimina 
@@ -978,7 +978,7 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
         $(function(){
             // Clona la fila oculta que tiene los campos base, y la agrega al final de la tabla
             $("#adicional-6").on('click', function(){
-                $("#tabla-6 tbody tr:eq(0)").clone().removeClass('fila-fija-6').appendTo("#tabla-6");
+                $("#tabla-6 tbody tr:eq(0)").clone().removeClass('fila-fija-6').appendTo("#tabla-6").find("input[type=text]").val("");
             });
             
             // Evento que selecciona la fila y la elimina 
@@ -990,7 +990,7 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
         $(function(){
             // Clona la fila oculta que tiene los campos base, y la agrega al final de la tabla
             $("#adicional-7").on('click', function(){
-                $("#tabla-7 tbody tr:eq(0)").clone().removeClass('fila-fija-7').appendTo("#tabla-7");
+                $("#tabla-7 tbody tr:eq(0)").clone().removeClass('fila-fija-7').appendTo("#tabla-7").find("input[type=text]").val("");
             });
             
             // Evento que selecciona la fila y la elimina 
@@ -1002,7 +1002,7 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
         $(function(){
             // Clona la fila oculta que tiene los campos base, y la agrega al final de la tabla
             $("#adicional-8").on('click', function(){
-                $("#tabla-8 tbody tr:eq(0)").clone().removeClass('fila-fija-8').appendTo("#tabla-8");
+                $("#tabla-8 tbody tr:eq(0)").clone().removeClass('fila-fija-8').appendTo("#tabla-8").find("input[type=text]").val("");
             });
             
             // Evento que selecciona la fila y la elimina 
@@ -1030,23 +1030,6 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
             });
         });
     </script>
-    <!-- <script type="text/javascript">
-        $(document).ready(function(){
-            $("#departamento_id1").change(function(){
-                $.get("provincia.php","departamento_iddepartamento="+$("#departamento_id1").val(), function(data){
-                    $("#provincia_id1").html(data);
-                    console.log(data);
-                });
-            });
-
-            $("#provincia_id1").change(function(){
-                $.get("distrito.php","provincia_idprovincia="+$("#provincia_id1").val(), function(data){
-                    $("#distrito_id1").html(data);
-                    console.log(data);
-                });
-            });
-        });
-    </script> -->
 
 </body>
 </html>

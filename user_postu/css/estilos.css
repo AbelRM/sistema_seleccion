@@ -1,8 +1,8 @@
-.formulario{
-    display: block;
+.formulario-1,.formulario-2 {
+    display: none;
 }
 
-.formulario .card .card-header .titulo-card{
+.grupo-formularios .formulario-1,.formulario-2 .card .card-header .titulo-card{
     color: black;
     font-weight: 600;
     font-size: 1.15rem;

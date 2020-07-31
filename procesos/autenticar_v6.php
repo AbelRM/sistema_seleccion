@@ -24,10 +24,19 @@ if(!empty($_SESSION['active'])){
             $data = mysqli_fetch_array($query);
             // $tipo_user=$data['tipo_user'];
 
-            $query2 = mysqli_query($con,"SELECT * FROM usuarios WHERE dni='$dni' AND tipo_user='POSTULANTE' ");
+            $query2 = mysqli_query($con,"SELECT * FROM usuarios WHERE dni='$dni' AND tipo_user='ESTUDIANTE' ");
             $resultado = mysqli_num_rows($query2);
 
             if($resultado > 0){
+                $prueba="SELECT * FROM postulante where dni=$dni";
+                $datos=mysqli_query($con,$prueba); 
+                $fila= mysqli_fetch_array($datos);
+                $idpostulante=$fila['idpostulante'];
+
+                $resultado=$con->query("SELECT EXISTS (SELECT * FROM familia_post WHERE postulante_idpostulante=$idpostulante);");
+                $row=mysqli_fetch_row($resultado);
+                if ($row[0]=="1") {
+                $idpostulante=$fila['idpostulante'];
                 $_SESSION['active']=true;
                 $_SESSION['idUser']=$data['iduser'];
                 $_SESSION['dni']=$data['dni'];
@@ -35,6 +44,13 @@ if(!empty($_SESSION['active'])){
                 $_SESSION['rol']=$data['tipo_user'];
 
                 header("Location: ../user_postu/index.php?dni=$dni");
+                   
+                }else{
+                    //Aqui colocas el código que tu deseas realizar cuando el dato NO existe en la base de datos
+                    
+                    // header("Location: ../user_postu/form_wizard/index.php?dni=$dni");
+                    header("Location: ../user_postu/ficha_wizard.php?dni=$dni");
+                } 
             }else{
                 $query3 = mysqli_query($con,"SELECT * FROM usuarios WHERE dni='$dni' AND tipo_user='ADMINISTRADOR' ");
                 $resultado2 = mysqli_num_rows($query3);

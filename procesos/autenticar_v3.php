@@ -17,7 +17,7 @@ if($array['contar']>0){
     $datos=mysqli_query($con,$prueba); 
     $fila= mysqli_fetch_array($datos);
     $idpostulante=$fila['idpostulante'];
-    echo $idpostulante;
+    // echo $idpostulante;
     
     $resultado=$con->query("SELECT EXISTS (SELECT * FROM familia_post WHERE postulante_idpostulante=$idpostulante);");
     $row=mysqli_fetch_row($resultado);

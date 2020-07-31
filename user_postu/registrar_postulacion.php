@@ -38,6 +38,32 @@
         $sql2="SELECT * FROM usuarios where dni=$dni";
         $datos=mysqli_query($con,$sql2) or die(mysqli_error()); ;
         $fila= mysqli_fetch_array($datos);
+
+
+
+        //$descrip=base64_decode($dni);
+        $sql3="SELECT * FROM postulante where dni=$dni";
+        $datos2=mysqli_query($con,$sql3) or die(mysqli_error()); ;
+        $fila2= mysqli_fetch_array($datos2);
+
+        $idpos =  $fila2['idpostulante'];
+
+        $idcon=$_GET['idcon'];
+        $sql4="SELECT * FROM convocatoria where idcon=$idcon";
+        $datos3=mysqli_query($con,$sql4) or die(mysqli_error()); ;
+        $fila3= mysqli_fetch_array($datos3);
+
+        $idconn =  $fila3['tipo_con'];
+
+
+        $idcargo=$_GET['idcargo'];
+
+        $sql5="SELECT * FROM cargo where idcargo=$idcargo";
+        $datos4=mysqli_query($con,$sql5) or die(mysqli_error()); ;
+        $fila4= mysqli_fetch_array($datos4);
+
+        $idcargoo =  $fila4['cargo'];
+
         include 'menu.php';
         
         //include 'modal_ver_convocatoria.php';
@@ -105,65 +131,54 @@
 
               <?php
                       $dni = $_GET['dni'];
-                      $row=$_GET['id'];
-
-                      $row=$_GET['id'];
-                      
-                      $idcon=$_GET['id'];
-
-                      $cargo=$_GET['cargo'];
-
-                      echo $row;
-
-
                       $idcargo=$_GET['idcargo'];
 
-                      echo $idcargo;
-
-                      
+                      $idcon=$_GET['idcon'];
+                                          
                       ?>
-
-            
 
                 <form action="procesos/guardar_postulante.php" method="POST"> 
 
-
-
                     <div class="form-card">                
-                      
-                            
-                            <div class="form-group row">
+                                                
+                            <div class="form-group row">                     
 
-                       
-
-                                <div class="form-group col-md-3 col-sm-12">
-                                <label for="disabled-input">N° de convocatoria</label>           
-                                <input type="text" class="form-control" name="idcon" id="idcon" value="<?php echo $idcon?>">                                          
+                                <div class="col-md-3 col-md-3 col-sm-12">
+                                    <div class="col-md-9" style="padding: 0;margin: 0;">
+                                    <label for="disabled-input">Convocatoria</label>           
+                                    <input type="text" class="form-control" name="idconn" id="idconn" value="<?php echo $idconn?>" disabled >   
+                                    <input type="hidden" class="form-control" name="idcon" id="idcon" value="<?php echo $idcon;?>" >                                        
+                                    </div>
                                 </div>
 
-                                <div class="form-group col-md-3 col-sm-12">
-                                <label for="disabled-input">N° de convocatoria</label>
-                                <input type="text" class="form-control" name="idcargo" id="idcargo" value="<?php echo $idcargo?>">            
-                                <input type="text" class="form-control" name="dni" id="dni" value="<?php echo $dni;?>">                                          
+
+                                <div class="col-md-3 col-md-3 col-sm-12">
+                                    <div class="col-md-9" style="padding: 0;margin: 0;">
+                                    <label for="disabled-input">DNI</label>        
+                                    <input type="text" class="form-control" name="dni" id="dni" value="<?php echo $dni;?>" disabled >    
+                                    <input type="hidden" class="form-control" name="dnipos" id="dnipos" value="<?php echo $idpos;?>"  >                                      
+                                    </div>
                                 </div>
 
-                                <div class="form-group col-md-3 col-sm-12">
-                                <label for="disabled-input">N° de convocatoria</label> 
-                                <input type="text" class="form-control" name="idcargo" id="idcargo" value="<?php echo $idcargo?>">          
-                                <input type="text" class="form-control" name="cargo" id="cargo" value="<?php echo $cargo?>">                                          
+                                <div class="col-md-3 col-md-3 col-sm-12">
+                                <div class="col-md-9" style="padding: 0;margin: 0;">
+                                <label for="disabled-input">Cargo</label>         
+                                <input type="text" class="form-control" name="idcargoo" id="idcargoo" value="<?php echo $idcargoo?>" disabled >  
+                                <input type="hidden" class="form-control" name="idcargo" id="idcargo" value="<?php echo $idcargo;?>" >                                       
+                                </div>
                                 </div>
 
-                                <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
+                                <div class="col-md-3 col-md-3 col-sm-12">
                                 <div class="col-md-9" style="padding: 0;margin: 0;">
                                     <label> N° Recibo</label> 
                                     <input type="text" class="form-control" id="reciboid" name="reciboid"> 
                                 </div>
                                 </div>
 
-                                <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
+                                <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
                                 <div class="col-md-9" style="padding: 0;margin: 0;">
                                     <label>Fecha Inscripcion</label> 
-                                    <input type="date" class="form-control" id="dateid" name="dateid" required>
+                                    <input type="text" class="form-control" id="dateid" name="dateid" value="<?php echo date("d/m/Y")?>" >
                                 </div>      
                                 </div>                                             
 

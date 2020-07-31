@@ -4,7 +4,7 @@ include '../conexion.php';
 
 
 $idcon=$_POST['idcon'];
-$postulante=$_POST['dni'];
+$postulante=$_POST['dnipos'];
 $cargo=$_POST['idcargo'];
 $recibo=$_POST['reciboid'];
 $date=$_POST['dateid']; 
@@ -17,7 +17,9 @@ $result = MYSQLI_query($con, $sql);
 if (!$result) {
     echo "gggggggggggggg";
 }else{
-    echo "NOOOOOOOOOOO";
+    
+
+    header('Location: ../listarpostulante.php?dni='.$postulante);
 }
 
 

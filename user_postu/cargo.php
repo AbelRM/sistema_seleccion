@@ -121,6 +121,7 @@
 
                       echo $idcon;
                       
+
                       $sql = "SELECT  ca.idcargo, ca.cargo, con.tipo_con FROM cargo  ca
                                         INNER JOIN convocatoria con ON ca.convocatoria_id= con.idcon where convocatoria_id='".$idcon."'";
 
@@ -136,7 +137,7 @@
                         <td style="font-size: 16px;"><?php echo $row['tipo_con'] ?></td>
                         
                         <td>
-                                <a href="registrar_postulacion.php?id=<?php echo $row['tipo_con']?>&dni=<?php echo $dni?> &cargo=<?php echo $row['cargo']?> &idcargo=<?php echo $row['idcargo']?>"><button type="button" class="btn btn-primary" id="editar" style="margin: 1px;"><i class="fa fa-pencil-alt"></i>Postular</button></a>
+                                <a href="registrar_postulacion.php?idcargo=<?php echo $row['idcargo']?>&dni=<?php echo $dni?>&idcon=<?php echo $idcon?>"><button type="button" class="btn btn-primary" id="editar" style="margin: 1px;"><i class="fa fa-pencil-alt"></i>Postular</button></a>
                         </td>
                       </tr>
                       <?php

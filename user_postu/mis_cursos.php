@@ -45,7 +45,6 @@
     <?php     
       
       $dni = $_GET['dni'];
-      //$descrip=base64_decode($dni);
       include_once('conexion.php');
       $sql="SELECT * FROM usuarios where dni=$dni";
       $datos=mysqli_query($con,$sql) or die(mysqli_error()); ;
@@ -116,7 +115,6 @@
 
             <!-- Content Row -->
             <div class="row">
-
                 <!-- Earnings (Monthly) Card Example -->
                 <div class="col-xl-3 col-md-6 mb-4">
                     <div class="card border-left-primary shadow h-100 py-2">
@@ -138,17 +136,17 @@
 
                 <!-- Earnings (Monthly) Card Example -->
                 <div class="col-xl-3 col-md-6 mb-4">
-                    <div class="card border-left-success shadow h-100 py-2">
+                    <div class="card border-left-danger shadow h-100 py-2">
                         <div class="card-body">
                             <div class="row ">
                                 <div class="col-12 p-2 d-flex justify-content-center">
-                                <div class="text-xs font-weight-bold text-success  text-uppercase mb-1">Estudios superiores</div>
+                                <div class="text-xs font-weight-bold text-danger  text-uppercase mb-1">Estudios superiores</div>
                                 </div>
                                 <div class="col-6 p-2 d-flex justify-content-center">
-                                    <button class="btn btn btn-success" data-toggle="modal" data-target="#estudios_postgrado">+ <i class="fas fa-user-graduate"></i></button>
+                                    <button class="btn btn btn-danger" data-toggle="modal" data-target="#estudios_superiores">+ <i class="fas fa-user-graduate"></i></button>
                                 </div>
                                 <div class="col-6 p-2 d-flex justify-content-center">
-                                    <button class="btn btn btn-success" data-toggle="modal" data-target="#estudios_postgrado"><i class="fas fa-eye"></i></button>
+                                    <button class="btn btn btn-danger" data-toggle="modal" data-target="#ver_estudios_superiores"><i class="fas fa-eye"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -157,21 +155,40 @@
 
                 <!-- Earnings (Monthly) Card Example -->
                 <div class="col-xl-3 col-md-6 mb-4">
-                <div class="card border-left-info shadow h-100 py-2">
-                    <div class="card-body">
-                        <div class="row ">
-                            <div class="col-12 p-2 d-flex justify-content-center">
-                            <div class="text-xs font-weight-bold text-info  text-uppercase mb-1">Diplomados - cursos - seminarios</div>
-                            </div>
-                            <div class="col-6 p-2 d-flex justify-content-center">
-                                <button class="btn btn btn-info" data-toggle="modal" data-target="#cursos_diplomados">+ <i class="fas fa-list-ol"></i></button>
-                            </div>
-                            <div class="col-6 p-2 d-flex justify-content-center">
-                                <button class="btn btn btn-info" data-toggle="modal" data-target="#cursos_diplomados"><i class="fas fa-eye"></i></button>
+                    <div class="card border-left-success shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row ">
+                                <div class="col-12 p-2 d-flex justify-content-center">
+                                <div class="text-xs font-weight-bold text-success  text-uppercase mb-1">Estudios Postgrado</div>
+                                </div>
+                                <div class="col-6 p-2 d-flex justify-content-center">
+                                    <button class="btn btn btn-success" data-toggle="modal" data-target="#estudios_postgrado">+ <i class="fas fa-user-graduate"></i></button>
+                                </div>
+                                <div class="col-6 p-2 d-flex justify-content-center">
+                                    <button class="btn btn btn-success" data-toggle="modal" data-target="#ver_estudios_postgrado"><i class="fas fa-eye"></i></button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
+                <!-- Earnings (Monthly) Card Example -->
+                <div class="col-xl-3 col-md-6 mb-4">
+                    <div class="card border-left-info shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row ">
+                                <div class="col-12 p-2 d-flex justify-content-center">
+                                <div class="text-xs font-weight-bold text-info  text-uppercase mb-1">Diplomados - cursos - seminarios</div>
+                                </div>
+                                <div class="col-6 p-2 d-flex justify-content-center">
+                                    <button class="btn btn btn-info" data-toggle="modal" data-target="#cursos_diplomados">+ <i class="fas fa-list-ol"></i></button>
+                                </div>
+                                <div class="col-6 p-2 d-flex justify-content-center">
+                                    <button class="btn btn btn-info" data-toggle="modal" data-target="#cursos_diplomados"><i class="fas fa-eye"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Earnings (Monthly) Card Example -->
@@ -192,14 +209,13 @@
                         </div>
                     </div>
                 </div>
-                
             </div>
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
                 <h5 class="mb-0 text-gray-800">ELEGIR MI CATEGORIA DE PROFESIÓN:</h5>
             </div>
             <div class="form-row d-flex justify-content-center">
                 <div class="form-group col-md-6">
-                    <label for="inputState">Elegir categoría</label>#1cc88a
+                    <label for="inputState">Elegir categoría</label>
                     <select name="SelectOptions" id="SelectOptions" class="form-control">
                         <option selected>Elegir...</option>
                         <option value="formulario-1" style="color:red; font-weight:600;">PROFESIONAL DE LA SALUD</option>
@@ -399,7 +415,7 @@
                 <div class="form-row formulario-2 p-2">
                     <div class="card border-success formulario-2">
                         <div class="card-header formulario-2">
-                            <h5 class="titulo-card">Experiencia en el sector público y privado dentro de TACNA!!</h5>
+                            <h5 class="titulo-card">Experiencia en el sector público y privado DENTRO de TACNA!!</h5>
                         </div>
                         <div class="card-body formulario-2">
                             <div class="table-responsive formulario-2">
@@ -441,7 +457,7 @@
                 <div class="form-row formulario-2 p-2">
                     <div class="card border-success formulario-2">
                         <div class="card-header formulario-2">
-                            <h5 class="titulo-card">Experiencia en el sector público y privado fuera de TACNA!</h5>
+                            <h5 class="titulo-card">Experiencia en el sector público y privado FUERA de TACNA!</h5>
                         </div>
                         <div class="card-body formulario-2">
                             <div class="table-responsive formulario-2">
@@ -517,15 +533,26 @@
         </div>
         </div>
     </div>
+    <?php
+        include 'conexion.php';
+        $consulta="SELECT * FROM postulante where dni=$dni";
+        $datos=mysqli_query($con,$consulta) or die(mysqli_error()); ;
+        $row= mysqli_fetch_array($datos);
+        $idpostulante=$row['idpostulante'];
+
+        $consulta2="SELECT * FROM datos_profesionales where postulante_idpostulante=$idpostulante";
+        $datos2=mysqli_query($con,$consulta2) or die(mysqli_error()); ;
+        $row2= mysqli_fetch_array($datos2);
+    ?>
     <!--GUARDAR Profesion Modal-->
     <div class="modal fade bd-example-modal-lg" id="datos_profesionales" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Mis datos profesionales son:</h5>
-            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">×</span>
-            </button>
+                <h5 class="modal-title" id="exampleModalLabel">Mis datos profesionales son:</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
             </div>
             <form action="procesos/guardar_datos_prof.php" method="POST">
             <div class="modal-body">
@@ -563,17 +590,6 @@
         </div>
         </div>
     </div>
-    <?php
-        include 'conexion.php';
-        $consulta="SELECT * FROM postulante where dni=$dni";
-        $datos=mysqli_query($con,$consulta) or die(mysqli_error()); ;
-        $row= mysqli_fetch_array($datos);
-        $idpostulante=$row['idpostulante'];
-
-        $consulta2="SELECT * FROM datos_profesionales where postulante_idpostulante=$idpostulante";
-        $datos2=mysqli_query($con,$consulta2) or die(mysqli_error()); ;
-        $row2= mysqli_fetch_array($datos2);
-    ?>
     <!--VER Profesion Modal-->
     <div class="modal fade bd-example-modal-lg" id="ver_datos_profesionales" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
@@ -618,76 +634,78 @@
         </div>
         </div>
     </div>
-
-    <!-- Estudios superiores Modal-->
+    
+    <!--GUARDAR Estudios superiores Modal-->
     <div class="modal fade bd-example-modal-xl" id="estudios_superiores" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Estudios superiores</h5>
-            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">×</span>
-            </button>
-            </div>
-            <form>
-            <div class="modal-body">
-                <div class="table-responsive">
-                    <label>Estudios Superiores (Universitario - Tecnico)</label> 
-                    <table class="table table-bordered" id="tabla-7">
-                        <thead>
-                        <tr class="bg-danger" style="text-align:center; font-size:0.813em;">
-                            <th scope="col">Centro Estudios</th>
-                            <th scope="col">Especialidad</th>
-                            <th scope="col">Fecha Inicio</th>
-                            <th scope="col">Fecha Termino</th>
-                            <th scope="col">Nivel Alcanzado</th>
-                            <th scope="col">Acción</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="fila-fija-7">
-                                <td><input type="text" name="centro_estu[]" class="form-control name_list" /></td>
-                                <td><input type="text" name="especialidad[]"  class="form-control name_list" /></td>
-                                <td><input type="date" name="fech_ini[]" class="form-control name_list"/></td>
-                                <td><input type="date" name="fech_fin[]" class="form-control name_list"/></td>
-                                <td>
-                                    <select name="nivel[]" class="form-control" id="cargo">
-                                        <option value="" disabled selected>Elegir</option>
-                                        <option value="Magister">Magister</option>
-                                        <option value="Doctorado">Doctorado</option>
-                                        <option value="Egresado">Egresado</option>
-                                        <option value="Estudiante">Estudiante</option>
-                                    </select>
-                                </td>
-                                <td class="eliminar"><input type="button" class="btn btn-danger" value=" - "></td>
-                            </tr>
-                        </tdody>
-                    </table>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Estudios superiores</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
                 </div>
-                <div class="row d-flex justify-content-center">
-                    <div class="form-inline p-2">
-                        <button id="adicional-7" name="adicional" type="button" class="btn btn-warning"> AGREGAR FILA (+) </button>
+                <form action="procesos/guardar_estudios_sup.php" method="POST">
+                <div class="modal-body">
+                    <div class="table-responsive">
+                        <label>Estudios Superiores (Universitario - Tecnico)</label>
+                        <input type="hidden" id="dni" name="dni" value="<?php echo $dni; ?>">
+                        <input type="hidden" id="idpostulante" name="idpostulante" value="<?php echo $idpostulante; ?>">
+                        <table class="table table-bordered" id="tabla-7">
+                            <thead>
+                            <tr class="bg-danger" style="text-align:center; font-size:0.813em;">
+                                <th scope="col">Centro Estudios</th>
+                                <th scope="col">Especialidad</th>
+                                <th scope="col">Fecha Inicio</th>
+                                <th scope="col">Fecha Termino</th>
+                                <th scope="col">Nivel Alcanzado</th>
+                                <th scope="col">Acción</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="fila-fija-7">
+                                    <td><input type="text" name="centro_estu[]" class="form-control name_list" required/></td>
+                                    <td><input type="text" name="especialidad[]"  class="form-control name_list" required/></td>
+                                    <td><input type="date" name="fech_ini[]" class="form-control name_list" required/></td>
+                                    <td><input type="date" name="fech_fin[]" class="form-control name_list" required/></td>
+                                    <td>
+                                        <select name="nivel[]" class="form-control" id="nivel[]" required>
+                                            <option value="" disabled selected>Elegir</option>
+                                            <option value="MAGISTER">Magister</option>
+                                            <option value="DOCTORADO">Doctorado</option>
+                                            <option value="EGRESADO">Egresado</option>
+                                            <option value="ESTUDIANTE">Estudiante</option>
+                                        </select>
+                                    </td>
+                                    <td class="eliminar"><button type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button></td>
+                                </tr>
+                            </tdody>
+                        </table>
+                    </div>
+                    <div class="row d-flex justify-content-center">
+                        <div class="form-inline p-2">
+                            <button id="adicional-7" name="adicional" type="button" class="btn btn-warning"> AGREGAR FILA (+) </button>
+                        </div>
                     </div>
                 </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                    <button class="btn btn-primary" name="insertar" type="submit" >Guardar</button>
+                </div>
+                </form>
             </div>
-            <div class="modal-footer">
-            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-            <a class="btn btn-primary" type="submit" href="procesos/guardar_profesion.php">Guardar</a>
-            </div>
-            </form>
-        </div>
         </div>
     </div>
 
     <!-- Estudios superiores Modal-->
-    <div class="modal fade bd-example-modal-xl" id="estudios_postgrado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade bd-example-modal-xl" id="ver_estudios_postgrado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Estudios Postgrado</h5>
-            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">×</span>
-            </button>
+                <h5 class="modal-title" id="exampleModalLabel">Estudios Postgrado</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
             </div>
             <form>
             <div class="modal-body">
@@ -719,7 +737,7 @@
                                         <option value="Estudiante">Estudiante</option>
                                     </select>
                                 </td>
-                                <td class="eliminar"><input type="button" class="btn btn-danger" value=" - "></td>
+                                <td class="eliminar"><button type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button></td>
                             </tr>
                         </tdody>
                     </table>
@@ -732,7 +750,7 @@
             </div>
             <div class="modal-footer">
             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-            <a class="btn btn-primary" type="submit" href="procesos/guardar_profesion.php">Guardar</a>
+            <a class="btn btn-primary" type="submit" name="insertar">Guardar</a>
             </div>
             </form>
         </div>
@@ -856,7 +874,7 @@
             </div>
             <div class="modal-footer">
             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-            <a class="btn btn-primary" type="submit" href="procesos/guardar_profesion.php">Guardar</a>
+            <a class="btn btn-primary" type="submit" >Guardar</a>
             </div>
             </form>
         </div>
@@ -882,6 +900,16 @@
 
     <!-- alertas -->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+        function showAlert(){
+            swal({
+                title: "AGREGADO!",
+                text: "Se pudo agregar correctamente el estudio superior.!",
+                icon: "success",
+                button: "Continuar!",
+            });
+        }
+    </script>
     <script>
         $(document).ready(function() {
             //Select para mostrar e esconder divs

@@ -100,6 +100,9 @@
             <div class="card-header py-3">
               <h6 class="m-0 font-weight-bold text-primary">CARGOS</h6>
             </div>
+
+
+
             <div class="card-body">
               <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="80%" cellspacing="0">
@@ -116,6 +119,8 @@
                       $dni = $_GET['dni'];
                       $idcon=$_GET['id'];
 
+                      echo $idcon;
+                      
                       $sql = "SELECT  ca.idcargo, ca.cargo, con.tipo_con FROM cargo  ca
                                         INNER JOIN convocatoria con ON ca.convocatoria_id= con.idcon where convocatoria_id='".$idcon."'";
 
@@ -125,12 +130,13 @@
                       ?>
 
                       <tr>
+                   
                         <td><?php echo $row['idcargo'] ?></td>
                         <td style="font-size: 16px;"><?php echo $row['cargo'] ?></td>
                         <td style="font-size: 16px;"><?php echo $row['tipo_con'] ?></td>
                         
                         <td>
-                                <a href="registrar_postulacion.php?id=<?php echo $row['idcargo']?>&dni=<?php echo $dni?>"><button type="button" class="btn btn-primary" id="editar" style="margin: 1px;"><i class="fa fa-pencil-alt"></i>Postular</button></a>
+                                <a href="registrar_postulacion.php?id=<?php echo $row['tipo_con']?>&dni=<?php echo $dni?> &cargo=<?php echo $row['cargo']?> &idcargo=<?php echo $row['idcargo']?>"><button type="button" class="btn btn-primary" id="editar" style="margin: 1px;"><i class="fa fa-pencil-alt"></i>Postular</button></a>
                         </td>
                       </tr>
                       <?php

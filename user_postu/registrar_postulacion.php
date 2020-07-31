@@ -103,65 +103,54 @@
             <div class="card-body">
               <div class="table-responsive">
 
-                <form action="procesos/guardar_postulante.php" method="post"> 
+              <?php
+                      $dni = $_GET['dni'];
+                      $row=$_GET['id'];
+
+                      $row=$_GET['id'];
+                      
+                      $idcon=$_GET['id'];
+
+                      $cargo=$_GET['cargo'];
+
+                      echo $row;
+
+
+                      $idcargo=$_GET['idcargo'];
+
+                      echo $idcargo;
+
+                      
+                      ?>
+
+            
+
+                <form action="procesos/guardar_postulante.php" method="POST"> 
+
+
 
                     <div class="form-card">                
-                           <!--  <input type="hidden" id="dni_post" name="dni_post" value="<?php echo $fila['dni']; ?>"> -->
+                      
                             
                             <div class="form-group row">
 
-                               
+                       
 
-                                <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
-                                    <div class="form-group">                                     
-                                         <div class="input-group-addon ">Convocatoria</div>
-                                            <div class="col-md-9" style="padding: 0;margin: 0;">
-                                                <select name="idcon" id="idcon" data-placeholder="Nivel" class="form-control">
-                                                <?php
-                                                $sql="SELECT * FROM convocatoria";
-                                                $res=mysqli_query($con,$sql);
-                                                while ($rw= mysqli_fetch_array($res)){
-                                                    echo "<option value=".$rw["idcon"].">".$rw["tipo_con"]."</option> ";
-                                                } 
-                                                ?>
-                                                 </select>
-                                            </div>
-                                    </div>
+                                <div class="form-group col-md-3 col-sm-12">
+                                <label for="disabled-input">N° de convocatoria</label>           
+                                <input type="text" class="form-control" name="idcon" id="idcon" value="<?php echo $idcon?>">                                          
                                 </div>
 
-
-                                <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
-                                    <div class="form-group">                                     
-                                         <div class="input-group-addon ">DNI</div>
-                                            <div class="col-md-9" style="padding: 0;margin: 0;">
-                                                <select name="postula_id" id="postula_id"  class="form-control">
-                                                <?php
-                                                $sql="SELECT * FROM postulante";
-                                                $res=mysqli_query($con,$sql);
-                                                while ($rw= mysqli_fetch_array($res)){
-                                                    echo "<option value=".$rw["idpostulante"].">".$rw["dni"]."</option> ";
-                                                } 
-                                                ?>
-                                                </select>
-                                            </div>
-                                    </div>
+                                <div class="form-group col-md-3 col-sm-12">
+                                <label for="disabled-input">N° de convocatoria</label>
+                                <input type="text" class="form-control" name="idcargo" id="idcargo" value="<?php echo $idcargo?>">            
+                                <input type="text" class="form-control" name="dni" id="dni" value="<?php echo $dni;?>">                                          
                                 </div>
 
-                                <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
-                                    <div class="form-group">                                     
-                                         <div class="input-group-addon ">Cargo</div>
-                                            <div class="col-md-9" style="padding: 0;margin: 0;">
-                                                <select name="idcargo" id="idcargo"  class="form-control">
-                                                <?php
-                                                $sql="SELECT * FROM cargo";
-                                                $res=mysqli_query($con,$sql);
-                                                while ($rw= mysqli_fetch_array($res)){
-                                                    echo "<option value=".$rw["idcargo"].">".$rw["cargo"]."</option> ";
-                                                } 
-                                                ?>
-                                                 </select>
-                                            </div>
-                                    </div>
+                                <div class="form-group col-md-3 col-sm-12">
+                                <label for="disabled-input">N° de convocatoria</label> 
+                                <input type="text" class="form-control" name="idcargo" id="idcargo" value="<?php echo $idcargo?>">          
+                                <input type="text" class="form-control" name="cargo" id="cargo" value="<?php echo $cargo?>">                                          
                                 </div>
 
                                 <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">

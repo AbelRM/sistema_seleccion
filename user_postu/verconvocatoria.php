@@ -108,6 +108,7 @@
                     <h6 class="m-0 font-weight-bold text-danger">Datos de la convocatoria</h6>
                     <hr class="sidebar-divider">
                   </div>
+
                   <div class="form-row">
                     <div class="form-group col-md-3 col-sm-12">
                       <label for="disabled-input">Tipo de concurso</label>           
@@ -118,6 +119,7 @@
                       <label for="disabled-input">N° de convocatoria</label>           
                       <input type="text" class="form-control" name="num_con" value="<?php echo $fila["num_con"]."-".$fila["año_con"];?>" disabled="true">                                          
                     </div>
+                    
                     <div class="form-group col-md-3 col-sm-12">
                       <label for="disabled-input">Desde</label>           
                       <input type="text" class="form-control" name="fech_ini" value="<?php echo $fila["fech_ini"]; ?>" disabled="true">                                          

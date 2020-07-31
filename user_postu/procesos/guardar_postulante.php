@@ -4,7 +4,7 @@ include '../conexion.php';
 
 
 $idcon=$_POST['idcon'];
-$postulante=$_POST['postula_id'];
+$postulante=$_POST['dni'];
 $cargo=$_POST['idcargo'];
 $recibo=$_POST['reciboid'];
 $date=$_POST['dateid']; 

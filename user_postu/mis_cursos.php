@@ -199,28 +199,28 @@
             </div>
             <div class="form-row d-flex justify-content-center">
                 <div class="form-group col-md-6">
-                    <label for="inputState">Elegir categoría</label>
+                    <label for="inputState">Elegir categoría</label>#1cc88a
                     <select name="SelectOptions" id="SelectOptions" class="form-control">
                         <option selected>Elegir...</option>
-                        <option value="formulario-1">Profesional de la Salud</option>
-                        <option value="formulario-2">Otro profesional</option>
-                        <option value="formulario-2">Asistente administrativo</option>
-                        <option value="formulario-1">Técnico en enfermeria</option>
-                        <option value="formulario-2">Técnico administrativo</option>
-                        <option value="formulario-2">Técnico en comunicaciones</option>
-                        <option value="formulario-2">Secretaria</option>
-                        <option value="formulario-2">Técnico en informática</option>
-                        <option value="formulario-2">Chofer</option>
-                        <option value="formulario-2">Vigilante</option>
-                        <option value="formulario-2">Trabajador de limpieza</option>
-                        <option value="formulario-2">Trabajador de servicios</option>
+                        <option value="formulario-1" style="color:red; font-weight:600;">PROFESIONAL DE LA SALUD</option>
+                        <option value="formulario-2" style="color:#1cc88a; font-weight:600;">OTROS PROFESIONALES</option>
+                        <option value="formulario-2" style="color:#1cc88a; font-weight:600;">ASISTENTE ADMINISTRATIVO</option>
+                        <option value="formulario-1" style="color:red; font-weight:600;">TÉCNICO EN ENFERMERIA</option>
+                        <option value="formulario-2" style="color:#1cc88a; font-weight:600;">TÉCNICO ADMINISTRATIVO</option>
+                        <option value="formulario-2" style="color:#1cc88a; font-weight:600;">TÉCNICO EN COMUNICACIONES</option>
+                        <option value="formulario-2" style="color:#1cc88a; font-weight:600;">SECRETARIA</option>
+                        <option value="formulario-2" style="color:#1cc88a; font-weight:600;">TÉCNICO EN INFORMÁTICA</option>
+                        <option value="formulario-2" style="color:#1cc88a; font-weight:600;">CHOFER</option>
+                        <option value="formulario-2" style="color:#1cc88a; font-weight:600;">VIGILANTE</option>
+                        <option value="formulario-2" style="color:#1cc88a; font-weight:600;">TRABAJADOR DE LIMPIEZA</option>
+                        <option value="formulario-2" style="color:#1cc88a; font-weight:600;">TRABAJADOR DE SERVICIOS</option>
                     </select>
                 </div>
             </div>
             <div class="grupo-formularios">
                 <!-- FORMULARIO MICRORED -->
                 <div class="form-row formulario-1 p-2">
-                    <div class="card border-primary formulario-1">
+                    <div class="card border-danger formulario-1">
                         <div class="card-header formulario-1">
                             <h5 class="titulo-card">Experiencia laboral en MICROREDES!</h5>
                         </div>
@@ -271,7 +271,7 @@
                 </div>
                 <!-- FORMULARIO MICROREDES DIRESA TACNA -->
                 <div class="form-row formulario-1 p-2">
-                    <div class="card border-primary formulario-1">
+                    <div class="card border-danger formulario-1">
                         <div class="card-header formulario-1">
                             <h5 class="titulo-card">Experiencia laboral en MICROREDES de TACNA!</h5>
                         </div>
@@ -313,7 +313,7 @@
                 </div>
                 <!-- FORMULARIO SECTOR PUBLICO O PRIVADO DENTRO O FUERA DE TACNA -->
                 <div class="form-row formulario-1 p-2">
-                    <div class="card border-primary formulario-1">
+                    <div class="card border-danger formulario-1">
                         <div class="card-header formulario-1">
                             <h5 class="titulo-card">Experiencia laboral en el sector público o privado DENTRO O FUERA de TACNA!</h5>
                         </div>

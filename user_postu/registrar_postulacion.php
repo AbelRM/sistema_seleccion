@@ -52,21 +52,15 @@
         $sql4="SELECT * FROM convocatoria where idcon=$idcon";
         $datos3=mysqli_query($con,$sql4) or die(mysqli_error()); ;
         $fila3= mysqli_fetch_array($datos3);
-
         $idconn =  $fila3['tipo_con'];
-
 
         $idcargo=$_GET['idcargo'];
 
-        $sql5="SELECT * FROM cargo where idcargo=$idcargo";
+        $sql5="SELECT * FROM total_personal_req where convocatoria_idcon=$idconn";
         $datos4=mysqli_query($con,$sql5) or die(mysqli_error()); ;
         $fila4= mysqli_fetch_array($datos4);
 
-        $idcargoo =  $fila4['cargo'];
-
         include 'menu.php';
-        
-        //include 'modal_ver_convocatoria.php';
     ?>
 
     <!-- Content Wrapper -->
@@ -116,80 +110,67 @@
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
-
-          <!-- Page Heading -->
-          <!-- <h1 class="h3 mb-2 text-gray-800">Tables</h1>
-          <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p> -->
-
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">POSTULAR</h6>
+              <h6 class="m-0 font-weight-bold text-primary">RESUMEN DE MI POSTULACIÓN</h6>
             </div>
             <div class="card-body">
-              <div class="table-responsive">
-
               <?php
-                      $dni = $_GET['dni'];
-                      $idcargo=$_GET['idcargo'];
-
-                      $idcon=$_GET['idcon'];
-                                          
-                      ?>
-
-                <form action="procesos/guardar_postulante.php" method="POST"> 
-
-                    <div class="form-card">                
-                                                
-                            <div class="form-group row">                     
-
-                                <div class="col-md-3 col-md-3 col-sm-12">
-                                    <div class="col-md-9" style="padding: 0;margin: 0;">
-                                    <label for="disabled-input">Convocatoria</label>           
-                                    <input type="text" class="form-control" name="idconn" id="idconn" value="<?php echo $idconn?>" disabled >   
-                                    <input type="hidden" class="form-control" name="idcon" id="idcon" value="<?php echo $idcon;?>" >                                        
-                                    </div>
-                                </div>
-
-
-                                <div class="col-md-3 col-md-3 col-sm-12">
-                                    <div class="col-md-9" style="padding: 0;margin: 0;">
-                                    <label for="disabled-input">DNI</label>        
-                                    <input type="text" class="form-control" name="dni" id="dni" value="<?php echo $dni;?>" disabled >    
-                                    <input type="hidden" class="form-control" name="dnipos" id="dnipos" value="<?php echo $idpos;?>"  >                                      
-                                    </div>
-                                </div>
-
-                                <div class="col-md-3 col-md-3 col-sm-12">
-                                <div class="col-md-9" style="padding: 0;margin: 0;">
-                                <label for="disabled-input">Cargo</label>         
-                                <input type="text" class="form-control" name="idcargoo" id="idcargoo" value="<?php echo $idcargoo?>" disabled >  
-                                <input type="hidden" class="form-control" name="idcargo" id="idcargo" value="<?php echo $idcargo;?>" >                                       
-                                </div>
-                                </div>
-
-                                <div class="col-md-3 col-md-3 col-sm-12">
-                                <div class="col-md-9" style="padding: 0;margin: 0;">
-                                    <label> N° Recibo</label> 
-                                    <input type="text" class="form-control" id="reciboid" name="reciboid"> 
-                                </div>
-                                </div>
-
-                                <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
-                                <div class="col-md-9" style="padding: 0;margin: 0;">
-                                    <label>Fecha Inscripcion</label> 
-                                    <input type="text" class="form-control" id="dateid" name="dateid" value="<?php echo date("d/m/Y")?>" >
-                                </div>      
-                                </div>                                             
-
-                        </div> 
-                    </div>
-                    <div class="form-actions form-group"><button type="submit" class="btn btn-info">Guardar</button>        
-                    </div>
-                    
-                </form>
-
+                $dni = $_GET['dni'];
+                $idcargo=$_GET['idcargo'];
+                $idcon=$_GET['idcon'];
+              ?>
+              <form action="procesos/guardar_postulante.php" method="POST"> 
+              <div class="form-group row d-flex justify-content-center">
+                <label class="col-lg-2 col-md-4 col-form-label text-success">Fecha de inscripción:</label>
+                <div class="col-lg-2 col-md-4">
+                  <input type="text" class="form-control" id="dateid" name="dateid" value="<?php echo date("d/m/Y")?>" disabled>
+                </div>
               </div>
+              <div class="form-group row">          
+                <input type="hidden" class="form-control" name="idcon" id="idcon" value="<?php echo $idcon;?>" >    
+                <input type="hidden" class="form-control" name="idcargo" id="idcargo" value="<?php echo $idcargo;?>" >           
+                <div class="col-md-2 col-sm-6">
+                    <label for="disabled-input">Tipo de convocatoria</label>           
+                    <input type="text" class="form-control" name="idconn" id="idconn" value="<?php echo $fila3['tipo_con']?>" disabled>
+                </div>
+                <div class="col-md-2 col-sm-6">
+                    <label for="disabled-input">Nro de convocatoria</label>           
+                    <input type="text" class="form-control" name="idconn" id="idconn" value="<?php echo $fila3['num_con']."-".$fila3['anio_con'] ?>" disabled>
+                </div>
+                <div class="col-md-2 col-sm-6">
+                    <label for="disabled-input">Fecha de inicio</label>           
+                    <input type="text" class="form-control" name="idconn" id="idconn" value="<?php echo $fila3['fech_ini']?>" disabled>
+                </div>
+                <div class="col-md-2 col-sm-6">
+                    <label for="disabled-input">Fecha término</label>           
+                    <input type="text" class="form-control" name="idconn" id="idconn" value="<?php echo $fila3['fech_term']?>" disabled>
+                </div>
+                <div class="col-md-2 col-sm-6">
+                    <label for="disabled-input">Estado</label>           
+                    <input type="text" class="form-control" name="idconn" id="idconn" value="<?php echo $fila3['estado']?>" disabled>
+                </div>
+              </div> 
+              <hr class="sidebar-divider d-none d-md-block">
+              <div class="form-group row">  
+                <div class="col-md-3 col-sm-12">
+                  <label for="disabled-input">Cargo</label>         
+                  <input type="text" class="form-control" name="idcargoo" id="idcargoo" value="<?php echo $fila4['cargo']?>" disabled >  
+                </div>
+              </div>
+              <hr class="sidebar-divider d-none d-md-block">
+              <div class="form-group row">
+                <div class="col-md-2 col-sm-6">
+                      <label for="disabled-input">Fecha término</label>           
+                      <input type="text" class="form-control" name="idconn" id="idconn" value="<?php echo $fila3['fech_term']?>" disabled>
+                  </div>
+
+                <div class="form-actions form-group">
+                  <button type="submit" class="btn btn-info"><i class="fas fa-briefcase"></i> POSTULAR!</button>        
+                </div>
+              </div>
+              </form>
             </div>
           </div>
 

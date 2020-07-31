@@ -262,11 +262,6 @@
                       $query=mysqli_query($con, $sql);
                       while ($row= MySQLI_fetch_array($query))
                       {
-                        // $idcargo=$row['idcon'];
-                        // $tipocon=$row['tipo_con'];
-                        // $cargo=$row['num_con'];
-                        // $direccion=$row['direccion_ejec_iddireccion'];
-                        // $fecha=$row['fech_ini'];
                       ?>
                       <tr>
                         <td><?php echo $row['idcon'] ?></td>
@@ -276,21 +271,8 @@
                         <td>
                           <a href="verconvocatoria.php?id=<?php echo $row['idcon'] ?>"><button type="button" class="btn btn-warning" id="editar" style="margin: 1px;"><i class="fa fa-eye"></i></button></a>
                           <a href="modificarconvocatoria.php?id=<?php echo $row['idcon'] ?>"><button type="button" class="btn btn-success" id="editar" style="margin: 1px;"><i class="fa fa-pen"></i></button></a>
-                          <!-- <a href="editar_proyecto.php?id=<?php echo $fila['id'] ?>"><button type="button" class="btn btn-success" id="editar" style="margin: 1px;"><i class="fa fa-edit"></i></button></a> -->
-                          
+                    
                         </td>
-                        <!-- <td><?php echo $idcargo; ?></td>
-                        <td><?php echo $tipocon; ?></td>    
-                        <td><?php echo $cargo; ?></td>
-                        <td><?php echo $direccion; ?></td>
-                        <td><?php echo $fecha; ?></td>
-                        
-                        <td>
-                          <form method="POST" action="verconvocatoria.php">
-                          <input type="hidden" value="<?php echo $idcon; ?>" name="id">
-                          <button type="submit" class="btn btn-success btn-sm"><i class="fa fa-pencil-square-o"> </i>&nbsp; Ver</button><p></p>
-                          </form>
-                        </td> -->
                       </tr>
                       <?php
                       }

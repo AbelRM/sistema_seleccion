@@ -109,9 +109,6 @@
                            <!--  <input type="hidden" id="dni_post" name="dni_post" value="<?php echo $fila['dni']; ?>"> -->
                             
                             <div class="form-group row">
-
-                               
-
                                 <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
                                     <div class="form-group">                                     
                                          <div class="input-group-addon ">Convocatoria</div>

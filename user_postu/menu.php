@@ -43,7 +43,7 @@
           <h6 class="collapse-header">Acciones:</h6>
           <a class="collapse-item" href="listar_convo.php?dni=<?php echo $dni ?>">Listar Convocatoria</a>
           <a class="collapse-item" href="listarpostulante.php?dni=<?php echo $dni ?>">Listar</a>
-          <a class="collapse-item" href="postular.php?dni=<?php echo $dni ?>">Postular</a>
+          
         </div>
       </div>
     </li>

@@ -39,7 +39,6 @@
         $datos=mysqli_query($con,$sql2) or die(mysqli_error()); ;
         $fila= mysqli_fetch_array($datos);
         include 'menu.php';
-        
         //include 'modal_ver_convocatoria.php';
     ?>
 
@@ -100,58 +99,47 @@
             <div class="card-header py-3">
               <h6 class="m-0 font-weight-bold text-primary">CARGOS</h6>
             </div>
-
-
-
             <div class="card-body">
               <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="80%" cellspacing="0">
                 <thead>
                     <tr>
                       <th>N°</th>
+                      <th>Cantidad requerida</th>
                       <th>Cargo</th>
-                      <th>Convocatoria</th>
+                      <th>Remuneración</th>
                       <th>Acciones</th>
                       
                     </tr>
                   </thead>
-                  <?php
-                      $dni = $_GET['dni'];
-                      $idcon=$_GET['id'];
-
-                      echo $idcon;
-                      
-
-                      $sql = "SELECT  ca.idcargo, ca.cargo, con.tipo_con FROM cargo  ca
-                                        INNER JOIN convocatoria con ON ca.convocatoria_id= con.idcon where convocatoria_id='".$idcon."'";
-
-                      $query=mysqli_query($con, $sql);
-                      while ($row= MySQLI_fetch_array($query))
-                      {
-                      ?>
-
-                      <tr>
-                   
-                        <td><?php echo $row['idcargo'] ?></td>
-                        <td style="font-size: 16px;"><?php echo $row['cargo'] ?></td>
-                        <td style="font-size: 16px;"><?php echo $row['tipo_con'] ?></td>
-                        
-                        <td>
-                                <a href="registrar_postulacion.php?idcargo=<?php echo $row['idcargo']?>&dni=<?php echo $dni?>&idcon=<?php echo $idcon?>"><button type="button" class="btn btn-primary" id="editar" style="margin: 1px;"><i class="fa fa-pencil-alt"></i>Postular</button></a>
-                        </td>
-                      </tr>
-                      <?php
-                      }
-                      ?>
-                      <!-- <input type="hidden" id="dni" name="dni" value="<?php echo $dni; ?>"> -->
                   <tbody>
-                    
+                  <?php
+                    $dni = $_GET['dni'];
+                    $idcon=$_GET['id'];
+
+                    include_once('conexion.php');
+                    $sql = "SELECT * FROM total_personal_req WHERE convocatoria_idcon=$idcon";
+                    $query=mysqli_query($con, $sql);
+                    while($row=mysqli_fetch_array($query)){ 
+                  ?>
+                    <tr>
+                      <td style="font-size: 16px; text-align: center"><?php echo $row['idpersonal'] ?></td>
+                      <td style="font-size: 16px; text-align: center"><?php echo $row['cantidad'] ?></td>
+                      <td style="font-size: 16px;"><?php echo $row['cargo'] ?></td>
+                      <td style="font-size: 16px; text-align: center"><?php echo $row['remuneracion'] ?></td>
+                      <td>
+                        <a href="registrar_postulacion.php?idcargo=<?php echo $row['idcargo']?>&dni=<?php echo $dni?>&idcon=<?php echo $idcon?>">
+                        <button type="button" class="btn btn-primary" id="editar" style="margin: 1px;"><i class="fa fa-pencil-alt"></i> Elegir</button></a>
+                      </td>
+                    </tr>
+                  <?php
+                  }
+                  ?>
                   </tbody>
                 </table>
               </div>
             </div>
           </div>
-
         </div>
         <!-- /.container-fluid -->
 

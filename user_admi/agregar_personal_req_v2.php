@@ -183,15 +183,9 @@
                           <input type="submit" name="insertar" class="btn btn-primary" value="GUARDAR"/>
                       </div>
                     </div>
-                    <!-- <div class="row d-flex justify-content-end">
-                      <a class="btn btn-danger" role="button" href="agregar_comision.php?convocatoria_idcon=<?php echo $idcon; ?>">Siguente</a>
-                    </div> -->
                   </form>  
-                  
-                  
                 </div>
               </div>
-
             </div>
 
           </div>

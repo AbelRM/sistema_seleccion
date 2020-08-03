@@ -210,6 +210,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
                 <h5 class="mb-0 text-gray-800">ELEGIR MI CATEGORIA DE PROFESIÓN:</h5>
             </div>
@@ -555,7 +556,7 @@
                 </button>
             </div>
             <form action="procesos/guardar_datos_prof.php" method="POST">
-            <div class="modal-body">
+            <div class="modal-body">  
                 <div class="form-row">
                     <input type="hidden" id="dni" name="dni" value="<?php echo $dni; ?>">
                     <input type="hidden" id="idpostulante" name="idpostulante" value="<?php echo $idpostulante; ?>">
@@ -590,6 +591,7 @@
         </div>
         </div>
     </div>
+
     <!--VER Profesion Modal-->
     <div class="modal fade bd-example-modal-lg" id="ver_datos_profesionales" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
@@ -688,6 +690,7 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
                     <button class="btn btn-primary" name="insertar" type="submit" >Guardar</button>
@@ -697,11 +700,84 @@
         </div>
     </div>
 
-    <!-- Estudios superiores Modal-->
+    <!-- Ver superiores Modal-->
+
+<!--GUARDAR Estudios Postgrado Modal-->
+<div class="modal fade bd-example-modal-xl" id="estudios_postgrado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Estudios Postgrado</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <form action="procesos/guardar_postgrado.php" method="POST">
+                <div class="modal-body">
+                    <div class="table-responsive">
+                        <label>Estudios Postgrado (Maestrias - Doctorados)</label>
+                        <input type="hidden" id="dni" name="dni" value="<?php echo $dni; ?>">
+                        <input type="hidden" id="idpostulante" name="idpostulante" value="<?php echo $idpostulante; ?>">
+                        <table class="table table-bordered" id="tabla-8">
+                            <thead>
+                            <tr class="bg-danger" style="text-align:center; font-size:0.813em;">
+                                <th  scope="col">Centro Estudios</th>
+                                <th  scope="col">Especialidad</th>
+                                <th  scope="col">Tipo Estudios</th>
+                                <th  scope="col">Fecha Inicio</th>
+                                <th  scope="col">Fecha Termino</th>
+                                <th  scope="col">Nivel Alcanzado</th>
+                                <th  scope="col">Acción</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="fila-fija-8">
+                                    <td><input type="text" name="centro_estu[]" class="form-control name_list" required/></td>
+                                    <td><input type="text" name="especialidad[]"  class="form-control name_list" required/></td>
+                                    <td>
+                                        <select name="tipo_estu[]" class="form-control" id="tipo_estu[]" required>
+                                            <option value="" disabled selected>Elegir</option>
+                                            <option value="MAESTRIA">Maestria </option>
+                                            <option value="DOCTORADO">Doctorado</option>
+                                        </select>
+                                    </td>
+                                    <td><input type="date" name="fech_ini[]" class="form-control name_list" required/></td>
+                                    <td><input type="date" name="fech_fin[]" class="form-control name_list" required/></td>
+                                    <td>
+                                        <select name="nivel[]" class="form-control" id="nivel[]" required>
+                                            <option value="" disabled selected>Elegir</option>
+                                            <option value="MAGISTER">Magister</option>
+                                            <option value="DOCTORADO">Doctorado</option>
+                                            <option value="EGRESADO">Egresado</option>
+                                            <option value="ESTUDIANTE">Estudiante</option>
+                                        </select>
+                                    </td>
+                                    <td class="eliminar"><button type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button></td>
+                                </tr>
+                            </tdody>
+                        </table>
+                    </div>
+                    <div class="row d-flex justify-content-center">
+                        <div class="form-inline p-2">
+                            <button id="adicional-8" name="adicional" type="button" class="btn btn-warning"> AGREGAR FILA (+) </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                    <button class="btn btn-primary" name="insertar" type="submit" >Guardar</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- VER Estudios Postgrado Modal-->
     <div class="modal fade bd-example-modal-xl" id="ver_estudios_postgrado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
+
                 <h5 class="modal-title" id="exampleModalLabel">Estudios Postgrado</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
@@ -750,14 +826,16 @@
             </div>
             <div class="modal-footer">
             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-            <a class="btn btn-primary" type="submit" name="insertar">Guardar</a>
+            <button class="btn btn-primary" name="insertar" type="submit" >Guardar</button>
             </div>
             </form>
         </div>
         </div>
     </div>
 
-    <!-- Cursos y diplomados Modal-->
+
+
+    <!-- GUARDAR Cursos y diplomados Modal-->
     <div class="modal fade bd-example-modal-xl" id="cursos_diplomados" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
@@ -767,10 +845,12 @@
                 <span aria-hidden="true">×</span>
             </button>
             </div>
-            <form>
+            <form action="procesos/guardar_diplomados.php" method="POST">
             <div class="modal-body">
             <div class="table-responsive">
                 <label>Diplomados - Cursos - Seminarios</label> 
+                <input type="hidden" id="dni" name="dni" value="<?php echo $dni; ?>">
+                <input type="hidden" id="idpostulante" name="idpostulante" value="<?php echo $idpostulante; ?>">
                 <table class="table table-bordered" id="tabla-9">
                     <thead>
                     <tr class="bg-danger" style="text-align:center; font-size:0.813em;">
@@ -787,7 +867,7 @@
                     <tbody>
                         <tr class="fila-fija-9">
                             <td><input type="text" name="centro_estu[]" class="form-control name_list" /></td>
-                            <td><input type="text" name="especialidad[]"  class="form-control name_list" /></td>
+                            <td><input type="text" name="materia[]"  class="form-control name_list" /></td>
                             <td><input type="text" name="horas[]" class="form-control name_list" /></td>
                             <td><input type="date" name="fech_ini[]" class="form-control name_list"/></td>
                             <td><input type="date" name="fech_fin[]" class="form-control name_list"/></td>
@@ -820,9 +900,9 @@
             </div>
             <div class="modal-footer">
             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-            <a class="btn btn-primary" type="submit" href="procesos/guardar_profesion.php">Guardar</a>
+            <button class="btn btn-primary" name="insertar" type="submit" >Guardar</button>
             </div>
-            </form>
+        </form>
         </div>
         </div>
     </div>
@@ -832,15 +912,17 @@
         <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Idiomas / Computación</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Idiomas / Computación</h5>              
             <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">×</span>
             </button>
             </div>
-            <form>
+             <form action="procesos/guardar_idiomas.php" method="POST">
             <div class="modal-body">
                 <div class="form-group row">
                     <div class="table-responsive">
+                    <input type="hidden" id="dni" name="dni" value="<?php echo $dni; ?>">
+                    <input type="hidden" id="idpostulante" name="idpostulante" value="<?php echo $idpostulante; ?>">
                         <table class="table table-bordered" id="tabla-10">
                             <thead>
                                 <tr class="bg-danger" style="text-align:center; font-size:0.813em;">
@@ -851,7 +933,7 @@
                             </thead>
                             <tbody>
                                 <tr class="fila-fija-10">
-                                    <td><input type="text" name="idioma_compu[]" placeholder="Inglés, Portugues, Computación..." class="form-control name_list" /></td>
+                                    <td><input type="text" name="idioma_comp[]" placeholder="Inglés, Portugues, Computación..." class="form-control name_list" /></td>
                                     <td>
                                         <select name="nivel[]" class="form-control">
                                             <option value="" disabled selected>Elegir</option>
@@ -874,12 +956,12 @@
             </div>
             <div class="modal-footer">
             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-            <a class="btn btn-primary" type="submit" >Guardar</a>
+            <button class="btn btn-primary" name="insertar" type="submit" >Guardar</button>
             </div>
             </form>
         </div>
-        </div>
     </div>
+</div>
 
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>

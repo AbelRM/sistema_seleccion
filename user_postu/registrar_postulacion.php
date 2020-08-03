@@ -132,17 +132,35 @@
                 </div>
                 <div class="col-md-3 col-sm-12">
                   <label for="disabled-input">Remuneración del cargo:</label>         
-                  <input type="text" class="form-control" name="idcargoo" id="idcargoo" value="<?php echo $fila4['remuneracion']?>" disabled >  
+                  <input type="text" class="form-control" name="idcargoo" id="idcargoo" value="<?php echo $fila4['remuneracion']?>" disabled>  
                 </div>
               </div>
               <hr class="sidebar-divider d-none d-md-block">
               <div class="form-group row">
-                <div class="col-md-5 col-sm-12">
+                <div class="col-md-6 col-sm-12">
                   <img src="img/boleta.jpg" style="width:100%; height:auto;" alt="Boleta de ejemplo para el llenado del código">
                 </div>
                 <div class="col-md-2 col-sm-6">
                   <label for="disabled-input">Boleta de banco:</label>           
-                  <input type="text" class="form-control" name="boleta" id="boleta" placeholder="Ejm: 003266">
+                  <input type="text" class="form-control" name="boleta" id="boleta" placeholder="Ejm: 003266" required>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                  <label for="disabled-input">Tipo de cargo:</label>           
+                  <select class="form-control" id="tipo_cargo" name="tipo_cargo" required>
+                    <option select>Elegir...</option>
+                    <option>PROFESIONALES DE LA SALUD</option>
+                    <option>OTROS PROFESIONALES</option>
+                    <option>ASISTENTE ADMINISTRATIVO</option>
+                    <option>TÉCNICO EN ENFERMERIA</option>
+                    <option>TÉCNICO ADMINISTRATIVO</option>
+                    <option>TÉCNICO EN COMUNICACIONES</option>
+                    <option>SECRETARIA</option>
+                    <option>TÉCNICO EN INFORMÁTICA</option>
+                    <option>CHOFER</option>
+                    <option>VIGILANTE</option>
+                    <option>TRABAJADOR DE LIMPIEZA</option>
+                    <option>TRABAJADOR DE SERVICIOS</option>
+                  </select>
                 </div>
               </div>  
               <div class="row d-flex justify-content-center">

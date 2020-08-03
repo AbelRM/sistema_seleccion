@@ -79,7 +79,6 @@
                       <th>Recibo</th>
                       <th>Fecha Inscripcion</th>
                       <th>Cargo</th>
-                      
                     </tr>
                   </thead>
                   <?php

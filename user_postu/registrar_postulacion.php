@@ -56,9 +56,10 @@
 
         $idcargo=$_GET['idcargo'];
 
-        $sql5="SELECT * FROM total_personal_req where convocatoria_idcon=$idconn";
+        $sql5="SELECT * FROM total_personal_req where convocatoria_idcon=$idcon";
         $datos4=mysqli_query($con,$sql5) or die(mysqli_error()); ;
         $fila4= mysqli_fetch_array($datos4);
+        $idpersonal=$fila4['idpersonal'];
 
         include 'menu.php';
     ?>
@@ -68,44 +69,9 @@
       <!-- Main Content -->
       <div id="content">
         <!-- Topbar -->
-        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-          <!-- Topbar Navbar -->
-          <ul class="navbar-nav ml-auto">
-
-            <div class="topbar-divider d-none d-sm-block"></div>
-
-            <!-- Nav Item - User Information -->
-            <li class="nav-item dropdown no-arrow">
-                
-              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $fila['nombres']." ".$fila['ape_pat']; ?></span>
-                <img class="img-profile rounded-circle" src="img/user.png">
-              </a>
-              <!-- Dropdown - User Information -->
-              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#">
-                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Mi perfil
-                </a>
-                <a class="dropdown-item" href="#">
-                  <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Opciones
-                </a>
-                <a class="dropdown-item" href="#">
-                  <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Actividad
-                </a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Cerrar sesión
-                </a>
-              </div>
-            </li>
-
-          </ul>
-
-        </nav>
+      <?php
+       include_once 'nav.php';
+      ?>
         <!-- End of Topbar -->
 
         <!-- Begin Page Content -->
@@ -125,12 +91,14 @@
               <div class="form-group row d-flex justify-content-center">
                 <label class="col-lg-2 col-md-4 col-form-label text-success">Fecha de inscripción:</label>
                 <div class="col-lg-2 col-md-4">
-                  <input type="text" class="form-control" id="dateid" name="dateid" value="<?php echo date("d/m/Y")?>" disabled>
+                  <input type="text" class="form-control" id="dateid" name="dateid" value="<?php echo date("y/m/d")?>" disabled>
                 </div>
               </div>
-              <div class="form-group row">          
-                <input type="hidden" class="form-control" name="idcon" id="idcon" value="<?php echo $idcon;?>" >    
-                <input type="hidden" class="form-control" name="idcargo" id="idcargo" value="<?php echo $idcargo;?>" >           
+              <div class="form-group row">   
+                <input type="hidden" class="form-control" name="dni" id="dni" value="<?php echo $dni;?>" >        
+                <input type="hidden" class="form-control" name="idcon" id="idcon" value="<?php echo $idcon;?>" > 
+                <input type="hidden" class="form-control" name="idpostulante" id="idpostulante" value="<?php echo $idpos;?>" > 
+                <input type="hidden" class="form-control" name="idpersonal" id="idpersonal" value="<?php echo $idpersonal;?>" >            
                 <div class="col-md-2 col-sm-6">
                     <label for="disabled-input">Tipo de convocatoria</label>           
                     <input type="text" class="form-control" name="idconn" id="idconn" value="<?php echo $fila3['tipo_con']?>" disabled>
@@ -155,20 +123,30 @@
               <hr class="sidebar-divider d-none d-md-block">
               <div class="form-group row">  
                 <div class="col-md-3 col-sm-12">
-                  <label for="disabled-input">Cargo</label>         
+                  <label for="disabled-input">Cargo a postular:</label>         
                   <input type="text" class="form-control" name="idcargoo" id="idcargoo" value="<?php echo $fila4['cargo']?>" disabled >  
+                </div>
+                <div class="col-md-3 col-sm-12">
+                  <label for="disabled-input">Cantidad solicitada:</label>         
+                  <input type="text" class="form-control" name="idcargoo" id="idcargoo" value="<?php echo $fila4['cantidad']?>" disabled >  
+                </div>
+                <div class="col-md-3 col-sm-12">
+                  <label for="disabled-input">Remuneración del cargo:</label>         
+                  <input type="text" class="form-control" name="idcargoo" id="idcargoo" value="<?php echo $fila4['remuneracion']?>" disabled >  
                 </div>
               </div>
               <hr class="sidebar-divider d-none d-md-block">
               <div class="form-group row">
-                <div class="col-md-2 col-sm-6">
-                      <label for="disabled-input">Fecha término</label>           
-                      <input type="text" class="form-control" name="idconn" id="idconn" value="<?php echo $fila3['fech_term']?>" disabled>
-                  </div>
-
-                <div class="form-actions form-group">
-                  <button type="submit" class="btn btn-info"><i class="fas fa-briefcase"></i> POSTULAR!</button>        
+                <div class="col-md-5 col-sm-12">
+                  <img src="img/boleta.jpg" style="width:100%; height:auto;" alt="Boleta de ejemplo para el llenado del código">
                 </div>
+                <div class="col-md-2 col-sm-6">
+                  <label for="disabled-input">Boleta de banco:</label>           
+                  <input type="text" class="form-control" name="boleta" id="boleta" placeholder="Ejm: 003266">
+                </div>
+              </div>  
+              <div class="row d-flex justify-content-center">
+                  <button type="submit" class="btn btn-info"><i class="fas fa-briefcase"></i> POSTULAR!</button> 
               </div>
               </form>
             </div>
@@ -208,7 +186,7 @@
         <div class="modal-body">Seleccione "Cerrar sesión" a continuación si está listo para finalizar su sesión actual.</div>
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-          <a class="btn btn-primary" href="../index.php">Cerrar sesión</a>
+          <a class="btn btn-primary" href="procesos/cerrar_sesion.php">Cerrar sesión</a>
         </div>
       </div>
     </div>

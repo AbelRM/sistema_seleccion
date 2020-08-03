@@ -4,7 +4,6 @@
 <head>
 
   <meta charset="utf-8">
-  
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
@@ -35,12 +34,15 @@
         
         $dni = $_GET['dni'];
         //$descrip=base64_decode($dni);
-        $sql2="SELECT * FROM usuarios where dni=$dni";
-        $datos=mysqli_query($con,$sql2) or die(mysqli_error()); ;
+        $sql="SELECT * FROM usuarios where dni=$dni";
+        $datos=mysqli_query($con,$sql) or die(mysqli_error()); ;
         $fila= mysqli_fetch_array($datos);
+
+        $sql2="SELECT * FROM postulante where dni=$dni";
+        $datos2=mysqli_query($con,$sql2) or die(mysqli_error()); ;
+        $fila2= mysqli_fetch_array($datos2);
+        $idpostulante=$fila2['idpostulante'];
         include 'menu.php';
-        
-        //include 'modal_ver_convocatoria.php';
     ?>
 
     <!-- Content Wrapper -->
@@ -57,58 +59,47 @@
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <!-- <h1 class="h3 mb-2 text-gray-800">Tables</h1>
-          <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p> -->
-
+        
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">CONVOCATORIAS</h6>
+              <h6 class="m-0 font-weight-bold text-primary">MIS CONVOCATORIAS</h6>
             </div>
             <div class="card-body">
               <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
-                      <th>N°</th>
-                      <th>Tipo concurso</th>
-                      <th>N° convocatoria</th>
-                      <th>Direccion</th>
-                      <th>Estado</th>
-                      <th>Acciones</th>
+                      <th>N° CONVOCATORIA</th>
+                      <th>CARGO SELECCIONADO</th>
+                      <th>BOLETA</th>
+                      <th>FECHA INSCRIPCIÓN</th>
+                      <th>ACCIONES</th>
                       
                     </tr>
                   </thead>
-                  <?php
+                  <tbody>
+                     <?php
                       $dni = $_GET['dni'];
                       
-                      $sql = "select con.idcon, con.tipo_con, con.num_con, con.anio_con, con.estado, dir.direccion_ejec
-                                        FROM convocatoria con
-                                        INNER JOIN direccion_ejec dir ON con.direccion_ejec_iddireccion=dir.iddireccion";
-
-                      $query=mysqli_query($con, $sql);
+                      $sql3 = "SELECT * FROM detalle_convocatoria WHERE postulante_idpostulante=$idpostulante";
+                      $query=mysqli_query($con, $sql3);
                       while ($row= MySQLI_fetch_array($query))
                       {
-                      ?>
+                    ?>
                       <tr>
-                        <td><?php echo $row['idcon'] ?></td>
-                        <td style="font-size: 16px;"><?php echo $row['tipo_con'] ?></td>
-                        <td style="font-size: 14px;"><?php echo $row['num_con']."-".$row['anio_con']?></td>
-                        <td style="font-size: 14px;"><?php echo $row['direccion_ejec']?></td>
-                        <td style="font-size: 14px;"><?php echo $row['estado']?></td>
-                       <!-- <td style="font-size: 14px;"><?php echo $row['direccion_ejec']." - ".$row['equipo_ejec']; ?></td> -->
+                        <td style="font-size: 16px;"><?php echo $row['convocatoria_idcon'] ?></td>
+                        <td style="font-size: 14px;"><?php echo $row['personal_req_idpersonal']?></td>
+                        <td style="font-size: 14px;"><?php echo $row['boleta']?></td>
+                        <td style="font-size: 14px;"><?php echo $row['fecha_inscripcion']?></td>
                         <td>
-                          <a href="cargo.php?id=<?php echo $row['idcon']?>&dni=<?php echo $dni?>"><button type="button" class="btn btn-primary" id="editar" style="margin: 1px;"><i class="fa fa-pencil-alt"></i> Postular</button></a>
+                          <button type="button" class="btn btn-primary"><i class="fa fa-eye"></i> Ver</button>
                         </td>
-
                         
                       </tr>
-                      <?php
+                    <?php
                       }
-                      ?>
-                      <!-- <input type="hidden" id="dni" name="dni" value="<?php echo $dni; ?>"> -->
-                  <tbody>
-                    
+                    ?>
                   </tbody>
                 </table>
               </div>

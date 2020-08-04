@@ -93,7 +93,7 @@
                       <td style="font-size: 16px;"><?php echo $row['cargo'] ?></td>
                       <td style="font-size: 16px; text-align: center"><?php echo $row['remuneracion'] ?></td>
                       <td>
-                        <a href="registrar_postulacion.php?idcargo=<?php echo $row['idcargo']?>&dni=<?php echo $dni?>&idcon=<?php echo $idcon?>">
+                        <a href="registrar_postulacion.php?idcargo=<?php echo $row['cargo_idcargo']?>&dni=<?php echo $dni?>&idcon=<?php echo $idcon?>">
                         <button type="button" class="btn btn-primary" id="editar" style="margin: 1px;"><i class="fa fa-pencil-alt"></i> Elegir</button></a>
                       </td>
                     </tr>

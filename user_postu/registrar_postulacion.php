@@ -87,11 +87,11 @@
                 $idcargo=$_GET['idcargo'];
                 $idcon=$_GET['idcon'];
               ?>
-              <form action="procesos/guardar_postulante.php" method="POST"> 
+              <form action="procesos/guardar_postulacion.php" method="POST"> 
               <div class="form-group row d-flex justify-content-center">
                 <label class="col-lg-2 col-md-4 col-form-label text-success">Fecha de inscripción:</label>
                 <div class="col-lg-2 col-md-4">
-                  <input type="text" class="form-control" id="dateid" name="dateid" value="<?php echo date("y/m/d")?>" disabled>
+                  <input type="text" class="form-control" id="dateid" name="dateid" value="<?php echo date('Y-m-d')?>" disabled>
                 </div>
               </div>
               <div class="form-group row">   
@@ -145,7 +145,7 @@
                   <input type="text" class="form-control" name="boleta" id="boleta" placeholder="Ejm: 003266" required>
                 </div>
                 <div class="col-md-4 col-sm-6">
-                  <label for="disabled-input">Tipo de cargo:</label>           
+                  <label for="disabled-input">Tipo de cargo <span style="color:red;">(Este dato es de mucha importancia, elija bien según la información de su CAS!)</span>:</label>           
                   <select class="form-control" id="tipo_cargo" name="tipo_cargo" required>
                     <option select>Elegir...</option>
                     <option>PROFESIONALES DE LA SALUD</option>

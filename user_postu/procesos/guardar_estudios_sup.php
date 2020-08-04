@@ -53,5 +53,6 @@
 
         }
     }
+    
     header('Location: ../mis_cursos.php?dni='.$dni);
 ?>

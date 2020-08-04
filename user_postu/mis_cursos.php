@@ -541,7 +541,12 @@
         $row= mysqli_fetch_array($datos);
         $idpostulante=$row['idpostulante'];
 
-        $consulta2="SELECT * FROM datos_profesionales where postulante_idpostulante=$idpostulante";
+        $consulta1="SELECT * FROM detalle_convocatoria where postulante_idpostulante=$idpostulante";
+        $datos1=mysqli_query($con,$consulta1) or die(mysqli_error()); ;
+        $row1= mysqli_fetch_array($datos1);
+        $iddetalle_con=$row1['iddetalle_convocatoria'];
+
+        $consulta2="SELECT * FROM datos_profesionales where datos_profesionales_detalles_con=$iddetalle_con";
         $datos2=mysqli_query($con,$consulta2) or die(mysqli_error()); ;
         $row2= mysqli_fetch_array($datos2);
     ?>

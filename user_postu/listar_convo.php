@@ -82,7 +82,7 @@
                   <?php
                       $dni = $_GET['dni'];
                       
-                      $sql = "select con.idcon, con.tipo_con, con.num_con, con.anio_con, con.estado, dir.direccion_ejec
+                      $sql = "SELECT con.idcon, con.tipo_con, con.num_con, con.anio_con, con.estado, dir.direccion_ejec
                                         FROM convocatoria con
                                         INNER JOIN direccion_ejec dir ON con.direccion_ejec_iddireccion=dir.iddireccion";
 
@@ -98,7 +98,7 @@
                         <td style="font-size: 14px;"><?php echo $row['estado']?></td>
                        <!-- <td style="font-size: 14px;"><?php echo $row['direccion_ejec']." - ".$row['equipo_ejec']; ?></td> -->
                         <td>
-                          <a href="cargo.php?id=<?php echo $row['idcon']?>&dni=<?php echo $dni?>"><button type="button" class="btn btn-primary" id="editar" style="margin: 1px;"><i class="fa fa-pencil-alt"></i> Postular</button></a>
+                          <a href="cargo.php?idcon=<?php echo $row['idcon']?>&dni=<?php echo $dni?>"><button type="button" class="btn btn-primary" id="editar" style="margin: 1px;"><i class="fa fa-pencil-alt"></i> Postular</button></a>
                         </td>
 
                         

@@ -29,6 +29,8 @@
   <link href="css/sb-admin-2.css" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.js"></script>
+
 </head>
 
 <body id="page-top">
@@ -70,9 +72,9 @@
                     <div class="card border-primary mb-3" >
                         <div class="card-header">
                             <h4 id="heading">FICHA ÚNICA DE DATOS</h4>
-                        </div>
+                        </div> 
                         <div class="card-body">
-                            <form id="msform" method="post" action="procesos/actualizar_ficha.php">
+                            <form id="msform" method="post" action="procesos/guardar_ficha.php">
                                 <!-- progressbar -->
                                 <div class="row p-2">
                                     <div class="col-lg-12 col-md-12 col-sm-12">
@@ -103,21 +105,21 @@
                                             $distrito=$fila['distrito_iddistrito'];
                                             
                                         ?>
-                                        <div class="form-group row">
-                                            <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
-                                                <label>Nombres</label> 
+                                        <div class="form-group row" >
+                                            <div class="col-md-4 col-sm-6 mb-2 mb-sm-0 ">
+                                                <label class="font-weight-bolder" >Nombres</label> 
                                                 <input class="form-control form-control-user" type="text" value="<?php echo $fila['nombres']." ".$fila['ape_pat']." ".$fila['ape_mat']; ?>" disabled="true"/> 
                                             </div>
                                             <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">
-                                                <label>D.N.I.</label> 
+                                                <label class="font-weight-bolder" >D.N.I.</label> 
                                                 <input class="form-control form-control-user" value="<?php echo $fila['dni'] ?>" disabled/> 
                                             </div>
                                             <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
-                                                <label>Fecha de nacimiento</label> 
+                                                <label class="font-weight-bolder" >Fecha de nacimiento</label> 
                                                 <input class="form-control form-control-user" value="<?php echo $fila['fech_nac'] ?>" disabled/> 
                                             </div>
                                             <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
-                                                <label>Sexo</label> 
+                                                <label class="font-weight-bolder">Sexo</label> 
                                                 <select class="form-control" name="sexo" id="sexo">
                                                     <option selected><?php echo $fila['sexo'] ?></option>
                                                     <option value="MASCULINO">MASCULINO</option>
@@ -133,31 +135,31 @@
 
                                             ?>
                                             <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
-                                                <label for="name1">Departamento nacimiento</label>
+                                                <label class="font-weight-bolder" for="name1">Departamento nacimiento</label>
                                                 <input class="form-control form-control-user" type="text" value="<?php echo $row2['departamento']?>" disabled="true"/>
                                             </div>
 
                                             <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
-                                                <label for="name1">Provincia nacimiento</label>
+                                                <label class="font-weight-bolder" for="name1">Provincia nacimiento</label>
                                                 <input class="form-control form-control-user" type="text" value="<?php echo $row2['provincia']?>" disabled="true"/>                                 
                                             </div>
                                             <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
-                                                <label for="exampleInputEmail1">Distrito nacimiento</label>
+                                                <label class="font-weight-bolder"  for="exampleInputEmail1">Distrito nacimiento</label>
                                                 <input class="form-control form-control-user" type="text" value="<?php echo $row2['distrito']?>" disabled="true"/>
                                             </div>
 
                                             <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">
-                                                <label for="exampleInputEmail1">Celular</label>
+                                                <label class="font-weight-bolder" for="exampleInputEmail1">Celular</label>
                                                 <input class="form-control form-control-user" type="text" value="<?php echo $fila['celular']?>"/>
                                             </div>
 
                                             <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
-                                                <label for="exampleInputEmail1">Correo</label>
+                                                <label class="font-weight-bolder" for="exampleInputEmail1">Correo</label>
                                                 <input class="form-control form-control-user" type="text" value="<?php echo $fila['correo']?>"/>
                                             </div>
                                             
                                             <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">
-                                                <label>Estado civil</label> 
+                                                <label class="font-weight-bolder">Estado civil</label> 
                                                 <select class="form-control" name="civil" id="civil">
                                                     <option selected><?php echo $fila['estado_civil'] ?></option>
                                                     <option value="SOLTERO(A)">Soltero(a)</option>
@@ -169,23 +171,23 @@
                                             </div>
                                             
                                             <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">
-                                                <label>Cel. emergencia</label> 
+                                                <label class="font-weight-bolder">Cel. emergencia</label> 
                                                 <input class="form-control form-control-user" type="text" name="num_emer" id="num_emer" value="<?php echo $fila['celular_emer'] ?>" /> 
                                             </div>
                                             <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
-                                                <label>Parentesco</label> 
+                                                <label class="font-weight-bolder">Parentesco</label> 
                                                 <input class="form-control form-control-user" placeholder="Nombre familiar" type="text" name="nomb_parent" id="nomb_parent" value="<?php echo $fila['parentesco_emer'] ?>"/> 
                                             </div>
                                             <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
-                                                <label>R.U.C.</label> 
+                                                <label class="font-weight-bolder">R.U.C.</label> 
                                                 <input class="form-control form-control-user" type="text" name="ruc" id="ruc" value="<?php echo $fila['ruc'] ?>"/> 
                                             </div>
                                             <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
-                                                <label>N° cuenta bancaria</label> 
+                                                <label class="font-weight-bolder">N° cuenta bancaria</label> 
                                                 <input class="form-control form-control-user" placeholder="Banco de la Nación" type="text" name="cuenta_banc" id="cuenta_banc" value="<?php echo $fila['num_cuenta'] ?>"/> 
                                             </div>
                                             <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
-                                                <label>Suspensión de 4ta.</label> 
+                                                <label class="font-weight-bolder">Suspensión de 4ta.</label> 
                                                 <select class="form-control" name="cuarta" id="cuarta">
                                                     <option select><?php echo $fila['suspension_cuarta'] ?></option>
                                                     <option value="NO" selected>NO</option>
@@ -193,7 +195,7 @@
                                                 </select> 
                                             </div>
                                             <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
-                                                <label>Tipo de pensión</label> 
+                                                <label class="font-weight-bolder">Tipo de pensión</label> 
                                                 <select class="form-control" name="pension" id="pension">
                                                     <option select><?php echo $fila['seguro'] ?></option>
                                                     <option value="NINGUNA" selected>Ninguna</option>
@@ -202,7 +204,7 @@
                                                 </select> 
                                             </div>
                                             <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">
-                                                <label>Discapacidad</label> 
+                                                <label class="font-weight-bolder">Discapacidad</label> 
                                                 <select class="form-control" name="discapacidad" id="discapacidad">
                                                     <option select><?php echo $fila['discapacidad'] ?></option>
                                                     <option value="NO" selected>NO</option>
@@ -211,7 +213,7 @@
                                                 </select>  
                                             </div>
                                             <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
-                                                <label>Tipo de discapacidad</label> 
+                                                <label class="font-weight-bolder">Tipo de discapacidad</label> 
                                                 <select class="form-control" name="tip_discapacidad" id="tip_discapacidad">
                                                     <option select><?php echo $fila['tipo_discap'] ?></option>
                                                     <option value="NINGUNA" select>Ninguna</option>
@@ -222,7 +224,7 @@
                                                 </select>  
                                             </div>
                                             <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">
-                                                <label>Grupo sanguineo</label> 
+                                                <label class="font-weight-bolder">Grupo sanguineo</label> 
                                                 <select class="form-control" name="tip_sangre" id="tip_sangre">
                                                     <option selected><?php echo $fila['tipo_sangre'] ?></option>
                                                     <option value="AB+">AB+</option>
@@ -236,7 +238,7 @@
                                                 </select>  
                                             </div>
                                             <div class="col-md-5 col-sm-6 mb-2 mb-sm-0">
-                                                <label>Enfermedades/Alergias</label> 
+                                                <label class="font-weight-bolder">Enfermedades/Alergias</label> 
                                                 <input class="form-control form-control-user" type="text" placeholder="Separado por comas" name="alergias" id="alergias" value="<?php echo $fila['alergias'] ?>"/> 
                                             </div>
                                         </div> 
@@ -266,7 +268,7 @@
                                             <input type="hidden" id="dni_post" name="dni_post" value="<?php echo $fila['dni']; ?>"/>
 
                                             <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
-                                                <label for="exampleInputEmail1">Tipo de Via</label>
+                                                <label class="font-weight-bolder" for="exampleInputEmail1">Tipo de Via</label>
                                                 <select class="form-control form-control-user" name="tipo_via" id="tipo_via">
                                                 <option selected><?php echo $fila2['tip_via'] ?></option>
                                                 <option value="AVENIDA">Avenida</option>
@@ -284,16 +286,16 @@
                                                 </select>
                                             </div>
                                             <div class="col-md-7 col-sm-6 mb-2 mb-sm-0">
-                                                <label>Nombre de via</label> 
+                                                <label class="font-weight-bolder">Nombre de via</label> 
                                                 <input class="form-control form-control-user" type="text" name="nomb_via" id="nomb_via" value="<?php echo $fila2['nomb_via']?>"/> 
                                             </div>
                                             
                                             <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">
-                                                <label>Número</label> 
+                                                <label class="font-weight-bolder">Número</label> 
                                                 <input class="form-control form-control-user" type="text" name="num_via" id="num_via" value="<?php echo $fila2['num_via']?>"/> 
                                             </div>
                                             <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
-                                                <label for="exampleInputEmail1">Tipo de Zona</label>
+                                                <label class="font-weight-bolder" for="exampleInputEmail1">Tipo de Zona</label>
                                                 <select class="form-control form-control-user" name="tipo_zona" id="tipo_zona">
                                                 <option selected><?php echo $fila2['tip_zona'] ?></option>
                                                 <option value="AVENIDA">Urbanizacion</option>
@@ -312,29 +314,30 @@
                                             </div>
 
                                             <div class="col-md-7 col-sm-6 mb-2 mb-sm-0">
-                                                <label>Nombre de la zona</label> 
-                                                <input class="form-control form-control-user" type="text" name="nomb_zona" id="nomb_zona" value="<?php echo $fila2['num_zona']?>"/> 
+                                                <label class="font-weight-bolder">Nombre de la zona</label> 
+                                                <input class="form-control form-control-user" type="text" name="nomb_zona" id="nomb_zona" value="<?php echo $fila2['nomb_zona']?>"/> 
                                             </div>
 
                                             <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">
-                                                <label>Número</label> 
+                                                <label class="font-weight-bolder">Número</label> 
                                                 <input class="form-control form-control-user" type="text" name="num_zona" id="num_zona" value="<?php echo $fila2['num_zona']?>"/> 
                                             </div>
-                                            <div class="col-md-2 col-sm-2 mb-2 mb-sm-0">
-                                                <label>Número</label> 
+                                            <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">
+                                                <label class="font-weight-bolder">Número</label> 
                                                 <input class="form-control form-control-user" type="text" name="numero" id="numero" value="<?php echo $fila2['numero']?>"/> 
                                             </div>
-                                            <div class="col-md-2 col-sm-2 mb-2 mb-sm-0">
-                                                <label>Mz.</label> 
+
+                                            <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">
+                                                <label class="font-weight-bolder">Mz.</label> 
                                                 <input class="form-control form-control-user" type="text" name="manzana" id="manzana" value="<?php echo $fila2['manzana']?>"/> 
                                             </div>
-                                            <div class="col-md-2 col-sm-2 mb-2 mb-sm-0">
-                                                <label>Lt.</label> 
+                                            <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">
+                                                <label class="font-weight-bolder">Lt.</label> 
                                                 <input class="form-control form-control-user" type="text" name="lote" id="lote" value="<?php echo $fila2['lote']?>"/> 
                                             </div>
 
                                             <div class="col-md-6 col-sm-6 mb-2 mb-sm-0">
-                                                <label>Referencia</label> 
+                                                <label class="font-weight-bolder">Referencia</label> 
                                                 <input class="form-control form-control-user" type="text" name="referencia" id="referencia" value="<?php echo $fila2['referencia']?>"/> 
                                             </div>
                                         </div>   
@@ -362,7 +365,7 @@
                                         ?> 
                                         <div class="form-group">
                                             <div class="table-responsive">
-                                                <label>Los familiares agregados son aquellos que viven actualmente con usted, caso contrario colocar uno de referencia.</label>
+                                                <label >Los familiares agregados son aquellos que viven actualmente con usted, caso contrario colocar uno de referencia.</label>
                                                 <table class="table table-bordered" id="tabla">
                                                     <thead>
                                                     <tr class="bg-danger" style="text-align:center; font-size:0.813em;">
@@ -375,9 +378,11 @@
                                                         <th scope="col">Acción</th>
                                                     </tr>
                                                     </thead>
+
                                                     <tbody>
                                                     <?php
                                                         
+
                                                         include_once('conexion.php');
                                                         $tabla="SELECT * FROM familia_post where postulante_idpostulante=$idpostulante";
                                                         $result=mysqli_query($con,$tabla);
@@ -416,6 +421,38 @@
                                                         </tr> -->
                                                     </tdody>
                                                 </table>
+
+                                            <table class="table">
+                                                <tr class="info">
+                                                    <th>Nombres</th>
+                                                    <th>Apellidos</th>
+                                                    <th>Fecha de Nacimiento</th>
+                                                    <th>DNI</th>
+                                                    <th>Parentesco</th>
+                                                    <th>Entidad que Labora</th>
+                                                </tr>
+
+
+                                                <?php
+
+                                                    while($registroAlumno  = $result->fetch_array( MYSQLI_BOTH)) 
+                                                    {
+
+
+                                                    echo '<tr>
+                                                            <td>'.$registroAlumno['nombre'].'</td>
+                                                            <td>'.$registroAlumno['apellidos'].'</td>
+                                                            <td>'.$registroAlumno['fech_nac'].'</td>
+                                                            <td>'.$registroAlumno['dni'].'</td>
+                                                            <td>'.$registroAlumno['parentesco'].'</td>
+                                                            <td>'.$registroAlumno['labora'].'</td>
+                                                        </tr>';
+                                                    }
+
+                                                    ?>
+
+
+                                            </table>
                                             </div>
                                         </div>
                                         <!-- <div class="row d-flex justify-content-center">

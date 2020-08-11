@@ -4,8 +4,6 @@
    
     $dni_post=$_POST['dni_post'];
     // DATOS PERSONALES
-    $fech_nac = $_POST['fech_nac'];
-    $civil = $_POST['civil'];
     $sexo = $_POST['sexo'];
     $num_emer= $_POST['num_emer'];
     $nomb_parent = $_POST['nomb_parent'];

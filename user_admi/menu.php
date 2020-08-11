@@ -29,8 +29,8 @@
       <div id="collapseConvo" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
           <h6 class="collapse-header">Acciones:</h6>
-          <a class="collapse-item" href="listado_convocatorias.php">Listado de convocatorias</a>
-          <a class="collapse-item" href="nueva_convocatoria.php">Nueva convocatoria</a>
+          <a class="collapse-item" href="listado_convocatorias.php?dni=<?php echo $dni ?>">Listado de convocatorias</a>
+          <a class="collapse-item" href="nueva_convocatoria.php?dni=<?php echo $dni ?>">Nueva convocatoria</a>
           
         </div>
       </div>

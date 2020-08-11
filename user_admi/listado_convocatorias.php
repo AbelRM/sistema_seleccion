@@ -1,3 +1,10 @@
+<?php
+  include 'conexion.php';
+  session_start();
+  if(empty($_SESSION['active'])){
+    header("Location: ../index.php");
+  }
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -30,8 +37,13 @@
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-    <?php 
-      include 'menu.html';
+    <?php     
+      $dni = $_GET['dni'];
+      include_once('conexion.php');
+      $sql="SELECT * FROM usuarios where dni=$dni";
+      $datos=mysqli_query($con,$sql) or die(mysqli_error()); ;
+      $fila= mysqli_fetch_array($datos);
+      include 'menu.php';
     ?>
 
     <!-- Content Wrapper -->
@@ -88,8 +100,8 @@
                         <td style="font-size: 14px;"><?php echo $row['num_con'].'-'.$row['anio_con'] ?></td>
                         <td style="font-size: 14px;"><?php echo $row['direccion_ejec'] ?></td>
                         <td>
-                          <a href="verconvocatoria.php?id=<?php echo $row['idcon'] ?>"><button type="button" class="btn btn-warning" id="editar" style="margin: 1px;"><i class="fa fa-eye"></i></button></a>
-                          <a href="modificarconvocatoria.php?id=<?php echo $row['idcon'] ?>"><button type="button" class="btn btn-success" id="editar" style="margin: 1px;"><i class="fa fa-pen"></i></button></a>
+                          <a href="verconvocatoria.php?id=<?php echo $row['idcon']?>&dni=<?php echo $dni?>"><button type="button" class="btn btn-warning" id="editar" style="margin: 1px;"><i class="fa fa-eye"></i></button></a>
+                          <a href="modificarconvocatoria.php?idcon=<?php echo $row['idcon']?>&dni=<?php echo $dni?>"><button type="button" class="btn btn-success" id="editar" style="margin: 1px;"><i class="fa fa-pen"></i></button></a>
                     
                         </td>
                       </tr>
@@ -127,20 +139,20 @@
   </a>
 
   <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="cerrarsesion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+          <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">¿Desea cerrar sesión?</h5>
           <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
+              <span aria-hidden="true">×</span>
           </button>
-        </div>
-        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="login.html">Logout</a>
-        </div>
+          </div>
+          <div class="modal-body">Seleccione "Cerrar sesión" a continuación si está listo para finalizar su sesión actual.</div>
+          <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+          <a class="btn btn-primary" href="procesos/cerrar_sesion.php">Cerrar sesión</a>
+          </div>
       </div>
     </div>
   </div>

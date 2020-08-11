@@ -1,6 +1,7 @@
 <?php
     include_once('../conexion.php');
     $idcon = $_POST['idcon'];
+    $dni = $_POST['dni'];
     //////////////////////// PRESIONAR EL BOTÓN //////////////////////////         
     if(isset($_POST['insertar_2']))
     {
@@ -49,6 +50,6 @@
         }
     }
     
-    header('Location: ../resumen_convocatoria.php?convocatoria_idcon='.$idcon);
+    header('Location: ../resumen_convocatoria.php?convocatoria_idcon='.$idcon.'&dni='.$dni);
 ?>
                   

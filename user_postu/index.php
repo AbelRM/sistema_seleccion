@@ -5,14 +5,6 @@
     header("Location: ../index.php");
   }
 
-  // if(!isset($_SESSION['rol'])){
-  //   header('location: ../index.php');
-  // }else{
-  //   if($_SESSION['rol'] != 1){
-  //     header('location: ../index.php');
-  //   }
-  // }
-
 ?>
 
 <!DOCTYPE html>

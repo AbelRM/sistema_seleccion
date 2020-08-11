@@ -1,3 +1,10 @@
+<?php
+  include 'conexion.php';
+  session_start();
+  if(empty($_SESSION['active'])){
+    header("Location: ../index.php");
+  }
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -31,10 +38,14 @@
 
   <!-- Page Wrapper -->
   <div id="wrapper">
-
-    <?php 
-      include 'menu.html';
-      ?>
+    <?php     
+      $dni = $_GET['dni'];
+      include_once('conexion.php');
+      $sql="SELECT * FROM usuarios where dni=$dni";
+      $datos=mysqli_query($con,$sql) or die(mysqli_error()); ;
+      $fila= mysqli_fetch_array($datos);
+      include 'menu.php';
+    ?>
 
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
@@ -201,9 +212,9 @@
                         </div>
                         <div class="col-md-12 col-sm-12">
                           <div class="form-group">
-                                        <h6 class="m-0 font-weight-bold text-danger">Personal Requerido</h6>
-                                        <hr class="sidebar-divider">
-                                        <div class="card-body">
+                            <h6 class="m-0 font-weight-bold text-danger">Personal Requerido</h6>
+                            <hr class="sidebar-divider">
+                            <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
@@ -215,35 +226,29 @@
                                     <th>Cargo</th>
                                     </tr>
                                 </thead>
-                                
-
-                                <?php
-
-                                    $sql = " SELECT * FROM Personal_req INNER JOIN cargo ON cargo.idcargo = Personal_req.cargo_idcargo";
-          
-                                    
-
-                                    $query=mysqli_query($con, $sql);
-
-                                    while ($row= MySQLI_fetch_array($query)){
-                                        $cantidad=$row['cantidad'];
-                                        $remuneracion=$row['remuneracion'];
-                                        $fuente=$row['fuente_finac'];
-                                        $meta=$row['meta'];
-                                        $cargo=$row['cargo'];
-
-                                 ?>
-
-                                        <tr>
-                                        <td><?php echo $cantidad;?></td>
-                                        <td><?php echo $remuneracion;?></td>
-                                        <td><?php echo $fuente;?></td>
-                                        <td><?php echo $meta;?></td>
-                                        <td><?php echo $cargo;?></td>
-                                        <?php
-                                        }
-                                        ?>	
                                 <tbody>
+                                <?php
+                                  $sql = " SELECT * FROM Personal_req INNER JOIN cargo ON cargo.idcargo = Personal_req.cargo_idcargo";
+
+                                  $query=mysqli_query($con, $sql);
+
+                                  while ($row= MySQLI_fetch_array($query)){
+                                      $cantidad=$row['cantidad'];
+                                      $remuneracion=$row['remuneracion'];
+                                      $fuente=$row['fuente_finac'];
+                                      $meta=$row['meta'];
+                                      $cargo=$row['cargo'];
+
+                                  ?>
+                                    <tr>
+                                    <td><?php echo $cantidad;?></td>
+                                    <td><?php echo $remuneracion;?></td>
+                                    <td><?php echo $fuente;?></td>
+                                    <td><?php echo $meta;?></td>
+                                    <td><?php echo $cargo;?></td>
+                                    <?php
+                                    }
+                                    ?>	
                                 </tbody>
                                 </table>
                             </div>
@@ -284,20 +289,20 @@
   </a>
 
   <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="cerrarsesion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+          <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">¿Desea cerrar sesión?</h5>
           <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
+              <span aria-hidden="true">×</span>
           </button>
-        </div>
-        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="login.html">Logout</a>
-        </div>
+          </div>
+          <div class="modal-body">Seleccione "Cerrar sesión" a continuación si está listo para finalizar su sesión actual.</div>
+          <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+          <a class="btn btn-primary" href="procesos/cerrar_sesion.php">Cerrar sesión</a>
+          </div>
       </div>
     </div>
   </div>

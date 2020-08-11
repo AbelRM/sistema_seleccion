@@ -3,6 +3,7 @@
 include '../conexion.php';
 
 $id_con=$_POST['id'];
+$dni=$_POST['dni'];
 
 $numerocon=strtoupper($_POST['num_con']);
 $tipocon=strtoupper($_POST['tipo_con']);
@@ -32,6 +33,6 @@ $result=mysqli_query($con,$sql);
 
 
 
-header('Location: ../listado_convocatorias.php');
+header('Location: ../listado_convocatorias.php?dni='.$dni);
 mysqli_close($con);  
 ?>

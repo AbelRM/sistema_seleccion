@@ -1,3 +1,10 @@
+<?php
+  include 'conexion.php';
+  session_start();
+  if(empty($_SESSION['active'])){
+    header("Location: ../index.php");
+  }
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -32,9 +39,14 @@
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-    <?php 
-      include 'menu.html';
-      ?>
+    <?php     
+      $dni = $_GET['dni'];
+      include_once('conexion.php');
+      $sql="SELECT * FROM usuarios where dni=$dni";
+      $datos=mysqli_query($con,$sql) or die(mysqli_error()); ;
+      $fila= mysqli_fetch_array($datos);
+      include 'menu.php';
+    ?>
 
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
@@ -62,7 +74,7 @@
                 </div>
                 <div class="card-body">    
                 <?php 
-                    $idcon=$_GET['id'];
+                    $idcon=$_GET['idcon'];
                     
                     $sql="SELECT * FROM convocatoria WHERE idcon='".$idcon."' ";
                     $result=mysqli_query($con,$sql);
@@ -73,7 +85,7 @@
                      {
                           $tipo_con=$rw['tipo_con'];
                           $num_con=$rw['num_con'];
-                          $añocon=$rw['año_con'];
+                          $añocon=$rw['anio_con'];
                           $dir_ejec=$rw['direccion_ejec_iddireccion'];
                           $fech_ini=$rw['fech_ini']; 
                           $fech_term=$rw['fech_term'];
@@ -87,6 +99,7 @@
 
                  <form action="procesos/modificarconvoca.php" method="POST">
                     <input type="hidden" value="<?php echo $idcon; ?>" name="id">
+                    <input type="hidden" value="<?php echo $dni; ?>" name="dni">
                         <div class="form-group">
                              <h6 class="m-0 font-weight-bold text-danger">Datos de la convocatoria</h6>
                              <hr class="sidebar-divider">
@@ -126,9 +139,9 @@
                          </div>
 
                         <div class="form-group">
-                                        <h6 class="m-0 font-weight-bold text-danger">Porcentaje de la convocatoria</h6>
-                                        <hr class="sidebar-divider">
-                                    </div>
+                          <h6 class="m-0 font-weight-bold text-danger">Porcentaje de la convocatoria</h6>
+                          <hr class="sidebar-divider">
+                        </div>
 
                                 <div class="form-row" id="contenido">
                                     <div class="col-md-12">
@@ -220,20 +233,20 @@
   </a>
 
   <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="cerrarsesion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+          <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">¿Desea cerrar sesión?</h5>
           <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
+              <span aria-hidden="true">×</span>
           </button>
-        </div>
-        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="login.html">Logout</a>
-        </div>
+          </div>
+          <div class="modal-body">Seleccione "Cerrar sesión" a continuación si está listo para finalizar su sesión actual.</div>
+          <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+          <a class="btn btn-primary" href="procesos/cerrar_sesion.php">Cerrar sesión</a>
+          </div>
       </div>
     </div>
   </div>

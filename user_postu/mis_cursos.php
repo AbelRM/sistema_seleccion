@@ -4,13 +4,6 @@
   if(empty($_SESSION['active'])){
     header("Location: ../index.php");
   }
-  // if(!isset($_SESSION['rol'])){
-  //   header('location: ../index.php');
-  // }else{
-  //   if($_SESSION['rol'] != 1){
-  //     header('location: ../index.php');
-  //   }
-  // }
 ?>
 
 <!DOCTYPE html>
@@ -92,13 +85,13 @@
             </div>
             <div class="grupo-formularios">
                 <!-- FORMULARIO MICRORED -->
-                <div class="form-row titulos-1 d-flex justify-content-center m-2">
+                <div class="form-row titulos d-flex justify-content-center m-2">
                     <div class="col-md-8">
-                        <div class="card border-danger titulos-1">
-                            <div class="card-header titulos-1">
+                        <div class="card border-danger titulos">
+                            <div class="card-header titulos">
                                 <h5 class="titulo-card">Título y/o grado alcanzado (PROFESIONALES DE LA SALUD)</h5>
                             </div>
-                            <div class="card-body titulos-1">
+                            <div class="card-body titulos">
                                 <div class="form-row">
                                     <div class="col-9">
                                         <div class="form-group">

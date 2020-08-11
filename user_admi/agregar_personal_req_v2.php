@@ -1,3 +1,10 @@
+<?php
+  include 'conexion.php';
+  session_start();
+  if(empty($_SESSION['active'])){
+    header("Location: ../index.php");
+  }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,8 +32,13 @@
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-    <?php 
-      include 'menu.html';
+    <?php     
+      $dni = $_GET['dni'];
+      include_once('conexion.php');
+      $sql="SELECT * FROM usuarios where dni=$dni";
+      $datos=mysqli_query($con,$sql) or die(mysqli_error()); ;
+      $fila= mysqli_fetch_array($datos);
+      include 'menu.php';
     ?>
 
     <!-- Content Wrapper -->
@@ -108,9 +120,9 @@
                             </thead>
                             <tbody>
                                 <tr class="fila-fija">
-                                  <td><input type="text" name="cantidad[]" placeholder="CANTIDAD" class="form-control name_list" /></td>
+                                  <td><input style="font-size:13px;" type="text" name="cantidad[]" placeholder="CANTIDAD" class="form-control name_list" required /></td>
                                   <td>
-                                    <select name="cargo[]" class="form-control" id="cargo">
+                                    <select style="font-size:13px;" name="cargo[]" class="form-control" id="cargo" required>
                                       <option value="" disabled selected>Elegir</option>
                                       <?php
                                         include_once('conexion.php');
@@ -121,9 +133,14 @@
                                       ?>
                                     </select>
                                   </td>
-                                  <td><input type="text" name="remuneracion[]" placeholder="Ejemplo: 2000" class="form-control name_list" /></td>
-                                  <td><input type="text" name="fuente_finac[]" placeholder="RECURSOS ORDINARIOS" class="form-control name_list" /></td>
-                                  <td><input type="text" name="meta[]" placeholder="Ejemplo: 002" class="form-control name_list" /></td>
+                                  <td><input style="font-size:13px;" type="text" name="remuneracion[]" placeholder="Ejemplo: 2000" class="form-control name_list" required/></td>
+                                  <td><select style="font-size:13px;" class="form-control" name="fuente_finac[]" required>
+                                        <option value="R. ORDINARIOS">R. ORDINARIOS</option>
+                                        <option value="R. DIRECTAMENTE RECAUDADOS">R. D. RECAUDADOS</option>
+                                        <option value="CANON SOBRE CANON">CANON SOBRE CANON</option>
+                                        <option value="R. DETERMINADOSS">R. DETERMINADOS</option>
+                                      </select></td>
+                                  <td><input style="font-size:13px;" type="text" name="meta[]" placeholder="Ejemplo: 002" class="form-control name_list" required /></td>
                                   <td class="eliminar"><input type="button" class="btn btn-danger" value=" - "></td>
                                 </tr>
                             </tdody>
@@ -132,6 +149,7 @@
                     </div>
                     <div class="row d-flex justify-content-center">
                       <input type="hidden" id="idcon" name="idcon" value="<?php echo $fila['idcon']; ?>">
+                      <input type="hidden" name="dni" id="dni" value="<?php echo $dni; ?>">
                       <div class="form-inline p-2">
                           <button id="adicional" name="adicional" type="button" class="btn btn-warning"> AGREGAR FILA (+) </button>
                       </div>
@@ -163,20 +181,20 @@
   <!-- End of Page Wrapper -->
 
   <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="cerrarsesion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
-        <div class="modal-header">
+          <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">¿Desea cerrar sesión?</h5>
           <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
+              <span aria-hidden="true">×</span>
           </button>
-        </div>
-        <div class="modal-body">Seleccione "Cerrar sesión" a continuación si está listo para finalizar su sesión actual.</div>
-        <div class="modal-footer">
+          </div>
+          <div class="modal-body">Seleccione "Cerrar sesión" a continuación si está listo para finalizar su sesión actual.</div>
+          <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-          <a class="btn btn-primary" href="../index.php">Cerrar sesión</a>
-        </div>
+          <a class="btn btn-primary" href="procesos/cerrar_sesion.php">Cerrar sesión</a>
+          </div>
       </div>
     </div>
   </div>
@@ -199,7 +217,7 @@
     $(function(){
         // Clona la fila oculta que tiene los campos base, y la agrega al final de la tabla
         $("#adicional").on('click', function(){
-            $("#tabla tbody tr:eq(0)").clone().removeClass('fila-fija').appendTo("#tabla");
+            $("#tabla tbody tr:eq(0)").clone().removeClass('fila-fija').appendTo("#tabla").find("input[type=text]").val("");
         });
         
         // Evento que selecciona la fila y la elimina 

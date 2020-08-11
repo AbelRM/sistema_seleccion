@@ -1,8 +1,7 @@
 <?php 
 
-
-
     include "../conexion.php";
+    $dni=$_POST['dni'];
     $tipo_con = $_POST['tipo_con'];
     $num_con = $_POST['num_con'];
     $anio_con= $_POST['anio_con'];
@@ -22,7 +21,7 @@
     if ($con->query($sql) == TRUE) {
         $idcon=mysqli_insert_id($con);
         // echo $idcon;
-        header('Location: ../agregar_personal_req_v2.php?convocatoria_idcon='.$idcon);
+        header('Location: ../agregar_personal_req_v2.php?convocatoria_idcon='.$idcon.'&dni='.$dni);
     } else {
         echo "Error: ".$sql. "<br>".$con->error;
     }

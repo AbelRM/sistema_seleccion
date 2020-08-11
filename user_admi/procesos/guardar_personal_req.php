@@ -1,6 +1,7 @@
 <?php
     include_once('../conexion.php');
     $idcon = $_POST['idcon'];
+    $dni = $_POST['dni'];
     //////////////////////// PRESIONAR EL BOTÓN //////////////////////////
     if(isset($_POST['insertar']))
     {
@@ -52,5 +53,5 @@
 
         }
     }
-    header('Location: ../agregar_comision.php?convocatoria_idcon='.$idcon);
+    header('Location: ../agregar_comision.php?convocatoria_idcon='.$idcon.'&dni='.$dni);
 ?>

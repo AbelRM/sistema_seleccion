@@ -40,9 +40,7 @@
         $datos=mysqli_query($con,$sql) or die(mysqli_error()); ;
         $fila= mysqli_fetch_array($datos);
         include 'menu.php';
-      
     ?>
-
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
 
@@ -57,29 +55,44 @@
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
+            <?php
+                include 'conexion.php';
+        
+                $sql2="SELECT * FROM postulante WHERE dni=$dni";
+                $datos2=mysqli_query($con,$sql2) or die(mysqli_error()); ;
+                $fila2= mysqli_fetch_array($datos2);
+                $idpostulante=$fila2['idpostulante'];
 
+                $sql3="SELECT MAX(iddetalle_convocatoria) AS id FROM sistema_seleccion.detalle_convocatoria
+                WHERE postulante_idpostulante=$idpostulante";
+                $datos3=mysqli_query($con,$sql3) or die(mysqli_error());
+                $row = mysqli_fetch_row($datos3);
+                // $fila3= mysqli_fetch_array($datos3);
+                $id = trim($row[0]);
+                echo $id;
+                // $ultimo_id=mysqli_insert_id($con);
+                // echo $ultimo_id;
+            ?>
           <!-- Page Heading -->
             <!-- Content Row -->
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
                 <h5 class="mb-0 text-gray-800">MIS DATOS PROFESIONALES:</h5>
             </div>
+            <div class="form-group">
+                <p>Todos los datos que ingrese serán veridicos, en caso de colocar datos falsos será betado de las futuras postulaciones para DIRESA - TACNA.</p>
+            </div>
             <div class="form-row d-flex justify-content-center">
                 <div class="form-group col-md-6">
                     <label for="inputState">Elegir categoría</label>
-                    <select name="SelectOptions" id="SelectOptions" class="form-control">
-                        <option selected>Elegir...</option>
-                        <option value="titulos-1" style="color:red; font-weight:600;">PROFESIONAL DE LA SALUD</option>
-                        <option value="titulos-2" style="color:#1cc88a; font-weight:600;">OTROS PROFESIONALES</option>
-                        <option value="titulos-3" style="color:#1cc88a; font-weight:600;">ASISTENTE ADMINISTRATIVO</option>
-                        <option value="titulos-4" style="color:red; font-weight:600;">TÉCNICO EN ENFERMERIA</option>
-                        <option value="titulos-5" style="color:#1cc88a; font-weight:600;">TÉCNICO ADMINISTRATIVO</option>
-                        <option value="formulario-2" style="color:#1cc88a; font-weight:600;">TÉCNICO EN COMUNICACIONES</option>
-                        <option value="formulario-2" style="color:#1cc88a; font-weight:600;">SECRETARIA</option>
-                        <option value="formulario-2" style="color:#1cc88a; font-weight:600;">TÉCNICO EN INFORMÁTICA</option>
-                        <option value="formulario-2" style="color:#1cc88a; font-weight:600;">CHOFER</option>
-                        <option value="formulario-2" style="color:#1cc88a; font-weight:600;">VIGILANTE</option>
-                        <option value="formulario-2" style="color:#1cc88a; font-weight:600;">TRABAJADOR DE LIMPIEZA</option>
-                        <option value="formulario-2" style="color:#1cc88a; font-weight:600;">TRABAJADOR DE SERVICIOS</option>
+                    <select style="font-size:13px;" name="tipo_cargo" class="form-control" id="tipo_cargo" required>
+                        <option value="" disabled selected>Elegir</option>
+                        <?php
+                        include_once('conexion.php');
+                        $sql = mysqli_query($con,"SELECT * from tipo_cargo ") or die("Problemas en consulta").mysqli_error();
+                        while ($registro=mysqli_fetch_array($sql)) {
+                            echo "<option value=\"".$registro['idtipo']."\">".$registro['tipo_cargo']."</option>";
+                        }
+                        ?>
                     </select>
                 </div>
             </div>

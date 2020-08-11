@@ -431,14 +431,9 @@
                                                     <th>Parentesco</th>
                                                     <th>Entidad que Labora</th>
                                                 </tr>
-
-
                                                 <?php
-
                                                     while($registroAlumno  = $result->fetch_array( MYSQLI_BOTH)) 
                                                     {
-
-
                                                     echo '<tr>
                                                             <td>'.$registroAlumno['nombre'].'</td>
                                                             <td>'.$registroAlumno['apellidos'].'</td>

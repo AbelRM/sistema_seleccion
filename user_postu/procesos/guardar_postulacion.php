@@ -7,11 +7,10 @@ $idcon=$_POST['idcon'];
 $idpostulante=$_POST['idpostulante'];
 $personal_req=$_POST['idpersonal'];
 $boleta=$_POST['boleta'];
-$date=$_POST['dateid']; 
-$tipo_cargo=$_POST['tipo_cargo'];
+$fech_inscripcion=$_POST['fech_inscripcion'];
 
-$sql="INSERT INTO detalle_convocatoria (convocatoria_idcon,postulante_idpostulante,personal_req_idpersonal,boleta,fecha_inscripcion,tipo_cargo) 
-VALUES ('".$idcon."','".$idpostulante."','".$personal_req."','".$boleta."','".$date."','".$tipo_cargo."')";
+$sql="INSERT INTO detalle_convocatoria (convocatoria_idcon,postulante_idpostulante,personal_req_idpersonal,boleta,fech_inscripcion) 
+VALUES ('".$idcon."','".$idpostulante."','".$personal_req."','".$boleta."','".$fech_inscripcion."')";
 
 $result = MYSQLI_query($con, $sql); 
 

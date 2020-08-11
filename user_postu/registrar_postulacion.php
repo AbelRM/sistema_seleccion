@@ -86,12 +86,13 @@
                 $dni = $_GET['dni'];
                 $idcargo=$_GET['idcargo'];
                 $idcon=$_GET['idcon'];
+                $hoy=date('Y-m-d');
               ?>
               <form action="procesos/guardar_postulacion.php" method="POST"> 
               <div class="form-group row d-flex justify-content-center">
                 <label class="col-lg-2 col-md-4 col-form-label text-success">Fecha de inscripción:</label>
-                <div class="col-lg-2 col-md-4">
-                  <input type="text" class="form-control" id="dateid" name="dateid" value="<?php echo date('Y-m-d')?>" disabled>
+                <div class="col-lg-3 col-md-4">
+                  <input type="text" class="form-control" id="fech_inscripcion" name="fech_inscripcion" value="<?php echo $hoy;?>" disabled>
                 </div>
               </div>
               <div class="form-group row">   
@@ -144,7 +145,7 @@
                   <label for="disabled-input">Boleta de banco:</label>           
                   <input type="text" class="form-control" name="boleta" id="boleta" placeholder="Ejm: 003266" required>
                 </div>
-                <div class="col-md-4 col-sm-6">
+                <!-- <div class="col-md-4 col-sm-6">
                   <label for="disabled-input">Tipo de cargo <span style="color:red;">(Este dato es de mucha importancia, elija bien según la información de su CAS!)</span>:</label>           
                   <select class="form-control" id="tipo_cargo" name="tipo_cargo" required>
                     <option select>Elegir...</option>
@@ -161,7 +162,7 @@
                     <option>TRABAJADOR DE LIMPIEZA</option>
                     <option>TRABAJADOR DE SERVICIOS</option>
                   </select>
-                </div>
+                </div> -->
               </div>  
               <div class="row d-flex justify-content-center">
                   <button type="submit" class="btn btn-info"><i class="fas fa-briefcase"></i> POSTULAR!</button> 
@@ -192,22 +193,22 @@
   </a>
 
   <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">¿Deseas cerrar sesión?</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body">Seleccione "Cerrar sesión" a continuación si está listo para finalizar su sesión actual.</div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-          <a class="btn btn-primary" href="procesos/cerrar_sesion.php">Cerrar sesión</a>
+  <div class="modal fade" id="cerrarsesion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">¿Desea cerrar sesión?</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+            </div>
+            <div class="modal-body">Seleccione "Cerrar sesión" a continuación si está listo para finalizar su sesión actual.</div>
+            <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+            <a class="btn btn-primary" href="procesos/cerrar_sesion.php">Cerrar sesión</a>
+            </div>
         </div>
       </div>
-    </div>
   </div>
 
   <!-- Bootstrap core JavaScript-->

@@ -82,16 +82,19 @@
                      <?php
                       $dni = $_GET['dni'];
                       
-                      $sql3 = "SELECT * FROM detalle_convocatoria WHERE postulante_idpostulante=$idpostulante";
+                      $sql3 = "SELECT * FROM detalle_convocatoria 
+                      inner join total_personal_req on detalle_convocatoria.personal_req_idpersonal=total_personal_req.idpersonal 
+                      inner join convocatoria on detalle_convocatoria.convocatoria_idcon=convocatoria.idcon 
+                      WHERE postulante_idpostulante=$idpostulante";
                       $query=mysqli_query($con, $sql3);
                       while ($row= MySQLI_fetch_array($query))
                       {
                     ?>
                       <tr>
-                        <td style="font-size: 16px;"><?php echo $row['convocatoria_idcon'] ?></td>
-                        <td style="font-size: 14px;"><?php echo $row['personal_req_idpersonal']?></td>
+                        <td style="font-size: 16px;"><?php echo $row['num_con']."-".$row['anio_con'] ?></td>
+                        <td style="font-size: 14px;"><?php echo $row['cargo']?></td>
                         <td style="font-size: 14px;"><?php echo $row['boleta']?></td>
-                        <td style="font-size: 14px;"><?php echo $row['fecha_inscripcion']?></td>
+                        <td style="font-size: 14px;"><?php echo $row['fech_inscripcion']?></td>
                         <td>
                           <button type="button" class="btn btn-primary"><i class="fa fa-eye"></i> Ver</button>
                         </td>
@@ -128,22 +131,22 @@
   </a>
 
   <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">¿Deseas cerrar sesión?</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body">Seleccione "Cerrar sesión" a continuación si está listo para finalizar su sesión actual.</div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-          <a class="btn btn-primary" href="procesos/cerrar_sesion.php">Cerrar sesión</a>
+  <div class="modal fade" id="cerrarsesion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">¿Desea cerrar sesión?</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+            </div>
+            <div class="modal-body">Seleccione "Cerrar sesión" a continuación si está listo para finalizar su sesión actual.</div>
+            <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+            <a class="btn btn-primary" href="procesos/cerrar_sesion.php">Cerrar sesión</a>
+            </div>
         </div>
       </div>
-    </div>
   </div>
 
   <!-- Bootstrap core JavaScript-->

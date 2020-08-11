@@ -25,6 +25,12 @@
     .green  {border-color:green;}
   </style>
 
+  <!-- Select-->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+
+
+
+  
 </head>
 
 <body id="page-top">
@@ -279,9 +285,9 @@
                             </select>
                         </div>
                         <div class="form-group col-lg-12 col-md-12 col-sm-12">
-                            <label for="inputEmail4">Ubicación del lugar a elaborar</label>
-                            <select name="ubicacion" class="form-control" id="ubicacion" placeholder="Ubicación">
-                              <option value="" disabled selected>Elegir</option>
+                            <label for="inputEmail4" class="form-control-label" >Ubicación del lugar a elaborar</label>
+                            <select name="ubicacion" class="form-control oficina"   id="ubicacion" >
+                              
                                 <?php
                                   include_once('conexion.php');
                                   $sql = mysqli_query($con,"SELECT * from ubicacion") or die("Problemas en consulta").mysqli_error();
@@ -398,17 +404,25 @@
       </div>
     </div>
   </div>
+        <!-- Bootstrap core JavaScript-->
+        <script src="vendor/jquery/jquery.min.js"></script>
+        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 
-  <!-- Bootstrap core JavaScript-->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <!-- Core plugin JavaScript-->
+        <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-  <!-- Core plugin JavaScript-->
-  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+        <!-- Custom scripts for all pages-->
+        <script src="js/sb-admin-2.js"></script>
+        <script src="js/sumar.js"></script>
 
-  <!-- Custom scripts for all pages-->
-  <script src="js/sb-admin-2.js"></script>
-  <script src="js/sumar.js"></script>
+        <script>
+      jQuery(document).ready(function($){
+    $(document).ready(function() {
+        $('.oficina').select2();
+    });
+});
+        </script>
 
 
 </body>

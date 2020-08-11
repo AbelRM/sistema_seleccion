@@ -74,13 +74,12 @@
                       <th>Cargo</th>
                       <th>Remuneración</th>
                       <th>Acciones</th>
-                      
                     </tr>
                   </thead>
                   <tbody>
                   <?php
                     $dni = $_GET['dni'];
-                    $idcon=$_GET['id'];
+                    $idcon=$_GET['idcon'];
 
                     include_once('conexion.php');
                     $sql = "SELECT * FROM total_personal_req WHERE convocatoria_idcon=$idcon";
@@ -93,7 +92,7 @@
                       <td style="font-size: 16px;"><?php echo $row['cargo'] ?></td>
                       <td style="font-size: 16px; text-align: center"><?php echo $row['remuneracion'] ?></td>
                       <td>
-                        <a href="registrar_postulacion.php?idcargo=<?php echo $row['cargo_idcargo']?>&dni=<?php echo $dni?>&idcon=<?php echo $idcon?>">
+                        <a href="registrar_postulacion.php?idcargo=<?php echo $row['idpersonal']?>&dni=<?php echo $dni?>&idcon=<?php echo $idcon?>">
                         <button type="button" class="btn btn-primary" id="editar" style="margin: 1px;"><i class="fa fa-pencil-alt"></i> Elegir</button></a>
                       </td>
                     </tr>

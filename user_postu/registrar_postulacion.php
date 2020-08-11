@@ -54,9 +54,9 @@
         $fila3= mysqli_fetch_array($datos3);
         $idconn =  $fila3['tipo_con'];
 
-        $idcargo=$_GET['idcargo'];
+        $idpersonal=$_GET['idcargo'];
 
-        $sql5="SELECT * FROM total_personal_req where convocatoria_idcon=$idcon";
+        $sql5="SELECT * FROM total_personal_req where idpersonal=$idpersonal";
         $datos4=mysqli_query($con,$sql5) or die(mysqli_error()); ;
         $fila4= mysqli_fetch_array($datos4);
         $idpersonal=$fila4['idpersonal'];

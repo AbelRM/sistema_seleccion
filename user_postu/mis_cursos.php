@@ -38,18 +38,15 @@
 </head>
 
 <body id="page-top">
-
   <!-- Page Wrapper -->
   <div id="wrapper">  
-
     <?php     
-      
-      $dni = $_GET['dni'];
-      include_once('conexion.php');
-      $sql="SELECT * FROM usuarios where dni=$dni";
-      $datos=mysqli_query($con,$sql) or die(mysqli_error()); ;
-      $fila= mysqli_fetch_array($datos);
-      include 'menu.php';
+        $dni = $_GET['dni'];
+        include_once('conexion.php');
+        $sql="SELECT * FROM usuarios where dni=$dni";
+        $datos=mysqli_query($con,$sql) or die(mysqli_error()); ;
+        $fila= mysqli_fetch_array($datos);
+        include 'menu.php';
       
     ?>
 
@@ -69,15 +66,479 @@
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h3 class="h3 mb-0 text-gray-800">MI PERFIL PROFESIONAL</h3>
-            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generar Reporte</a>
-          </div>
-
             <!-- Content Row -->
+            <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                <h5 class="mb-0 text-gray-800">MIS DATOS PROFESIONALES:</h5>
+            </div>
+            <div class="form-row d-flex justify-content-center">
+                <div class="form-group col-md-6">
+                    <label for="inputState">Elegir categoría</label>
+                    <select name="SelectOptions" id="SelectOptions" class="form-control">
+                        <option selected>Elegir...</option>
+                        <option value="titulos-1" style="color:red; font-weight:600;">PROFESIONAL DE LA SALUD</option>
+                        <option value="titulos-2" style="color:#1cc88a; font-weight:600;">OTROS PROFESIONALES</option>
+                        <option value="titulos-3" style="color:#1cc88a; font-weight:600;">ASISTENTE ADMINISTRATIVO</option>
+                        <option value="titulos-4" style="color:red; font-weight:600;">TÉCNICO EN ENFERMERIA</option>
+                        <option value="titulos-5" style="color:#1cc88a; font-weight:600;">TÉCNICO ADMINISTRATIVO</option>
+                        <option value="formulario-2" style="color:#1cc88a; font-weight:600;">TÉCNICO EN COMUNICACIONES</option>
+                        <option value="formulario-2" style="color:#1cc88a; font-weight:600;">SECRETARIA</option>
+                        <option value="formulario-2" style="color:#1cc88a; font-weight:600;">TÉCNICO EN INFORMÁTICA</option>
+                        <option value="formulario-2" style="color:#1cc88a; font-weight:600;">CHOFER</option>
+                        <option value="formulario-2" style="color:#1cc88a; font-weight:600;">VIGILANTE</option>
+                        <option value="formulario-2" style="color:#1cc88a; font-weight:600;">TRABAJADOR DE LIMPIEZA</option>
+                        <option value="formulario-2" style="color:#1cc88a; font-weight:600;">TRABAJADOR DE SERVICIOS</option>
+                    </select>
+                </div>
+            </div>
+            <div class="grupo-formularios">
+                <!-- FORMULARIO MICRORED -->
+                <div class="form-row titulos-1 d-flex justify-content-center m-2">
+                    <div class="col-md-8">
+                        <div class="card border-danger titulos-1">
+                            <div class="card-header titulos-1">
+                                <h5 class="titulo-card">Título y/o grado alcanzado (PROFESIONALES DE LA SALUD)</h5>
+                            </div>
+                            <div class="card-body titulos-1">
+                                <div class="form-row">
+                                    <div class="col-9">
+                                        <div class="form-group">
+                                            <label class="font-weight-bold">Título profesional universitario</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="form-check form-check-inline">
+                                            <select class="form-control">
+                                                <option value="NO">NO</option>
+                                                <option value="SI">SI</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-9">
+                                        <div class="form-group">
+                                            <label class="font-weight-bold">Título de Especialidad</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="form-check form-check-inline">
+                                            <select class="form-control">
+                                                <option value="NO">NO</option>
+                                                <option value="SI">SI</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-9">
+                                        <div class="form-group">
+                                            <label class="font-weight-normal"><i class="fas fa-angle-right"></i> Egresado de especialidad</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="form-check form-check-inline">
+                                            <select class="form-control">
+                                                <option value="NO">NO</option>
+                                                <option value="SI">SI</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-9">
+                                        <div class="form-group">
+                                            <label class="font-weight-bold">Grado de Maestría (acreditado *)</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="form-check form-check-inline">
+                                            <select class="form-control">
+                                                <option value="NO">NO</option>
+                                                <option value="SI">SI</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-9">
+                                        <div class="form-group">
+                                            <label class="font-weight-normal"><i class="fas fa-angle-right"></i> Constancia de Egresado de Maestría</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="form-check form-check-inline">
+                                            <select class="form-control">
+                                                <option value="NO">NO</option>
+                                                <option value="SI">SI</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-9">
+                                        <div class="form-group">
+                                            <label class="font-weight-bold">Grado de Doctorado (acreditado *)</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="form-check form-check-inline">
+                                            <select class="form-control">
+                                                <option value="NO">NO</option>
+                                                <option value="SI">SI</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-9">
+                                        <div class="form-group">
+                                            <label class="font-weight-normal"><i class="fas fa-angle-right"></i> Constancia de Egresado de Doctorado (acreditad)</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="form-check form-check-inline">
+                                            <select class="form-control">
+                                                <option value="NO">NO</option>
+                                                <option value="SI">SI</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row titulos-3 d-flex justify-content-center m-2">
+                    <div class="col-md-8">
+                        <div class="card border-danger titulos-1">
+                            <div class="card-header titulos-1">
+                                <h5 class="titulo-card">Título y/o grado alcanzado (ASISTENTE ADMINISTRATIVO)</h5>
+                            </div>
+                            <div class="card-body titulos-1">
+                                <div class="form-row">
+                                    <div class="col-9">
+                                        <div class="form-group">
+                                            <label class="font-weight-bold">Título profesional universitario</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="form-check form-check-inline">
+                                            <select class="form-control">
+                                                <option value="NO">NO</option>
+                                                <option value="SI">SI</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-9">
+                                        <div class="form-group">
+                                            <label class="font-weight-bold">Título de Especialidad</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="form-check form-check-inline">
+                                            <select class="form-control">
+                                                <option value="NO">NO</option>
+                                                <option value="SI">SI</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-9">
+                                        <div class="form-group">
+                                            <label class="font-weight-normal"><i class="fas fa-angle-right"></i> Egresado de especialidad</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="form-check form-check-inline">
+                                            <select class="form-control">
+                                                <option value="NO">NO</option>
+                                                <option value="SI">SI</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-9">
+                                        <div class="form-group">
+                                            <label class="font-weight-bold">Grado de Maestría (acreditado *)</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="form-check form-check-inline">
+                                            <select class="form-control">
+                                                <option value="NO">NO</option>
+                                                <option value="SI">SI</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-9">
+                                        <div class="form-group">
+                                            <label class="font-weight-normal"><i class="fas fa-angle-right"></i> Constancia de Egresado de Maestría</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="form-check form-check-inline">
+                                            <select class="form-control">
+                                                <option value="NO">NO</option>
+                                                <option value="SI">SI</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-9">
+                                        <div class="form-group">
+                                            <label class="font-weight-bold">Grado de Doctorado (acreditado *)</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="form-check form-check-inline">
+                                            <select class="form-control">
+                                                <option value="NO">NO</option>
+                                                <option value="SI">SI</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-9">
+                                        <div class="form-group">
+                                            <label class="font-weight-normal"><i class="fas fa-angle-right"></i> Constancia de Egresado de Doctorado (acreditad)</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="form-check form-check-inline">
+                                            <select class="form-control">
+                                                <option value="NO">NO</option>
+                                                <option value="SI">SI</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row titulos-2 d-flex justify-content-center m-2">
+                    <div class="col-md-8">
+                        <div class="card border-danger titulos-2">
+                            <div class="card-header titulos-2">
+                                <h5 class="titulo-card">Título y/o grado alcanzado (OTROS PROFESIONALES)</h5>
+                            </div>
+                            <div class="card-body titulos-2">
+                                <div class="form-row">
+                                    <div class="col-9">
+                                        <div class="form-group">
+                                            <label class="font-weight-bold">Título profesional universitario</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="form-check form-check-inline">
+                                            <select class="form-control">
+                                                <option value="NO">NO</option>
+                                                <option value="SI">SI</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-9">
+                                        <div class="form-group">
+                                            <label class="font-weight-bold">Título de Especialidad</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="form-check form-check-inline">
+                                            <select class="form-control">
+                                                <option value="NO">NO</option>
+                                                <option value="SI">SI</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-9">
+                                        <div class="form-group">
+                                            <label class="font-weight-bold">Grado de Bachiller</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="form-check form-check-inline">
+                                            <select class="form-control">
+                                                <option value="NO">NO</option>
+                                                <option value="SI">SI</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-9">
+                                        <div class="form-group">
+                                            <label class="font-weight-normal"><i class="fas fa-angle-right"></i> Egresado de especialidad</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="form-check form-check-inline">
+                                            <select class="form-control">
+                                                <option value="NO">NO</option>
+                                                <option value="SI">SI</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-9">
+                                        <div class="form-group">
+                                            <label class="font-weight-bold">Grado de Maestría (acreditado *)</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="form-check form-check-inline">
+                                            <select class="form-control">
+                                                <option value="NO">NO</option>
+                                                <option value="SI">SI</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-9">
+                                        <div class="form-group">
+                                            <label class="font-weight-normal"><i class="fas fa-angle-right"></i> Constancia de Egresado de Maestría</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="form-check form-check-inline">
+                                            <select class="form-control">
+                                                <option value="NO">NO</option>
+                                                <option value="SI">SI</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-9">
+                                        <div class="form-group">
+                                            <label class="font-weight-bold">Grado de Doctorado (acreditado *)</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="form-check form-check-inline">
+                                            <select class="form-control">
+                                                <option value="NO">NO</option>
+                                                <option value="SI">SI</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-9">
+                                        <div class="form-group">
+                                            <label class="font-weight-normal"><i class="fas fa-angle-right"></i> Constancia de Egresado de Doctorado (acreditad)</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="form-check form-check-inline">
+                                            <select class="form-control">
+                                                <option value="NO">NO</option>
+                                                <option value="SI">SI</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row titulos-4 d-flex justify-content-center m-2">
+                    <div class="col-md-8">
+                        <div class="card border-danger titulos-1">
+                            <div class="card-header titulos-1">
+                                <h5 class="titulo-card">TÉCNICO EN ENFERMERIA</h5>
+                            </div>
+                            <div class="card-body titulos-1">
+                                <div class="form-row">
+                                    <div class="col-9">
+                                        <div class="form-group">
+                                            <label class="font-weight-bold">Título de Instituto Superior Tecnológico (acreditado)</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="form-check form-check-inline">
+                                            <select class="form-control">
+                                                <option value="NO">NO</option>
+                                                <option value="SI">SI</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row titulos-5 d-flex justify-content-center m-2">
+                    <div class="col-md-8">
+                        <div class="card border-danger titulos-1">
+                            <div class="card-header titulos-1">
+                                <h5 class="titulo-card">TÉCNICO ADMINISTRATIVO</h5>
+                            </div>
+                            <div class="card-body titulos-1">
+                                <div class="form-row">
+                                    <div class="col-9">
+                                        <div class="form-group">
+                                            <label class="font-weight-bold">Egresado Universitario</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="form-check form-check-inline">
+                                            <select class="form-control">
+                                                <option value="NO">NO</option>
+                                                <option value="SI">SI</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-9">
+                                        <div class="form-group">
+                                            <label class="font-weight-bold">Título de Instituto Superior Tecnológico</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="form-check form-check-inline">
+                                            <select class="form-control">
+                                                <option value="NO">NO</option>
+                                                <option value="SI">SI</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row titulos-1 d-flex justify-content-center m-2">
+                    <div class="col-md-8">
+                        <div class="card border-danger titulos-1">
+                            <div class="card-header titulos-1">
+                                <h5 class="titulo-card">AUXILIAR ADMINISTRATIVO</h5>
+                            </div>
+                            <div class="card-body titulos-1">
+                                <div class="form-row">
+                                    <div class="col-9">
+                                        <div class="form-group">
+                                            <label class="font-weight-bold">Secundaria completa</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="form-check form-check-inline">
+                                            <select class="form-control">
+                                                <option value="NO">NO</option>
+                                                <option value="SI">SI</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row titulos-1 d-flex justify-content-center m-2">
+                    <div class="col-md-8">
+                        <div class="card border-danger titulos-1">
+                            <div class="card-header titulos-1">
+                                <h5 class="titulo-card">AUXILIAR ADMINISTRATIVO</h5>
+                            </div>
+                            <div class="card-body titulos-1">
+                                <div class="form-row">
+                                    <div class="col-9">
+                                        <div class="form-group">
+                                            <label class="font-weight-bold">Secundaria completa</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="form-check form-check-inline">
+                                            <select class="form-control">
+                                                <option value="NO">NO</option>
+                                                <option value="SI">SI</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="row">
                 <!-- Earnings (Monthly) Card Example -->
-                <div class="col-xl-3 col-md-6 mb-4">
+                <!-- <div class="col-xl-3 col-md-6 mb-4">
                     <div class="card border-left-primary shadow h-100 py-2">
                         <div class="card-body">
                             <div class="row ">
@@ -93,7 +554,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
                 <!-- Earnings (Monthly) Card Example -->
                 <div class="col-xl-3 col-md-6 mb-4">
@@ -211,9 +672,6 @@
                                             <th scope="col">Lugar de trabajo</th>
                                             <th scope="col">Fecha Inicio</th>
                                             <th scope="col">Fecha Termino</th>
-                                            <th scope="col">Años</th>
-                                            <th scope="col">Meses</th>
-                                            <th scope="col">Días</th>
                                             <th scope="col-1">Acción</th>
                                         </tr>
                                     </thead>
@@ -231,9 +689,6 @@
                                             </td>
                                             <td><input type="date" name="fech_ini[]" class="form-control name_list" /></td>
                                             <td><input type="date" name="fech_fin[]" class="form-control name_list"/></td>
-                                            <td><input type="text" name="años[]" class="form-control name_list"/></td>
-                                            <td><input type="text" name="meses[]" class="form-control name_list"/></td>
-                                            <td><input type="text" name="dias[]" class="form-control name_list"/></td>
                                             <td class="eliminar"><input type="button" class="btn btn-danger" value=" - "></td>
                                         </tr>
                                     </tdody>
@@ -262,9 +717,6 @@
                                             <th scope="col">Lugar de trabajo</th>
                                             <th scope="col">Fecha Inicio</th>
                                             <th scope="col">Fecha Termino</th>
-                                            <th scope="col">Años</th>
-                                            <th scope="col">Meses</th>
-                                            <th scope="col">Días</th>
                                             <th scope="col-1">Acción</th>
                                         </tr>
                                     </thead>
@@ -273,9 +725,6 @@
                                             <td><input type="text" name="lugar[]" class="form-control name_list" /></td>
                                             <td><input type="date" name="fech_ini[]" class="form-control name_list" /></td>
                                             <td><input type="date" name="fech_fin[]" class="form-control name_list"/></td>
-                                            <td><input type="text" name="años[]" class="form-control name_list"/></td>
-                                            <td><input type="text" name="meses[]" class="form-control name_list"/></td>
-                                            <td><input type="text" name="dias[]" class="form-control name_list"/></td>
                                             <td class="eliminar"><input type="button" class="btn btn-danger" value=" - "></td>
                                         </tr>
                                     </tdody>
@@ -304,9 +753,6 @@
                                             <th scope="col">Lugar de trabajo</th>
                                             <th scope="col">Fecha Inicio</th>
                                             <th scope="col">Fecha Termino</th>
-                                            <th scope="col">Años</th>
-                                            <th scope="col">Meses</th>
-                                            <th scope="col">Días</th>
                                             <th scope="col-1">Acción</th>
                                         </tr>
                                     </thead>
@@ -315,9 +761,6 @@
                                             <td><input type="date" name="lugar[]" class="form-control name_list" /></td>
                                             <td><input type="date" name="fech_ini[]" class="form-control name_list" /></td>
                                             <td><input type="date" name="fech_fin[]" class="form-control name_list"/></td>
-                                            <td><input type="text" name="años[]" class="form-control name_list"/></td>
-                                            <td><input type="text" name="meses[]" class="form-control name_list"/></td>
-                                            <td><input type="text" name="dias[]" class="form-control name_list"/></td>
                                             <td class="eliminar"><input type="button" class="btn btn-danger" value=" - "></td>
                                         </tr>
                                     </tdody>
@@ -346,9 +789,6 @@
                                             <th scope="col">Lugar de trabajo</th>
                                             <th scope="col">Fecha Inicio</th>
                                             <th scope="col">Fecha Termino</th>
-                                            <th scope="col">Años</th>
-                                            <th scope="col">Meses</th>
-                                            <th scope="col">Días</th>
                                             <th scope="col-1">Acción</th>
                                         </tr>
                                     </thead>
@@ -357,9 +797,6 @@
                                             <td><input type="text" name="lugar[]" class="form-control name_list" /></td>
                                             <td><input type="date" name="fech_ini[]" class="form-control name_list" /></td>
                                             <td><input type="date" name="fech_fin[]" class="form-control name_list"/></td>
-                                            <td><input type="text" name="años[]" class="form-control name_list"/></td>
-                                            <td><input type="text" name="meses[]" class="form-control name_list"/></td>
-                                            <td><input type="text" name="dias[]" class="form-control name_list"/></td>
                                             <td class="eliminar"><input type="button" class="btn btn-danger" value=" - "></td>
                                         </tr>
                                     </tdody>
@@ -391,9 +828,6 @@
                                             <th scope="col">Lugar de trabajo</th>
                                             <th scope="col">Fecha Inicio</th>
                                             <th scope="col">Fecha Termino</th>
-                                            <th scope="col">Años</th>
-                                            <th scope="col">Meses</th>
-                                            <th scope="col">Días</th>
                                             <th scope="col-1">Acción</th>
                                         </tr>
                                     </thead>
@@ -402,9 +836,6 @@
                                             <td><input type="text" name="lugar[]" class="form-control name_list" /></td>
                                             <td><input type="date" name="fech_ini[]" class="form-control name_list" /></td>
                                             <td><input type="date" name="fech_fin[]" class="form-control name_list"/></td>
-                                            <td><input type="text" name="años[]" class="form-control name_list"/></td>
-                                            <td><input type="text" name="meses[]" class="form-control name_list"/></td>
-                                            <td><input type="text" name="dias[]" class="form-control name_list"/></td>
                                             <td class="eliminar"><input type="button" class="btn btn-danger" value=" - "></td>
                                         </tr>
                                     </tdody>
@@ -433,9 +864,6 @@
                                             <th scope="col">Lugar de trabajo</th>
                                             <th scope="col">Fecha Inicio</th>
                                             <th scope="col">Fecha Termino</th>
-                                            <th scope="col">Años</th>
-                                            <th scope="col">Meses</th>
-                                            <th scope="col">Días</th>
                                             <th scope="col-1">Acción</th>
                                         </tr>
                                     </thead>
@@ -444,9 +872,6 @@
                                             <td><input type="text" name="lugar[]" class="form-control name_list" /></td>
                                             <td><input type="date" name="fech_ini[]" class="form-control name_list" /></td>
                                             <td><input type="date" name="fech_fin[]" class="form-control name_list"/></td>
-                                            <td><input type="text" name="años[]" class="form-control name_list"/></td>
-                                            <td><input type="text" name="meses[]" class="form-control name_list"/></td>
-                                            <td><input type="text" name="dias[]" class="form-control name_list"/></td>
                                             <td class="eliminar"><input type="button" class="btn btn-danger" value=" - "></td>
                                         </tr>
                                     </tdody>
@@ -671,54 +1096,115 @@
 
     <!-- Ver superiores Modal-->
 
-<!--GUARDAR Estudios Postgrado Modal-->
-<div class="modal fade bd-example-modal-xl" id="estudios_postgrado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl" role="document">
+    <!--GUARDAR Estudios Postgrado Modal-->
+    <div class="modal fade bd-example-modal-xl" id="estudios_postgrado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Estudios Postgrado</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <form action="procesos/guardar_postgrado.php" method="POST">
+                    <div class="modal-body">
+                        <div class="table-responsive">
+                            <label>Estudios Postgrado (Maestrias - Doctorados)</label>
+                            <input type="hidden" id="dni" name="dni" value="<?php echo $dni; ?>">
+                            <input type="hidden" id="idpostulante" name="idpostulante" value="<?php echo $idpostulante; ?>">
+                            <table class="table table-bordered" id="tabla-8">
+                                <thead>
+                                <tr class="bg-danger" style="text-align:center; font-size:0.813em;">
+                                    <th  scope="col">Centro Estudios</th>
+                                    <th  scope="col">Especialidad</th>
+                                    <th  scope="col">Tipo Estudios</th>
+                                    <th  scope="col">Fecha Inicio</th>
+                                    <th  scope="col">Fecha Termino</th>
+                                    <th  scope="col">Nivel Alcanzado</th>
+                                    <th  scope="col">Acción</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="fila-fija-8">
+                                        <td><input type="text" name="centro_estu[]" class="form-control name_list" required/></td>
+                                        <td><input type="text" name="especialidad[]"  class="form-control name_list" required/></td>
+                                        <td>
+                                            <select name="tipo_estu[]" class="form-control" id="tipo_estu[]" required>
+                                                <option value="" disabled selected>Elegir</option>
+                                                <option value="MAESTRIA">Maestria </option>
+                                                <option value="DOCTORADO">Doctorado</option>
+                                            </select>
+                                        </td>
+                                        <td><input type="date" name="fech_ini[]" class="form-control name_list" required/></td>
+                                        <td><input type="date" name="fech_fin[]" class="form-control name_list" required/></td>
+                                        <td>
+                                            <select name="nivel[]" class="form-control" id="nivel[]" required>
+                                                <option value="" disabled selected>Elegir</option>
+                                                <option value="MAGISTER">Magister</option>
+                                                <option value="DOCTORADO">Doctorado</option>
+                                                <option value="EGRESADO">Egresado</option>
+                                                <option value="ESTUDIANTE">Estudiante</option>
+                                            </select>
+                                        </td>
+                                        <td class="eliminar"><button type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button></td>
+                                    </tr>
+                                </tdody>
+                            </table>
+                        </div>
+                        <div class="row d-flex justify-content-center">
+                            <div class="form-inline p-2">
+                                <button id="adicional-8" name="adicional" type="button" class="btn btn-warning"> AGREGAR FILA (+) </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                        <button class="btn btn-primary" name="insertar" type="submit" >Guardar</button>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- VER Estudios Postgrado Modal-->
+        <div class="modal fade bd-example-modal-xl" id="ver_estudios_postgrado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl" role="document">
             <div class="modal-content">
                 <div class="modal-header">
+
                     <h5 class="modal-title" id="exampleModalLabel">Estudios Postgrado</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <form action="procesos/guardar_postgrado.php" method="POST">
+                <form>
                 <div class="modal-body">
                     <div class="table-responsive">
-                        <label>Estudios Postgrado (Maestrias - Doctorados)</label>
-                        <input type="hidden" id="dni" name="dni" value="<?php echo $dni; ?>">
-                        <input type="hidden" id="idpostulante" name="idpostulante" value="<?php echo $idpostulante; ?>">
+                        <label>Estudios Postgrado (Maestrias - Doctorados)</label> 
                         <table class="table table-bordered" id="tabla-8">
                             <thead>
                             <tr class="bg-danger" style="text-align:center; font-size:0.813em;">
-                                <th  scope="col">Centro Estudios</th>
-                                <th  scope="col">Especialidad</th>
-                                <th  scope="col">Tipo Estudios</th>
-                                <th  scope="col">Fecha Inicio</th>
-                                <th  scope="col">Fecha Termino</th>
-                                <th  scope="col">Nivel Alcanzado</th>
-                                <th  scope="col">Acción</th>
+                                <th scope="col-3">Centro Estudios</th>
+                                <th scope="col-3">Especialidad</th>
+                                <th scope="col-2">Fecha Inicio</th>
+                                <th scope="col-2">Fecha Termino</th>
+                                <th scope="col-1">Nivel Alcanzado</th>
+                                <th scope="col-1">Acción</th>
                             </tr>
                             </thead>
                             <tbody>
                                 <tr class="fila-fija-8">
-                                    <td><input type="text" name="centro_estu[]" class="form-control name_list" required/></td>
-                                    <td><input type="text" name="especialidad[]"  class="form-control name_list" required/></td>
+                                    <td><input type="text" name="centro_estu[]" class="form-control name_list" /></td>
+                                    <td><input type="text" name="especialidad[]"  class="form-control name_list" /></td>
+                                    <td><input type="date" name="fech_ini[]" class="form-control name_list"/></td>
+                                    <td><input type="date" name="fech_fin[]" class="form-control name_list"/></td>
                                     <td>
-                                        <select name="tipo_estu[]" class="form-control" id="tipo_estu[]" required>
+                                        <select name="nivel[]" class="form-control" id="cargo">
                                             <option value="" disabled selected>Elegir</option>
-                                            <option value="MAESTRIA">Maestria </option>
-                                            <option value="DOCTORADO">Doctorado</option>
-                                        </select>
-                                    </td>
-                                    <td><input type="date" name="fech_ini[]" class="form-control name_list" required/></td>
-                                    <td><input type="date" name="fech_fin[]" class="form-control name_list" required/></td>
-                                    <td>
-                                        <select name="nivel[]" class="form-control" id="nivel[]" required>
-                                            <option value="" disabled selected>Elegir</option>
-                                            <option value="MAGISTER">Magister</option>
-                                            <option value="DOCTORADO">Doctorado</option>
-                                            <option value="EGRESADO">Egresado</option>
-                                            <option value="ESTUDIANTE">Estudiante</option>
+                                            <option value="Magister">Magister</option>
+                                            <option value="Doctorado">Doctorado</option>
+                                            <option value="Egresado">Egresado</option>
+                                            <option value="Estudiante">Estudiante</option>
                                         </select>
                                     </td>
                                     <td class="eliminar"><button type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button></td>
@@ -733,204 +1219,143 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                    <button class="btn btn-primary" name="insertar" type="submit" >Guardar</button>
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                <button class="btn btn-primary" name="insertar" type="submit" >Guardar</button>
                 </div>
                 </form>
             </div>
+            </div>
         </div>
-    </div>
 
-    <!-- VER Estudios Postgrado Modal-->
-    <div class="modal fade bd-example-modal-xl" id="ver_estudios_postgrado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
 
-                <h5 class="modal-title" id="exampleModalLabel">Estudios Postgrado</h5>
+
+        <!-- GUARDAR Cursos y diplomados Modal-->
+        <div class="modal fade bd-example-modal-xl" id="cursos_diplomados" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Cursos, diplomados y/o seminarios</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
-            </div>
-            <form>
-            <div class="modal-body">
+                </div>
+                <form action="procesos/guardar_diplomados.php" method="POST">
+                <div class="modal-body">
                 <div class="table-responsive">
-                    <label>Estudios Postgrado (Maestrias - Doctorados)</label> 
-                    <table class="table table-bordered" id="tabla-8">
+                    <label>Diplomados - Cursos - Seminarios</label> 
+                    <input type="hidden" id="dni" name="dni" value="<?php echo $dni; ?>">
+                    <input type="hidden" id="idpostulante" name="idpostulante" value="<?php echo $idpostulante; ?>">
+                    <table class="table table-bordered" id="tabla-9">
                         <thead>
                         <tr class="bg-danger" style="text-align:center; font-size:0.813em;">
-                            <th scope="col-3">Centro Estudios</th>
-                            <th scope="col-3">Especialidad</th>
-                            <th scope="col-2">Fecha Inicio</th>
-                            <th scope="col-2">Fecha Termino</th>
-                            <th scope="col-1">Nivel Alcanzado</th>
-                            <th scope="col-1">Acción</th>
+                            <th scope="col">Centro Estudios</th>
+                            <th scope="col">Especialidad</th>
+                            <th scope="col">Horas</th>
+                            <th scope="col">Fecha Inicio</th>
+                            <th scope="col">Fecha Termino</th>
+                            <th scope="col">Nivel Alcanzado</th>
+                            <th scope="col">Tipo</th>
+                            <th scope="col">Acción</th>
                         </tr>
                         </thead>
                         <tbody>
-                            <tr class="fila-fija-8">
+                            <tr class="fila-fija-9">
                                 <td><input type="text" name="centro_estu[]" class="form-control name_list" /></td>
-                                <td><input type="text" name="especialidad[]"  class="form-control name_list" /></td>
+                                <td><input type="text" name="materia[]"  class="form-control name_list" /></td>
+                                <td><input type="text" name="horas[]" class="form-control name_list" /></td>
                                 <td><input type="date" name="fech_ini[]" class="form-control name_list"/></td>
                                 <td><input type="date" name="fech_fin[]" class="form-control name_list"/></td>
                                 <td>
                                     <select name="nivel[]" class="form-control" id="cargo">
                                         <option value="" disabled selected>Elegir</option>
-                                        <option value="Magister">Magister</option>
-                                        <option value="Doctorado">Doctorado</option>
-                                        <option value="Egresado">Egresado</option>
-                                        <option value="Estudiante">Estudiante</option>
+                                        <option value="EGRESADO">Egresado</option>
+                                        <option value="ESTUDIANTE">Estudiante</option>
                                     </select>
                                 </td>
-                                <td class="eliminar"><button type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button></td>
+                                <td>
+                                    <select name="tipo[]" class="form-control" id="cargo">
+                                        <option value="" disabled selected>Elegir...</option>
+                                        <option value="DIPLOMADO">Diplomado</option>
+                                        <option value="CURSO">Curso</option>
+                                        <option value="SEMINARIO">Seminario</option>
+                                    </select>
+                                </td>
+                                <td class="eliminar"><input type="button" class="btn btn-danger" value=" - "></td>
                             </tr>
                         </tdody>
                     </table>
-                </div>
+                </div> 
                 <div class="row d-flex justify-content-center">
+                    <input type="hidden" id="idcon" name="idcon" value="<?php echo $fila['idcon']; ?>">
                     <div class="form-inline p-2">
-                        <button id="adicional-8" name="adicional" type="button" class="btn btn-warning"> AGREGAR FILA (+) </button>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-            <button class="btn btn-primary" name="insertar" type="submit" >Guardar</button>
-            </div>
-            </form>
-        </div>
-        </div>
-    </div>
-
-
-
-    <!-- GUARDAR Cursos y diplomados Modal-->
-    <div class="modal fade bd-example-modal-xl" id="cursos_diplomados" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Cursos, diplomados y/o seminarios</h5>
-            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">×</span>
-            </button>
-            </div>
-            <form action="procesos/guardar_diplomados.php" method="POST">
-            <div class="modal-body">
-            <div class="table-responsive">
-                <label>Diplomados - Cursos - Seminarios</label> 
-                <input type="hidden" id="dni" name="dni" value="<?php echo $dni; ?>">
-                <input type="hidden" id="idpostulante" name="idpostulante" value="<?php echo $idpostulante; ?>">
-                <table class="table table-bordered" id="tabla-9">
-                    <thead>
-                    <tr class="bg-danger" style="text-align:center; font-size:0.813em;">
-                        <th scope="col">Centro Estudios</th>
-                        <th scope="col">Especialidad</th>
-                        <th scope="col">Horas</th>
-                        <th scope="col">Fecha Inicio</th>
-                        <th scope="col">Fecha Termino</th>
-                        <th scope="col">Nivel Alcanzado</th>
-                        <th scope="col">Tipo</th>
-                        <th scope="col">Acción</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="fila-fija-9">
-                            <td><input type="text" name="centro_estu[]" class="form-control name_list" /></td>
-                            <td><input type="text" name="materia[]"  class="form-control name_list" /></td>
-                            <td><input type="text" name="horas[]" class="form-control name_list" /></td>
-                            <td><input type="date" name="fech_ini[]" class="form-control name_list"/></td>
-                            <td><input type="date" name="fech_fin[]" class="form-control name_list"/></td>
-                            <td>
-                                <select name="nivel[]" class="form-control" id="cargo">
-                                    <option value="" disabled selected>Elegir</option>
-                                    <option value="EGRESADO">Egresado</option>
-                                    <option value="ESTUDIANTE">Estudiante</option>
-                                </select>
-                            </td>
-                            <td>
-                                <select name="tipo[]" class="form-control" id="cargo">
-                                    <option value="" disabled selected>Elegir...</option>
-                                    <option value="DIPLOMADO">Diplomado</option>
-                                    <option value="CURSO">Curso</option>
-                                    <option value="SEMINARIO">Seminario</option>
-                                </select>
-                            </td>
-                            <td class="eliminar"><input type="button" class="btn btn-danger" value=" - "></td>
-                        </tr>
-                    </tdody>
-                </table>
-            </div> 
-            <div class="row d-flex justify-content-center">
-                <input type="hidden" id="idcon" name="idcon" value="<?php echo $fila['idcon']; ?>">
-                <div class="form-inline p-2">
-                    <button id="adicional-9" name="adicional" type="button" class="btn btn-warning"> AGREGAR FILA (+) </button>
-                </div>
-            </div>   
-            </div>
-            <div class="modal-footer">
-            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-            <button class="btn btn-primary" name="insertar" type="submit" >Guardar</button>
-            </div>
-        </form>
-        </div>
-        </div>
-    </div>
-
-    <!-- Idiomas y curso computacion-->
-    <div class="modal fade bd-example-modal-lg" id="idioma_compu" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Idiomas / Computación</h5>              
-            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">×</span>
-            </button>
-            </div>
-             <form action="procesos/guardar_idiomas.php" method="POST">
-            <div class="modal-body">
-                <div class="form-group row">
-                    <div class="table-responsive">
-                    <input type="hidden" id="dni" name="dni" value="<?php echo $dni; ?>">
-                    <input type="hidden" id="idpostulante" name="idpostulante" value="<?php echo $idpostulante; ?>">
-                        <table class="table table-bordered" id="tabla-10">
-                            <thead>
-                                <tr class="bg-danger" style="text-align:center; font-size:0.813em;">
-                                    <th scope="col">Idioma/Computación</th>
-                                    <th scope="col">Nivel</th>
-                                    <th scope="col">Acción</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr class="fila-fija-10">
-                                    <td><input type="text" name="idioma_comp[]" placeholder="Inglés, Portugues, Computación..." class="form-control name_list" /></td>
-                                    <td>
-                                        <select name="nivel[]" class="form-control">
-                                            <option value="" disabled selected>Elegir</option>
-                                            <option value="BASICO">Básico</option>
-                                            <option value="INTERMEDIO">Intermedio</option>
-                                            <option value="AVANZADO">Avanzado</option>
-                                        </select>
-                                    </td>
-                                    <td class="eliminar"><input type="button" class="btn btn-danger" value=" - "></td>
-                                </tr>
-                            </tdody>
-                        </table>
-                    </div> 
-                </div>
-                <div class="row d-flex justify-content-center">
-                    <div class="form-inline p-2">
-                        <button id="adicional-10" name="adicional" type="button" class="btn btn-warning"> AGREGAR FILA (+) </button>
+                        <button id="adicional-9" name="adicional" type="button" class="btn btn-warning"> AGREGAR FILA (+) </button>
                     </div>
                 </div>   
-            </div>
-            <div class="modal-footer">
-            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-            <button class="btn btn-primary" name="insertar" type="submit" >Guardar</button>
-            </div>
+                </div>
+                <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                <button class="btn btn-primary" name="insertar" type="submit" >Guardar</button>
+                </div>
             </form>
+            </div>
+            </div>
+        </div>
+
+        <!-- Idiomas y curso computacion-->
+        <div class="modal fade bd-example-modal-lg" id="idioma_compu" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Idiomas / Computación</h5>              
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                </div>
+                <form action="procesos/guardar_idiomas.php" method="POST">
+                <div class="modal-body">
+                    <div class="form-group row">
+                        <div class="table-responsive">
+                        <input type="hidden" id="dni" name="dni" value="<?php echo $dni; ?>">
+                        <input type="hidden" id="idpostulante" name="idpostulante" value="<?php echo $idpostulante; ?>">
+                            <table class="table table-bordered" id="tabla-10">
+                                <thead>
+                                    <tr class="bg-danger" style="text-align:center; font-size:0.813em;">
+                                        <th scope="col">Idioma/Computación</th>
+                                        <th scope="col">Nivel</th>
+                                        <th scope="col">Acción</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="fila-fija-10">
+                                        <td><input type="text" name="idioma_comp[]" placeholder="Inglés, Portugues, Computación..." class="form-control name_list" /></td>
+                                        <td>
+                                            <select name="nivel[]" class="form-control">
+                                                <option value="" disabled selected>Elegir</option>
+                                                <option value="BASICO">Básico</option>
+                                                <option value="INTERMEDIO">Intermedio</option>
+                                                <option value="AVANZADO">Avanzado</option>
+                                            </select>
+                                        </td>
+                                        <td class="eliminar"><input type="button" class="btn btn-danger" value=" - "></td>
+                                    </tr>
+                                </tdody>
+                            </table>
+                        </div> 
+                    </div>
+                    <div class="row d-flex justify-content-center">
+                        <div class="form-inline p-2">
+                            <button id="adicional-10" name="adicional" type="button" class="btn btn-warning"> AGREGAR FILA (+) </button>
+                        </div>
+                    </div>   
+                </div>
+                <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                <button class="btn btn-primary" name="insertar" type="submit" >Guardar</button>
+                </div>
+                </form>
+            </div>
         </div>
     </div>
-</div>
 
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>

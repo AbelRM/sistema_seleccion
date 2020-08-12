@@ -51,7 +51,7 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
                             <button class="btn btn-primary" data-toggle="modal" data-target="#logoutModal">Cerrar sesión</button>
                         </div>
                     </div>
-                    <form id="msform" method="post" action="procesos/guardar_ficha.php">
+                    <form id="msform" method="post" action="procesos/guardar_ficha.php"> 
                         <!-- progressbar -->
                         <div class="row p-2">
                             <div class="col-lg-2 col-md-2 col-sm-12 p-1">
@@ -299,7 +299,7 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
                                         <label>Número</label> 
                                         <input class="form-control form-control-user" type="text" name="numero" id="numero"/> 
                                     </div>
-                                    <div class="col-md-2 col-sm-2 mb-2 mb-sm-0">
+                                    <div class="col-md-2 col-sm-2 mb-2 mb-sm-0">  
                                         <label>Mz.</label> 
                                         <input class="form-control form-control-user" type="text" name="manzana" id="manzana"/> 
                                     </div>

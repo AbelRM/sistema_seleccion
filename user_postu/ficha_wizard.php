@@ -76,16 +76,16 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
                                 <div class="form-group row">
     
                                     <div class="col-md-5 col-sm-6 mb-2 mb-sm-0">
-                                        <label>Nombres</label> 
+                                        <label class="font-weight-bolder">Nombres</label> 
                                         <input class="form-control form-control-user" type="text" value="<?php echo $fila['nombres']." ".$fila['ape_pat']." ".$fila['ape_mat']; ?>" disabled="true"/> 
                                     </div>
                                     <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
-                                        <label>Fecha de nacimiento</label> 
-                                        <input class="form-control form-control-user" type="date" id="fech_nac" name="fech_nac"/> 
+                                        <label class="font-weight-bolder">Fecha de nacimiento</label> 
+                                        <input class="form-control form-control-user" type="date" id="fech_nac" name="fech_nac" required/> 
                                     </div>
                                     <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">
-                                        <label>Estado civil</label> 
-                                        <select class="form-control" name="civil" id="civil">
+                                        <label class="font-weight-bolder">Estado civil</label> 
+                                        <select class="form-control" name="civil" id="civil" required>
                                             <option selected>Elegir...</option>
                                             <option value="SOLTERO(A)">Soltero(a)</option>
                                             <option value="CASADO(A)">Casado(a)</option>
@@ -95,15 +95,15 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
                                         </select> 
                                     </div>
                                     <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">
-                                        <label>Sexo</label> 
-                                        <select class="form-control" name="sexo" id="sexo">
+                                        <label class="font-weight-bolder">Sexo</label> 
+                                        <select class="form-control" name="sexo" id="sexo" required>
                                             <option selected>Elegir...</option>
                                             <option value="MASCULINO">Masculino</option>
                                             <option value="FEMENINO">Femenino</option>
                                         </select> 
                                     </div>
                                     <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
-                                        <label for="name1">Departamento nacimiento</label>
+                                        <label class="font-weight-bolder" for="name1">Departamento nacimiento</label>
                                         <select id="departamento_id" class="form-control" name="departamento_id" required>
                                             <option value="">-- SELECCIONE --</option>
                                             <?php foreach($countries as $c):?>
@@ -113,45 +113,45 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
                                     </div>
 
                                     <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
-                                        <label for="name1">Provincia nacimiento</label>
-                                        <select id="provincia_id" class="form-control" name="provincia_id" >
+                                        <label class="font-weight-bolder" for="name1">Provincia nacimiento</label>
+                                        <select id="provincia_id" class="form-control" name="provincia_id" required>
                                             <option value="">-- SELECCIONE --</option>
                                         </select>                                 
                                     </div>
 
 
                                     <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
-                                        <label for="exampleInputEmail1">Distrito nacimiento</label>
+                                        <label class="font-weight-bolder" for="exampleInputEmail1">Distrito nacimiento</label>
                                         <select id="distrito_id" class="form-control" name="distrito_id" required>
                                             <option value="">-- SELECCIONE --</option>        
                                         </select>
                                     </div>
                                     
                                     <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">
-                                        <label>Cel. emergencia</label> 
-                                        <input class="form-control form-control-user" type="text" name="num_emer" id="num_emer"/> 
+                                        <label class="font-weight-bolder">Cel. emergencia</label> 
+                                        <input class="form-control form-control-user" type="text" name="num_emer" id="num_emer" maxlength="9"  required/> 
                                     </div>
                                     <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
-                                        <label>Parentesco</label> 
+                                        <label class="font-weight-bolder">Parentesco</label> 
                                         <input class="form-control form-control-user" placeholder="Nombre familiar" type="text" name="nomb_parent" id="nomb_parent"/> 
                                     </div>
                                     <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
-                                        <label>R.U.C.</label> 
-                                        <input class="form-control form-control-user" type="text" name="ruc" id="ruc"/> 
+                                        <label class="font-weight-bolder">R.U.C.</label> 
+                                        <input class="form-control form-control-user" type="text" name="ruc" id="ruc" maxlength="11" /> 
                                     </div>
                                     <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
-                                        <label>N° cuenta bancaria</label> 
-                                        <input class="form-control form-control-user" placeholder="Banco de la Nación" type="text" name="cuenta_banc" id="cuenta_banc"/> 
+                                        <label class="font-weight-bolder">N° cuenta bancaria</label> 
+                                        <input class="form-control form-control-user" placeholder="Banco de la Nación" type="text" name="cuenta_banc" id="cuenta_banc" maxlength="16"  required/> 
                                     </div>
                                     <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
-                                        <label>Suspensión de 4ta.</label> 
+                                        <label class="font-weight-bolder">Suspensión de 4ta.</label> 
                                         <select class="form-control" name="cuarta" id="cuarta">
                                             <option value="NO" selected>NO</option>
                                             <option value="SI">SI</option>
                                         </select> 
                                     </div>
                                     <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
-                                        <label>Tipo de pensión</label> 
+                                        <label class="font-weight-bolder">Tipo de pensión</label> 
                                         <select class="form-control" name="pension" id="pension">
                                             <option value="NINGUNA" selected>Ninguna</option>
                                             <option value="ONP">ONP</option>
@@ -159,7 +159,7 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
                                         </select> 
                                     </div>
                                     <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">
-                                        <label>Discapacidad</label> 
+                                        <label class="font-weight-bolder">Discapacidad</label> 
                                         <select class="form-control" name="discapacidad" id="discapacidad">
                                             <option value="NO" selected>NO</option>
                                             <option value="SI">SI</option>
@@ -167,7 +167,7 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
                                         </select>  
                                     </div>
                                     <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">
-                                        <label>Tipo de discapacidad</label> 
+                                        <label class="font-weight-bolder">Tipo  discapacidad</label> 
                                         <select class="form-control" name="tip_discapacidad" id="tip_discapacidad">
                                             <option value="NINGUNA" select>Ninguna</option>
                                             <option value="FISICA">Físicas</option>
@@ -177,7 +177,7 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
                                         </select>  
                                     </div>
                                     <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">
-                                        <label>Grupo sanguineo</label> 
+                                        <label class="font-weight-bolder">Grupo sanguineo</label> 
                                         <select class="form-control" name="tip_sangre" id="tip_sangre">
                                             <option selected>Elegir...</option>
                                             <option value="AB+">AB+</option>
@@ -195,7 +195,7 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
                                         <input class="form-control form-control-user" type="text" placeholder="Dirección actual..." name="direccion" id="direccion"/> 
                                     </div> -->
                                     <div class="col-md-6 col-sm-6 mb-2 mb-sm-0">
-                                        <label>Enfermedades/Alergias</label> 
+                                        <label class="font-weight-bolder">Enfermedades/Alergias</label> 
                                         <input class="form-control form-control-user" type="text" placeholder="Separado por comas" name="alergias" id="alergias"/> 
                                     </div>
                                 </div> 
@@ -216,7 +216,7 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
                                     <input type="hidden" id="dni_post" name="dni_post" value="<?php echo $fila['dni']; ?>"/>
 
                                     <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
-                                        <label for="exampleInputEmail1">Tipo de Via</label>
+                                        <label class="font-weight-bolder" for="exampleInputEmail1">Tipo de Via</label>
                                         <select class="form-control form-control-user" name="tipo_via" id="tipo_via">
                                         <option value="AVENIDA">Avenida</option>
                                         <option value="JIRON">Jiron</option>
@@ -233,16 +233,16 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
                                         </select>
                                     </div>
                                     <div class="col-md-7 col-sm-6 mb-2 mb-sm-0">
-                                        <label>Nombre de via</label> 
+                                        <label class="font-weight-bolder">Nombre de via</label> 
                                         <input class="form-control form-control-user" type="text" name="nomb_via" id="nomb_via" placeholder="Via"/> 
                                     </div>
                                     
                                     <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">
-                                        <label>Número</label> 
+                                        <label class="font-weight-bolder">Número</label> 
                                         <input class="form-control form-control-user" type="text" name="num_via" id="num_via" placeholder="Número"/> 
                                     </div>
                                     <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
-                                        <label for="exampleInputEmail1">Tipo de Zona</label>
+                                        <label class="font-weight-bolder" for="exampleInputEmail1">Tipo de Zona</label>
                                         <select class="form-control form-control-user" name="tipo_zona" id="tipo_zona">
                                         <option value="AVENIDA">Urbanizacion</option>
                                         <option value="JIRON">Pueblo Joven</option>
@@ -260,56 +260,29 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
                                     </div>
 
                                     <div class="col-md-7 col-sm-6 mb-2 mb-sm-0">
-                                        <label>Nombre de la zona</label> 
+                                        <label class="font-weight-bolder">Nombre de la zona</label> 
                                         <input class="form-control form-control-user" type="text" name="nomb_zona" id="nomb_zona" placeholder="Zona"/> 
                                     </div>
 
                                     <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">
-                                        <label>Número</label> 
+                                        <label class="font-weight-bolder">Número</label> 
                                         <input class="form-control form-control-user" type="text" name="num_zona" id="num_zona" placeholder="Número"/> 
                                     </div>
-                                    <!-- <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
-                                            <label for="name2">Departamento actual</label>
-                                            <select id="departamento_id1" class="form-control" name="departamento_id1" required>
-                                              <option value="">-- SELECCIONE --</option>
-                                              <?php foreach($countries as $c):?>
-                                              <option value="<?php echo $c->iddepartamento; ?>"><?php echo $c->departamento; ?></option>
-                                              <?php endforeach; ?>
-                                            </select> 
-                                     </div>
-
-                                     <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
-                                        <label for="name2">Provincia actual</label>
-                                        <select id="provincia_id1" class="form-control" name="provincia_id1" >
-                                        <option value="">-- SELECCIONE --</option>
-                                        </select>                                 
-                                        </div>
-
-                                    <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
-                                        <label for="name2">Distrito actual</label>
-                                        <select id="distrito_id1" class="form-control" name="distrito_id1" required>
-                                        <option value="">-- SELECCIONE --</option>        
-                                        </select>                                 
-                                    </div> -->
-                                    <!-- <div class="col-md-6 col-sm-6 mb-2 mb-sm-0">
-                                        <label>Domicilio actual</label> 
-                                        <input class="form-control form-control-user" type="text" name="direccion" id="direccion" placeholder="Direccion actual"/> 
-                                    </div> -->
                                     <div class="col-md-2 col-sm-2 mb-2 mb-sm-0">
-                                        <label>Número</label> 
+                                        <label class="font-weight-bolder">Número</label> 
                                         <input class="form-control form-control-user" type="text" name="numero" id="numero"/> 
                                     </div>
                                     <div class="col-md-2 col-sm-2 mb-2 mb-sm-0">  
-                                        <label>Mz.</label> 
+                                        <label class="font-weight-bolder">Mz.</label> 
                                         <input class="form-control form-control-user" type="text" name="manzana" id="manzana"/> 
                                     </div>
                                     <div class="col-md-2 col-sm-2 mb-2 mb-sm-0">
-                                        <label>Lt.</label> 
+                                        <label class="font-weight-bolder">Lt.</label> 
                                         <input class="form-control form-control-user" type="text" name="lote" id="lote"/> 
                                     </div>
 
                                     <div class="col-md-6 col-sm-6 mb-2 mb-sm-0">
-                                        <label>Referencia</label> 
+                                        <label class="font-weight-bolder">Referencia</label> 
                                         <input class="form-control form-control-user" type="text" name="referencia" id="referencia" placeholder="Indicar Avenida/Calle y/o Institucion cercana"/> 
                                     </div>
                                 </div>   

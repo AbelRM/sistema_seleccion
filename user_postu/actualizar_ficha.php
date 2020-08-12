@@ -74,7 +74,7 @@
                             <h4 id="heading">FICHA ÚNICA DE DATOS</h4>
                         </div> 
                         <div class="card-body">
-                            <form id="msform" method="post" action="procesos/guardar_ficha.php">
+                            <form id="msform" method="post" action="procesos/actualizar_ficha.php">
                                 <!-- progressbar -->
                                 <div class="row p-2">
                                     <div class="col-lg-12 col-md-12 col-sm-12">
@@ -150,17 +150,17 @@
 
                                             <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">
                                                 <label class="font-weight-bolder" for="exampleInputEmail1">Celular</label>
-                                                <input class="form-control form-control-user" type="text" value="<?php echo $fila['celular']?>"/>
+                                                <input class="form-control form-control-user" type="text" name="celular" id="celular" value="<?php echo $fila['celular']?>" maxlength="9"  required/>
                                             </div>
 
                                             <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
                                                 <label class="font-weight-bolder" for="exampleInputEmail1">Correo</label>
-                                                <input class="form-control form-control-user" type="text" value="<?php echo $fila['correo']?>"/>
+                                                <input class="form-control form-control-user" type="text" name="correo" id="correo"  value="<?php echo $fila['correo']?>"/>
                                             </div>
                                             
                                             <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">
                                                 <label class="font-weight-bolder">Estado civil</label> 
-                                                <select class="form-control" name="civil" id="civil">
+                                                <select class="form-control" name="estado_civil" id="estado_civil">
                                                     <option selected><?php echo $fila['estado_civil'] ?></option>
                                                     <option value="SOLTERO(A)">Soltero(a)</option>
                                                     <option value="CASADO(A)">Casado(a)</option>
@@ -172,19 +172,19 @@
                                             
                                             <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">
                                                 <label class="font-weight-bolder">Cel. emergencia</label> 
-                                                <input class="form-control form-control-user" type="text" name="num_emer" id="num_emer" value="<?php echo $fila['celular_emer'] ?>" /> 
+                                                <input class="form-control form-control-user" type="text" name="celular_emer" id="celular_emer" value="<?php echo $fila['celular_emer'] ?>" maxlength="9"  required /> 
                                             </div>
                                             <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
                                                 <label class="font-weight-bolder">Parentesco</label> 
-                                                <input class="form-control form-control-user" placeholder="Nombre familiar" type="text" name="nomb_parent" id="nomb_parent" value="<?php echo $fila['parentesco_emer'] ?>"/> 
+                                                <input class="form-control form-control-user" placeholder="Nombre familiar" type="text" name="parentesco_emer" id="parentesco_emer" value="<?php echo $fila['parentesco_emer'] ?>"/> 
                                             </div>
                                             <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
                                                 <label class="font-weight-bolder">R.U.C.</label> 
-                                                <input class="form-control form-control-user" type="text" name="ruc" id="ruc" value="<?php echo $fila['ruc'] ?>"/> 
+                                                <input class="form-control form-control-user" type="text" name="ruc" id="ruc" value="<?php echo $fila['ruc'] ?>" maxlength="11" /> 
                                             </div>
                                             <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
                                                 <label class="font-weight-bolder">N° cuenta bancaria</label> 
-                                                <input class="form-control form-control-user" placeholder="Banco de la Nación" type="text" name="cuenta_banc" id="cuenta_banc" value="<?php echo $fila['num_cuenta'] ?>"/> 
+                                                <input class="form-control form-control-user" placeholder="Banco de la Nación" type="text" name="num_cuenta" id="num_cuenta" value="<?php echo $fila['num_cuenta'] ?>" maxlength="16"  required/> 
                                             </div>
                                             <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
                                                 <label class="font-weight-bolder">Suspensión de 4ta.</label> 

@@ -36,7 +36,7 @@
             
 
             //// CONCATENAR LOS VALORES EN ORDEN PARA SU FUTURA INSERCIÓN ////////
-            $valores='("'.$centro_estu.'","'.$materia.'" ,"'.$horas.'","'.$fech_ini.'","'.$fech_fin.'","'.$nivel.'" ,"'.$tipo.'","'.$idpostulante.'"),';
+            $valores='("'.$centro_estu.'","'.$materia.'" ,"'.$horas.'","'.$fech_ini.'","'.$fech_fin.'","'.$tipo.'" ,"'.$nivel.'","'.$idpostulante.'"),';
 
             //////// YA QUE TERMINA CON COMA CADA FILA, SE RESTA CON LA FUNCIÓN SUBSTR EN LA ULTIMA FILA /////////////////////
             $valoresQ= substr($valores, 0, -1);
@@ -62,5 +62,5 @@
 
         }
     }
-    header('Location: ../mis_cursos.php?dni='.$dni);
+    header('Location: ../capacitacion.php?dni='.$dni);
 ?>

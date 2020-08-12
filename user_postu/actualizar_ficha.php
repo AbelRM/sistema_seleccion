@@ -401,24 +401,6 @@
                                                         <?php
                                                         }
                                                         ?>
-                                                        <!-- <tr class="fila-fija">
-                                                            <td><input type="text" name="nombre[]" placeholder="Nombres" class="form-control name_list" /></td>
-                                                            <td><input type="text" name="apellidos[]" placeholder="Apellidos completos" class="form-control name_list"/></td>
-                                                            <td><input type="date" name="fecha_nac[]" class="form-control name_list" /></td>
-                                                            <td><input type="text" name="dni[]" maxlength="8" class="form-control name_list" /></td>
-                                                            <td>
-                                                                <select name="parentesco[]" class="form-control">
-                                                                    <option value="" disabled selected>Elegir</option>
-                                                                    <option value="PADRE">Padre</option>
-                                                                    <option value="MADRE">Madre</option>
-                                                                    <option value="HERMANO(A)">Hermano(a)</option>
-                                                                    <option value="TIO(A)">Tio(a)</option>
-                                                                    <option value="ABUELO(A)">Abuelo(a)</option>
-                                                                </select>
-                                                            </td>
-                                                            <td><input type="text" name="entidad[]" placeholder="Nombre entidad que elabora" class="form-control name_list" /></td>
-                                                            <td class="eliminar"><input type="button" class="btn btn-danger" value=" - "></td>
-                                                        </tr> -->
                                                     </tdody>
                                                 </table>
 
@@ -445,16 +427,9 @@
                                                     }
 
                                                     ?>
-
-
                                             </table>
                                             </div>
                                         </div>
-                                        <!-- <div class="row d-flex justify-content-center">
-                                            <div class="form-inline p-2">
-                                                <button id="adicional" name="adicional" type="button" class="btn btn-warning"> AGREGAR FILA (+) </button>
-                                            </div>
-                                        </div> -->
                                     </div>
                                     <input type="button" name="insertar" class="next action-button" value="Siguiente" /> 
                                     <input type="button" name="previous" class="previous action-button-previous" value="Atrás" />

@@ -27,7 +27,7 @@
             
             ///////// QUERY DE INSERCIÓN ////////////////////////////
             // include_once('conexion.php');
-            $sql = "INSERT INTO idiomas_comp (idioma_comp, nivel, postulante_idpostulante) 
+            $sql = "INSERT INTO idiomas_comp (idioma_comp, nivel, idpostulante_postulante) 
             VALUES $valoresQ";
 
             $sqlRes=$con->query($sql) or mysqli_error($con);
@@ -41,4 +41,4 @@
 
         }
     }
-    header('Location: ../mis_cursos.php?dni='.$dni);
+    header('Location: ../capacitacion.php?dni='.$dni);

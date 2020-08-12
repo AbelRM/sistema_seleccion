@@ -66,12 +66,18 @@
                 $sql3="SELECT MAX(iddetalle_convocatoria) AS id FROM sistema_seleccion.detalle_convocatoria
                 WHERE postulante_idpostulante=$idpostulante";
                 $datos3=mysqli_query($con,$sql3) or die(mysqli_error());
-                $row = mysqli_fetch_row($datos3);
-                // $fila3= mysqli_fetch_array($datos3);
-                $id = trim($row[0]);
-                echo $id;
-                // $ultimo_id=mysqli_insert_id($con);
-                // echo $ultimo_id;
+                $row3 = mysqli_fetch_row($datos3);
+                $id = trim($row3[0]);
+
+                $sql4="SELECT * from detalle_convocatoria 
+                inner join total_personal_req on detalle_convocatoria.personal_req_idpersonal=total_personal_req.idpersonal 
+                inner join convocatoria on detalle_convocatoria.convocatoria_idcon=convocatoria.idcon WHERE iddetalle_convocatoria=$id";
+                $datos4=mysqli_query($con,$sql4) or die(mysqli_error());
+                $fila4= mysqli_fetch_array($datos4);
+                $iddetalle_conv=$fila4['iddetalle_convocatoria'];
+                $idtipo = $fila4['idtipo'];
+
+
             ?>
           <!-- Page Heading -->
             <!-- Content Row -->
@@ -79,122 +85,303 @@
                 <h5 class="mb-0 text-gray-800">MIS DATOS PROFESIONALES:</h5>
             </div>
             <div class="form-group">
-                <p>Todos los datos que ingrese serán veridicos, en caso de colocar datos falsos será betado de las futuras postulaciones para DIRESA - TACNA.</p>
+                <p class="font-weight-bold" style="color:#000; font-size:16px">NOTA: Todos los datos que ingrese deben ser 
+                <span style="color:red;">verídicos</span>, en caso de contrario será 
+                <span style="color:red;">betado de las futuras postulaciones</span> para DIRESA - TACNA.</p>
             </div>
             <div class="form-row d-flex justify-content-center">
+                <?php
+                    include_once('conexion.php');
+                    $sql = mysqli_query($con,"SELECT * from tipo_cargo WHERE idtipo=$idtipo") or die("Problemas en consulta").mysqli_error();
+                    $registro=mysqli_fetch_array($sql)
+                ?>
+
+                <p style="color:#000;">PARA SU CASO SELECCIONE <span class="font-weight-bold" style="color:red; font-size:22px;"><?php echo $registro['tipo_cargo'];?></span>  DE LA LISTA</p>
                 <div class="form-group col-md-6">
-                    <label for="inputState">Elegir categoría</label>
-                    <select style="font-size:13px;" name="tipo_cargo" class="form-control" id="tipo_cargo" required>
-                        <option value="" disabled selected>Elegir</option>
-                        <?php
-                        include_once('conexion.php');
-                        $sql = mysqli_query($con,"SELECT * from tipo_cargo ") or die("Problemas en consulta").mysqli_error();
-                        while ($registro=mysqli_fetch_array($sql)) {
-                            echo "<option value=\"".$registro['idtipo']."\">".$registro['tipo_cargo']."</option>";
-                        }
-                        ?>
+                    <select name="id_tipo_cargo" id="id_tipo_cargo" class="form-control">
+                        <option selected>Elegir...</option>
+                        <option value="tipo-1" style="color:red; font-weight:600;">PROFESIONAL DE LA SALUD</option>
+                        <option value="tipo-2" style="color:#1cc88a; font-weight:600;">OTROS PROFESIONALES</option>
+                        <option value="tipo-3" style="color:#1cc88a; font-weight:600;">ASISTENTE ADMINISTRATIVO</option>
+                        <option value="tipo-4" style="color:red; font-weight:600;">TÉCNICO EN ENFERMERIA</option>
+                        <option value="tipo-5" style="color:#1cc88a; font-weight:600;">TÉCNICO ADMINISTRATIVO</option>
+                        <option value="tipo-6" style="color:#1cc88a; font-weight:600;">TÉCNICO EN COMUNICACIONES</option>
+                        <option value="tipo-7" style="color:#1cc88a; font-weight:600;">SECRETARIA</option>
+                        <option value="tipo-8" style="color:#1cc88a; font-weight:600;">TÉCNICO EN INFORMÁTICA</option>
+                        <option value="tipo-9" style="color:#1cc88a; font-weight:600;">AUXLIAR ADMINISTRATIVO</option>
+                        <option value="tipo-10" style="color:#1cc88a; font-weight:600;">CHOFER</option>
+                        <option value="tipo-10" style="color:#1cc88a; font-weight:600;">VIGILANTE</option>
+                        <option value="tipo-10" style="color:#1cc88a; font-weight:600;">TRABAJADOR DE LIMPIEZA</option>
+                        <option value="tipo-10" style="color:#1cc88a; font-weight:600;">TRABAJADOR DE SERVICIOS</option>
                     </select>
                 </div>
             </div>
-            <div class="grupo-formularios">
+            <div class="grupo-form">
                 <!-- FORMULARIO MICRORED -->
-                <div class="form-row titulos d-flex justify-content-center m-2">
-                    <div class="col-md-8">
-                        <div class="card border-danger titulos">
-                            <div class="card-header titulos">
-                                <h5 class="titulo-card">Título y/o grado alcanzado (PROFESIONALES DE LA SALUD)</h5>
+                <div id="tipo-1" class="formulario" style="display: none;">
+                    <div class="form-row d-flex justify-content-center m-2">
+                        <div class="col-md-8">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="titulo-card">Título y/o grado alcanzado (PROFESIONALES DE LA SALUD)</h5>
+                                </div>
+                                <form action="procesos/guardar_prof_salud.php" method="POST">
+                                    <div class="card-body">
+                                        <div class="form-row">
+                                            <input type="hidden" id="id_detalle_convocatoria" name="id_detalle_convocatoria" value="<?php echo $iddetalle_conv ?>">
+                                            <div class="col-md-6 form-group">
+                                                <label for="exampleFormControlInput1">Profesión</label>
+                                                <input type="text" class="form-control" name="profesion" id="profesion" class="text-uppercase" >
+                                            </div>
+                                            <div class="col-md-6 form-group">
+                                                <label for="exampleFormControlInput1">Fecha colegiatura</label>
+                                                <input type="date" class="form-control" name="fech_colegiatura" id="fech_colegiatura" class="text-uppercase" >
+                                            </div>
+                                            <div class="col-md-6 form-group">
+                                                <label for="exampleFormControlInput1">Lugar colegiatura</label>
+                                                <input type="text" class="form-control" name="lugar_colegiatura" id="lugar_colegiatura" class="text-uppercase" >
+                                            </div>
+                                            <div class="col-md-6 form-group">
+                                                <label for="exampleFormControlInput1">Fecha hasta la cual se encuentra habilitado</label>
+                                                <input type="date" class="form-control" name="fech_hasta_colegiatura" id="fech_hasta_colegiatura" class="text-uppercase" >
+                                            </div>
+                                            <div class="col-md-6 form-group">
+                                                <label for="exampleFormControlInput1">N° colegiatura</label>
+                                                <input type="text" class="form-control" name="nro_colegiatura" id="nro_colegiatura" class="text-uppercase" >
+                                            </div>
+
+                                            <div class="col-9">
+                                                <div class="form-group">
+                                                    <label class="font-weight-bold">Título profesional universitario</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-3">
+                                                <div class="form-check form-check-inline">
+                                                    <select name="titulo_profesional" class="form-control">
+                                                        <option value="NO">NO</option>
+                                                        <option value="SI">SI</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-9">
+                                                <div class="form-group">
+                                                    <label class="font-weight-bold">Título de Especialidad (SOLO ELEGIR UNO)</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-3">
+                                                <div class="form-check form-check-inline">
+                                                    <select name="titulo_especialidad" class="form-control">
+                                                        <option value="NO">NO</option>
+                                                        <option value="SI">SI</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-9">
+                                                <div class="form-group">
+                                                    <label class="font-weight-normal"><i class="fas fa-angle-right"></i> Egresado de especialidad</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-3">
+                                                <div class="form-check form-check-inline">
+                                                    <select name="egresado_especialidad" class="form-control">
+                                                        <option value="NO">NO</option>
+                                                        <option value="SI">SI</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-9">
+                                                <div class="form-group">
+                                                    <label class="font-weight-bold">Grado de Maestría (acreditado - SOLO ELEGIR UNO *)</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-3">
+                                                <div class="form-check form-check-inline">
+                                                    <select name="grado_maestria" class="form-control">
+                                                        <option value="NO">NO</option>
+                                                        <option value="SI">SI</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-9">
+                                                <div class="form-group">
+                                                    <label class="font-weight-normal"><i class="fas fa-angle-right"></i> Constancia de Egresado de Maestría</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-3">
+                                                <div class="form-check form-check-inline">
+                                                    <select name="constancia_egre_maestria" class="form-control">
+                                                        <option value="NO">NO</option>
+                                                        <option value="SI">SI</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-9">
+                                                <div class="form-group">
+                                                    <label class="font-weight-bold">Grado de Doctorado (acreditado - SOLO ELEGIR UNO *)</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-3">
+                                                <div class="form-check form-check-inline">
+                                                    <select name="grado_doctorado" class="form-control">
+                                                        <option value="NO">NO</option>
+                                                        <option value="SI">SI</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-9">
+                                                <div class="form-group">
+                                                    <label class="font-weight-normal"><i class="fas fa-angle-right"></i> Constancia de Egresado de Doctorado (acreditado *)</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-3">
+                                                <div class="form-check form-check-inline">
+                                                    <select name="constancia_egre_doctorado" class="form-control">
+                                                        <option value="NO">NO</option>
+                                                        <option value="SI">SI</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </form>
                             </div>
-                            <div class="card-body titulos">
-                                <div class="form-row">
-                                    <div class="col-9">
-                                        <div class="form-group">
-                                            <label class="font-weight-bold">Título profesional universitario</label>
+                        </div>
+                    </div>
+                </div>
+                <div id="tipo-2" class="formulario" style="display: none;">
+                    <div class="form-row formulario d-flex justify-content-center m-2">
+                        <div class="col-md-8">
+                            <div class="card border-danger titulos-3">
+                                <div class="card-header titulos-3">
+                                    <h5 class="titulo-card">Título y/o grado alcanzado (OTROS PROFESIONALES)</h5>
+                                </div>
+                                <div class="card-body titulos-3">
+                                    <div class="form-row">
+                                        <input type="hidden" id="id_detalle_convocatoria" name="id_detalle_convocatoria" value="<?php echo $iddetalle_conv ?>">
+                                        <div class="col-md-6 form-group">
+                                            <label for="exampleFormControlInput1">Profesión</label>
+                                            <input type="text" class="form-control" name="profesion" id="profesion" class="text-uppercase" >
                                         </div>
-                                    </div>
-                                    <div class="col-3">
-                                        <div class="form-check form-check-inline">
-                                            <select class="form-control">
-                                                <option value="NO">NO</option>
-                                                <option value="SI">SI</option>
-                                            </select>
+                                        <div class="col-md-6 form-group">
+                                            <label for="exampleFormControlInput1">Fecha colegiatura</label>
+                                            <input type="date" class="form-control" name="fech_colegiatura" id="fech_colegiatura" class="text-uppercase" >
                                         </div>
-                                    </div>
-                                    <div class="col-9">
-                                        <div class="form-group">
-                                            <label class="font-weight-bold">Título de Especialidad</label>
+                                        <div class="col-md-6 form-group">
+                                            <label for="exampleFormControlInput1">Lugar colegiatura</label>
+                                            <input type="text" class="form-control" name="lugar_colegiatura" id="lugar_colegiatura" class="text-uppercase" >
                                         </div>
-                                    </div>
-                                    <div class="col-3">
-                                        <div class="form-check form-check-inline">
-                                            <select class="form-control">
-                                                <option value="NO">NO</option>
-                                                <option value="SI">SI</option>
-                                            </select>
+                                        <div class="col-md-6 form-group">
+                                            <label for="exampleFormControlInput1">Fecha hasta la cual se encuentra habilitado</label>
+                                            <input type="date" class="form-control" name="fech_hasta_colegiatura" id="fech_hasta_colegiatura" class="text-uppercase" >
                                         </div>
-                                    </div>
-                                    <div class="col-9">
-                                        <div class="form-group">
-                                            <label class="font-weight-normal"><i class="fas fa-angle-right"></i> Egresado de especialidad</label>
+                                        <div class="col-md-6 form-group">
+                                            <label for="exampleFormControlInput1">N° colegiatura</label>
+                                            <input type="text" class="form-control" name="nro_colegiatura" id="nro_colegiatura" class="text-uppercase" >
                                         </div>
-                                    </div>
-                                    <div class="col-3">
-                                        <div class="form-check form-check-inline">
-                                            <select class="form-control">
-                                                <option value="NO">NO</option>
-                                                <option value="SI">SI</option>
-                                            </select>
+                                        <div class="col-9">
+                                            <div class="form-group">
+                                                <label class="font-weight-bold">Título profesional universitario</label>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-9">
-                                        <div class="form-group">
-                                            <label class="font-weight-bold">Grado de Maestría (acreditado *)</label>
+                                        <div class="col-3">
+                                            <div class="form-check form-check-inline">
+                                                <select class="form-control">
+                                                    <option value="NO">NO</option>
+                                                    <option value="SI">SI</option>
+                                                </select>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-3">
-                                        <div class="form-check form-check-inline">
-                                            <select class="form-control">
-                                                <option value="NO">NO</option>
-                                                <option value="SI">SI</option>
-                                            </select>
+                                        <div class="col-9">
+                                            <div class="form-group">
+                                                <label class="font-weight-bold">Título de Especialidad</label>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-9">
-                                        <div class="form-group">
-                                            <label class="font-weight-normal"><i class="fas fa-angle-right"></i> Constancia de Egresado de Maestría</label>
+                                        <div class="col-3">
+                                            <div class="form-check form-check-inline">
+                                                <select class="form-control">
+                                                    <option value="NO">NO</option>
+                                                    <option value="SI">SI</option>
+                                                </select>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-3">
-                                        <div class="form-check form-check-inline">
-                                            <select class="form-control">
-                                                <option value="NO">NO</option>
-                                                <option value="SI">SI</option>
-                                            </select>
+                                        <div class="col-9">
+                                            <div class="form-group">
+                                                <label class="font-weight-bold">Grado de Bachiller</label>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-9">
-                                        <div class="form-group">
-                                            <label class="font-weight-bold">Grado de Doctorado (acreditado *)</label>
+                                        <div class="col-3">
+                                            <div class="form-check form-check-inline">
+                                                <select class="form-control">
+                                                    <option value="NO">NO</option>
+                                                    <option value="SI">SI</option>
+                                                </select>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-3">
-                                        <div class="form-check form-check-inline">
-                                            <select class="form-control">
-                                                <option value="NO">NO</option>
-                                                <option value="SI">SI</option>
-                                            </select>
+                                        <div class="col-9">
+                                            <div class="form-group">
+                                                <label class="font-weight-normal"><i class="fas fa-angle-right"></i> Egresado de especialidad</label>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-9">
-                                        <div class="form-group">
-                                            <label class="font-weight-normal"><i class="fas fa-angle-right"></i> Constancia de Egresado de Doctorado (acreditad)</label>
+                                        <div class="col-3">
+                                            <div class="form-check form-check-inline">
+                                                <select class="form-control">
+                                                    <option value="NO">NO</option>
+                                                    <option value="SI">SI</option>
+                                                </select>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-3">
-                                        <div class="form-check form-check-inline">
-                                            <select class="form-control">
-                                                <option value="NO">NO</option>
-                                                <option value="SI">SI</option>
-                                            </select>
+                                        <div class="col-9">
+                                            <div class="form-group">
+                                                <label class="font-weight-bold">Grado de Maestría (acreditado *)</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div class="form-check form-check-inline">
+                                                <select class="form-control">
+                                                    <option value="NO">NO</option>
+                                                    <option value="SI">SI</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-9">
+                                            <div class="form-group">
+                                                <label class="font-weight-normal"><i class="fas fa-angle-right"></i> Constancia de Egresado de Maestría</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div class="form-check form-check-inline">
+                                                <select class="form-control">
+                                                    <option value="NO">NO</option>
+                                                    <option value="SI">SI</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-9">
+                                            <div class="form-group">
+                                                <label class="font-weight-bold">Grado de Doctorado (acreditado *)</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div class="form-check form-check-inline">
+                                                <select class="form-control">
+                                                    <option value="NO">NO</option>
+                                                    <option value="SI">SI</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-9">
+                                            <div class="form-group">
+                                                <label class="font-weight-normal"><i class="fas fa-angle-right"></i> Constancia de Egresado de Doctorado (acreditad)</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div class="form-check form-check-inline">
+                                                <select class="form-control">
+                                                    <option value="NO">NO</option>
+                                                    <option value="SI">SI</option>
+                                                </select>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -202,103 +389,118 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-row titulos-3 d-flex justify-content-center m-2">
-                    <div class="col-md-8">
-                        <div class="card border-danger titulos-1">
-                            <div class="card-header titulos-1">
-                                <h5 class="titulo-card">Título y/o grado alcanzado (ASISTENTE ADMINISTRATIVO)</h5>
-                            </div>
-                            <div class="card-body titulos-1">
-                                <div class="form-row">
-                                    <div class="col-9">
-                                        <div class="form-group">
-                                            <label class="font-weight-bold">Título profesional universitario</label>
+                <div id="tipo-3" class="formulario" style="display: none;">
+                    <div class="form-row formulario d-flex justify-content-center m-2">
+                        <div class="col-md-8">
+                            <div class="card border-danger titulos-3">
+                                <div class="card-header titulos-3">
+                                    <h5 class="titulo-card">Título y/o grado alcanzado (ASISTENTE ADMINISTRATIVO)</h5>
+                                </div>
+                                <div class="card-body titulos-3">
+                                    <div class="form-row">
+                                        <div class="col-9">
+                                            <div class="form-group">
+                                                <label class="font-weight-bold">Título profesional universitario</label>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-3">
-                                        <div class="form-check form-check-inline">
-                                            <select class="form-control">
-                                                <option value="NO">NO</option>
-                                                <option value="SI">SI</option>
-                                            </select>
+                                        <div class="col-3">
+                                            <div class="form-check form-check-inline">
+                                                <select class="form-control">
+                                                    <option value="NO">NO</option>
+                                                    <option value="SI">SI</option>
+                                                </select>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-9">
-                                        <div class="form-group">
-                                            <label class="font-weight-bold">Título de Especialidad</label>
+                                        <div class="col-9">
+                                            <div class="form-group">
+                                                <label class="font-weight-bold">Título de Especialidad</label>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-3">
-                                        <div class="form-check form-check-inline">
-                                            <select class="form-control">
-                                                <option value="NO">NO</option>
-                                                <option value="SI">SI</option>
-                                            </select>
+                                        <div class="col-3">
+                                            <div class="form-check form-check-inline">
+                                                <select class="form-control">
+                                                    <option value="NO">NO</option>
+                                                    <option value="SI">SI</option>
+                                                </select>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-9">
-                                        <div class="form-group">
-                                            <label class="font-weight-normal"><i class="fas fa-angle-right"></i> Egresado de especialidad</label>
+                                        <div class="col-9">
+                                            <div class="form-group">
+                                                <label class="font-weight-bold">Grado de Bachiller</label>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-3">
-                                        <div class="form-check form-check-inline">
-                                            <select class="form-control">
-                                                <option value="NO">NO</option>
-                                                <option value="SI">SI</option>
-                                            </select>
+                                        <div class="col-3">
+                                            <div class="form-check form-check-inline">
+                                                <select class="form-control">
+                                                    <option value="NO">NO</option>
+                                                    <option value="SI">SI</option>
+                                                </select>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-9">
-                                        <div class="form-group">
-                                            <label class="font-weight-bold">Grado de Maestría (acreditado *)</label>
+                                        <div class="col-9">
+                                            <div class="form-group">
+                                                <label class="font-weight-normal"><i class="fas fa-angle-right"></i> Egresado de especialidad</label>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-3">
-                                        <div class="form-check form-check-inline">
-                                            <select class="form-control">
-                                                <option value="NO">NO</option>
-                                                <option value="SI">SI</option>
-                                            </select>
+                                        <div class="col-3">
+                                            <div class="form-check form-check-inline">
+                                                <select class="form-control">
+                                                    <option value="NO">NO</option>
+                                                    <option value="SI">SI</option>
+                                                </select>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-9">
-                                        <div class="form-group">
-                                            <label class="font-weight-normal"><i class="fas fa-angle-right"></i> Constancia de Egresado de Maestría</label>
+                                        <div class="col-9">
+                                            <div class="form-group">
+                                                <label class="font-weight-bold">Grado de Maestría (acreditado *)</label>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-3">
-                                        <div class="form-check form-check-inline">
-                                            <select class="form-control">
-                                                <option value="NO">NO</option>
-                                                <option value="SI">SI</option>
-                                            </select>
+                                        <div class="col-3">
+                                            <div class="form-check form-check-inline">
+                                                <select class="form-control">
+                                                    <option value="NO">NO</option>
+                                                    <option value="SI">SI</option>
+                                                </select>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-9">
-                                        <div class="form-group">
-                                            <label class="font-weight-bold">Grado de Doctorado (acreditado *)</label>
+                                        <div class="col-9">
+                                            <div class="form-group">
+                                                <label class="font-weight-normal"><i class="fas fa-angle-right"></i> Constancia de Egresado de Maestría</label>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-3">
-                                        <div class="form-check form-check-inline">
-                                            <select class="form-control">
-                                                <option value="NO">NO</option>
-                                                <option value="SI">SI</option>
-                                            </select>
+                                        <div class="col-3">
+                                            <div class="form-check form-check-inline">
+                                                <select class="form-control">
+                                                    <option value="NO">NO</option>
+                                                    <option value="SI">SI</option>
+                                                </select>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-9">
-                                        <div class="form-group">
-                                            <label class="font-weight-normal"><i class="fas fa-angle-right"></i> Constancia de Egresado de Doctorado (acreditad)</label>
+                                        <div class="col-9">
+                                            <div class="form-group">
+                                                <label class="font-weight-bold">Grado de Doctorado (acreditado *)</label>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-3">
-                                        <div class="form-check form-check-inline">
-                                            <select class="form-control">
-                                                <option value="NO">NO</option>
-                                                <option value="SI">SI</option>
-                                            </select>
+                                        <div class="col-3">
+                                            <div class="form-check form-check-inline">
+                                                <select class="form-control">
+                                                    <option value="NO">NO</option>
+                                                    <option value="SI">SI</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-9">
+                                            <div class="form-group">
+                                                <label class="font-weight-normal"><i class="fas fa-angle-right"></i> Constancia de Egresado de Doctorado (acreditad)</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div class="form-check form-check-inline">
+                                                <select class="form-control">
+                                                    <option value="NO">NO</option>
+                                                    <option value="SI">SI</option>
+                                                </select>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -306,116 +508,28 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-row titulos-2 d-flex justify-content-center m-2">
-                    <div class="col-md-8">
-                        <div class="card border-danger titulos-2">
-                            <div class="card-header titulos-2">
-                                <h5 class="titulo-card">Título y/o grado alcanzado (OTROS PROFESIONALES)</h5>
-                            </div>
-                            <div class="card-body titulos-2">
-                                <div class="form-row">
-                                    <div class="col-9">
-                                        <div class="form-group">
-                                            <label class="font-weight-bold">Título profesional universitario</label>
+                
+                <div id="tipo-4" class="formulario" style="display: none;">
+                    <div class="form-row formulario d-flex justify-content-center m-2">
+                        <div class="col-md-8 titulos-4">
+                            <div class="card border-danger titulos-4">
+                                <div class="card-header titulos-4">
+                                    <h5 class="titulo-card">TÉCNICO EN ENFERMERIA</h5>
+                                </div>
+                                <div class="card-body titulos-4">
+                                    <div class="form-row">
+                                        <div class="col-9">
+                                            <div class="form-group">
+                                                <label class="font-weight-bold">Título de Instituto Superior Tecnológico (acreditado)</label>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-3">
-                                        <div class="form-check form-check-inline">
-                                            <select class="form-control">
-                                                <option value="NO">NO</option>
-                                                <option value="SI">SI</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-9">
-                                        <div class="form-group">
-                                            <label class="font-weight-bold">Título de Especialidad</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-3">
-                                        <div class="form-check form-check-inline">
-                                            <select class="form-control">
-                                                <option value="NO">NO</option>
-                                                <option value="SI">SI</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-9">
-                                        <div class="form-group">
-                                            <label class="font-weight-bold">Grado de Bachiller</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-3">
-                                        <div class="form-check form-check-inline">
-                                            <select class="form-control">
-                                                <option value="NO">NO</option>
-                                                <option value="SI">SI</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-9">
-                                        <div class="form-group">
-                                            <label class="font-weight-normal"><i class="fas fa-angle-right"></i> Egresado de especialidad</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-3">
-                                        <div class="form-check form-check-inline">
-                                            <select class="form-control">
-                                                <option value="NO">NO</option>
-                                                <option value="SI">SI</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-9">
-                                        <div class="form-group">
-                                            <label class="font-weight-bold">Grado de Maestría (acreditado *)</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-3">
-                                        <div class="form-check form-check-inline">
-                                            <select class="form-control">
-                                                <option value="NO">NO</option>
-                                                <option value="SI">SI</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-9">
-                                        <div class="form-group">
-                                            <label class="font-weight-normal"><i class="fas fa-angle-right"></i> Constancia de Egresado de Maestría</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-3">
-                                        <div class="form-check form-check-inline">
-                                            <select class="form-control">
-                                                <option value="NO">NO</option>
-                                                <option value="SI">SI</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-9">
-                                        <div class="form-group">
-                                            <label class="font-weight-bold">Grado de Doctorado (acreditado *)</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-3">
-                                        <div class="form-check form-check-inline">
-                                            <select class="form-control">
-                                                <option value="NO">NO</option>
-                                                <option value="SI">SI</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-9">
-                                        <div class="form-group">
-                                            <label class="font-weight-normal"><i class="fas fa-angle-right"></i> Constancia de Egresado de Doctorado (acreditad)</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-3">
-                                        <div class="form-check form-check-inline">
-                                            <select class="form-control">
-                                                <option value="NO">NO</option>
-                                                <option value="SI">SI</option>
-                                            </select>
+                                        <div class="col-3">
+                                            <div class="form-check form-check-inline">
+                                                <select class="form-control">
+                                                    <option value="NO">NO</option>
+                                                    <option value="SI">SI</option>
+                                                </select>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -423,25 +537,110 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-row titulos-4 d-flex justify-content-center m-2">
-                    <div class="col-md-8">
-                        <div class="card border-danger titulos-1">
-                            <div class="card-header titulos-1">
-                                <h5 class="titulo-card">TÉCNICO EN ENFERMERIA</h5>
-                            </div>
-                            <div class="card-body titulos-1">
-                                <div class="form-row">
-                                    <div class="col-9">
-                                        <div class="form-group">
-                                            <label class="font-weight-bold">Título de Instituto Superior Tecnológico (acreditado)</label>
+                <div id="tipo-5" class="formulario" style="display: none;">
+                    <div class="form-row formulario d-flex justify-content-center m-2">
+                        <div class="col-md-8 titulos-5">
+                            <div class="card border-danger titulos-5">
+                                <div class="card-header titulos-5">
+                                    <h5 class="titulo-card">TÉCNICO ADMINISTRATIVO</h5>
+                                </div>
+                                <div class="card-body titulos-5">
+                                    <div class="form-row titulos-5">
+                                        <div class="col-9 titulos-5">
+                                            <div class="form-group titulos-5">
+                                                <label class="font-weight-bold">Egresado Universitario</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div class="form-check form-check-inline">
+                                                <select class="form-control">
+                                                    <option value="NO">NO</option>
+                                                    <option value="SI">SI</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-9">
+                                            <div class="form-group">
+                                                <label class="font-weight-bold">Título de Instituto Superior Tecnológico</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div class="form-check form-check-inline">
+                                                <select class="form-control">
+                                                    <option value="NO">NO</option>
+                                                    <option value="SI">SI</option>
+                                                </select>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-3">
-                                        <div class="form-check form-check-inline">
-                                            <select class="form-control">
-                                                <option value="NO">NO</option>
-                                                <option value="SI">SI</option>
-                                            </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>  
+                <div id="tipo-6" class="formulario" style="display: none;">
+                    <div class="form-row formulario d-flex justify-content-center m-2">
+                        <div class="col-md-8 titulos-5">
+                            <div class="card border-danger titulos-5">
+                                <div class="card-header titulos-5">
+                                    <h5 class="titulo-card">TÉCNICO EN COMUNICACIONES</h5>
+                                </div>
+                                <div class="card-body titulos-5">
+                                    <div class="form-row titulos-5">
+                                        <div class="col-9 titulos-5">
+                                            <div class="form-group titulos-5">
+                                                <label class="font-weight-bold">Egresado Universitario</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div class="form-check form-check-inline">
+                                                <select class="form-control">
+                                                    <option value="NO">NO</option>
+                                                    <option value="SI">SI</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-9">
+                                            <div class="form-group">
+                                                <label class="font-weight-bold">Título de Instituto Superior Tecnológico</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div class="form-check form-check-inline">
+                                                <select class="form-control">
+                                                    <option value="NO">NO</option>
+                                                    <option value="SI">SI</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+
+                <div id="tipo-7" class="formulario" style="display: none;">
+                    <div class="form-row formulario d-flex justify-content-center m-2">
+                        <div class="col-md-8 titulos-4">
+                            <div class="card border-danger titulos-4">
+                                <div class="card-header titulos-4">
+                                    <h5 class="titulo-card">SECRETARIA</h5>
+                                </div>
+                                <div class="card-body titulos-4">
+                                    <div class="form-row">
+                                        <div class="col-9">
+                                            <div class="form-group">
+                                                <label class="font-weight-bold">Título de Instituto Superior Tecnológico (acreditado)</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div class="form-check form-check-inline">
+                                                <select class="form-control">
+                                                    <option value="NO">NO</option>
+                                                    <option value="SI">SI</option>
+                                                </select>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -449,38 +648,69 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-row titulos-5 d-flex justify-content-center m-2">
-                    <div class="col-md-8">
-                        <div class="card border-danger titulos-1">
-                            <div class="card-header titulos-1">
-                                <h5 class="titulo-card">TÉCNICO ADMINISTRATIVO</h5>
+
+                <div id="tipo-8" class="formulario" style="display: none;">
+                    <div class="form-row formulario d-flex justify-content-center m-2">
+                        <div class="col-md-8 titulos-5">
+                            <div class="card border-danger titulos-5">
+                                <div class="card-header titulos-5">
+                                    <h5 class="titulo-card">TÉCNICO EN INFORMÁTICA</h5>
+                                </div>
+                                <div class="card-body titulos-5">
+                                    <div class="form-row titulos-5">
+                                        <div class="col-9 titulos-5">
+                                            <div class="form-group titulos-5">
+                                                <label class="font-weight-bold">Egresado Universitario</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div class="form-check form-check-inline">
+                                                <select class="form-control">
+                                                    <option value="NO">NO</option>
+                                                    <option value="SI">SI</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-9">
+                                            <div class="form-group">
+                                                <label class="font-weight-bold">Título de Instituto Superior Tecnológico</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div class="form-check form-check-inline">
+                                                <select class="form-control">
+                                                    <option value="NO">NO</option>
+                                                    <option value="SI">SI</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="card-body titulos-1">
-                                <div class="form-row">
-                                    <div class="col-9">
-                                        <div class="form-group">
-                                            <label class="font-weight-bold">Egresado Universitario</label>
+                        </div>
+                    </div>
+                </div> 
+                <div id="tipo-9" class="formulario" style="display: none;">
+                    <div class="form-row formulario d-flex justify-content-center m-2">
+                        <div class="col-md-8 titulos-6">
+                            <div class="card border-danger titulos-6">
+                                <div class="card-header titulos-6">
+                                    <h5 class="titulo-card">AUXILIAR ADMINISTRATIVO</h5>
+                                </div>
+                                <div class="card-body titulos-6">
+                                    <div class="form-row">
+                                        <div class="col-9">
+                                            <div class="form-group">
+                                                <label class="font-weight-bold">Secundaria completa</label>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-3">
-                                        <div class="form-check form-check-inline">
-                                            <select class="form-control">
-                                                <option value="NO">NO</option>
-                                                <option value="SI">SI</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-9">
-                                        <div class="form-group">
-                                            <label class="font-weight-bold">Título de Instituto Superior Tecnológico</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-3">
-                                        <div class="form-check form-check-inline">
-                                            <select class="form-control">
-                                                <option value="NO">NO</option>
-                                                <option value="SI">SI</option>
-                                            </select>
+                                        <div class="col-3">
+                                            <div class="form-check form-check-inline">
+                                                <select class="form-control">
+                                                    <option value="NO">NO</option>
+                                                    <option value="SI">SI</option>
+                                                </select>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -488,51 +718,27 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-row titulos-1 d-flex justify-content-center m-2">
-                    <div class="col-md-8">
-                        <div class="card border-danger titulos-1">
-                            <div class="card-header titulos-1">
-                                <h5 class="titulo-card">AUXILIAR ADMINISTRATIVO</h5>
-                            </div>
-                            <div class="card-body titulos-1">
-                                <div class="form-row">
-                                    <div class="col-9">
-                                        <div class="form-group">
-                                            <label class="font-weight-bold">Secundaria completa</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-3">
-                                        <div class="form-check form-check-inline">
-                                            <select class="form-control">
-                                                <option value="NO">NO</option>
-                                                <option value="SI">SI</option>
-                                            </select>
-                                        </div>
-                                    </div>
+                <div id="tipo-10" class="formulario" style="display: none;">
+                    <div class="form-row formulario d-flex justify-content-center m-2">
+                        <div class="col-md-8 titulos-7">
+                            <div class="card border-danger titulos-7">
+                                <div class="card-header titulos-7">
+                                    <h5 class="titulo-card">CHOFER - VIGILANTE - TRABJADOR DE LIMPIEZA - TRABAJADOR DE SERVICIOS</h5>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-row titulos-1 d-flex justify-content-center m-2">
-                    <div class="col-md-8">
-                        <div class="card border-danger titulos-1">
-                            <div class="card-header titulos-1">
-                                <h5 class="titulo-card">AUXILIAR ADMINISTRATIVO</h5>
-                            </div>
-                            <div class="card-body titulos-1">
-                                <div class="form-row">
-                                    <div class="col-9">
-                                        <div class="form-group">
-                                            <label class="font-weight-bold">Secundaria completa</label>
+                                <div class="card-body titulos-7">
+                                    <div class="form-row">
+                                        <div class="col-9">
+                                            <div class="form-group">
+                                                <label class="font-weight-bold">Secundaria completa</label>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-3">
-                                        <div class="form-check form-check-inline">
-                                            <select class="form-control">
-                                                <option value="NO">NO</option>
-                                                <option value="SI">SI</option>
-                                            </select>
+                                        <div class="col-3">
+                                            <div class="form-check form-check-inline">
+                                                <select class="form-control">
+                                                    <option value="NO">NO</option>
+                                                    <option value="SI">SI</option>
+                                                </select>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -597,16 +803,11 @@
     <script src="js/demo/chart-area-demo.js"></script>
     <script src="js/demo/chart-pie-demo.js"></script>
 
-    <!-- alertas -->
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            //Select para mostrar e esconder divs
-            $('#SelectOptions').on('change',function(){
-                var SelectValue='.'+$(this).val();
-                $('.grupo-formularios div').hide();
-                $(SelectValue).toggle();
-            });
+    
+    <script type="text/javascript">
+        $("#id_tipo_cargo").on('change', function(){
+            $('.formulario').hide();
+            $('#' + this.value).show();
         });
     </script>
 

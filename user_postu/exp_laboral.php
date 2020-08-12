@@ -389,17 +389,7 @@
     <script src="js/demo/chart-pie-demo.js"></script>
 
     <!-- alertas -->
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script>
-        function showAlert(){
-            swal({
-                title: "AGREGADO!",
-                text: "Se pudo agregar correctamente el estudio superior.!",
-                icon: "success",
-                button: "Continuar!",
-            });
-        }
-    </script>
+   
     <script>
         $(document).ready(function() {
             //Select para mostrar e esconder divs

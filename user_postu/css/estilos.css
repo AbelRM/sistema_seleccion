@@ -7,7 +7,9 @@
     font-weight: 600;
     font-size: 1.15rem;
 }
-
-.titulos-1,.titulos-2 {
+.formulario{
     display: none;
 }
+/* .titulos-1,.titulos-2,.titulos-3,.titulos-4,.titulos-5,.titulos-6,.titulos-7 {
+    display: none;
+} */

@@ -63,7 +63,7 @@
                   </div>
                   <div class="col-md-5 col-sm-6 mb-2 mb-sm-0">
                     <label for="exampleInputEmail1">Nro. Celular</label>
-                    <input type="text" style="padding: inherit;" class="form-control form-control-user" id="celular" name="celular" >
+                    <input type="text" style="padding: inherit;" class="form-control form-control-user" id="celular" name="celular" maxlength="9">
                   </div>
                   <div class="col-md-6 col-sm-6 mb-2 mb-sm-0">
                     <label for="exampleInputEmail1">Contraseña</label>

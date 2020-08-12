@@ -5,17 +5,19 @@
     $dni_post=$_POST['dni_post'];
     // DATOS PERSONALES
     $sexo = $_POST['sexo'];
-    $num_emer= $_POST['num_emer'];
-    $nomb_parent = $_POST['nomb_parent'];
+    $celular= $_POST['celular'];
+    $correo = $_POST['correo'];
+    $estadocivil = $_POST['estado_civil'];
+    $celular_emer= $_POST['celular_emer'];
+    $parentesco_emer= $_POST['parentesco_emer'];
     $ruc = $_POST['ruc'];
-    $cuarta= $_POST['cuarta'];
-    $pension= $_POST['pension'];
-    $cuenta_banc = $_POST['cuenta_banc'];
+    $num_cuenta = $_POST['num_cuenta'];  
+    $cuarta = $_POST['cuarta'];
+    $pension = $_POST['pension'];
     $discapacidad = $_POST['discapacidad'];
-    $tip_discapacidad = $_POST['tip_discapacidad'];
-    $tip_sangre = $_POST['tip_sangre'];
-    $alergias = $_POST['alergias'];
-    $distrito = $_POST['distrito_id'];
+    $tip_discapacidad = $_POST['tip_discapacidad']; 
+    $tip_sangre = $_POST['tip_sangre']; 
+    $alergias = $_POST['alergias'];  
     //$direccion=$_POST['direccion'];
     //DATOS DOMICILIO
     $tipo_via = $_POST['tipo_via'];
@@ -30,8 +32,8 @@
     $referencia = $_POST['referencia'];
     // $distrito1 = $_POST['distrito_id1'];
     
-    $sql = "UPDATE postulante SET fech_nac = '".$fech_nac."',estado_civil='".$civil."',sexo = '".$sexo."', celular_emer ='".$num_emer."',parentesco_emer='".$nomb_parent."',ruc ='".$ruc."',num_cuenta = '".$cuenta_banc."',
-     discapacidad = '".$discapacidad."', tipo_discap = '".$tip_discapacidad."',tipo_sangre = '".$tip_sangre."', alergias = '".$alergias."',suspension_cuarta = '".$cuarta."',seguro = '".$pension."',distrito_iddistrito = '".$distrito."' WHERE dni='".$dni_post."' ";
+    $sql = "UPDATE postulante SET sexo='".$sexo."',celular = '".$celular."', correo ='".$correo."',estado_civil='".$estadocivil."',celular_emer='".$celular_emer."',parentesco_emer ='".$parentesco_emer."',ruc = '".$ruc."',
+     num_cuenta = '".$num_cuenta."', suspension_cuarta = '".$cuarta."',discapacidad = '".$discapacidad."', tipo_discap = '".$tip_discapacidad."',tipo_sangre = '".$tip_sangre."',alergias = '".$alergias."' WHERE dni='".$dni_post."' ";
     $datos=mysqli_query($con,$sql);
 
 
@@ -41,71 +43,13 @@
         $fila= mysqli_fetch_array($datos);
         $idpostulante=$fila['idpostulante'];
 
-        $sql2 = "INSERT INTO domicilio_post (tip_via, nomb_via, num_via,tip_zona, nomb_zona, num_zona, referencia, numero, manzana, lote, postulante_idpostulante) 
-        VALUES ('".$tipo_via."', '".$nomb_via."', '".$num_via."', '".$tipo_zona."', '".$nomb_zona."', '".$num_zona."','".$referencia."','".$numero."','".$manzana."','".$lote."','".$idpostulante."')";
-        $datos2=mysqli_query($con,$sql2);
-    
-        if($datos2 == 1){
-            $true = 'true';
-            $items1 = ($_POST['nombre']);
-            $items2 = ($_POST['apellidos']);
-            $items3 = ($_POST['fecha_nac']);
-            $items4 = ($_POST['dni']);
-            $items5 = ($_POST['parentesco']);
-            $items6 = ($_POST['entidad']);
-            
-            ///////////// SEPARAR VALORES DE ARRAYS, EN ESTE CASO SON 5 ARRAYS UNO POR CADA INPUT (ID, NOMBRE, CARRERA Y GRUPO////////////////////)
-            while($true == true) {
-    
-                //// RECUPERAR LOS VALORES DE LOS ARREGLOS ////////
-                $item1 = current($items1);
-                $item2 = current($items2);
-                $item3 = current($items3);
-                $item4 = current($items4);
-                $item5 = current($items5);
-                $item6 = current($items6);
-                
-                ////// ASIGNARLOS A VARIABLES ///////////////////
-                $nombre=(( $item1 !== false) ? $item1 : ", &nbsp;");
-                $apellidos=(( $item2 !== false) ? $item2 : ", &nbsp;");
-                $fecha_nac=(( $item3 !== false) ? $item3 : ", &nbsp;");
-                $dni=(( $item4 !== false) ? $item4 : ", &nbsp;");
-                $parentesco=(( $item5 !== false) ? $item5 : ", &nbsp;");
-                $labora=(( $item6 !== false) ? $item6 : ", &nbsp;");
-    
-                //// CONCATENAR LOS VALORES EN ORDEN PARA SU FUTURA INSERCIÓN ////////
-                $valores='("'.$nombre.'","'.$apellidos.'","'.$fecha_nac.'","'.$dni.'","'.$parentesco.'","'.$labora.'","'.$idpostulante.'"),';
-    
-                //////// YA QUE TERMINA CON COMA CADA FILA, SE RESTA CON LA FUNCIÓN SUBSTR EN LA ULTIMA FILA /////////////////////
-                $valoresQ= substr($valores, 0, -1);
-                
-                ///////// QUERY DE INSERCIÓN ////////////////////////////
-                // include_once('conexion.php');
-                $sql3 = "INSERT INTO familia_post (nombre, apellidos, fech_nac, dni, parentesco, labora, postulante_idpostulante) 
-                VALUES $valoresQ";
-    
-                $sqlRes=$con->query($sql3) or mysqli_error($con);
-    
-                // Up! Next Value
-                $item1 = next( $items1 );
-                $item2 = next( $items2 );
-                $item3 = next( $items3 );
-                $item4 = next( $items4 );
-                $item5 = next( $items5 );
-                $item6 = next( $items6 );
-                
-                // Check terminator
-                if($item1 === false && $item2 === false && $item3 === false && $item4 === false && $item5 === false && $item6 === false) break;
-    
-            }
-            session_start();
-            header('Location: ../index.php?dni='.$dni_post);
-        }else{
-            echo "Error: " . $sql . "<br>" . $con->error;
-        }
+        $sql2 = "UPDATE domicilio_post SET tip_via='".$tipo_via."', nomb_via = '".$nomb_via."', num_via ='".$num_via."',tip_zona='".$tipo_zona."',nomb_zona='".$nomb_zona."',num_zona='".$num_zona."',numero ='".$numero."', manzana ='".$manzana."', lote ='".$lote."', referencia = '".$referencia."' WHERE dni='".$dni_post."'";
+        $datos2=mysqli_query($con,$sql2);    
         
-    } else {
-        echo "Error: " . $sql . "<br>" . $con->error;
+    } 
+    else {
+       
+            header('Location: ../index.php?dni='.$dni_post); 
     }
     $con->close();
 

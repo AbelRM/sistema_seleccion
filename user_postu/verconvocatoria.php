@@ -22,7 +22,7 @@
   <style>
     #total  {font-weight:bold;}
     .red    {border-color:red;}
-    .green  {border-color:green;}
+    .green  {border-color:green;} 
   </style>
 
 </head>
@@ -35,7 +35,7 @@
     <?php 
       include 'conexion.php';
       $dni=$_GET['dni'];
-      $idcon=$_GET['id'];
+      $idcon=$_POST['id'];
       $sql="SELECT * FROM full_convocatoria WHERE idcon='".$idcon."' ";
       $result=mysqli_query($con,$sql);
       $fila=mysqli_fetch_array($result);
@@ -178,6 +178,8 @@
                                     $cargo_funcio=$row['cargo_funcio'];
                                     $nombre=$row['nombre'];
                                     $apellidos=$row['apellidos'];
+
+                                   
                                 ?>
                                   <tr>
                                   <td><?php echo $cargo_funcio;?></td>
@@ -209,23 +211,27 @@
                               <tbody>
                                 <?php
         
-                                  $sql = " SELECT * FROM total_personal_req where convocatoria_idcon='".$idcon."'";
+                                $sql = " SELECT * FROM Personal_req INNER JOIN cargo ON cargo.idcargo = Personal_req.cargo_idcargo Where idpersonal='".$idcon."'";
 
-                                  $query=mysqli_query($con, $sql);
+                                $query=mysqli_query($con, $sql);
 
-                                  while ($row= MySQLI_fetch_array($query)){
-                                      $cantidad=$row['cantidad'];
-                                      $cargo=$row['cargo'];
-                                      $remuneracion=$row['remuneracion'];
+                                while ($row= MySQLI_fetch_array($query)){
+                                    $cantidad=$row['cantidad'];
+                                    $remuneracion=$row['remuneracion'];
+                                    $fuente=$row['fuente_finac'];
+                                    $meta=$row['meta'];
+                                    $cargo=$row['cargo'];
+
                                 ?>
-
-                                      <tr>
-                                      <td><?php echo $cargo;?></td>
-                                      <td><?php echo $cantidad;?></td>
-                                      <td><?php echo $remuneracion;?></td>
-                                <?php
-                                      }
-                                ?>	
+                                  <tr>
+                                  <td><?php echo $cantidad;?></td>
+                                  <td><?php echo $remuneracion;?></td>
+                                  <td><?php echo $fuente;?></td>
+                                  <td><?php echo $meta;?></td>
+                                  <td><?php echo $cargo;?></td>
+                                  <?php
+                                  }
+                                  ?>	
                               <tbody>
                               </tbody>
                             </table>

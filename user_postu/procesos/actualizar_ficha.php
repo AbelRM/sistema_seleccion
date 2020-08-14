@@ -37,6 +37,7 @@
     $datos=mysqli_query($con,$sql);
 
 
+
     if ($datos == 1) {
         $prueba="SELECT * FROM postulante where dni=$dni_post";
         $datos=mysqli_query($con,$prueba) or die(mysqli_error()); 
@@ -49,7 +50,8 @@
     } 
     else {
        
-            header('Location: ../index.php?dni='.$dni_post); 
+            //header('Location: ../index.php?dni='.$dni_post); 
+           echo "ffffff";
     }
     $con->close();
 

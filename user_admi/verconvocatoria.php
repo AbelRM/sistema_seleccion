@@ -176,13 +176,13 @@
                                         <th>Cargo</th>
                                         <th>Nombre</th>
                                         <th>Apellidos</th>
-                                        <th>Area Usuaria</th>
+                                        <th>Area Usuaria</th> 
                                         
                                         </tr>
                                     </thead>
                                     <?php
                                                   
-                                        $sql = "SELECT * FROM comision";
+                                        $sql = "SELECT * FROM comision  where convocatoria_idcon='".$idcon."' ";
 
                                         $query=mysqli_query($con, $sql);
 
@@ -228,7 +228,7 @@
                                 </thead>
                                 <tbody>
                                 <?php
-                                  $sql = " SELECT * FROM Personal_req INNER JOIN cargo ON cargo.idcargo = Personal_req.cargo_idcargo";
+                                 $sql = " SELECT * FROM total_personal_req where convocatoria_idcon='".$idcon."'";
 
                                   $query=mysqli_query($con, $sql);
 

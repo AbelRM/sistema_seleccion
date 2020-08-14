@@ -90,64 +90,179 @@
                 <span style="color:red;">betado de las futuras postulaciones</span> para DIRESA - TACNA.</p>
             </div>
             <div class="form-row d-flex justify-content-center">
-                <?php
-                    include_once('conexion.php');
-                    $sql = mysqli_query($con,"SELECT * from tipo_cargo WHERE idtipo=$idtipo") or die("Problemas en consulta").mysqli_error();
-                    $registro=mysqli_fetch_array($sql)
-                ?>
-
-                <p style="color:#000;">PARA SU CASO SELECCIONE <span class="font-weight-bold" style="color:red; font-size:22px;"><?php echo $registro['tipo_cargo'];?></span>  DE LA LISTA</p>
+                
                 <div class="form-group col-md-6">
-                    <select name="id_tipo_cargo" id="id_tipo_cargo" class="form-control">
-                        <option selected>Elegir...</option>
-                        <option value="tipo-1" style="color:red; font-weight:600;">PROFESIONAL DE LA SALUD</option>
-                        <option value="tipo-2" style="color:#1cc88a; font-weight:600;">OTROS PROFESIONALES</option>
-                        <option value="tipo-3" style="color:#1cc88a; font-weight:600;">ASISTENTE ADMINISTRATIVO</option>
-                        <option value="tipo-4" style="color:red; font-weight:600;">TÉCNICO EN ENFERMERIA</option>
-                        <option value="tipo-5" style="color:#1cc88a; font-weight:600;">TÉCNICO ADMINISTRATIVO</option>
-                        <option value="tipo-6" style="color:#1cc88a; font-weight:600;">TÉCNICO EN COMUNICACIONES</option>
-                        <option value="tipo-7" style="color:#1cc88a; font-weight:600;">SECRETARIA</option>
-                        <option value="tipo-8" style="color:#1cc88a; font-weight:600;">TÉCNICO EN INFORMÁTICA</option>
-                        <option value="tipo-9" style="color:#1cc88a; font-weight:600;">AUXLIAR ADMINISTRATIVO</option>
-                        <option value="tipo-10" style="color:#1cc88a; font-weight:600;">CHOFER</option>
-                        <option value="tipo-10" style="color:#1cc88a; font-weight:600;">VIGILANTE</option>
-                        <option value="tipo-10" style="color:#1cc88a; font-weight:600;">TRABAJADOR DE LIMPIEZA</option>
-                        <option value="tipo-10" style="color:#1cc88a; font-weight:600;">TRABAJADOR DE SERVICIOS</option>
+                    <select name="id_tipo_cargo" id="id_tipo_cargo" class="form-control custom-select">
+                        <option selected disabled >ELEGIR LA OPCIÓN RECOMENDADA PARA USTED...</option>
+                        <?php
+                            $sql = mysqli_query($con,"SELECT * from tipo_cargo WHERE idtipo=$idtipo") or die("Problemas en consulta").mysqli_error();
+                            while ($registro=mysqli_fetch_array($sql)) {
+                            echo "<option value=\"tipo-".$registro['idtipo']."\">".$registro['tipo_cargo']."</option>";
+                            }
+                        ?>
                     </select>
-                </div>
+                </div> 
+                
             </div>
             <div class="grupo-form">
-                <!-- FORMULARIO MICRORED -->
                 <div id="tipo-1" class="formulario" style="display: none;">
                     <div class="form-row d-flex justify-content-center m-2">
-                        <div class="col-md-8">
-                            <div class="card">
+                        <div class="col-md-6">
+                            <div class="card border-primary" style="font-size:13px;">
                                 <div class="card-header">
-                                    <h5 class="titulo-card">Título y/o grado alcanzado (PROFESIONALES DE LA SALUD)</h5>
+                                    <h5 class="card-title">DATOS GUARDADOS</h5>
+                                </div>
+                                <div class="card-body text-primary">
+                                    <div class="form-group" style="color:red; font-size:16px; text-align:center;">
+                                    <?php
+                                        $resultado=$con->query("SELECT EXISTS (SELECT * FROM datos_profesionales WHERE postulante_idpostulante=$idpostulante);");
+                                        $row=mysqli_fetch_row($resultado);
+                                        if ($row[0]=="1") {
+                                            $datos5=mysqli_query($con,$resultado);
+                                            $fila5= mysqli_fetch_array($datos5);
+                                        }else{
+                                            $nodatos=0;
+                                            echo "NO HAY DATOS GUARDADOS AÚN!";
+                                        }
+                                        ?>
+                                    </div>
+                                        
+                                    <div class="form-row">
+
+                                        <div class="col-md-6 form-group">
+                                            <label for="exampleFormControlInput1">Profesión</label>
+                                            <input type="text" style="font-size:12px;" class="form-control" value="<?php if($nodatos==0){echo"SIN DATOS";}else{echo $fila5['profesion'];}?>" disabled>
+                                        </div>
+                                        <div class="col-md-6 form-group">
+                                            <label for="exampleFormControlInput1">Fecha colegiatura</label>
+                                            <input type="date" class="form-control" value="<?php echo $fila5['fecha_cole']?>" disabled >
+                                        </div>
+                                        <div class="col-md-6 form-group">
+                                            <label for="exampleFormControlInput1">Lugar colegiatura</label>
+                                            <input type="text" style="font-size:12px;" class="form-control" value="<?php if($nodatos==0){echo"SIN DATOS";}else{echo $fila5['lugar_cole'];}?>" disabled >
+                                        </div>
+                                        <div class="col-md-6 form-group">
+                                            <label for="exampleFormControlInput1">Fecha de habilitación</label>
+                                            <input type="date" class="form-control" value="<?php echo $fila5['fecha_habi'] ?>" disabled>
+                                        </div>
+                                        <div class="col-md-6 form-group">
+                                            <label for="exampleFormControlInput1">N° colegiatura</label>
+                                            <input type="text" style="font-size:12px;" class="form-control" value="<?php if($nodatos==0){echo"SIN DATOS";}else{echo $fila5['nro_cole'];}?>" disabled>
+                                        </div>
+
+                                        <div class="col-10">
+                                            <div class="form-group">
+                                                <label class="font-weight-bold">Título profesional universitario</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-2">
+                                            <div class="form-check form-check-inline">
+                                                <input type="text" class="form-control" value="<?php if($nodatos==0){echo"-";}else{echo $fila5['titulo_profesional'];}?>" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="col-10">
+                                            <div class="form-group">
+                                                <label class="font-weight-bold">Título de Especialidad</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-2">
+                                            <div class="form-check form-check-inline">
+                                            <input type="text" class="form-control" value="<?php if($nodatos==0){echo"-";}else{echo $fila5['titulo_especialidad'];}?>" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="col-10">
+                                            <div class="form-group">
+                                                <label class="font-weight-normal"><i class="fas fa-angle-right"></i> Egresado de especialidad</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-2">
+                                            <div class="form-check form-check-inline">
+                                            <input type="text" class="form-control" value="<?php if($nodatos==0){echo"-";}else{echo $fila5['egresado_especialidad'];}?>" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="col-10">
+                                            <div class="form-group">
+                                                <label class="font-weight-bold">Grado de Maestría</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-2">
+                                            <div class="form-check form-check-inline">
+                                            <input type="text" class="form-control" value="<?php if($nodatos==0){echo"-";}else{echo $fila5['grado_maestria'];}?>" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="col-10">
+                                            <div class="form-group">
+                                                <label class="font-weight-normal"><i class="fas fa-angle-right"></i> Constancia de Egresado de Maestría</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-2">
+                                            <div class="form-check form-check-inline">
+                                            <input type="text" class="form-control" value="<?php if($nodatos==0){echo"-";}else{echo $fila5['constancia_egre_maestria'];}?>" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="col-10">
+                                            <div class="form-group">
+                                                <label class="font-weight-bold">Grado de Doctorado</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-2">
+                                            <div class="form-check form-check-inline">
+                                            <input type="text" class="form-control" value="<?php if($nodatos==0){echo"-";}else{echo $fila5['grado_doctorado'];}?>" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="col-10">
+                                            <div class="form-group">
+                                                <label class="font-weight-normal"><i class="fas fa-angle-right"></i> Constancia de Egresado de Doctorado</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-2">
+                                            <div class="form-check form-check-inline">
+                                            <input type="text" class="form-control" value="<?php if($nodatos==0){echo"-";}else{echo $fila5['constancia_egre_doctorado'];}?>" disabled>
+                                            </div>
+                                        </div>
+                                    </div>
+                                
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card border-primary" style="font-size:13px;">
+                                <div class="card-header">
+                                    <h5 class="card-title">PROFESIONALES DE LA SALUD</h5>
                                 </div>
                                 <form action="procesos/guardar_prof_salud.php" method="POST">
-                                    <div class="card-body">
-                                        <div class="form-row">
-                                            <input type="hidden" id="id_detalle_convocatoria" name="id_detalle_convocatoria" value="<?php echo $iddetalle_conv ?>">
+                                    <div class="card-body text-primary">
+                                        <?php
+                                            $sql6="SELECT * FROM datos_profesionales WHERE postulante_idpostulante=$idpostulante";
+                                            $datos6=mysqli_query($con,$sql6);
+                                            if($con->query($sql6) == TRUE){
+                                                $fila6= mysqli_fetch_array($datos6);
+                                            }else{
+                                                echo "NO HAY DATOS GUARDADOS AÚN!";
+                                            }
+                                        ?>
+                                        <div class="form-row" >
+                                            <input type="hidden" id="dni" name="dni" value="<?php echo $dni; ?>">
+                                            <input type="hidden" id="idpostulante" name="idpostulante" value="<?php echo $idpostulante; ?>">
                                             <div class="col-md-6 form-group">
                                                 <label for="exampleFormControlInput1">Profesión</label>
-                                                <input type="text" class="form-control" name="profesion" id="profesion" class="text-uppercase" >
+                                                <input type="text" class="form-control text-uppercase" name="profesion" id="profesion" value="<?php echo $fila6['profesion']; ?>"  required>
                                             </div>
                                             <div class="col-md-6 form-group">
                                                 <label for="exampleFormControlInput1">Fecha colegiatura</label>
-                                                <input type="date" class="form-control" name="fech_colegiatura" id="fech_colegiatura" class="text-uppercase" >
+                                                <input type="date" class="form-control" name="fecha_cole" id="fecha_cole"  >
                                             </div>
                                             <div class="col-md-6 form-group">
                                                 <label for="exampleFormControlInput1">Lugar colegiatura</label>
-                                                <input type="text" class="form-control" name="lugar_colegiatura" id="lugar_colegiatura" class="text-uppercase" >
+                                                <input type="text" class="form-control text-uppercase" name="lugar_colegiatura" id="lugar_colegiatura">
                                             </div>
                                             <div class="col-md-6 form-group">
-                                                <label for="exampleFormControlInput1">Fecha hasta la cual se encuentra habilitado</label>
-                                                <input type="date" class="form-control" name="fech_hasta_colegiatura" id="fech_hasta_colegiatura" class="text-uppercase" >
+                                                <label for="exampleFormControlInput1">Fecha de habilitación</label>
+                                                <input type="date" class="form-control" name="fech_habi" id="fech_habi"  >
                                             </div>
                                             <div class="col-md-6 form-group">
                                                 <label for="exampleFormControlInput1">N° colegiatura</label>
-                                                <input type="text" class="form-control" name="nro_colegiatura" id="nro_colegiatura" class="text-uppercase" >
+                                                <input type="text" class="form-control" name="nro_colegiatura" id="nro_colegiatura" >
                                             </div>
 
                                             <div class="col-9">
@@ -242,8 +357,10 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="form-row d-flex justify-content-center">
+                                            <button class="btn btn-primary" type="submit">GUARDAR!</button>
+                                        </div>
                                     </div>
-
                                 </form>
                             </div>
                         </div>

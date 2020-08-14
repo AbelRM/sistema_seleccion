@@ -48,7 +48,7 @@
                   
                   <form action="procesos/autenticar_v6.php" method="POST" class="user">
                     <div class="form-group">
-                      <input type="text" class="form-control form-control-user" id="dni" name="dni" placeholder="Ingrese su DNI..." required pattern="[A-Za-z0-9_-]{1,15}">
+                      <input type="text" class="form-control form-control-user" id="dni" name="dni" placeholder="Ingrese su DNI..." maxlength="8" required pattern="[A-Za-z0-9_-]{1,15}">
                     </div>
                     <div class="form-group">
                       <input type="password" class="form-control form-control-user" id="clave" name="clave" placeholder="Contraseña..." required pattern="[A-Za-z0-9_-]{1,15}">
@@ -92,6 +92,7 @@
   <script src="public/js/sb-admin-2.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
   <!-- <script src="public/js/alerta.js"></script> -->
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 </body>
 

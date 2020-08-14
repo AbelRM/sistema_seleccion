@@ -1,7 +1,4 @@
-
 <?php
-// $alert = '';
-
 session_start();
 if(!empty($_SESSION['active'])){
     $dni = $_POST['dni'];
@@ -9,7 +6,11 @@ if(!empty($_SESSION['active'])){
 }else{
     if(empty($_POST['dni']) || empty($_POST['clave'])){
         header("Location: ../");
-          
+        echo '<script>
+            alert("Ingrese su usuario y su contraseña!");
+            window.location="../index.php";
+
+        </script>';
         // $alert = 'Ingrese su clave y su clave';
     }else{
         require_once "../conexion.php";
@@ -22,7 +23,6 @@ if(!empty($_SESSION['active'])){
 
         if($result > 0){
             $data = mysqli_fetch_array($query);
-            // $tipo_user=$data['tipo_user'];
 
             $query2 = mysqli_query($con,"SELECT * FROM usuarios WHERE dni='$dni' AND tipo_user='ESTUDIANTE' ");
             $resultado = mysqli_num_rows($query2);
@@ -46,9 +46,6 @@ if(!empty($_SESSION['active'])){
                 header("Location: ../user_postu/index.php?dni=$dni");
                    
                 }else{
-                    //Aqui colocas el código que tu deseas realizar cuando el dato NO existe en la base de datos
-                    
-                    // header("Location: ../user_postu/form_wizard/index.php?dni=$dni");
                     header("Location: ../user_postu/ficha_wizard.php?dni=$dni");
                 } 
             }else{
@@ -66,8 +63,12 @@ if(!empty($_SESSION['active'])){
             }
             
         }else{
+            echo '<script>
+                alert("Usuario y/o contraseña incorrecta!");
+                window.location="../index.php";
+                </script>';
             
-            header("Location: ../");
+            // header("Location: ../");
             session_destroy();
         }
     }

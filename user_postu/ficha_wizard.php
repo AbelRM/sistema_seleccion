@@ -190,10 +190,6 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
                                             <option value="0-">0-</option>
                                         </select>  
                                     </div>
-                                    <!-- <div class="col-md-6 col-sm-6 mb-2 mb-sm-0">
-                                        <label>Dirección actual</label> 
-                                        <input class="form-control form-control-user" type="text" placeholder="Dirección actual..." name="direccion" id="direccion"/> 
-                                    </div> -->
                                     <div class="col-md-6 col-sm-6 mb-2 mb-sm-0">
                                         <label class="font-weight-bolder">Enfermedades/Alergias</label> 
                                         <input class="form-control form-control-user" type="text" placeholder="Separado por comas" name="alergias" id="alergias"/> 

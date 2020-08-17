@@ -36,7 +36,7 @@
             
             ///////// QUERY DE INSERCIÓN ////////////////////////////
             // include_once('conexion.php');
-            $sql = "INSERT INTO estudios_superiores (centro_estu, especialidad, fech_ini, fech_fin, nivel, postulante_idpostulante) 
+            $sql = "INSERT INTO estudios_superiores (centro_estu, especialidad, fech_ini, fech_fin, nivel, estudios_superiores_detalle_con) 
             VALUES $valoresQ";
 
             $sqlRes=$con->query($sql) or mysqli_error($con);
@@ -54,5 +54,5 @@
         }
     }
     
-    header('Location: ../mis_cursos.php?dni='.$dni);
+    header('Location: ../capacitacion.php?dni='.$dni);
 ?>

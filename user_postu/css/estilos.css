@@ -7,9 +7,16 @@
     font-weight: 600;
     font-size: 1.15rem;
 }
-.formulario{
-    display: none;
+.header-formulario{
+    background: #1F618D ;
+    color: #fff;
 }
+
+.header-formulario-danger{
+    background: #d52a1a ;
+    color: #fff;
+}
+
 /* .titulos-1,.titulos-2,.titulos-3,.titulos-4,.titulos-5,.titulos-6,.titulos-7 {
     display: none;
 } */

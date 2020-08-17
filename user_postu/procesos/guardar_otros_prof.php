@@ -16,13 +16,15 @@
     $constancia_egre_maestria=$_POST['constancia_egre_maestria'];
     $grado_doctorado=$_POST['grado_doctorado'];
     $constancia_egre_doctorado=$_POST['constancia_egre_doctorado'];
+    $grado_bachiller=$_POST['grado_bachiller'];
 
     $resultado=$con->query("SELECT * FROM datos_profesionales WHERE postulante_idpostulante=$idpostulante");
     
     if (mysqli_num_rows($resultado)>0) {
         $sql2="UPDATE datos_profesionales SET profesion = '$profesion',fecha_cole = '$fecha_cole',lugar_cole = '$lugar_colegiatura',fecha_habi = '$fecha_habi',
         nro_cole = '$nro_colegiatura',titulo_profesional = '$titulo_profesional',titulo_especialidad = '$titulo_especialidad',egresado_especialidad = '$egresado_especialidad',
-        grado_maestria = '$grado_maestria',constancia_egre_maestria = '$constancia_egre_maestria',grado_doctorado = '$grado_doctorado',constancia_egre_doctorado = '$constancia_egre_doctorado'
+        grado_maestria = '$grado_maestria',constancia_egre_maestria = '$constancia_egre_maestria',grado_doctorado = '$grado_doctorado',constancia_egre_doctorado = '$constancia_egre_doctorado',
+        grado_bachiller = '$grado_bachiller'
         WHERE postulante_idpostulante = $idpostulante ";
         $datos2=mysqli_query($con,$sql2) or die(mysqli_error());
         if ($datos2 == 1) {
@@ -33,9 +35,9 @@
        
     }else{
         $sql="INSERT INTO datos_profesionales (profesion,fecha_cole,lugar_cole,fecha_habi,nro_cole,titulo_profesional,titulo_especialidad, 
-        egresado_especialidad, grado_maestria, constancia_egre_maestria,grado_doctorado,constancia_egre_doctorado,postulante_idpostulante) 
+        egresado_especialidad, grado_maestria, constancia_egre_maestria,grado_doctorado,constancia_egre_doctorado,grado_bachiller,postulante_idpostulante) 
         VALUES ('".$profesion."','".$fecha_cole."','".$lugar_colegiatura."','".$fech_habi."','".$nro_colegiatura."','".$titulo_profesional."','".$titulo_especialidad."',
-        '".$egresado_especialidad."','".$grado_maestria."','".$constancia_egre_maestria."','".$grado_doctorado."','".$constancia_egre_doctorado."','".$idpostulante."')";
+        '".$egresado_especialidad."','".$grado_maestria."','".$constancia_egre_maestria."','".$grado_doctorado."','".$constancia_egre_doctorado."','".$grado_bachiller."','".$idpostulante."')";
         $datos=mysqli_query($con,$sql) or die(mysqli_error());
 
         if ($datos == 1) {

@@ -300,7 +300,7 @@
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <form action="procesos/guardar_estudios_sup.php" method="POST">
+                <form action="procesos/guardar_estudios_sup.php" method="POST">  
                 <div class="modal-body">
                     <div class="table-responsive">
                         <label>Estudios Superiores (Universitario - Tecnico)</label>
@@ -347,6 +347,63 @@
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
                     <button class="btn btn-primary" name="insertar" type="submit" >Guardar</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+     <!-- VER Cursos y diplomados Modal-->
+     <div class="modal fade bd-example-modal-xl" id="ver_estudios_superiores" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Estudios Superiores (Universitario - Tecnico)</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <form action="procesos/guardar_diplomados.php" method="POST">
+                <div class="modal-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                <th>N°</th>
+                                <th>Centro de estudios</th>
+                                <th>Especialidad</th>
+                                <th>Fecha Inicio</th>
+                                <th>Fecha Fin</th>
+                                <th>Nivel</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <?php
+                                $dni = $_GET['dni'];
+                                
+                                $consulta3 = "SELECT * FROM estudios_superiores WHERE estudios_superiores_detalle_con = $idpostulante";
+
+                                $query=mysqli_query($con, $consulta3);
+                                while ($row3= MySQLI_fetch_array($query))
+                                {
+                                ?>
+                                <tr>
+                                    <td><?php echo $row3['idestudios'] ?></td>
+                                    <td style="font-size: 16px;"><?php echo $row3['centro_estu'] ?></td>
+                                    <td style="font-size: 14px;"><?php echo $row3['especialidad']?></td>
+                                    <td style="font-size: 14px;"><?php echo $row3['fech_ini']?></td>
+                                    <td style="font-size: 14px;"><?php echo $row3['fech_fin']?></td>
+                                    <td style="font-size: 14px;"><?php echo $row3['nivel']; ?></td>
+                                </tr>
+                                <?php
+                                }
+                                ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Salir</button>
                 </div>
                 </form>
             </div>
@@ -423,64 +480,62 @@
         </div>
     </div>
 
-    <!-- VER Estudios Postgrado Modal-->
-    <div class="modal fade bd-example-modal-xl" id="ver_estudios_postgrado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+ <!-- VER Estudioa Postgrado-->
+ <div class="modal fade bd-example-modal-xl" id="ver_estudios_postgrado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-
-                <h5 class="modal-title" id="exampleModalLabel">Estudios Postgrado</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-            <form>
-            <div class="modal-body">
-                <div class="table-responsive">
-                    <label>Estudios Postgrado (Maestrias - Doctorados)</label> 
-                    <table class="table table-bordered" id="tabla-8">
-                        <thead>
-                        <tr class="bg-danger" style="text-align:center; font-size:0.813em;">
-                            <th scope="col-3">Centro Estudios</th>
-                            <th scope="col-3">Especialidad</th>
-                            <th scope="col-2">Fecha Inicio</th>
-                            <th scope="col-2">Fecha Termino</th>
-                            <th scope="col-1">Nivel Alcanzado</th>
-                            <th scope="col-1">Acción</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="fila-fija-8">
-                                <td><input type="text" name="centro_estu[]" class="form-control name_list" /></td>
-                                <td><input type="text" name="especialidad[]"  class="form-control name_list" /></td>
-                                <td><input type="date" name="fech_ini[]" class="form-control name_list"/></td>
-                                <td><input type="date" name="fech_fin[]" class="form-control name_list"/></td>
-                                <td>
-                                    <select name="nivel[]" class="form-control" id="cargo">
-                                        <option value="" disabled selected>Elegir</option>
-                                        <option value="Magister">Magister</option>
-                                        <option value="Doctorado">Doctorado</option>
-                                        <option value="Egresado">Egresado</option>
-                                        <option value="Estudiante">Estudiante</option>
-                                    </select>
-                                </td>
-                                <td class="eliminar"><button type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button></td>
-                            </tr>
-                        </tdody>
-                    </table>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Estudios Superiores (Maestrias - Doctorados)</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
                 </div>
-                <div class="row d-flex justify-content-center">
-                    <div class="form-inline p-2">
-                        <button id="adicional-8" name="adicional" type="button" class="btn btn-warning"> AGREGAR FILA (+) </button>
+                <form action="procesos/guardar_diplomados.php" method="POST">
+                <div class="modal-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                <th>N°</th>
+                                <th>Centro de estudios</th>
+                                <th>Especialidad</th>
+                                <th>Tipo</th>
+                                <th>Fecha Inicio</th>
+                                <th>Fecha Fin</th>
+                                <th>Nivel</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <?php
+                                $dni = $_GET['dni'];
+                                
+                                $consulta3 = "SELECT * FROM maestria_doc WHERE postulante_iddetalle_convocatoria = $idpostulante";
+
+                                $query=mysqli_query($con, $consulta3);
+                                while ($row3= MySQLI_fetch_array($query))
+                                {
+                                ?>
+                                <tr>
+                                    <td><?php echo $row3['idmaestria_doc'] ?></td>
+                                    <td style="font-size: 16px;"><?php echo $row3['centro_estu'] ?></td>
+                                    <td style="font-size: 14px;"><?php echo $row3['especialidad']?></td>
+                                    <td style="font-size: 14px;"><?php echo $row3['tipo_estu']?></td>
+                                    <td style="font-size: 14px;"><?php echo $row3['fech_ini']?></td>
+                                    <td style="font-size: 14px;"><?php echo $row3['fech_fin']?></td>
+                                    <td style="font-size: 14px;"><?php echo $row3['nivel']; ?></td>
+                                </tr>
+                                <?php
+                                }
+                                ?>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Salir</button>
+                </div>
+                </form>
             </div>
-            <div class="modal-footer">
-            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-            <button class="btn btn-primary" name="insertar" type="submit" >Guardar</button>
-            </div>
-            </form>
-        </div>
         </div>
     </div>
 

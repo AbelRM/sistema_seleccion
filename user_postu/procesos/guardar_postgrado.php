@@ -57,5 +57,5 @@
 
         }
     }
-    header('Location: ../mis_cursos.php?dni='.$dni);
+    header('Location: ../capacitacion.php?dni='.$dni);
 ?>

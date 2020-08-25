@@ -196,12 +196,30 @@
                                             </div>
                                             <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
                                                 <label class="font-weight-bolder">Tipo de pensión</label> 
-                                                <select class="form-control" name="pension" id="pension">
-                                                    <option select><?php echo $fila['seguro'] ?></option>
+                                                <select class="form-control custom-select" name="pension" id="inputSelect">
                                                     <option value="NINGUNA" selected>Ninguna</option>
                                                     <option value="ONP">ONP</option>
-                                                    <option value="SPP">SPP</option>
+                                                    <option value="AFP">AFP</option>
                                                 </select> 
+                                            </div>
+                                            <div id="AFP" class="divOculto col-md-3 col-sm-6 mb-2 mb-sm-0">
+                                                <label class="font-weight-bolder">Nombre de la AFP:</label> 
+                                                <input type="text" name="nombre_afp" class="form-control">
+                                            </div>
+                                            <div id="AFP-2" class="divOculto col-md-3 col-sm-6 mb-2 mb-sm-0">
+                                                <label class="font-weight-bolder">Código CUSSP (opcional):</label> 
+                                                <input type="text" name="codigo_cussp" class="form-control" >
+                                            </div>
+                                            <div id="NINGUNA" class="divOculto col-md-3 col-sm-6 mb-2 mb-sm-0">
+                                                <label class="font-weight-bolder">¿A cuál te gustaria pertenecer?</label> 
+                                                <select class="form-control custom-select" name="pertenecer_pension" id="pertenecer_pension">
+                                                    <option value="ONP" selected>ONP</option>
+                                                    <option value="AFP">AFP</option>
+                                                </select>
+                                            </div>
+                                            <div id="opcion-AFP" class="divOculto col-md-3 col-sm-6 mb-2 mb-sm-0">
+                                                <label class="font-weight-bolder">Nombre de la AFP:</label> 
+                                                <input type="text" name="nombre_afp_pregunta" class="form-control">
                                             </div>
                                             <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">
                                                 <label class="font-weight-bolder">Discapacidad</label> 
@@ -209,7 +227,6 @@
                                                     <option select><?php echo $fila['discapacidad'] ?></option>
                                                     <option value="NO" selected>NO</option>
                                                     <option value="SI">SI</option>
-                                                    
                                                 </select>  
                                             </div>
                                             <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
@@ -403,31 +420,6 @@
                                                         ?>
                                                     </tdody>
                                                 </table>
-
-                                            <table class="table">
-                                                <tr class="info">
-                                                    <th>Nombres</th>
-                                                    <th>Apellidos</th>
-                                                    <th>Fecha de Nacimiento</th>
-                                                    <th>DNI</th>
-                                                    <th>Parentesco</th>
-                                                    <th>Entidad que Labora</th>
-                                                </tr>
-                                                <?php
-                                                    while($registroAlumno  = $result->fetch_array( MYSQLI_BOTH)) 
-                                                    {
-                                                    echo '<tr>
-                                                            <td>'.$registroAlumno['nombre'].'</td>
-                                                            <td>'.$registroAlumno['apellidos'].'</td>
-                                                            <td>'.$registroAlumno['fech_nac'].'</td>
-                                                            <td>'.$registroAlumno['dni'].'</td>
-                                                            <td>'.$registroAlumno['parentesco'].'</td>
-                                                            <td>'.$registroAlumno['labora'].'</td>
-                                                        </tr>';
-                                                    }
-
-                                                    ?>
-                                            </table>
                                             </div>
                                         </div>
                                     </div>
@@ -517,6 +509,39 @@
   <!-- Page level custom scripts -->
   <script src="js/demo/chart-area-demo.js"></script>
   <script src="js/demo/chart-pie-demo.js"></script>
+
+  <script>
+    $(function() {
+        $("#inputSelect").on('change', function() {
+        var selectValue = $(this).val();
+        switch (selectValue) {
+            case "AFP":
+                $("#AFP").show();
+                $("#AFP-2").show();
+                $("#NINGUNO ").hide();
+            break;
+
+            case "NINGUNA":
+                $("#NINGUNA").show();
+                $("#AFP").hide();
+                $("#AFP-2").hide();
+            break;
+        }
+        }).change();
+        $("#pertenecer_pension").on('change', function() {
+        var selectValue = $(this).val();
+        switch (selectValue) {
+            case "AFP":
+                $("#opcion-AFP").show();
+            break;
+
+            case "ONP":
+                $("#opcion-AFP").hide();
+            break;
+        }
+        }).change();
+    });
+</script>
 
 </body>
 

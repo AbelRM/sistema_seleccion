@@ -43,13 +43,11 @@
                 <input required type="date" class="form-control" name="fecha2" placeholder="Ingrese fecha actual" id="moda2" value="<?php if(isset($_POST["fecha2"])){ echo $_POST["fecha2"];}?>">
             </div>
             </div>
-                <input name="calculo" type="hidden" value="v">	
-            <input class="btn btn-primary" type="submit" value="Calcular">
+              <input name="calculo" type="hidden" value="v">	
+              <input class="btn btn-primary" type="submit" value="Calcular">
         </form>   
 
-
-
-            <?php
+          <?php
             if(isset($_POST["calculo"])){
                 
             $fecha1=$_POST["fecha1"];
@@ -60,35 +58,29 @@
             $fechaactual = new DateTime($fecha2);
             //fecha de cierre 
             $diferencia = $fechainicial->diff($fechaactual); 
-
-        ?>
+          ?>
 
       
           <div class="form-row">
-                    <div class="form-group col-md-3 col-sm-12">
-                      <label for="disabled-input">Años</label>           
-                      <input type="text" class="form-control"   value="<?php echo $diferencia->format('%Y Años'); ?>" disabled="true">                                          
-                    </div>
-
+            <div class="form-group col-md-3 col-sm-12">
+              <label for="disabled-input">Años</label>           
+              <input type="text" class="form-control" value="<?php echo $diferencia->format('%Y Años'); ?>" disabled="true">                                          
+            </div>
          </div>
 
          <div class="form-row">
-                    <div class="form-group col-md-3 col-sm-12">
-                      <label for="disabled-input">Meses</label>           
-                      <input type="text" class="form-control"  value="<?php echo $diferencia->format('%m Meses'); ?>" disabled="true">                                          
-                    </div>
-
+            <div class="form-group col-md-3 col-sm-12">
+              <label for="disabled-input">Meses</label>           
+              <input type="text" class="form-control"  value="<?php echo $diferencia->format('%m Meses'); ?>" disabled="true">                                          
+            </div>
          </div>
 
          <div class="form-row">
-                    <div class="form-group col-md-3 col-sm-12">
-                      <label for="disabled-input">Dias</label>           
-                      <input type="text" class="form-control"   value="<?php echo $diferencia->format('%d Dias');?>" disabled="true">                                          
-                    </div>
-
+            <div class="form-group col-md-3 col-sm-12">
+              <label for="disabled-input">Dias</label>           
+              <input type="text" class="form-control"   value="<?php echo $diferencia->format('%d Dias');?>" disabled="true">                                          
+            </div>
          </div>
-
-    
 
         <?php
         }
@@ -101,39 +93,38 @@
 <script type="text/javascript" src="js/jquery-ui-1.8.13.custom.min.js"></script>
 <script type="text/javascript" src="js/jquery-ui-timepicker-addon.js"></script>
 <script type="text/javascript">
- $.datepicker.regional['es'] = {
- closeText: 'Cerrar',
- prevText: '<Ant',
- nextText: 'Sig>',
- currentText: 'Hoy',
- monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
- monthNamesShort: ['Ene','Feb','Mar','Abr', 'May','Jun','Jul','Ago','Sep', 'Oct','Nov','Dic'],
- dayNames: ['Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'],
- dayNamesShort: ['Dom','Lun','Mar','Mi?','Juv','Vie','Sab'],
- dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','Sa'],
- weekHeader: 'Sm',
- dateFormat: 'yy-mm-dd', changeMonth: true, changeYear: true, yearRange: '-100:+2',
- firstDay: 1,
- isRTL: false,
- showMonthAfterYear: false,
- yearSuffix: ''
- };
- $.datepicker.setDefaults($.datepicker.regional['es']);
-	$(function(){
-		$('#moda1').datetimepicker({
-			showSecond: true,
-			timeFormat: 'hh:mm:ss'
-		});
+  // $.datepicker.regional['es'] = {
+  // closeText: 'Cerrar',
+  // prevText: '<Ant',
+  // nextText: 'Sig>',
+  // currentText: 'Hoy',
+  // monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+  // monthNamesShort: ['Ene','Feb','Mar','Abr', 'May','Jun','Jul','Ago','Sep', 'Oct','Nov','Dic'],
+  // dayNames: ['Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'],
+  // dayNamesShort: ['Dom','Lun','Mar','Mi?','Juv','Vie','Sab'],
+  // dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','Sa'],
+  // weekHeader: 'Sm',
+  // dateFormat: 'yy-mm-dd', changeMonth: true, changeYear: true, yearRange: '-100:+2',
+  // firstDay: 1,
+  // isRTL: false,
+  // showMonthAfterYear: false,
+  // yearSuffix: ''
+  // };
+  // $.datepicker.setDefaults($.datepicker.regional['es']);
+  //   $(function(){
+  //     $('#moda1').datetimepicker({
+  //       showSecond: true,
+  //       timeFormat: 'hh:mm:ss'
+  //     });
 
-		$('#moda2').datetimepicker({
-			showSecond: true,
-			timeFormat: 'hh:mm:ss',
-			stepHour: 2,
-			stepMinute: 10,
-			stepSecond: 10
-		});
-	});
-
+  //     $('#moda2').datetimepicker({
+  //       showSecond: true,
+  //       timeFormat: 'hh:mm:ss',
+  //       stepHour: 2,
+  //       stepMinute: 10,
+  //       stepSecond: 10
+  //     });
+  //   });
 </script>
 
 </body>

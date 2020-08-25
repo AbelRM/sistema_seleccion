@@ -94,7 +94,7 @@
                         <td style="font-size: 16px;"><?php echo $row['num_con']."-".$row['anio_con'] ?></td>
                         <td style="font-size: 14px;"><?php echo $row['cargo']?></td>
                         <td style="font-size: 14px;"><?php echo $row['boleta']?></td>
-                        <td style="font-size: 14px;"><?php echo $row['fech_inscripcion']?></td>
+                        <td style="font-size: 14px;"><?php echo $row['fecha_postulacion']?></td>
                         <td>
                           <button type="button" class="btn btn-primary"><i class="fa fa-eye"></i> Ver</button>
                         </td>

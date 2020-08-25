@@ -46,12 +46,12 @@
 
         $sql2 = "UPDATE domicilio_post SET tip_via='".$tipo_via."', nomb_via = '".$nomb_via."', num_via ='".$num_via."',tip_zona='".$tipo_zona."',nomb_zona='".$nomb_zona."',num_zona='".$num_zona."',numero ='".$numero."', manzana ='".$manzana."', lote ='".$lote."', referencia = '".$referencia."' WHERE dni='".$dni_post."'";
         $datos2=mysqli_query($con,$sql2);    
-        
+
+        header('Location: ../ver_ficha.php?dni='.$dni_post);
     } 
     else {
-       
-            //header('Location: ../index.php?dni='.$dni_post); 
-           echo "ffffff";
+       echo "ERROR AL ACTUALIZAR";
+        header('Location: ../index.php?dni='.$dni_post); 
     }
     $con->close();
 

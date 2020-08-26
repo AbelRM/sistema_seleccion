@@ -197,6 +197,8 @@
         $consulta2="SELECT * FROM datos_profesionales where postulante_idpostulante=$idpostulante";
         $datos2=mysqli_query($con,$consulta2) or die(mysqli_error()); ;
         $row2= mysqli_fetch_array($datos2);
+
+
     ?>
     <!--GUARDAR Profesion Modal USAR DE EJEMPLO YA NO SE DAN USO-->
     <div class="modal fade bd-example-modal-lg" id="datos_profesionales" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -300,12 +302,13 @@
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <form action="procesos/guardar_estudios_sup.php" method="POST">  
+                <form action="procesos/guardar_estudios_sup.php" method="POST"> 
                 <div class="modal-body">
                     <div class="table-responsive">
                         <label>Estudios Superiores (Universitario - Tecnico)</label>
                         <input type="hidden" id="dni" name="dni" value="<?php echo $dni; ?>">
-                        <input type="hidden" id="idpostulante" name="idpostulante" value="<?php echo $idpostulante; ?>">
+                        <input type="hidden" id="idpostulante" name="idpostulante" value="<?php echo $idpostulante; ?>"> 
+                        <input type="hidden" id="iddetalle_convocatoria" name="iddetalle_convocatoria" value="<?php echo $iddetalle_con; ?>">
                         <table class="table table-bordered" id="tabla-7">
                             <thead>
                             <tr class="bg-danger" style="text-align:center; font-size:0.813em;">
@@ -381,7 +384,7 @@
                             <?php
                                 $dni = $_GET['dni'];
                                 
-                                $consulta3 = "SELECT * FROM estudios_superiores WHERE estudios_superiores_detalle_con = $idpostulante";
+                                $consulta3 = "SELECT * FROM estudios_superiores WHERE idpostulante_postulante = $idpostulante";
 
                                 $query=mysqli_query($con, $consulta3);
                                 while ($row3= MySQLI_fetch_array($query))
@@ -426,6 +429,7 @@
                         <label>Estudios Postgrado (Maestrias - Doctorados)</label>
                         <input type="hidden" id="dni" name="dni" value="<?php echo $dni; ?>">
                         <input type="hidden" id="idpostulante" name="idpostulante" value="<?php echo $idpostulante; ?>">
+                        <input type="hidden" id="iddetalle_convocatoria" name="iddetalle_convocatoria" value="<?php echo $iddetalle_con; ?>">
                         <table class="table table-bordered" id="tabla-8">
                             <thead>
                             <tr class="bg-danger" style="text-align:center; font-size:0.813em;">
@@ -509,7 +513,7 @@
                             <?php
                                 $dni = $_GET['dni'];
                                 
-                                $consulta3 = "SELECT * FROM maestria_doc WHERE postulante_iddetalle_convocatoria = $idpostulante";
+                                $consulta3 = "SELECT * FROM maestria_doc WHERE idpostulante_postulante = $idpostulante";
 
                                 $query=mysqli_query($con, $consulta3);
                                 while ($row3= MySQLI_fetch_array($query))
@@ -549,7 +553,7 @@
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <form action="procesos/guardar_diplomados.php" method="POST">
+                <form action="procesos/guardar_diplomados.php" method="POST">  
                 <div class="modal-body">
                     <div class="table-responsive">
                         <label>Diplomados - Cursos - Seminarios</label> 
@@ -682,7 +686,7 @@
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <form action="procesos/guardar_idiomas.php" method="POST">
+                <form action="procesos/guardar_idiomas.php" method="POST">  
                 <div class="modal-body">
                     <div class="table-responsive">
                         <input type="hidden" id="dni" name="dni" value="<?php echo $dni; ?>">

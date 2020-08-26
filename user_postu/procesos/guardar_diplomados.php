@@ -42,7 +42,7 @@
             $valoresQ= substr($valores, 0, -1);
             
             ///////// QUERY DE INSERCIÓN ////////////////////////////
-            // include_once('conexion.php');
+            // include_once('conexion.php'); 
             $sql = "INSERT INTO cursos_extra (centro_estu, materia, horas, fech_ini, fech_fin, tipo, nivel, postulante_idpostulante) 
             VALUES $valoresQ";
 

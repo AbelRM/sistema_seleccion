@@ -69,7 +69,7 @@
               <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
-                    <tr>
+                    <tr class="bg-danger" style="text-align:center; font-size:0.813em;">
                       <th>N° CONVOCATORIA</th>
                       <th>CARGO SELECCIONADO</th>
                       <th>BOLETA</th>
@@ -94,14 +94,14 @@
                         <td style="font-size: 16px;"><?php echo $row['num_con']."-".$row['anio_con'] ?></td>
                         <td style="font-size: 14px;"><?php echo $row['cargo']?></td>
                         <td style="font-size: 14px;"><?php echo $row['boleta']?></td>
-                        <td style="font-size: 14px;"><?php echo $row['fecha_postulacion']?></td>
+                        <td style="font-size: 14px;"><?php echo $row['fech_inscripcion']?></td>
                         <td>
                           <button type="button" class="btn btn-primary"><i class="fa fa-eye"></i> Ver</button>
                         </td>
                         
                       </tr>
                     <?php
-                      }
+                      } 
                     ?>
                   </tbody>
                 </table>

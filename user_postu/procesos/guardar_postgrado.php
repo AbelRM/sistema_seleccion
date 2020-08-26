@@ -1,7 +1,8 @@
 <?php
     include_once('../conexion.php');
     $dni=$_POST['dni'];
-    $idpostulante= $_POST['idpostulante'];
+    $idpostulante= $_POST['idpostulante']; 
+    $iddetalle_con=$_POST['iddetalle_convocatoria']; 
     //////////////////////// PRESIONAR EL BOTÓN //////////////////////////
     if(isset($_POST['insertar']))
     {
@@ -39,7 +40,7 @@
             
             ///////// QUERY DE INSERCIÓN ////////////////////////////
             // include_once('conexion.php');
-            $sql = "INSERT INTO maestria_doc (centro_estu, especialidad, tipo_estu, fech_ini, fech_fin, nivel, postulante_idpostulante) 
+            $sql = "INSERT INTO maestria_doc (centro_estu, especialidad, tipo_estu, fech_ini, fech_fin, nivel, idpostulante_postulante) 
             VALUES $valoresQ";
 
             $sqlRes=$con->query($sql) or mysqli_error($con);

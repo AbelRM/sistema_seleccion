@@ -54,7 +54,7 @@
         <!-- End of Topbar -->
 
         <!-- Begin Page Content -->
-        <div class="container-fluid">
+        <div class="container-fluid">  
 
           <!-- Page Heading -->
           <!-- <h1 class="h3 mb-2 text-gray-800">Tables</h1>
@@ -68,8 +68,9 @@
             <div class="card-body">
               <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                <thead>
-                    <tr>
+                <thead>  
+                
+                    <tr class="bg-danger" style="text-align:center; font-size:0.813em;">
                       <th>N°</th>
                       <th>Tipo concurso</th>
                       <th>N° convocatoria</th>

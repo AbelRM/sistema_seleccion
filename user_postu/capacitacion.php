@@ -371,7 +371,7 @@
                     <div class="table-responsive">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
-                                <tr>
+                                <tr class="bg-danger" style="text-align:center; font-size:0.813em;">
                                 <th>N°</th>
                                 <th>Centro de estudios</th>
                                 <th>Especialidad</th>
@@ -499,7 +499,7 @@
                     <div class="table-responsive">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
-                                <tr>
+                                <tr class="bg-danger" style="text-align:center; font-size:0.813em;">
                                 <th>N°</th>
                                 <th>Centro de estudios</th>
                                 <th>Especialidad</th>
@@ -630,7 +630,7 @@
                     <div class="table-responsive">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
-                                <tr>
+                                <tr class="bg-danger" style="text-align:center; font-size:0.813em;">
                                 <th>N°</th>
                                 <th>Centro de estudios</th>
                                 <th>Nombre de materia</th>
@@ -744,7 +744,7 @@
                     <div class="table-responsive">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
-                                <tr>
+                                <tr class="bg-danger" style="text-align:center; font-size:0.813em;">
                                     <th>N°</th>
                                     <th scope="col">Idioma/Computación</th>
                                     <th scope="col">Nivel</th>

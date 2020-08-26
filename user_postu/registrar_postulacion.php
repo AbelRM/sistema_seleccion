@@ -12,6 +12,7 @@
 
   <title>Listado</title>
 
+  
   <!-- Custom fonts for this template -->
   <link rel="icon" type="image/png" href="img/icono_diresa.png" />
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -22,6 +23,11 @@
 
   <!-- Custom styles for this page -->
   <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+
+  <script type="text/javascript" src="vendor/sweetalert/sweetalert2.min.js" ></script>
+  <script type="text/javascript" src="vendor/jquery.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="vendor/sweetalert/sweetalert2.min.css">
+  <script type="text/javascript" src="vendor/bootstrap/js/bootstrap.min.js"></script>
 
 </head>
 
@@ -87,7 +93,7 @@
                 $idcargo=$_GET['idcargo'];
                 $idcon=$_GET['idcon'];
               ?>
-              <form action="procesos/guardar_postulacion.php" method="POST"> 
+              <form action="procesos/guardar_postulacion.php" method="POST">  
               <div class="form-group row d-flex justify-content-center">
                 <label class="col-lg-2 col-md-4 col-form-label text-success">Fecha de inscripción:</label>
                 <div class="col-lg-3 col-md-4">
@@ -146,7 +152,7 @@
                 </div>
               </div>  
               <div class="row d-flex justify-content-center">
-                  <button type="submit" class="btn btn-info"><i class="fas fa-briefcase"></i> POSTULAR!</button> 
+                  <button type="submit" id="button1" class="btn btn-info"><i class="fas fa-briefcase"></i> POSTULAR!</button> 
               </div>
               </form>
             </div>
@@ -200,7 +206,7 @@
   <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
   <!-- Custom scripts for all pages-->
-  <script src="js/sb-admin-2.min.js"></script>
+  <script src="js/sb-admin-2.min.js"></script> 
 
   <!-- Page level plugins -->
   <script src="vendor/datatables/jquery.dataTables.min.js"></script>
@@ -217,7 +223,46 @@
             width: "100%"
         });
     });
-</script>
+  </script>
+
+  <script type="text/javascript">
+    $(document).ready(function(){
+    
+    
+    $("#button1").click(function(){
+    swal({
+      title:'Registro con exito!',
+      //text:"Hola, estamos probando Sweet Alert 2",
+      type:'success',
+      timer: 10000
+    })
+
+  });
+
+  $("#button2").click(function(){
+    swal({
+      title:'Boton 2!',
+      text:"Esta es la opcion 2",
+      type:'warning',
+      showConfirmButton: false,
+      timer: 1000
+    })
+    
+  });
+
+  $("#button3").click(function(){
+    swal({
+      title:'Boton 3!',
+      text:"Esta es la opcion 3",
+      type:'error',
+      showConfirmButton: false,
+      timer: 1000,
+      position:'bottom-end'
+    })
+    });
+
+    })
+  </script>
 
 </body>
 

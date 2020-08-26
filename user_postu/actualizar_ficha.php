@@ -71,7 +71,8 @@
                 <div class="col-12 text-center ">
                     <div class="card border-primary mb-3" >
                         <div class="card-header">
-                            <h4 id="heading">FICHA ÚNICA DE DATOS</h4>
+                        
+                            <h4 id="heading">FICHA ÚNICA DE DATOS</h4> 
                         </div> 
                         <div class="card-body">
                             <form id="msform" method="post" action="procesos/actualizar_ficha.php">

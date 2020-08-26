@@ -20,3 +20,7 @@
 /* .titulos-1,.titulos-2,.titulos-3,.titulos-4,.titulos-5,.titulos-6,.titulos-7 {
     display: none;
 } */
+
+.divOculto {
+    display: none;
+  }

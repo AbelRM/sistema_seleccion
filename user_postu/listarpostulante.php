@@ -86,7 +86,7 @@
                       $sql = "SELECT det.iddetalle_convocatoria, det.recibo, det.fecha_inscripcion, pos.nombres, con.num_con, con.tipo_con, car.cargo
                       FROM detalle_convocatoria det
                       INNER JOIN postulante pos ON det.postulante_idpostulante= pos.idpostulante
-					  INNER JOIN  convocatoria  con ON det.convocatoria_idcon = con.idcon
+					            INNER JOIN  convocatoria  con ON det.convocatoria_idcon = con.idcon
                       INNER JOIN cargo car ON det.cargo_idcargo = car.idcargo";
          
                       $query=mysqli_query($con, $sql);

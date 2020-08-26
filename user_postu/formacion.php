@@ -76,8 +76,6 @@
                 $fila4= mysqli_fetch_array($datos4);
                 $iddetalle_conv=$fila4['iddetalle_convocatoria'];
                 $idtipo = $fila4['idtipo'];
-
-
             ?>
           <!-- Page Heading -->
             <!-- Content Row -->
@@ -128,7 +126,6 @@
                                         }
                                         ?>
                                     </div>
-                                        
                                     <div class="form-row">
 
                                         <div class="col-md-6 form-group">

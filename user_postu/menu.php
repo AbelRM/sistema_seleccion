@@ -64,7 +64,7 @@
         <div class="bg-white py-2 collapse-inner rounded">
           <h6 class="collapse-header">Acciones:</h6>
           <a class="collapse-item" href="actualizar_ficha.php?dni=<?php echo $dni ?>">Actualizar Ficha</a>
-          <a class="collapse-item" href="#mis_cursos">Ver Ficha</a>
+          <a class="collapse-item" href="ver_ficha.php?dni=<?php echo $dni ?>">Ver Ficha</a>
           <a class="collapse-item" href="#mis_cursos.php?dni=<?php echo $dni ?>">Perfil profesional</a>
         </div>
       </div>

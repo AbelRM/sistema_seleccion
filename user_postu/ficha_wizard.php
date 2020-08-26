@@ -26,6 +26,8 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <link href="css/estilos.css" rel="stylesheet">
+    
 </head>
 <body class="bg-gradient-primary">
     <?php   
@@ -152,18 +154,37 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
                                     </div>
                                     <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
                                         <label class="font-weight-bolder">Tipo de pensión</label> 
-                                        <select class="form-control" name="pension" id="pension">
+                                        <select class="form-control custom-select" name="pension" id="inputSelect">
                                             <option value="NINGUNA" selected>Ninguna</option>
                                             <option value="ONP">ONP</option>
-                                            <option value="SPP">SPP</option>
+                                            <option value="AFP">AFP</option>
                                         </select> 
                                     </div>
+                                    <div id="AFP" class="divOculto col-md-3 col-sm-6 mb-2 mb-sm-0">
+                                        <label class="font-weight-bolder">Nombre de la AFP:</label> 
+                                        <input type="text" name="nombre_afp" class="form-control">
+                                    </div>
+                                    <div id="AFP-2" class="divOculto col-md-3 col-sm-6 mb-2 mb-sm-0">
+                                        <label class="font-weight-bolder">Código CUSSP (opcional):</label> 
+                                        <input type="text" name="codigo_cussp" class="form-control" >
+                                    </div>
+                                    <div id="NINGUNA" class="divOculto col-md-3 col-sm-6 mb-2 mb-sm-0">
+                                        <label class="font-weight-bolder">¿A cuál te gustaria pertenecer?</label> 
+                                        <select class="form-control custom-select" name="pertenecer_pension" id="pertenecer_pension">
+                                            <option value="ONP" selected>ONP</option>
+                                            <option value="AFP">AFP</option>
+                                        </select>
+                                    </div>
+                                    <div id="opcion-AFP" class="divOculto col-md-3 col-sm-6 mb-2 mb-sm-0">
+                                        <label class="font-weight-bolder">Nombre de la AFP:</label> 
+                                        <input type="text" name="nombre_afp_pregunta" class="form-control">
+                                    </div>
+
                                     <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">
                                         <label class="font-weight-bolder">Discapacidad</label> 
                                         <select class="form-control" name="discapacidad" id="discapacidad">
                                             <option value="NO" selected>NO</option>
                                             <option value="SI">SI</option>
-                                            
                                         </select>  
                                     </div>
                                     <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">
@@ -396,6 +417,40 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.js"></script>
+    <script>
+    $(function() {
+        $("#inputSelect").on('change', function() {
+        var selectValue = $(this).val();
+        switch (selectValue) {
+            case "AFP":
+                $("#AFP").show();
+                $("#AFP-2").show();
+                $("#NINGUNO ").hide();
+            break;
+
+            case "NINGUNA":
+                $("#NINGUNA").show();
+                $("#AFP").hide();
+                $("#AFP-2").hide();
+            break;
+        }
+        }).change();
+        $("#pertenecer_pension").on('change', function() {
+        var selectValue = $(this).val();
+        switch (selectValue) {
+            case "AFP":
+                $("#opcion-AFP").show();
+            break;
+
+            case "ONP":
+                $("#opcion-AFP").hide();
+            break;
+        }
+        }).change();
+    });
+    </script>
+
+
     <script>
         $(function(){
             // Clona la fila oculta que tiene los campos base, y la agrega al final de la tabla

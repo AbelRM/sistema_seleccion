@@ -84,7 +84,7 @@
                       
                       $sql = "SELECT con.idcon, con.tipo_con, con.num_con, con.anio_con, con.estado, dir.direccion_ejec
                                         FROM convocatoria con
-                                        INNER JOIN direccion_ejec dir ON con.direccion_ejec_iddireccion=dir.iddireccion";
+                                        INNER JOIN direccion_ejec dir ON con.direccion_ejec_iddireccion=dir.iddireccion WHERE estado='ACTIVO'";
 
                       $query=mysqli_query($con, $sql);
                       while ($row= MySQLI_fetch_array($query))
@@ -106,7 +106,6 @@
                       <?php
                       }
                       ?>
-                      <!-- <input type="hidden" id="dni" name="dni" value="<?php echo $dni; ?>"> -->
                   <tbody>
                     
                   </tbody>

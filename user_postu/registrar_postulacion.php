@@ -86,13 +86,12 @@
                 $dni = $_GET['dni'];
                 $idcargo=$_GET['idcargo'];
                 $idcon=$_GET['idcon'];
-                $hoy=date('Y-m-d');
               ?>
               <form action="procesos/guardar_postulacion.php" method="POST"> 
               <div class="form-group row d-flex justify-content-center">
                 <label class="col-lg-2 col-md-4 col-form-label text-success">Fecha de inscripción:</label>
                 <div class="col-lg-3 col-md-4">
-                  <input type="text" class="form-control" id="fech_inscripcion" name="fech_inscripcion" value="<?php echo $hoy;?>" disabled>
+                  <input type="text" class="form-control"value="<?php echo $hoy=date('Y-m-d');?>" disabled>
                 </div>
               </div>
               <div class="form-group row">   
@@ -106,34 +105,34 @@
                 </div>
                 <div class="col-md-2 col-sm-6">
                     <label for="disabled-input">Nro de convocatoria</label>           
-                    <input type="text" class="form-control" name="idconn" id="idconn" value="<?php echo $fila3['num_con']."-".$fila3['anio_con'] ?>" disabled>
+                    <input type="text" class="form-control" value="<?php echo $fila3['num_con']."-".$fila3['anio_con'] ?>" disabled>
                 </div>
                 <div class="col-md-2 col-sm-6">
                     <label for="disabled-input">Fecha de inicio</label>           
-                    <input type="text" class="form-control" name="idconn" id="idconn" value="<?php echo $fila3['fech_ini']?>" disabled>
+                    <input type="text" class="form-control" value="<?php echo $fila3['fech_ini']?>" disabled>
                 </div>
                 <div class="col-md-2 col-sm-6">
                     <label for="disabled-input">Fecha término</label>           
-                    <input type="text" class="form-control" name="idconn" id="idconn" value="<?php echo $fila3['fech_term']?>" disabled>
+                    <input type="text" class="form-control" value="<?php echo $fila3['fech_term']?>" disabled>
                 </div>
                 <div class="col-md-2 col-sm-6">
                     <label for="disabled-input">Estado</label>           
-                    <input type="text" class="form-control" name="idconn" id="idconn" value="<?php echo $fila3['estado']?>" disabled>
+                    <input type="text" class="form-control" value="<?php echo $fila3['estado']?>" disabled>
                 </div>
               </div> 
               <hr class="sidebar-divider d-none d-md-block">
               <div class="form-group row">  
                 <div class="col-md-3 col-sm-12">
                   <label for="disabled-input">Cargo a postular:</label>         
-                  <input type="text" class="form-control" name="idcargoo" id="idcargoo" value="<?php echo $fila4['cargo']?>" disabled >  
+                  <input type="text" class="form-control" value="<?php echo $fila4['cargo']?>" disabled >  
                 </div>
                 <div class="col-md-3 col-sm-12">
                   <label for="disabled-input">Cantidad solicitada:</label>         
-                  <input type="text" class="form-control" name="idcargoo" id="idcargoo" value="<?php echo $fila4['cantidad']?>" disabled >  
+                  <input type="text" class="form-control" value="<?php echo $fila4['cantidad']?>" disabled >  
                 </div>
                 <div class="col-md-3 col-sm-12">
                   <label for="disabled-input">Remuneración del cargo:</label>         
-                  <input type="text" class="form-control" name="idcargoo" id="idcargoo" value="<?php echo $fila4['remuneracion']?>" disabled>  
+                  <input type="text" class="form-control" value="<?php echo $fila4['remuneracion']?>" disabled>  
                 </div>
               </div>
               <hr class="sidebar-divider d-none d-md-block">
@@ -143,26 +142,8 @@
                 </div>
                 <div class="col-md-2 col-sm-6">
                   <label for="disabled-input">Boleta de banco:</label>           
-                  <input type="text" class="form-control" name="boleta" id="boleta" placeholder="Ejm: 003266" required>
+                  <input type="text" class="form-control" name="boleta" id="boleta" placeholder="Ejm: 003266" maxlength="6" required>
                 </div>
-                <!-- <div class="col-md-4 col-sm-6">
-                  <label for="disabled-input">Tipo de cargo <span style="color:red;">(Este dato es de mucha importancia, elija bien según la información de su CAS!)</span>:</label>           
-                  <select class="form-control" id="tipo_cargo" name="tipo_cargo" required>
-                    <option select>Elegir...</option>
-                    <option>PROFESIONALES DE LA SALUD</option>
-                    <option>OTROS PROFESIONALES</option>
-                    <option>ASISTENTE ADMINISTRATIVO</option>
-                    <option>TÉCNICO EN ENFERMERIA</option>
-                    <option>TÉCNICO ADMINISTRATIVO</option>
-                    <option>TÉCNICO EN COMUNICACIONES</option>
-                    <option>SECRETARIA</option>
-                    <option>TÉCNICO EN INFORMÁTICA</option>
-                    <option>CHOFER</option>
-                    <option>VIGILANTE</option>
-                    <option>TRABAJADOR DE LIMPIEZA</option>
-                    <option>TRABAJADOR DE SERVICIOS</option>
-                  </select>
-                </div> -->
               </div>  
               <div class="row d-flex justify-content-center">
                   <button type="submit" class="btn btn-info"><i class="fas fa-briefcase"></i> POSTULAR!</button> 

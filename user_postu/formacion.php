@@ -1242,7 +1242,142 @@
                         <div class="col-md-8">
                             <div class="card border-danger ">
                                 <div class="card-header">
-                                    <h5 class="titulo-card">CHOFER - VIGILANTE - TRABJADOR DE LIMPIEZA - TRABAJADOR DE SERVICIOS</h5>
+                                    <h5 class="titulo-card">CHOFER</h5>
+                                </div>
+                                <form action="procesos/guardar_secundaria.php" method="POST">
+                                <div class="card-body">
+                                    <div class="form-group" style="color:red; font-size:16px; text-align:center;">
+                                        <?php
+                                        $resultado=$con->query("SELECT * FROM datos_profesionales WHERE postulante_idpostulante=$idpostulante");
+                                        $nodatos=0;
+                                        if (mysqli_num_rows($resultado)>0) {
+                                            $nodatos=1;
+                                            $fila5= mysqli_fetch_array($resultado);
+                                            
+                                        }else{
+                                            $nodatos=0;
+                                            echo "NO HAY DATOS GUARDADOS AÚN!";
+                                        }
+                                        ?>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-9">
+                                            <div class="form-group">
+                                                <label class="font-weight-bold">Secundaria completa</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div class="form-check form-check-inline">
+                                                <select name="secundaria_comple" id="secundaria_comple" class="form-control">
+                                                    <option value="<?php if($nodatos==0){echo"Elegir...";}else{echo $fila5['secundaria_comple'];}?>" selected><?php if($nodatos==0){echo"Elegir...";}else{echo $fila5['secundaria_comple'];}?></option>
+                                                    <option value="NO">NO</option>
+                                                    <option value="SI">SI</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="tipo-11" class="formulario" style="display: none;">
+                    <div class="form-row d-flex justify-content-center m-2">
+                        <div class="col-md-8">
+                            <div class="card border-danger ">
+                                <div class="card-header">
+                                    <h5 class="titulo-card">VIGILANTE</h5>
+                                </div>
+                                <form action="procesos/guardar_secundaria.php" method="POST">
+                                <div class="card-body">
+                                    <div class="form-group" style="color:red; font-size:16px; text-align:center;">
+                                        <?php
+                                        $resultado=$con->query("SELECT * FROM datos_profesionales WHERE postulante_idpostulante=$idpostulante");
+                                        $nodatos=0;
+                                        if (mysqli_num_rows($resultado)>0) {
+                                            $nodatos=1;
+                                            $fila5= mysqli_fetch_array($resultado);
+                                            
+                                        }else{
+                                            $nodatos=0;
+                                            echo "NO HAY DATOS GUARDADOS AÚN!";
+                                        }
+                                        ?>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-9">
+                                            <div class="form-group">
+                                                <label class="font-weight-bold">Secundaria completa</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div class="form-check form-check-inline">
+                                                <select name="secundaria_comple" id="secundaria_comple" class="form-control">
+                                                    <option value="<?php if($nodatos==0){echo"Elegir...";}else{echo $fila5['secundaria_comple'];}?>" selected><?php if($nodatos==0){echo"Elegir...";}else{echo $fila5['secundaria_comple'];}?></option>
+                                                    <option value="NO">NO</option>
+                                                    <option value="SI">SI</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="tipo-12" class="formulario" style="display: none;">
+                    <div class="form-row d-flex justify-content-center m-2">
+                        <div class="col-md-8">
+                            <div class="card border-danger ">
+                                <div class="card-header">
+                                    <h5 class="titulo-card">TRABJADOR DE LIMPIEZA</h5>
+                                </div>
+                                <form action="procesos/guardar_secundaria.php" method="POST">
+                                <div class="card-body">
+                                    <div class="form-group" style="color:red; font-size:16px; text-align:center;">
+                                        <?php
+                                        $resultado=$con->query("SELECT * FROM datos_profesionales WHERE postulante_idpostulante=$idpostulante");
+                                        $nodatos=0;
+                                        if (mysqli_num_rows($resultado)>0) {
+                                            $nodatos=1;
+                                            $fila5= mysqli_fetch_array($resultado);
+                                            
+                                        }else{
+                                            $nodatos=0;
+                                            echo "NO HAY DATOS GUARDADOS AÚN!";
+                                        }
+                                        ?>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-9">
+                                            <div class="form-group">
+                                                <label class="font-weight-bold">Secundaria completa</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div class="form-check form-check-inline">
+                                                <select name="secundaria_comple" id="secundaria_comple" class="form-control">
+                                                    <option value="<?php if($nodatos==0){echo"Elegir...";}else{echo $fila5['secundaria_comple'];}?>" selected><?php if($nodatos==0){echo"Elegir...";}else{echo $fila5['secundaria_comple'];}?></option>
+                                                    <option value="NO">NO</option>
+                                                    <option value="SI">SI</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="tipo-13" class="formulario" style="display: none;">
+                    <div class="form-row d-flex justify-content-center m-2">
+                        <div class="col-md-8">
+                            <div class="card border-danger ">
+                                <div class="card-header">
+                                    <h5 class="titulo-card">TRABAJADOR DE SERVICIOS</h5>
                                 </div>
                                 <form action="procesos/guardar_secundaria.php" method="POST">
                                 <div class="card-body">
@@ -1298,10 +1433,10 @@
   </div>
   <!-- End of Page Wrapper -->
 
-  <!-- Scroll to Top Button-->
-  <a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
-  </a>
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
 
     <!-- Logout Modal-->
     <div class="modal fade" id="cerrarsesion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

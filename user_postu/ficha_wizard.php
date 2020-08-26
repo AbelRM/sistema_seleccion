@@ -425,7 +425,7 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
             case "AFP":
                 $("#AFP").show();
                 $("#AFP-2").show();
-                $("#NINGUNO ").hide();
+                $("#NINGUNA").hide();
             break;
 
             case "NINGUNA":

@@ -248,24 +248,23 @@
                                     </thead>
                                     <tbody>
                                         <?php
-                                            $sql6 = "SELECT * FROM familia_post WHERE postulante_idpostulante = $idpostulante";
-                                            $query6=mysqli_query($con, $sql6);
-                                            if(mysqli_num_rows($query6)>0){
-                                                while ($row= MySQLI_fetch_array($query6))
+                                            $sql2 = "SELECT * FROM familia_post WHERE postulante_idpostulante = $idpostulante";
+                                            $query2=mysqli_query($con, $sql2);
+                                            if(mysqli_num_rows($query2)>0){
+                                                while ($row2= MySQLI_fetch_array($query2))
                                                 {
                                                 ?>
                                                     <tr>
-                                                        <td style="font-size: 14px;"><?php echo $row['apellidos']." ".$row['nombre'];?></td>
-                                                        <td style="font-size: 14px;"><?php echo $row['fech_nac']; ?></td>
-                                                        <td style="font-size: 14px;"><?php echo $row['dni'] ?></td>
-                                                        <td style="font-size: 14px;"><?php echo $row['parentesco'] ?></td>
-                                                        <td style="font-size: 14px;"><?php echo $row['labora'] ?></td>
+                                                        <td style="font-size: 14px;"><?php echo $row2['apellidos']." ".$row2['nombre'];?></td>
+                                                        <td style="font-size: 14px;"><?php echo $row2['fech_nac']; ?></td>
+                                                        <td style="font-size: 14px;"><?php echo $row2['dni'] ?></td>
+                                                        <td style="font-size: 14px;"><?php echo $row2['parentesco'] ?></td>
+                                                        <td style="font-size: 14px;"><?php echo $row2['labora'] ?></td>
                                                     </tr>
                                                 <?php
                                                 
                                                 }
                                         }else{
-                                            
                                             echo "<tr>
                                             <td colspan='5' class='text-center text-danger' >NO HAY DATOS REGISTRADOS</td>
                                             </tr>";
@@ -278,21 +277,232 @@
                             <h5 class="text-left font-weight-bold"><i class="fa fa-arrow-circle-right" aria-hidden="true"></i> DATOS PROFESIONALES:</h5>
                             <div class="form-group row">
                                 <label class="col-md-2 col-form-label col-form-label-sm">Profesion:</label>
-                                <div class="col-md-2">
+                                <div class="col-md-4">
                                 <input type="text" class="form-control col-form-label-sm" value="">
                                 </div>
-                                <label class="col-md-2 col-form-label col-form-label-sm">Fecha de colegiatura:</label>
-                                <div class="col-md-2">
+                                <label class="col-md-2 col-form-label col-form-label-sm">Lugar colegiatura:</label>
+                                <div class="col-md-4">
                                 <input type="text" class="form-control col-form-label-sm" value="">
                                 </div>
-                                <label class="col-md-1 col-form-label col-form-label-sm">Numero:</label>
-                                <div class="col-md-1">
-                                <input type="text" class="form-control col-form-label-sm" value="">
+                            </div>
+                            <div class="form-group row">
+                              <label class="col-md-2 col-form-label col-form-label-sm">Fecha de colegiatura:</label>
+                              <div class="col-md-2">
+                              <input type="text" class="form-control col-form-label-sm" value="">
+                              </div>
+                              <label class="col-md-2 col-form-label col-form-label-sm">Fecha hasta la cual se enceuntra habilitado:</label>
+                              <div class="col-md-2">
+                              <input type="text" class="form-control col-form-label-sm" value="">
+                              </div>
+                              <label class="col-md-2 col-form-label col-form-label-sm">N° colegiatura:</label>
+                              <div class="col-md-2">
+                              <input type="text" class="form-control col-form-label-sm" value="">
+                              </div>
+                            </div>
+                            <h6 class="text-left" style="color:#d52a1a;">Estudios Superiores (Universitario - Técnico):</h6>
+                            <div class="form-group row">
+                              <div class="table-responsive">
+                                <table class="table table-bordered">  
+                                  <thead>
+                                      <tr class="bg-primary" style="text-align:center; color:#000; font-size:0.813em;">
+                                          <th>Centro de estudios</th>
+                                          <th>Especialidad</th>
+                                          <th>Fecha Inicio</th>
+                                          <th>Fecha término</th>
+                                          <th>Nivel alcanzado</th>
+                                      </tr>
+                                  </thead>
+                                  <tbody>
+                                      <?php
+                                          $sql3 = "SELECT * FROM estudios_superiores WHERE estudios_superiores_idpostulante = $idpostulante";
+                                          $query3=mysqli_query($con, $sql3);
+                                          if(mysqli_num_rows($query3)>0){
+                                              while ($row3= MySQLI_fetch_array($query3))
+                                              {
+                                              ?>
+                                                <tr>
+                                                    <td style="font-size: 14px;"><?php echo $row3['centro_estu'];?></td>
+                                                    <td style="font-size: 14px;"><?php echo $row3['especialidad']; ?></td>
+                                                    <td style="font-size: 14px;"><?php echo $row3['fech_ini'] ?></td>
+                                                    <td style="font-size: 14px;"><?php echo $row3['fech_fin'] ?></td>
+                                                    <td style="font-size: 14px;"><?php echo $row3['nivel'] ?></td>
+                                                </tr>
+                                              <?php
+                                              }
+                                      }else{
+                                          echo "<tr>
+                                          <td colspan='5' class='text-center text-danger' >NO HAY DATOS REGISTRADOS</td>
+                                          </tr>";
+                                      }
+                                      ?>
+                                  </tbody>
+                                </table>
+                              </div>
+                            </div>
+                            <h6 class="text-left" style="color:#d52a1a;">Estudios Postgrado (Maestría - Doctorado):</h6>
+                            <div class="form-group row">
+                              <div class="table-responsive">
+                                <table class="table table-bordered">  
+                                  <thead>
+                                      <tr class="bg-primary" style="text-align:center; color:#000; font-size:0.813em;">
+                                          <th>Centro de estudios</th>
+                                          <th>Especialidad</th>
+                                          <th>Fecha Inicio</th>
+                                          <th>Fecha término</th>
+                                          <th>Nivel alcanzado</th>
+                                      </tr>
+                                  </thead>
+                                  <tbody>
+                                      <?php
+                                          $sql4 = "SELECT * FROM estudios_superiores WHERE estudios_superiores_idpostulante = $idpostulante";
+                                          $query4=mysqli_query($con, $sql4);
+                                          if(mysqli_num_rows($query4)>0){
+                                              while ($row4= MySQLI_fetch_array($query4))
+                                              {
+                                              ?>
+                                                <tr>
+                                                    <td style="font-size: 14px;"><?php echo $row4['centro_estu'];?></td>
+                                                    <td style="font-size: 14px;"><?php echo $row4['especialidad']; ?></td>
+                                                    <td style="font-size: 14px;"><?php echo $row4['fech_ini'] ?></td>
+                                                    <td style="font-size: 14px;"><?php echo $row4['fech_fin'] ?></td>
+                                                    <td style="font-size: 14px;"><?php echo $row4['nivel'] ?></td>
+                                                </tr>
+                                              <?php
+                                              }
+                                      }else{
+                                          echo "<tr>
+                                          <td colspan='5' class='text-center text-danger' >NO HAY DATOS REGISTRADOS</td>
+                                          </tr>";
+                                      }
+                                      ?>
+                                  </tbody>
+                                </table>
+                              </div>
+                            </div>
+                            <h6 class="text-left" style="color:#d52a1a;">Especilización - Diplomados - Cursos:</h6>
+                            <div class="form-group row">
+                              <div class="table-responsive">
+                                <table class="table table-bordered">  
+                                  <thead>
+                                      <tr class="bg-primary" style="text-align:center; color:#000; font-size:0.813em;">
+                                          <th>Centro de estudios</th>
+                                          <th>Especialidad</th>
+                                          <th>Horas</th>
+                                          <th>Fecha Inicio</th>
+                                          <th>Fecha término</th>
+                                          <th>Tipo</th>
+                                          <th>Nivel alcanzado</th>
+                                      </tr>
+                                  </thead>
+                                  <tbody>
+                                      <?php
+                                          $sql4 = "SELECT * FROM cursos_extra WHERE postulante_idpostulante = $idpostulante";
+                                          $query4=mysqli_query($con, $sql4);
+                                          if(mysqli_num_rows($query4)>0){
+                                              while ($row4= MySQLI_fetch_array($query4))
+                                              {
+                                              ?>
+                                                <tr>
+                                                    <td style="font-size: 14px;"><?php echo $row4['centro_estu'];?></td>
+                                                    <td style="font-size: 14px;"><?php echo $row4['materia']; ?></td>
+                                                    <td style="font-size: 14px;"><?php echo $row4['horas']; ?></td>
+                                                    <td style="font-size: 14px;"><?php echo $row4['fech_ini'] ?></td>
+                                                    <td style="font-size: 14px;"><?php echo $row4['fech_fin'] ?></td>
+                                                    <td style="font-size: 14px;"><?php echo $row4['tipo'] ?></td>
+                                                    <td style="font-size: 14px;"><?php echo $row4['nivel'] ?></td>
+                                                </tr>
+                                              <?php
+                                              }
+                                      }else{
+                                          echo "<tr>
+                                          <td colspan='7' class='text-center text-danger' >NO HAY DATOS REGISTRADOS</td>
+                                          </tr>";
+                                      }
+                                      ?>
+                                  </tbody>
+                                </table>
+                              </div>
+                            </div>
+                            <h6 class="text-left" style="color:#d52a1a;">Idiomas - Cómputo:</h6>
+                            <div class="form-group row d-flex justify-content-center">
+                              <div class="col-6 " >
+                                <div class="table-responsive">
+                                  <table class="table table-bordered">  
+                                    <thead>
+                                        <tr class="bg-primary" style="text-align:center; color:#000; font-size:0.813em;">
+                                            <th>Idioma - Cómputo</th>
+                                            <th>Nivel</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                            $sql4 = "SELECT * FROM idiomas_comp WHERE idpostulante_postulante = $idpostulante";
+                                            $query4=mysqli_query($con, $sql4);
+                                            if(mysqli_num_rows($query4)>0){
+                                                while ($row4= MySQLI_fetch_array($query4))
+                                                {
+                                                ?>
+                                                  <tr>
+                                                      <td style="font-size: 14px;"><?php echo $row4['idioma_comp'];?></td>
+                                                      <td style="font-size: 14px;"><?php echo $row4['nivel']; ?></td>
+                                                  </tr>
+                                                <?php
+                                                }
+                                        }else{
+                                            echo "<tr>
+                                            <td colspan='2' class='text-center text-danger' >NO HAY DATOS REGISTRADOS</td>
+                                            </tr>";
+                                        }
+                                        ?>
+                                    </tbody>
+                                  </table>
                                 </div>
-                                <label class="col-md-1 col-form-label col-form-label-sm">Interior:</label>
-                                <div class="col-md-1">
-                                <input type="text" class="form-control col-form-label-sm" value="">
-                                </div>
+                              </div>
+                            </div>
+                            <h6 class="text-left" style="color:#d52a1a;">Experiencia laboral:</h6>
+                            <div class="form-group row">
+                              <div class="table-responsive">
+                                <table class="table table-bordered">  
+                                  <thead>
+                                      <tr class="bg-primary" style="text-align:center; color:#000; font-size:0.813em;">
+                                          <th>Institución/Empresa</th>
+                                          <th>Cargo</th>
+                                          <th>Fecha inicio</th>
+                                          <th>Fecha termino</th>
+                                      </tr>
+                                  </thead>
+                                  <tbody>
+                                      <?php
+                                          $sql5 = "SELECT * FROM expe_4puntos inner join detalle_convocatoria 
+                                          ON expe_4puntos.expe_4puntos_detalle_con = detalle_convocatoria.iddetalle_convocatoria WHERE postulante_idpostulante = $idpostulante
+                                          UNION
+                                          SELECT * FROM expe_3puntos inner join detalle_convocatoria 
+                                          ON expe_3puntos.expe_3puntos_detalle_con = detalle_convocatoria.iddetalle_convocatoria WHERE postulante_idpostulante = $idpostulante
+                                          UNION
+                                          SELECT * FROM expe_1puntos inner join detalle_convocatoria 
+                                          ON expe_1puntos.expe_1puntos_detalle_con = detalle_convocatoria.iddetalle_convocatoria WHERE postulante_idpostulante = $idpostulante";
+                                          $query5=mysqli_query($con, $sql5);
+                                          if(mysqli_num_rows($query5)>0){
+                                              while ($row5= MySQLI_fetch_array($query5))
+                                              {
+                                              ?>
+                                                <tr>
+                                                    <td style="font-size: 14px;"><?php echo $row5['lugar'];?></td>
+                                                    <td style="font-size: 14px;"><?php echo $row5['cargo'];?></td>
+                                                    <td style="font-size: 14px;"><?php echo $row5['fecha_inicio']; ?></td>
+                                                    <td style="font-size: 14px;"><?php echo $row5['fecha_fin']; ?></td>
+                                                </tr>
+                                              <?php
+                                              }
+                                      }else{
+                                          echo "<tr>
+                                          <td colspan='3' class='text-center text-danger' >NO HAY DATOS REGISTRADOS</td>
+                                          </tr>";
+                                      }
+                                      ?>
+                                  </tbody>
+                                </table>
+                              </div>
                             </div>
                         </div>
                     </div>

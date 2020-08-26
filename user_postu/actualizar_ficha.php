@@ -518,11 +518,16 @@
             case "AFP":
                 $("#AFP").show();
                 $("#AFP-2").show();
-                $("#NINGUNO ").hide();
+                $("#NINGUNA ").hide();
             break;
 
             case "NINGUNA":
                 $("#NINGUNA").show();
+                $("#AFP").hide();
+                $("#AFP-2").hide();
+            break;
+            case "ONP":
+                $("#NINGUNA").hide();
                 $("#AFP").hide();
                 $("#AFP-2").hide();
             break;

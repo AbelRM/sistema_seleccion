@@ -271,8 +271,12 @@
                                             </div>
                                             <div class="col-3">
                                                 <div class="form-check form-check-inline">
-                                                    <select name="titulo_profesional" class="form-control">
-                                                        <option value="<?php if($nodatos==0){echo"Elegir...";}else{echo $fila5['titulo_profesional'];}?>" selected><?php if($nodatos==0){echo"Elegir...";}else{echo $fila5['titulo_profesional'];}?></option>
+                                                    <?php
+                                                        $valor_titulo = $fila6['titulo_profesional'];
+                                                        //$resultado = "<option value='".$valor_titulo."' selected='selected'>‌";
+                                                    ?>
+                                                    <select name="titulo_profesional" id="tituloProfesional" class="form-control">
+                                                        <option value="">Elegir</option>
                                                         <option value="NO">NO</option>
                                                         <option value="SI">SI</option>
                                                     </select>
@@ -374,7 +378,7 @@
                 </div>
                 <div id="tipo-2" class="formulario" style="display: none;">
                     <div class="form-row d-flex justify-content-center m-2">
-                        <div class="col-lg-6 col-md-8">
+                        <div class="col-lg-6 col-md-">
                             <div class="card border-primary" style="font-size:13px;">
                                 <div class="card-header header-formulario-danger">
                                     <h5 class="card-title">DATOS GUARDADOS</h5>
@@ -501,7 +505,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-6 col-md-8">
+                        <div class="col-lg-6 col-md-12">
                             <div class="card border-danger" style="font-size:13px;">
                                 <div class="card-header header-formulario-danger">
                                     <h5 class="card-title">OTROS PROFESIONALES</h5>
@@ -549,7 +553,7 @@
                                             <div class="col-3">
                                                 <div class="form-check form-check-inline">
                                                     <select name="titulo_profesional" id="titulo_profesional" class="form-control" onchange="titulo(this.value);">
-                                                        <option value="<?php if($nodatos==0){echo"Elegir...";}else{echo $fila5['titulo_profesional'];}?>" selected><?php if($nodatos==0){echo"Elegir...";}else{echo $fila5['titulo_profesional'];}?></option>
+                                                        <option value="">Elegir...</option>
                                                         <option value="NO">NO</option>
                                                         <option value="SI">SI</option>
                                                     </select>
@@ -663,7 +667,6 @@
                         </div>                    
                     </div>
                 </div>
-
                 <div id="tipo-3" class="formulario" style="display: none;">
                     <div class="form-row d-flex justify-content-center m-2">
                         <div class="col-lg-6 col-md-8">
@@ -955,7 +958,6 @@
                         </div>
                     </div>
                 </div>
-                
                 <div id="tipo-4" class="formulario" style="display: none;">
                     <div class="form-row d-flex justify-content-center m-2">
                         <div class="col-md-8">
@@ -1094,7 +1096,6 @@
                         </div>
                     </div>
                 </div> 
-
                 <div id="tipo-7" class="formulario" style="display: none;">
                     <div class="form-row d-flex justify-content-center m-2">
                         <div class="col-md-8">
@@ -1143,7 +1144,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div id="tipo-8" class="formulario" style="display: none;">
                     <div class="form-row formulario d-flex justify-content-center m-2">
                         <div class="col-md-8">
@@ -1473,6 +1473,11 @@
     <!-- Page level custom scripts -->
     <script src="js/demo/chart-area-demo.js"></script>
     <script src="js/demo/chart-pie-demo.js"></script>
+    <script>
+        var abc = '<?php echo $valor_titulo ?>';
+        console.log(abc); 
+        $("#tituloProfesional> option[value='abc']").attr("selected",true);
+    </script>
 
     <script src="js/funciones.js"></script>
 

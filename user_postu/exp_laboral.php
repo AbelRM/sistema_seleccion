@@ -154,11 +154,11 @@
                                         </thead>
                                         <tbody>
                                             <?php
-                                                include 'modal/modal_editar4.php';
                                                 $sql6 = "SELECT * FROM expe_4puntos WHERE expe_4puntos_detalle_con = $iddetalle_conv";
                                                 $query6=mysqli_query($con, $sql6);
                                                 if(mysqli_num_rows($query6)>0){
                                                     while ($row6= MySQLI_fetch_array($query6))
+
                                                     {
                                                     ?>
                                                         <tr>
@@ -171,7 +171,6 @@
                                                                 <button class="btn btn-success btn-sm m-1 updateBtn"><i class="fa fa-edit"></i></button>
                                                                 <button class="btn btn-danger btn-sm m-1 deleteBtn"><i class="fa fa-times-circle"></i></button>
                                                             </td>
-                                                            <?php include('BorrarEditarModal.php'); ?>
                                                         </tr>
                                                     <?php
                                                     
@@ -268,10 +267,10 @@
                                                         <td style="font-size: 14px;"><?php echo $row7['cargo'] ?></td>
                                                         <td style="font-size: 14px;"><?php echo $row7['fecha_inicio'] ?></td>
                                                         <td style="font-size: 14px;"><?php echo $row7['fecha_fin'] ?></td>
-                                                        <td class="d-flex justify-content-center">
+                                                        <!-- <td class="d-flex justify-content-center">
                                                             <button class="btn btn-success btn-sm m-1 updateBtn"><i class="fa fa-edit"></i></button>
                                                             <button class="btn btn-danger btn-sm m-1 deleteBtn"><i class="fa fa-times-circle"></i></button>
-                                                        </td>
+                                                        </td> -->
                                                     </tr>
                                                 <?php
                                                 }
@@ -359,10 +358,10 @@
                                                         <td><?php echo $row8['cargo'] ?></td>
                                                         <td style="font-size: 16px;"><?php echo $row8['fecha_inicio'] ?></td>
                                                         <td style="font-size: 16px;"><?php echo $row8['fecha_fin'] ?></td>
-                                                        <td class="d-flex justify-content-center">
+                                                        <!-- <td class="d-flex justify-content-center">
                                                             <button class="btn btn-success btn-sm m-1 updateBtn"><i class="fa fa-edit"></i></button>
                                                             <button class="btn btn-danger btn-sm m-1 deleteBtn"><i class="fa fa-times-circle"></i></button>
-                                                        </td>
+                                                        </td> -->
                                                     </tr>
                                                 <?php
                                                 }
@@ -730,73 +729,100 @@
     <!-- UPDATE MODAL -->
     <div class="modal fade" id="updateModal">
         <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header bg-warning text-white">
+            <h5 class="modal-title">Edit Record</h5>
+            <button class="close" data-dismiss="modal">
+                <span>×</span>
+            </button>
+            </div>
+            <div class="modal-body">
+            <form action="update.php" method="POST">
+                <input type="hidden" name="updateId" id="updateId">
+                <div class="form-group">
+                <label for="title">First Name</label>
+                <input type="text" name="updateFirstname" id="updateFirstname" class="form-control" placeholder="Enter first name" maxlength="50"
+                    required>
+                </div>
+                <div class="form-group">
+                <label for="title">Last Name</label>
+                <input type="text" name="updateLastname" id="updateLastname" class="form-control" placeholder="Enter last name" maxlength="50"
+                    required>
+                </div>
+                <div class="form-group">
+                <label for="title">Address</label>
+                <input type="text" name="updateAddress" id="updateAddress" class="form-control" placeholder="Enter address" maxlength="50"
+                    required>
+                </div>
+                <div class="form-group">
+                <label for="title">Skills</label>
+                <input type="text" name="updateSkills" id="updateSkills" class="form-control" placeholder="Enter skills" maxlength="50" required>
+                </div>
+                <div class="modal-footer">
+                <button type="submit" class="btn btn-primary" name="updateData">Save Changes</button>
+                </div>
+            </form>
+            </div>
+        </div>
+        </div>
+    </div>
+    <!-- UPDATE MODAL -->
+    <!-- <div class="modal fade" id="updateModal">
+        <div class="modal-dialog modal-md">
             <div class="modal-content">
                 <div class="modal-header bg-warning text-white">
-                <h5 class="modal-title">Edit Record</h5>
-                <button class="close" data-dismiss="modal">
+                    <h5 class="modal-title">Actualizar experiencia en MICROREDES</h5>
+                    <button class="close" data-dismiss="modal">
                     <span>×</span>
                 </button>
                 </div>
                 <div class="modal-body">
-                <form action="update.php" method="POST">
+                <form action="procesos/update4.php" method="POST">
                     <input type="hidden" name="updateId" id="updateId">
+                    <input type="hidden" name="dni_4" id="dni_4" value="<?php echo $dni; ?>">
                     <div class="form-group">
-                    <label for="title">First Name</label>
-                    <input type="text" name="updateFirstname" id="updateFirstname" class="form-control" placeholder="Enter first name" maxlength="50"
-                        required>
+                    <label for="title">Lugar de trabajo</label>
+                    <input type="text" name="lugar_trabajo" id="lugar_trabajo" class="form-control" maxlength="100" required>
                     </div>
                     <div class="form-group">
-                    <label for="title">Last Name</label>
-                    <input type="text" name="updateLastname" id="updateLastname" class="form-control" placeholder="Enter last name" maxlength="50"
-                        required>
+                    <label for="title">Cargo/Función realizada</label>
+                    <input type="text" name="cargo_trabajo" id="cargo_trabajo" class="form-control" maxlength="100" required>
                     </div>
                     <div class="form-group">
-                    <label for="title">Address</label>
-                    <input type="text" name="updateAddress" id="updateAddress" class="form-control" placeholder="Enter address" maxlength="50"
-                        required>
+                    <label for="title">Fecha Inicio</label>
+                    <input type="date" name="fecha_inicio_tra" id="fecha_inicio_tra" class="form-control" required>
                     </div>
                     <div class="form-group">
-                    <label for="title">Skills</label>
-                    <input type="text" name="updateSkills" id="updateSkills" class="form-control" placeholder="Enter skills" maxlength="50" required>
-                    </div>
-                    <div class="form-group">
-                    <label for="title">Designation</label>
-                    <input type="text" name="updateDesignation" id="updateDesignation" class="form-control" placeholder="Enter designation" maxlength="50"
-                        required>
+                    <label for="title">Fecha Término</label>
+                    <input type="date" name="fecha_fin_tra" id="fecha_fin_tra" class="form-control" required>
                     </div>
                     <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary" name="updateData">Save Changes</button>
+                        <button type="submit" class="btn btn-primary" name="updateData">Actualizar!</button>
                     </div>
                 </form>
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     
     <!-- DELETE MODAL -->
     <div class="modal fade" id="deleteModal">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header bg-danger text-white">
-                <h5 class="modal-title" id="exampleModalLabel">Delete Record</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
+                <h5 class="modal-title" id="exampleModalLabel">Eliminar registro</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
                 </div>
-                <form action="delete.php" method="POST">
-        
+                <form action="procesos/delete4.php" method="POST">
                 <div class="modal-body">
-        
+                    <input type="hidden" name="dni" id="dni" value="<?php echo $dni;?>">
                     <input type="hidden" name="deleteId" id="deleteId">
-        
-                    <h4>Are you sure want to delete?</h4>
-        
+                    <h4>¿Desea eliminar el dato seleccionado?</h4>
                 </div>
                 <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                <button type="submit" class="btn btn-primary" name="deleteData">Yes</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary" name="deleteData">Si</button>
                 </div>
-        
                 </form>
             </div>
         </div>
@@ -839,34 +865,55 @@
     </script>
     <script>
         $(document).ready(function () {
-            $('.updateBtn').on('click', function(){
+        $('.updateBtn').on('click', function(){
     
-                $('#updateModal').modal('show');
-        
-                // Get the table row data.
-                $tr = $(this).closest('tr');
-        
-                var data = $tr.children("td").map(function() {
-                    return $(this).text();
-                }).get();
-        
-                console.log(data);
-        
-                $('#updateId').val(data[0]);
-                $('#updateFirstname').val(data[1]);
-                $('#updateLastname').val(data[2]);
-                $('#updateAddress').val(data[3]);
-                $('#updateSkills').val(data[4]);
-                $('#updateDesignation').val(data[5]);      
+            $('#updateModal').modal('show');
+    
+            // Get the table row data.
+            $tr = $(this).closest('tr');
+    
+            var data = $tr.children("td").map(function() {
+                return $(this).text();
+            }).get();
+    
+            console.log(data);
+    
+            $('#updateId').val(data[0]);
+            $('#updateFirstname').val(data[1]);
+            $('#updateLastname').val(data[2]);
+            $('#updateAddress').val(data[3]);
+            $('#updateSkills').val(data[4]);   
     
             });
             
         });
+    </script>
+    <script>
+        // $(document).ready(function () {
+        //     $('.updateBtn').on('click', function(){
+    
+        //         $('#updateModal').modal('show');
+        
+                
+        //         $tr = $(this).closest('tr');
+        
+        //         var data = $tr.children("td").map(function() {
+        //             return $(this).text();
+        //         }).get();
+        
+        //         console.log(data);
+        //         $('#updateId').val(data[0]);
+        //         $('#lugar_trabajo').val(data[1]);
+        //         $('#cargo_trabajo').val(data[2]);
+        //         $('#fecha_inicio_tra').val(data[3]);
+        //         $('#fecha_fin_tra').val(data[4]); 
+        //     });
+            
+        // });
         $(document).ready(function () {
             $('.deleteBtn').on('click', function(){
         
                 $('#deleteModal').modal('show');
-                
                 // Get the table row data.
                 $tr = $(this).closest('tr');
         
@@ -875,11 +922,8 @@
                 }).get();
         
                 console.log(data);
-        
                 $('#deleteId').val(data[0]);
-    
             });
-            
         });
     </script>
     <script>

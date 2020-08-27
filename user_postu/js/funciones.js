@@ -3,6 +3,10 @@ $("#id_tipo_cargo").on('change', function(){
     $('#' + this.value).show();
 });
 
+
+
+                                                    
+
 function titulo(value)
 {
     if(value=="SI" || value==true)

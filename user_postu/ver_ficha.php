@@ -175,15 +175,15 @@
                             <div class="form-group row">
                                 <label class="col-md-2 col-form-label col-form-label-sm">Estado Civil:</label>
                                 <div class="col-md-2">
-                                <input type="text" class="form-control col-form-label-sm" value="">
+                                <input type="text" class="form-control col-form-label-sm" value="<?php echo $fila['estado_civil']?>" disabled="true" >
                                 </div>
                                 <label class="col-md-2 col-form-label col-form-label-sm">Discapacidad:</label>
                                 <div class="col-md-2">
-                                <input type="text" class="form-control col-form-label-sm" value="">
+                                <input type="text" class="form-control col-form-label-sm" value="<?php echo $fila['discapacidad']?>" disabled="true">
                                 </div>
                                 <label class="col-md-2 col-form-label col-form-label-sm">Tipo de discapacidad:</label>
                                 <div class="col-md-2">
-                                <input type="text" class="form-control col-form-label-sm" value="">
+                                <input type="text" class="form-control col-form-label-sm" value="<?php echo $fila['tipo_discap']?>" disabled="true">
                                 </div>
                             </div>
                             <?php     

@@ -17,7 +17,7 @@
     $tip_discapacidad = $_POST['tip_discapacidad'];
     $tip_sangre = $_POST['tip_sangre'];
     $alergias = $_POST['alergias'];
-    $distrito = $_POST['distrito_id'];
+    $pais = $_POST['pais'];
     //$direccion=$_POST['direccion'];
     //DATOS DOMICILIO
     $tipo_via = $_POST['tipo_via'];
@@ -30,10 +30,10 @@
     $manzana = $_POST['manzana'];
     $lote = $_POST['lote'];
     $referencia = $_POST['referencia'];
-    // $distrito1 = $_POST['distrito_id1'];
+    $distrito1 = $_POST['distrito_id1'];
     
     $sql = "UPDATE postulante SET fech_nac = '".$fech_nac."',estado_civil='".$civil."',sexo = '".$sexo."', celular_emer ='".$num_emer."',parentesco_emer='".$nomb_parent."',ruc ='".$ruc."',num_cuenta = '".$cuenta_banc."',
-     discapacidad = '".$discapacidad."', tipo_discap = '".$tip_discapacidad."',tipo_sangre = '".$tip_sangre."', alergias = '".$alergias."',suspension_cuarta = '".$cuarta."',seguro = '".$pension."',distrito_iddistrito = '".$distrito."' WHERE dni='".$dni_post."' ";
+     discapacidad = '".$discapacidad."', tipo_discap = '".$tip_discapacidad."',tipo_sangre = '".$tip_sangre."', alergias = '".$alergias."',suspension_cuarta = '".$cuarta."',seguro = '".$pension."',pais = '".$pais."' WHERE dni='".$dni_post."' ";
     $datos=mysqli_query($con,$sql);
 
 
@@ -43,8 +43,8 @@
         $fila= mysqli_fetch_array($datos);
         $idpostulante=$fila['idpostulante'];
 
-        $sql2 = "INSERT INTO domicilio_post (tip_via, nomb_via, num_via,tip_zona, nomb_zona, num_zona, referencia, numero, manzana, lote, postulante_idpostulante) 
-        VALUES ('".$tipo_via."', '".$nomb_via."', '".$num_via."', '".$tipo_zona."', '".$nomb_zona."', '".$num_zona."','".$referencia."','".$numero."','".$manzana."','".$lote."','".$idpostulante."')";
+        $sql2 = "INSERT INTO domicilio_post (tip_via, nomb_via, num_via,tip_zona, nomb_zona, num_zona, referencia, numero, manzana, lote, postulante_idpostulante,distrito_idistrito) 
+        VALUES ('".$tipo_via."', '".$nomb_via."', '".$num_via."', '".$tipo_zona."', '".$nomb_zona."', '".$num_zona."','".$referencia."','".$numero."','".$manzana."','".$lote."','".$idpostulante."' ,'".$distrito1."')";
         $datos2=mysqli_query($con,$sql2);
     
         if($datos2 == 1){

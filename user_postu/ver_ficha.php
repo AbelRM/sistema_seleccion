@@ -75,59 +75,70 @@
                         </div> 
                         <div class="card-body">
                             <?php 
-                                $consulta="SELECT * FROM postulante WHERE dni=$dni";
-                                $query=mysqli_query($con,$consulta) or die(mysqli_error()); ;
-                                $fila= mysqli_fetch_array($query);
-                                $idpostulante = $fila['idpostulante'];
+    
+                                include 'conexion.php';
+                                $dni = $_GET['dni'];
+                                //$descrip=base64_decode($dni);
+                                include_once('conexion.php');
+                                $sql="SELECT * FROM postulante where dni=$dni";
+                                $datos=mysqli_query($con,$sql) or die(mysqli_error());
+                                $fila= mysqli_fetch_array($datos);
+                                $idpostulante=$fila['idpostulante'];
+                               // $distrito=$fila['distrito_iddistrito'];
+
+                               $sql2="SELECT * FROM domicilio_post where postulante_idpostulante=$idpostulante";
+                               $datos2=mysqli_query($con,$sql2) or die(mysqli_error()); ;
+                               $fila2= mysqli_fetch_array($datos2);
+                               $distrito=$fila2['distrito_idistrito'];  
 
                             ?>
+
                             <h5 class="text-left font-weight-bold"><i class="fa fa-arrow-circle-right" aria-hidden="true"></i> DATOS PERSONALES:</h5>
                             <div class="form-group row">
                                 <label class="col-md-2 col-form-label col-form-label-sm">Apellidos y Nombres:</label>
-                                <div class="col-md-6">
-                                <input type="text" class="form-control col-form-label-sm" value="">
+                                <div class="col-md-4">
+                                <input class="form-control col-form-label-sm" type="text" value="<?php echo $fila['ape_pat']." ".$fila['ape_mat']." ".$fila['nombres']; ?>" disabled="true"/>
                                 </div>
-                                <label class="col-md-2 col-form-label col-form-label-sm">DNI N°</label>
+                                <label class="col-md-1 col-form-label col-form-label-sm">DNI N°</label> 
                                 <div class="col-md-2">
-                                <input type="text" class="form-control col-form-label-sm" value="">
+                                <input type="text" class="form-control col-form-label-sm" value="<?php echo $fila['dni'] ?>" disabled="true" >
                                 </div>
+                                <label class="col-md-1 col-form-label col-form-label-sm">Pais</label> 
+                                <div class="col-md-2">
+                                <input type="text" class="form-control col-form-label-sm" value="<?php echo $fila['Pais'] ?>" disabled="true" >
+                                </div>
+                                
                             </div>
                             <div class="form-group row">
                                 <label class="col-md-2 col-form-label col-form-label-sm ">RUC N°</label>
                                 <div class="col-md-2">
-                                <input type="text" class="form-control col-form-label-sm" value="">
+                                <input type="text" class="form-control col-form-label-sm" value="<?php echo $fila['ruc'] ?>" disabled="true">
                                 </div>
                                 <label class="col-md-2 col-form-label col-form-label-sm">Fecha de Nacimiento:</label>
                                 <div class="col-md-2">
-                                <input type="text" class="form-control col-form-label-sm" value="">
+                                <input class="form-control form-control-user" value="<?php echo $fila['fech_nac'] ?>" disabled/> 
                                 </div>
                                 <label class="col-md-2 col-form-label col-form-label-sm">Teléfono Móvil:</label>
                                 <div class="col-md-2">
-                                <input type="text" class="form-control col-form-label-sm" value="">
+                                <input type="text" class="form-control col-form-label-sm" value="<?php echo $fila['celular']?>" disabled="true">
                                 </div>
                             </div>
-                            <div class="form-group row">
-                                <label class="col-md-2 col-form-label col-form-label-sm">Departamento:</label>
-                                <div class="col-md-2">
-                                <input type="text" class="form-control col-form-label-sm" value="">
-                                </div>
-                                <label class="col-md-2 col-form-label col-form-label-sm">Provincia:</label>
-                                <div class="col-md-2">
-                                <input type="text" class="form-control col-form-label-sm" value="">
-                                </div>
-                                <label class="col-md-2 col-form-label col-form-label-sm">Distrito:</label>
-                                <div class="col-md-2">
-                                <input type="text" class="form-control col-form-label-sm" value="">
-                                </div>
-                            </div>
+                            <?php
+                                  include "conexion.php";
+                                  $total="SELECT * FROM total_lugar WHERE iddistrito=$distrito";
+                                  $respuesta=mysqli_query($con,$total) or die(mysqli_error());
+                                  $row2= mysqli_fetch_array($respuesta);
+
+                            ?>
+                           
                             <div class="form-group row">
                                 <label class="col-md-2 col-form-label col-form-label-sm">Correo electrónico</label>
                                 <div class="col-md-3">
-                                <input type="text" class="form-control col-form-label-sm" value="">
+                                <input type="text" class="form-control col-form-label-sm" value="<?php echo $fila['correo']?>" disabled="true">
                                 </div>
                                 <label class="col-md-2 col-form-label col-form-label-sm">Grupo Sanguíneo:</label>
                                 <div class="col-md-2">
-                                <input type="text" class="form-control col-form-label-sm" value="">
+                                <input type="text" class="form-control col-form-label-sm" value="<?php echo $fila['tipo_sangre']?>" disabled="true">
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -147,18 +158,18 @@
                             <div class="form-group row">
                                 <label class="col-md-3 col-form-label col-form-label-sm">Suspensión de renta 4ta. categoría:</label>
                                 <div class="col-md-2">
-                                <input type="text" class="form-control col-form-label-sm" value="">
+                                <input type="text" class="form-control col-form-label-sm" value="<?php echo $fila['suspension_cuarta']?>" disabled="true">
                                 </div>
                             </div>
                             <h6 class="text-left" style="color:#d52a1a;">En caso de emergencia llamar a:</h6>
                             <div class="form-group row">
                                 <label class="col-md-2 col-form-label col-form-label-sm">Parentesco:</label>
                                 <div class="col-md-2">
-                                <input type="text" class="form-control col-form-label-sm" value="">
+                                <input type="text" class="form-control col-form-label-sm" value="<?php echo $fila['parentesco_emer']?>" disabled="true">
                                 </div>
                                 <label class="col-md-3 col-form-label col-form-label-sm">Teléfono de contacto de emergencia:</label>
                                 <div class="col-md-2">
-                                <input type="text" class="form-control col-form-label-sm" value="">
+                                <input type="text" class="form-control col-form-label-sm" value="<?php echo $fila['celular_emer']?>" disabled="true">
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -175,19 +186,28 @@
                                 <input type="text" class="form-control col-form-label-sm" value="">
                                 </div>
                             </div>
+                            <?php     
+                                            include 'conexion.php';
+                                            $dni = $_GET['dni'];
+                                            include_once('conexion.php');
+                                            $sql2="SELECT * FROM domicilio_post where postulante_idpostulante=$idpostulante";
+                                            $datos2=mysqli_query($con,$sql2) or die(mysqli_error()); ;
+                                            $fila2= mysqli_fetch_array($datos2);
+
+                                        ?> 
                             <h5 class="text-left font-weight-bold"><i class="fa fa-arrow-circle-right" aria-hidden="true"></i> DOMICILIO:</h5>
                             <div class="form-group row">
                                 <label class="col-md-2 col-form-label col-form-label-sm">Tipo de Vía:</label>
                                 <div class="col-md-2">
-                                <input type="text" class="form-control col-form-label-sm" value="">
+                                <input type="text" class="form-control col-form-label-sm" value="<?php echo $fila2['tip_via']?>" disabled="true" >
                                 </div>
                                 <label class="col-md-2 col-form-label col-form-label-sm">Nombre de la vía:</label>
                                 <div class="col-md-2">
-                                <input type="text" class="form-control col-form-label-sm" value="">
+                                <input type="text" class="form-control col-form-label-sm" value="<?php echo $fila2['nomb_via']?>" disabled="true">
                                 </div>
                                 <label class="col-md-1 col-form-label col-form-label-sm">Numero:</label>
                                 <div class="col-md-1">
-                                <input type="text" class="form-control col-form-label-sm" value="">
+                                <input type="text" class="form-control col-form-label-sm" value="<?php echo $fila2['num_via']?>" disabled="true">
                                 </div>
                                 <label class="col-md-1 col-form-label col-form-label-sm">Interior:</label>
                                 <div class="col-md-1">
@@ -197,15 +217,15 @@
                             <div class="form-group row">
                                 <label class="col-md-2 col-form-label col-form-label-sm">Tipo de Zona:</label>
                                 <div class="col-md-2">
-                                <input type="text" class="form-control col-form-label-sm" value="">
+                                <input type="text" class="form-control col-form-label-sm" value="<?php echo $fila2['tip_zona']?>" disabled="true">
                                 </div>
                                 <label class="col-md-2 col-form-label col-form-label-sm">Nombre de la zona:</label>
                                 <div class="col-md-2">
-                                <input type="text" class="form-control col-form-label-sm" value="">
+                                <input type="text" class="form-control col-form-label-sm" value="<?php echo $fila2['nomb_zona']?>" disabled="true">
                                 </div>
                                 <label class="col-md-1 col-form-label col-form-label-sm">Numero:</label>
                                 <div class="col-md-1">
-                                <input type="text" class="form-control col-form-label-sm" value="">
+                                <input type="text" class="form-control col-form-label-sm" value="<?php echo $fila2['num_zona']?>" disabled="true">
                                 </div>
                                 <label class="col-md-1 col-form-label col-form-label-sm">Interior:</label>
                                 <div class="col-md-1">
@@ -216,21 +236,21 @@
                             <div class="form-group row">
                                 <label class="col-md-2 col-form-label col-form-label-sm">Departamento:</label>
                                 <div class="col-md-2">
-                                <input type="text" class="form-control col-form-label-sm" value="">
+                                <input type="text" class="form-control col-form-label-sm" value="<?php echo $row2['departamento']?>" disabled="true">
                                 </div>
                                 <label class="col-md-2 col-form-label col-form-label-sm">Provincia:</label>
                                 <div class="col-md-2">
-                                <input type="text" class="form-control col-form-label-sm" value="">
+                                <input type="text" class="form-control col-form-label-sm" value="<?php echo $row2['provincia']?>" disabled="true">
                                 </div>
                                 <label class="col-md-2 col-form-label col-form-label-sm">Distrito:</label>
                                 <div class="col-md-2">
-                                <input type="text" class="form-control col-form-label-sm" value="">
+                                <input type="text" class="form-control col-form-label-sm" value="<?php echo $row2['distrito']?>" disabled="true">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-md-2 col-form-label col-form-label-sm">Referencia:</label>
                                 <div class="col-md-4">
-                                <input type="text" class="form-control col-form-label-sm" value="">
+                                <input type="text" class="form-control col-form-label-sm" value="<?php echo $fila2['referencia']?>" disabled="true">
                                 </div>
                             </div>
                             <h5 class="text-left font-weight-bold"><i class="fa fa-arrow-circle-right" aria-hidden="true"></i> DATOS FAMILIARES:</h5>
@@ -313,8 +333,9 @@
                                       </tr>
                                   </thead>
                                   <tbody>
-                                      <?php
-                                          $sql3 = "SELECT * FROM estudios_superiores WHERE estudios_superiores_idpostulante = $idpostulante";
+                                      <?php  
+
+                                          $sql3 = "SELECT * FROM estudios_superiores WHERE idpostulante_postulante = $idpostulante";
                                           $query3=mysqli_query($con, $sql3);
                                           if(mysqli_num_rows($query3)>0){
                                               while ($row3= MySQLI_fetch_array($query3))
@@ -347,6 +368,7 @@
                                       <tr class="bg-primary" style="text-align:center; color:#000; font-size:0.813em;">
                                           <th>Centro de estudios</th>
                                           <th>Especialidad</th>
+                                          <th>Tipo Estudios</th>
                                           <th>Fecha Inicio</th>
                                           <th>Fecha término</th>
                                           <th>Nivel alcanzado</th>
@@ -354,7 +376,7 @@
                                   </thead>
                                   <tbody>
                                       <?php
-                                          $sql4 = "SELECT * FROM estudios_superiores WHERE estudios_superiores_idpostulante = $idpostulante";
+                                          $sql4 = "SELECT * FROM maestria_doc WHERE idpostulante_postulante = $idpostulante";
                                           $query4=mysqli_query($con, $sql4);
                                           if(mysqli_num_rows($query4)>0){
                                               while ($row4= MySQLI_fetch_array($query4))
@@ -363,6 +385,7 @@
                                                 <tr>
                                                     <td style="font-size: 14px;"><?php echo $row4['centro_estu'];?></td>
                                                     <td style="font-size: 14px;"><?php echo $row4['especialidad']; ?></td>
+                                                    <td style="font-size: 14px;"><?php echo $row4['tipo_estu']; ?></td>
                                                     <td style="font-size: 14px;"><?php echo $row4['fech_ini'] ?></td>
                                                     <td style="font-size: 14px;"><?php echo $row4['fech_fin'] ?></td>
                                                     <td style="font-size: 14px;"><?php echo $row4['nivel'] ?></td>

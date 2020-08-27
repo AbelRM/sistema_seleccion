@@ -53,7 +53,7 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
                             <button class="btn btn-primary" data-toggle="modal" data-target="#logoutModal">Cerrar sesión</button>
                         </div>
                     </div>
-                    <form id="msform" method="post" action="procesos/guardar_ficha.php"> 
+                    <form id="msform" method="post" action="procesos/guardar_ficha.php">  
                         <!-- progressbar -->
                         <div class="row p-2">
                             <div class="col-lg-2 col-md-2 col-sm-12 p-1">
@@ -86,6 +86,22 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
                                         <input class="form-control form-control-user" type="date" id="fech_nac" name="fech_nac" required/> 
                                     </div>
                                     <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">
+                                        <label class="font-weight-bolder">Pais</label> 
+                                        <select class="form-control" name="pais" id="pais" required>
+                                            <option selected>Elegir...</option>
+                                            <option value="PERU">PERU</option>
+                                            <option value="ECUADOR">ECUADOR</option>
+                                            <option value="CHILE">CHILE</option>
+                                            <option value="BRASIL">BRASIL</option>
+                                            <option value="BOLIVIA">BOLIVIA</option>
+                                            <option value="URUGUAY">URUGUAY</option>
+                                            <option value="ARGENTINA">ARGENTINA</option>
+                                            <option value="PARAGUAY">PARAGUAY</option>
+                                            <option value="VENEZUELA">VENEZUELA</option>
+                                            <option value="COLOMBIA">COLOMBIA</option>
+                                        </select> 
+                                    </div>
+                                    <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">
                                         <label class="font-weight-bolder">Estado civil</label> 
                                         <select class="form-control" name="civil" id="civil" required>
                                             <option selected>Elegir...</option>
@@ -104,7 +120,10 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
                                             <option value="FEMENINO">Femenino</option>
                                         </select> 
                                     </div>
-                                    <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
+
+                                    
+                                    
+                                  <!--  <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
                                         <label class="font-weight-bolder" for="name1">Departamento nacimiento</label>
                                         <select id="departamento_id" class="form-control" name="departamento_id" required>
                                             <option value="">-- SELECCIONE --</option>
@@ -127,7 +146,7 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
                                         <select id="distrito_id" class="form-control" name="distrito_id" required>
                                             <option value="">-- SELECCIONE --</option>        
                                         </select>
-                                    </div>
+                                    </div> -->
                                     
                                     <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">
                                         <label class="font-weight-bolder">Cel. emergencia</label> 
@@ -137,7 +156,7 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
                                         <label class="font-weight-bolder">Parentesco</label> 
                                         <input class="form-control form-control-user" placeholder="Nombre familiar" type="text" name="nomb_parent" id="nomb_parent"/> 
                                     </div>
-                                    <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
+                                    <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
                                         <label class="font-weight-bolder">R.U.C.</label> 
                                         <input class="form-control form-control-user" type="text" name="ruc" id="ruc" maxlength="11" /> 
                                     </div>
@@ -231,6 +250,31 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
                                 <div class="form-group row">
 
                                     <input type="hidden" id="dni_post" name="dni_post" value="<?php echo $fila['dni']; ?>"/>
+
+                                    <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
+                                        <label class="font-weight-bolder" for="name2">Departamento nacimiento</label>
+                                        <select id="departamento_id1" class="form-control" name="departamento_id1" required>
+                                            <option value="">-- SELECCIONE --</option>
+                                            <?php foreach($countries as $c):?>
+                                                <option value="<?php echo $c->iddepartamento; ?>"><?php echo $c->departamento; ?></option>
+                                            <?php endforeach; ?>
+                                        </select> 
+                                    </div>
+
+                                    <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
+                                        <label class="font-weight-bolder" for="name2">Provincia nacimiento</label>
+                                        <select id="provincia_id1" class="form-control" name="provincia_id1" required>
+                                            <option value="">-- SELECCIONE --</option>
+                                        </select>                                 
+                                    </div>
+
+
+                                    <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
+                                        <label class="font-weight-bolder" for="exampleInputEmail1">Distrito nacimiento</label>
+                                        <select id="distrito_id1" class="form-control" name="distrito_id1" required>
+                                            <option value="">-- SELECCIONE --</option>        
+                                        </select>
+                                    </div>
 
                                     <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
                                         <label class="font-weight-bolder" for="exampleInputEmail1">Tipo de Via</label>
@@ -562,6 +606,24 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
             $("#provincia_id").change(function(){
                 $.get("distrito.php","provincia_idprovincia="+$("#provincia_id").val(), function(data){
                     $("#distrito_id").html(data);
+                    console.log(data);
+                });
+            });
+        });
+    </script>
+
+<script type="text/javascript">
+        $(document).ready(function(){
+            $("#departamento_id1").change(function(){
+                $.get("provincia.php","departamento_iddepartamento="+$("#departamento_id1").val(), function(data){
+                    $("#provincia_id1").html(data);
+                    console.log(data);
+                });
+            });
+
+            $("#provincia_id1").change(function(){
+                $.get("distrito.php","provincia_idprovincia="+$("#provincia_id1").val(), function(data){
+                    $("#distrito_id1").html(data);
                     console.log(data);
                 });
             });

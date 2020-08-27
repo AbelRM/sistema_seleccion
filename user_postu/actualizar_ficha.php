@@ -26,7 +26,7 @@
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
   <!-- Custom styles for this template-->
-  <link href="css/sb-admin-2.css" rel="stylesheet">
+  <link href="css/sb-admin-2.css" rel="stylesheet"> 
   <link rel="stylesheet" href="css/style.css">
 
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.js"></script>
@@ -66,10 +66,10 @@
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
-            <!-- FICHA PARA ACTUALIZAR -->
+            <!-- FICHA PARA ACTUALIZAR --> 
             <div class="row justify-content-center">
                 <div class="col-12 text-center ">
-                    <div class="card border-primary mb-3" >
+                    <div class="card border-primary mb-3" >  
                         <div class="card-header">
                         
                             <h4 id="heading">FICHA ÚNICA DE DATOS</h4> 
@@ -103,9 +103,20 @@
                                             $datos=mysqli_query($con,$sql) or die(mysqli_error());
                                             $fila= mysqli_fetch_array($datos);
                                             $idpostulante=$fila['idpostulante'];
-                                            $distrito=$fila['distrito_iddistrito'];
-                                            
+                                          //  $distrito=$fila['distrito_idistrito'];                                           
                                         ?>
+
+                                        <?php     
+                                            include 'conexion.php';
+                                            $dni = $_GET['dni'];
+                                            //$descrip=base64_decode($dni);
+                                            include_once('conexion.php');
+                                            $sql2="SELECT * FROM domicilio_post where postulante_idpostulante=$idpostulante";
+                                            $datos2=mysqli_query($con,$sql2) or die(mysqli_error()); ;
+                                            $fila2= mysqli_fetch_array($datos2);
+                                            $distrito=$fila2['distrito_idistrito'];  
+                                        ?> 
+                                        
                                         <div class="form-group row" >
                                             <div class="col-md-4 col-sm-6 mb-2 mb-sm-0 ">
                                                 <label class="font-weight-bolder" >Nombres</label> 
@@ -119,6 +130,23 @@
                                                 <label class="font-weight-bolder" >Fecha de nacimiento</label> 
                                                 <input class="form-control form-control-user" value="<?php echo $fila['fech_nac'] ?>" disabled/> 
                                             </div>
+
+                                            <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
+                                                <label class="font-weight-bolder">Pais</label> 
+                                                <select class="form-control" name="pais" id="pais">
+                                                    <option selected><?php echo $fila['Pais'] ?></option>
+                                                    <option value="ECUADOR">ECUADOR</option>
+                                                    <option value="PERU">PERU</option>
+                                                    <option value="CHILE">CHILE</option>
+                                                    <option value="BRASIL">BRASIL</option>
+                                                    <option value="BOLIVIA">BOLIVIA</option>
+                                                    <option value="URUGUAY">URUGUAY</option>
+                                                    <option value="ARGENTINA">ARGENTINA</option>
+                                                    <option value="PARAGUAY">PARAGUAY</option>
+                                                    <option value="VENEZUELA">VENEZUELA</option>
+                                                    <option value="COLOMBIA">COLOMBIA</option>
+                                                </select> 
+                                            </div>
                                             <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
                                                 <label class="font-weight-bolder">Sexo</label> 
                                                 <select class="form-control" name="sexo" id="sexo">
@@ -127,28 +155,7 @@
                                                     <option value="FEMENINO">FEMENINO</option>
                                                 </select> 
                                             </div>
-                                            
-                                            <?php
-                                                include "conexion.php";
-                                                $total="SELECT * FROM total_lugar WHERE iddistrito=$distrito";
-                                                $respuesta=mysqli_query($con,$total) or die(mysqli_error());
-                                                $row2= mysqli_fetch_array($respuesta);
-
-                                            ?>
-                                            <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
-                                                <label class="font-weight-bolder" for="name1">Departamento nacimiento</label>
-                                                <input class="form-control form-control-user" type="text" value="<?php echo $row2['departamento']?>" disabled="true"/>
-                                            </div>
-
-                                            <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
-                                                <label class="font-weight-bolder" for="name1">Provincia nacimiento</label>
-                                                <input class="form-control form-control-user" type="text" value="<?php echo $row2['provincia']?>" disabled="true"/>                                 
-                                            </div>
-                                            <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
-                                                <label class="font-weight-bolder"  for="exampleInputEmail1">Distrito nacimiento</label>
-                                                <input class="form-control form-control-user" type="text" value="<?php echo $row2['distrito']?>" disabled="true"/>
-                                            </div>
-
+        
                                             <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">
                                                 <label class="font-weight-bolder" for="exampleInputEmail1">Celular</label>
                                                 <input class="form-control form-control-user" type="text" name="celular" id="celular" value="<?php echo $fila['celular']?>" maxlength="9"  required/>
@@ -271,19 +278,32 @@
                                                 <h2 class="fs-title">DOMICILIO:</h2>
                                             </div>
                                         </div>
-                                        <?php     
-                                            include 'conexion.php';
-                                            $dni = $_GET['dni'];
-                                            //$descrip=base64_decode($dni);
-                                            include_once('conexion.php');
-                                            $sql2="SELECT * FROM domicilio_post where postulante_idpostulante=$idpostulante";
-                                            $datos2=mysqli_query($con,$sql2) or die(mysqli_error()); ;
-                                            $fila2= mysqli_fetch_array($datos2);
 
-                                        ?>               
+                                        <?php
+                                                include "conexion.php";
+                                                $total="SELECT * FROM total_lugar WHERE iddistrito=$distrito";
+                                                $respuesta=mysqli_query($con,$total) or die(mysqli_error());
+                                                $row2= mysqli_fetch_array($respuesta);
+
+                                            ?>
+                                                    
                                         <div class="form-group row">
 
                                             <input type="hidden" id="dni_post" name="dni_post" value="<?php echo $fila['dni']; ?>"/>
+
+                                            <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
+                                                <label class="font-weight-bolder" for="name1">Departamento nacimiento</label>
+                                                <input class="form-control form-control-user" type="text" value="<?php echo $row2['departamento']?>" disabled="true"/>
+                                            </div>
+
+                                            <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
+                                                <label class="font-weight-bolder" for="name1">Provincia nacimiento</label>
+                                                <input class="form-control form-control-user" type="text" value="<?php echo $row2['provincia']?>" disabled="true"/>                                 
+                                            </div>
+                                            <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
+                                                <label class="font-weight-bolder"  for="exampleInputEmail1">Distrito nacimiento</label>
+                                                <input class="form-control form-control-user" type="text" value="<?php echo $row2['distrito']?>" disabled="true"/>
+                                            </div>
 
                                             <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
                                                 <label class="font-weight-bolder" for="exampleInputEmail1">Tipo de Via</label>
@@ -345,7 +365,7 @@
                                                 <input class="form-control form-control-user" type="text" name="numero" id="numero" value="<?php echo $fila2['numero']?>"/> 
                                             </div>
 
-                                            <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">
+                                            <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">   
                                                 <label class="font-weight-bolder">Mz.</label> 
                                                 <input class="form-control form-control-user" type="text" name="manzana" id="manzana" value="<?php echo $fila2['manzana']?>"/> 
                                             </div>
@@ -519,16 +539,11 @@
             case "AFP":
                 $("#AFP").show();
                 $("#AFP-2").show();
-                $("#NINGUNA ").hide();
+                $("#NINGUNO ").hide();
             break;
 
             case "NINGUNA":
                 $("#NINGUNA").show();
-                $("#AFP").hide();
-                $("#AFP-2").hide();
-            break;
-            case "ONP":
-                $("#NINGUNA").hide();
                 $("#AFP").hide();
                 $("#AFP-2").hide();
             break;

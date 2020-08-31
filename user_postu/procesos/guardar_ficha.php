@@ -30,7 +30,7 @@
     $manzana = $_POST['manzana'];
     $lote = $_POST['lote'];
     $referencia = $_POST['referencia'];
-    $distrito1 = $_POST['distrito_id1'];
+    $distrito1 = $_POST['distrito_id1']; 
     
     $sql = "UPDATE postulante SET fech_nac = '".$fech_nac."',estado_civil='".$civil."',sexo = '".$sexo."', celular_emer ='".$num_emer."',parentesco_emer='".$nomb_parent."',ruc ='".$ruc."',num_cuenta = '".$cuenta_banc."',
      discapacidad = '".$discapacidad."', tipo_discap = '".$tip_discapacidad."',tipo_sangre = '".$tip_sangre."', alergias = '".$alergias."',suspension_cuarta = '".$cuarta."',seguro = '".$pension."',pais = '".$pais."' WHERE dni='".$dni_post."' ";

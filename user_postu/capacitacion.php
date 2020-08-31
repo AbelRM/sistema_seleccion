@@ -501,8 +501,8 @@
                             <thead>
                                 <tr class="bg-danger" style="text-align:center; font-size:0.813em;">
                                 <th>N°</th>
-                                <th>Centro de estudios</th>
-                                <th>Especialidad</th>
+                                <th>Centro de estudios</th> 
+                                <th>Especialidad</th> 
                                 <th>Tipo</th>
                                 <th>Fecha Inicio</th>
                                 <th>Fecha Fin</th>

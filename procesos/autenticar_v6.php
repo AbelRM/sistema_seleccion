@@ -1,17 +1,17 @@
 <?php
 session_start();
+$mensaje = '';
 if(!empty($_SESSION['active'])){
     $dni = $_POST['dni'];
     header("Location: ../user_postu/index.php?dni=$dni");
 }else{
     if(empty($_POST['dni']) || empty($_POST['clave'])){
+        $mensaje ='Ingrese su usuario y su contraseña!';
         header("Location: ../");
-        echo '<script>
-            alert("Ingrese su usuario y su contraseña!");
-            window.location="../index.php";
-
-        </script>';
-        // $alert = 'Ingrese su clave y su clave';
+        // echo '<script>
+        //     alert("Ingrese su usuario y su contraseña!");
+        //     window.location="../index.php";
+        // </script>';
     }else{
         require_once "../conexion.php";
 
@@ -58,18 +58,19 @@ if(!empty($_SESSION['active'])){
                 $_SESSION['dni']=$data2['dni'];
                 $_SESSION['correo']=$data2['correo'];
                 $_SESSION['rol']=$data2['tipo_user'];
-
                 header("Location: ../user_admi/index.php?dni=$dni");
             }
             
         }else{
-            echo '<script>
-                alert("Usuario y/o contraseña incorrecta!");
-                window.location="../index.php";
-                </script>';
+            // echo '<script> MostrarAlerta("Error","Error al ingresar los datos, intente de nuevo.","success")</script>';
             
-            // header("Location: ../");
+            // echo '<script>
+            //    alert("Usuario y/o contraseña incorrecta!");
+            //    window.location="../index.php";
+            // </script>';
             session_destroy();
+            $mensaje = 'Usuario y/o contraseña incorrecta';
+            header("Location: ../index.php");
         }
     }
 }

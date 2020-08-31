@@ -1,82 +1,77 @@
 <?php
     require '../conexion.php';
+    require '../funcs/funcs.php';
+
+    define("RECAPTCHA_V3_SECRET_KEY", '6LeVwMQZAAAAAHefDg1_0gUgPLg08Oto7rYLKSaF');
 	
-    $nombres = $_POST['nombres'];
-    $ape_pat = $_POST['ape_pat'];
-    $ape_mat = $_POST['ape_mat'];
-    $dni = $_POST['dni'];
-    $correo = $_POST['correo'];
-    $celular = $_POST['celular'];
-	$clave = $_POST['clave'];
-	$confi_clave = $_POST['confi_clave'];
-
-	$sql= "INSERT INTO user (dni,nombres,ape_pat,ape_mat,celular,correo,clave,confi_clave,tipo_user_idtipo) 
-    VALUES ('".$dni."','".$nombres."','".$ape_pat."','".$ape_mat."','".$celular."','".$correo."',MD5('".$clave."'),MD5('".$confi_clave."'),'1')";
-
-    if ($con->query($sql) == TRUE) {
-        $iduser=mysqli_insert_id($con);
-        $sql2= "INSERT INTO postulante (dni,nombres,ape_pat,ape_mat,celular,correo) 
-        VALUES ('".$dni."','".$nombres."','".$ape_pat."','".$ape_mat."','".$celular."','".$correo."')";
-        if ($con->query($sql2) == TRUE){
-            header('Location: ../index.php');
-        }else{
-            echo "Error";
-        }
-        
-    } else {
-?>
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
-
-  <title>Registro de sistema de postulacion DIRESA TACNA</title>
-
-  
-  <link rel="icon" type="image/png" href="../public/img/icono_diresa.png" />
-  <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-
-  
-  <link href="../public/css/sb-admin-2.min.css" rel="stylesheet">
-
-</head>
-
-<body style="background-color: #65525270">
-    <div class="row d-flex justify-content-center m-5">
-        <div class="card text-center">
-            <div class="card-header">
-                
-            </div>
-            <div class="card-body">
-                <h5 class="card-title">ERROR AL CREAR USUARIO</h5>
-                <p class="card-text">Ya existe el usuario registrado con el mismo DNI.</p>
-                <a href="../register.php" class="btn btn-danger">Regresar</a>
-            </div>
-            <div class="card-footer text-muted">
-                
-            </div>
-        </div>
-    </div>
-  <script src="../vendor/jquery/jquery.min.js"></script>
-  <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
-  <script src="../public/js/sb-admin-2.min.js"></script>
-</body>
-
-</html> -->
-    <script languaje="javascript">
-        alert("El usuario con el ".$dni." ya existe, intente de nuevo.");
-        location.href = "../index.php";
-    </script>
-<?php
-        //echo "Error: ".$sql. "<br>".$con->error;
-        //echo "Error";
+    $nombres = $con->real_escape_string($_POST['nombres']);
+    $ape_pat = $con->real_escape_string($_POST['ape_pat']);
+    $ape_mat = $con->real_escape_string($_POST['ape_mat']);
+    $dni = $con->real_escape_string($_POST['dni']);
+    $correo = $con->real_escape_string($_POST['correo']);
+    $celular = $con->real_escape_string($_POST['celular']);
+	$clave = $con->real_escape_string($_POST['clave']);
+    $confi_clave = $con->real_escape_string($_POST['confi_clave']);
+    $tipo_documento = $con->real_escape_string($_POST['tipo_documento']);
+    
+    if(isNull($nombres, $ape_pat, $ape_mat, $correo,$celular,$clave,$confi_clave,$tipo_documento)){
+        $errors[]="Debe llenar todos los campos";
     }
-    $con->close();
-	
+    if(!isEmail($correo)){
+        $errors[]="Dirección de correo inválida";
+    }
+
+    // $pass_hash=hashPassword($clave);
+    $creacion_user = date('Y-m-d H:i:s'); 
+    $token = generateToken();
+
+
+    $token_2 = $_POST['token_2'];
+    $action = $_POST['action'];
+    
+    // call curl to POST request
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL,"https://www.google.com/recaptcha/api/siteverify");
+    curl_setopt($ch, CURLOPT_POST, 1);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query(array('secret' => RECAPTCHA_V3_SECRET_KEY, 'response' => $token_2)));
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    $response = curl_exec($ch);
+    curl_close($ch);
+    $arrResponse = json_decode($response, true);
+    
+    // verificar la respuesta
+    if($arrResponse["success"] == '1' && $arrResponse["action"] == $action && $arrResponse["score"] >= 0.5) {
+        // Si entra aqui, es un humano, puedes procesar el formulario
+        $sql= "INSERT INTO user (dni,nombres,ape_pat,ape_mat,celular,correo,clave,confi_clave,token,creacion_user,tipo_dni,ultima_sesion,tipo_user_idtipo) 
+        VALUES ('".$dni."','".$nombres."','".$ape_pat."','".$ape_mat."','".$celular."','".$correo."',MD5('".$clave."'),MD5('".$confi_clave."'),
+        '".$token."','".$creacion_user."','".$tipo_documento."','".$creacion_user."','1')";
+        $verificar_dni= mysqli_query($con,"SELECT * FROM user WHERE dni='$dni' AND correo='$correo' ");
+        if(mysqli_num_rows($verificar_dni)>0){
+            $con->close();
+            echo '<script>
+            alert("El usuario con el DNI o correo ya existe, intente de nuevo.");
+            window.location = "../register.php";
+            </script>';
+            $con->close();
+        }else {
+            if ($con->query($sql) == TRUE) {
+                $iduser=mysqli_insert_id($con);
+                $sql2= "INSERT INTO postulante (dni,nombres,ape_pat,ape_mat,celular,correo,tipo_documento) 
+                VALUES ('".$dni."','".$nombres."','".$ape_pat."','".$ape_mat."','".$celular."','".$correo."','".$tipo_documento."')";
+                if ($con->query($sql2) == TRUE){
+                    header('Location: ../index.php');
+                }else{
+                    $con->close();
+                    echo '<script>
+                        alert("Error al ingresar los datos, intente de nuevo.");
+                        window.location = "../register.php";
+                    </script>';
+                
+                }          
+            }    
+        }   
+    } else {
+        // Si entra aqui, es un robot....
+        echo "Lo siento, parece que eres un Robot";
+    }	
 ?>

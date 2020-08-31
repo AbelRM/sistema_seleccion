@@ -1,3 +1,13 @@
+<?php
+	
+	require 'conexion.php';
+	//require 'funcs/funcs.php';
+	
+	$errors = array();
+	
+	//Aqui va el código PHP del Vídeo
+	
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -37,49 +47,66 @@
               <div class="text-center">
                 <h1 class="h4 text-gray-900 mb-4">CREAR CUENTA</h1>
               </div>
-              
-              <form action="procesos/guardar_user.php" method="POST" class="user">
+              <form id="form" action="procesos/guardar_user.php" class="needs-validation user" method="POST">
                 <div class="form-group row">
                   <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
-                    <label for="exampleInputEmail1">Nombres</label>
-                    <input type="text" style="padding: inherit;" class="form-control form-control-user" id="nombres" name="nombres" >
-                    <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+                    <label for="nombres">Nombres</label>
+                    <input type="text" style="padding: inherit;" class="form-control form-control-user" id="nombres" name="nombres" required>
+                    <div class="valid-feedback">Nombres correctos</div>
+                    <div class="invalid-feedback">Colocar nombres completos!</div>
                   </div>
                   <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
-                    <label for="exampleInputEmail1">Apellido paterno</label>
-                    <input type="text" style="padding: inherit;" class="form-control form-control-user" id="ape_pat" name="ape_pat" >
+                    <label for="ape_pat">Apellido paterno</label>
+                    <input type="text" style="padding: inherit;" class="form-control form-control-user" id="ape_pat" name="ape_pat" required>
                   </div>
                   <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
-                    <label for="exampleInputEmail1">Apellido materno</label>
-                    <input type="text" style="padding: inherit;" class="form-control form-control-user" id="ape_mat" name="ape_mat">
+                    <label for="ape_mat">Apellido materno</label>
+                    <input type="text" style="padding: inherit;" class="form-control form-control-user" id="ape_mat" name="ape_mat" required>
                   </div>
-                  <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">
-                    <label for="exampleInputEmail1">DNI</label>
-                    <input type="text" style="padding: inherit;" maxlength="8"  class="form-control form-control-user" id="dni" name="dni">
+                  <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
+                    <label for="ape_mat">Tipo de documento</label>
+                    <select style="padding: inherit;" name="tipo_documento" class="form-control form-control-user" onChange="pagoOnChange(this)" required>
+                      <option value="">Elegir...</option>
+                      <option value="DNI">D.N.I.</option>
+                      <option value="C.E.">Carnet Extranjeria</option>
+                    </select>
+                  </div>
+                  <div class="col-md-3 col-sm-6 mb-2 mb-sm-0" id="mostrar_div" style="display:none;">
+                    <label for="dni" id="nCuenta" style="display:block;">D.N.I.</label>
+                    <label for="carnet" id="nTargeta" style="display:none;">Carnet de Extranjería</label>
+                    <input type="text" style="padding: inherit;" class="form-control form-control-user" id="dni" name="dni">
                   </div>
                   <div class="col-md-5 col-sm-6 mb-2 mb-sm-0">
-                    <label for="exampleInputEmail1">Correo electronico</label>
-                    <input type="email" style="padding: inherit;" class="form-control form-control-user" id="correo" name="correo">
+                    <label for="correo">Correo electronico</label>
+                    <input type="email" style="padding: inherit;" class="form-control form-control-user" id="correo" name="correo" required>
+                    <div class="valid-feedback">Correo válido</div>
+                    <div class="invalid-feedback">Correo no válido!</div>
                   </div>
-                  <div class="col-md-5 col-sm-6 mb-2 mb-sm-0">
-                    <label for="exampleInputEmail1">Nro. Celular</label>
-                    <input type="text" style="padding: inherit;" class="form-control form-control-user" id="celular" name="celular" maxlength="9">
+                  <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
+                    <label for="celular">Nro. Celular</label>
+                    <input type="text" style="padding: inherit;" class="form-control form-control-user" id="celular" name="celular" maxlength="9" required>
+                    <div class="valid-feedback">Nro. celular válido</div>
+                    <div class="invalid-feedback">No deje espacios ni "-"</div>
                   </div>
-                  <div class="col-md-6 col-sm-6 mb-2 mb-sm-0">
-                    <label for="exampleInputEmail1">Contraseña</label>
-                    <input type="password" style="padding: inherit;" class="form-control form-control-user" id="clave" name="clave" required="true"><span class="help-block"></span>
+                  <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
+                    <label for="clave">Contraseña</label>
+                    <input type="password" style="padding: inherit;" class="form-control form-control-user"  id="clave" name="clave" required="true" required><span class="help-block"></span>
                   </div>
-                  <div class="col-md-6 col-sm-6 mb-2 mb-sm-0">
-                    <label for="exampleInputEmail1">Confirmar ontraseña</label>
-                    <input type="password" style="padding: inherit;" class="form-control form-control-user" id="confi_clave" name="confi_clave" required="true"><span class="help-block"></span>
+                  <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
+                    <label for="confi_clave">Confirmar ontraseña</label>
+                    <input type="password" style="padding: inherit;" class="form-control form-control-user" id="confi_clave" name="confi_clave" required="true" required><span class="help-block"></span>
                     <label id="mensaje_error" class="control-label col-md-12 text-danger" style="display: block;">Las constraseñas si coinciden</label>
                   </div>
+                </div>
+                <div class="form-group d-flex justify-content-center">
+                  <div class="g-recaptcha" data-sitekey="6LcAvMQZAAAAABpMCKbjwzzFlH4IK5OCjePzxkh7"></div>
                 </div>
                 <div class="form-group row d-flex justify-content-center">
                   <button type="submit" class="btn btn-primary">Registrar</button>
                 </div>
                 
               </form>
+              
               <hr>
               <div class="text-center">
                 <a class="small" href="forgot-password.php">¿Olvidaste tu contraseña?</a>
@@ -103,7 +130,22 @@
   <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
   <!-- Custom scripts for all pages-->
+  <script src="https://www.google.com/recaptcha/api.js?render=6LeVwMQZAAAAABWIaLf9mZZAoV1sJvF9aYTRzexH"></script>
   <script src="public/js/sb-admin-2.min.js"></script>
+  <script src="public/js/validacion.js"></script>
+  <script>
+    $('#form').submit(function(event) {
+        event.preventDefault();
+        /*Cambia 6LcZu9QUAAAAACaj-WBiVIQUlr94vfCC8DUpIanS por tu clave de sitio web*/
+        grecaptcha.ready(function() {
+            grecaptcha.execute('6LeVwMQZAAAAABWIaLf9mZZAoV1sJvF9aYTRzexH', {action: 'registro'}).then(function(token) {
+                $('#form').prepend('<input type="hidden" name="token_2" value="' + token + '">');
+                $('#form').prepend('<input type="hidden" name="action" value="registro">');
+                $('#form').unbind('submit').submit();
+            });;
+        });
+  });
+  </script>
   <script>
     $(document).ready(function () {
     $('#mensaje_error').hide();  
@@ -126,6 +168,34 @@
 
     $("#clave").on('keyup', cambioDePass);
     $("#confi_clave").on('keyup', cambioDePass);
+  </script>
+  <script>
+    function pagoOnChange(sel) {
+        if (sel.value=="DNI"){
+          div_mostrar = document.getElementById("mostrar_div");
+          div_mostrar.style.display = "block";
+          divC = document.getElementById("nCuenta");
+          divC.style.display = "block";
+          max = document.getElementById("dni");
+          max.setAttribute("maxlength", "8");
+          
+
+          divT = document.getElementById("nTargeta");
+          divT.style.display = "none";
+
+        }else if(sel.value=="C.E."){
+          div_mostrar = document.getElementById("mostrar_div");
+          div_mostrar.style.display = "block";
+          divC = document.getElementById("nCuenta");
+          divC.style.display="none";
+
+          divT = document.getElementById("nTargeta");
+          divT.style.display = "block";
+
+          max = document.getElementById("dni");
+          max.setAttribute("maxlength", "9");
+        }
+    }
   </script>
 </body>
 

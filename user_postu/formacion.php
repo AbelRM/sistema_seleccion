@@ -34,8 +34,11 @@
   <!-- Page Wrapper -->
   <div id="wrapper">  
     <?php     
-        $dni = $_GET['dni'];
-        include_once('conexion.php');
+        include 'funcs/mcript.php';
+        
+        $dato_desencriptado = $_GET['dni'];
+        $dni = $desencriptar($dato_desencriptado);
+        
         $sql="SELECT * FROM usuarios where dni=$dni";
         $datos=mysqli_query($con,$sql) or die(mysqli_error()); ;
         $fila= mysqli_fetch_array($datos);
@@ -90,8 +93,8 @@
             <div class="form-row d-flex justify-content-center">
                 
                 <div class="form-group col-md-6">
-                    <select name="id_tipo_cargo" id="id_tipo_cargo" class="form-control custom-select">
-                        <option selected disabled >ELEGIR LA OPCIÓN RECOMENDADA PARA USTED...</option>
+                    <select name="select" id="inputSelect" class="form-control custom-select">
+                        <!-- <option selected disabled >ELEGIR LA OPCIÓN RECOMENDADA PARA USTED...</option> -->
                         <?php
                             $sql = mysqli_query($con,"SELECT * from tipo_cargo WHERE idtipo=$idtipo") or die("Problemas en consulta").mysqli_error();
                             while ($registro=mysqli_fetch_array($sql)) {
@@ -103,7 +106,7 @@
                 
             </div>
             <div class="grupo-form">
-                <div id="tipo-1" class="formulario" style="display: none;">
+                <div id="tipo-1" class="divOculto">
                     <div class="form-row d-flex justify-content-center m-2">
                         <div class="col-lg-6 col-md-8">
                             <div class="card border-primary" style="font-size:13px;">
@@ -224,7 +227,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-6 col-md-8">
+                        <div class="col-lg-6 col-md-8" id="editar">
                             <div class="card border-primary" style="font-size:13px;">
                                 <div class="card-header header-formulario">
                                     <h5 class="card-title">PROFESIONALES DE LA SALUD</h5>
@@ -232,6 +235,7 @@
                                 <form action="procesos/guardar_prof_salud.php" method="POST">
                                     <div class="card-body text-primary">
                                         <?php
+
                                             $sql6="SELECT * FROM datos_profesionales WHERE postulante_idpostulante=$idpostulante";
                                             $datos6=mysqli_query($con,$sql6);
                                             if($con->query($sql6) == TRUE){
@@ -272,11 +276,11 @@
                                             <div class="col-3">
                                                 <div class="form-check form-check-inline">
                                                     <?php
-                                                        $valor_titulo = $fila6['titulo_profesional'];
+                                                        //$valor_titulo = $fila6['titulo_profesional'];
                                                         //$resultado = "<option value='".$valor_titulo."' selected='selected'>‌";
                                                     ?>
-                                                    <select name="titulo_profesional" id="tituloProfesional" class="form-control">
-                                                        <option value="">Elegir</option>
+                                                    <select name="titulo_profesional" id="titulo_profesion" class="form-control">
+                                                        <option value="<?php if($nodatos==0){echo"Elegir...";}else{echo $fila5['titulo_profesional'];}?>" selected><?php if($nodatos==0){echo"Elegir...";}else{echo $fila5['titulo_profesional'];}?></option>
                                                         <option value="NO">NO</option>
                                                         <option value="SI">SI</option>
                                                     </select>
@@ -376,7 +380,7 @@
                         </div>
                     </div>
                 </div>
-                <div id="tipo-2" class="formulario" style="display: none;">
+                <div id="tipo-2" class="divOculto">
                     <div class="form-row d-flex justify-content-center m-2">
                         <div class="col-lg-6 col-md-">
                             <div class="card border-primary" style="font-size:13px;">
@@ -667,7 +671,7 @@
                         </div>                    
                     </div>
                 </div>
-                <div id="tipo-3" class="formulario" style="display: none;">
+                <div id="tipo-3" class="divOculto">
                     <div class="form-row d-flex justify-content-center m-2">
                         <div class="col-lg-6 col-md-8">
                             <div class="card border-primary" style="font-size:13px;">
@@ -958,7 +962,7 @@
                         </div>
                     </div>
                 </div>
-                <div id="tipo-4" class="formulario" style="display: none;">
+                <div id="tipo-4" class="divOculto">
                     <div class="form-row d-flex justify-content-center m-2">
                         <div class="col-md-8">
                             <div class="card border-danger">
@@ -1006,7 +1010,7 @@
                         </div>
                     </div>
                 </div>
-                <div id="tipo-5" class="formulario" style="display: none;">
+                <div id="tipo-5" class="divOculto">
                     <div class="form-row d-flex justify-content-center m-2">
                         <div class="col-md-8">
                             <div class="card border-danger">
@@ -1051,7 +1055,7 @@
                         </div>
                     </div>
                 </div>  
-                <div id="tipo-6" class="formulario" style="display: none;">
+                <div id="tipo-6" class="divOculto">
                     <div class="form-row d-flex justify-content-center m-2">
                         <div class="col-md-8">
                             <div class="card border-danger">
@@ -1096,7 +1100,7 @@
                         </div>
                     </div>
                 </div> 
-                <div id="tipo-7" class="formulario" style="display: none;">
+                <div id="tipo-7" class="divOculto">
                     <div class="form-row d-flex justify-content-center m-2">
                         <div class="col-md-8">
                             <div class="card border-danger">
@@ -1144,7 +1148,7 @@
                         </div>
                     </div>
                 </div>
-                <div id="tipo-8" class="formulario" style="display: none;">
+                <div id="tipo-8" class="divOculto">
                     <div class="form-row formulario d-flex justify-content-center m-2">
                         <div class="col-md-8">
                             <div class="card border-danger">
@@ -1189,7 +1193,7 @@
                         </div>
                     </div>
                 </div> 
-                <div id="tipo-9" class="formulario" style="display: none;">
+                <div id="tipo-9" class="divOculto">
                     <div class="form-row d-flex justify-content-center m-2">
                         <div class="col-md-8">
                             <div class="card border-danger">
@@ -1237,7 +1241,7 @@
                         </div>
                     </div>
                 </div>
-                <div id="tipo-10" class="formulario" style="display: none;">
+                <div id="tipo-10" class="divOculto">
                     <div class="form-row d-flex justify-content-center m-2">
                         <div class="col-md-8">
                             <div class="card border-danger ">
@@ -1282,7 +1286,7 @@
                         </div>
                     </div>
                 </div>
-                <div id="tipo-11" class="formulario" style="display: none;">
+                <div id="tipo-11" class="divOculto">
                     <div class="form-row d-flex justify-content-center m-2">
                         <div class="col-md-8">
                             <div class="card border-danger ">
@@ -1327,7 +1331,7 @@
                         </div>
                     </div>
                 </div>
-                <div id="tipo-12" class="formulario" style="display: none;">
+                <div id="tipo-12" class="divOculto">
                     <div class="form-row d-flex justify-content-center m-2">
                         <div class="col-md-8">
                             <div class="card border-danger ">
@@ -1372,7 +1376,7 @@
                         </div>
                     </div>
                 </div>
-                <div id="tipo-13" class="formulario" style="display: none;">
+                <div id="tipo-13" class="divOculto">
                     <div class="form-row d-flex justify-content-center m-2">
                         <div class="col-md-8">
                             <div class="card border-danger ">

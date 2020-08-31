@@ -39,10 +39,11 @@
   <div id="wrapper">  
 
     <?php     
-      include 'conexion.php';
+      include 'funcs/mcript.php';
+        
+      $dato_desencriptado = $_GET['dni'];
+      $dni = $desencriptar($dato_desencriptado);
       
-      $dni = $_GET['dni'];
-      //$descrip=base64_decode($dni);
       include_once('conexion.php');
       $sql="SELECT * FROM usuarios where dni=$dni";
       $datos=mysqli_query($con,$sql) or die(mysqli_error()); ;
@@ -89,10 +90,6 @@
                         <div class="card-body">
                             <?php 
     
-                                include 'conexion.php';
-                                $dni = $_GET['dni'];
-                                //$descrip=base64_decode($dni);
-                                include_once('conexion.php');
                                 $sql="SELECT * FROM postulante where dni=$dni";
                                 $datos=mysqli_query($con,$sql) or die(mysqli_error());
                                 $fila= mysqli_fetch_array($datos);
@@ -118,7 +115,7 @@
                                 </div>
                                 <label class="col-md-1 col-form-label col-form-label-sm">Pais</label> 
                                 <div class="col-md-2">
-                                <input type="text" class="form-control col-form-label-sm" value="<?php echo $fila['Pais'] ?>" disabled="true" >
+                                <input type="text" class="form-control col-form-label-sm" value="<?php echo $fila['pais'] ?>" disabled="true" >
                                 </div>
                                 
                             </div>
@@ -407,7 +404,7 @@
                                               }
                                       }else{
                                           echo "<tr>
-                                          <td colspan='5' class='text-center text-danger' >NO HAY DATOS REGISTRADOS</td>
+                                          <td colspan='6' class='text-center text-danger' >NO HAY DATOS REGISTRADOS</td>
                                           </tr>";
                                       }
                                       ?>

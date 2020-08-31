@@ -11,7 +11,10 @@
 
     <!-- Divider -->
     <hr class="sidebar-divider">
-
+    <?php 
+      include 'funcs/mcript.php'; 
+      $dato_encriptado = $encriptar($dni);
+    ?>
     <!-- Heading -->
     <div class="sidebar-heading">
       CONVOCATORIAS
@@ -26,7 +29,7 @@
       <div id="collapseConvo" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
           <h6 class="collapse-header">Acciones:</h6>
-          <a class="collapse-item" href="listado_convocatorias.php?dni=<?php echo $dni ?>">Listado convocatorias</a>
+          <a class="collapse-item" href="listado_convocatorias.php?dni=<?php echo $dato_encriptado ?>">Listado convocatorias</a>
      
         </div>
       </div>
@@ -41,8 +44,8 @@
       <div id="collapseCom" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
           <h6 class="collapse-header">Acciones:</h6>
-          <a class="collapse-item" href="listar_convo.php?dni=<?php echo $dni ?>">Postular</a>
-          <a class="collapse-item" href="mispostulaciones.php?dni=<?php echo $dni ?>">Mis postulaciones</a>
+          <a class="collapse-item" href="listar_convo.php?dni=<?php echo $dato_encriptado ?>">Postular</a>
+          <a class="collapse-item" href="mispostulaciones.php?dni=<?php echo $dato_encriptado ?>">Mis postulaciones</a>
           
         </div>
       </div>
@@ -63,9 +66,8 @@
       <div id="collapseDat" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
           <h6 class="collapse-header">Acciones:</h6>
-          <a class="collapse-item" href="actualizar_ficha.php?dni=<?php echo $dni ?>">Actualizar ficha</a>
-          <a class="collapse-item" href="ver_ficha.php?dni=<?php echo $dni ?>">Ver ficha</a>
-          <!-- <a class="collapse-item" href="#mis_cursos.php?dni=<?php echo $dni ?>">Perfil profesional</a> -->
+          <a class="collapse-item" href="actualizar_ficha.php?dni=<?php echo $dato_encriptado ?>">Actualizar ficha</a>
+          <a class="collapse-item" href="ver_ficha.php?dni=<?php echo $dato_encriptado ?>">Ver ficha</a>
         </div>
       </div>
     </li>
@@ -78,9 +80,9 @@
       <div id="collapseDatprof" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
           <h6 class="collapse-header">Acciones:</h6>
-          <a class="collapse-item" href="formacion.php?dni=<?php echo $dni ?>">Estudios de formación</a>
-          <a class="collapse-item" href="capacitacion.php?dni=<?php echo $dni ?>">Capacitaciones</a>
-          <a class="collapse-item" href="exp_laboral.php?dni=<?php echo $dni ?>">Experiencia laboral</a>
+          <a class="collapse-item" href="formacion.php?dni=<?php echo $dato_encriptado ?>">Estudios de formación</a>
+          <a class="collapse-item" href="capacitacion.php?dni=<?php echo $dato_encriptado ?>">Capacitaciones</a>
+          <a class="collapse-item" href="exp_laboral.php?dni=<?php echo $dato_encriptado ?>">Experiencia laboral</a>
         </div>
       </div>
     </li>

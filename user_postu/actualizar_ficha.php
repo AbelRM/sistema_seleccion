@@ -1,5 +1,6 @@
 <?php
   include 'conexion.php';
+  include 'funcs/mcript.php';
   session_start();
   if(empty($_SESSION['active'])){
     header("Location: ../index.php");
@@ -39,11 +40,9 @@
   <div id="wrapper">  
 
     <?php     
-      include 'conexion.php';
+      $dato_desencriptado = $_GET['dni'];
+      $dni = $desencriptar($dato_desencriptado);
       
-      $dni = $_GET['dni'];
-      //$descrip=base64_decode($dni);
-      include_once('conexion.php');
       $sql="SELECT * FROM usuarios where dni=$dni";
       $datos=mysqli_query($con,$sql) or die(mysqli_error()); ;
       $fila= mysqli_fetch_array($datos);
@@ -94,27 +93,11 @@
                                                 <h2 class="fs-title">DATOS PERSONALES COMPLEMENTARIOS:</h2>
                                             </div>
                                         </div>
-                                        <?php     
-                                            include 'conexion.php';
-                                            $dni = $_GET['dni'];
-                                            //$descrip=base64_decode($dni);
-                                            include_once('conexion.php');
+                                        <?php  
                                             $sql="SELECT * FROM postulante where dni=$dni";
                                             $datos=mysqli_query($con,$sql) or die(mysqli_error());
                                             $fila= mysqli_fetch_array($datos);
                                             $idpostulante=$fila['idpostulante'];
-                                          //  $distrito=$fila['distrito_idistrito'];                                           
-                                        ?>
-
-                                        <?php     
-                                            include 'conexion.php';
-                                            $dni = $_GET['dni'];
-                                            //$descrip=base64_decode($dni);
-                                            include_once('conexion.php');
-                                            $sql2="SELECT * FROM domicilio_post where postulante_idpostulante=$idpostulante";
-                                            $datos2=mysqli_query($con,$sql2) or die(mysqli_error()); ;
-                                            $fila2= mysqli_fetch_array($datos2);
-                                            $distrito=$fila2['distrito_idistrito'];  
                                         ?> 
                                         
                                         <div class="form-group row" >
@@ -134,7 +117,7 @@
                                             <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
                                                 <label class="font-weight-bolder">Pais</label> 
                                                 <select class="form-control" name="pais" id="pais">
-                                                    <option selected><?php echo $fila['Pais'] ?></option>
+                                                    <option selected><?php echo $fila['pais'] ?></option>
                                                     <option value="ECUADOR">ECUADOR</option>
                                                     <option value="PERU">PERU</option>
                                                     <option value="CHILE">CHILE</option>
@@ -280,16 +263,15 @@
                                         </div>
 
                                         <?php
-                                                include "conexion.php";
-                                                $total="SELECT * FROM total_lugar WHERE iddistrito=$distrito";
-                                                $respuesta=mysqli_query($con,$total) or die(mysqli_error());
-                                                $row2= mysqli_fetch_array($respuesta);
-
-                                            ?>
+                                            $total="SELECT * FROM total_lugar WHERE iddistrito=$distrito";
+                                            $respuesta=mysqli_query($con,$total) or die(mysqli_error());
+                                            $row2= mysqli_fetch_array($respuesta);
+                                        ?>
                                                     
                                         <div class="form-group row">
 
                                             <input type="hidden" id="dni_post" name="dni_post" value="<?php echo $fila['dni']; ?>"/>
+                                            <input type="hidden" id="dni_post" name="dni_post" value="<?php echo $idpostulante ?>"/>
 
                                             <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
                                                 <label class="font-weight-bolder" for="name1">Departamento nacimiento</label>
@@ -302,7 +284,7 @@
                                             </div>
                                             <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
                                                 <label class="font-weight-bolder"  for="exampleInputEmail1">Distrito nacimiento</label>
-                                                <input class="form-control form-control-user" type="text" value="<?php echo $row2['distrito']?>" disabled="true"/>
+                                                <input class="form-control form-control-user" type="text" name="distrito" value="<?php echo $row2['distrito']?>" disabled="true"/>
                                             </div>
 
                                             <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
@@ -352,16 +334,16 @@
                                             </div>
 
                                             <div class="col-md-7 col-sm-6 mb-2 mb-sm-0">
-                                                <label class="font-weight-bolder">Nombre de la zona</label> 
+                                                <label class="font-weight-bolder">Nombre de la zona:</label> 
                                                 <input class="form-control form-control-user" type="text" name="nomb_zona" id="nomb_zona" value="<?php echo $fila2['nomb_zona']?>"/> 
                                             </div>
 
                                             <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">
-                                                <label class="font-weight-bolder">Número</label> 
+                                                <label class="font-weight-bolder">Número zona:</label> 
                                                 <input class="form-control form-control-user" type="text" name="num_zona" id="num_zona" value="<?php echo $fila2['num_zona']?>"/> 
                                             </div>
                                             <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">
-                                                <label class="font-weight-bolder">Número</label> 
+                                                <label class="font-weight-bolder"># Número:</label> 
                                                 <input class="form-control form-control-user" type="text" name="numero" id="numero" value="<?php echo $fila2['numero']?>"/> 
                                             </div>
 
@@ -391,11 +373,7 @@
                                                 <h2 class="fs-title">DATOS FAMILIARES:</h2>
                                             </div>
                                         </div>
-                                        <?php     
-                                            include 'conexion.php';
-                                            $dni = $_GET['dni'];
-                                            //$descrip=base64_decode($dni);
-                                            include_once('conexion.php');
+                                        <?php 
                                             $sql3="SELECT * FROM familia_post where postulante_idpostulante=$idpostulante";
                                             $datos3=mysqli_query($con,$sql3) or die(mysqli_error()); ;
                                             $fila3= mysqli_fetch_array($datos3);
@@ -419,9 +397,6 @@
 
                                                     <tbody>
                                                     <?php
-                                                        
-
-                                                        include_once('conexion.php');
                                                         $tabla="SELECT * FROM familia_post where postulante_idpostulante=$idpostulante";
                                                         $result=mysqli_query($con,$tabla);
                                                         while($row=mysqli_fetch_array($result)){   

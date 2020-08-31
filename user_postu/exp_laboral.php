@@ -34,8 +34,11 @@
   <!-- Page Wrapper -->
   <div id="wrapper">  
     <?php     
-        $dni = $_GET['dni'];
-        include_once('conexion.php');
+        include 'funcs/mcript.php';
+        
+        $dato_desencriptado = $_GET['dni'];
+        $dni = $desencriptar($dato_desencriptado);
+        
         $sql="SELECT * FROM usuarios where dni=$dni";
         $datos=mysqli_query($con,$sql) or die(mysqli_error()); ;
         $fila= mysqli_fetch_array($datos);
@@ -852,7 +855,7 @@
             switch (selectValue) {
                 case "tipo-1":
                     $("#tipo-1").show();
-                    $("#tipo-42").hide();
+                    $("#tipo-2").hide();
                 break;
 
                 case "tipo-2":

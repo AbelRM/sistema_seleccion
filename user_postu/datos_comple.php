@@ -1,6 +1,6 @@
 <?php
   include "conexion.php";  
-  //$db =  connect();
+
   $query=$con->query("select * from departamento");
   $countries = array();
   while($r=$query->fetch_object()){ $countries[]=$r; }
@@ -40,10 +40,11 @@
   <div id="wrapper">
 
     <?php   
-        include 'conexion.php';
+        include 'funcs/mcript.php';
         
-        $dni = $_GET['dni'];
-        //$descrip=base64_decode($dni);
+        $dato_desencriptado = $_GET['dni'];
+        $dni = $desencriptar($dato_desencriptado);
+        
         $sql2="SELECT * FROM usuarios where dni=$dni";
         $datos=mysqli_query($con,$sql2) or die(mysqli_error()); ;
         $fila= mysqli_fetch_array($datos);

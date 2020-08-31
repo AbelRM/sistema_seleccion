@@ -1,5 +1,6 @@
 <?php
 session_start();
+include "funcs/mcript.php";
 $mensaje = '';
 
 if(!empty($_SESSION['active'])){
@@ -59,11 +60,21 @@ if(!empty($_SESSION['active'])){
                   $_SESSION['dni']=$data['dni'];
                   $_SESSION['correo']=$data['correo'];
                   $_SESSION['rol']=$data['tipo_user'];
+
+                  // Como usar las funciones para encriptar y desencriptar.
+                  //$dato = "Esta es información importante";
+
+                  //Encripta información:
+                  $dato_encriptado = $encriptar($dni);
+
+                  //Desencripta información:
+                  //$dato_desencriptado = $desencriptar($dato_encriptado);
+
   
-                  header("Location: user_postu/index.php?dni=$dni");
+                  header("Location: user_postu/index.php?dni=$dato_encriptado");
                      
                   }else{
-                      header("Location: user_postu/ficha_wizard.php?dni=$dni");
+                      header("Location: user_postu/ficha_wizard.php?dni=$dato_encriptado");
                   } 
               }else{
                   $query3 = mysqli_query($con,"SELECT * FROM usuarios WHERE dni='$dni' AND tipo_user='ADMINISTRADOR' ");
@@ -134,7 +145,7 @@ if(!empty($_SESSION['active'])){
               <div class="col-lg-6">
                 <div class="p-5">
                   <div class="mb-4 d-flex justify-content-center">
-                    <img src="public/img/logo_diresa.png" alt="Logo de diresa" style="max-width: 100%; height: auto;">
+                    <img src="public/img/logo_diresa.png" alt="Logo de diresa" style="max-width: 70%; height: auto;">
                   </div>
                   <div class="form-group text-danger font-weight-bold text-center">
                   <?php if(!empty($mensaje)): ?>
@@ -152,7 +163,7 @@ if(!empty($_SESSION['active'])){
                       <div class="g-recaptcha" data-sitekey="6LcAvMQZAAAAABpMCKbjwzzFlH4IK5OCjePzxkh7"></div>
                     <?php //echo isset($alert) ? $alert : '';?>
                     </div>
-                    <div class="form-group row d-flex justify-content-center">
+                    <div class="form-group d-flex justify-content-center">
                       <button type="submit" class="btn btn-primary btn-user btn-block">Iniciar sesión</button>
                     </div>
                   </form>

@@ -32,8 +32,10 @@
     <?php   
         include 'conexion.php';
         
-        $dni = $_GET['dni'];
-        //$descrip=base64_decode($dni);
+        include 'funcs/mcript.php';
+        $dato_desencriptado = $_GET['dni'];
+        $dni = $desencriptar($dato_desencriptado);
+
         $sql="SELECT * FROM usuarios where dni=$dni";
         $datos=mysqli_query($con,$sql) or die(mysqli_error()); ;
         $fila= mysqli_fetch_array($datos);
@@ -94,7 +96,7 @@
                         <td style="font-size: 16px;"><?php echo $row['num_con']."-".$row['anio_con'] ?></td>
                         <td style="font-size: 14px;"><?php echo $row['cargo']?></td>
                         <td style="font-size: 14px;"><?php echo $row['boleta']?></td>
-                        <td style="font-size: 14px;"><?php echo $row['fech_inscripcion']?></td>
+                        <td style="font-size: 14px;"><?php echo $row['fecha_postulacion']?></td>
                         <td>
                           <button type="button" class="btn btn-primary"><i class="fa fa-eye"></i> Ver</button>
                         </td>

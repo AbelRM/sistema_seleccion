@@ -39,15 +39,15 @@
     <?php   
         include 'conexion.php';
         
-        $dni = $_GET['dni'];
-        //$descrip=base64_decode($dni);
+        include 'funcs/mcript.php';
+        
+        $dato_desencriptado = $_GET['dni'];
+        $dni = $desencriptar($dato_desencriptado);
+
         $sql2="SELECT * FROM usuarios where dni=$dni";
         $datos=mysqli_query($con,$sql2) or die(mysqli_error()); ;
         $fila= mysqli_fetch_array($datos);
 
-
-
-        //$descrip=base64_decode($dni);
         $sql3="SELECT * FROM postulante where dni=$dni";
         $datos2=mysqli_query($con,$sql3) or die(mysqli_error()); ;
         $fila2= mysqli_fetch_array($datos2);

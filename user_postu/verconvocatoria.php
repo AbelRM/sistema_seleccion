@@ -34,7 +34,11 @@
 
     <?php 
       include 'conexion.php';
-      $dni=$_GET['dni'];
+      
+      include 'funcs/mcript.php';
+      $dato_desencriptado = $_GET['dni'];
+      $dni = $desencriptar($dato_desencriptado);
+
       $idcon=$_POST['id'];
       $sql="SELECT * FROM full_convocatoria WHERE idcon='".$idcon."' ";
       $result=mysqli_query($con,$sql);

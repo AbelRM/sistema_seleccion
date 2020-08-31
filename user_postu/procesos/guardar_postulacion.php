@@ -7,9 +7,10 @@ $idcon=$_POST['idcon'];
 $idpostulante=$_POST['idpostulante'];
 $personal_req=$_POST['idpersonal']; 
 $boleta=$_POST['boleta'];
+date_default_timezone_set('America/Lima');
 $date = date('Y-m-d');
 
-$sql="INSERT INTO detalle_convocatoria (convocatoria_idcon, postulante_idpostulante, personal_req_idpersonal, boleta, fech_inscripcion) 
+$sql="INSERT INTO detalle_convocatoria (convocatoria_idcon, postulante_idpostulante, personal_req_idpersonal, boleta, fecha_postulacion) 
 VALUES ('".$idcon."','".$idpostulante."','".$personal_req."','".$boleta."','".$date."')";
 
 $result = MYSQLI_query($con, $sql); 

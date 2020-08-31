@@ -1,8 +1,10 @@
 <?php
 
     include '../conexion.php';
+    include '../funcs/mcript.php';
    
     $dni_post=$_POST['dni_post'];
+    $idpostulante=$_POST['idpostulante'];
     // DATOS PERSONALES
     $sexo = $_POST['sexo'];
     $celular= $_POST['celular'];
@@ -30,7 +32,7 @@
     $manzana = $_POST['manzana'];
     $lote = $_POST['lote'];
     $referencia = $_POST['referencia'];
-    // $distrito1 = $_POST['distrito_id1'];
+    $distrito = $_POST['distrito'];
     
     $sql = "UPDATE postulante SET sexo='".$sexo."',celular = '".$celular."', correo ='".$correo."',estado_civil='".$estadocivil."',celular_emer='".$celular_emer."',parentesco_emer ='".$parentesco_emer."',ruc = '".$ruc."',
      num_cuenta = '".$num_cuenta."', suspension_cuarta = '".$cuarta."',discapacidad = '".$discapacidad."', tipo_discap = '".$tip_discapacidad."',tipo_sangre = '".$tip_sangre."',alergias = '".$alergias."' WHERE dni='".$dni_post."' ";
@@ -39,19 +41,23 @@
 
 
     if ($datos == 1) {
-        $prueba="SELECT * FROM postulante where dni=$dni_post";
-        $datos=mysqli_query($con,$prueba) or die(mysqli_error()); 
-        $fila= mysqli_fetch_array($datos);
-        $idpostulante=$fila['idpostulante'];
+        // $prueba="SELECT * FROM postulante where dni=$dni_post";
+        // $datos=mysqli_query($con,$prueba) or die(mysqli_error()); 
+        // $fila= mysqli_fetch_array($datos);
+        // $idpostulante=$fila['idpostulante'];
 
-        $sql2 = "UPDATE domicilio_post SET tip_via='".$tipo_via."', nomb_via='".$nomb_via."', num_via='".$num_via."',tip_zona='".$tipo_zona."',nomb_zona='".$nomb_zona."',num_zona='".$num_zona."', referencia = '".$referencia."',numero ='".$numero."', manzana ='".$manzana."', lote ='".$lote."' WHERE dni='".$dni_post."'";
+        $sql2 = "UPDATE domicilio_post SET tip_via='".$tipo_via."', nomb_via='".$nomb_via."', num_via='".$num_via."',tip_zona='".$tipo_zona."',
+        nomb_zona='".$nomb_zona."',num_zona='".$num_zona."', referencia = '".$referencia."',numero ='".$numero."', manzana ='".$manzana."', 
+        lote ='".$lote."', distrito_idistrito ='".$distrito."' WHERE postulante_idpostulante='".$idpostulante."'";
         $datos2=mysqli_query($con,$sql2);    
 
-        header('Location: ../ver_ficha.php?dni='.$dni_post);
+        $dato_encriptado = $encriptar($dni_post);
+        header('Location: ../ver_ficha.php?dni='.$dato_encriptado);
     } 
     else {
-       echo "ERROR AL ACTUALIZAR";
-        header('Location: ../index.php?dni='.$dni_post); 
+        echo "ERROR AL ACTUALIZAR";
+        $dato_encriptado = $encriptar($dni_post);
+        header('Location: ../index.php?dni='.$dato_encriptado); 
     }
     $con->close();
 

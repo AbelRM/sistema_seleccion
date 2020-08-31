@@ -1,5 +1,6 @@
 <?php
   include 'conexion.php';
+  include 'funcs/mcript.php';
   session_start();
   if(empty($_SESSION['active'])){
     header("Location: ../index.php");
@@ -34,7 +35,8 @@
   <!-- Page Wrapper -->
   <div id="wrapper">  
     <?php     
-        $dni = $_GET['dni'];
+        $dato_desencriptado = $_GET['dni'];
+        $dni = $desencriptar($dato_desencriptado);
         include_once('conexion.php');
         $sql="SELECT * FROM usuarios where dni=$dni";
         $datos=mysqli_query($con,$sql) or die(mysqli_error()); ;
@@ -511,7 +513,7 @@
                             </thead>
                             <tbody>
                             <?php
-                                $dni = $_GET['dni'];
+                                //$dni = $_GET['dni'];
                                 
                                 $consulta3 = "SELECT * FROM maestria_doc WHERE idpostulante_postulante = $idpostulante";
 

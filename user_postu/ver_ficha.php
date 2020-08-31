@@ -84,7 +84,7 @@
 
                             ?>
 
-                        <!--<a href="reporteficha.php?id=<?php echo $row['idcon']?>&dni=<?php echo $dni?>"><button type="button" class="btn btn-primary" id="editar" style="margin: 1px;"><i class="fa fa-pencil-alt"></i>Postular</button></a> -->
+                      
                         <a href="reporteficha.php?idpostulante=<?php echo $idpostulante?>&dni=<?php echo $dni?>"><button type="button" class="btn btn-primary" id="editar" style="margin: 1px, align = right;"><i class="fa fa-book"></i>Ficha</button></a>
                         <div class="card-body">
                             <?php 

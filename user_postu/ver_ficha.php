@@ -85,7 +85,7 @@
                             ?>
 
                         <!--<a href="reporteficha.php?id=<?php echo $row['idcon']?>&dni=<?php echo $dni?>"><button type="button" class="btn btn-primary" id="editar" style="margin: 1px;"><i class="fa fa-pencil-alt"></i>Postular</button></a> -->
-                        <a href="reporteficha.php?idpostulante=<?php echo $idpostulante?>"><button type="button" class="btn btn-primary" id="editar" style="margin: 1px, align = right;"><i class="fa fa-book"></i>Ficha</button></a>
+                        <a href="reporteficha.php?idpostulante=<?php echo $idpostulante?>&dni=<?php echo $dni?>"><button type="button" class="btn btn-primary" id="editar" style="margin: 1px, align = right;"><i class="fa fa-book"></i>Ficha</button></a>
                         <div class="card-body">
                             <?php 
     
@@ -307,29 +307,38 @@
                                     </table>
                                 </div>
                             </div>
+                            <?php     
+                                  include 'conexion.php';
+                                  $dni = $_GET['dni'];
+                                  include_once('conexion.php');
+                                  $sql5="SELECT * FROM datos_profesionales where postulante_idpostulante=$idpostulante";
+                                  $datos5=mysqli_query($con,$sql5) or die(mysqli_error()); ;
+                                  $fila5= mysqli_fetch_array($datos5);
+                            ?> 
+
                             <h5 class="text-left font-weight-bold"><i class="fa fa-arrow-circle-right" aria-hidden="true"></i> DATOS PROFESIONALES:</h5>
                             <div class="form-group row">
                                 <label class="col-md-2 col-form-label col-form-label-sm">Profesion:</label>
                                 <div class="col-md-4">
-                                <input type="text" class="form-control col-form-label-sm" value="">
+                                <input type="text" class="form-control col-form-label-sm" value="<?php echo $fila5['profesion']?>" disabled="true">
                                 </div>
                                 <label class="col-md-2 col-form-label col-form-label-sm">Lugar colegiatura:</label>
                                 <div class="col-md-4">
-                                <input type="text" class="form-control col-form-label-sm" value="">
+                                <input type="text" class="form-control col-form-label-sm" value="<?php echo $fila5['lugar_cole']?>" disabled="true">
                                 </div>
                             </div>
                             <div class="form-group row">
                               <label class="col-md-2 col-form-label col-form-label-sm">Fecha de colegiatura:</label>
                               <div class="col-md-2">
-                              <input type="text" class="form-control col-form-label-sm" value="">
+                              <input type="text" class="form-control col-form-label-sm" value="<?php echo $fila5['fecha_cole']?>" disabled="true">
                               </div>
-                              <label class="col-md-2 col-form-label col-form-label-sm">Fecha hasta la cual se enceuntra habilitado:</label>
+                              <label class="col-md-2 col-form-label col-form-label-sm">Fecha hasta la cual se encuentra habilitado:</label>
                               <div class="col-md-2">
-                              <input type="text" class="form-control col-form-label-sm" value="">
+                              <input type="text" class="form-control col-form-label-sm" value="<?php echo $fila5['fecha_habi']?>" disabled="true">
                               </div>
                               <label class="col-md-2 col-form-label col-form-label-sm">N° colegiatura:</label>
                               <div class="col-md-2">
-                              <input type="text" class="form-control col-form-label-sm" value="">
+                              <input type="text" class="form-control col-form-label-sm" value="<?php echo $fila5['nro_cole']?>" disabled="true">
                               </div>
                             </div>
                             <h6 class="text-left" style="color:#d52a1a;">Estudios Superiores (Universitario - Técnico):</h6>

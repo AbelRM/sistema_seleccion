@@ -8,7 +8,7 @@ class PDF extends FPDF
     function Header()
     {
         // Arial bold 15
-        $this->SetFont('Arial','B',13);
+        $this->SetFont('Arial','B',11);
         // Movernos a la derecha
         $this->Cell(60);
         // Título
@@ -17,12 +17,16 @@ class PDF extends FPDF
         $this->Ln(20);
 
         $this->Cell(30,10,'Datos Personales',0,0);
-        $this->Ln(20);
+        $this->Ln(10);
+        $this->Cell(30,10,'Datos Familiares:',0,0);
+        $this->Ln(10);
 
         $this->Cell(50, 10, 'Nombre', 1,0,'C',0);
         $this->Cell(50, 10, 'Apelidos', 1,0,'C',0);
         $this->Cell(40, 10, 'DNI', 1,0,'C',0);
         $this->Cell(40, 10, 'Parentesco', 1,1,'C',0);
+        
+       
     
     }
 
@@ -38,6 +42,8 @@ class PDF extends FPDF
     }
 
 }
+
+
 
 require 'conexion.php';
     $consulta = "SELECT * FROM familia_post where postulante_idpostulante=$idpostulante";
@@ -55,5 +61,6 @@ require 'conexion.php';
         $pdf->Cell(40, 10, $row['parentesco'], 1,1,'C',0);
         
     }
+
     $pdf->Output();
 ?>

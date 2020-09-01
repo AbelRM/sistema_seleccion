@@ -298,7 +298,77 @@
         </div>
         </div>
     </div>
+    <div class="modal fade" id="updateModal">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header bg-warning text-white">
+                    <h5 class="modal-title">Edit Record</h5>
+                    <button class="close" data-dismiss="modal"><span>×</span></button>
+                </div>
+                <div class="modal-body">
+                    <form action="update.php" method="POST">
+                        <input type="hidden" name="dato_desencriptado" id="dato_desencriptado" value="<?php echo $dato_desencriptado ?>" >
+                        <input type="hidden" name="idestudios" id="idestudios" >
+                        <div class="form-group">
+                        <label for="title">Centro de estudios</label>
+                        <input type="text" name="centro_estu" id="centro_estu" class="form-control" placeholder="Enter first name" maxlength="50"
+                            required>
+                        </div>
+                        <div class="form-group">
+                        <label for="title">Especialidad</label>
+                        <input type="text" name="especialidad" id="especialidad" class="form-control" placeholder="Enter last name" maxlength="50"
+                            required>
+                        </div>
+                        <div class="form-group">
+                        <label for="title">Fecha Inicio</label>
+                        <input type="text" name="fecha_inicio" id="fecha_inicio" class="form-control" placeholder="Enter address" maxlength="50"
+                            required>
+                        </div>
+                        <div class="form-group">
+                        <label for="title">Fecha término</label>
+                        <input type="text" name="fecha_fin" id="fecha_fin" class="form-control" placeholder="Enter skills" maxlength="50" required>
+                        </div>
+                        <div class="form-group">
+                        <label for="title">Nivel</label>
+                        <select class="form-control" id="nivel" name="nivel">
+                            <!-- <option value="" disabled selected>Elegir</option> -->
+                            <option value="MAGISTER">Magister</option>
+                            <option value="DOCTORADO">Doctorado</option>
+                            <option value="EGRESADO">Egresado</option>
+                            <option value="ESTUDIANTE">Estudiante</option>
+                        </select>    
+                        </div>
+                        <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" name="updateData">Actualizar!</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <!-- !-- DELETE MODAL -->
+    <div class="modal fade" id="deleteModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-danger text-white">
+                    <h5 class="modal-title" >Eliminar registro</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <form action="procesos/delete4.php" method="POST">
+                    <div class="modal-body">
+                        <input type="hidden" name="dato_desencriptado" id="dato_desencriptado" value="<?php echo $dato_desencriptado;?>">
+                        <input type="hidden" name="idestudios" id="idestudios">
+                        <h4>¿Desea eliminar el dato seleccionado?</h4>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary" name="deleteData">Si</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
      <!-- VER estudios superiores Modal-->
      <div class="modal fade bd-example-modal-xl" id="ver_estudios_superiores" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl" role="document">
@@ -737,45 +807,7 @@
     <script src="js/demo/chart-pie-demo.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="js/bootstrable.js"></script> -->
-    <script>
-        $( document ).ready(function() {
-            $('#dataTable_estu_sup').SetEditable({
-                columnsEd: "0,1,2,3,4,5",
-                onEdit: function(columnsEd) {
-                    var idestudios = columnsEd[0].childNodes[1].innerHTML;
-                    var centro_estudios = columnsEd[0].childNodes[3].innerHTML;
-                    var especialidad = columnsEd[0].childNodes[5].innerHTML;
-                    var fecha_inicio = columnsEd[0].childNodes[7].innerHTML;
-                    var fecha_fin = columnsEd[0].childNodes[9].innerHTML;
-                    var nivel = columnsEd[0].childNodes[11].innerHTML;
-                    $.ajax({
-                        type: 'POST',			
-                        url : "action.php",	
-                        dataType: "json",					
-                        data: {idestudios:idestudios, centro_estu:centro_estudios, especialidad:especialidad, fech_ini:fecha_inicio, fech_fin:fecha_fin, nivel:nivel, action:'edit'},			
-                        success: function (response) {
-                            if(response.status) {
-                            }						
-                        }
-                    });
-                },
-                onBeforeDelete: function(columnsEd) {
-                var empId = columnsEd[0].childNodes[1].innerHTML;
-                $.ajax({
-                        type: 'POST',			
-                        url : "action.php",
-                        dataType: "json",					
-                        data: {idestudios:idestudios, action:'delete'},			
-                        success: function (response) {
-                            if(response.status) {
-                            }			
-                        }
-                    });
-                },
-                });
-            });
-    </script>
+    <script src="js/bootstrable.js"></script>
 
     <!-- alertas -->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
@@ -790,6 +822,47 @@
             });
         });
     </script>
+    <script>
+    $(document).ready(function () {
+        $('.updateBtn').on('click', function(){
+
+            $('#updateModal').modal('show');
+    
+            // Get the table row data.
+            $tr = $(this).closest('tr');
+    
+            var data = $tr.children("td").map(function() {
+                return $(this).text();
+            }).get();
+    
+            console.log(data);
+    
+            $('#idestudios').val(data[0]);
+            $('#centro_estu').val(data[1]);
+            $('#especialidad').val(data[2]);
+            $('#fecha_inicio').val(data[3]);
+            $('#fecha_fin').val(data[4]);  
+            $('#nivel').val(data[5]);  
+        });
+    });
+
+    $(document).ready(function () {
+        $('.deleteBtn').on('click', function(){
+    
+            $('#deleteModal').modal('show');
+            // Get the table row data.
+            $tr = $(this).closest('tr');
+    
+            var data = $tr.children("td").map(function() {
+                return $(this).text();
+            }).get();
+    
+            console.log(data);
+            $('#idestudios').val(data[0]);
+        });
+    });
+    </script>
+
     <script>
          $(function(){
             // Clona la fila oculta que tiene los campos base, y la agrega al final de la tabla

@@ -162,11 +162,11 @@
                                                     {
                                                     ?>
                                                         <tr>
-                                                            <td><?php echo $row6['id_4puntos'];?></td>
-                                                            <td style="font-size: 14px;"><?php echo $row6['lugar']; ?></td>
-                                                            <td style="font-size: 14px;"><?php echo $row6['cargo']; ?></td>
-                                                            <td style="font-size: 14px;"><?php echo $row6['fecha_inicio'] ?></td>
-                                                            <td style="font-size: 14px;"><?php echo $row6['fecha_fin'] ?></td>
+                                                            <td style="font-size: 12px;"><?php echo $row6['id_4puntos'];?></td>
+                                                            <td style="font-size: 12px;"><?php echo $row6['lugar']; ?></td>
+                                                            <td style="font-size: 12px;"><?php echo $row6['cargo']; ?></td>
+                                                            <td style="font-size: 12px;"><?php echo $row6['fecha_inicio'] ?></td>
+                                                            <td style="font-size: 12px;"><?php echo $row6['fecha_fin'] ?></td>
                                                             <td class="d-flex justify-content-center">
                                                                 <button class="btn btn-success btn-sm m-1 updateBtn"><i class="fa fa-edit"></i></button>
                                                                 <button class="btn btn-danger btn-sm m-1 deleteBtn"><i class="fa fa-times-circle"></i></button>

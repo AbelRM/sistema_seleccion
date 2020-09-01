@@ -35,7 +35,9 @@
  
         if($result)
         {
-            echo '<script> alert("Datos actualizados correctamente."); </script>';
+            echo '<script> alert("Datos actualizados correctamente."); 
+            
+            </script>';
             header('Location: ../exp_laboral.php?dni='.$dni);
         }
         else

@@ -86,107 +86,107 @@
                             <div class="col-xl-12 col-md-12 mb-4">
                                 <div class="card border-left-danger shadow h-100 py-2">
                                     <div class="card-body">
-                                        <div class="row ">
-                                            <div class="col-12 p-2 d-flex justify-content-center">
+                                        <div class="row">
+                                            <div class="col-md-12 p-2 d-flex justify-content-center">
                                                 <h3 class="text-xs font-weight-bold text-danger text-uppercase mb-1">Estudios superiores</h3>
                                             </div>
-                                            <div class="col-6 p-2 d-flex justify-content-start">
-                                                <button class="btn btn btn-danger" data-toggle="modal" data-target="#estudios_superiores">AGREGAR <i class="fas fa-user-graduate"></i></button>
-                                            </div>
-                                            <div class="table-responsive">
-                                                <table  class="table table-bordered">  
-                                                <thead>
-                                                    <tr class="bg-primary" style="text-align:center; color:#000; font-size:0.813em;">
-                                                        <th>N°</th>
-                                                        <th>Centro de estudios</th>
-                                                        <th>Especialidad</th>
-                                                        <th>Fecha Inicio</th>
-                                                        <th>Fecha Término</th>
-                                                        <th>Nivel</th>
-                                                        <th>Acciones</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <?php
-                                                        $sql1 = "SELECT * FROM estudios_superiores WHERE idpostulante_postulante = $idpostulante";
-                                                        $query1=mysqli_query($con, $sql1);
-                                                        if(mysqli_num_rows($query1)>0){
-                                                            while ($row1= MySQLI_fetch_array($query1))
-
-                                                            {
-                                                            ?>
-                                                                <tr>
-                                                                    <td><?php echo $row1['idestudios'];?></td>
-                                                                    <td style="font-size: 14px;"><?php echo $row1['centro_estu']; ?></td>
-                                                                    <td style="font-size: 14px;"><?php echo $row1['especialidad']; ?></td>
-                                                                    <td style="font-size: 14px;"><?php echo $row1['fech_ini'] ?></td>
-                                                                    <td style="font-size: 14px;"><?php echo $row1['fech_fin'] ?></td>
-                                                                    <td style="font-size: 14px;"><?php echo $row1['nivel'] ?></td>
-                                                                    <td class="d-flex justify-content-center">
-                                                                        <button class="btn btn-success btn-sm m-1 updateBtn"><i class="fa fa-edit"></i></button>
-                                                                        <button class="btn btn-danger btn-sm m-1 deleteBtn"><i class="fa fa-times-circle"></i></button>
-                                                                    </td>
-                                                                </tr>
-                                                            <?php
-                                                            
-                                                            }
-                                                    }else{
-                                                        echo "<tr>
-                                                        <td colspan='7' class='text-center text-danger' >NO HAY DATOS REGISTRADOS</td>
-                                                        </tr>";
-                                                    }
-                                                    ?>
-                                                </tbody>
-                                                </table>
-                                            </div>
-                                            <form action="procesos/guardar_expe4.php" method="POST">
+                                            <div class="col-md-12 p-2">
                                                 <div class="table-responsive">
-                                                    <table class="table table-bordered" id="tabla-1">
+                                                    <table class="table table-bordered">  
                                                         <thead>
-                                                            <tr class="bg-danger" style="text-align:center; font-size:0.813em;">
-                                                                <th scope="col">Lugar de trabajo</th>
-                                                                <th scope="col">Cargo/Función desempeñada</th>
-                                                                <th scope="col">Fecha Inicio</th>
-                                                                <th scope="col">Fecha Termino</th>
-                                                                <th scope="col-1">Acción</th>
+                                                            <tr class="bg-primary" style="text-align:center; color:#000; font-size:0.813em;">
+                                                                <th>N°</th>
+                                                                <th>Centro de estudios</th>
+                                                                <th>Especialidad</th>
+                                                                <th>Fecha Inicio</th>
+                                                                <th>Fecha Término</th>
+                                                                <th>Nivel</th>
+                                                                <th>Acciones</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr class="fila-fija-1">
-                                                                <td>
-                                                                    <select name="lugar[]" class="form-control" id="lugar">
-                                                                        <option disabled selected>Elegir</option>
-                                                                        <option value="Microred Tarata">Microred Tarata</option>
-                                                                        <option value="Microred Candarave">Microred Candarave</option>
-                                                                        <option value="Microred Alto Andino">Microred Alto Andino</option>
-                                                                        <option value="Microred Frontera">Microred Frontera</option>
-                                                                        <option value="Microred Jorge Basadre">Microred Jorge Basadre</option>
-                                                                    </select>
-                                                                </td>
-                                                                <td><input type="text" name="cargo[]" class="form-control name_list"/></td>
-                                                                <td><input type="date" name="fecha_inicio[]" class="form-control name_list" /></td>
-                                                                <td><input type="date" name="fecha_termino[]" class="form-control name_list"/></td>
-                                                                <td class="eliminar"><button type="button" class="btn btn-danger" ><i class="fas fa-trash-alt"></i></button></td>
-                                                            </tr>
-                                                        </tdody>
+                                                            <?php
+                                                                $sql1 = "SELECT * FROM estudios_superiores WHERE idpostulante_postulante = $idpostulante";
+                                                                $query1=mysqli_query($con, $sql1);
+                                                                if(mysqli_num_rows($query1)>0){
+                                                                    while ($row1= MySQLI_fetch_array($query1))
+                                                                    {
+                                                                    ?>
+                                                                        <tr>
+                                                                            <td style="font-size: 12px;"><?php echo $row1['idestudios'];?></td>
+                                                                            <td style="font-size: 12px;"><?php echo $row1['centro_estu']; ?></td>
+                                                                            <td style="font-size: 12px;"><?php echo $row1['especialidad']; ?></td>
+                                                                            <td style="font-size: 12px;"><?php echo $row1['fech_ini'] ?></td>
+                                                                            <td style="font-size: 12px;"><?php echo $row1['fech_fin'] ?></td>
+                                                                            <td style="font-size: 12px;"><?php echo $row1['nivel'] ?></td>
+                                                                            <td class="d-flex justify-content-center">
+                                                                                <button class="btn btn-success btn-sm m-1 updateBtn"><i class="fa fa-edit"></i></button>
+                                                                                <button class="btn btn-danger btn-sm m-1 deleteBtn"><i class="fa fa-times-circle"></i></button>
+                                                                            </td>
+                                                                        </tr>
+                                                                    <?php
+                                                                    
+                                                                    }
+                                                            }else{
+                                                                echo "<tr>
+                                                                <td colspan='7' class='text-center text-danger' >NO HAY DATOS REGISTRADOS</td>
+                                                                </tr>";
+                                                            }
+                                                            ?>
+                                                        </tbody>
                                                     </table>
                                                 </div>
-                                                <input type="hidden" name="dni" value="<?php echo $dni; ?>">
-                                                <input type="hidden" name="iddetalle_conv" value="<?php echo $iddetalle_conv; ?>">
-                                                <div class="row d-flex justify-content-end">
-                                                    <div class="form-inline p-2">
-                                                        <button id="adicional-1" name="adicional" type="button" class="btn btn-warning">AGREGAR FILA (+)</button>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <form action="procesos/guardar_estudios_sup.php" method="POST">
+                                                    <div class="table-responsive">
+                                                        <label>Estudios Superiores (Universitario - Tecnico)</label>
+                                                        <input type="hidden" id="dni" name="dni" value="<?php echo $dni; ?>">
+                                                        <input type="hidden" id="idpostulante" name="idpostulante" value="<?php echo $idpostulante; ?>">
+                                                        <input type="hidden" id="dato_desencriptado " name="dato_desencriptado " value="<?php echo $dato_desencriptado ?>">
+                                                        
+                                                        <table class="table table-bordered" id="tabla-7">
+                                                            <thead>
+                                                                <tr class="bg-danger" style="text-align:center; font-size:0.813em;">
+                                                                    <th scope="col">Centro Estudios</th>
+                                                                    <th scope="col">Especialidad</th>
+                                                                    <th scope="col">Fecha Inicio</th>
+                                                                    <th scope="col">Fecha Término</th>
+                                                                    <th scope="col">Nivel</th>
+                                                                    <th scope="col">Acción</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr class="fila-fija-7">
+                                                                    <td><input style="font-size: 12px;" type="text" name="centro_estu[]" class="form-control name_list" required/></td>
+                                                                    <td><input style="font-size: 12px;" type="text" name="especialidad[]"  class="form-control name_list" required/></td>
+                                                                    <td><input style="font-size: 12px;" type="date" name="fech_ini[]" class="form-control name_list" required/></td>
+                                                                    <td><input style="font-size: 12px;" type="date" name="fech_fin[]" class="form-control name_list" required/></td>
+                                                                    <td>
+                                                                        <select style="font-size: 12px;" name="nivel[]" class="form-control" id="nivel[]" required>
+                                                                            <option value="" disabled selected>Elegir</option>
+                                                                            <option value="MAGISTER">Magister</option>
+                                                                            <option value="DOCTORADO">Doctorado</option>
+                                                                            <option value="EGRESADO">Egresado</option>
+                                                                            <option value="ESTUDIANTE">Estudiante</option>
+                                                                        </select>
+                                                                    </td>
+                                                                    <td class="eliminar"><button type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button></td>
+                                                                </tr>
+                                                            </tdody>
+                                                        </table>
                                                     </div>
-                                                </div>
-                                                <div class="row d-flex justify-content-center">
-                                                    <div class="form-inline p-2">
-                                                        <button  name="insertar" type="submit" class="btn btn-primary">GUARDAR!</button>
+                                                    <div class="row">
+                                                        <div class="col-md-12 d-flex justify-content-center">
+                                                            <button id="adicional-7" name="adicional" type="button" class="btn btn-warning m-1"> AGREGAR FILA (+) </button>
+                                                        </div>
+                                                        <div class="col-md-12 d-flex justify-content-end">
+                                                            <button class="btn btn-secondary m-1" type="button">Cancelar</button>
+                                                            <button class="btn btn-primary m-1" name="insertar" type="submit" >Guardar</button>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </form>
-                                            <!-- <div class="col-6 p-2 d-flex justify-content-center">
-                                                <button class="btn btn btn-danger" data-toggle="modal" data-target="#ver_estudios_superiores"><i class="fas fa-eye"></i></button>
-                                            </div> -->
+                                                </form>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -296,161 +296,6 @@
             <a class="btn btn-primary" href="procesos/cerrar_sesion.php">Cerrar sesión</a>
             </div>
         </div>
-        </div>
-    </div>
-    <!--GUARDAR Profesion Modal USAR DE EJEMPLO YA NO SE DAN USO-->
-    <div class="modal fade bd-example-modal-lg" id="datos_profesionales" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Mis datos profesionales son:</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <form action="procesos/guardar_datos_prof.php" method="POST">
-                <div class="modal-body ">  
-                    <div class="form-row">
-                        <input type="hidden" id="dni" name="dni" value="<?php echo $dni; ?>">
-                        <input type="hidden" id="idpostulante" name="idpostulante" value="<?php echo $idpostulante; ?>">
-                        <div class="form-group col-md-6">
-                            <label for="inputEmail4">Profesión</label>
-                            <input type="text" class="form-control" id="profesion" name="profesion">
-                        </div>
-                        <div class="form-group col-md-3">
-                            <label for="inputPassword4">Fecha colegiatura</label>
-                            <input type="date" class="form-control" id="fecha_cole" name="fecha_cole">
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="inputPassword4">Lugar de colegiatura</label>
-                            <input type="text" class="form-control" id="lugar_cole" name="lugar_cole">
-                        </div>
-                    
-                        <div class="form-group col-md-3">
-                            <label for="inputPassword4">Fecha de habilitación</label>
-                            <input type="date" class="form-control" id="fech_habi" name="fech_habi">
-                        </div>
-                        <div class="form-group col-md-3">
-                            <label for="inputPassword4">N° de colegiatura</label>
-                            <input type="text" class="form-control" id="num_cole" name="num_cole">
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                    <button class="btn btn-primary" type="submit">Guardar</button>
-                </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <!--VER Profesion Modal-->
-    <div class="modal fade bd-example-modal-lg" id="ver_datos_profesionales" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Mis datos profesionales son:</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-            
-                <form action="" method="POST">
-                <div class="modal-body">
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="inputEmail4">Profesión</label>
-                            <input type="text" class="form-control" id="profesion" name="profesion" value="<?php echo $row2['profesion'];?>" disabled>
-                        </div>
-                        <div class="form-group col-md-3">
-                            <label for="inputPassword4">Fecha colegiatura</label>
-                            <input type="date" class="form-control" id="fecha_cole" name="fecha_cole" value="<?php echo $row2['fecha_cole']; ?>" disabled>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="inputPassword4">Lugar de colegiatura</label>
-                            <input type="text" class="form-control" id="lugar_cole" name="lugar_cole" value="<?php echo $row2['lugar_cole']; ?>" disabled>
-                        </div>
-                    
-                        <div class="form-group col-md-3">
-                            <label for="inputPassword4">Fecha de habilitación</label>
-                            <input type="date" class="form-control" id="fech_habi" name="fech_habi" value="<?php echo $row2['fecha_habi']; ?>" disabled>
-                        </div>
-                        <div class="form-group col-md-3">
-                            <label for="inputPassword4">N° de colegiatura</label>
-                            <input type="text" class="form-control" id="num_cole" name="num_cole" value="<?php echo $row2['nro_cole']; ?>" disabled>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Salir</button>
-                </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    
-    <!--GUARDAR Estudios superiores Modal-->
-    <div class="modal fade bd-example-modal-xl" id="estudios_superiores" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Estudios superiores</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <form action="procesos/guardar_estudios_sup.php" method="POST"> 
-                <div class="modal-body">
-                    <div class="table-responsive">
-                        <label>Estudios Superiores (Universitario - Tecnico)</label>
-                        <input type="hidden" id="dni" name="dni" value="<?php echo $dni; ?>">
-                        <input type="hidden" id="idpostulante" name="idpostulante" value="<?php echo $idpostulante; ?>"> 
-                        <input type="hidden" id="iddetalle_convocatoria" name="iddetalle_convocatoria" value="<?php echo $iddetalle_con; ?>">
-                        <table class="table table-bordered" id="tabla-7">
-                            <thead>
-                            <tr class="bg-danger" style="text-align:center; font-size:0.813em;">
-                                <th scope="col">Centro Estudios</th>
-                                <th scope="col">Especialidad</th>
-                                <th scope="col">Fecha Inicio</th>
-                                <th scope="col">Fecha Termino</th>
-                                <th scope="col">Nivel Alcanzado</th>
-                                <th scope="col">Acción</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                                <tr class="fila-fija-7">
-                                    <td><input style="width: 200px;font-size: 12px;" type="text" name="centro_estu[]" class="form-control name_list" required/></td>
-                                    <td><input style="width: 200px;font-size: 12px;" type="text" name="especialidad[]"  class="form-control name_list" required/></td>
-                                    <td><input style="width: 150px;font-size: 12px;" type="date" name="fech_ini[]" class="form-control name_list" required/></td>
-                                    <td><input style="width: 150px;font-size: 12px;" type="date" name="fech_fin[]" class="form-control name_list" required/></td>
-                                    <td>
-                                        <select style="font-size: 12px;" name="nivel[]" class="form-control" id="nivel[]" required>
-                                            <option value="" disabled selected>Elegir</option>
-                                            <option value="MAGISTER">Magister</option>
-                                            <option value="DOCTORADO">Doctorado</option>
-                                            <option value="EGRESADO">Egresado</option>
-                                            <option value="ESTUDIANTE">Estudiante</option>
-                                        </select>
-                                    </td>
-                                    <td class="eliminar"><button type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button></td>
-                                </tr>
-                            </tdody>
-                        </table>
-                    </div>
-                    <div class="row d-flex justify-content-center">
-                        <div class="form-inline p-2">
-                            <button id="adicional-7" name="adicional" type="button" class="btn btn-warning"> AGREGAR FILA (+) </button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                    <button class="btn btn-primary" name="insertar" type="submit" >Guardar</button>
-                </div>
-                </form>
-            </div>
         </div>
     </div>
 

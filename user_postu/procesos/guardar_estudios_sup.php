@@ -2,7 +2,7 @@
     include_once('../conexion.php');
     $dni=$_POST['dni'];
     $idpostulante= $_POST['idpostulante'];
-    $iddetalle_con=$_POST['iddetalle_convocatoria']; 
+    $dato_desencriptado =$_POST['dato_desencriptado']; 
     //////////////////////// PRESIONAR EL BOTÓN //////////////////////////
     if(isset($_POST['insertar']))
     {
@@ -55,5 +55,5 @@
         }
     }
     
-    header('Location: ../capacitacion.php?dni='.$dni);
+    header('Location: ../capacitacion.php?dni='.$dato_desencriptado);
 ?>

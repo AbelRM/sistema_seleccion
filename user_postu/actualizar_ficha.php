@@ -71,7 +71,7 @@
                     <div class="card border-primary mb-3" >  
                         <div class="card-header">
                         
-                            <h4 id="heading">FICHA ÚNICA DE DATOS</h4> 
+                            <h4 id="heading">FICHA ÚNICA DE DATOS</h4>  
                         </div> 
                         <div class="card-body">
                             <form id="msform" method="post" action="procesos/actualizar_ficha.php">
@@ -187,8 +187,8 @@
                                             </div>
                                             <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
                                                 <label class="font-weight-bolder">Tipo de pensión</label> 
-                                                <select class="form-control custom-select" name="pension" id="inputSelect">
-                                                    <option value="NINGUNA" selected>Ninguna</option>
+                                                <select class="form-control custom-select" name="pension" id="inputSelect"> 
+                                                    <option select><?php echo $fila['seguro'] ?></option>
                                                     <option value="ONP">ONP</option>
                                                     <option value="AFP">AFP</option>
                                                 </select> 
@@ -262,6 +262,14 @@
                                             </div>
                                         </div>
 
+                                        <?php 
+                                        $sql2="SELECT * FROM domicilio_post where postulante_idpostulante=$idpostulante";
+                                        $datos2=mysqli_query($con,$sql2) or die(mysqli_error()); ;
+                                        $fila2= mysqli_fetch_array($datos2);
+                                        $distrito=$fila2['distrito_idistrito'];  
+
+                                        ?>
+
                                         <?php
                                             $sql2="SELECT * FROM domicilio_post where postulante_idpostulante=$idpostulante";
                                             $datos2=mysqli_query($con,$sql2) or die(mysqli_error());
@@ -276,7 +284,7 @@
                                         <div class="form-group row">
 
                                             <input type="hidden" id="dni_post" name="dni_post" value="<?php echo $fila['dni']; ?>"/>
-                                            <input type="hidden" id="dni_post" name="dni_post" value="<?php echo $idpostulante ?>"/>
+                                            <input type="hidden" id="idpostulante" name="idpostulante" value="<?php echo $idpostulante ?>"/>
 
                                             <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
                                                 <label class="font-weight-bolder" for="name1">Departamento nacimiento</label>

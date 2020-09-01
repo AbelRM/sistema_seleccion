@@ -97,11 +97,7 @@
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
                 <h5 class="mb-0 text-gray-800">MI EXPERIENCIA LABORAL:</h5>
             </div>
-            <div class="form-group">
-                <p class="font-weight-bold" style="color:#000; font-size:16px">NOTA: Todos los datos que ingrese deben ser 
-                <span style="color:red;">verídicos</span>, en caso de contrario será 
-                <span style="color:red;">betado de las futuras postulaciones</span> para DIRESA - TACNA.</p>
-            </div>
+
             <div class="form-row d-flex justify-content-center">
                 <div class="form-group col-md-6">
                     <select name="select" id="inputSelect" class="form-control custom-select">
@@ -123,16 +119,17 @@
                     </select>
                 </div> 
             </div>
+
             <div id="tipo-1" class="divOculto">
-                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <ul class="nav nav-tabs" id="myTab" role="tablist"> 
                     <li class="nav-item" role="presentation">
-                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Experiencia en MICROREDES</a>
+                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">MICROREDES</a>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Experiencia en microredes DIRESA</a>
+                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Microredes  DIRESA</a>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Experiencia pública/privada</a>
+                        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Pública/privada</a>
                     </li>
                 </ul>
                 <div class="tab-content" id="myTabContent">
@@ -420,25 +417,25 @@
                         </div>
                     </div>
                 </div>
-            <div>
+            </div>
 
             <div id="tipo-2" class="divOculto">
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                     <li class="nav-item" role="presentation">
-                        <a class="nav-link active" id="home2-tab" data-toggle="tab" href="#home2" role="tab" aria-controls="home2" aria-selected="true">Experiencia en la DIRESA - TACNA</a>
+                        <a class="nav-link active" id="home2-tab" data-toggle="tab" href="#home2" role="tab" aria-controls="home2" aria-selected="true">DIRESA - TACNA</a>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <a class="nav-link" id="profile2-tab" data-toggle="tab" href="#profile2" role="tab" aria-controls="profile2" aria-selected="false">Experiencia pública/privada DENTRO de TACNA</a>
+                        <a class="nav-link" id="profile2-tab" data-toggle="tab" href="#profile2" role="tab" aria-controls="profile2" aria-selected="false">Pública/privada DENTRO de TACNA</a>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <a class="nav-link" id="contact2-tab" data-toggle="tab" href="#contact2" role="tab" aria-controls="contact2" aria-selected="false">Experiencia pública/privada FUERA de TACNA</a>
+                        <a class="nav-link" id="contact2-tab" data-toggle="tab" href="#contact2" role="tab" aria-controls="contact2" aria-selected="false">Pública/privada FUERA de TACNA</a>
                     </li>
                 </ul>
-                <div class="tab-content" id="myTabContent">
+                <div class="tab-content" id="myTabContent2">
                     <div class="tab-pane fade show active" id="home2" role="tabpanel" aria-labelledby="home2-tab">
                         <div class="form-row p-2 d-flex justify-content-center">
-                            <div class="card border-success">
-                                <div class="card-header header-formulario-danger">
+                            <div class="card">
+                                <div class="card-header">
                                     <h5 class="titulo-card">Servicios en la DIRESA TACNA!</h5>
                                 </div>
                                 <div class="card-body">
@@ -689,12 +686,12 @@
                         </div>
                     </div>
                 </div>
-            <div>
+            </div>
          
         <!-- /.container-fluid -->
         </div>
       <!-- End of Main Content -->
-
+      </div>                     
       <!-- Footer -->
       <?php include 'footer.php'; ?>
       <!-- End of Footer -->
@@ -730,7 +727,7 @@
     </div>
 
     <!-- UPDATE MODAL -->
-    <div class="modal fade" id="updateModal">
+    <!-- <div class="modal fade" id="updateModal">
         <div class="modal-dialog modal-md">
         <div class="modal-content">
             <div class="modal-header bg-warning text-white">
@@ -768,7 +765,7 @@
             </div>
         </div>
         </div>
-    </div>
+    </div> -->
     <!-- UPDATE MODAL -->
     <!-- <div class="modal fade" id="updateModal">
         <div class="modal-dialog modal-md">
@@ -809,7 +806,7 @@
     </div> -->
     
     <!-- DELETE MODAL -->
-    <div class="modal fade" id="deleteModal">
+    <!-- <div class="modal fade" id="deleteModal">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header bg-danger text-white">
@@ -829,7 +826,7 @@
                 </form>
             </div>
         </div>
-    </div>
+    </div> -->
     
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
@@ -857,7 +854,6 @@
                     $("#tipo-1").show();
                     $("#tipo-2").hide();
                 break;
-
                 case "tipo-2":
                     $("#tipo-1").hide();
                     $("#tipo-2").show();
@@ -866,7 +862,7 @@
             }).change();
         });
     </script>
-    <script>
+    <!-- <script>
         $(document).ready(function () {
         $('.updateBtn').on('click', function(){
     
@@ -890,7 +886,7 @@
             });
             
         });
-    </script>
+    </script> -->
     <script>
         // $(document).ready(function () {
         //     $('.updateBtn').on('click', function(){
@@ -913,21 +909,21 @@
         //     });
             
         // });
-        $(document).ready(function () {
-            $('.deleteBtn').on('click', function(){
+        // $(document).ready(function () {
+        //     $('.deleteBtn').on('click', function(){
         
-                $('#deleteModal').modal('show');
-                // Get the table row data.
-                $tr = $(this).closest('tr');
+        //         $('#deleteModal').modal('show');
+        //         // Get the table row data.
+        //         $tr = $(this).closest('tr');
         
-                var data = $tr.children("td").map(function() {
-                    return $(this).text();
-                }).get();
+        //         var data = $tr.children("td").map(function() {
+        //             return $(this).text();
+        //         }).get();
         
-                console.log(data);
-                $('#deleteId').val(data[0]);
-            });
-        });
+        //         console.log(data);
+        //         $('#deleteId').val(data[0]);
+        //     });
+        // });
     </script>
     <script>
          $(function(){

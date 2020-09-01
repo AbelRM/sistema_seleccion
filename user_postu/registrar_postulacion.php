@@ -146,14 +146,19 @@
                 <div class="col-md-6 col-sm-12">
                   <img src="img/boleta.jpg" style="width:100%; height:auto;" alt="Boleta de ejemplo para el llenado del código">
                 </div>
-                <div class="col-md-2 col-sm-6">
-                  <label for="disabled-input">Boleta de banco:</label>           
-                  <input type="text" class="form-control" name="boleta" id="boleta" placeholder="Ejm: 003266" maxlength="6" required>
+                <div class="col-md-6 col-sm-6">
+                  <div class="row">
+                    <div class="col-6 m-2">
+                      <label for="disabled-input">Boleta de banco:</label>           
+                      <input type="text" class="form-control" name="boleta" id="boleta" placeholder="Ejm: 003266" maxlength="6" required>
+                    </div>  
+                    <div class="col-12 m-2 d-flex justify-content-center">
+                      <button type="submit" id="button1" class="btn btn-info btn-lg"><i class="fas fa-briefcase"></i> POSTULAR!</button> 
+                    </div>
+                  </div>
                 </div>
               </div>  
-              <div class="row d-flex justify-content-center">
-                  <button type="submit" id="button1" class="btn btn-info"><i class="fas fa-briefcase"></i> POSTULAR!</button> 
-              </div>
+             
               </form>
             </div>
           </div>

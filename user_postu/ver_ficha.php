@@ -76,16 +76,12 @@
                         </div> 
 
                         <?php 
-    
-                                include 'conexion.php';
-                                $sql="SELECT * FROM postulante where dni=$dni";
-                                $datos=mysqli_query($con,$sql) or die(mysqli_error());
-                                $fila= mysqli_fetch_array($datos);
-                                $idpostulante=$fila['idpostulante'];
+                          $sql="SELECT * FROM postulante where dni=$dni";
+                          $datos=mysqli_query($con,$sql) or die(mysqli_error());
+                          $fila= mysqli_fetch_array($datos);
+                          $idpostulante=$fila['idpostulante'];
 
-                            ?>
-
-                      
+                        ?>
                         <a href="reporteficha.php?idpostulante=<?php echo $idpostulante?>&dni=<?php echo $dni?>"><button type="button" class="btn btn-primary" id="editar" style="margin: 1px, align = right;"><i class="fa fa-book"></i>Ficha</button></a>
                         <div class="card-body">
                             <?php 
@@ -538,7 +534,7 @@
                                               }
                                       }else{
                                           echo "<tr>
-                                          <td colspan='3' class='text-center text-danger' >NO HAY DATOS REGISTRADOS</td>
+                                          <td colspan='4' class='text-center text-danger' >NO HAY DATOS REGISTRADOS</td>
                                           </tr>";
                                       }
                                       ?>

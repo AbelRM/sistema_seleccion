@@ -1,20 +1,21 @@
 <!-- Sidebar -->
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-
+    <?php 
+      include 'funcs/mcript.php'; 
+      $dato_encriptado = $encriptar($dni);
+    ?>
     <!-- Sidebar - Brand -->
     <div class="p-2 d-flex justify-content-center">
-      <img src="img/logo_diresa.png" style="max-width: 100%; height: auto;" alt="Logo de DIRESA TACNA">
+      <a href="index.php?dni=<?php echo $dato_encriptado ?>">
+        <img src="img/logo_diresa.png" style="max-width: 100%; height: auto;" alt="Logo de DIRESA TACNA">
+      </a>
     </div>
-    
     <!-- Divider -->
     <hr class="sidebar-divider my-0">
 
     <!-- Divider -->
     <hr class="sidebar-divider">
-    <?php 
-      include 'funcs/mcript.php'; 
-      $dato_encriptado = $encriptar($dni);
-    ?>
+   
     <!-- Heading -->
     <div class="sidebar-heading">
       CONVOCATORIAS

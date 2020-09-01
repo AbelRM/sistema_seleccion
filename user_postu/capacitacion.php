@@ -53,6 +53,21 @@
         <!-- Topbar -->
         <?php
             include_once 'nav.php';
+
+            $consulta="SELECT * FROM postulante where dni=$dni";
+            $datos=mysqli_query($con,$consulta) or die(mysqli_error()); ;
+            $row= mysqli_fetch_array($datos);
+            $idpostulante=$row['idpostulante'];
+
+
+            $consulta1="SELECT * FROM detalle_convocatoria where postulante_idpostulante=$idpostulante";
+            $datos1=mysqli_query($con,$consulta1) or die(mysqli_error()); ;
+            $row1= mysqli_fetch_array($datos1);
+            $iddetalle_con=$row1['iddetalle_convocatoria'];
+
+            $consulta2="SELECT * FROM datos_profesionales where postulante_idpostulante=$idpostulante";
+            $datos2=mysqli_query($con,$consulta2) or die(mysqli_error()); ;
+            $row2= mysqli_fetch_array($datos2);
         ?>
         <!-- End of Topbar -->
 
@@ -64,35 +79,121 @@
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
                 <h5 class="mb-0 text-gray-800">MIS DATOS ACADÉMICOS:</h5>
             </div>
-            <div class="form-group">
-                <!-- <p class="font-weight-bold" style="color:#000; font-size:16px">NOTA: Todos los datos que ingrese deben ser 
-                <span style="color:red;">verídicos</span>, en caso de contrario será 
-                <span style="color:red;">betado de las futuras postulaciones</span> para DIRESA - TACNA.</p> -->
-            </div>
             <div class="row">
-                <div class="col-9">
-                    <div class="tab-content" id="v-pills-tabContent">
-                        <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                <div class="col-10">
+                    <div class="tab-content" id="nav-tabContent">
+                        <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
                             <div class="col-xl-12 col-md-12 mb-4">
                                 <div class="card border-left-danger shadow h-100 py-2">
                                     <div class="card-body">
                                         <div class="row ">
                                             <div class="col-12 p-2 d-flex justify-content-center">
-                                            <div class="text-xs font-weight-bold text-danger  text-uppercase mb-1">Estudios superiores</div>
+                                                <h3 class="text-xs font-weight-bold text-danger text-uppercase mb-1">Estudios superiores</h3>
                                             </div>
-                                            <div class="col-6 p-2 d-flex justify-content-center">
+                                            <div class="col-6 p-2 d-flex justify-content-start">
                                                 <button class="btn btn btn-danger" data-toggle="modal" data-target="#estudios_superiores">AGREGAR <i class="fas fa-user-graduate"></i></button>
                                             </div>
-                                            <div class="col-6 p-2 d-flex justify-content-center">
-                                                <button class="btn btn btn-danger" data-toggle="modal" data-target="#ver_estudios_superiores"><i class="fas fa-eye"></i></button>
+                                            <div class="table-responsive">
+                                                <table  class="table table-bordered">  
+                                                <thead>
+                                                    <tr class="bg-primary" style="text-align:center; color:#000; font-size:0.813em;">
+                                                        <th>N°</th>
+                                                        <th>Centro de estudios</th>
+                                                        <th>Especialidad</th>
+                                                        <th>Fecha Inicio</th>
+                                                        <th>Fecha Término</th>
+                                                        <th>Nivel</th>
+                                                        <th>Acciones</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <?php
+                                                        $sql1 = "SELECT * FROM estudios_superiores WHERE idpostulante_postulante = $idpostulante";
+                                                        $query1=mysqli_query($con, $sql1);
+                                                        if(mysqli_num_rows($query1)>0){
+                                                            while ($row1= MySQLI_fetch_array($query1))
+
+                                                            {
+                                                            ?>
+                                                                <tr>
+                                                                    <td><?php echo $row1['idestudios'];?></td>
+                                                                    <td style="font-size: 14px;"><?php echo $row1['centro_estu']; ?></td>
+                                                                    <td style="font-size: 14px;"><?php echo $row1['especialidad']; ?></td>
+                                                                    <td style="font-size: 14px;"><?php echo $row1['fech_ini'] ?></td>
+                                                                    <td style="font-size: 14px;"><?php echo $row1['fech_fin'] ?></td>
+                                                                    <td style="font-size: 14px;"><?php echo $row1['nivel'] ?></td>
+                                                                    <td class="d-flex justify-content-center">
+                                                                        <button class="btn btn-success btn-sm m-1 updateBtn"><i class="fa fa-edit"></i></button>
+                                                                        <button class="btn btn-danger btn-sm m-1 deleteBtn"><i class="fa fa-times-circle"></i></button>
+                                                                    </td>
+                                                                </tr>
+                                                            <?php
+                                                            
+                                                            }
+                                                    }else{
+                                                        echo "<tr>
+                                                        <td colspan='7' class='text-center text-danger' >NO HAY DATOS REGISTRADOS</td>
+                                                        </tr>";
+                                                    }
+                                                    ?>
+                                                </tbody>
+                                                </table>
                                             </div>
+                                            <form action="procesos/guardar_expe4.php" method="POST">
+                                                <div class="table-responsive">
+                                                    <table class="table table-bordered" id="tabla-1">
+                                                        <thead>
+                                                            <tr class="bg-danger" style="text-align:center; font-size:0.813em;">
+                                                                <th scope="col">Lugar de trabajo</th>
+                                                                <th scope="col">Cargo/Función desempeñada</th>
+                                                                <th scope="col">Fecha Inicio</th>
+                                                                <th scope="col">Fecha Termino</th>
+                                                                <th scope="col-1">Acción</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="fila-fija-1">
+                                                                <td>
+                                                                    <select name="lugar[]" class="form-control" id="lugar">
+                                                                        <option disabled selected>Elegir</option>
+                                                                        <option value="Microred Tarata">Microred Tarata</option>
+                                                                        <option value="Microred Candarave">Microred Candarave</option>
+                                                                        <option value="Microred Alto Andino">Microred Alto Andino</option>
+                                                                        <option value="Microred Frontera">Microred Frontera</option>
+                                                                        <option value="Microred Jorge Basadre">Microred Jorge Basadre</option>
+                                                                    </select>
+                                                                </td>
+                                                                <td><input type="text" name="cargo[]" class="form-control name_list"/></td>
+                                                                <td><input type="date" name="fecha_inicio[]" class="form-control name_list" /></td>
+                                                                <td><input type="date" name="fecha_termino[]" class="form-control name_list"/></td>
+                                                                <td class="eliminar"><button type="button" class="btn btn-danger" ><i class="fas fa-trash-alt"></i></button></td>
+                                                            </tr>
+                                                        </tdody>
+                                                    </table>
+                                                </div>
+                                                <input type="hidden" name="dni" value="<?php echo $dni; ?>">
+                                                <input type="hidden" name="iddetalle_conv" value="<?php echo $iddetalle_conv; ?>">
+                                                <div class="row d-flex justify-content-end">
+                                                    <div class="form-inline p-2">
+                                                        <button id="adicional-1" name="adicional" type="button" class="btn btn-warning">AGREGAR FILA (+)</button>
+                                                    </div>
+                                                </div>
+                                                <div class="row d-flex justify-content-center">
+                                                    <div class="form-inline p-2">
+                                                        <button  name="insertar" type="submit" class="btn btn-primary">GUARDAR!</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                            <!-- <div class="col-6 p-2 d-flex justify-content-center">
+                                                <button class="btn btn btn-danger" data-toggle="modal" data-target="#ver_estudios_superiores"><i class="fas fa-eye"></i></button>
+                                            </div> -->
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-                            <div class="col-xl-4 col-md-6 mb-4">
+                        <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
+                            <div class="col-xl-12 col-md-12 mb-4">
                                 <div class="card border-left-success shadow h-100 py-2">
                                     <div class="card-body">
                                         <div class="row ">
@@ -110,8 +211,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
-                            <div class="col-xl-4 col-md-6 mb-4">
+                        <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">
+                            <div class="col-xl-12 col-md-12 mb-4">
                                 <div class="card border-left-info shadow h-100 py-2">
                                     <div class="card-body">
                                         <div class="row ">
@@ -129,8 +230,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
-                            <div class="col-xl-4 col-md-6 mb-4">
+                        <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">
+                            <div class="col-xl-12 col-md-12 mb-4">
                                 <div class="card border-left-warning shadow h-100 py-2">
                                     <div class="card-body">
                                         <div class="row ">
@@ -150,14 +251,15 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-3">
-                    <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                    <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Estudios Superiores</a>
-                    <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Estudios Postgrado</a>
-                    <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Diplomados - Cursos</a>
-                    <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Idioma - Computación</a>
+                <div class="col-2">
+                    <div class="list-group" id="list-tab" role="tablist" style="font-size:12px;">
+                        <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">Estudios Superiores</a>
+                        <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">Estudios Postgrado</a>
+                        <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#list-messages" role="tab" aria-controls="messages">Diplomados - Cursos</a>
+                        <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-settings" role="tab" aria-controls="settings">Idioma - Computación</a>
                     </div>
                 </div>
+                
             </div>
         <!-- /.container-fluid -->
         </div>
@@ -196,24 +298,6 @@
         </div>
         </div>
     </div>
-    <?php
-        include 'conexion.php';
-        $consulta="SELECT * FROM postulante where dni=$dni";
-        $datos=mysqli_query($con,$consulta) or die(mysqli_error()); ;
-        $row= mysqli_fetch_array($datos);
-        $idpostulante=$row['idpostulante'];
-
-        $consulta1="SELECT * FROM detalle_convocatoria where postulante_idpostulante=$idpostulante";
-        $datos1=mysqli_query($con,$consulta1) or die(mysqli_error()); ;
-        $row1= mysqli_fetch_array($datos1);
-        $iddetalle_con=$row1['iddetalle_convocatoria'];
-
-        $consulta2="SELECT * FROM datos_profesionales where postulante_idpostulante=$idpostulante";
-        $datos2=mysqli_query($con,$consulta2) or die(mysqli_error()); ;
-        $row2= mysqli_fetch_array($datos2);
-
-
-    ?>
     <!--GUARDAR Profesion Modal USAR DE EJEMPLO YA NO SE DAN USO-->
     <div class="modal fade bd-example-modal-lg" id="datos_profesionales" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">

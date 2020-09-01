@@ -85,11 +85,6 @@
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
                 <h5 class="mb-0 text-gray-800">MIS DATOS PROFESIONALES:</h5>
             </div>
-            <div class="form-group">
-                <p class="font-weight-bold" style="color:#000; font-size:16px">NOTA: Todos los datos que ingrese deben ser 
-                <span style="color:red;">verídicos</span>, en caso de contrario será 
-                <span style="color:red;">betado de las futuras postulaciones</span> para DIRESA - TACNA.</p>
-            </div>
             <div class="form-row d-flex justify-content-center">
                 
                 <div class="form-group col-md-6">

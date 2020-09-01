@@ -444,6 +444,11 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
                 $("#AFP-2").hide();
                 $("#NINGUNA").hide();
             break;
+            case "ONP":
+                $("#AFP").hide();
+                $("#AFP-2").hide();
+                $("#NINGUNA").hide();
+            break;
 
             case "NINGUNA":
                 $("#NINGUNA").show();

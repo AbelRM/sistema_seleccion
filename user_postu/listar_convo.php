@@ -34,6 +34,7 @@
         include 'conexion.php';
         
         include 'funcs/mcript.php';
+
         $dato_desencriptado = $_GET['dni'];
         $dni = $desencriptar($dato_desencriptado);
 
@@ -42,7 +43,6 @@
         $fila= mysqli_fetch_array($datos);
         include 'menu.php';
         
-        //include 'modal_ver_convocatoria.php';
     ?>
 
     <!-- Content Wrapper -->

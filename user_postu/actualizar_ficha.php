@@ -263,6 +263,10 @@
                                         </div>
 
                                         <?php
+                                            $sql2="SELECT * FROM domicilio_post where postulante_idpostulante=$idpostulante";
+                                            $datos2=mysqli_query($con,$sql2) or die(mysqli_error());
+                                            $fila2= mysqli_fetch_array($datos2);
+                                            $distrito=$fila2['distrito_idistrito'];  
                                             
                                             $total="SELECT * FROM total_lugar WHERE iddistrito=$distrito";
                                             $respuesta=mysqli_query($con,$total) or die(mysqli_error());

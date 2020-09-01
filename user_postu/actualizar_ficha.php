@@ -263,6 +263,7 @@
                                         </div>
 
                                         <?php
+                                            
                                             $total="SELECT * FROM total_lugar WHERE iddistrito=$distrito";
                                             $respuesta=mysqli_query($con,$total) or die(mysqli_error());
                                             $row2= mysqli_fetch_array($respuesta);

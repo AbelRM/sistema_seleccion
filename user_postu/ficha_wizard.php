@@ -121,34 +121,6 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
                                             <option value="FEMENINO">Femenino</option>
                                         </select> 
                                     </div>
-
-                                    
-                                    
-                                  <!--  <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
-                                        <label class="font-weight-bolder" for="name1">Departamento nacimiento</label>
-                                        <select id="departamento_id" class="form-control" name="departamento_id" required>
-                                            <option value="">-- SELECCIONE --</option>
-                                            <?php foreach($countries as $c):?>
-                                                <option value="<?php echo $c->iddepartamento; ?>"><?php echo $c->departamento; ?></option>
-                                            <?php endforeach; ?>
-                                        </select> 
-                                    </div>
-
-                                    <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
-                                        <label class="font-weight-bolder" for="name1">Provincia nacimiento</label>
-                                        <select id="provincia_id" class="form-control" name="provincia_id" required>
-                                            <option value="">-- SELECCIONE --</option>
-                                        </select>                                 
-                                    </div>
-
-
-                                    <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
-                                        <label class="font-weight-bolder" for="exampleInputEmail1">Distrito nacimiento</label>
-                                        <select id="distrito_id" class="form-control" name="distrito_id" required>
-                                            <option value="">-- SELECCIONE --</option>        
-                                        </select>
-                                    </div> -->
-                                    
                                     <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">
                                         <label class="font-weight-bolder">Cel. emergencia</label> 
                                         <input class="form-control form-control-user" type="text" name="num_emer" id="num_emer" maxlength="9"  required/> 
@@ -469,7 +441,7 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
         switch (selectValue) {
             case "AFP":
                 $("#AFP").show();
-                $("#AFP-2").show();
+                $("#AFP-2").hide();
                 $("#NINGUNA").hide();
             break;
 

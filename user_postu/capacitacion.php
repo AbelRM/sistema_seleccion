@@ -37,7 +37,7 @@
     <?php     
         $dato_desencriptado = $_GET['dni'];
         $dni = $desencriptar($dato_desencriptado);
-        include_once('conexion.php');
+        
         $sql="SELECT * FROM usuarios where dni=$dni";
         $datos=mysqli_query($con,$sql) or die(mysqli_error()); ;
         $fila= mysqli_fetch_array($datos);
@@ -65,85 +65,97 @@
                 <h5 class="mb-0 text-gray-800">MIS DATOS ACADÉMICOS:</h5>
             </div>
             <div class="form-group">
-                <p class="font-weight-bold" style="color:#000; font-size:16px">NOTA: Todos los datos que ingrese deben ser 
+                <!-- <p class="font-weight-bold" style="color:#000; font-size:16px">NOTA: Todos los datos que ingrese deben ser 
                 <span style="color:red;">verídicos</span>, en caso de contrario será 
-                <span style="color:red;">betado de las futuras postulaciones</span> para DIRESA - TACNA.</p>
+                <span style="color:red;">betado de las futuras postulaciones</span> para DIRESA - TACNA.</p> -->
             </div>
-            <div class="row d-flex justify-content-center">
-                <!-- Earnings (Monthly) Card Example -->
-                <div class="col-xl-4 col-md-6 mb-4">
-                    <div class="card border-left-danger shadow h-100 py-2">
-                        <div class="card-body">
-                            <div class="row ">
-                                <div class="col-12 p-2 d-flex justify-content-center">
-                                <div class="text-xs font-weight-bold text-danger  text-uppercase mb-1">Estudios superiores</div>
+            <div class="row">
+                <div class="col-9">
+                    <div class="tab-content" id="v-pills-tabContent">
+                        <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                            <div class="col-xl-12 col-md-12 mb-4">
+                                <div class="card border-left-danger shadow h-100 py-2">
+                                    <div class="card-body">
+                                        <div class="row ">
+                                            <div class="col-12 p-2 d-flex justify-content-center">
+                                            <div class="text-xs font-weight-bold text-danger  text-uppercase mb-1">Estudios superiores</div>
+                                            </div>
+                                            <div class="col-6 p-2 d-flex justify-content-center">
+                                                <button class="btn btn btn-danger" data-toggle="modal" data-target="#estudios_superiores">AGREGAR <i class="fas fa-user-graduate"></i></button>
+                                            </div>
+                                            <div class="col-6 p-2 d-flex justify-content-center">
+                                                <button class="btn btn btn-danger" data-toggle="modal" data-target="#ver_estudios_superiores"><i class="fas fa-eye"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="col-6 p-2 d-flex justify-content-center">
-                                    <button class="btn btn btn-danger" data-toggle="modal" data-target="#estudios_superiores">AGREGAR <i class="fas fa-user-graduate"></i></button>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                            <div class="col-xl-4 col-md-6 mb-4">
+                                <div class="card border-left-success shadow h-100 py-2">
+                                    <div class="card-body">
+                                        <div class="row ">
+                                            <div class="col-12 p-2 d-flex justify-content-center">
+                                            <div class="text-xs font-weight-bold text-success  text-uppercase mb-1">Estudios Postgrado</div>
+                                            </div>
+                                            <div class="col-6 p-2 d-flex justify-content-center">
+                                                <button class="btn btn btn-success" data-toggle="modal" data-target="#estudios_postgrado">AGREGAR <i class="fas fa-user-graduate"></i></button>
+                                            </div>
+                                            <div class="col-6 p-2 d-flex justify-content-center">
+                                                <button class="btn btn btn-success" data-toggle="modal" data-target="#ver_estudios_postgrado"><i class="fas fa-eye"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="col-6 p-2 d-flex justify-content-center">
-                                    <button class="btn btn btn-danger" data-toggle="modal" data-target="#ver_estudios_superiores"><i class="fas fa-eye"></i></button>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+                            <div class="col-xl-4 col-md-6 mb-4">
+                                <div class="card border-left-info shadow h-100 py-2">
+                                    <div class="card-body">
+                                        <div class="row ">
+                                            <div class="col-12 p-2 d-flex justify-content-center">
+                                            <div class="text-xs font-weight-bold text-info  text-uppercase mb-1">Diplomados - cursos - seminarios</div>
+                                            </div>
+                                            <div class="col-6 p-2 d-flex justify-content-center">
+                                                <button class="btn btn btn-info" data-toggle="modal" data-target="#cursos_diplomados">AGREGAR <i class="fas fa-list-ol"></i></button>
+                                            </div>
+                                            <div class="col-6 p-2 d-flex justify-content-center">
+                                                <button class="btn btn btn-info" data-toggle="modal" data-target="#ver_cursos_diplomados"><i class="fas fa-eye"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+                            <div class="col-xl-4 col-md-6 mb-4">
+                                <div class="card border-left-warning shadow h-100 py-2">
+                                    <div class="card-body">
+                                        <div class="row ">
+                                            <div class="col-12 p-2 d-flex justify-content-center">
+                                            <div class="text-xs font-weight-bold text-warning  text-uppercase mb-1">Idiomas - Computación</div>
+                                            </div>
+                                            <div class="col-6 p-2 d-flex justify-content-center">
+                                                <button class="btn btn btn-warning" data-toggle="modal" data-target="#idiomas">AGREGAR <i class="fas fa-list-ol"></i></button>
+                                            </div>
+                                            <div class="col-6 p-2 d-flex justify-content-center">
+                                                <button class="btn btn btn-warning" data-toggle="modal" data-target="#ver_idiomas"><i class="fas fa-eye"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <!-- Earnings (Monthly) Card Example -->
-                <div class="col-xl-4 col-md-6 mb-4">
-                    <div class="card border-left-success shadow h-100 py-2">
-                        <div class="card-body">
-                            <div class="row ">
-                                <div class="col-12 p-2 d-flex justify-content-center">
-                                <div class="text-xs font-weight-bold text-success  text-uppercase mb-1">Estudios Postgrado</div>
-                                </div>
-                                <div class="col-6 p-2 d-flex justify-content-center">
-                                    <button class="btn btn btn-success" data-toggle="modal" data-target="#estudios_postgrado">AGREGAR <i class="fas fa-user-graduate"></i></button>
-                                </div>
-                                <div class="col-6 p-2 d-flex justify-content-center">
-                                    <button class="btn btn btn-success" data-toggle="modal" data-target="#ver_estudios_postgrado"><i class="fas fa-eye"></i></button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row d-flex justify-content-center">
-                <!-- Earnings (Monthly) Card Example -->
-                <div class="col-xl-4 col-md-6 mb-4">
-                    <div class="card border-left-info shadow h-100 py-2">
-                        <div class="card-body">
-                            <div class="row ">
-                                <div class="col-12 p-2 d-flex justify-content-center">
-                                <div class="text-xs font-weight-bold text-info  text-uppercase mb-1">Diplomados - cursos - seminarios</div>
-                                </div>
-                                <div class="col-6 p-2 d-flex justify-content-center">
-                                    <button class="btn btn btn-info" data-toggle="modal" data-target="#cursos_diplomados">AGREGAR <i class="fas fa-list-ol"></i></button>
-                                </div>
-                                <div class="col-6 p-2 d-flex justify-content-center">
-                                    <button class="btn btn btn-info" data-toggle="modal" data-target="#ver_cursos_diplomados"><i class="fas fa-eye"></i></button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Earnings (Monthly) Card Example -->
-                <div class="col-xl-4 col-md-6 mb-4">
-                    <div class="card border-left-warning shadow h-100 py-2">
-                        <div class="card-body">
-                            <div class="row ">
-                                <div class="col-12 p-2 d-flex justify-content-center">
-                                <div class="text-xs font-weight-bold text-warning  text-uppercase mb-1">Idiomas - Computación</div>
-                                </div>
-                                <div class="col-6 p-2 d-flex justify-content-center">
-                                    <button class="btn btn btn-warning" data-toggle="modal" data-target="#idiomas">AGREGAR <i class="fas fa-list-ol"></i></button>
-                                </div>
-                                <div class="col-6 p-2 d-flex justify-content-center">
-                                    <button class="btn btn btn-warning" data-toggle="modal" data-target="#ver_idiomas"><i class="fas fa-eye"></i></button>
-                                </div>
-                            </div>
-                        </div>
+                <div class="col-3">
+                    <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                    <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Estudios Superiores</a>
+                    <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Estudios Postgrado</a>
+                    <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Diplomados - Cursos</a>
+                    <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Idioma - Computación</a>
                     </div>
                 </div>
             </div>
@@ -205,92 +217,92 @@
     <!--GUARDAR Profesion Modal USAR DE EJEMPLO YA NO SE DAN USO-->
     <div class="modal fade bd-example-modal-lg" id="datos_profesionales" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Mis datos profesionales son:</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-            <form action="procesos/guardar_datos_prof.php" method="POST">
-            <div class="modal-body ">  
-                <div class="form-row">
-                    <input type="hidden" id="dni" name="dni" value="<?php echo $dni; ?>">
-                    <input type="hidden" id="idpostulante" name="idpostulante" value="<?php echo $idpostulante; ?>">
-                    <div class="form-group col-md-6">
-                        <label for="inputEmail4">Profesión</label>
-                        <input type="text" class="form-control" id="profesion" name="profesion">
-                    </div>
-                    <div class="form-group col-md-3">
-                        <label for="inputPassword4">Fecha colegiatura</label>
-                        <input type="date" class="form-control" id="fecha_cole" name="fecha_cole">
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="inputPassword4">Lugar de colegiatura</label>
-                        <input type="text" class="form-control" id="lugar_cole" name="lugar_cole">
-                    </div>
-                
-                    <div class="form-group col-md-3">
-                        <label for="inputPassword4">Fecha de habilitación</label>
-                        <input type="date" class="form-control" id="fech_habi" name="fech_habi">
-                    </div>
-                    <div class="form-group col-md-3">
-                        <label for="inputPassword4">N° de colegiatura</label>
-                        <input type="text" class="form-control" id="num_cole" name="num_cole">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Mis datos profesionales son:</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <form action="procesos/guardar_datos_prof.php" method="POST">
+                <div class="modal-body ">  
+                    <div class="form-row">
+                        <input type="hidden" id="dni" name="dni" value="<?php echo $dni; ?>">
+                        <input type="hidden" id="idpostulante" name="idpostulante" value="<?php echo $idpostulante; ?>">
+                        <div class="form-group col-md-6">
+                            <label for="inputEmail4">Profesión</label>
+                            <input type="text" class="form-control" id="profesion" name="profesion">
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="inputPassword4">Fecha colegiatura</label>
+                            <input type="date" class="form-control" id="fecha_cole" name="fecha_cole">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputPassword4">Lugar de colegiatura</label>
+                            <input type="text" class="form-control" id="lugar_cole" name="lugar_cole">
+                        </div>
+                    
+                        <div class="form-group col-md-3">
+                            <label for="inputPassword4">Fecha de habilitación</label>
+                            <input type="date" class="form-control" id="fech_habi" name="fech_habi">
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="inputPassword4">N° de colegiatura</label>
+                            <input type="text" class="form-control" id="num_cole" name="num_cole">
+                        </div>
                     </div>
                 </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                    <button class="btn btn-primary" type="submit">Guardar</button>
+                </div>
+                </form>
             </div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                <button class="btn btn-primary" type="submit">Guardar</button>
-            </div>
-            </form>
-        </div>
         </div>
     </div>
 
     <!--VER Profesion Modal-->
     <div class="modal fade bd-example-modal-lg" id="ver_datos_profesionales" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Mis datos profesionales son:</h5>
-            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">×</span>
-            </button>
-            </div>
-        
-            <form action="" method="POST">
-            <div class="modal-body">
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label for="inputEmail4">Profesión</label>
-                        <input type="text" class="form-control" id="profesion" name="profesion" value="<?php echo $row2['profesion'];?>" disabled>
-                    </div>
-                    <div class="form-group col-md-3">
-                        <label for="inputPassword4">Fecha colegiatura</label>
-                        <input type="date" class="form-control" id="fecha_cole" name="fecha_cole" value="<?php echo $row2['fecha_cole']; ?>" disabled>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="inputPassword4">Lugar de colegiatura</label>
-                        <input type="text" class="form-control" id="lugar_cole" name="lugar_cole" value="<?php echo $row2['lugar_cole']; ?>" disabled>
-                    </div>
-                
-                    <div class="form-group col-md-3">
-                        <label for="inputPassword4">Fecha de habilitación</label>
-                        <input type="date" class="form-control" id="fech_habi" name="fech_habi" value="<?php echo $row2['fecha_habi']; ?>" disabled>
-                    </div>
-                    <div class="form-group col-md-3">
-                        <label for="inputPassword4">N° de colegiatura</label>
-                        <input type="text" class="form-control" id="num_cole" name="num_cole" value="<?php echo $row2['nro_cole']; ?>" disabled>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Mis datos profesionales son:</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+            
+                <form action="" method="POST">
+                <div class="modal-body">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputEmail4">Profesión</label>
+                            <input type="text" class="form-control" id="profesion" name="profesion" value="<?php echo $row2['profesion'];?>" disabled>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="inputPassword4">Fecha colegiatura</label>
+                            <input type="date" class="form-control" id="fecha_cole" name="fecha_cole" value="<?php echo $row2['fecha_cole']; ?>" disabled>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputPassword4">Lugar de colegiatura</label>
+                            <input type="text" class="form-control" id="lugar_cole" name="lugar_cole" value="<?php echo $row2['lugar_cole']; ?>" disabled>
+                        </div>
+                    
+                        <div class="form-group col-md-3">
+                            <label for="inputPassword4">Fecha de habilitación</label>
+                            <input type="date" class="form-control" id="fech_habi" name="fech_habi" value="<?php echo $row2['fecha_habi']; ?>" disabled>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="inputPassword4">N° de colegiatura</label>
+                            <input type="text" class="form-control" id="num_cole" name="num_cole" value="<?php echo $row2['nro_cole']; ?>" disabled>
+                        </div>
                     </div>
                 </div>
+                <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Salir</button>
+                </div>
+                </form>
             </div>
-            <div class="modal-footer">
-            <button class="btn btn-secondary" type="button" data-dismiss="modal">Salir</button>
-            </div>
-            </form>
-        </div>
         </div>
     </div>
     
@@ -358,7 +370,7 @@
         </div>
     </div>
 
-     <!-- VER Cursos y diplomados Modal-->
+     <!-- VER estudios superiores Modal-->
      <div class="modal fade bd-example-modal-xl" id="ver_estudios_superiores" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl" role="document">
             <div class="modal-content">
@@ -368,10 +380,10 @@
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <form action="procesos/guardar_diplomados.php" method="POST">
+                
                 <div class="modal-body">
                     <div class="table-responsive">
-                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <table class="table table-bordered" id="dataTable_estu_sup" width="100%" cellspacing="0">
                             <thead>
                                 <tr class="bg-danger" style="text-align:center; font-size:0.813em;">
                                 <th>N°</th>
@@ -384,15 +396,13 @@
                             </thead>
                             <tbody>
                             <?php
-                                $dni = $_GET['dni'];
-                                
                                 $consulta3 = "SELECT * FROM estudios_superiores WHERE idpostulante_postulante = $idpostulante";
 
                                 $query=mysqli_query($con, $consulta3);
                                 while ($row3= MySQLI_fetch_array($query))
                                 {
                                 ?>
-                                <tr>
+                                <tr id="<?php echo $row3['idestudios']?>">
                                     <td><?php echo $row3['idestudios'] ?></td>
                                     <td style="font-size: 16px;"><?php echo $row3['centro_estu'] ?></td>
                                     <td style="font-size: 14px;"><?php echo $row3['especialidad']?></td>
@@ -410,7 +420,6 @@
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Salir</button>
                 </div>
-                </form>
             </div>
         </div>
     </div>
@@ -486,8 +495,8 @@
         </div>
     </div>
 
- <!-- VER Estudioa Postgrado-->
- <div class="modal fade bd-example-modal-xl" id="ver_estudios_postgrado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!-- VER Estudioa Postgrado-->
+    <div class="modal fade bd-example-modal-xl" id="ver_estudios_postgrado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -797,6 +806,47 @@
     <!-- Page level custom scripts -->
     <script src="js/demo/chart-area-demo.js"></script>
     <script src="js/demo/chart-pie-demo.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="js/bootstrable.js"></script> -->
+    <script>
+        $( document ).ready(function() {
+            $('#dataTable_estu_sup').SetEditable({
+                columnsEd: "0,1,2,3,4,5",
+                onEdit: function(columnsEd) {
+                    var idestudios = columnsEd[0].childNodes[1].innerHTML;
+                    var centro_estudios = columnsEd[0].childNodes[3].innerHTML;
+                    var especialidad = columnsEd[0].childNodes[5].innerHTML;
+                    var fecha_inicio = columnsEd[0].childNodes[7].innerHTML;
+                    var fecha_fin = columnsEd[0].childNodes[9].innerHTML;
+                    var nivel = columnsEd[0].childNodes[11].innerHTML;
+                    $.ajax({
+                        type: 'POST',			
+                        url : "action.php",	
+                        dataType: "json",					
+                        data: {idestudios:idestudios, centro_estu:centro_estudios, especialidad:especialidad, fech_ini:fecha_inicio, fech_fin:fecha_fin, nivel:nivel, action:'edit'},			
+                        success: function (response) {
+                            if(response.status) {
+                            }						
+                        }
+                    });
+                },
+                onBeforeDelete: function(columnsEd) {
+                var empId = columnsEd[0].childNodes[1].innerHTML;
+                $.ajax({
+                        type: 'POST',			
+                        url : "action.php",
+                        dataType: "json",					
+                        data: {idestudios:idestudios, action:'delete'},			
+                        success: function (response) {
+                            if(response.status) {
+                            }			
+                        }
+                    });
+                },
+                });
+            });
+    </script>
 
     <!-- alertas -->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>

@@ -22,6 +22,7 @@
     }
 
     // $pass_hash=hashPassword($clave);
+    date_default_timezone_set('America/Lima');
     $creacion_user = date('Y-m-d H:i:s'); 
     $token = generateToken();
 

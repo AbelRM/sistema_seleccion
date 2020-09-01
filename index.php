@@ -74,6 +74,7 @@ if(!empty($_SESSION['active'])){
                   header("Location: user_postu/index.php?dni=$dato_encriptado");
                      
                   }else{
+                      $dato_encriptado = $encriptar($dni);
                       header("Location: user_postu/ficha_wizard.php?dni=$dato_encriptado");
                   } 
               }else{

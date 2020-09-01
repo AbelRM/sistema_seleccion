@@ -6,6 +6,7 @@
     $dni_post=$_POST['dni_post'];
     $idpostulante=$_POST['idpostulante'];
     // DATOS PERSONALES
+    $pais = $_POST['pais'];
     $sexo = $_POST['sexo'];
     $celular= $_POST['celular'];
     $correo = $_POST['correo'];
@@ -32,9 +33,9 @@
     $manzana = $_POST['manzana'];
     $lote = $_POST['lote'];
     $referencia = $_POST['referencia'];
-    $distrito = $_POST['distrito'];
+   // $distrito = $_POST['distrito'];
     
-    $sql = "UPDATE postulante SET sexo='".$sexo."',celular = '".$celular."', correo ='".$correo."',estado_civil='".$estadocivil."',celular_emer='".$celular_emer."',parentesco_emer ='".$parentesco_emer."',ruc = '".$ruc."',
+    $sql = "UPDATE postulante SET pais='".$pais."',sexo='".$sexo."',celular = '".$celular."', correo ='".$correo."',estado_civil='".$estadocivil."',celular_emer='".$celular_emer."',parentesco_emer ='".$parentesco_emer."',ruc = '".$ruc."',
      num_cuenta = '".$num_cuenta."', suspension_cuarta = '".$cuarta."',discapacidad = '".$discapacidad."', tipo_discap = '".$tip_discapacidad."',tipo_sangre = '".$tip_sangre."',alergias = '".$alergias."' WHERE dni='".$dni_post."' ";
     $datos=mysqli_query($con,$sql);
 
@@ -48,7 +49,7 @@
 
         $sql2 = "UPDATE domicilio_post SET tip_via='".$tipo_via."', nomb_via='".$nomb_via."', num_via='".$num_via."',tip_zona='".$tipo_zona."',
         nomb_zona='".$nomb_zona."',num_zona='".$num_zona."', referencia = '".$referencia."',numero ='".$numero."', manzana ='".$manzana."', 
-        lote ='".$lote."', distrito_idistrito ='".$distrito."' WHERE postulante_idpostulante='".$idpostulante."'";
+        lote ='".$lote."'  WHERE postulante_idpostulante='".$idpostulante."'";
         $datos2=mysqli_query($con,$sql2);    
 
         $dato_encriptado = $encriptar($dni_post);

@@ -58,5 +58,6 @@
 
         }
     }
+    //$dato_encriptado = $encriptar($dni);
     header('Location: ../capacitacion.php?dni='.$dni);
 ?>

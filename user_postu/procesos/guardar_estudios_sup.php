@@ -1,6 +1,6 @@
 <?php
     include_once('../conexion.php');
-    $dni=$_POST['dni'];
+    //$dni=$_POST['dni'];
     $idpostulante= $_POST['idpostulante'];
     //$dato_desencriptado =$_POST['dato_desencriptado']; 
 

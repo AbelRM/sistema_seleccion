@@ -106,7 +106,7 @@
                                                         </thead>
                                                         <tbody>
                                                             <?php
-                                                                $dni = $_GET['dni'];
+                                                            $dni = $_GET['dni'];
                                                                 $sql1 = "SELECT * FROM estudios_superiores WHERE idpostulante_postulante = $idpostulante";
                                                                 $query1=mysqli_query($con, $sql1);
                                                                 if(mysqli_num_rows($query1)>0){

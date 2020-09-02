@@ -59,7 +59,6 @@
             $row= mysqli_fetch_array($datos);
             $idpostulante=$row['idpostulante'];
 
-
             $consulta1="SELECT * FROM detalle_convocatoria where postulante_idpostulante=$idpostulante";
             $datos1=mysqli_query($con,$consulta1) or die(mysqli_error()); ;
             $row1= mysqli_fetch_array($datos1);
@@ -137,14 +136,12 @@
                                                     </table>
                                                 </div>
                                             </div>
-                                            <div class="col-md-12">
+                                            <div class="col-md-12 p-2">
                                                 <form action="procesos/guardar_estudios_sup.php" method="POST">
                                                     <div class="table-responsive">
                                                         <label>Estudios Superiores (Universitario - Tecnico)</label>
-                                                        <input type="hidden" id="dni" name="dni" value="<?php echo $dni; ?>">
                                                         <input type="hidden" id="idpostulante" name="idpostulante" value="<?php echo $idpostulante; ?>">
-                                                        <input type="hidden" id="dato_desencriptado " name="dato_desencriptado " value="<?php echo $dato_desencriptado ?>">
-                                                        
+                                                        <input type="hidden" id="url" name="url" value="<?php echo $dato_desencriptado; ?>">
                                                         <table class="table table-bordered" id="tabla-7">
                                                             <thead>
                                                                 <tr class="bg-danger" style="text-align:center; font-size:0.813em;">
@@ -346,7 +343,6 @@
             </div>
         </div>
     </div>
-
     <!-- !-- DELETE MODAL -->
     <div class="modal fade" id="deleteModal">
         <div class="modal-dialog">
@@ -357,8 +353,8 @@
                 </div>
                 <form action="procesos/delete4.php" method="POST">
                     <div class="modal-body">
-                        <input type="hidden" name="dato_desencriptado" id="dato_desencriptado" value="<?php echo $dato_desencriptado;?>">
-                        <input type="hidden" name="idestudios" id="idestudios">
+                        <input type="hidden" name="url" id="url" value="<?php echo $dato_desencriptado;?>">
+                        <input type="hidden" name="id" id="id">
                         <h4>¿Desea eliminar el dato seleccionado?</h4>
                     </div>
                     <div class="modal-footer">
@@ -858,7 +854,7 @@
             }).get();
     
             console.log(data);
-            $('#idestudios').val(data[0]);
+            $('#id').val(data[0]);
         });
     });
     </script>

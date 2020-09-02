@@ -2,8 +2,7 @@
     include_once('../conexion.php');
     //$dni=$_POST['dni'];
     $idpostulante= $_POST['idpostulante'];
-    //$dato_desencriptado =$_POST['dato_desencriptado']; 
-
+    $url = $_POST['url']; 
     //////////////////////// PRESIONAR EL BOTÓN //////////////////////////
     if(isset($_POST['insertar']))
     {
@@ -55,7 +54,6 @@
 
         }
     }
-
-    //$dato_encriptado = $encriptar($dni);
-    header('Location: ../capacitacion.php?dni='.$dni);
+    echo '<script> alert("Agregado!"); </script>';
+    header('Location: ../capacitacion.php?dni='.$url);
 ?>

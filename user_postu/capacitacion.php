@@ -352,7 +352,7 @@
                                                         <td style="font-size: 14px;"><?php echo $row3['nivel']; ?></td>
                                                         <td class="d-flex justify-content-center">
                                                             <button class="btn btn-success btn-sm m-1 updateBtn2"><i class="fa fa-edit"></i></button>
-                                                            <button class="btn btn-danger btn-sm m-1 deleteBtn"><i class="fa fa-times-circle"></i></button>
+                                                            <button class="btn btn-danger btn-sm m-1 deletebtn2"><i class="fa fa-times-circle"></i></button>
                                                         </td>
                                                     </tr>
                                                     <?php
@@ -465,7 +465,7 @@
                                                             <td style="font-size: 14px;"><?php echo $row4['nivel']?></td>
                                                             <td class="d-flex justify-content-center">
                                                             <button class="btn btn-success btn-sm m-1 updateBtn3"><i class="fa fa-edit"></i></button>
-                                                            <button class="btn btn-danger btn-sm m-1 deleteBtn"><i class="fa fa-times-circle"></i></button>
+                                                            <button class="btn btn-danger btn-sm m-1 deleteBtn3"><i class="fa fa-times-circle"></i></button>
                                                         </td>
                                                             
                                                         </tr>
@@ -755,8 +755,43 @@
         </div>
     </div>
 
+    <div class="modal fade" id="actualizaridiomas">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header bg-warning text-white">
+                    <h5 class="modal-title">Modificar Estudio Ingles/Computacion</h5>
+                    <button class="close" data-dismiss="modal"><span>×</span></button>
+                </div>
+                <div class="modal-body"> 
+                    <form action="procesos/actualizaridiomas.php" method="POST">  
+                        <input type="hidden" name="dato_desencriptado" id="dato_desencriptado" value="<?php echo $dato_desencriptado ?>" >
+                        <input type="hidden" name="ididiomas_comp" id="ididiomas_comp" >
+                        <div class="form-group">
+                        <label for="title">Idiomas/Computacion</label>
+                        <input type="text" name="idioma_comp" id="idioma_comp" class="form-control" placeholder="Enter first name" maxlength="50" >
+                        </div>
+
+                        <div class="form-group">
+                        <label for="title">Nivel</label>
+                        <select class="form-control" id="nivel4" name="nivel4">
+                            <option value="BASICO">Basico</option>
+                            <option value="INTERMEDIO">Intermedio</option>
+                            <option value="AVANZADO">Avanzado</option>
+                        </select>    
+                        </div>
+                        <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" name="updateData3">Actualizar!</button>
+                       </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+
     <!-- !-- MODAL ELIMINAR ESTUDIOS POSTGRADO  -->
-    <div class="modal fade" id="deleteModal1">
+    <div class="modal fade" id="eliminarpostgrado">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header bg-danger text-white">
@@ -766,7 +801,7 @@
                 <form action="procesos/eliminarpostgrado.php" method="POST">
                     <div class="modal-body">
                         <input type="hidden" name="url" id="url" value="<?php echo $dato_desencriptado;?>">
-                        <input type="hidden" name="id" id="id">
+                        <input type="hidden" name="id1" id="id1">
                         <h4>¿Desea eliminar el dato seleccionado?</h4>
                     </div>
                     <div class="modal-footer">
@@ -778,9 +813,51 @@
         </div>
     </div>
 
+    <!-- !-- MODAL ELIMINAR DIPLOMADOS -->
+    <div class="modal fade" id="eliminardiplomados">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-danger text-white">
+                    <h5 class="modal-title" >Eliminar registro Diplomados</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <form action="procesos/eliminardiplomados.php" method="POST">
+                    <div class="modal-body">
+                        <input type="hidden" name="url" id="url" value="<?php echo $dato_desencriptado;?>">
+                        <input type="hidden" name="id2" id="id2">
+                        <h4>¿Desea eliminar el dato seleccionado?</h4>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary" name="deleteData2">Si</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
-
-
+    <!-- !-- MODAL ELIMINAR IDIOMAS/COMPUTACION -->
+    <div class="modal fade" id="eliminaridiomas">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-danger text-white">
+                    <h5 class="modal-title" >Eliminar registro Idiomas/Computacion</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <form action="procesos/eliminaridiomas.php" method="POST">
+                    <div class="modal-body">
+                        <input type="hidden" name="url" id="url" value="<?php echo $dato_desencriptado;?>">
+                        <input type="hidden" name="id3" id="id3">
+                        <h4>¿Desea eliminar el dato seleccionado?</h4>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary" name="deleteData3">Si</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
 
      <!-- VER estudios superiores Modal-->
@@ -1261,21 +1338,21 @@
             });
         });
 
-    $(document).ready(function () {
-        $('.deleteBtn').on('click', function(){
-    
-            $('#deleteModal').modal('show');
-            // Get the table row data.
-            $tr = $(this).closest('tr');
-    
-            var data = $tr.children("td").map(function() {
-                return $(this).text();
-            }).get();
-    
-            console.log(data);
-            $('#id').val(data[0]);
+        $(document).ready(function () {
+            $('.deleteBtn').on('click', function(){
+        
+                $('#deleteModal').modal('show');
+                // Get the table row data.
+                $tr = $(this).closest('tr');
+        
+                var data = $tr.children("td").map(function() {
+                    return $(this).text();
+                }).get();
+        
+                console.log(data);
+                $('#id').val(data[0]);
+            });
         });
-    });
     </script>
 
     <script>
@@ -1307,7 +1384,7 @@
         $(document).ready(function () {
         $('.deleteBtn1').on('click', function(){
     
-            $('#deleteModal1').modal('show');
+            $('#eliminarpostgrado').modal('show');
             // Get the table row data.
             $tr = $(this).closest('tr');
     
@@ -1316,13 +1393,13 @@
             }).get();
     
             console.log(data);
-            $('#id').val(data[0]);
+            $('#id1').val(data[0]);
         });
     });
-    </script> updateData2
+    </script> 
 
     <script>
-            $(document).ready(function () {
+        $(document).ready(function () {
                 $('.updateBtn2').on('click', function(){
 
                     $('#actualizardiplomados').modal('show');
@@ -1346,12 +1423,12 @@
                     $('#nivel2').val(data[7]);         
                 
                 });
-            });
+        });
 
-            $(document).ready(function () {
-                $('.deleteBtn1').on('click', function(){
+        $(document).ready(function () {
+            $('.deletebtn2').on('click', function(){
             
-                    $('#deleteModal2').modal('show');
+                    $('#eliminardiplomados').modal('show');
                     // Get the table row data.
                     $tr = $(this).closest('tr');
             
@@ -1360,12 +1437,49 @@
                     }).get();
             
                     console.log(data);
-                    $('#id').val(data[0]);
-                });
+                    $('#id2').val(data[0]);
             });
+        });
     </script>
 
-    
+    <script>
+        $(document).ready(function () {
+            $('.updateBtn3').on('click', function(){
+
+                $('#actualizaridiomas').modal('show');
+        
+                // Get the table row data.
+                $tr = $(this).closest('tr');
+        
+                var data = $tr.children("td").map(function() {
+                    return $(this).text();
+                }).get();
+        
+                console.log(data);
+              
+                $('#ididiomas_comp').val(data[0]);
+                $('#idioma_comp').val(data[1]);
+                $('#nivel4').val(data[2]);
+            
+            });
+        });
+
+        $(document).ready(function () {
+            $('.deleteBtn3').on('click', function(){
+        
+                $('#eliminaridiomas').modal('show');
+                // Get the table row data.
+                $tr = $(this).closest('tr');
+        
+                var data = $tr.children("td").map(function() {
+                    return $(this).text();
+                }).get();
+        
+                console.log(data);
+                $('#id3').val(data[0]);
+            });
+        });
+    </script>
 
     
 

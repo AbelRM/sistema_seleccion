@@ -3,12 +3,12 @@
     include('../conexion.php');
     $url= $_POST['url'];
     //$dni =$_POST['dni'];
-    $id = $_POST['id1']; 
+    $id = $_POST['id3']; 
 
    
-    if(ISSET($_POST['deleteData1']))
+    if(ISSET($_POST['deleteData3']))
     {
-        $sql = "DELETE FROM maestria_doc WHERE idmaestria_doc='".$id."' ";
+        $sql = "DELETE FROM idiomas_comp WHERE ididiomas_comp='".$id."' ";
         $result = mysqli_query($con, $sql);
  
         if($result){

@@ -11,7 +11,7 @@
         $items3 = ($_POST['tipo_estu']);
         $items4 = ($_POST['fech_ini']);
         $items5 = ($_POST['fech_fin']);
-        $items6 = ($_POST['nivel']);
+        $items6 = ($_POST['nivel']); 
     
     ///////////// SEPARAR VALORES DE ARRAYS, EN ESTE CASO SON 5 ARRAYS UNO POR CADA INPUT (ID, NOMBRE, CARRERA Y GRUPO////////////////////)
         while(true) {
@@ -58,5 +58,6 @@
 
         }
     }
+    //$dato_encriptado = $encriptar($dni);
     header('Location: ../capacitacion.php?dni='.$dni);
 ?>

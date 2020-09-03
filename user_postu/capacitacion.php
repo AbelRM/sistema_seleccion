@@ -188,38 +188,239 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
                             <div class="col-xl-12 col-md-12 mb-4">
                                 <div class="card border-left-success shadow h-100 py-2">
                                     <div class="card-body">
-                                        <div class="row ">
-                                            <div class="col-12 p-2 d-flex justify-content-center">
-                                            <div class="text-xs font-weight-bold text-success  text-uppercase mb-1">Estudios Postgrado</div>
+                                        <div class="row">
+                                            <div class="col-md-12 p-2 d-flex justify-content-center">
+                                                <h3 class="text-xs font-weight-bold text-success  text-uppercase mb-1">Estudios Postgrado</h3>
                                             </div>
-                                            <div class="col-6 p-2 d-flex justify-content-center">
-                                                <button class="btn btn btn-success" data-toggle="modal" data-target="#estudios_postgrado">AGREGAR <i class="fas fa-user-graduate"></i></button>
+                                            <div class="col-md-12 p-2">
+                                                <div class="table-responsive">
+                                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                                    <thead>
+                                                        <tr class="bg-primary" style="text-align:center; color:#000; font-size:0.813em;">
+                                                        <th>N°</th>
+                                                        <th>Centro de estudios</th> 
+                                                        <th>Especialidad</th> 
+                                                        <th>Tipo</th>
+                                                        <th>Fecha Inicio</th>
+                                                        <th>Fecha Fin</th>
+                                                        <th>Nivel</th>
+                                                        <th>Acciones</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <?php  
+
+                                                        $dni = $_GET['dni'];                                                     
+                                                        $consulta3 = "SELECT * FROM maestria_doc WHERE idpostulante_postulante = $idpostulante";
+                                                        $query=mysqli_query($con, $consulta3);
+                                                        while ($row3= MySQLI_fetch_array($query))
+                                                        {
+                                                        ?>
+                                                        <tr>
+                                                            <td><?php echo $row3['idmaestria_doc'] ?></td>
+                                                            <td style="font-size: 16px;"><?php echo $row3['centro_estu'] ?></td> 
+                                                            <td style="font-size: 14px;"><?php echo $row3['especialidad']?></td>    
+                                                            <td style="font-size: 14px;"><?php echo $row3['tipo_estu']?></td>         
+                                                            <td style="font-size: 14px;"><?php echo $row3['fech_ini']?></td>
+                                                            <td style="font-size: 14px;"><?php echo $row3['fech_fin']?></td>
+                                                            <td style="font-size: 14px;"><?php echo $row3['nivel']; ?></td>
+                                                            <td class="d-flex justify-content-center">
+                                                            <button class="btn btn-success btn-sm m-1 updateBtn1"><i class="fa fa-edit"></i></button>
+                                                            <button class="btn btn-danger btn-sm m-1 deleteBtn1"><i class="fa fa-times-circle"></i></button>
+                                                            </td>
+                                                        </tr>
+                                                        <?php
+                                                        }
+                                                        ?> 
+                                                    </tbody>
+                                                </table>
+                                                </div>
                                             </div>
-                                            <div class="col-6 p-2 d-flex justify-content-center">
-                                                <button class="btn btn btn-success" data-toggle="modal" data-target="#ver_estudios_postgrado"><i class="fas fa-eye"></i></button>
+                                            <div class="col-md-12"> 
+                                            <form action="procesos/guardar_postgrado.php" method="POST">
+                                                <div class="modal-body">
+                                                    <div class="table-responsive">
+                                                        <label>Estudios Postgrado (Maestrias - Doctorados)</label>
+                                                        <input type="hidden" id="dni" name="dni" value="<?php echo $dni; ?>">                                                     
+                                                        <input type="hidden" id="idpostulante" name="idpostulante" value="<?php echo $idpostulante; ?>">
+                                                        <input type="hidden" id="iddetalle_convocatoria" name="iddetalle_convocatoria" value="<?php echo $iddetalle_con; ?>">
+                                                        <table class="table table-bordered" id="tabla-8">
+                                                            <thead>
+                                                            <tr class="bg-danger" style="text-align:center; font-size:0.813em;">
+                                                                <th  scope="col">Centro Estudios</th>
+                                                                <th  scope="col">Especialidad</th>
+                                                                <th  scope="col">Tipo Estudios</th>
+                                                                <th  scope="col">Fecha Inicio</th>
+                                                                <th  scope="col">Fecha Termino</th>
+                                                                <th  scope="col">Nivel Alcanzado</th>
+                                                                <th  scope="col">Acción</th>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr class="fila-fija-7">
+                                                                    <td><input style="width: 200px;font-size: 12px;" type="text" name="centro_estu[]" class="form-control name_list" required/></td>
+                                                                    <td><input style="width: 200px;font-size: 12px;" type="text" name="especialidad[]"  class="form-control name_list" required/></td>
+                                                                    <td>
+                                                                        <select style="font-size: 12px;" name="tipo_estu[]" class="form-control" id="tipo_estu[]" required>
+                                                                            <option selected>Elegir</option>
+                                                                            <option value="MAESTRIA">Maestria </option>
+                                                                            <option value="DOCTORADO">Doctorado</option>
+                                                                        </select>
+                                                                    </td>
+                                                                    <td><input style="width: 150px;font-size: 12px;" type="date" name="fech_ini[]" class="form-control name_list" required/></td>
+                                                                    <td><input style="width: 150px;font-size: 12px;" type="date" name="fech_fin[]" class="form-control name_list" required/></td>
+                                                                    <td>
+                                                                        <select style="font-size: 12px;" name="nivel[]" class="form-control" id="nivel[]" required>
+                                                                            <option selected>Elegir</option>
+                                                                            <option value="MAGISTER">Magister</option>
+                                                                            <option value="DOCTORADO">Doctorado</option>
+                                                                            <option value="EGRESADO">Egresado</option>
+                                                                            <option value="ESTUDIANTE">Estudiante</option>
+                                                                        </select>
+                                                                    </td>
+                                                                    <td class="eliminar"><button type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button></td>
+                                                                </tr>
+                                                            </tdody>
+                                                        </table>
+                                                    </div>
+                                                    <div class="row d-flex justify-content-center">
+                                                        <div class="form-inline p-2">
+                                                            <button id="adicional-8" name="adicional" type="button" class="btn btn-warning"> AGREGAR FILA (+) </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                                                    <button class="btn btn-primary" name="insertar" type="submit" >Guardar</button>
+                                                </div>
+                                            </form>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
                         <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">
                             <div class="col-xl-12 col-md-12 mb-4">
                                 <div class="card border-left-info shadow h-100 py-2">
                                     <div class="card-body">
-                                        <div class="row ">
-                                            <div class="col-12 p-2 d-flex justify-content-center">
-                                            <div class="text-xs font-weight-bold text-info  text-uppercase mb-1">Diplomados - cursos - seminarios</div>
+
+                                        <div class="row">
+                                            <div class="col-md-12 p-2 d-flex justify-content-center">
+                                                <h3 class="text-xs font-weight-bold text-info  text-uppercase mb-1">Diplomados - cursos - seminarios</h3>
                                             </div>
-                                            <div class="col-6 p-2 d-flex justify-content-center">
-                                                <button class="btn btn btn-info" data-toggle="modal" data-target="#cursos_diplomados">AGREGAR <i class="fas fa-list-ol"></i></button>
+                                            <div class="col-md-12 p-2">
+                                                <div class="table-responsive">
+                                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                                <thead>
+                                                    <tr class="bg-primary" style="text-align:center; color:#000; font-size:0.813em;">
+                                                    <th>N°</th>
+                                                    <th>Centro de estudios</th>
+                                                    <th>Nombre de materia</th>
+                                                    <th>Horas</th>
+                                                    <th>Fecha Inicio</th>
+                                                    <th>Fecha Fin</th>
+                                                    <th>Tipo</th>
+                                                    <th>Nivel</th>
+                                                    <th>Acciones</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                <?php
+                                                    $dni = $_GET['dni'];
+                                                    
+                                                    $consulta3 = "SELECT * FROM cursos_extra WHERE postulante_idpostulante = $idpostulante";
+
+                                                    $query=mysqli_query($con, $consulta3);
+                                                    while ($row3= MySQLI_fetch_array($query))
+                                                    {
+                                                    ?>
+                                                    <tr>
+                                                        <td><?php echo $row3['idcursos_extra'] ?></td>
+                                                        <td style="font-size: 16px;"><?php echo $row3['centro_estu'] ?></td>
+                                                        <td style="font-size: 14px;"><?php echo $row3['materia']?></td>
+                                                        <td style="font-size: 14px;"><?php echo $row3['horas']?></td>
+                                                        <td style="font-size: 14px;"><?php echo $row3['fech_ini']?></td>
+                                                        <td style="font-size: 14px;"><?php echo $row3['fech_fin']?></td>
+                                                        <td style="font-size: 14px;"><?php echo $row3['tipo']?></td>
+                                                        <td style="font-size: 14px;"><?php echo $row3['nivel']; ?></td>
+                                                        <td class="d-flex justify-content-center">
+                                                            <button class="btn btn-success btn-sm m-1 updateBtn2"><i class="fa fa-edit"></i></button>
+                                                            <button class="btn btn-danger btn-sm m-1 deletebtn2"><i class="fa fa-times-circle"></i></button>
+                                                        </td>
+                                                    </tr>
+                                                    <?php
+                                                    }
+                                                    ?>
+                                                </tbody>
+                                            </table>
+                                                </div>
                                             </div>
-                                            <div class="col-6 p-2 d-flex justify-content-center">
-                                                <button class="btn btn btn-info" data-toggle="modal" data-target="#ver_cursos_diplomados"><i class="fas fa-eye"></i></button>
+                                            <div class="col-md-12"> 
+                                            <form action="procesos/guardar_diplomados.php" method="POST">   
+                                                <div class="modal-body">
+                                                    <div class="table-responsive">
+                                                        <label>Diplomados - Cursos - Seminarios</label> 
+                                                        <input type="hidden" id="dni" name="dni" value="<?php echo $dni; ?>">
+                                                        <input type="hidden" id="idpostulante" name="idpostulante" value="<?php echo $idpostulante; ?>">
+                                                        <table class="table table-bordered" id="tabla-9">
+                                                            <thead>
+                                                            <tr class="bg-danger" style="text-align:center; font-size:0.813em;">
+                                                                <th scope="col">Centro Estudios</th>
+                                                                <th scope="col">Nombre de la especialidad</th>
+                                                                <th scope="col">Horas</th>
+                                                                <th scope="col">Fecha Inicio</th>
+                                                                <th scope="col">Fecha Termino</th>
+                                                                <th scope="col">Nivel Alcanzado</th>
+                                                                <th scope="col">Tipo de estudios</th>
+                                                                <th scope="col">Acción</th>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr class="fila-fija-9">
+                                                                    <td><input style="font-size: 12px;" type="text" name="centro_estu[]" class="form-control name_list" required /></td>
+                                                                    <td><input style="font-size: 12px;" type="text" name="materia[]"  class="form-control name_list" required/></td>
+                                                                    <td><input style="width: 62px;font-size: 12px;" type="text" name="horas[]" class="form-control name_list" required/></td>
+                                                                    <td><input style="width: 168px;font-size: 12px;" type="date" name="fech_ini[]" class="form-control name_list" required/></td>
+                                                                    <td><input style="width: 168px;font-size: 12px;" type="date" name="fech_fin[]" class="form-control name_list" required/></td>
+                                                                    <td>
+                                                                        <select style="font-size: 12px;" name="nivel[]" class="form-control" id="cargo" required>
+                                                                            <option value="" disabled selected>Elegir</option>
+                                                                            <option value="EGRESADO">Egresado</option>
+                                                                            <option value="ESTUDIANTE">Estudiante</option>
+                                                                        </select>
+                                                                    </td>
+                                                                    <td>
+                                                                        <select style="font-size: 12px;" name="tipo[]" class="form-control" id="cargo" required>
+                                                                            <option value="" disabled selected>Elegir...</option>
+                                                                            <option value="DIPLOMADO">Diplomado</option>
+                                                                            <option value="CURSO">Curso</option>
+                                                                            <option value="SEMINARIO">Seminario</option>
+                                                                        </select>
+                                                                    </td>
+                                                                    <td class="eliminar"><button type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button></td>
+                                                                </tr>
+                                                            </tdody>
+                                                        </table>
+                                                    </div> 
+                                                    <div class="row d-flex justify-content-center">
+                                                        <input type="hidden" id="idcon" name="idcon" value="<?php echo $fila['idcon']; ?>">
+                                                        <div class="form-inline p-2">
+                                                            <button id="adicional-9" name="adicional" type="button" class="btn btn-warning"> AGREGAR FILA (+) </button>
+                                                        </div>
+                                                    </div>   
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                                                    <button class="btn btn-primary" name="insertar" type="submit" >Guardar</button>
+                                                </div>
+                                            </form>
                                             </div>
                                         </div>
                                     </div>
@@ -229,16 +430,95 @@
                         <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">
                             <div class="col-xl-12 col-md-12 mb-4">
                                 <div class="card border-left-warning shadow h-100 py-2">
+
                                     <div class="card-body">
-                                        <div class="row ">
-                                            <div class="col-12 p-2 d-flex justify-content-center">
-                                            <div class="text-xs font-weight-bold text-warning  text-uppercase mb-1">Idiomas - Computación</div>
+                                        <div class="row">
+                                            <div class="col-md-12 p-2 d-flex justify-content-center">
+                                                <h3 class="text-xs font-weight-bold text-warning  text-uppercase mb-1">Idiomas - Computación</h3>
                                             </div>
-                                            <div class="col-6 p-2 d-flex justify-content-center">
-                                                <button class="btn btn btn-warning" data-toggle="modal" data-target="#idiomas">AGREGAR <i class="fas fa-list-ol"></i></button>
+                                            <div class="col-md-12 p-2">
+                                                <div class="table-responsive">
+                                                    
+
+                                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                                    <thead>
+                                                            <tr class="bg-primary" style="text-align:center; color:#000; font-size:0.813em;">
+                                                            <th>N°</th>
+                                                            <th scope="col">Idioma/Computación</th>
+                                                            <th scope="col">Nivel</th>
+                                                            <th scope="col">Acciones</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <?php
+                                                        $dni = $_GET['dni'];
+                                                        
+                                                        $consulta4 = "SELECT * FROM idiomas_comp WHERE idpostulante_postulante = $idpostulante";
+
+                                                        $query=mysqli_query($con, $consulta4);
+                                                        while ($row4= MySQLI_fetch_array($query))
+                                                        {
+                                                        ?>
+                                                        <tr>
+                                                            <td><?php echo $row4['ididiomas_comp'] ?></td>
+                                                            <td style="font-size: 16px;"><?php echo $row4['idioma_comp'] ?></td>
+                                                            <td style="font-size: 14px;"><?php echo $row4['nivel']?></td>
+                                                            <td class="d-flex justify-content-center">
+                                                            <button class="btn btn-success btn-sm m-1 updateBtn3"><i class="fa fa-edit"></i></button>
+                                                            <button class="btn btn-danger btn-sm m-1 deleteBtn3"><i class="fa fa-times-circle"></i></button>
+                                                        </td>
+                                                            
+                                                        </tr>
+                                                        <?php
+                                                        }
+                                                        ?>
+                                                    </tbody>
+                                                </table>
+                                                </div>
                                             </div>
-                                            <div class="col-6 p-2 d-flex justify-content-center">
-                                                <button class="btn btn btn-warning" data-toggle="modal" data-target="#ver_idiomas"><i class="fas fa-eye"></i></button>
+                                            <div class="col-md-12"> 
+                                                <form action="procesos/guardar_idiomas.php" method="POST">  
+                                                    <div class="modal-body">
+                                                        <div class="table-responsive">
+                                                            <input type="hidden" id="dni" name="dni" value="<?php echo $dni; ?>">
+                                                            <input type="hidden" id="idpostulante" name="idpostulante" value="<?php echo $idpostulante; ?>">
+                                                          
+                                                            <table class="table table-bordered" id="tabla-7">
+                                                                <thead>
+                                                                <tr class="bg-danger" style="text-align:center; font-size:0.813em;">
+                                                                        <th scope="col">Idioma/Computación</th>
+                                                                        <th scope="col">Nivel</th>
+                                                                        <th scope="col">Acción</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr class="fila-fija-10">
+                                                                        <td><input type="text" name="idioma_comp[]" placeholder="Inglés, Portugues, Computación..." class="form-control name_list text-uppercase" /></td>
+                                                                        <td>
+                                                                            <select name="nivel[]" class="form-control">
+                                                                                <option value="" disabled selected>Elegir</option>
+                                                                                <option value="BASICO">Básico</option>
+                                                                                <option value="INTERMEDIO">Intermedio</option>
+                                                                                <option value="AVANZADO">Avanzado</option>
+                                                                            </select>
+                                                                        </td>
+                                                                        <td class="eliminar"><button type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button></td>
+                                                                    </tr>
+                                                                </tdody>
+                                                            </table>
+                                                        </div>  
+                                                        <div class="row d-flex justify-content-center">
+                                                            <input type="hidden" id="idcon" name="idcon" value="<?php echo $fila['idcon']; ?>">
+                                                            <div class="form-inline p-2">
+                                                                <button id="adicional-10" name="adicional" type="button" class="btn btn-warning"> AGREGAR FILA (+) </button>
+                                                            </div>
+                                                        </div>   
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                                                        <button class="btn btn-primary" name="insertar" type="submit" >Guardar</button>
+                                                    </div>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
@@ -294,6 +574,8 @@
         </div>
         </div>
     </div>
+
+    <!-- Actualizar Estudios Superiores-->
     <div class="modal fade" id="updateModal">
         <div class="modal-dialog modal-md">
             <div class="modal-content">
@@ -307,22 +589,19 @@
                         <input type="hidden" name="idestudios" id="idestudios" >
                         <div class="form-group">
                         <label for="title">Centro de estudios</label>
-                        <input type="text" name="centro_estu" id="centro_estu" class="form-control" placeholder="Enter first name" maxlength="50"
-                            required>
+                        <input type="text" name="centro_estu" id="centro_estu" class="form-control" placeholder="Enter first name" maxlength="50">
                         </div>
                         <div class="form-group">
                         <label for="title">Especialidad</label>
-                        <input type="text" name="especialidad" id="especialidad" class="form-control" placeholder="Enter last name" maxlength="50"
-                            required>
+                        <input type="text" name="especialidad" id="especialidad" class="form-control" placeholder="Enter last name" maxlength="50">
                         </div>
                         <div class="form-group">
                         <label for="title">Fecha Inicio</label>
-                        <input type="text" name="fecha_inicio" id="fecha_inicio" class="form-control" placeholder="Enter address" maxlength="50"
-                            required>
+                        <input type="text" name="fecha_inicio" id="fecha_inicio" class="form-control" placeholder="Enter address" maxlength="50">
                         </div>
                         <div class="form-group">
                         <label for="title">Fecha término</label>
-                        <input type="text" name="fecha_fin" id="fecha_fin" class="form-control" placeholder="Enter skills" maxlength="50" required>
+                        <input type="text" name="fecha_fin" id="fecha_fin" class="form-control" placeholder="Enter skills" maxlength="50" >
                         </div>
                         <div class="form-group">
                         <label for="title">Nivel</label>
@@ -342,7 +621,8 @@
             </div>
         </div>
     </div>
-    <!-- !-- DELETE MODAL -->
+
+    <!-- !-- MODAL ELIMINAR ESTUDIOS SUPERIORES  -->
     <div class="modal fade" id="deleteModal">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -350,7 +630,7 @@
                     <h5 class="modal-title" >Eliminar registro</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
                 </div>
-                <form action="procesos/delete4.php" method="POST">
+                <form action="procesos/delete4.php" method="POST">        
                     <div class="modal-body">
                         <input type="hidden" name="url" id="url" value="<?php echo $dato_desencriptado;?>">
                         <input type="hidden" name="id" id="id">
@@ -364,6 +644,222 @@
             </div>
         </div>
     </div>
+
+    <!-- Actualizar Estudios Postgrado-->
+    <div class="modal fade" id="actualizarpostgrado">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header bg-warning text-white">
+                    <h5 class="modal-title">Modificar Estudio Postgrado</h5>
+                    <button class="close" data-dismiss="modal"><span>×</span></button>
+                </div>
+                <div class="modal-body"> 
+                    <form action="procesos/actualizarpostgrado.php" method="POST">  
+                        <input type="hidden" name="dato_desencriptado" id="dato_desencriptado" value="<?php echo $dato_desencriptado ?>" >
+                        <input type="hidden" name="idmaestria_doc" id="idmaestria_doc" >
+                        <div class="form-group">
+                        <label for="title">Centro de estudios</label>
+                        <input type="text" name="centro_estudios" id="centro_estudios" class="form-control" placeholder="Enter first name" maxlength="50">
+                        </div>
+                        <div class="form-group">
+                        <label for="title">Especialidad </label>
+                        <input type="text" name="especialidades" id="especialidades" class="form-control" placeholder="Enter last name" maxlength="50">
+                        </div>                  
+                        <div class="form-group">
+                        <label for="title">Tipo </label>
+                        <select class="form-control" id="tipo_estu" name="tipo_estu">
+                            <option value="MAESTRIA">Maestria</option>
+                            <option value="DOCTORADO">Doctorado</option>
+                        </select> 
+                        </div>
+                        
+                        <div class="form-group">
+                        <label for="title">Fecha Inicio</label>
+                        <input type="text" name="fech_ini" id="fech_ini" class="form-control" placeholder="Enter address" maxlength="50">
+                        </div>
+                        <div class="form-group">
+                        <label for="title">Fecha término</label>
+                        <input type="text" name="fech_fin" id="fech_fin" class="form-control" placeholder="Enter skills" maxlength="50">
+                        </div>
+                        <div class="form-group">
+                        <label for="title">Nivel</label>
+                        <select class="form-control" id="nivel1" name="nivel1">
+                            <option value="MAGISTER">Magister</option>
+                            <option value="DOCTORADO">Doctorado</option>
+                            <option value="EGRESADO">Egresado</option>
+                            <option value="ESTUDIANTE">Estudiante</option>
+                        </select>    
+                        </div>
+                        <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" name="updateData1">Actualizar!</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <!-- Actualizar Diplomados-->
+    <div class="modal fade" id="actualizardiplomados">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header bg-warning text-white">
+                    <h5 class="modal-title">Modificar Estudio Diplomado</h5>
+                    <button class="close" data-dismiss="modal"><span>×</span></button>
+                </div>
+                <div class="modal-body"> 
+                    <form action="procesos/actualizardiplomados.php" method="POST">  
+                        <input type="hidden" name="dato_desencriptado" id="dato_desencriptado" value="<?php echo $dato_desencriptado ?>" >
+                        <input type="hidden" name="idcursos_extra" id="idcursos_extra" >
+                        <div class="form-group">
+                        <label for="title">Centro de estudios</label>
+                        <input type="text" name="centro_estud" id="centro_estud" class="form-control" placeholder="Enter first name" maxlength="50" >
+                        </div>
+                        <div class="form-group">
+                        <label for="title">Materia </label>
+                        <input type="text" name="materia" id="materia" class="form-control" placeholder="Enter last name" maxlength="50" >
+                        </div> 
+                        <div class="form-group">
+                        <label for="title">Horas </label>
+                        <input type="text" name="horas" id="horas" class="form-control" placeholder="Horas" maxlength="50" >
+                        </div> 
+                        <div class="form-group">
+                        <label for="title">Fecha Inicio </label>
+                        <input type="text" name="fech_inic" id="fech_inic" class="form-control" placeholder="Horas" maxlength="50" >
+                        </div> 
+                        <div class="form-group">
+                        <label for="title">Fecha Fin </label>
+                        <input type="text" name="fech_fin1" id="fech_fin1" class="form-control" placeholder="Horas" maxlength="50">
+                        </div>                
+                        <div class="form-group">
+                        <label for="title">Tipo </label>
+                        <select class="form-control" id="tipo1" name="tipo1"> fech_fin1
+                            <option value="DIPLOMADO">Diplomado</option>
+                            <option value="CURSO">Curso</option>
+                            <option value="SEMINARIO">Seminario</option>
+                        </select> 
+                        </div>
+                        <div class="form-group">
+                        <label for="title">Nivel</label>
+                        <select class="form-control" id="nivel2" name="nivel2">
+                            <option value="EGRESADO">Egresado</option>
+                            <option value="ESTUDIANTE">Estudiante</option>
+                        </select>    
+                        </div>
+                        <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" name="updateData2">Actualizar!</button>
+                       </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="actualizaridiomas">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header bg-warning text-white">
+                    <h5 class="modal-title">Modificar Estudio Ingles/Computacion</h5>
+                    <button class="close" data-dismiss="modal"><span>×</span></button>
+                </div>
+                <div class="modal-body"> 
+                    <form action="procesos/actualizaridiomas.php" method="POST">  
+                        <input type="hidden" name="dato_desencriptado" id="dato_desencriptado" value="<?php echo $dato_desencriptado ?>" >
+                        <input type="hidden" name="ididiomas_comp" id="ididiomas_comp" >
+                        <div class="form-group">
+                        <label for="title">Idiomas/Computacion</label>
+                        <input type="text" name="idioma_comp" id="idioma_comp" class="form-control" placeholder="Enter first name" maxlength="50" >
+                        </div>
+
+                        <div class="form-group">
+                        <label for="title">Nivel</label>
+                        <select class="form-control" id="nivel4" name="nivel4">
+                            <option value="BASICO">Basico</option>
+                            <option value="INTERMEDIO">Intermedio</option>
+                            <option value="AVANZADO">Avanzado</option>
+                        </select>    
+                        </div>
+                        <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" name="updateData3">Actualizar!</button>
+                       </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+
+    <!-- !-- MODAL ELIMINAR ESTUDIOS POSTGRADO  -->
+    <div class="modal fade" id="eliminarpostgrado">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-danger text-white">
+                    <h5 class="modal-title" >Eliminar registro Postgrado</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <form action="procesos/eliminarpostgrado.php" method="POST">
+                    <div class="modal-body">
+                        <input type="hidden" name="url" id="url" value="<?php echo $dato_desencriptado;?>">
+                        <input type="hidden" name="id1" id="id1">
+                        <h4>¿Desea eliminar el dato seleccionado?</h4>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary" name="deleteData1">Si</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- !-- MODAL ELIMINAR DIPLOMADOS -->
+    <div class="modal fade" id="eliminardiplomados">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-danger text-white">
+                    <h5 class="modal-title" >Eliminar registro Diplomados</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <form action="procesos/eliminardiplomados.php" method="POST">
+                    <div class="modal-body">
+                        <input type="hidden" name="url" id="url" value="<?php echo $dato_desencriptado;?>">
+                        <input type="hidden" name="id2" id="id2">
+                        <h4>¿Desea eliminar el dato seleccionado?</h4>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary" name="deleteData2">Si</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- !-- MODAL ELIMINAR IDIOMAS/COMPUTACION -->
+    <div class="modal fade" id="eliminaridiomas">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-danger text-white">
+                    <h5 class="modal-title" >Eliminar registro Idiomas/Computacion</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <form action="procesos/eliminaridiomas.php" method="POST">
+                    <div class="modal-body">
+                        <input type="hidden" name="url" id="url" value="<?php echo $dato_desencriptado;?>">
+                        <input type="hidden" name="id3" id="id3">
+                        <h4>¿Desea eliminar el dato seleccionado?</h4>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary" name="deleteData3">Si</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
      <!-- VER estudios superiores Modal-->
      <div class="modal fade bd-example-modal-xl" id="ver_estudios_superiores" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl" role="document">
@@ -817,46 +1313,175 @@
             });
         });
     </script>
+
     <script>
-    $(document).ready(function () {
-        $('.updateBtn').on('click', function(){
+        $(document).ready(function () {
+            $('.updateBtn').on('click', function(){
 
-            $('#updateModal').modal('show');
-    
-            // Get the table row data.
-            $tr = $(this).closest('tr');
-    
-            var data = $tr.children("td").map(function() {
-                return $(this).text();
-            }).get();
-    
-            console.log(data);
-    
-            $('#idestudios').val(data[0]);
-            $('#centro_estu').val(data[1]);
-            $('#especialidad').val(data[2]);
-            $('#fecha_inicio').val(data[3]);
-            $('#fecha_fin').val(data[4]);  
-            $('#nivel').val(data[5]);  
+                $('#updateModal').modal('show');
+        
+                // Get the table row data.
+                $tr = $(this).closest('tr');
+        
+                var data = $tr.children("td").map(function() {
+                    return $(this).text();
+                }).get();
+        
+                console.log(data);
+        
+                $('#idestudios').val(data[0]);
+                $('#centro_estu').val(data[1]);
+                $('#especialidad').val(data[2]);
+                $('#fecha_inicio').val(data[3]);
+                $('#fecha_fin').val(data[4]);  
+                $('#nivel').val(data[5]);  
+            });
         });
-    });
 
-    $(document).ready(function () {
-        $('.deleteBtn').on('click', function(){
-    
-            $('#deleteModal').modal('show');
-            // Get the table row data.
-            $tr = $(this).closest('tr');
-    
-            var data = $tr.children("td").map(function() {
-                return $(this).text();
-            }).get();
-    
-            console.log(data);
-            $('#id').val(data[0]);
+        $(document).ready(function () {
+            $('.deleteBtn').on('click', function(){
+        
+                $('#deleteModal').modal('show');
+                // Get the table row data.
+                $tr = $(this).closest('tr');
+        
+                var data = $tr.children("td").map(function() {
+                    return $(this).text();
+                }).get();
+        
+                console.log(data);
+                $('#id').val(data[0]);
+            });
         });
-    });
     </script>
+
+    <script>
+        $(document).ready(function () {
+            $('.updateBtn1').on('click', function(){
+
+                $('#actualizarpostgrado').modal('show');
+        
+                // Get the table row data.
+                $tr = $(this).closest('tr');
+        
+                var data = $tr.children("td").map(function() {
+                    return $(this).text();
+                }).get();
+        
+                console.log(data);
+        
+                $('#idmaestria_doc').val(data[0]);
+                $('#centro_estudios').val(data[1]);
+                $('#especialidades').val(data[2]);
+                $('#tipo_estu').val(data[3]);
+                $('#fech_ini').val(data[4]);
+                $('#fech_fin').val(data[5]);  
+                $('#nivel1').val(data[6]); 
+            
+            });
+        });
+
+        $(document).ready(function () {
+        $('.deleteBtn1').on('click', function(){
+    
+            $('#eliminarpostgrado').modal('show');
+            // Get the table row data.
+            $tr = $(this).closest('tr');
+    
+            var data = $tr.children("td").map(function() {
+                return $(this).text();
+            }).get();
+    
+            console.log(data);
+            $('#id1').val(data[0]);
+        });
+    });
+    </script> 
+
+    <script>
+        $(document).ready(function () {
+                $('.updateBtn2').on('click', function(){
+
+                    $('#actualizardiplomados').modal('show');
+            
+                    // Get the table row data.
+                    $tr = $(this).closest('tr');
+            
+                    var data = $tr.children("td").map(function() {
+                        return $(this).text();
+                    }).get();
+            
+                    console.log(data);
+            
+                    $('#idcursos_extra').val(data[0]);
+                    $('#centro_estud').val(data[1]);
+                    $('#materia').val(data[2]);
+                    $('#horas').val(data[3]);
+                    $('#fech_inic').val(data[4]);
+                    $('#fech_fin1').val(data[5]);  
+                    $('#tipo1').val(data[6]); 
+                    $('#nivel2').val(data[7]);         
+                
+                });
+        });
+
+        $(document).ready(function () {
+            $('.deletebtn2').on('click', function(){
+            
+                    $('#eliminardiplomados').modal('show');
+                    // Get the table row data.
+                    $tr = $(this).closest('tr');
+            
+                    var data = $tr.children("td").map(function() {
+                        return $(this).text();
+                    }).get();
+            
+                    console.log(data);
+                    $('#id2').val(data[0]);
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $('.updateBtn3').on('click', function(){
+
+                $('#actualizaridiomas').modal('show');
+        
+                // Get the table row data.
+                $tr = $(this).closest('tr');
+        
+                var data = $tr.children("td").map(function() {
+                    return $(this).text();
+                }).get();
+        
+                console.log(data);
+              
+                $('#ididiomas_comp').val(data[0]);
+                $('#idioma_comp').val(data[1]);
+                $('#nivel4').val(data[2]);
+            
+            });
+        });
+
+        $(document).ready(function () {
+            $('.deleteBtn3').on('click', function(){
+        
+                $('#eliminaridiomas').modal('show');
+                // Get the table row data.
+                $tr = $(this).closest('tr');
+        
+                var data = $tr.children("td").map(function() {
+                    return $(this).text();
+                }).get();
+        
+                console.log(data);
+                $('#id3').val(data[0]);
+            });
+        });
+    </script>
+
+    
 
     <script>
          $(function(){
@@ -984,3 +1609,4 @@
 </body>
 
 </html>
+

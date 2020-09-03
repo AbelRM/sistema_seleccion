@@ -9,18 +9,19 @@ if(ISSET($_POST['updateData1']))
     $idestudios = $_POST['idmaestria_doc'];
     $centro_estu = $_POST['centro_estudios'];
     $especialidad = $_POST['especialidades'];
+    $tipoest = $_POST['tipo_estu'];
     $fecha_inicio = $_POST['fech_ini'];
     $fecha_fin = $_POST['fech_fin'];
-    $nivel = $_POST['nivel1'];
+    $nivel = $_POST['nivel1'];  
 
-    $sql = "UPDATE maestria_doc SET centro_estu='".$centro_estu."', especialidad='".$especialidad."', fech_ini='".$fecha_inicio."', 
-    fech_fin='".$fecha_fin."', nivel='".$nivel."' WHERE idestudios='".$idestudios."' ";
+    $sql = "UPDATE maestria_doc SET centro_estu='".$centro_estu."', especialidad='".$especialidad."',tipo_estu='".$tipoest."', fech_ini='".$fecha_inicio."', 
+    fech_fin='".$fecha_fin."', nivel='".$nivel."' WHERE idmaestria_doc='".$idestudios."' ";
 
     $result = mysqli_query($con, $sql);
 
     if($result)
     {
-        header("Location: capacitacion.php?dni=$dato_desencriptado");
+        header("Location: ../capacitacion.php?dni=$dato_desencriptado");
         // echo '<script> alert("Datos guardados exitosamente."); 
         // window.location.href = "capacitacion.php?dni=".$dato_desencriptado;
         // </script>';

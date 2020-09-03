@@ -223,12 +223,12 @@
                                                         ?>
                                                         <tr>
                                                             <td><?php echo $row3['idmaestria_doc'] ?></td>
-                                                            <td style="font-size: 16px;"><?php echo $row3['centro_estu'] ?></td> 
-                                                            <td style="font-size: 14px;"><?php echo $row3['especialidad']?></td>    
-                                                            <td style="font-size: 14px;"><?php echo $row3['tipo_estu']?></td>         
-                                                            <td style="font-size: 14px;"><?php echo $row3['fech_ini']?></td>
-                                                            <td style="font-size: 14px;"><?php echo $row3['fech_fin']?></td>
-                                                            <td style="font-size: 14px;"><?php echo $row3['nivel']; ?></td>
+                                                            <td style="font-size: 12px;"><?php echo $row3['centro_estu'] ?></td> 
+                                                            <td style="font-size: 12px;"><?php echo $row3['especialidad']?></td>    
+                                                            <td style="font-size: 12px;"><?php echo $row3['tipo_estu']?></td>         
+                                                            <td style="font-size: 12px;"><?php echo $row3['fech_ini']?></td>
+                                                            <td style="font-size: 12px;"><?php echo $row3['fech_fin']?></td>
+                                                            <td style="font-size: 12px;"><?php echo $row3['nivel']; ?></td>
                                                             <td class="d-flex justify-content-center">
                                                             <button class="btn btn-success btn-sm m-1 updateBtn1"><i class="fa fa-edit"></i></button>
                                                             <button class="btn btn-danger btn-sm m-1 deleteBtn1"><i class="fa fa-times-circle"></i></button>
@@ -343,13 +343,13 @@
                                                     ?>
                                                     <tr>
                                                         <td><?php echo $row3['idcursos_extra'] ?></td>
-                                                        <td style="font-size: 16px;"><?php echo $row3['centro_estu'] ?></td>
-                                                        <td style="font-size: 14px;"><?php echo $row3['materia']?></td>
-                                                        <td style="font-size: 14px;"><?php echo $row3['horas']?></td>
-                                                        <td style="font-size: 14px;"><?php echo $row3['fech_ini']?></td>
-                                                        <td style="font-size: 14px;"><?php echo $row3['fech_fin']?></td>
-                                                        <td style="font-size: 14px;"><?php echo $row3['tipo']?></td>
-                                                        <td style="font-size: 14px;"><?php echo $row3['nivel']; ?></td>
+                                                        <td style="font-size: 12px;"><?php echo $row3['centro_estu'] ?></td>
+                                                        <td style="font-size: 12px;"><?php echo $row3['materia']?></td>
+                                                        <td style="font-size: 12px;"><?php echo $row3['horas']?></td>
+                                                        <td style="font-size: 12px;"><?php echo $row3['fech_ini']?></td>
+                                                        <td style="font-size: 12px;"><?php echo $row3['fech_fin']?></td>
+                                                        <td style="font-size: 12px;"><?php echo $row3['tipo']?></td>
+                                                        <td style="font-size: 12px;"><?php echo $row3['nivel']; ?></td>
                                                         <td class="d-flex justify-content-center">
                                                             <button class="btn btn-success btn-sm m-1 updateBtn2"><i class="fa fa-edit"></i></button>
                                                             <button class="btn btn-danger btn-sm m-1 deletebtn2"><i class="fa fa-times-circle"></i></button>
@@ -461,8 +461,8 @@
                                                         ?>
                                                         <tr>
                                                             <td><?php echo $row4['ididiomas_comp'] ?></td>
-                                                            <td style="font-size: 16px;"><?php echo $row4['idioma_comp'] ?></td>
-                                                            <td style="font-size: 14px;"><?php echo $row4['nivel']?></td>
+                                                            <td style="font-size: 12px;"><?php echo $row4['idioma_comp'] ?></td>
+                                                            <td style="font-size: 12px;"><?php echo $row4['nivel']?></td>
                                                             <td class="d-flex justify-content-center">
                                                             <button class="btn btn-success btn-sm m-1 updateBtn3"><i class="fa fa-edit"></i></button>
                                                             <button class="btn btn-danger btn-sm m-1 deleteBtn3"><i class="fa fa-times-circle"></i></button>

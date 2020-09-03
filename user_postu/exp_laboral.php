@@ -40,7 +40,7 @@
         $dni = $desencriptar($dato_desencriptado);
         
         $sql="SELECT * FROM usuarios where dni=$dni";
-        $datos=mysqli_query($con,$sql) or die(mysqli_error()); ;
+        $datos=mysqli_query($con,$sql) or die(mysqli_error()); 
         $fila= mysqli_fetch_array($datos);
         include 'menu.php';
       
@@ -154,11 +154,11 @@
                                         </thead>
                                         <tbody>
                                             <?php
+
                                                 $sql6 = "SELECT * FROM expe_4puntos WHERE expe_4puntos_detalle_con = $iddetalle_conv";
                                                 $query6=mysqli_query($con, $sql6);
                                                 if(mysqli_num_rows($query6)>0){
                                                     while ($row6= MySQLI_fetch_array($query6))
-
                                                     {
                                                     ?>
                                                         <tr>
@@ -168,12 +168,11 @@
                                                             <td style="font-size: 12px;"><?php echo $row6['fecha_inicio'] ?></td>
                                                             <td style="font-size: 12px;"><?php echo $row6['fecha_fin'] ?></td>
                                                             <td class="d-flex justify-content-center">
-                                                                <button class="btn btn-success btn-sm m-1 updateBtn"><i class="fa fa-edit"></i></button>
+                                                                <button class="btn btn-success btn-sm m-1 updateBtn1"><i class="fa fa-edit"></i></button>
                                                                 <button class="btn btn-danger btn-sm m-1 deleteBtn"><i class="fa fa-times-circle"></i></button>
                                                             </td>
                                                         </tr>
-                                                    <?php
-                                                    
+                                                    <?php                                         
                                                     }
                                             }else{
                                                 echo "<tr>
@@ -182,7 +181,7 @@
                                             }
                                             ?>
                                         </tbody>
-                                        </table>
+                                        </table> 
                                     </div>
                                   <form action="procesos/guardar_expe4.php" method="POST">
                                     <div class="table-responsive">
@@ -728,6 +727,54 @@
         </div>
         </div>
     </div>
+<<<<<<< HEAD
+
+     <!-- Actualizar Experiencia Laboral MICROREDES-->
+     <div class="modal fade" id="actualizarmicroredes">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header bg-warning text-white">
+                    <h5 class="modal-title">Modificar Experiencia Laboral</h5>
+                    <button class="close" data-dismiss="modal"><span>×</span></button>
+                </div>
+                <div class="modal-body"> 
+                    <form action="procesos/actualizarmicrored.php" method="POST">  
+                        <input type="hidden" name="dato_desencriptado" id="dato_desencriptado" value="<?php echo $dato_desencriptado ?>" >
+                        <input type="hidden" name="id_4puntos" id="id_4puntos" >
+                        <div class="form-group">
+                        <label for="title">Lugar de Trabajo</label>
+                        <select class="form-control" name="lugar1" id="lugar1">
+                        <option value="Microred Tarata">Microred Tarata</option>
+                            <option value="Microred Candarave">Microred Candarave</option>
+                            <option value="Microred Alto Andino">Microred Alto Andino</option>
+                            <option value="Microred Frontera">Microred Frontera</option>
+                            <option value="Microred Jorge Basadre">Microred Jorge Basadre</option>
+                        </select>    
+                        </div>
+                        <div class="form-group">
+                        <label for="title">Cargo/Funcion desempeñada </label>
+                        <input type="text" name="cargo" id="cargo" class="form-control" placeholder="Enter last name" maxlength="50" >
+                        </div> 
+                        <div class="form-group">
+                        <label for="title">Fecha Inicio</label>
+                        <input type="text" name="fecha_inicio" id="fecha_inicio" class="form-control" placeholder="Horas" maxlength="50" >
+                        </div> 
+                        <div class="form-group">
+                        <label for="title">Fecha Fin </label>
+                        <input type="text" name="fecha_fin" id="fecha_fin" class="form-control" placeholder="Horas" maxlength="50" >
+                        </div>                                 
+                        <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" name="updateData1">Actualizar!</button>
+                       </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+=======
+>>>>>>> 2ec9772311540b29b7dba8c9ed7eccb78d36991c
     
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
@@ -763,6 +810,52 @@
             }).change();
         });
     </script>
+<<<<<<< HEAD
+
+    <script>
+        $(document).ready(function () {
+            $('.updateBtn1').on('click', function(){
+
+                $('#actualizarmicroredes').modal('show');
+        
+                // Get the table row data.
+                $tr = $(this).closest('tr');
+        
+                var data = $tr.children("td").map(function() {
+                    return $(this).text();
+                }).get();
+        
+                console.log(data);
+        
+                $('#id_4puntos').val(data[0]);
+                $('#lugar1').val(data[1]);
+                $('#cargo').val(data[2]);
+                $('#fecha_inicio').val(data[3]);
+                $('#fecha_fin').val(data[4]); 
+            
+            });
+        });
+
+        $(document).ready(function () {
+        $('.deleteBtn1').on('click', function(){
+    
+            $('#eliminarpostgrado').modal('show');
+            // Get the table row data.
+            $tr = $(this).closest('tr');
+    
+            var data = $tr.children("td").map(function() {
+                return $(this).text();
+            }).get();
+    
+            console.log(data);
+            $('#id1').val(data[0]);
+        });
+     });
+    </script> 
+
+    
+=======
+>>>>>>> 2ec9772311540b29b7dba8c9ed7eccb78d36991c
     <script>
          $(function(){
             // Clona la fila oculta que tiene los campos base, y la agrega al final de la tabla

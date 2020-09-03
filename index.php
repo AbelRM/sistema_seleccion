@@ -78,6 +78,8 @@ if(!empty($_SESSION['active'])){
                       header("Location: user_postu/ficha_wizard.php?dni=$dato_encriptado");
                   } 
               }else{
+                  $dato_encriptado = $encriptar($dni);
+
                   $query3 = mysqli_query($con,"SELECT * FROM usuarios WHERE dni='$dni' AND tipo_user='ADMINISTRADOR' ");
                   $resultado2 = mysqli_num_rows($query3);
                   if($resultado2 > 0)
@@ -87,7 +89,7 @@ if(!empty($_SESSION['active'])){
                   $_SESSION['dni']=$data2['dni'];
                   $_SESSION['correo']=$data2['correo'];
                   $_SESSION['rol']=$data2['tipo_user'];
-                  header("Location: user_admi/index.php?dni=$dni");
+                  header("Location: user_admi/index.php?dni=$dato_encriptado");
               }
               
             }else{

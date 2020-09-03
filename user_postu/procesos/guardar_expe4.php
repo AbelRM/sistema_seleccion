@@ -7,8 +7,8 @@
     {
         $items1 = ($_POST['lugar']);
         $items2 = ($_POST['cargo']);
-        $items3 = ($_POST['fecha_inicio']);
-        $items4 = ($_POST['fecha_termino']);
+        $items3 = ($_POST['fech_ini']);
+        $items4 = ($_POST['fech_fin']);
     
         ///////////// SEPARAR VALORES DE ARRAYS, EN ESTE CASO SON 4 ARRAYS UNO POR CADA INPUT (ID, NOMBRE, CARRERA Y GRUPO////////////////////)
         while(true) {

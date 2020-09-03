@@ -33,4 +33,5 @@
 	
 	$sql = "INSERT INTO personas (nombre, correo, telefono, estado_civil, hijos, intereses) VALUES ('$nombre', '$email', '$telefono', '$estado_civil', '$hijos', '$arrayIntereses')";
 	$resultado = $mysqli->query($sql);
+	mysqli_close($con);  
 ?>

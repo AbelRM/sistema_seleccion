@@ -1,14 +1,14 @@
 <?php
     include '../conexion.php';
-    $dni=$_POST['dni'];
+    $dato_desencriptado=$_POST['dni'];
     $iddetalle_conv=$_POST['iddetalle_conv'];
     //////////////////////// PRESIONAR EL BOTÓN //////////////////////////
     if(isset($_POST['insertar2']))
     {
         $items1 = ($_POST['lugar']);
         $items2 = ($_POST['cargo']);
-        $items3 = ($_POST['fecha_inicio']);
-        $items4 = ($_POST['fecha_termino']);
+        $items3 = ($_POST['fech_ini']);
+        $items4 = ($_POST['fech_fin']);
     
         ///////////// SEPARAR VALORES DE ARRAYS, EN ESTE CASO SON 4 ARRAYS UNO POR CADA INPUT (ID, NOMBRE, CARRERA Y GRUPO////////////////////)
         while(true) {
@@ -59,10 +59,18 @@
         }
 
     }
+<<<<<<< HEAD
     //echo '<script>
         //alert("Se agrego correctamente!");
        // window.location="../exp_laboral.php?dni=".$dni;
         //</script>';
     header('Location: ../exp_laboral.php?dni='.$dni);
+=======
+    // echo '<script>
+    //     alert("Se agrego correctamente!");
+    //     window.location="../exp_laboral.php?dni=".$dni;
+    //     </script>';
+    header('Location: ../exp_laboral.php?dni='.$dato_desencriptado);
+>>>>>>> 2ec9772311540b29b7dba8c9ed7eccb78d36991c
 
 ?>

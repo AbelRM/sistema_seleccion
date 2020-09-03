@@ -197,7 +197,7 @@
                                             </thead>
                                             <tbody>
                                                 <tr class="fila-fija-1">
-                                                    <td>
+                                                    <td style="font-size:12px;">
                                                         <select name="lugar[]" class="form-control" id="lugar">
                                                             <option disabled selected>Elegir</option>
                                                             <option value="Microred Tarata">Microred Tarata</option>
@@ -207,9 +207,9 @@
                                                             <option value="Microred Jorge Basadre">Microred Jorge Basadre</option>
                                                         </select>
                                                     </td>
-                                                    <td><input type="text" name="cargo[]" class="form-control name_list"/></td>
-                                                    <td><input type="date" name="fecha_inicio[]" class="form-control name_list" /></td>
-                                                    <td><input type="date" name="fecha_termino[]" class="form-control name_list"/></td>
+                                                    <td><input style="font-size:12px;" type="text" name="cargo[]" class="form-control name_list" /></td>
+                                                    <td><input style="font-size:12px;" type="date" name="fech_ini[]" class="form-control name_list" /></td>
+                                                    <td><input style="font-size:12px;" type="date" name="fech_fin[]" class="form-control name_list"/></td>
                                                     <td class="eliminar"><button type="button" class="btn btn-danger" ><i class="fas fa-trash-alt"></i></button></td>
                                                 </tr>
                                             </tdody>
@@ -284,7 +284,6 @@
                                     </div>
                                     <form action="procesos/guardar_expe3.php" method="POST">        
                                         <div class="table-responsive">
-                                            <!-- <label>En esta sección solo se llenará las experiencias laborales realizadas en microredes de TACNA!</label>  -->
                                             <table class="table table-bordered" id="tabla-2">
                                                 <thead>
                                                     <tr class="bg-danger" style="text-align:center; font-size:0.813em;">
@@ -297,10 +296,10 @@
                                                 </thead>
                                                 <tbody>
                                                     <tr class="fila-fija-2">
-                                                        <td><input type="text" name="lugar[]" class="form-control name_list" /></td>
-                                                        <td><input type="text" name="cargo[]" class="form-control name_list" /></td>
-                                                        <td><input type="date" name="fecha_inicio[]" class="form-control name_list" /></td>
-                                                        <td><input type="date" name="fecha_termino[]" class="form-control name_list"/></td>
+                                                    <td><input style="font-size:12px;" type="text" name="lugar[]" class="form-control name_list" /></td>
+                                                    <td><input style="font-size:12px;" type="text" name="cargo[]" class="form-control name_list" /></td>
+                                                    <td><input style="font-size:12px;" type="date" name="fech_ini[]" class="form-control name_list" /></td>
+                                                    <td><input style="font-size:12px;" type="date" name="fech_fin[]" class="form-control name_list"/></td>
                                                         <td class="eliminar"><button type="button" class="btn btn-danger" ><i class="fas fa-trash-alt"></i></button></td>
                                                     </tr>
                                                 </tdody>
@@ -352,11 +351,11 @@
                                                 {
                                                 ?>
                                                     <tr>
-                                                        <td><?php echo $row8['id_1puntos'] ?></td>
-                                                        <td><?php echo $row8['lugar'] ?></td>
-                                                        <td><?php echo $row8['cargo'] ?></td>
-                                                        <td style="font-size: 16px;"><?php echo $row8['fecha_inicio'] ?></td>
-                                                        <td style="font-size: 16px;"><?php echo $row8['fecha_fin'] ?></td>
+                                                        <td style="font-size: 12px;"><?php echo $row8['id_1puntos'] ?></td>
+                                                        <td style="font-size: 12px;"><?php echo $row8['lugar'] ?></td>
+                                                        <td style="font-size: 12px;"><?php echo $row8['cargo'] ?></td>
+                                                        <td style="font-size: 12px;"><?php echo $row8['fecha_inicio'] ?></td>
+                                                        <td style="font-size: 12px;"><?php echo $row8['fecha_fin'] ?></td>
                                                         <!-- <td class="d-flex justify-content-center">
                                                             <button class="btn btn-success btn-sm m-1 updateBtn"><i class="fa fa-edit"></i></button>
                                                             <button class="btn btn-danger btn-sm m-1 deleteBtn"><i class="fa fa-times-circle"></i></button>
@@ -376,7 +375,6 @@
                                     </div>
                                 <form action="procesos/guardar_expe1.php" method="POST">  
                                     <div class="table-responsive">
-                                        <!-- <label>En esta sección solo se llenará las experiencias laborales realizadas en microredes de TACNA!</label>  -->
                                         <table class="table table-bordered" id="tabla-3">
                                             <thead>
                                                 <tr class="bg-danger" style="text-align:center; font-size:0.813em;">
@@ -389,10 +387,10 @@
                                             </thead>
                                             <tbody>
                                                 <tr class="fila-fija-3">
-                                                    <td><input style="font-size: 14px;" type="text" name="lugar[]" class="form-control name_list" /></td>
-                                                    <td><input style="font-size: 14px;" type="text" name="cargo[]" class="form-control name_list" /></td>
-                                                    <td><input type="date" name="fecha_inicio[]" class="form-control name_list" /></td>
-                                                    <td><input type="date" name="fecha_termino[]" class="form-control name_list"/></td>
+                                                <td><input style="font-size:12px;" type="text" name="lugar[]" class="form-control name_list" /></td>
+                                                    <td><input style="font-size:12px;" type="text" name="cargo[]" class="form-control name_list" /></td>
+                                                    <td><input style="font-size:12px;" type="date" name="fech_ini[]" class="form-control name_list" /></td>
+                                                    <td><input style="font-size:12px;" type="date" name="fech_fin[]" class="form-control name_list"/></td>
                                                     <td class="eliminar"><button type="button" class="btn btn-danger" ><i class="fas fa-trash-alt"></i></button></td>
                                                 </tr>
                                             </tdody>
@@ -460,11 +458,11 @@
                                                     {
                                                     ?>
                                                         <tr>
-                                                            <td><?php echo $row9['iddetalle_convocatoria'] ?></td>
-                                                            <td style="font-size: 14px;"><?php echo $row9['lugar'] ?></td>
-                                                            <td style="font-size: 14px;"><?php echo $row9['cargo'] ?></td>
-                                                            <td style="font-size: 14px;"><?php echo $row9['fecha_inicio'] ?></td>
-                                                            <td style="font-size: 14px;"><?php echo $row9['fecha_fin'] ?></td>
+                                                            <td style="font-size: 12px;"><?php echo $row9['id_4puntos'] ?></td>
+                                                            <td style="font-size: 12px;"><?php echo $row9['lugar'] ?></td>
+                                                            <td style="font-size: 12px;"><?php echo $row9['cargo'] ?></td>
+                                                            <td style="font-size: 12px;"><?php echo $row9['fecha_inicio'] ?></td>
+                                                            <td style="font-size: 12px;"><?php echo $row9['fecha_fin'] ?></td>
                                                         </tr>
                                                     <?php
                                                     }
@@ -491,16 +489,17 @@
                                             </thead>
                                             <tbody>
                                                 <tr class="fila-fija-4">
-                                                    <td><input style="font-size:14px;" type="text" name="lugar[]" class="form-control name_list" /></td>
-                                                    <td><input style="font-size:14px;" type="text" name="cargo[]" class="form-control name_list" /></td>
-                                                    <td><input type="date" name="fech_ini[]" class="form-control name_list" /></td>
-                                                    <td><input type="date" name="fech_fin[]" class="form-control name_list"/></td>
+                                                    <td><input style="font-size:12px;" type="text" name="lugar[]" class="form-control name_list" /></td>
+                                                    <td><input style="font-size:12px;" type="text" name="cargo[]" class="form-control name_list" /></td>
+                                                    <td><input style="font-size:12px;" type="date" name="fech_ini[]" class="form-control name_list" /></td>
+                                                    <td><input style="font-size:12px;" type="date" name="fech_fin[]" class="form-control name_list"/></td>
                                                     <td class="eliminar"><button type="button" class="btn btn-danger" ><i class="fas fa-trash-alt"></i></button></td>
                                                 </tr>
                                             </tdody>
                                         </table>
-
                                     </div>
+                                    <input type="hidden" name="dni" value="<?php echo $dato_desencriptado; ?>">
+                                    <input type="hidden" name="iddetalle_conv" value="<?php echo $iddetalle_conv; ?>">
                                     <div class="row d-flex justify-content-center">
                                         <div class="form-inline p-2">
                                             <button id="adicional-4" name="adicional" type="button" class="btn btn-warning"> AGREGAR FILA (+) </button>
@@ -511,7 +510,7 @@
                                             <button name="insertar" type="submit" class="btn btn-primary">GUARDAR!</button>
                                         </div>
                                     </div>
-                                <form>
+                                </form>
                                 </div>
                             </div>
                         </div>
@@ -524,7 +523,7 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="table-responsive">
-                                        <table  class="table table-bordered">  
+                                        <table class="table table-bordered">  
                                         <thead>
                                             <tr class="bg-primary" style="text-align:center; color:#000; font-size:0.813em;">
                                                 <th>N°</th>
@@ -545,11 +544,11 @@
                                                     {
                                                     ?>
                                                         <tr>
-                                                            <td><?php echo $row10['iddetalle_convocatoria'] ?></td>
-                                                            <td style="font-size: 14px;"><?php echo $row10['lugar']?></td>
-                                                            <td style="font-size: 14px;"><?php echo $row10['cargo']?></td>
-                                                            <td style="font-size: 14px;"><?php echo $row10['fecha_inicio'] ?></td>
-                                                            <td style="font-size: 14px;"><?php echo $row10['fecha_fin'] ?></td>
+                                                            <td><?php echo $row10['id_3puntos'] ?></td>
+                                                            <td style="font-size:12px;"><?php echo $row10['lugar']?></td>
+                                                            <td style="font-size:12px;"><?php echo $row10['cargo']?></td>
+                                                            <td style="font-size:12px;"><?php echo $row10['fecha_inicio'] ?></td>
+                                                            <td style="font-size:12px;"><?php echo $row10['fecha_fin'] ?></td>
                                                         </tr>
                                                     <?php
                                                     }
@@ -576,15 +575,17 @@
                                             </thead>
                                             <tbody>
                                                 <tr class="fila-fija-5">
-                                                    <td><input type="text" name="lugar[]" class="form-control name_list" /></td>
-                                                    <td><input type="text" name="cargo[]" class="form-control name_list" /></td>
-                                                    <td><input type="date" name="fech_ini[]" class="form-control name_list" /></td>
-                                                    <td><input type="date" name="fech_fin[]" class="form-control name_list"/></td>
+                                                    <td><input style="font-size:12px;" type="text" name="lugar[]" class="form-control name_list" /></td>
+                                                    <td><input style="font-size:12px;" type="text" name="cargo[]" class="form-control name_list" /></td>
+                                                    <td><input style="font-size:12px;" type="date" name="fech_ini[]" class="form-control name_list" /></td>
+                                                    <td><input style="font-size:12px;" type="date" name="fech_fin[]" class="form-control name_list"/></td>
                                                     <td class="eliminar"><button type="button" class="btn btn-danger" ><i class="fas fa-trash-alt"></i></button></td>
                                                 </tr>
                                             </tdody>
                                         </table>
                                     </div>
+                                    <input type="hidden" name="dni" value="<?php echo $dato_desencriptado; ?>">
+                                    <input type="hidden" name="iddetalle_conv" value="<?php echo $iddetalle_conv; ?>">
                                     <div class="row d-flex justify-content-end">
                                         <div class="form-inline p-2">
                                             <button id="adicional-5" name="adicional" type="button" class="btn btn-warning"> AGREGAR FILA (+) </button>
@@ -592,10 +593,10 @@
                                     </div>
                                     <div class="row d-flex justify-content-center">
                                         <div class="form-inline p-2">
-                                            <button  name="insertar" type="button" class="btn btn-primary">GUARDAR!</button>
+                                            <button name="insertar2" type="submit" class="btn btn-primary">GUARDAR!</button>
                                         </div>
                                     </div>
-                                <form>
+                                </form>
                                 </div>
                             </div>
                         </div>                 
@@ -629,11 +630,11 @@
                                                     {
                                                     ?>
                                                         <tr>
-                                                            <td><?php echo $row11['iddetalle_convocatoria'] ?></td>
-                                                            <td style="font-size: 14px;"><?php echo $row11['lugar'] ?></td>
-                                                            <td style="font-size: 14px;"><?php echo $row11['cargo'] ?></td>
-                                                            <td style="font-size: 14px;"><?php echo $row11['fecha_inicio'] ?></td>
-                                                            <td style="font-size: 14px;"><?php echo $row11['fecha_fin'] ?></td>
+                                                            <td><?php echo $row11['id_1puntos'] ?></td>
+                                                            <td style="font-size: 12px;"><?php echo $row11['lugar'] ?></td>
+                                                            <td style="font-size: 12px;"><?php echo $row11['cargo'] ?></td>
+                                                            <td style="font-size: 12px;"><?php echo $row11['fecha_inicio'] ?></td>
+                                                            <td style="font-size: 12px;"><?php echo $row11['fecha_fin'] ?></td>
                                                         </tr>
                                                     <?php
                                                     }
@@ -660,15 +661,17 @@
                                             </thead>
                                             <tbody>
                                                 <tr class="fila-fija-6">
-                                                    <td><input type="text" name="lugar[]" class="form-control name_list" /></td>
-                                                    <td><input type="text" name="cargo[]" class="form-control name_list" /></td>
-                                                    <td><input type="date" name="fech_ini[]" class="form-control name_list" /></td>
-                                                    <td><input type="date" name="fech_fin[]" class="form-control name_list"/></td>
+                                                    <td><input style="font-size:12px;" type="text" name="lugar[]" class="form-control name_list" /></td>
+                                                    <td><input style="font-size:12px;" type="text" name="cargo[]" class="form-control name_list" /></td>
+                                                    <td><input style="font-size:12px;" type="date" name="fech_ini[]" class="form-control name_list" /></td>
+                                                    <td><input style="font-size:12px;" type="date" name="fech_fin[]" class="form-control name_list"/></td>
                                                     <td class="eliminar"><button type="button" class="btn btn-danger" ><i class="fas fa-trash-alt"></i></button></td>
                                                 </tr>
                                             </tdody>
                                         </table>
                                     </div>
+                                    <input type="hidden" name="dni" value="<?php echo $dato_desencriptado; ?>">
+                                    <input type="hidden" name="iddetalle_conv" value="<?php echo $iddetalle_conv; ?>">
                                     <div class="row d-flex justify-content-end">
                                         <div class="form-inline p-2">
                                             <button id="adicional-6" name="adicional" type="button" class="btn btn-warning">AGREGAR FILA (+)</button>
@@ -679,7 +682,7 @@
                                             <button  name="insertar" type="submit" class="btn btn-primary">GUARDAR!</button>
                                         </div>
                                     </div>
-                                <form>
+                                </form>
                                 </div>
                             </div>
                         </div>
@@ -724,6 +727,7 @@
         </div>
         </div>
     </div>
+<<<<<<< HEAD
 
      <!-- Actualizar Experiencia Laboral MICROREDES-->
      <div class="modal fade" id="actualizarmicroredes">
@@ -769,6 +773,8 @@
     </div>
 
 
+=======
+>>>>>>> 2ec9772311540b29b7dba8c9ed7eccb78d36991c
     
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
@@ -804,6 +810,7 @@
             }).change();
         });
     </script>
+<<<<<<< HEAD
 
     <script>
         $(document).ready(function () {
@@ -847,6 +854,8 @@
     </script> 
 
     
+=======
+>>>>>>> 2ec9772311540b29b7dba8c9ed7eccb78d36991c
     <script>
          $(function(){
             // Clona la fila oculta que tiene los campos base, y la agrega al final de la tabla

@@ -40,7 +40,7 @@
         $dni = $desencriptar($dato_desencriptado);
         
         $sql="SELECT * FROM usuarios where dni=$dni";
-        $datos=mysqli_query($con,$sql) or die(mysqli_error()); ;
+        $datos=mysqli_query($con,$sql) or die(mysqli_error()); 
         $fila= mysqli_fetch_array($datos);
         include 'menu.php';
       
@@ -154,11 +154,11 @@
                                         </thead>
                                         <tbody>
                                             <?php
+
                                                 $sql6 = "SELECT * FROM expe_4puntos WHERE expe_4puntos_detalle_con = $iddetalle_conv";
                                                 $query6=mysqli_query($con, $sql6);
                                                 if(mysqli_num_rows($query6)>0){
                                                     while ($row6= MySQLI_fetch_array($query6))
-
                                                     {
                                                     ?>
                                                         <tr>
@@ -168,12 +168,11 @@
                                                             <td style="font-size: 12px;"><?php echo $row6['fecha_inicio'] ?></td>
                                                             <td style="font-size: 12px;"><?php echo $row6['fecha_fin'] ?></td>
                                                             <td class="d-flex justify-content-center">
-                                                                <button class="btn btn-success btn-sm m-1 updateBtn"><i class="fa fa-edit"></i></button>
+                                                                <button class="btn btn-success btn-sm m-1 updateBtn1"><i class="fa fa-edit"></i></button>
                                                                 <button class="btn btn-danger btn-sm m-1 deleteBtn"><i class="fa fa-times-circle"></i></button>
                                                             </td>
                                                         </tr>
-                                                    <?php
-                                                    
+                                                    <?php                                         
                                                     }
                                             }else{
                                                 echo "<tr>
@@ -182,7 +181,7 @@
                                             }
                                             ?>
                                         </tbody>
-                                        </table>
+                                        </table> 
                                     </div>
                                   <form action="procesos/guardar_expe4.php" method="POST">
                                     <div class="table-responsive">
@@ -216,7 +215,7 @@
                                             </tdody>
                                         </table>
                                     </div>
-                                    <input type="hidden" name="dni" value="<?php echo $dni; ?>">
+                                    <input type="hidden" name="dni" value="<?php echo $dato_desencriptado; ?>">
                                     <input type="hidden" name="iddetalle_conv" value="<?php echo $iddetalle_conv; ?>">
                                     <div class="row d-flex justify-content-end">
                                         <div class="form-inline p-2">
@@ -307,7 +306,7 @@
                                                 </tdody>
                                             </table>
                                         </div>
-                                        <input type="hidden" name="dni" value="<?php echo $dni; ?>">
+                                        <input type="hidden" name="dni" value="<?php echo $dato_desencriptado; ?>">
                                         <input type="hidden" name="iddetalle_conv" value="<?php echo $iddetalle_conv; ?>">
                                         <div class="row d-flex justify-content-end">
                                             <div class="form-inline p-2">
@@ -399,7 +398,7 @@
                                             </tdody>
                                         </table>
                                     </div>
-                                    <input type="hidden" name="dni" value="<?php echo $dni; ?>">
+                                    <input type="hidden" name="dni" value="<?php echo $dato_desencriptado; ?>">
                                     <input type="hidden" name="iddetalle_conv" value="<?php echo $iddetalle_conv; ?>">
                                     <div class="row d-flex justify-content-end">
                                         <div class="form-inline p-2">
@@ -726,107 +725,50 @@
         </div>
     </div>
 
-    <!-- UPDATE MODAL -->
-    <!-- <div class="modal fade" id="updateModal">
-        <div class="modal-dialog modal-md">
-        <div class="modal-content">
-            <div class="modal-header bg-warning text-white">
-            <h5 class="modal-title">Edit Record</h5>
-            <button class="close" data-dismiss="modal">
-                <span>×</span>
-            </button>
-            </div>
-            <div class="modal-body">
-            <form action="update.php" method="POST">
-                <input type="hidden" name="updateId" id="updateId">
-                <div class="form-group">
-                <label for="title">First Name</label>
-                <input type="text" name="updateFirstname" id="updateFirstname" class="form-control" placeholder="Enter first name" maxlength="50"
-                    required>
-                </div>
-                <div class="form-group">
-                <label for="title">Last Name</label>
-                <input type="text" name="updateLastname" id="updateLastname" class="form-control" placeholder="Enter last name" maxlength="50"
-                    required>
-                </div>
-                <div class="form-group">
-                <label for="title">Address</label>
-                <input type="text" name="updateAddress" id="updateAddress" class="form-control" placeholder="Enter address" maxlength="50"
-                    required>
-                </div>
-                <div class="form-group">
-                <label for="title">Skills</label>
-                <input type="text" name="updateSkills" id="updateSkills" class="form-control" placeholder="Enter skills" maxlength="50" required>
-                </div>
-                <div class="modal-footer">
-                <button type="submit" class="btn btn-primary" name="updateData">Save Changes</button>
-                </div>
-            </form>
-            </div>
-        </div>
-        </div>
-    </div> -->
-    <!-- UPDATE MODAL -->
-    <!-- <div class="modal fade" id="updateModal">
+     <!-- Actualizar Experiencia Laboral MICROREDES-->
+     <div class="modal fade" id="actualizarmicroredes">
         <div class="modal-dialog modal-md">
             <div class="modal-content">
                 <div class="modal-header bg-warning text-white">
-                    <h5 class="modal-title">Actualizar experiencia en MICROREDES</h5>
-                    <button class="close" data-dismiss="modal">
-                    <span>×</span>
-                </button>
+                    <h5 class="modal-title">Modificar Experiencia Laboral</h5>
+                    <button class="close" data-dismiss="modal"><span>×</span></button>
                 </div>
-                <div class="modal-body">
-                <form action="procesos/update4.php" method="POST">
-                    <input type="hidden" name="updateId" id="updateId">
-                    <input type="hidden" name="dni_4" id="dni_4" value="<?php echo $dni; ?>">
-                    <div class="form-group">
-                    <label for="title">Lugar de trabajo</label>
-                    <input type="text" name="lugar_trabajo" id="lugar_trabajo" class="form-control" maxlength="100" required>
-                    </div>
-                    <div class="form-group">
-                    <label for="title">Cargo/Función realizada</label>
-                    <input type="text" name="cargo_trabajo" id="cargo_trabajo" class="form-control" maxlength="100" required>
-                    </div>
-                    <div class="form-group">
-                    <label for="title">Fecha Inicio</label>
-                    <input type="date" name="fecha_inicio_tra" id="fecha_inicio_tra" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                    <label for="title">Fecha Término</label>
-                    <input type="date" name="fecha_fin_tra" id="fecha_fin_tra" class="form-control" required>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary" name="updateData">Actualizar!</button>
-                    </div>
-                </form>
+                <div class="modal-body"> 
+                    <form action="procesos/actualizarmicrored.php" method="POST">  
+                        <input type="hidden" name="dato_desencriptado" id="dato_desencriptado" value="<?php echo $dato_desencriptado ?>" >
+                        <input type="hidden" name="id_4puntos" id="id_4puntos" >
+                        <div class="form-group">
+                        <label for="title">Lugar de Trabajo</label>
+                        <select class="form-control" name="lugar1" id="lugar1">
+                        <option value="Microred Tarata">Microred Tarata</option>
+                            <option value="Microred Candarave">Microred Candarave</option>
+                            <option value="Microred Alto Andino">Microred Alto Andino</option>
+                            <option value="Microred Frontera">Microred Frontera</option>
+                            <option value="Microred Jorge Basadre">Microred Jorge Basadre</option>
+                        </select>    
+                        </div>
+                        <div class="form-group">
+                        <label for="title">Cargo/Funcion desempeñada </label>
+                        <input type="text" name="cargo" id="cargo" class="form-control" placeholder="Enter last name" maxlength="50" >
+                        </div> 
+                        <div class="form-group">
+                        <label for="title">Fecha Inicio</label>
+                        <input type="text" name="fecha_inicio" id="fecha_inicio" class="form-control" placeholder="Horas" maxlength="50" >
+                        </div> 
+                        <div class="form-group">
+                        <label for="title">Fecha Fin </label>
+                        <input type="text" name="fecha_fin" id="fecha_fin" class="form-control" placeholder="Horas" maxlength="50" >
+                        </div>                                 
+                        <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" name="updateData1">Actualizar!</button>
+                       </div>
+                    </form>
                 </div>
             </div>
         </div>
-    </div> -->
-    
-    <!-- DELETE MODAL -->
-    <!-- <div class="modal fade" id="deleteModal">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header bg-danger text-white">
-                <h5 class="modal-title" id="exampleModalLabel">Eliminar registro</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                </div>
-                <form action="procesos/delete4.php" method="POST">
-                <div class="modal-body">
-                    <input type="hidden" name="dni" id="dni" value="<?php echo $dni;?>">
-                    <input type="hidden" name="deleteId" id="deleteId">
-                    <h4>¿Desea eliminar el dato seleccionado?</h4>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <button type="submit" class="btn btn-primary" name="deleteData">Si</button>
-                </div>
-                </form>
-            </div>
-        </div>
-    </div> -->
+    </div>
+
+
     
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
@@ -862,12 +804,35 @@
             }).change();
         });
     </script>
-    <!-- <script>
+
+    <script>
         $(document).ready(function () {
-        $('.updateBtn').on('click', function(){
+            $('.updateBtn1').on('click', function(){
+
+                $('#actualizarmicroredes').modal('show');
+        
+                // Get the table row data.
+                $tr = $(this).closest('tr');
+        
+                var data = $tr.children("td").map(function() {
+                    return $(this).text();
+                }).get();
+        
+                console.log(data);
+        
+                $('#id_4puntos').val(data[0]);
+                $('#lugar1').val(data[1]);
+                $('#cargo').val(data[2]);
+                $('#fecha_inicio').val(data[3]);
+                $('#fecha_fin').val(data[4]); 
+            
+            });
+        });
+
+        $(document).ready(function () {
+        $('.deleteBtn1').on('click', function(){
     
-            $('#updateModal').modal('show');
-    
+            $('#eliminarpostgrado').modal('show');
             // Get the table row data.
             $tr = $(this).closest('tr');
     
@@ -876,55 +841,12 @@
             }).get();
     
             console.log(data);
-    
-            $('#updateId').val(data[0]);
-            $('#updateFirstname').val(data[1]);
-            $('#updateLastname').val(data[2]);
-            $('#updateAddress').val(data[3]);
-            $('#updateSkills').val(data[4]);   
-    
-            });
-            
+            $('#id1').val(data[0]);
         });
-    </script> -->
-    <script>
-        // $(document).ready(function () {
-        //     $('.updateBtn').on('click', function(){
+     });
+    </script> 
+
     
-        //         $('#updateModal').modal('show');
-        
-                
-        //         $tr = $(this).closest('tr');
-        
-        //         var data = $tr.children("td").map(function() {
-        //             return $(this).text();
-        //         }).get();
-        
-        //         console.log(data);
-        //         $('#updateId').val(data[0]);
-        //         $('#lugar_trabajo').val(data[1]);
-        //         $('#cargo_trabajo').val(data[2]);
-        //         $('#fecha_inicio_tra').val(data[3]);
-        //         $('#fecha_fin_tra').val(data[4]); 
-        //     });
-            
-        // });
-        // $(document).ready(function () {
-        //     $('.deleteBtn').on('click', function(){
-        
-        //         $('#deleteModal').modal('show');
-        //         // Get the table row data.
-        //         $tr = $(this).closest('tr');
-        
-        //         var data = $tr.children("td").map(function() {
-        //             return $(this).text();
-        //         }).get();
-        
-        //         console.log(data);
-        //         $('#deleteId').val(data[0]);
-        //     });
-        // });
-    </script>
     <script>
          $(function(){
             // Clona la fila oculta que tiene los campos base, y la agrega al final de la tabla

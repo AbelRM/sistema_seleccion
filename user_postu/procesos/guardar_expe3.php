@@ -59,10 +59,10 @@
         }
 
     }
-    echo '<script>
-        alert("Se agrego correctamente!");
-        window.location="../exp_laboral.php?dni=".$dni;
-        </script>';
-    // header('Location: ../exp_laboral.php?dni='.$dni);
+    //echo '<script>
+        //alert("Se agrego correctamente!");
+       // window.location="../exp_laboral.php?dni=".$dni;
+        //</script>';
+    header('Location: ../exp_laboral.php?dni='.$dni);
 
 ?>

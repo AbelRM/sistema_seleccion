@@ -1,6 +1,6 @@
 <?php
     include '../conexion.php';
-    $dni=$_POST['dni'];
+    $dato_desencriptado=$_POST['dni'];
     $iddetalle_conv=$_POST['iddetalle_conv'];
     //////////////////////// PRESIONAR EL BOTÓN //////////////////////////
     if(isset($_POST['insertar']))
@@ -59,6 +59,6 @@
         }
 
     }
-    header('Location: ../exp_laboral.php?dni='.$dni);
+    header('Location: ../exp_laboral.php?dni='.$dato_desencriptado);
 
 ?>

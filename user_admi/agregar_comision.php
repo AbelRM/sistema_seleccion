@@ -1,5 +1,6 @@
 <?php
   include 'conexion.php';
+  include "funcs/mcript.php";
   session_start();
   if(empty($_SESSION['active'])){
     header("Location: ../index.php");
@@ -36,8 +37,9 @@
   <div id="wrapper">
 
     <?php     
-      $dni = $_GET['dni'];
-      include_once('conexion.php');
+      $dato_desencriptado = $_GET['dni'];
+      $dni = $desencriptar($dato_desencriptado);
+      
       $sql="SELECT * FROM usuarios where dni=$dni";
       $datos=mysqli_query($con,$sql) or die(mysqli_error()); ;
       $fila= mysqli_fetch_array($datos);

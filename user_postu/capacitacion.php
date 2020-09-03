@@ -72,14 +72,13 @@
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
-
           <!-- Page Heading -->
             <!-- Content Row -->
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
                 <h5 class="mb-0 text-gray-800">MIS DATOS ACADÉMICOS:</h5>
             </div>
             <div class="row">
-                <div class="col-10">
+                <div class="col-10 p-0">
                     <div class="tab-content" id="nav-tabContent">
                         <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
                             <div class="col-xl-12 col-md-12 mb-4">
@@ -248,7 +247,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-2">
+                <div class="col-2 p-0">
                     <div class="list-group" id="list-tab" role="tablist" style="font-size:12px;">
                         <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">Estudios Superiores</a>
                         <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">Estudios Postgrado</a>

@@ -1,5 +1,6 @@
 <?php
   include 'conexion.php';
+  include "funcs/mcript.php";
   session_start();
   if(empty($_SESSION['active'])){
     header("Location: ../index.php");
@@ -33,8 +34,9 @@
   <div id="wrapper">
 
     <?php     
-      $dni = $_GET['dni'];
-      include_once('conexion.php');
+      $dato_desencriptado = $_GET['dni'];
+      $dni = $desencriptar($dato_desencriptado);
+
       $sql="SELECT * FROM usuarios where dni=$dni";
       $datos=mysqli_query($con,$sql) or die(mysqli_error()); ;
       $fila= mysqli_fetch_array($datos);
@@ -120,7 +122,7 @@
                             </thead>
                             <tbody>
                                 <tr class="fila-fija">
-                                  <td><input style="font-size:13px;" type="text" name="cantidad[]" placeholder="CANTIDAD" class="form-control name_list" required /></td>
+                                  <td><input style="font-size:13px;" type="text" name="cantidad[]" placeholder="CANTIDAD" class="form-control name_list" required/></td>
                                   <td>
                                     <select style="font-size:13px;" name="cargo[]" class="form-control" id="cargo" required>
                                       <option value="" disabled selected>Elegir</option>
@@ -141,7 +143,7 @@
                                         <option value="R. DETERMINADOSS">R. DETERMINADOS</option>
                                       </select></td>
                                   <td><input style="font-size:13px;" type="text" name="meta[]" placeholder="Ejemplo: 002" class="form-control name_list" required /></td>
-                                  <td class="eliminar"><input type="button" class="btn btn-danger" value=" - "></td>
+                                  <td class="eliminar"><button type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button></td>
                                 </tr>
                             </tdody>
                         </table>
@@ -149,7 +151,7 @@
                     </div>
                     <div class="row d-flex justify-content-center">
                       <input type="hidden" id="idcon" name="idcon" value="<?php echo $fila['idcon']; ?>">
-                      <input type="hidden" name="dni" id="dni" value="<?php echo $dni; ?>">
+                      <input type="hidden" name="dni" id="dni" value="<?php echo $dato_desencriptado; ?>">
                       <div class="form-inline p-2">
                           <button id="adicional" name="adicional" type="button" class="btn btn-warning"> AGREGAR FILA (+) </button>
                       </div>

@@ -1,5 +1,6 @@
 <?php
   include 'conexion.php';
+  include "funcs/mcript.php";
   session_start();
   if(empty($_SESSION['active'])){
     header("Location: ../index.php");
@@ -44,8 +45,9 @@
   <div id="wrapper">
 
     <?php     
-      $dni = $_GET['dni'];
-      include_once('conexion.php');
+      $dato_desencriptado = $_GET['dni'];
+      $dni = $desencriptar($dato_desencriptado);
+
       $sql="SELECT * FROM usuarios where dni=$dni";
       $datos=mysqli_query($con,$sql) or die(mysqli_error()); ;
       $fila= mysqli_fetch_array($datos);
@@ -83,10 +85,10 @@
                         <hr class="sidebar-divider">
                     </div>
                     <div class="form-row">
-                      <input type="hidden" name="dni" id="dni" value="<?php echo $dni ?>">
+                      <input type="hidden" name="dni" id="dni" value="<?php echo $dato_desencriptado ?>">
                       <div class="form-group col-lg-2 col-md-4 col-sm-12">
                           <label for="inputState">Tipo de concurso</label>
-                          <select name="tipo_con" id="tipo_con" class="form-control" required>
+                          <select name="tipo_con" id="tipo_con" class="form-control" autofocus required>
                               <option selected>Elegir...</option>
                               <option value="C.A.S.">C.A.S.</option>
                               <option value="P.E. 276">Provisión Externa 276</option>
@@ -95,11 +97,11 @@
                       </div>
                       <div class="form-group col-lg-2 col-md-4 col-sm-6">
                           <label for="inputEmail4">N° de convocatoria</label>
-                          <input type="text" class="form-control" name="num_con" id="num_con" placeholder="001" required>
+                          <input type="text" class="form-control" name="num_con" id="num_con" minlength="3" maxlength="3" placeholder="Ejm: 001" required>
                       </div>
                       <div class="form-group col-lg-2 col-md-4 col-sm-6">
                           <label for="inputEmail4">Año de convocatoria</label>
-                          <input type="text" class="form-control" name="anio_con" id="anio_con" placeholder="2020" required>
+                          <input type="text" class="form-control" name="anio_con" id="anio_con" minlength="4" maxlength="4" placeholder="Ejm: 2020" required>
                       </div>
                       <div class="form-group col-lg-3 col-md-4 col-sm-6">
                           <label for="inputEmail4">Fecha de inicio</label>

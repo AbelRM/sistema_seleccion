@@ -1,5 +1,6 @@
 <?php
   include 'conexion.php';
+  include "funcs/mcript.php";
   session_start();
   if(empty($_SESSION['active'])){
     header("Location: ../index.php");
@@ -40,8 +41,9 @@
   <div id="wrapper">
 
     <?php     
-      $dni = $_GET['dni'];
-      include_once('conexion.php');
+      $dato_desencriptado = $_GET['dni'];
+      $dni = $desencriptar($dato_desencriptado);
+
       $sql="SELECT * FROM usuarios where dni=$dni";
       $datos=mysqli_query($con,$sql) or die(mysqli_error()); ;
       $fila= mysqli_fetch_array($datos);
@@ -60,9 +62,6 @@
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
-        <?php 
-                include 'conexion.php';?>
-          <!-- <h1 class="h3 mb-4 text-gray-800">Blank Page</h1> -->
           <div class="row">
 
             <div class="col-lg-12">
@@ -97,110 +96,99 @@
                     }
                     ?>
 
-                 <form action="procesos/modificarconvoca.php" method="POST">
+                  <form action="procesos/modificarconvoca.php" method="POST">
                     <input type="hidden" value="<?php echo $idcon; ?>" name="id">
-                    <input type="hidden" value="<?php echo $dni; ?>" name="dni">
-                        <div class="form-group">
-                             <h6 class="m-0 font-weight-bold text-danger">Datos de la convocatoria</h6>
-                             <hr class="sidebar-divider">
-                        </div>
-                        
-                        <div class="form-row">
-
-                            <div class="form-group col-md-4 col-sm-12">
-                                <label for="disabled-input" class=" form-control-label" >Tipo de concurso</label>           
-                                <input type="text" class="form-control"  name="tipo_con" value="<?php echo $tipo_con; ?>" >                                          
-                             </div>
-
-                             <div class="form-group col-md-4 col-sm-12">
-                                <label for="disabled-input" class=" form-control-label" >N° de convocatoria</label>           
-                                <input type="text" class="form-control"  name="num_con" value="<?php echo $num_con; ?>" >                                          
-                             </div>
-
-                             <div class="form-group col-md-4 col-sm-12">
-                                <label for="disabled-input" class=" form-control-label" >Año</label>           
-                                <input type="text" class="form-control"  name="año_con" value="<?php echo $añocon; ?>">                                          
-                             </div>
-
-                             <div class="form-group col-md-6 col-sm-12">
-                                <label for="disabled-input" class=" form-control-label">Direccion Ejecutiva</label>           
-                                <input type="text" class="form-control"  name="direccion_ejec_iddireccion" value="<?php echo $dir_ejec; ?>">                                          
-                             </div>
-
-                             <div class="form-group col-md-3 col-sm-12">
-                                <label for="disabled-input" class=" form-control-label" >Desde</label>           
-                                <input type="date" class="form-control"  name="fech_ini" value="<?php echo $fech_ini; ?>" >                                          
-                             </div>
-
-                             <div class="form-group col-md-3 col-sm-12">
-                                <label for="disabled-input" class=" form-control-label">Hasta</label>           
-                                <input type="date" class="form-control"  name="fech_term" value="<?php echo $fech_term; ?>" >                                          
-                             </div>
-                         </div>
-
-                        <div class="form-group">
-                          <h6 class="m-0 font-weight-bold text-danger">Porcentaje de la convocatoria</h6>
+                    <input type="hidden" value="<?php echo $dato_desencriptado; ?>" name="dni">
+                    <div class="form-group">
+                          <h6 class="m-0 font-weight-bold text-danger">Datos de la convocatoria</h6>
                           <hr class="sidebar-divider">
+                    </div>
+                    <div class="form-row">
+                      <div class="form-group col-md-4 col-sm-12">
+                        <label for="disabled-input" class=" form-control-label" >Tipo de concurso</label>           
+                        <input type="text" class="form-control"  name="tipo_con" value="<?php echo $tipo_con; ?>" >                                          
+                      </div>
+
+                      <div class="form-group col-md-4 col-sm-12">
+                        <label for="disabled-input" class=" form-control-label" >N° de convocatoria</label>           
+                        <input type="text" class="form-control"  name="num_con" value="<?php echo $num_con; ?>" >                                          
+                      </div>
+
+                      <div class="form-group col-md-4 col-sm-12">
+                        <label for="disabled-input" class=" form-control-label" >Año</label>           
+                        <input type="text" class="form-control"  name="año_con" value="<?php echo $añocon; ?>">                                          
+                      </div>
+
+                      <div class="form-group col-md-6 col-sm-12">
+                        <label for="disabled-input" class=" form-control-label">Direccion Ejecutiva</label>           
+                        <input type="text" class="form-control"  name="direccion_ejec_iddireccion" value="<?php echo $dir_ejec; ?>">                                          
+                      </div>
+
+                      <div class="form-group col-md-3 col-sm-12">
+                        <label for="disabled-input" class=" form-control-label" >Desde</label>           
+                        <input type="date" class="form-control"  name="fech_ini" value="<?php echo $fech_ini; ?>" >                                          
+                      </div>
+
+                      <div class="form-group col-md-3 col-sm-12">
+                        <label for="disabled-input" class=" form-control-label">Hasta</label>           
+                        <input type="date" class="form-control"  name="fech_term" value="<?php echo $fech_term; ?>" >                                          
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <h6 class="m-0 font-weight-bold text-danger">Porcentaje de la convocatoria</h6>
+                      <hr class="sidebar-divider">
+                    </div>
+                      <div class="form-row" id="contenido">
+                        <div class="col-md-12">
+                            
+                        <div class="form-group row">
+                          <label for="staticEmail" class="col-sm-6 col-form-label">% DE EVALUACION CURRICULAR:</label>
+                          <div class="col-sm-1">
+                          <input type="text" class="form-control" id="porcen_eva_cu" value="<?php echo $porcen_eva_cu; ?>" >
+                          </div>
+                          <label for="staticEmail" class="col-sm-4 col-form-label">%</label>
                         </div>
 
-                                <div class="form-row" id="contenido">
-                                    <div class="col-md-12">
-                                        
-                                    <div class="form-group row">
-                                            <label for="staticEmail" class="col-sm-6 col-form-label">% DE EVALUACION CURRICULAR:</label>
-                                            <div class="col-sm-1">
-                                            <input type="text" class="form-control" id="porcen_eva_cu" value="<?php echo $porcen_eva_cu; ?>" >
-                                            </div>
-                                            <label for="staticEmail" class="col-sm-4 col-form-label">%</label>
-                                        </div>
+                        <div class="form-group row">
+                            <label for="staticEmail" class="col-sm-6 col-form-label">% DE EVALUACION DE ENTREVISTA:</label>
+                            <div class="col-sm-1">
+                            <input type="text" class="form-control" id="porce_entrevista" value="<?php echo $porce_entrevista; ?>"> 
+                            </div>
+                            <label for="staticEmail" class="col-sm-4 col-form-label">%</label>
+                        </div>
 
-                                        <div class="form-group row">
-                                            <label for="staticEmail" class="col-sm-6 col-form-label">% DE EVALUACION DE ENTREVISTA:</label>
-                                            <div class="col-sm-1">
-                                            <input type="text" class="form-control" id="porce_entrevista" value="<?php echo $porce_entrevista; ?>"> 
-                                            </div>
-                                            <label for="staticEmail" class="col-sm-4 col-form-label">%</label>
-                                        </div>
+                        <div class="form-group row">
+                            <label for="staticEmail" class="col-sm-6 col-form-label">% DE EVALUACION DE EXÁMEN ESCRITO:</label>
+                            <div class="col-sm-1">
+                            <input type="text" class="form-control" id="porce_exa_escrito" value="<?php echo $porce_exa_escrito; ?>"> 
+                            </div>
+                            <label for="staticEmail" class="col-sm-4 col-form-label">%</label>
+                        </div>
 
-                                        <div class="form-group row">
-                                            <label for="staticEmail" class="col-sm-6 col-form-label">% DE EVALUACION DE EXÁMEN ESCRITO:</label>
-                                            <div class="col-sm-1">
-                                            <input type="text" class="form-control" id="porce_exa_escrito" value="<?php echo $porce_exa_escrito; ?>"> 
-                                            </div>
-                                            <label for="staticEmail" class="col-sm-4 col-form-label">%</label>
-                                        </div>
-
-                                        <div class="form-group row">
-                                            <label for="staticEmail" class="col-sm-6 col-form-label">% DE EVALUACION POR DISCAPACIDAD:</label>
-                                            <div class="col-sm-1">
-                                            <input type="text" class="form-control" id="porce_discapacidad" value="<?php echo $porce_discapacidad; ?>">
-                                            </div>
-                                            <label for="staticEmail" class="col-sm-4 col-form-label">%</label> 
-                                        </div>
-             
-
-                                        <div class="form-group row">
-                                            <label for="staticEmail" class="col-sm-6 col-form-label">% DE EVALUACION DE LIC. MILITAR:</label>
-                                            <div class="col-sm-1">
-                                            <input type="text" class="form-control" id="porce_sermilitar" value="<?php echo $porce_sermilitar; ?>">
-                                            </div>
-                                            <label for="staticEmail" class="col-sm-4 col-form-label">%</label>       
-                                        </div>
-                                                  
-                                    </div>
+                        <div class="form-group row">
+                            <label for="staticEmail" class="col-sm-6 col-form-label">% DE EVALUACION POR DISCAPACIDAD:</label>
+                            <div class="col-sm-1">
+                            <input type="text" class="form-control" id="porce_discapacidad" value="<?php echo $porce_discapacidad; ?>">
+                            </div>
+                            <label for="staticEmail" class="col-sm-4 col-form-label">%</label> 
+                        </div>
 
 
-
-                        </div>  
-
-                         <div class="text-right">
-                                        <button type="submit" class="btn btn-success">
-                                            <i class="fa fa-plus"></i> Guardar
-                                        </button>
-                         </div>            
-                 </form>
-
-                
+                        <div class="form-group row">
+                            <label for="staticEmail" class="col-sm-6 col-form-label">% DE EVALUACION DE LIC. MILITAR:</label>
+                            <div class="col-sm-1">
+                            <input type="text" class="form-control" id="porce_sermilitar" value="<?php echo $porce_sermilitar; ?>">
+                            </div>
+                            <label for="staticEmail" class="col-sm-4 col-form-label">%</label>       
+                        </div>
+                                      
+                      </div>
+                    </div>  
+                    <div class="text-right">
+                      <button type="submit" class="btn btn-success"><i class="fa fa-plus"></i>Guardar!</button>
+                    </div>            
+                  </form>
             </div>
 
           </div>

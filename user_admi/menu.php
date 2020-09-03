@@ -66,7 +66,7 @@
       <div id="collapseEva" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
           <h6 class="collapse-header">Procesos:</h6>
-          <a class="collapse-item" href="#">Eva. totales</a>
+          <a class="collapse-item" href="lista_convo.php?dni=<?php echo $dato_desencriptado ?>">Eva. totales</a>
           <a class="collapse-item" href="#">Cards</a>
         </div>
       </div>
@@ -87,6 +87,11 @@
 
     <!-- Divider -->
     <hr class="sidebar-divider">
+    
+    <!-- Sidebar Toggler (Sidebar) -->
+    <div class="text-center d-none d-md-inline">
+      <button class="rounded-circle border-0" id="sidebarToggle"></button>
+    </div>
 
 </ul>
   <!-- End of Sidebar -->

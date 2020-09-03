@@ -5,42 +5,39 @@
   if(empty($_SESSION['active'])){
     header("Location: ../index.php");
   }
-
-  // if(!isset($_SESSION['rol'])){
-  //   header('location: ../index.php');
-  // }else{
-  //   if($_SESSION['rol'] != 2){
-  //     header('location: ../index.php');
-  //   }
-  // }
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
   <meta charset="utf-8">
+  
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Sistema de postulación DIRESA - TACNA</title>
+  <title>SB Admin 2 - Tables</title>
 
-  <!-- Custom fonts for this template-->
+  <!-- Custom fonts for this template -->
   <link rel="icon" type="image/png" href="img/icono_diresa.png" />
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
-  <!-- Custom styles for this template-->
+  <!-- Custom styles for this template -->
   <link href="css/sb-admin-2.css" rel="stylesheet">
+
+  <!-- Custom styles for this page -->
+  <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
 </head>
 
 <body id="page-top">
 
   <!-- Page Wrapper -->
-  <div id="wrapper">  
+  <div id="wrapper">
+
     <?php     
       $dato_desencriptado = $_GET['dni'];
       $dni = $desencriptar($dato_desencriptado);
@@ -65,35 +62,56 @@
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
-          </div>
+          <!-- <h1 class="h3 mb-2 text-gray-800">Tables</h1>
+          <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p> -->
 
-          <!-- Content Row -->
-          <div class="row">
-            <div class="col-md-12">
-              <div class="card">
-                <div class="card-body">
-                  <h5 class="card-title text-danger text-center font-weight-bold">BIENVENIDO AL SISTEMA DE SELECCIÓN - DIRESA TACNA!</h5>
-                  <p class="card-text">Para tener una buena experiencia en el ingreso de datos para su postulación, debe seguir los siguientes pasos:</p>
-                  <dl class="row">
-                    <dt class="col-sm-1 text-center">1.</dt>
-                    <dd class="col-sm-11">Click en "Mis convocatorias"</dd>
+          <!-- DataTales Example -->
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">ELEGIR CONVOCATORIA</h6>
+            </div>
 
-                    <dt class="col-sm-1 text-center">2.</dt>
-                    <dd class="col-sm-11">Ahora elegir "Postular", allí del listado deberá buscar y elegir el "N° CONVOCATORIA" que usted va a postular.</dd>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                      <th>N°</th>
+                      <th>Tipo concurso</th>
+                      <th>N° convocatoria</th>
+                      <th>Direccion</th>
+                      <th>Acciones</th>
+                      
+                    </tr>
+                  </thead>
+                  <?php
+                 
+                   $sql = " SELECT * FROM convocatoria INNER JOIN direccion_ejec ON direccion_ejec.iddireccion = convocatoria.direccion_ejec_iddireccion";
+                     
+                      $query=mysqli_query($con, $sql);
+                      while ($row= MySQLI_fetch_array($query))
+                      {
+                      ?>
+                      <tr>
+                        <td style="font-size: 14px;"><?php echo $row['idcon'] ?></td>
+                        <td style="font-size: 14px;"><?php echo $row['tipo_con'] ?></td>
+                        <td style="font-size: 14px;"><?php echo $row['num_con'].'-'.$row['anio_con'] ?></td>
+                        <td style="font-size: 14px;"><?php echo $row['direccion_ejec'] ?></td>
+                        <td>
+                        <a href="elegir_personal_req.php?id=<?php echo $row['idcon']?>&dni=<?php echo $dato_desencriptado?>">
+                          <button type="button" class="btn btn-warning" id="elegir" style="margin: 1px;"><i class="fas fa-hand-pointer"></i></button>
+                        </a>
+                          
+                        </td>
+                      </tr>
+                      <?php
+                      }
+                      ?>
 
-                    <dt class="col-sm-1 text-center">3.</dt>
-                    <dd class="col-sm-11">Una vez elegido y haber hecho el proceso de postulación, el sistema le permitirá llenar sus datos personales como académicos según el puesto elegido.</dd>
-
-                    <dt class="col-sm-1 text-center">4.</dt>
-                    <dd class="col-sm-11">Todos los datos ingresados deben ser validados una vez pase los filtros de evaluación de curriculum vitae y entrevista, en caso se compruebe datos falsos será betado de toda convocatoria.</dd>
-                  </dl>
-                  <div class="row d-flex justify-content-center">
-                    <a href="listar_convo.php?dni=<?php echo $dato_desencriptado ?>" class="btn btn-primary">EMPEZAR!</a>
-                  </div>
-                </div>
+                  <tbody>
+                    
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
@@ -149,11 +167,11 @@
   <script src="js/sb-admin-2.min.js"></script>
 
   <!-- Page level plugins -->
-  <script src="vendor/chart.js/Chart.min.js"></script>
+  <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+  <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
   <!-- Page level custom scripts -->
-  <script src="js/demo/chart-area-demo.js"></script>
-  <script src="js/demo/chart-pie-demo.js"></script>
+  <script src="js/demo/datatables-demo.js"></script>
 
 </body>
 

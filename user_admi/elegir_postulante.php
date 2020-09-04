@@ -18,7 +18,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Lista de convocatorias a elegir - DIRESA</title>
+  <title>Elegir Postulante - DIRESA</title>
 
   <!-- Custom fonts for this template -->
   <link rel="icon" type="image/png" href="img/icono_diresa.png" />
@@ -40,6 +40,8 @@
 
     <?php     
       $dato_desencriptado = $_GET['dni'];
+      $idconvocatoria = $_GET['idcon'];
+      $idpersonal = $_GET['idpersonal'];
       $dni = $desencriptar($dato_desencriptado);
       
       $sql="SELECT * FROM usuarios where dni=$dni";
@@ -68,7 +70,7 @@
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">ELEGIR CONVOCATORIA</h6>
+              <h6 class="m-0 font-weight-bold text-primary">ELEGIR POSTULANTE</h6>
             </div>
 
             <div class="card-body">
@@ -76,40 +78,43 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
-                      <th>N°</th>
-                      <th>Tipo concurso</th>
-                      <th>N° convocatoria</th>
-                      <th>Direccion</th>
+                    	<th>N° Convocatoria</th>
+                      <th>DNI</th>
+                      <th>Nombres</th>
+                      <th>Cargo</th>
+                      <th>Tipo de cargo</th>
                       <th>Acciones</th>
-                      
                     </tr>
                   </thead>
-                  <?php
-                 
-                   $sql = " SELECT * FROM convocatoria INNER JOIN direccion_ejec ON direccion_ejec.iddireccion = convocatoria.direccion_ejec_iddireccion";
-                     
-                      $query=mysqli_query($con, $sql);
-                      while ($row= MySQLI_fetch_array($query))
-                      {
-                      ?>
-                      <tr>
-                        <td style="font-size: 14px;"><?php echo $row['idcon'] ?></td>
-                        <td style="font-size: 14px;"><?php echo $row['tipo_con'] ?></td>
-                        <td style="font-size: 14px;"><?php echo $row['num_con'].'-'.$row['anio_con'] ?></td>
-                        <td style="font-size: 14px;"><?php echo $row['direccion_ejec'] ?></td>
-                        <td>
-                        <a href="elegir_personal_req.php?idcon=<?php echo $row['idcon']?>&dni=<?php echo $dato_desencriptado?>">
-                          <button type="button" class="btn btn-warning" id="elegir" style="margin: 1px;"><i class="fas fa-hand-pointer"></i></button>
-                        </a>
-                          
-                        </td>
-                      </tr>
-                      <?php
-                      }
-                      ?>
-
                   <tbody>
-                    
+                    <?php
+                    $sql = "SELECT * FROM detalle_convocatoria INNER JOIN postulante
+										ON detalle_convocatoria.postulante_idpostulante = postulante.idpostulante 
+										INNER JOIN convocatoria ON detalle_convocatoria.convocatoria_idcon = convocatoria.idcon
+										INNER JOIN total_personal_req ON detalle_convocatoria.personal_req_idpersonal = total_personal_req.idpersonal
+										WHERE detalle_convocatoria.convocatoria_idcon = $idconvocatoria AND personal_req_idpersonal = $idpersonal";
+                    $query=mysqli_query($con, $sql);
+                    while ($row= MySQLI_fetch_array($query))
+                    {
+                    ?>
+                    <tr>
+                      <td style="font-size: 12px;"><?php echo $row['num_con'].'-'.$row['anio_con'] ?></td>
+                      <td style="font-size: 12px;"><?php echo $row['dni'];?></td>
+                      <td style="font-size: 12px;"><?php echo $row['nombres'].' '.$row['ape_pat'];?></td>
+                      <td style="font-size: 12px;"><?php echo $row['cargo'] ?></td>
+											<td style="font-size: 12px;"><?php echo $row['tipo_cargo'] ?></td>
+                      <td>
+												<a href="detalle_postulante.php?idcon=<?php echo $idconvocatoria?>&dni=<?php echo $dato_desencriptado?>">
+													<button type="button" class="btn btn-warning" id="elegir" style="margin: 1px;"><i class="fas fa-hand-pointer"></i></button>
+												</a>
+												<a href="detalle_postulante.php?idcon=<?php echo $idconvocatoria?>&dni=<?php echo $dato_desencriptado?>">
+													<button type="button" class="btn btn-primary" id="elegir" style="margin: 1px;"><i class="fas fa-calculator"></i></button>
+												</a>
+                      </td>
+                    </tr>
+                    <?php
+                    }
+                    ?>
                   </tbody>
                 </table>
               </div>

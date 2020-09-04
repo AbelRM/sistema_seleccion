@@ -18,7 +18,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>SB Admin 2 - Tables</title>
+  <title>Elegir personal requerido - DIRESA</title>
 
   <!-- Custom fonts for this template -->
   <link rel="icon" type="image/png" href="img/icono_diresa.png" />
@@ -40,6 +40,7 @@
 
     <?php     
       $dato_desencriptado = $_GET['dni'];
+      $idconvocatoria = $_GET['idcon'];
       $dni = $desencriptar($dato_desencriptado);
       
       $sql="SELECT * FROM usuarios where dni=$dni";
@@ -78,38 +79,33 @@
                     <tr>
                       <th>N°</th>
                       <th>Cargo</th>
-                      <th>N° convocatoria</th>
-                      <th>Direccion</th>
+                      <th>Tipo cargo</th>
+                      <th>Cantidad</th>
                       <th>Acciones</th>
-                      
                     </tr>
                   </thead>
-                  <?php
-                 
-                   $sql = " SELECT * FROM convocatoria INNER JOIN direccion_ejec ON direccion_ejec.iddireccion = convocatoria.direccion_ejec_iddireccion";
-                     
-                      $query=mysqli_query($con, $sql);
-                      while ($row= MySQLI_fetch_array($query))
-                      {
-                      ?>
-                      <tr>
-                        <td style="font-size: 14px;"><?php echo $row['idcon'] ?></td>
-                        <td style="font-size: 14px;"><?php echo $row['tipo_con'] ?></td>
-                        <td style="font-size: 14px;"><?php echo $row['num_con'].'-'.$row['anio_con'] ?></td>
-                        <td style="font-size: 14px;"><?php echo $row['direccion_ejec'] ?></td>
-                        <td>
-                        <a href="elegir_personal_req.php?id=<?php echo $row['idcon']?>&dni=<?php echo $dato_desencriptado?>">
-                          <button type="button" class="btn btn-warning" id="elegir" style="margin: 1px;"><i class="fas fa-hand-pointer"></i></button>
-                        </a>
-                          
-                        </td>
-                      </tr>
-                      <?php
-                      }
-                      ?>
-
                   <tbody>
-                    
+                    <?php
+                    $sql = " SELECT * FROM total_personal_req WHERE convocatoria_idcon = $idconvocatoria ";
+                    $query=mysqli_query($con, $sql);
+                    while ($row= MySQLI_fetch_array($query))
+                    {
+                    ?>
+                    <tr>
+                      <td style="font-size: 12px;"><?php echo $row['idpersonal'];?></td>
+                      <td style="font-size: 12px;"><?php echo $row['cargo'];?></td>
+                      <td style="font-size: 12px;"><?php echo $row['tipo_cargo'];?></td>
+                      <td style="font-size: 12px;"><?php echo $row['cantidad'] ?></td>
+                      <td>
+                      <a href="elegir_postulante.php?idcon=<?php echo $idconvocatoria?>&idpersonal=<?php echo $row['idpersonal']?>&dni=<?php echo $dato_desencriptado?>">
+                        <button type="button" class="btn btn-warning" id="elegir" style="margin: 1px;"><i class="fas fa-hand-pointer"></i></button>
+                      </a>
+                        
+                      </td>
+                    </tr>
+                    <?php
+                    }
+                    ?>
                   </tbody>
                 </table>
               </div>

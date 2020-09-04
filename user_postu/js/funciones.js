@@ -77,6 +77,32 @@ $(function() {
 });
 
 
+//TIPO 2
+$(document).ready(function(){
+    $('#titulo_value > option[value="<?php echo $titulo_value ?>"]').attr('selected', 'selected');
+});
+$(document).ready(function(){
+    $('#grado_bachiller_value > option[value="<?php echo $titulo_value_2 ?>"]').attr('selected', 'selected');
+});
+$(document).ready(function(){
+    $('#titulo_especialidad_value > option[value="<?php echo $titulo_value_3?>"]').attr('selected', 'selected');
+});
+$(document).ready(function(){
+    $('#egresado_especialidad_value > option[value="<?php echo $titulo_value_4?>"]').attr('selected', 'selected');
+});
+$(document).ready(function(){
+    $('#grado_maestria_value > option[value="<?php echo $titulo_value_5?>"]').attr('selected', 'selected');
+});
+$(document).ready(function(){
+    $('#constancia_egre_maestria_value > option[value="<?php echo $titulo_value_6?>"]').attr('selected', 'selected');
+});
+$(document).ready(function(){
+    $('#grado_doctorado_value > option[value="<?php echo $titulo_value_7?>"]').attr('selected', 'selected');
+});
+$(document).ready(function(){
+    $('#constancia_egre_doctorado_value > option[value="<?php echo $titulo_value_8?>"]').attr('selected', 'selected');
+});
+
 function titulo(value)
 {
     if(value=="SI" || value==true)

@@ -36,7 +36,7 @@
     }else{
         $sql="INSERT INTO datos_profesionales (profesion,fecha_cole,lugar_cole,fecha_habi,nro_cole,titulo_profesional,titulo_especialidad, 
         egresado_especialidad, grado_maestria, constancia_egre_maestria,grado_doctorado,constancia_egre_doctorado,grado_bachiller,postulante_idpostulante) 
-        VALUES ('".$profesion."','".$fecha_cole."','".$lugar_colegiatura."','".$fech_habi."','".$nro_colegiatura."','".$titulo_profesional."','".$titulo_especialidad."',
+        VALUES ('".$profesion."','".$fecha_cole."','".$lugar_colegiatura."','".$fecha_habi."','".$nro_colegiatura."','".$titulo_profesional."','".$titulo_especialidad."',
         '".$egresado_especialidad."','".$grado_maestria."','".$constancia_egre_maestria."','".$grado_doctorado."','".$constancia_egre_doctorado."','".$grado_bachiller."','".$idpostulante."')";
         $datos=mysqli_query($con,$sql) or die(mysqli_error());
 

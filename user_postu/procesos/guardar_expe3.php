@@ -59,18 +59,9 @@
         }
 
     }
-<<<<<<< HEAD
     //echo '<script>
         //alert("Se agrego correctamente!");
        // window.location="../exp_laboral.php?dni=".$dni;
         //</script>';
-    header('Location: ../exp_laboral.php?dni='.$dni);
-=======
-    // echo '<script>
-    //     alert("Se agrego correctamente!");
-    //     window.location="../exp_laboral.php?dni=".$dni;
-    //     </script>';
     header('Location: ../exp_laboral.php?dni='.$dato_desencriptado);
->>>>>>> 2ec9772311540b29b7dba8c9ed7eccb78d36991c
-
 ?>

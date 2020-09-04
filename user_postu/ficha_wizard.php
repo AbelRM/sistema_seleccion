@@ -805,39 +805,39 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
     </script>
 
     <script type="text/javascript">
-        $(document).ready(function(){
-            $("#departamento_id").change(function(){
-                $.get("provincia.php","departamento_iddepartamento="+$("#departamento_id").val(), function(data){
-                    $("#provincia_id").html(data);
-                    console.log(data);
-                });
-            });
+			$(document).ready(function(){
+					$("#departamento_id").change(function(){
+							$.get("provincia.php","departamento_iddepartamento="+$("#departamento_id").val(), function(data){
+									$("#provincia_id").html(data);
+									console.log(data);
+							});
+					});
 
-            $("#provincia_id").change(function(){
-                $.get("distrito.php","provincia_idprovincia="+$("#provincia_id").val(), function(data){
-                    $("#distrito_id").html(data);
-                    console.log(data);
-                });
-            });
-        });
+					$("#provincia_id").change(function(){
+							$.get("distrito.php","provincia_idprovincia="+$("#provincia_id").val(), function(data){
+									$("#distrito_id").html(data);
+									console.log(data);
+							});
+					});
+			});
     </script>
 
-<script type="text/javascript">
-        $(document).ready(function(){
-            $("#departamento_id1").change(function(){
-                $.get("provincia.php","departamento_iddepartamento="+$("#departamento_id1").val(), function(data){
-                    $("#provincia_id1").html(data);
-                    console.log(data);
-                });
-            });
+    <script type="text/javascript">
+			$(document).ready(function(){
+					$("#departamento_id1").change(function(){
+							$.get("provincia.php","departamento_iddepartamento="+$("#departamento_id1").val(), function(data){
+									$("#provincia_id1").html(data);
+									console.log(data);
+							});
+					});
 
-            $("#provincia_id1").change(function(){
-                $.get("distrito.php","provincia_idprovincia="+$("#provincia_id1").val(), function(data){
-                    $("#distrito_id1").html(data);
-                    console.log(data);
-                });
-            });
-        });
+					$("#provincia_id1").change(function(){
+							$.get("distrito.php","provincia_idprovincia="+$("#provincia_id1").val(), function(data){
+									$("#distrito_id1").html(data);
+									console.log(data);
+							});
+					});
+			});
     </script>
 
 </body>

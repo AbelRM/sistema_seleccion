@@ -213,30 +213,35 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                    <?php  
-
-                                                        $dni = $_GET['dni'];                                                     
-                                                        $consulta3 = "SELECT * FROM maestria_doc WHERE idpostulante_postulante = $idpostulante";
-                                                        $query=mysqli_query($con, $consulta3);
-                                                        while ($row3= MySQLI_fetch_array($query))
-                                                        {
-                                                        ?>
-                                                        <tr>
-                                                            <td><?php echo $row3['idmaestria_doc'] ?></td>
-                                                            <td style="font-size: 12px;"><?php echo $row3['centro_estu'] ?></td> 
-                                                            <td style="font-size: 12px;"><?php echo $row3['especialidad']?></td>    
-                                                            <td style="font-size: 12px;"><?php echo $row3['tipo_estu']?></td>         
-                                                            <td style="font-size: 12px;"><?php echo $row3['fech_ini']?></td>
-                                                            <td style="font-size: 12px;"><?php echo $row3['fech_fin']?></td>
-                                                            <td style="font-size: 12px;"><?php echo $row3['nivel']; ?></td>
-                                                            <td class="d-flex justify-content-center">
-                                                            <button class="btn btn-success btn-sm m-1 updateBtn1"><i class="fa fa-edit"></i></button>
-                                                            <button class="btn btn-danger btn-sm m-1 deleteBtn1"><i class="fa fa-times-circle"></i></button>
-                                                            </td>
-                                                        </tr>
-                                                        <?php
+                                                            <?php  
+                                                            $dni = $_GET['dni'];                                                     
+                                                            $consulta3 = "SELECT * FROM maestria_doc WHERE idpostulante_postulante = $idpostulante";
+                                                            $query=mysqli_query($con, $consulta3);
+                                                            if(mysqli_num_rows($query)>0){
+                                                            while ($row3= MySQLI_fetch_array($query))
+                                                            {
+                                                            ?>
+                                                            <tr>
+                                                                <td style="font-size: 12px;"><?php echo $row3['idmaestria_doc'] ?></td>
+                                                                <td style="font-size: 12px;"><?php echo $row3['centro_estu'] ?></td> 
+                                                                <td style="font-size: 12px;"><?php echo $row3['especialidad']?></td>    
+                                                                <td style="font-size: 12px;"><?php echo $row3['tipo_estu']?></td>         
+                                                                <td style="font-size: 12px;"><?php echo $row3['fech_ini']?></td>
+                                                                <td style="font-size: 12px;"><?php echo $row3['fech_fin']?></td>
+                                                                <td style="font-size: 12px;"><?php echo $row3['nivel']; ?></td>
+                                                                <td class="d-flex justify-content-center">
+                                                                <button class="btn btn-success btn-sm m-1 updateBtn1"><i class="fa fa-edit"></i></button>
+                                                                <button class="btn btn-danger btn-sm m-1 deleteBtn1"><i class="fa fa-times-circle"></i></button>
+                                                                </td>
+                                                            </tr>
+                                                            <?php
+                                                             }
+                                                            }else{
+                                                            echo "<tr>
+                                                            <td colspan='7' class='text-center text-danger' >NO HAY DATOS REGISTRADOS</td>
+                                                            </tr>";
                                                         }
-                                                        ?> 
+                                                            ?> 
                                                     </tbody>
                                                 </table>
                                                 </div>
@@ -338,11 +343,12 @@
                                                     $consulta3 = "SELECT * FROM cursos_extra WHERE postulante_idpostulante = $idpostulante";
 
                                                     $query=mysqli_query($con, $consulta3);
+                                                    if(mysqli_num_rows($query)>0){
                                                     while ($row3= MySQLI_fetch_array($query))
                                                     {
                                                     ?>
                                                     <tr>
-                                                        <td><?php echo $row3['idcursos_extra'] ?></td>
+                                                        <td style="font-size: 12px;"><?php echo $row3['idcursos_extra'] ?></td>
                                                         <td style="font-size: 12px;"><?php echo $row3['centro_estu'] ?></td>
                                                         <td style="font-size: 12px;"><?php echo $row3['materia']?></td>
                                                         <td style="font-size: 12px;"><?php echo $row3['horas']?></td>
@@ -357,6 +363,11 @@
                                                     </tr>
                                                     <?php
                                                     }
+                                                        }else{
+                                                            echo "<tr>
+                                                            <td colspan='7' class='text-center text-danger' >NO HAY DATOS REGISTRADOS</td>
+                                                            </tr>";
+                                                        }
                                                     ?>
                                                 </tbody>
                                             </table>
@@ -456,11 +467,12 @@
                                                         $consulta4 = "SELECT * FROM idiomas_comp WHERE idpostulante_postulante = $idpostulante";
 
                                                         $query=mysqli_query($con, $consulta4);
+                                                        if(mysqli_num_rows($query)>0){
                                                         while ($row4= MySQLI_fetch_array($query))
                                                         {
                                                         ?>
                                                         <tr>
-                                                            <td><?php echo $row4['ididiomas_comp'] ?></td>
+                                                            <td style="font-size: 12px;"><?php echo $row4['ididiomas_comp'] ?></td>
                                                             <td style="font-size: 12px;"><?php echo $row4['idioma_comp'] ?></td>
                                                             <td style="font-size: 12px;"><?php echo $row4['nivel']?></td>
                                                             <td class="d-flex justify-content-center">
@@ -471,6 +483,11 @@
                                                         </tr>
                                                         <?php
                                                         }
+                                                            }else{
+                                                                echo "<tr>
+                                                                <td colspan='7' class='text-center text-danger' >NO HAY DATOS REGISTRADOS</td>
+                                                                </tr>";
+                                                            }
                                                         ?>
                                                     </tbody>
                                                 </table>

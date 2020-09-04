@@ -11,7 +11,7 @@
 
     $titulo_profesional=$_POST['titulo_profesional'];
     $titulo_especialidad=$_POST['titulo_especialidad'];
-    $egresado_especialidad=$_POST['egresado_especialidad'];
+    $egresado_especialidad=$_POST['egresado_especialidad']; 
     $grado_maestria=$_POST['grado_maestria'];
     $constancia_egre_maestria=$_POST['constancia_egre_maestria'];
     $grado_doctorado=$_POST['grado_doctorado'];

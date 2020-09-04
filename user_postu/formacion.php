@@ -240,7 +240,7 @@
                                             }
                                         ?>
                                         <div class="form-row" >
-                                            <input type="hidden" id="dni" name="dni" value="<?php echo $dni; ?>">
+                                            <input type="hidden" id="dni" name="dni" value="<?php echo $dato_desencriptado; ?>">
                                             <input type="hidden" id="idpostulante" name="idpostulante" value="<?php echo $idpostulante; ?>">
                                             <div class="col-md-6 form-group">
                                                 <label for="exampleFormControlInput1">Profesión</label>

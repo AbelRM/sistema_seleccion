@@ -58,28 +58,28 @@
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
-            <?php
-                include 'conexion.php';
-        
-                $sql2="SELECT * FROM postulante WHERE dni=$dni";
-                $datos2=mysqli_query($con,$sql2) or die(mysqli_error()); ;
-                $fila2= mysqli_fetch_array($datos2);
-                $idpostulante=$fila2['idpostulante'];
+					<?php
+							include 'conexion.php';
+			
+							$sql2="SELECT * FROM postulante WHERE dni=$dni";
+							$datos2=mysqli_query($con,$sql2) or die(mysqli_error()); ;
+							$fila2= mysqli_fetch_array($datos2);
+							$idpostulante=$fila2['idpostulante'];
 
-                $sql3="SELECT MAX(iddetalle_convocatoria) AS id FROM sistema_seleccion.detalle_convocatoria
-                WHERE postulante_idpostulante=$idpostulante";
-                $datos3=mysqli_query($con,$sql3) or die(mysqli_error());
-                $row3 = mysqli_fetch_row($datos3);
-                $id = trim($row3[0]);
+							$sql3="SELECT MAX(iddetalle_convocatoria) AS id FROM sistema_seleccion.detalle_convocatoria
+							WHERE postulante_idpostulante=$idpostulante";
+							$datos3=mysqli_query($con,$sql3) or die(mysqli_error());
+							$row3 = mysqli_fetch_row($datos3);
+							$id = trim($row3[0]);
 
-                $sql4="SELECT * from detalle_convocatoria 
-                inner join total_personal_req on detalle_convocatoria.personal_req_idpersonal=total_personal_req.idpersonal 
-                inner join convocatoria on detalle_convocatoria.convocatoria_idcon=convocatoria.idcon WHERE iddetalle_convocatoria=$id";
-                $datos4=mysqli_query($con,$sql4) or die(mysqli_error());
-                $fila4= mysqli_fetch_array($datos4);
-                $iddetalle_conv=$fila4['iddetalle_convocatoria'];
-                $idtipo = $fila4['idtipo'];
-            ?>
+							$sql4="SELECT * from detalle_convocatoria 
+							inner join total_personal_req on detalle_convocatoria.personal_req_idpersonal=total_personal_req.idpersonal 
+							inner join convocatoria on detalle_convocatoria.convocatoria_idcon=convocatoria.idcon WHERE iddetalle_convocatoria=$id";
+							$datos4=mysqli_query($con,$sql4) or die(mysqli_error());
+							$fila4= mysqli_fetch_array($datos4);
+							$iddetalle_conv=$fila4['iddetalle_convocatoria'];
+							$idtipo = $fila4['idtipo'];
+					?>
           <!-- Page Heading -->
             <!-- Content Row -->
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -87,18 +87,17 @@
             </div>
             <div class="form-row d-flex justify-content-center">
                 
-                <div class="form-group col-md-6">
-                    <select name="select" id="inputSelect" class="form-control custom-select">
-                        <!-- <option selected disabled >ELEGIR LA OPCIÓN RECOMENDADA PARA USTED...</option> -->
-                        <?php
-                            $sql = mysqli_query($con,"SELECT * from tipo_cargo WHERE idtipo=$idtipo") or die("Problemas en consulta").mysqli_error();
-                            while ($registro=mysqli_fetch_array($sql)) {
-                            echo "<option value=\"tipo-".$registro['idtipo']."\">".$registro['tipo_cargo']."</option>";
-                            }
-                        ?>
-                    </select>
-                </div> 
-                
+							<div class="form-group col-md-6">
+								<select name="select" id="inputSelect" class="form-control custom-select">
+									<!-- <option selected disabled >ELEGIR LA OPCIÓN RECOMENDADA PARA USTED...</option> -->
+									<?php
+											$sql = mysqli_query($con,"SELECT * from tipo_cargo WHERE idtipo=$idtipo") or die("Problemas en consulta").mysqli_error();
+											while ($registro=mysqli_fetch_array($sql)) {
+											echo "<option value=\"tipo-".$registro['idtipo']."\">".$registro['tipo_cargo']."</option>";
+											}
+									?>
+								</select>
+							</div> 
             </div>
             <div class="grupo-form">
                 <div id="tipo-1" class="divOculto">
@@ -378,7 +377,7 @@
                 <div id="tipo-2" class="divOculto">
                     <div class="form-row d-flex justify-content-center m-2">
                         <div class="col-lg-6 col-md-">
-                            <div class="card border-primary" style="font-size:13px;">
+                            <div class="card border-danger" style="font-size:13px;">
                                 <div class="card-header header-formulario-danger">
                                     <h5 class="card-title">DATOS GUARDADOS</h5>
                                 </div>
@@ -500,170 +499,169 @@
                                             </div>
                                         </div>
                                     </div>
-                                
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-12">
-                            <div class="card border-danger" style="font-size:13px;">
-                                <div class="card-header header-formulario-danger">
-                                    <h5 class="card-title">OTROS PROFESIONALES</h5>
-                                </div>
-                                <form action="procesos/guardar_otros_prof.php" method="POST">
-                                    <div class="card-body text-danger">
-                                        <?php
-                                            $sql6="SELECT * FROM datos_profesionales WHERE postulante_idpostulante=$idpostulante";
-                                            $datos6=mysqli_query($con,$sql6);
-                                            if($con->query($sql6) == TRUE){
-                                                $fila6= mysqli_fetch_array($datos6);
-                                            }else{
-                                                echo "NO HAY DATOS GUARDADOS AÚN!";
-                                            }
-                                        ?>
-                                        <div class="form-row" >
-                                            <input type="hidden" id="dni" name="dni" value="<?php echo $dni; ?>">
-                                            <input type="hidden" id="idpostulante" name="idpostulante" value="<?php echo $idpostulante; ?>">
-                                            <div class="col-md-6 form-group">
-                                                <label for="exampleFormControlInput1">Profesión</label>
-                                                <input type="text" class="form-control text-uppercase" style="font-size:13px" name="profesion" id="profesion" value="<?php if($nodatos==0){echo" ";}else{echo $fila5['profesion'];}?>"  required>
-                                            </div>
-                                            <div class="col-md-6 form-group">
-                                                <label for="exampleFormControlInput1">Fecha colegiatura</label>
-                                                <input type="date" class="form-control" name="fecha_cole" id="fecha_cole"  value="<?php if($nodatos==0){echo" ";}else{echo $fila5['fecha_cole'];}?>">
-                                            </div>
-                                            <div class="col-md-6 form-group">
-                                                <label for="exampleFormControlInput1">Lugar colegiatura</label>
-                                                <input type="text" class="form-control text-uppercase" style="font-size:13px" name="lugar_colegiatura" id="lugar_colegiatura" value="<?php if($nodatos==0){echo" ";}else{echo $fila5['lugar_cole'];}?>">
-                                            </div>
-                                            <div class="col-md-6 form-group">
-                                                <label for="exampleFormControlInput1">Fecha de habilitación</label>
-                                                <input type="date" class="form-control" name="fecha_habi" id="fecha_habi" value="<?php if($nodatos==0){echo" ";}else{echo $fila5['fecha_habi'];}?>">
-                                            </div>
-                                            <div class="col-md-6 form-group">
-                                                <label for="exampleFormControlInput1">N° colegiatura</label>
-                                                <input type="text" class="form-control" name="nro_colegiatura" id="nro_colegiatura" value="<?php if($nodatos==0){echo" ";}else{echo $fila5['nro_cole'];}?>">
-                                            </div>
+													<div class="card border-danger" style="font-size:13px;">
+														<div class="card-header header-formulario-danger">
+																<h5 class="card-title">OTROS PROFESIONALES</h5>
+														</div>
+														<form action="procesos/guardar_otros_prof.php" method="POST">
+															<div class="card-body">
+																<?php
+																		$sql6="SELECT * FROM datos_profesionales WHERE postulante_idpostulante=$idpostulante";
+																		$datos6=mysqli_query($con,$sql6);
+																		if($con->query($sql6) == TRUE){
+																				$fila6= mysqli_fetch_array($datos6);
+																		}else{
+																				echo "NO HAY DATOS GUARDADOS AÚN!";
+																		}
+																?>
+																<div class="form-row" >
+																	<input type="hidden" id="dni" name="dni" value="<?php echo $dato_desencriptado; ?>">
+																	<input type="hidden" id="idpostulante" name="idpostulante" value="<?php echo $idpostulante; ?>">
+																	<div class="col-md-6 form-group">
+																			<label for="exampleFormControlInput1">Profesión</label>
+																			<input type="text" style="font-size:12px;" class="form-control text-uppercase" style="font-size:13px" name="profesion" id="profesion" value="<?php if($nodatos==0){echo" ";}else{echo $fila5['profesion'];}?>"  required>
+																	</div>
+																	<div class="col-md-6 form-group">
+																			<label for="exampleFormControlInput1">Fecha colegiatura</label>
+																			<input type="date" class="form-control" name="fecha_cole" id="fecha_cole"  value="<?php if($nodatos==0){echo" ";}else{echo $fila5['fecha_cole'];}?>">
+																	</div>
+																	<div class="col-md-6 form-group">
+																			<label for="exampleFormControlInput1">Lugar colegiatura</label>
+																			<input type="text" style="font-size:12px;" class="form-control text-uppercase" style="font-size:13px" name="lugar_colegiatura" id="lugar_colegiatura" value="<?php if($nodatos==0){echo" ";}else{echo $fila5['lugar_cole'];}?>">
+																	</div>
+																	<div class="col-md-6 form-group">
+																			<label for="exampleFormControlInput1">Fecha de habilitación</label>
+																			<input type="date" class="form-control" name="fecha_habi" id="fecha_habi" value="<?php if($nodatos==0){echo" ";}else{echo $fila5['fecha_habi'];}?>">
+																	</div>
+																	<div class="col-md-6 form-group">
+																			<label for="exampleFormControlInput1">N° colegiatura</label>
+																			<input type="text" style="font-size:12px;" class="form-control" name="nro_colegiatura" id="nro_colegiatura" value="<?php if($nodatos==0){echo" ";}else{echo $fila5['nro_cole'];}?>">
+																	</div>
 
-                                            <div class="col-9">
-                                                <div class="form-group">
-                                                    <label class="font-weight-bold">Título profesional universitario</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-3">
-                                                <div class="form-check form-check-inline">
-                                                    <select name="titulo_profesional" id="titulo_profesional" class="form-control" onchange="titulo(this.value);">
-                                                        <option value="">Elegir...</option>
-                                                        <option value="NO">NO</option>
-                                                        <option value="SI">SI</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-9">
-                                                <div class="form-group">
-                                                    <label class="font-weight-bold">Grado de Bachiller</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-3">
-                                                <div class="form-check form-check-inline">
-                                                    <select name="grado_bachiller" id="grado_bachiller" onchange="bachiller(this.value);" class="form-control">
-                                                        <option value="<?php if($nodatos==0){echo"Elegir...";}else{echo $fila5['grado_bachiller'];}?>" selected><?php if($nodatos==0){echo"Elegir...";}else{echo $fila5['titulo_profesional'];}?></option>
-                                                        <option value="NO">NO</option>
-                                                        <option value="SI">SI</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-9">
-                                                <div class="form-group">
-                                                    <label class="font-weight-bold">Título de Especialidad (SOLO ELEGIR UNO)</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-3">
-                                                <div class="form-check form-check-inline">
-                                                    <select name="titulo_especialidad" id="titulo_especialidad" onchange="especialidad(this.value);" class="form-control">
-                                                        <option value="<?php if($nodatos==0){echo"Elegir...";}else{echo $fila5['titulo_especialidad'];}?>" selected><?php if($nodatos==0){echo"Elegir...";}else{echo $fila5['titulo_especialidad'];}?></option>
-                                                        <option value="NO">NO</option>
-                                                        <option value="SI">SI</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-9">
-                                                <div class="form-group">
-                                                    <label class="font-weight-normal"><i class="fas fa-angle-right"></i> Egresado de especialidad</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-3">
-                                                <div class="form-check form-check-inline">
-                                                    <select name="egresado_especialidad" id="egresado_especialidad" onchange="egre_especialidad(this.value);" class="form-control">
-                                                        <option value="<?php if($nodatos==0){echo"Elegir...";}else{echo $fila5['egresado_especialidad'];}?>" selected><?php if($nodatos==0){echo"Elegir...";}else{echo $fila5['egresado_especialidad'];}?></option>
-                                                        <option value="NO">NO</option>
-                                                        <option value="SI">SI</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-9">
-                                                <div class="form-group">
-                                                    <label class="font-weight-bold">Grado de Maestría (acreditado - SOLO ELEGIR UNO *)</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-3">
-                                                <div class="form-check form-check-inline">
-                                                    <select name="grado_maestria" id="grado_maestria" onchange="maestria(this.value);" class="form-control">
-                                                        <option value="<?php if($nodatos==0){echo"Elegir...";}else{echo $fila5['grado_maestria'];}?>" selected><?php if($nodatos==0){echo"Elegir...";}else{echo $fila5['grado_maestria'];}?></option>
-                                                        <option value="NO">NO</option>
-                                                        <option value="SI">SI</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-9">
-                                                <div class="form-group">
-                                                    <label class="font-weight-normal"><i class="fas fa-angle-right"></i> Constancia de Egresado de Maestría</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-3">
-                                                <div class="form-check form-check-inline">
-                                                    <select name="constancia_egre_maestria" id="constancia_egre_maestria" onchange="egre_maestria(this.value);" class="form-control">
-                                                        <option value="<?php if($nodatos==0){echo"Elegir...";}else{echo $fila5['constancia_egre_maestria'];}?>" selected><?php if($nodatos==0){echo"Elegir...";}else{echo $fila5['constancia_egre_maestria'];}?></option>
-                                                        <option value="NO">NO</option>
-                                                        <option value="SI">SI</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-9">
-                                                <div class="form-group">
-                                                    <label class="font-weight-bold">Grado de Doctorado (acreditado - SOLO ELEGIR UNO *)</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-3">
-                                                <div class="form-check form-check-inline">
-                                                    <select name="grado_doctorado" id="grado_doctorado" onchange="doctorado(this.value);" class="form-control">
-                                                        <option value="<?php if($nodatos==0){echo"Elegir...";}else{echo $fila5['grado_doctorado'];}?>" selected><?php if($nodatos==0){echo"Elegir...";}else{echo $fila5['grado_doctorado'];}?></option>
-                                                        <option value="NO">NO</option>
-                                                        <option value="SI">SI</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-9">
-                                                <div class="form-group">
-                                                    <label class="font-weight-normal"><i class="fas fa-angle-right"></i> Constancia de Egresado de Doctorado (acreditado *)</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-3">
-                                                <div class="form-check form-check-inline">
-                                                    <select name="constancia_egre_doctorado" id="constancia_egre_doctorado" onchange="egre_doctorado(this.value);" class="form-control">
-                                                        <option value="<?php if($nodatos==0){echo"Elegir...";}else{echo $fila5['constancia_egre_doctorado'];}?>" selected><?php if($nodatos==0){echo"Elegir...";}else{echo $fila5['constancia_egre_doctorado'];}?></option>
-                                                        <option value="NO">NO</option>
-                                                        <option value="SI">SI</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-row d-flex justify-content-center">
-                                            <button class="btn btn-primary" type="submit">GUARDAR!</button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>                    
+																	<div class="col-9">
+																			<div class="form-group">
+																					<label class="font-weight-bold">Título profesional universitario</label>
+																			</div>
+																	</div>
+																	<div class="col-3">
+																			<div class="form-check form-check-inline">
+																					<select name="titulo_profesional" id="titulo_profesional" class="form-control" onchange="titulo(this.value);">
+																							<option value="">Elegir...</option>
+																							<option value="NO">NO</option>
+																							<option value="SI">SI</option>
+																					</select>
+																			</div>
+																	</div>
+																	<div class="col-9">
+																			<div class="form-group">
+																					<label class="font-weight-bold">Grado de Bachiller</label>
+																			</div>
+																	</div>
+																	<div class="col-3">
+																			<div class="form-check form-check-inline">
+																					<select name="grado_bachiller" id="grado_bachiller" onchange="bachiller(this.value);" class="form-control">
+																							<option value="<?php if($nodatos==0){echo"Elegir...";}else{echo $fila5['grado_bachiller'];}?>" selected><?php if($nodatos==0){echo"Elegir...";}else{echo $fila5['titulo_profesional'];}?></option>
+																							<option value="NO">NO</option>
+																							<option value="SI">SI</option>
+																					</select>
+																			</div>
+																	</div>
+																	<div class="col-9">
+																			<div class="form-group">
+																					<label class="font-weight-bold">Título de Especialidad (SOLO ELEGIR UNO)</label>
+																			</div>
+																	</div>
+																	<div class="col-3">
+																			<div class="form-check form-check-inline">
+																					<select name="titulo_especialidad" id="titulo_especialidad" onchange="especialidad(this.value);" class="form-control">
+																							<option value="<?php if($nodatos==0){echo"Elegir...";}else{echo $fila5['titulo_especialidad'];}?>" selected><?php if($nodatos==0){echo"Elegir...";}else{echo $fila5['titulo_especialidad'];}?></option>
+																							<option value="NO">NO</option>
+																							<option value="SI">SI</option>
+																					</select>
+																			</div>
+																	</div>
+																	<div class="col-9">
+																			<div class="form-group">
+																					<label class="font-weight-normal"><i class="fas fa-angle-right"></i> Egresado de especialidad</label>
+																			</div>
+																	</div>
+																	<div class="col-3">
+																			<div class="form-check form-check-inline">
+																					<select name="egresado_especialidad" id="egresado_especialidad" onchange="egre_especialidad(this.value);" class="form-control">
+																							<option value="<?php if($nodatos==0){echo"Elegir...";}else{echo $fila5['egresado_especialidad'];}?>" selected><?php if($nodatos==0){echo"Elegir...";}else{echo $fila5['egresado_especialidad'];}?></option>
+																							<option value="NO">NO</option>
+																							<option value="SI">SI</option>
+																					</select>
+																			</div>
+																	</div>
+																	<div class="col-9">
+																			<div class="form-group">
+																					<label class="font-weight-bold">Grado de Maestría (acreditado - SOLO ELEGIR UNO *)</label>
+																			</div>
+																	</div>
+																	<div class="col-3">
+																			<div class="form-check form-check-inline">
+																					<select name="grado_maestria" id="grado_maestria" onchange="maestria(this.value);" class="form-control">
+																							<option value="<?php if($nodatos==0){echo"Elegir...";}else{echo $fila5['grado_maestria'];}?>" selected><?php if($nodatos==0){echo"Elegir...";}else{echo $fila5['grado_maestria'];}?></option>
+																							<option value="NO">NO</option>
+																							<option value="SI">SI</option>
+																					</select>
+																			</div>
+																	</div>
+																	<div class="col-9">
+																			<div class="form-group">
+																					<label class="font-weight-normal"><i class="fas fa-angle-right"></i> Constancia de Egresado de Maestría</label>
+																			</div>
+																	</div>
+																	<div class="col-3">
+																			<div class="form-check form-check-inline">
+																					<select name="constancia_egre_maestria" id="constancia_egre_maestria" onchange="egre_maestria(this.value);" class="form-control">
+																							<option value="<?php if($nodatos==0){echo"Elegir...";}else{echo $fila5['constancia_egre_maestria'];}?>" selected><?php if($nodatos==0){echo"Elegir...";}else{echo $fila5['constancia_egre_maestria'];}?></option>
+																							<option value="NO">NO</option>
+																							<option value="SI">SI</option>
+																					</select>
+																			</div>
+																	</div>
+																	<div class="col-9">
+																			<div class="form-group">
+																					<label class="font-weight-bold">Grado de Doctorado (acreditado - SOLO ELEGIR UNO *)</label>
+																			</div>
+																	</div>
+																	<div class="col-3">
+																			<div class="form-check form-check-inline">
+																					<select name="grado_doctorado" id="grado_doctorado" onchange="doctorado(this.value);" class="form-control">
+																							<option value="<?php if($nodatos==0){echo"Elegir...";}else{echo $fila5['grado_doctorado'];}?>" selected><?php if($nodatos==0){echo"Elegir...";}else{echo $fila5['grado_doctorado'];}?></option>
+																							<option value="NO">NO</option>
+																							<option value="SI">SI</option>
+																					</select>
+																			</div>
+																	</div>
+																	<div class="col-9">
+																			<div class="form-group">
+																					<label class="font-weight-normal"><i class="fas fa-angle-right"></i> Constancia de Egresado de Doctorado (acreditado *)</label>
+																			</div>
+																	</div>
+																	<div class="col-3">
+																			<div class="form-check form-check-inline">
+																					<select name="constancia_egre_doctorado" id="constancia_egre_doctorado" onchange="egre_doctorado(this.value);" class="form-control">
+																							<option value="<?php if($nodatos==0){echo"Elegir...";}else{echo $fila5['constancia_egre_doctorado'];}?>" selected><?php if($nodatos==0){echo"Elegir...";}else{echo $fila5['constancia_egre_doctorado'];}?></option>
+																							<option value="NO">NO</option>
+																							<option value="SI">SI</option>
+																					</select>
+																			</div>
+																	</div>
+																</div>
+																<div class="form-row d-flex justify-content-center">
+																		<button class="btn btn-primary" type="submit">GUARDAR!</button>
+																</div>
+															</div>
+														</form>
+												</div>
+											</div>                    
                     </div>
                 </div>
                 <div id="tipo-3" class="divOculto">

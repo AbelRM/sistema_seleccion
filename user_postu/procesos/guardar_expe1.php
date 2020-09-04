@@ -63,5 +63,5 @@
         //alert("Se agrego correctamente!");
        // window.location="../exp_laboral.php?dni=".$dni;
         //</script>';
-        header('Location: ../exp_laboral.php?dni='.$dni);
+        header('Location: ../exp_laboral.php?dni='.$dato_desencriptado);
 ?>

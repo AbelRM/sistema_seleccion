@@ -169,7 +169,7 @@
                                                             <td style="font-size: 12px;"><?php echo $row6['fecha_fin'] ?></td>
                                                             <td class="d-flex justify-content-center">
                                                                 <button class="btn btn-success btn-sm m-1 updateBtn1"><i class="fa fa-edit"></i></button>
-                                                                <button class="btn btn-danger btn-sm m-1 deleteBtn"><i class="fa fa-times-circle"></i></button>
+                                                                <button class="btn btn-danger btn-sm m-1 deleteBtn1"><i class="fa fa-times-circle"></i></button>
                                                             </td>
                                                         </tr>
                                                     <?php                                         
@@ -266,10 +266,10 @@
                                                         <td style="font-size: 14px;"><?php echo $row7['cargo'] ?></td>
                                                         <td style="font-size: 14px;"><?php echo $row7['fecha_inicio'] ?></td>
                                                         <td style="font-size: 14px;"><?php echo $row7['fecha_fin'] ?></td>
-                                                        <!-- <td class="d-flex justify-content-center">
-                                                            <button class="btn btn-success btn-sm m-1 updateBtn"><i class="fa fa-edit"></i></button>
-                                                            <button class="btn btn-danger btn-sm m-1 deleteBtn"><i class="fa fa-times-circle"></i></button>
-                                                        </td> -->
+                                                        <td class="d-flex justify-content-center">
+                                                            <button class="btn btn-success btn-sm m-1 updateBtn2"><i class="fa fa-edit"></i></button>
+                                                            <button class="btn btn-danger btn-sm m-1 deleteBtn2"><i class="fa fa-times-circle"></i></button>
+                                                        </td>
                                                     </tr>
                                                 <?php
                                                 }
@@ -356,10 +356,10 @@
                                                         <td style="font-size: 12px;"><?php echo $row8['cargo'] ?></td>
                                                         <td style="font-size: 12px;"><?php echo $row8['fecha_inicio'] ?></td>
                                                         <td style="font-size: 12px;"><?php echo $row8['fecha_fin'] ?></td>
-                                                        <!-- <td class="d-flex justify-content-center">
-                                                            <button class="btn btn-success btn-sm m-1 updateBtn"><i class="fa fa-edit"></i></button>
-                                                            <button class="btn btn-danger btn-sm m-1 deleteBtn"><i class="fa fa-times-circle"></i></button>
-                                                        </td> -->
+                                                        <td class="d-flex justify-content-center">
+                                                            <button class="btn btn-success btn-sm m-1 updateBtn3"><i class="fa fa-edit"></i></button>
+                                                            <button class="btn btn-danger btn-sm m-1 deleteBtn3"><i class="fa fa-times-circle"></i></button>
+                                                        </td> 
                                                     </tr>
                                                 <?php
                                                 }
@@ -463,6 +463,10 @@
                                                             <td style="font-size: 12px;"><?php echo $row9['cargo'] ?></td>
                                                             <td style="font-size: 12px;"><?php echo $row9['fecha_inicio'] ?></td>
                                                             <td style="font-size: 12px;"><?php echo $row9['fecha_fin'] ?></td>
+                                                            <td class="d-flex justify-content-center">
+                                                            <button class="btn btn-success btn-sm m-1 updateBtn4"><i class="fa fa-edit"></i></button>
+                                                            <button class="btn btn-danger btn-sm m-1 deleteBtn4"><i class="fa fa-times-circle"></i></button>
+                                                            </td>
                                                         </tr>
                                                     <?php
                                                     }
@@ -549,6 +553,10 @@
                                                             <td style="font-size:12px;"><?php echo $row10['cargo']?></td>
                                                             <td style="font-size:12px;"><?php echo $row10['fecha_inicio'] ?></td>
                                                             <td style="font-size:12px;"><?php echo $row10['fecha_fin'] ?></td>
+                                                            <td class="d-flex justify-content-center">
+                                                            <button class="btn btn-success btn-sm m-1 updateBtn2"><i class="fa fa-edit"></i></button>
+                                                            <button class="btn btn-danger btn-sm m-1 deleteBtn2"><i class="fa fa-times-circle"></i></button>
+                                                            </td>
                                                         </tr>
                                                     <?php
                                                     }
@@ -635,6 +643,10 @@
                                                             <td style="font-size: 12px;"><?php echo $row11['cargo'] ?></td>
                                                             <td style="font-size: 12px;"><?php echo $row11['fecha_inicio'] ?></td>
                                                             <td style="font-size: 12px;"><?php echo $row11['fecha_fin'] ?></td>
+                                                            <td class="d-flex justify-content-center">
+                                                            <button class="btn btn-success btn-sm m-1 updateBtn3"><i class="fa fa-edit"></i></button>
+                                                            <button class="btn btn-danger btn-sm m-1 deleteBtn3"><i class="fa fa-times-circle"></i></button>
+                                                            </td>
                                                         </tr>
                                                     <?php
                                                     }
@@ -727,7 +739,6 @@
         </div>
         </div>
     </div>
-<<<<<<< HEAD
 
      <!-- Actualizar Experiencia Laboral MICROREDES-->
      <div class="modal fade" id="actualizarmicroredes">
@@ -741,10 +752,11 @@
                     <form action="procesos/actualizarmicrored.php" method="POST">  
                         <input type="hidden" name="dato_desencriptado" id="dato_desencriptado" value="<?php echo $dato_desencriptado ?>" >
                         <input type="hidden" name="id_4puntos" id="id_4puntos" >
+                        
                         <div class="form-group">
                         <label for="title">Lugar de Trabajo</label>
                         <select class="form-control" name="lugar1" id="lugar1">
-                        <option value="Microred Tarata">Microred Tarata</option>
+                            <option value="Microred Tarata">Microred Tarata</option>
                             <option value="Microred Candarave">Microred Candarave</option>
                             <option value="Microred Alto Andino">Microred Alto Andino</option>
                             <option value="Microred Frontera">Microred Frontera</option>
@@ -772,9 +784,211 @@
         </div>
     </div>
 
+    <!-- !-- MODAL ELIMINAR MICROREDES -->
+    <div class="modal fade" id="eliminarmicroredes">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-danger text-white">
+                    <h5 class="modal-title" >Eliminar registro</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <form action="procesos/eliminarmicroredes.php" method="POST">
+                    <div class="modal-body">
+                        <input type="hidden" name="url" id="url" value="<?php echo $dato_desencriptado;?>">
+                        <input type="hidden" name="id1" id="id1">
+                        <h4>¿Desea eliminar el dato seleccionado?</h4>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary" name="deleteData1">Si</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
-=======
->>>>>>> 2ec9772311540b29b7dba8c9ed7eccb78d36991c
+    <!-- Actualizar MICROREDES DIRESA DE  TACNA-->
+    <div class="modal fade" id="actualizarmicrotacna">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header bg-warning text-white">
+                    <h5 class="modal-title">Modificar</h5>
+                    <button class="close" data-dismiss="modal"><span>×</span></button>
+                </div>
+                <div class="modal-body"> 
+                    <form action="procesos/modificarmicroredTacna.php" method="POST">  
+                        <input type="hidden" name="dato_desencriptado" id="dato_desencriptado" value="<?php echo $dato_desencriptado ?>" >
+                        <input type="hidden" name="id_3puntos" id="id_3puntos" >
+
+                        <div class="form-group">
+                        <label for="title">Lugar de Trabajo </label>
+                        <input type="text" name="lugar2" id="lugar2" class="form-control" placeholder="Enter last name" maxlength="50" >
+                        </div>
+                        <div class="form-group">
+                        <label for="title">Cargo/Funcion desempeñada </label>
+                        <input type="text" name="cargo2" id="cargo2" class="form-control" placeholder="Enter last name" maxlength="50" >
+                        </div> 
+                        <div class="form-group">
+                        <label for="title">Fecha Inicio</label>
+                        <input type="text" name="fecha_inicio2" id="fecha_inicio2" class="form-control" placeholder="Horas" maxlength="50" >
+                        </div> 
+                        <div class="form-group">
+                        <label for="title">Fecha Fin </label>
+                        <input type="text" name="fecha_fin2" id="fecha_fin2" class="form-control" placeholder="Horas" maxlength="50" >
+                        </div>                                 
+                        <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" name="updateData2">Actualizar!</button>
+                       </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- !-- MODAL ELIMINAR MICROREDES DIRESA DE  TACNA -->
+    <div class="modal fade" id="eliminarmicroredesTacna">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-danger text-white">
+                    <h5 class="modal-title" >Eliminar registro</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <form action="procesos/eliminarmicroredTacna.php" method="POST">
+                    <div class="modal-body">
+                        <input type="hidden" name="url" id="url" value="<?php echo $dato_desencriptado;?>">
+                        <input type="hidden" name="id2" id="id2">
+                        <h4>¿Desea eliminar el dato seleccionado?</h4>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary" name="deleteData2">Si</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+<!-- Actualizar MICROREDES DENTRO O FUERA de TACNA-->
+<div class="modal fade" id="actualizarpublicoprivado">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header bg-warning text-white">
+                    <h5 class="modal-title">Modificar</h5>
+                    <button class="close" data-dismiss="modal"><span>×</span></button>
+                </div>
+                <div class="modal-body"> 
+                    <form action="procesos/actualizarpublicoprivado.php" method="POST">  
+                        <input type="hidden" name="dato_desencriptado" id="dato_desencriptado" value="<?php echo $dato_desencriptado ?>" >
+                        <input type="hidden" name="id_1puntos" id="id_1puntos" >
+
+                        <div class="form-group">
+                        <label for="title">Lugar de Trabajo </label>
+                        <input type="text" name="lugar3" id="lugar3" class="form-control" placeholder="Enter last name" maxlength="50" >
+                        </div>
+                        <div class="form-group">
+                        <label for="title">Cargo/Funcion desempeñada </label>
+                        <input type="text" name="cargo3" id="cargo3" class="form-control" placeholder="Enter last name" maxlength="50" >
+                        </div> 
+                        <div class="form-group">
+                        <label for="title">Fecha Inicio</label>
+                        <input type="text" name="fecha_inicio3" id="fecha_inicio3" class="form-control" placeholder="Horas" maxlength="50" >
+                        </div> 
+                        <div class="form-group">
+                        <label for="title">Fecha Fin </label>
+                        <input type="text" name="fecha_fin3" id="fecha_fin3" class="form-control" placeholder="Horas" maxlength="50" >
+                        </div>                                 
+                        <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" name="updateData3">Actualizar!</button>
+                       </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- !-- MODAL ELIMINAR MICROREDES DENTRO O FUERA de TACNA -->
+    <div class="modal fade" id="eliminarpublicoprivado">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-danger text-white">
+                    <h5 class="modal-title" >Eliminar registro</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <form action="procesos/eliminarpublicoprivado.php" method="POST">
+                    <div class="modal-body">
+                        <input type="hidden" name="url" id="url" value="<?php echo $dato_desencriptado;?>">
+                        <input type="hidden" name="id3" id="id3">
+                        <h4>¿Desea eliminar el dato seleccionado?</h4>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary" name="deleteData3">Si</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+         <!-- Actualizar Experiencia Laboral MICROREDES-->
+    <div class="modal fade" id="actualizardiresatacna">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header bg-warning text-white">
+                    <h5 class="modal-title">Modificar Experiencia Laboral</h5>
+                    <button class="close" data-dismiss="modal"><span>×</span></button>
+                </div>
+                <div class="modal-body"> 
+                    <form action="procesos/actualizardiresatacna.php" method="POST">  
+                        <input type="hidden" name="dato_desencriptado" id="dato_desencriptado" value="<?php echo $dato_desencriptado ?>" >
+                        <input type="hidden" name="id_4puntos1" id="id_4puntos1" >
+                        
+                        <div class="form-group">
+                        <label for="title">Lugar de Trabajo</label>
+                        <input type="text" name="lugar4" id="lugar4" class="form-control" placeholder="Enter last name" maxlength="50" >
+                        </div>
+                        <div class="form-group">
+                        <label for="title">Cargo/Funcion desempeñada </label>
+                        <input type="text" name="cargo4" id="cargo4" class="form-control" placeholder="Enter last name" maxlength="50" >
+                        </div> 
+                        <div class="form-group">
+                        <label for="title">Fecha Inicio</label>
+                        <input type="text" name="fecha_inicio4" id="fecha_inicio4" class="form-control" placeholder="Horas" maxlength="50" >
+                        </div> 
+                        <div class="form-group">
+                        <label for="title">Fecha Fin </label>
+                        <input type="text" name="fecha_fin4" id="fecha_fin4" class="form-control" placeholder="Horas" maxlength="50" >
+                        </div>                                 
+                        <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" name="updateData5">Actualizar!</button>
+                       </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- !-- MODAL ELIMINAR MICROREDES -->
+    <div class="modal fade" id="eliminardiresaTacna">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-danger text-white">
+                    <h5 class="modal-title" >Eliminar registro</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <form action="procesos/eliminardiresatacna.php" method="POST">
+                    <div class="modal-body">
+                        <input type="hidden" name="url" id="url" value="<?php echo $dato_desencriptado;?>">
+                        <input type="hidden" name="id4" id="id4">
+                        <h4>¿Desea eliminar el dato seleccionado?</h4>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary" name="deleteData4">Si</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
     
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
@@ -810,7 +1024,6 @@
             }).change();
         });
     </script>
-<<<<<<< HEAD
 
     <script>
         $(document).ready(function () {
@@ -839,7 +1052,7 @@
         $(document).ready(function () {
         $('.deleteBtn1').on('click', function(){
     
-            $('#eliminarpostgrado').modal('show');
+            $('#eliminarmicroredes').modal('show');
             // Get the table row data.
             $tr = $(this).closest('tr');
     
@@ -852,10 +1065,132 @@
         });
      });
     </script> 
+    
+
+    <script>
+        $(document).ready(function () {
+            $('.updateBtn2').on('click', function(){
+
+                $('#actualizarmicrotacna').modal('show');
+        
+                // Get the table row data.
+                $tr = $(this).closest('tr');
+        
+                var data = $tr.children("td").map(function() {
+                    return $(this).text();
+                }).get();
+        
+                console.log(data);
+        
+                $('#id_3puntos').val(data[0]);
+                $('#lugar2').val(data[1]);
+                $('#cargo2').val(data[2]);
+                $('#fecha_inicio2').val(data[3]);
+                $('#fecha_fin2').val(data[4]); 
+            
+            });
+        });
+
+        $(document).ready(function () {
+        $('.deleteBtn2').on('click', function(){
+    
+            $('#eliminarmicroredesTacna').modal('show');
+            // Get the table row data.
+            $tr = $(this).closest('tr');
+    
+            var data = $tr.children("td").map(function() {
+                return $(this).text();
+            }).get();
+    
+            console.log(data);
+            $('#id2').val(data[0]);
+        });
+     });
+    </script> 
+
+    <script>
+        $(document).ready(function () {
+            $('.updateBtn3').on('click', function(){
+
+                $('#actualizarpublicoprivado').modal('show');
+        
+                // Get the table row data.
+                $tr = $(this).closest('tr');
+        
+                var data = $tr.children("td").map(function() {
+                    return $(this).text();
+                }).get();
+        
+                console.log(data);
+        
+                $('#id_1puntos').val(data[0]);
+                $('#lugar3').val(data[1]);
+                $('#cargo3').val(data[2]);
+                $('#fecha_inicio3').val(data[3]);
+                $('#fecha_fin3').val(data[4]); 
+            
+            });
+        });
+
+        $(document).ready(function () {
+        $('.deleteBtn3').on('click', function(){
+    
+            $('#eliminarpublicoprivado').modal('show');
+            // Get the table row data.
+            $tr = $(this).closest('tr');
+    
+            var data = $tr.children("td").map(function() {
+                return $(this).text();
+            }).get();
+    
+            console.log(data);
+            $('#id3').val(data[0]);
+        });
+     });
+    </script> 
+
+<script>
+        $(document).ready(function () {
+            $('.updateBtn4').on('click', function(){
+
+                $('#actualizardiresatacna').modal('show');
+        
+                // Get the table row data.
+                $tr = $(this).closest('tr');
+        
+                var data = $tr.children("td").map(function() {
+                    return $(this).text();
+                }).get();
+        
+                console.log(data);
+        
+                $('#id_4puntos1').val(data[0]);
+                $('#lugar4').val(data[1]);
+                $('#cargo4').val(data[2]);
+                $('#fecha_inicio4').val(data[3]);
+                $('#fecha_fin4').val(data[4]); 
+            
+            });
+        });
+
+        $(document).ready(function () {
+        $('.deleteBtn4').on('click', function(){
+    
+            $('#eliminardiresaTacna').modal('show');
+            // Get the table row data.
+            $tr = $(this).closest('tr');
+    
+            var data = $tr.children("td").map(function() {
+                return $(this).text();
+            }).get();
+    
+            console.log(data);
+            $('#id4').val(data[0]);
+        });
+     });
+    </script>
 
     
-=======
->>>>>>> 2ec9772311540b29b7dba8c9ed7eccb78d36991c
     <script>
          $(function(){
             // Clona la fila oculta que tiene los campos base, y la agrega al final de la tabla

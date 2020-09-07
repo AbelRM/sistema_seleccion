@@ -135,66 +135,64 @@
   <script src="public/js/validacion.js"></script>
   <script>
     $('#form').submit(function(event) {
-        event.preventDefault();
-        /*Cambia 6LcZu9QUAAAAACaj-WBiVIQUlr94vfCC8DUpIanS por tu clave de sitio web*/
-        grecaptcha.ready(function() {
-            grecaptcha.execute('6LeVwMQZAAAAABWIaLf9mZZAoV1sJvF9aYTRzexH', {action: 'registro'}).then(function(token) {
-                $('#form').prepend('<input type="hidden" name="token_2" value="' + token + '">');
-                $('#form').prepend('<input type="hidden" name="action" value="registro">');
-                $('#form').unbind('submit').submit();
-            });;
-        });
-  });
+      event.preventDefault();
+      /*Cambia 6LcZu9QUAAAAACaj-WBiVIQUlr94vfCC8DUpIanS por tu clave de sitio web*/
+      grecaptcha.ready(function() {
+        grecaptcha.execute('6LeVwMQZAAAAABWIaLf9mZZAoV1sJvF9aYTRzexH', {action: 'registro'}).then(function(token) {
+          $('#form').prepend('<input type="hidden" name="token_2" value="' + token + '">');
+          $('#form').prepend('<input type="hidden" name="action" value="registro">');
+          $('#form').unbind('submit').submit();
+        });;
+      });
+    });
   </script>
   <script>
     $(document).ready(function () {
-    $('#mensaje_error').hide();  
+      $('#mensaje_error').hide();  
     });
-
-      var cambioDePass = function() {
-          var cont = $('#clave').val();
-          var cont2 = $('#confi_clave').val();
-          if (cont == cont2) {
-              $('#mensaje_error').hide();
-              $('#mensaje_error').attr("class", "control-label col-md-12 text-success");
-              $('#mensaje_error').show();
-              $('#mensaje_error').html("Las constraseñas si coinciden");
-          } else {
-              $('#mensaje_error').attr("class", "control-label col-md-12 text-danger");
-              $('#mensaje_error').html("Las constraseñas no coinciden");
-              $('#mensaje_error').show();
-          }
+    var cambioDePass = function() {
+      var cont = $('#clave').val();
+      var cont2 = $('#confi_clave').val();
+      if (cont == cont2) {
+        $('#mensaje_error').hide();
+        $('#mensaje_error').attr("class", "control-label col-md-12 text-success");
+        $('#mensaje_error').show();
+        $('#mensaje_error').html("Las constraseñas si coinciden");
+      } else {
+        $('#mensaje_error').attr("class", "control-label col-md-12 text-danger");
+        $('#mensaje_error').html("Las constraseñas no coinciden");
+        $('#mensaje_error').show();
       }
-
+    }
     $("#clave").on('keyup', cambioDePass);
     $("#confi_clave").on('keyup', cambioDePass);
   </script>
   <script>
     function pagoOnChange(sel) {
-        if (sel.value=="DNI"){
-          div_mostrar = document.getElementById("mostrar_div");
-          div_mostrar.style.display = "block";
-          divC = document.getElementById("nCuenta");
-          divC.style.display = "block";
-          max = document.getElementById("dni");
-          max.setAttribute("maxlength", "8");
-          
+      if (sel.value=="DNI"){
+        div_mostrar = document.getElementById("mostrar_div");
+        div_mostrar.style.display = "block";
+        divC = document.getElementById("nCuenta");
+        divC.style.display = "block";
+        max = document.getElementById("dni");
+        max.setAttribute("maxlength", "8");
+        
 
-          divT = document.getElementById("nTargeta");
-          divT.style.display = "none";
+        divT = document.getElementById("nTargeta");
+        divT.style.display = "none";
 
-        }else if(sel.value=="C.E."){
-          div_mostrar = document.getElementById("mostrar_div");
-          div_mostrar.style.display = "block";
-          divC = document.getElementById("nCuenta");
-          divC.style.display="none";
+      }else if(sel.value=="C.E."){
+        div_mostrar = document.getElementById("mostrar_div");
+        div_mostrar.style.display = "block";
+        divC = document.getElementById("nCuenta");
+        divC.style.display="none";
 
-          divT = document.getElementById("nTargeta");
-          divT.style.display = "block";
+        divT = document.getElementById("nTargeta");
+        divT.style.display = "block";
 
-          max = document.getElementById("dni");
-          max.setAttribute("maxlength", "9");
-        }
+        max = document.getElementById("dni");
+        max.setAttribute("maxlength", "9");
+      }
     }
   </script>
 </body>

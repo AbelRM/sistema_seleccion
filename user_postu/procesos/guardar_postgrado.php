@@ -2,7 +2,7 @@
     include_once('../conexion.php');
     $dni=$_POST['dni'];
     $idpostulante= $_POST['idpostulante']; 
-    $iddetalle_con=$_POST['iddetalle_convocatoria']; 
+    // $iddetalle_con=$_POST['iddetalle_convocatoria']; 
     //////////////////////// PRESIONAR EL BOTÓN //////////////////////////
     if(isset($_POST['insertar']))
     {

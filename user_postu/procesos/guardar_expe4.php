@@ -1,7 +1,7 @@
 <?php
     include '../conexion.php';
     $dato_desencriptado=$_POST['dni'];
-    $iddetalle_conv=$_POST['iddetalle_conv'];
+    $idpostulante=$_POST['idpostulante'];
     //////////////////////// PRESIONAR EL BOTÓN //////////////////////////
     if(isset($_POST['insertar']))
     {
@@ -36,13 +36,13 @@
             $dias=$diferencia->format('%d');
 
             //// CONCATENAR LOS VALORES EN ORDEN PARA SU FUTURA INSERCIÓN ////////
-            $valores='("'.$lugar.'","'.$cargo.'","'.$fecha_ini.'","'.$fecha_fin.'","'.$años.'","'.$meses.'","'.$dias.'","'.$iddetalle_conv.'"),';
+            $valores='("'.$lugar.'","'.$cargo.'","'.$fecha_ini.'","'.$fecha_fin.'","'.$años.'","'.$meses.'","'.$dias.'","'.$idpostulante.'"),';
 
             //////// YA QUE TERMINA CON COMA CADA FILA, SE RESTA CON LA FUNCIÓN SUBSTR EN LA ULTIMA FILA /////////////////////
             $valoresQ= substr($valores, 0, -1);
             
             ///////// QUERY DE INSERCIÓN ////////////////////////////
-            $sql = "INSERT INTO expe_4puntos (lugar,cargo,fecha_inicio,fecha_fin,anios,meses,dias,expe_4puntos_detalle_con) 
+            $sql = "INSERT INTO expe_4puntos (lugar,cargo,fecha_inicio,fecha_fin,anios,meses,dias,expe_4puntos_idpostulante) 
             VALUES $valoresQ";
 
             $sqlRes=$con->query($sql) or mysqli_error($con);

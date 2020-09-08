@@ -68,29 +68,29 @@
                 $fila2= mysqli_fetch_array($datos2);
                 $idpostulante=$fila2['idpostulante'];
 
-                $primero = mysqli_num_rows(mysqli_query($con,"SELECT * FROM detalle_convocatoria WHERE postulante_idpostulante=$idpostulante"));
-                if($primero==0){
-                    echo "PRIMERO DEBE POSTULAR, para que el sistema le ayude";
-                }else{
-                    $sql3="SELECT MAX(iddetalle_convocatoria) AS id FROM sistema_seleccion.detalle_convocatoria
-                    WHERE postulante_idpostulante=$idpostulante";
-                    $datos3=mysqli_query($con,$sql3) or die(mysqli_error());
-                    $row3 = mysqli_fetch_row($datos3);
-                    $id = trim($row3[0]);
-                }
+                // $primero = mysqli_num_rows(mysqli_query($con,"SELECT * FROM detalle_convocatoria WHERE postulante_idpostulante=$idpostulante"));
+                // if($primero==0){
+                //     echo "PRIMERO DEBE POSTULAR, para que el sistema le ayude";
+                // }else{
+                //   $sql3="SELECT MAX(iddetalle_convocatoria) AS id FROM sistema_seleccion.detalle_convocatoria
+                //   WHERE postulante_idpostulante=$idpostulante";
+                //   $datos3=mysqli_query($con,$sql3) or die(mysqli_error());
+                //   $row3 = mysqli_fetch_row($datos3);
+                //   $id = trim($row3[0]);
+                // }
 
-                $segundo = mysqli_num_rows(mysqli_query($con,"SELECT * FROM detalle_convocatoria WHERE postulante_idpostulante=$idpostulante"));
-                if($segundo==0){
-                    echo "PRIMERO DEBE POSTULAR";
-                }else{
-                    $sql4="SELECT * from detalle_convocatoria 
-                    inner join total_personal_req on detalle_convocatoria.personal_req_idpersonal=total_personal_req.idpersonal 
-                    inner join convocatoria on detalle_convocatoria.convocatoria_idcon=convocatoria.idcon WHERE iddetalle_convocatoria=$id";
-                    $datos4=mysqli_query($con,$sql4) or die(mysqli_error());
-                    $fila4= mysqli_fetch_array($datos4);
-                    $iddetalle_conv=$fila4['iddetalle_convocatoria'];
-                    $idtipo = $fila4['idtipo'];
-                }
+                // $segundo = mysqli_num_rows(mysqli_query($con,"SELECT * FROM detalle_convocatoria WHERE postulante_idpostulante=$idpostulante"));
+                // if($segundo==0){
+                //     echo "PRIMERO DEBE POSTULAR";
+                // }else{
+                //     $sql4="SELECT * from detalle_convocatoria 
+                //     inner join total_personal_req on detalle_convocatoria.personal_req_idpersonal=total_personal_req.idpersonal 
+                //     inner join convocatoria on detalle_convocatoria.convocatoria_idcon=convocatoria.idcon WHERE iddetalle_convocatoria=$id";
+                //     $datos4=mysqli_query($con,$sql4) or die(mysqli_error());
+                //     $fila4= mysqli_fetch_array($datos4);
+                //     $iddetalle_conv=$fila4['iddetalle_convocatoria'];
+                //     $idtipo = $fila4['idtipo'];
+                // }
             ?>
           <!-- Page Heading -->
             <!-- Content Row -->
@@ -103,18 +103,22 @@
                     <select name="select" id="inputSelect" class="form-control custom-select">
                       <!-- <option selected disabled >Elegir la opción reomendada para usted...</option> -->
                       <?php
-                        $total = mysqli_num_rows(mysqli_query($con,"SELECT * from detalle_convocatoria WHERE iddetalle_convocatoria=$id"));
-                        if($total==0){
-                          $sql = mysqli_query($con,"SELECT * from tipo_cargo") or die("Problemas en consulta").mysqli_error();
+                        // $total = mysqli_num_rows(mysqli_query($con,"SELECT * from detalle_convocatoria WHERE iddetalle_convocatoria=$id"));
+                        $sql = mysqli_query($con,"SELECT * from tipo_cargo") or die("Problemas en consulta").mysqli_error();
                           while ($registro=mysqli_fetch_array($sql)) {
                           echo "<option value=\"tipo-".$registro['idtipo']."\">".$registro['tipo_cargo']."</option>";
                           }
-                        }else{
-                          $sql = mysqli_query($con,"SELECT * from tipo_cargo WHERE idtipo=$idtipo") or die("Problemas en consulta").mysqli_error();
-                          while ($registro=mysqli_fetch_array($sql)) {
-                          echo "<option value=\"tipo-".$registro['tipo-exp']."\">".$registro['tipo_cargo']."</option>";
-                          }
-                        }
+                        // if($total==0){
+                        //   $sql = mysqli_query($con,"SELECT * from tipo_cargo") or die("Problemas en consulta").mysqli_error();
+                        //   while ($registro=mysqli_fetch_array($sql)) {
+                        //   echo "<option value=\"tipo-".$registro['idtipo']."\">".$registro['tipo_cargo']."</option>";
+                        //   }
+                        // }else{
+                        //   $sql = mysqli_query($con,"SELECT * from tipo_cargo WHERE idtipo=$idtipo") or die("Problemas en consulta").mysqli_error();
+                        //   while ($registro=mysqli_fetch_array($sql)) {
+                        //   echo "<option value=\"tipo-".$registro['tipo-exp']."\">".$registro['tipo_cargo']."</option>";
+                        //   }
+                        // }
                       ?>
                     </select>
                 </div> 
@@ -154,8 +158,7 @@
                                         </thead>
                                         <tbody>
                                             <?php
-
-                                                $sql6 = "SELECT * FROM expe_4puntos WHERE expe_4puntos_detalle_con = $iddetalle_conv";
+                                                $sql6 = "SELECT * FROM expe_4puntos WHERE expe_4puntos_idpostulante = $idpostulante";
                                                 $query6=mysqli_query($con, $sql6);
                                                 if(mysqli_num_rows($query6)>0){
                                                     while ($row6= MySQLI_fetch_array($query6))
@@ -216,15 +219,15 @@
                                         </table>
                                     </div>
                                     <input type="hidden" name="dni" value="<?php echo $dato_desencriptado; ?>">
-                                    <input type="hidden" name="iddetalle_conv" value="<?php echo $iddetalle_conv; ?>">
+                                    <input type="hidden" name="idpostulante" value="<?php echo $idpostulante; ?>">
                                     <div class="row d-flex justify-content-end">
                                         <div class="form-inline p-2">
-                                            <button id="adicional-1" name="adicional" type="button" class="btn btn-warning">AGREGAR FILA (+)</button>
+                                            <button id="adicional-1" name="adicional" type="button" class="btn btn-warning">Agregar Fila (+)</button>
                                         </div>
                                     </div>
                                     <div class="row d-flex justify-content-center">
                                         <div class="form-inline p-2">
-                                            <button  name="insertar" type="submit" class="btn btn-primary">GUARDAR!</button>
+                                            <button  name="insertar" type="submit" class="btn btn-primary">Guardar</button>
                                         </div>
                                     </div>
                                   </form>
@@ -253,11 +256,11 @@
                                         </thead>
                                         <tbody>
                                             <?php
-                                                $sql7 = "SELECT * FROM expe_3puntos WHERE expe_3puntos_detalle_con = $iddetalle_conv";
+                                                $sql7 = "SELECT * FROM expe_3puntos WHERE expe_3puntos_idpostulante = $idpostulante";
 
                                                 $query7=mysqli_query($con, $sql7);
                                                 if(mysqli_num_rows($query7)>0){
-                                                    while ($row7= MySQLI_fetch_array($query7))
+                                                  while ($row7= MySQLI_fetch_array($query7))
                                                 {
                                                 ?>
                                                     <tr>
@@ -306,15 +309,15 @@
                                             </table>
                                         </div>
                                         <input type="hidden" name="dni" value="<?php echo $dato_desencriptado; ?>">
-                                        <input type="hidden" name="iddetalle_conv" value="<?php echo $iddetalle_conv; ?>">
+                                        <input type="hidden" name="idpostulante" value="<?php echo $idpostulante; ?>">
                                         <div class="row d-flex justify-content-end">
                                             <div class="form-inline p-2">
-                                                <button id="adicional-2" name="adicional" type="button" class="btn btn-warning">AGREGAR FILA (+)</button>
+                                                <button id="adicional-2" name="adicional" type="button" class="btn btn-warning">Agregar Fila (+)</button>
                                             </div>
                                         </div>
                                         <div class="row d-flex justify-content-center">
                                             <div class="form-inline p-2">
-                                                <button name="insertar2" type="submit" class="btn btn-primary">GUARDAR!</button>
+                                                <button name="insertar2" type="submit" class="btn btn-primary">Guardar</button>
                                             </div>
                                         </div>
                                     </form>
@@ -322,11 +325,12 @@
                             </div>
                         </div>                    
                     </div>
+
                     <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
                         <div class="form-row p-2 d-flex justify-content-center">
                             <div class="card border-primary">
                                 <div class="card-header header-formulario">
-                                    <h5 class="titulo-card">Experiencia laboral en el sector público o privado DENTRO O FUERA de TACNA!</h5>
+                                    <h5 class="titulo-card">Experiencia laboral en el sector público o privado DENTRO O FUERA de TACNA</h5>
                                 </div>
                                 <div class="card-body">
                                     <div class="table-responsive">
@@ -342,25 +346,25 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <?php
-                                                $sql8 = "SELECT * FROM expe_1puntos WHERE expe_1puntos_detalle_con = $iddetalle_conv";
+                                          <?php
+                                              $sql8 = "SELECT * FROM expe_1puntos WHERE expe_1puntos_idpostulante = $idpostulante";
 
-                                                $query8=mysqli_query($con, $sql8);
-                                                if(mysqli_num_rows($query8)>0){
-                                                    while ($row8= MySQLI_fetch_array($query8))
+                                            $query8=mysqli_query($con, $sql8);
+                                            if(mysqli_num_rows($query8)>0){
+                                                while ($row8= MySQLI_fetch_array($query8))
                                                 {
                                                 ?>
-                                                    <tr>
-                                                        <td style="font-size: 12px;"><?php echo $row8['id_1puntos'] ?></td>
-                                                        <td style="font-size: 12px;"><?php echo $row8['lugar'] ?></td>
-                                                        <td style="font-size: 12px;"><?php echo $row8['cargo'] ?></td>
-                                                        <td style="font-size: 12px;"><?php echo $row8['fecha_inicio'] ?></td>
-                                                        <td style="font-size: 12px;"><?php echo $row8['fecha_fin'] ?></td>
-                                                        <td class="d-flex justify-content-center">
-                                                            <button class="btn btn-success btn-sm m-1 updateBtn3"><i class="fa fa-edit"></i></button>
-                                                            <button class="btn btn-danger btn-sm m-1 deleteBtn3"><i class="fa fa-times-circle"></i></button>
-                                                        </td> 
-                                                    </tr>
+                                                  <tr>
+                                                    <td style="font-size: 12px;"><?php echo $row8['id_1puntos'] ?></td>
+                                                    <td style="font-size: 12px;"><?php echo $row8['lugar'] ?></td>
+                                                    <td style="font-size: 12px;"><?php echo $row8['cargo'] ?></td>
+                                                    <td style="font-size: 12px;"><?php echo $row8['fecha_inicio'] ?></td>
+                                                    <td style="font-size: 12px;"><?php echo $row8['fecha_fin'] ?></td>
+                                                    <td class="d-flex justify-content-center">
+                                                        <button class="btn btn-success btn-sm m-1 updateBtn3"><i class="fa fa-edit"></i></button>
+                                                        <button class="btn btn-danger btn-sm m-1 deleteBtn3"><i class="fa fa-times-circle"></i></button>
+                                                    </td> 
+                                                  </tr>
                                                 <?php
                                                 }
                                             }else{
@@ -397,15 +401,15 @@
                                         </table>
                                     </div>
                                     <input type="hidden" name="dni" value="<?php echo $dato_desencriptado; ?>">
-                                    <input type="hidden" name="iddetalle_conv" value="<?php echo $iddetalle_conv; ?>">
+                                    <input type="hidden" name="idpostulante" value="<?php echo $idpostulante; ?>">
                                     <div class="row d-flex justify-content-end">
                                         <div class="form-inline p-2">
-                                            <button id="adicional-3" name="adicional" type="button" class="btn btn-warning">AGREGAR FILA (+)</button>
+                                            <button id="adicional-3" name="adicional" type="button" class="btn btn-warning">Agregar Fila (+)</button>
                                         </div>
                                     </div>
                                     <div class="row d-flex justify-content-center">
                                         <div class="form-inline p-2">
-                                            <button  name="insertar" type="submit" class="btn btn-primary">GUARDAR!</button>
+                                            <button  name="insertar" type="submit" class="btn btn-primary">Guardar</button>
                                         </div>
                                     </div>
                                 </form>

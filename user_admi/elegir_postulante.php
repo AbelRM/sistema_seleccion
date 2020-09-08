@@ -83,6 +83,7 @@
                       <th>Nombres</th>
                       <th>Cargo</th>
                       <th>Tipo de cargo</th>
+                      <th>Puntaje</th>
                       <th>Acciones</th>
                     </tr>
                   </thead>

@@ -69,16 +69,16 @@
           <!-- Page Heading -->
             <!-- Content Row -->
 						<div class="card border-success">
-              <div class="card-header">
+              <div class="card-header bg-success">
                 <div class="row">
                   <div class="col-md-6">
-                    <h5 class="titulo-card">Mis datos profesionales</h5>
+                    <h5 class="titulo-card text-white">Mis datos profesionales</h5>
                   </div>
                 </div>
               </div>
               <div class="card-body">
               <?php
-                $id_formacion = $row['id_formacion'];
+                $id_formacion = $_GET['idformacion'];
                 $consulta_form = "SELECT * FROM formacion_acad 
                 inner join tipo_estudios ON formacion_acad.tipo_estudios_id=tipo_estudios.id_tipo_estudios 
                 WHERE id_formacion = $id_formacion";
@@ -87,6 +87,11 @@
               ?>
               <form action="procesos/actualizar_formacion.php" autocomplete="off" method="POST">
                 <div class="row"> 
+                  <div class="form-group text-danger font-weight-bold">
+                    <p>(*) Indica un campo obligatorio.</p>
+                    <p>(**) En el campo "FECHA" debe indicar la fecha de obtención del "NIVEL DE ESTUDIOS" que está registrando. 
+                    En el caso de estudiante, debe indicar la fecha del ciclo culminado que está registrando.</p>
+                  </div>
                   <input type="hidden" name="dni" value="<?php echo $dato_desencriptado ?>">
                   <input type="hidden" name="idformacion" value="<?php echo $id_formacion ?>">
                   <div class="col-md-6 col-sm-12 form-group">
@@ -112,15 +117,15 @@
                       <option value="TITULADO">Titulado</option>
                     </select>
                   </div>
-                  <div class="col-md-12 col-sm-12 form-group">
+                  <div class="col-md-6 col-sm-12 form-group">
                     <label for="title">(*) Centro estudios</label>
                     <input type="text" name="centro_estudios" class="form-control" value="<?php echo $row['centro_estudios'] ?>" required>
                   </div>
-                  <div class="col-md-12 col-sm-12 form-group">
+                  <div class="col-md-6 col-sm-12 form-group">
                     <label for="title">(*) Carrera</label>
                     <input type="text" name="carrera" class="form-control" value="<?php echo $row['carrera'] ?>" required>
                   </div>
-                  <div class="col-md-6 col-sm-12 form-group">
+                  <div class="col-md-4 col-sm-12 form-group">
                     <?php $colegiatura_edit = $row['colegiatura'] ?>
                     <label for="title">(*) Colegiatura</label>
                     <select name="colegiatura_edit" id="colegiatura_edit" class="form-control">
@@ -128,38 +133,33 @@
                       <option value="SI">SI</option>
                     </select>
                   </div>
-                  <div class="col-md-6 col-sm-12 form-group">
+                  <div class="col-md-4 col-sm-12 form-group">
                     <label for="title">(*) N° Colegiatura</label>
                     <input type="text" name="nro_colegiatura_edit" id="nro_colegiatura_edit"  class="form-control" value="<?php 
                     if(is_null($row['nro_colegiatura'])){echo "-";}else{echo $row['nro_colegiatura'];}?>" disabled>
                   </div>
-                  <div class="col-md-6 col-sm-12 form-group">
+                  <div class="col-md-4 col-sm-12 form-group">
                     <label for="title">(*) Fecha última habilitación</label>
                     <input type="date" name="fecha_colegiatura_edit" id="fecha_colegiatura_edit" class="form-control" value="<?php 
                     if(is_null($row['fech_habilitacion'])){echo "yyyy-MM-dd";}else{echo $row['fech_habilitacion'];}?>" disabled>
                   </div>
-                  <div class="col-md-6 col-sm-12 form-group">
+                  <div class="col-md-4 col-sm-12 form-group">
                     <label for="title">(*) Lugar Colegiatura</label>
                     <input type="text" name="lugar_colegiatura_edit" id="lugar_colegiatura_edit" class="form-control" value="<?php 
                     if(is_null($row['lugar_colegiatura'])){echo "-";}else{echo $row['lugar_colegiatura'];}?>" disabled>
                   </div>
-                  <div class="col-md-6 col-sm-12 form-group">
+                  <div class="col-md-4 col-sm-12 form-group">
                     <label for="title">(**) Fecha Inicio</label>
                     <input type="date" name="fecha_inicio" class="form-control" value="<?php echo $row['fecha_inicio'] ?>" required>
                   </div>
-                  <div class="col-md-6 col-sm-12 form-group">
+                  <div class="col-md-4 col-sm-12 form-group">
                     <label for="title">(**) Fecha Término</label>
                     <input type="date" name="fecha_fin" class="form-control" value="<?php echo $row['fecha_fin'] ?>" required>
                   </div>
                 </div>
-                <div class="form-group">
-                  <p>(*) Indica un campo obligatorio.</p>
-                  <p>(**) En el campo "FECHA" debe indicar la fecha de obtención del "NIVEL DE ESTUDIOS" que está registrando. 
-                  En el caso de estudiante, debe indicar la fecha del ciclo culminado que está registrando.</p>
-                </div>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                <a href="formacion.php?dni=<?php echo $dato_desencriptado  ?>" type="button" class="btn btn-default">Cancelar</a>
                 <button type="submit" name="editar" class="btn btn-success">Actualizar!</a>
               </div>
               </form>
@@ -197,8 +197,8 @@
         </div>
         <div class="modal-body">Seleccione "Cerrar sesión" a continuación si está listo para finalizar su sesión actual.</div>
         <div class="modal-footer">
-        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-        <a class="btn btn-primary" href="procesos/cerrar_sesion.php">Cerrar sesión</a>
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+          <a class="btn btn-primary" href="procesos/cerrar_sesion.php">Cerrar sesión</a>
         </div>
       </div>
     </div>

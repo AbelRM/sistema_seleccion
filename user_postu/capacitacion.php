@@ -272,7 +272,7 @@
                                                                     <td><input style="width: 200px;font-size: 12px;" type="text" name="especialidad[]"  class="form-control name_list" required/></td>
                                                                     <td>
                                                                         <select style="font-size: 12px;" name="tipo_estu[]" class="form-control" id="tipo_estu[]" required>
-                                                                            <option selected>Elegir</option>
+                                                                            <option disabled>Elegir</option>
                                                                             <option value="MAESTRIA">Maestria </option>
                                                                             <option value="DOCTORADO">Doctorado</option>
                                                                         </select>
@@ -281,7 +281,7 @@
                                                                     <td><input style="width: 150px;font-size: 12px;" type="date" name="fech_fin[]" class="form-control name_list" required/></td>
                                                                     <td>
                                                                         <select style="font-size: 12px;" name="nivel[]" class="form-control" id="nivel[]" required>
-                                                                            <option selected>Elegir</option>
+                                                                            <option disableds>Elegir</option>
                                                                             <option value="MAGISTER">Magister</option>
                                                                             <option value="DOCTORADO">Doctorado</option>
                                                                             <option value="EGRESADO">Egresado</option>
@@ -340,7 +340,7 @@
                                                 <?php
                                                     $dni = $_GET['dni'];
                                                     
-                                                    $consulta3 = "SELECT * FROM cursos_extra WHERE postulante_idpostulante = $idpostulante";
+                                                    $consulta3 = "SELECT * FROM cursos_extra WHERE idpostulante = $idpostulante";
 
                                                     $query=mysqli_query($con, $consulta3);
                                                     if(mysqli_num_rows($query)>0){
@@ -365,7 +365,7 @@
                                                     }
                                                         }else{
                                                             echo "<tr>
-                                                            <td colspan='7' class='text-center text-danger' >NO HAY DATOS REGISTRADOS</td>
+                                                            <td colspan='9' class='text-center text-danger' >NO HAY DATOS REGISTRADOS</td>
                                                             </tr>";
                                                         }
                                                     ?>
@@ -397,9 +397,9 @@
                                                                 <tr class="fila-fija-9">
                                                                     <td><input style="font-size: 12px;" type="text" name="centro_estu[]" class="form-control name_list" required /></td>
                                                                     <td><input style="font-size: 12px;" type="text" name="materia[]"  class="form-control name_list" required/></td>
-                                                                    <td><input style="width: 62px;font-size: 12px;" type="text" name="horas[]" class="form-control name_list" required/></td>
-                                                                    <td><input style="width: 168px;font-size: 12px;" type="date" name="fech_ini[]" class="form-control name_list" required/></td>
-                                                                    <td><input style="width: 168px;font-size: 12px;" type="date" name="fech_fin[]" class="form-control name_list" required/></td>
+                                                                    <td><input style="font-size: 12px;" type="text" name="horas[]" class="form-control name_list" required/></td>
+                                                                    <td><input style="width: 140px; font-size: 12px;" type="date" name="fech_ini[]" class="form-control name_list" required/></td>
+                                                                    <td><input style="width: 140px; font-size: 12px;" type="date" name="fech_fin[]" class="form-control name_list" required/></td>
                                                                     <td>
                                                                         <select style="font-size: 12px;" name="nivel[]" class="form-control" id="cargo" required>
                                                                             <option value="" disabled selected>Elegir</option>
@@ -423,7 +423,7 @@
                                                     <div class="row d-flex justify-content-center">
                                                         <input type="hidden" id="idcon" name="idcon" value="<?php echo $fila['idcon']; ?>">
                                                         <div class="form-inline p-2">
-                                                            <button id="adicional-9" name="adicional" type="button" class="btn btn-warning"> AGREGAR FILA (+) </button>
+                                                            <button id="adicional-9" name="adicional" type="button" class="btn btn-warning"> Agregar Fila (+) </button>
                                                         </div>
                                                     </div>   
                                                 </div>

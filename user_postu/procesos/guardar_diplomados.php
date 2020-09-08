@@ -43,7 +43,7 @@
             
             ///////// QUERY DE INSERCIÓN ////////////////////////////
             // include_once('conexion.php'); 
-            $sql = "INSERT INTO cursos_extra (centro_estu, materia, horas, fech_ini, fech_fin, tipo, nivel, postulante_idpostulante) 
+            $sql = "INSERT INTO cursos_extra (centro_estu, materia, horas, fech_ini, fech_fin, tipo, nivel, idpostulante) 
             VALUES $valoresQ";
 
             $sqlRes=$con->query($sql) or mysqli_error($con);

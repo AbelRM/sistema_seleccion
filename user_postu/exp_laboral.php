@@ -70,7 +70,7 @@
 
                 $primero = mysqli_num_rows(mysqli_query($con,"SELECT * FROM detalle_convocatoria WHERE postulante_idpostulante=$idpostulante"));
                 if($primero==0){
-                   
+                    echo "PRIMERO DEBE POSTULAR, para que el sistema le ayude";
                 }else{
                     $sql3="SELECT MAX(iddetalle_convocatoria) AS id FROM sistema_seleccion.detalle_convocatoria
                     WHERE postulante_idpostulante=$idpostulante";
@@ -81,7 +81,7 @@
 
                 $segundo = mysqli_num_rows(mysqli_query($con,"SELECT * FROM detalle_convocatoria WHERE postulante_idpostulante=$idpostulante"));
                 if($segundo==0){
-                    
+                    echo "PRIMERO DEBE POSTULAR";
                 }else{
                     $sql4="SELECT * from detalle_convocatoria 
                     inner join total_personal_req on detalle_convocatoria.personal_req_idpersonal=total_personal_req.idpersonal 
@@ -101,21 +101,21 @@
             <div class="form-row d-flex justify-content-center">
                 <div class="form-group col-md-6">
                     <select name="select" id="inputSelect" class="form-control custom-select">
-                        <!-- <option selected disabled >Elegir la opción reomendada para usted...</option> -->
-                        <?php
-                            $total = mysqli_num_rows(mysqli_query($con,"SELECT * from detalle_convocatoria WHERE iddetalle_convocatoria=$id"));
-                            if($total==0){
-                                $sql = mysqli_query($con,"SELECT * from tipo_cargo") or die("Problemas en consulta").mysqli_error();
-                                while ($registro=mysqli_fetch_array($sql)) {
-                                echo "<option value=\"tipo-".$registro['idtipo']."\">".$registro['tipo_cargo']."</option>";
-                                }
-                            }else{
-                                $sql = mysqli_query($con,"SELECT * from tipo_cargo WHERE idtipo=$idtipo") or die("Problemas en consulta").mysqli_error();
-                                while ($registro=mysqli_fetch_array($sql)) {
-                                echo "<option value=\"tipo-".$registro['tipo-exp']."\">".$registro['tipo_cargo']."</option>";
-                                }
-                            }
-                        ?>
+                      <!-- <option selected disabled >Elegir la opción reomendada para usted...</option> -->
+                      <?php
+                        $total = mysqli_num_rows(mysqli_query($con,"SELECT * from detalle_convocatoria WHERE iddetalle_convocatoria=$id"));
+                        if($total==0){
+                          $sql = mysqli_query($con,"SELECT * from tipo_cargo") or die("Problemas en consulta").mysqli_error();
+                          while ($registro=mysqli_fetch_array($sql)) {
+                          echo "<option value=\"tipo-".$registro['idtipo']."\">".$registro['tipo_cargo']."</option>";
+                          }
+                        }else{
+                          $sql = mysqli_query($con,"SELECT * from tipo_cargo WHERE idtipo=$idtipo") or die("Problemas en consulta").mysqli_error();
+                          while ($registro=mysqli_fetch_array($sql)) {
+                          echo "<option value=\"tipo-".$registro['tipo-exp']."\">".$registro['tipo_cargo']."</option>";
+                          }
+                        }
+                      ?>
                     </select>
                 </div> 
             </div>

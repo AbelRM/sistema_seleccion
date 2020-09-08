@@ -1364,32 +1364,32 @@
 
     <script>
         $(document).ready(function () {
-            $('.updateBtn1').on('click', function(){
+          $('.updateBtn1').on('click', function(){
 
-                $('#actualizarpostgrado').modal('show');
-        
-                // Get the table row data.
-                $tr = $(this).closest('tr');
-        
-                var data = $tr.children("td").map(function() {
-                    return $(this).text();
-                }).get();
-        
-                console.log(data);
-        
-                $('#idmaestria_doc').val(data[0]);
-                $('#centro_estudios').val(data[1]);
-                $('#especialidades').val(data[2]);
-                $('#tipo_estu').val(data[3]);
-                $('#fech_ini').val(data[4]);
-                $('#fech_fin').val(data[5]);  
-                $('#nivel1').val(data[6]); 
-            
-            });
+            $('#actualizarpostgrado').modal('show');
+    
+            // Get the table row data.
+            $tr = $(this).closest('tr');
+    
+            var data = $tr.children("td").map(function() {
+                return $(this).text();
+            }).get();
+    
+            console.log(data);
+    
+            $('#idmaestria_doc').val(data[0]);
+            $('#centro_estudios').val(data[1]);
+            $('#especialidades').val(data[2]);
+            $('#tipo_estu').val(data[3]);
+            $('#fech_ini').val(data[4]);
+            $('#fech_fin').val(data[5]);  
+            $('#nivel1').val(data[6]); 
+          
+          });
         });
 
         $(document).ready(function () {
-        $('.deleteBtn1').on('click', function(){
+          $('.deleteBtn1').on('click', function(){
     
             $('#eliminarpostgrado').modal('show');
             // Get the table row data.
@@ -1402,34 +1402,34 @@
             console.log(data);
             $('#id1').val(data[0]);
         });
-    });
+      });
     </script> 
 
     <script>
         $(document).ready(function () {
-                $('.updateBtn2').on('click', function(){
+          $('.updateBtn2').on('click', function(){
 
-                    $('#actualizardiplomados').modal('show');
-            
-                    // Get the table row data.
-                    $tr = $(this).closest('tr');
-            
-                    var data = $tr.children("td").map(function() {
-                        return $(this).text();
-                    }).get();
-            
-                    console.log(data);
-            
-                    $('#idcursos_extra').val(data[0]);
-                    $('#centro_estud').val(data[1]);
-                    $('#materia').val(data[2]);
-                    $('#horas').val(data[3]);
-                    $('#fech_inic').val(data[4]);
-                    $('#fech_fin1').val(data[5]);  
-                    $('#tipo1').val(data[6]); 
-                    $('#nivel2').val(data[7]);         
-                
-                });
+            $('#actualizardiplomados').modal('show');
+    
+            // Get the table row data.
+            $tr = $(this).closest('tr');
+    
+            var data = $tr.children("td").map(function() {
+                return $(this).text();
+            }).get();
+    
+            console.log(data);
+    
+            $('#idcursos_extra').val(data[0]);
+            $('#centro_estud').val(data[1]);
+            $('#materia').val(data[2]);
+            $('#horas').val(data[3]);
+            $('#fech_inic').val(data[4]);
+            $('#fech_fin1').val(data[5]);  
+            $('#tipo1').val(data[6]); 
+            $('#nivel2').val(data[7]);         
+          
+          });
         });
 
         $(document).ready(function () {
@@ -1450,42 +1450,42 @@
     </script>
 
     <script>
-        $(document).ready(function () {
-            $('.updateBtn3').on('click', function(){
+      $(document).ready(function () {
+        $('.updateBtn3').on('click', function(){
 
-                $('#actualizaridiomas').modal('show');
+          $('#actualizaridiomas').modal('show');
+  
+          // Get the table row data.
+          $tr = $(this).closest('tr');
+  
+          var data = $tr.children("td").map(function() {
+              return $(this).text();
+          }).get();
+  
+          console.log(data);
         
-                // Get the table row data.
-                $tr = $(this).closest('tr');
-        
-                var data = $tr.children("td").map(function() {
-                    return $(this).text();
-                }).get();
-        
-                console.log(data);
-              
-                $('#ididiomas_comp').val(data[0]);
-                $('#idioma_comp').val(data[1]);
-                $('#nivel4').val(data[2]);
-            
-            });
+          $('#ididiomas_comp').val(data[0]);
+          $('#idioma_comp').val(data[1]);
+          $('#nivel4').val(data[2]);
+      
         });
+      });
 
-        $(document).ready(function () {
-            $('.deleteBtn3').on('click', function(){
-        
-                $('#eliminaridiomas').modal('show');
-                // Get the table row data.
-                $tr = $(this).closest('tr');
-        
-                var data = $tr.children("td").map(function() {
-                    return $(this).text();
-                }).get();
-        
-                console.log(data);
-                $('#id3').val(data[0]);
-            });
+      $(document).ready(function () {
+        $('.deleteBtn3').on('click', function(){
+    
+          $('#eliminaridiomas').modal('show');
+          // Get the table row data.
+          $tr = $(this).closest('tr');
+  
+          var data = $tr.children("td").map(function() {
+              return $(this).text();
+          }).get();
+  
+          console.log(data);
+          $('#id3').val(data[0]);
         });
+      });
     </script>
 
     <script>

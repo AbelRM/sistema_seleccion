@@ -186,7 +186,7 @@
     </div>
   </div>
 
-  <!-- ADD RECORD MODAL -->
+  <!-- ADD NUEVOS DATOS -->
   <div class="modal fade" id="addModal">
     <div class="modal-dialog modal-md">
       <div class="modal-content">
@@ -203,7 +203,7 @@
               <input type="hidden" name="postulante" value="<?php echo $idpostulante ?>">
               <div class="col-md-6 col-sm-12 form-group">
                 <label for="title">(*) Tipo estudio</label>
-                <select class="form-control" name="tipo_estudios" id="tipo_estudios" required>
+                <select class="form-control" name="tipo_estudios" onChange="tipo_estudios_select(this)" required>
                   <option value="0">Seleccione:</option>
                   <?php
                     $query = $con -> query ("SELECT * FROM tipo_estudios");
@@ -213,7 +213,7 @@
                   ?>
                 </select>
               </div>
-              <div class="col-md-6 col-sm-12 form-group">
+              <div class="col-md-6 col-sm-12 form-group" id="div_nivel_estudio">
                 <label for="title">(*) Nivel estudios</label>
                 <select name="nivel_estudios" id="nivel_estudios" class="form-control">
                   <option value="ESTUDIANTE">Estudiante</option>
@@ -222,17 +222,17 @@
                   <option value="TITULADO">Titulado</option>
                 </select>
               </div>
-              <div class="col-md-12 col-sm-12 form-group">
+              <div class="col-md-12 col-sm-12 form-group" id="div_centro_estudios">
                 <label for="title">(*) Centro estudios</label>
                 <input type="text" name="centro_estudios" class="form-control" placeholder="Nombre centro estudios" maxlength="100"
                 required>
               </div>
-              <div class="col-md-12 col-sm-12 form-group">
+              <div class="col-md-12 col-sm-12 form-group" id="div_carrera">
                 <label for="title">(*) Carrera</label>
                 <input type="text" name="carrera" class="form-control" placeholder="Nombre de la carrera" maxlength="100"
                 required>
               </div>
-              <div class="col-md-6 col-sm-12 form-group">
+              <div class="col-md-6 col-sm-12 form-group" id="div_colegiatura">
                 <label for="title">(*) Colegiatura</label>
                 <select name="colegiatura" id="colegiatura_new" class="form-control">
                   
@@ -240,23 +240,23 @@
                   <option value="SI">SI</option>
                 </select>
               </div>
-              <div class="col-md-6 col-sm-12 form-group">
+              <div class="col-md-6 col-sm-12 form-group" id="div_nro_colegiatura">
                 <label for="title">(*) N° Colegiatura</label>
                 <input type="text" name="nro_colegiatura" id="nro_colegiatura_new" class="form-control" placeholder="N° colegiatura" maxlength="50" disabled>
               </div>
-              <div class="col-md-6 col-sm-12 form-group">
+              <div class="col-md-6 col-sm-12 form-group" id="div_fecha_habilitacion">
                 <label for="title">(*) Fecha última habilitación</label>
                 <input type="date" name="fecha_colegiatura" id="fecha_colegiatura_new" class="form-control" disabled>
               </div>
-              <div class="col-md-6 col-sm-12 form-group">
+              <div class="col-md-6 col-sm-12 form-group" id="div_lugar_colegiatura">
                 <label for="title">(*) Lugar Colegiatura</label>
                 <input type="text" name="lugar_colegiatura" id="lugar_colegiatura_new" class="form-control" placeholder="Lugar de colegiatura" maxlength="70" disabled>
               </div>
-              <div class="col-md-6 col-sm-12 form-group">
+              <div class="col-md-6 col-sm-12 form-group" id="div_fecha_inicio">
                 <label for="title">(**) Fecha Inicio</label>
                 <input type="date" name="fecha_inicio" class="form-control" required>
               </div>
-              <div class="col-md-6 col-sm-12 form-group">
+              <div class="col-md-6 col-sm-12 form-group" id="div_fecha_fin">
                 <label for="title">(**) Fecha Término</label>
                 <input type="date" name="fecha_fin" class="form-control" required>
               </div>
@@ -342,29 +342,90 @@
     });
   </script>
   <script>
-    $(document).ready(function(){
-        $('#nivel_estudios_edit > option[value="<?php echo $nivel_estudio?>"]').attr('selected', 'selected');
-        $('#tipo_estudios_edit > option[value="<?php echo $tipo_estudio_edit?>"]').attr('selected', 'selected');
-        $('#colegiatura_edit > option[value="<?php echo $colegiatura_edit?>"]').attr('selected', 'selected');
-    });
 
     $(function() {
         $("#colegiatura_new").on('change', function() {
         var selectValue = $(this).val();
         switch (selectValue) {
         case "NO":
-            $("#nro_colegiatura_new").prop('disabled',true);
-            $("#fecha_colegiatura_new").prop('disabled',true);
-            $("#lugar_colegiatura_new").prop('disabled',true);
+          $("#nro_colegiatura_new").prop('disabled',true);
+          $("#fecha_colegiatura_new").prop('disabled',true);
+          $("#lugar_colegiatura_new").prop('disabled',true);
         break;
         case "SI":
-            $("#nro_colegiatura_new").removeAttr('disabled');
-            $("#fecha_colegiatura_new").removeAttr('disabled');
-            $("#lugar_colegiatura_new").removeAttr('disabled');
+          $("#nro_colegiatura_new").removeAttr('disabled');
+          $("#fecha_colegiatura_new").removeAttr('disabled');
+          $("#lugar_colegiatura_new").removeAttr('disabled');
         break;
         }
         }).change();
     });
+  </script>
+  <script>
+    function tipo_estudios_select(sel) {
+      if (sel.value=="1"){
+        div_nivel_estudio = document.getElementById("div_nivel_estudio");
+        div_nivel_estudio.style.display = "none";
+        div_centro_estudios = document.getElementById("div_centro_estudios");
+        div_centro_estudios.style.display = "block";
+        div_carrera = document.getElementById("div_carrera");
+        div_carrera.style.display = "none";
+        div_colegiatura = document.getElementById("div_colegiatura");
+        div_colegiatura.style.display = "none";
+        div_nro_colegiatura = document.getElementById("div_nro_colegiatura");
+        div_nro_colegiatura.style.display = "none";
+        div_fecha_habilitacion = document.getElementById("div_fecha_habilitacion");
+        div_fecha_habilitacion.style.display = "none";
+        div_lugar_colegiatura = document.getElementById("div_lugar_colegiatura");
+        div_lugar_colegiatura.style.display = "none";
+        div_fecha_inicio = document.getElementById("div_fecha_inicio");
+        div_fecha_inicio.style.display = "block";
+        div_fecha_fin = document.getElementById("div_fecha_fin");
+        div_fecha_fin.style.display = "block";
+        // divC = document.getElementById("nCuenta");
+        // divC.style.display = "block";
+        // max = document.getElementById("dni");
+        // max.setAttribute("maxlength", "8");
+      }else if(sel.value=="2"){
+        div_nivel_estudio = document.getElementById("div_nivel_estudio");
+        div_nivel_estudio.style.display = "block";
+        div_centro_estudios = document.getElementById("div_centro_estudios");
+        div_centro_estudios.style.display = "block";
+        div_carrera = document.getElementById("div_carrera");
+        div_carrera.style.display = "block";
+        div_colegiatura = document.getElementById("div_colegiatura");
+        div_colegiatura.style.display = "none";
+        div_nro_colegiatura = document.getElementById("div_nro_colegiatura");
+        div_nro_colegiatura.style.display = "none";
+        div_fecha_habilitacion = document.getElementById("div_fecha_habilitacion");
+        div_fecha_habilitacion.style.display = "none";
+        div_lugar_colegiatura = document.getElementById("div_lugar_colegiatura");
+        div_lugar_colegiatura.style.display = "none";
+        div_fecha_inicio = document.getElementById("div_fecha_inicio");
+        div_fecha_inicio.style.display = "block";
+        div_fecha_fin = document.getElementById("div_fecha_fin");
+        div_fecha_fin.style.display = "block";
+      }else if(sel.value=="3"){
+        div_nivel_estudio = document.getElementById("div_nivel_estudio");
+        div_nivel_estudio.style.display = "block";
+        div_centro_estudios = document.getElementById("div_centro_estudios");
+        div_centro_estudios.style.display = "block";
+        div_carrera = document.getElementById("div_carrera");
+        div_carrera.style.display = "block";
+        div_colegiatura = document.getElementById("div_colegiatura");
+        div_colegiatura.style.display = "none";
+        div_nro_colegiatura = document.getElementById("div_nro_colegiatura");
+        div_nro_colegiatura.style.display = "none";
+        div_fecha_habilitacion = document.getElementById("div_fecha_habilitacion");
+        div_fecha_habilitacion.style.display = "none";
+        div_lugar_colegiatura = document.getElementById("div_lugar_colegiatura");
+        div_lugar_colegiatura.style.display = "none";
+        div_fecha_inicio = document.getElementById("div_fecha_inicio");
+        div_fecha_inicio.style.display = "block";
+        div_fecha_fin = document.getElementById("div_fecha_fin");
+        div_fecha_fin.style.display = "block";
+      }
+    }
   </script>
 
 </body>

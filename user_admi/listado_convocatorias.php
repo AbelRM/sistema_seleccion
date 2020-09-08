@@ -90,7 +90,7 @@
                   </thead>
                   <?php
                  
-                   $sql = " SELECT * FROM convocatoria INNER JOIN direccion_ejec ON direccion_ejec.iddireccion = convocatoria.direccion_ejec_iddireccion";
+                      $sql = "SELECT * FROM convocatoria INNER JOIN direccion_ejec ON direccion_ejec.iddireccion = convocatoria.direccion_ejec_iddireccion";
                      
                       $query=mysqli_query($con, $sql);
                       while ($row= MySQLI_fetch_array($query))
@@ -104,7 +104,6 @@
                         <td>
                           <a href="verconvocatoria.php?id=<?php echo $row['idcon']?>&dni=<?php echo $dato_desencriptado?>"><button type="button" class="btn btn-warning" id="editar" style="margin: 1px;"><i class="fa fa-eye"></i></button></a>
                           <a href="modificarconvocatoria.php?idcon=<?php echo $row['idcon']?>&dni=<?php echo $dato_desencriptado?>"><button type="button" class="btn btn-success" id="editar" style="margin: 1px;"><i class="fa fa-pen"></i></button></a>
-                    
                         </td>
                       </tr>
                       <?php

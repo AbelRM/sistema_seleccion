@@ -158,30 +158,30 @@
                                         </thead>
                                         <tbody>
                                             <?php
-                                                $sql6 = "SELECT * FROM expe_4puntos WHERE expe_4puntos_idpostulante = $idpostulante";
-                                                $query6=mysqli_query($con, $sql6);
-                                                if(mysqli_num_rows($query6)>0){
-                                                    while ($row6= MySQLI_fetch_array($query6))
-                                                    {
-                                                    ?>
-                                                        <tr>
-                                                            <td style="font-size: 12px;"><?php echo $row6['id_4puntos'];?></td>
-                                                            <td style="font-size: 12px;"><?php echo $row6['lugar']; ?></td>
-                                                            <td style="font-size: 12px;"><?php echo $row6['cargo']; ?></td>
-                                                            <td style="font-size: 12px;"><?php echo $row6['fecha_inicio'] ?></td>
-                                                            <td style="font-size: 12px;"><?php echo $row6['fecha_fin'] ?></td>
-                                                            <td class="d-flex justify-content-center">
-                                                                <button class="btn btn-success btn-sm m-1 updateBtn1"><i class="fa fa-edit"></i></button>
-                                                                <button class="btn btn-danger btn-sm m-1 deleteBtn1"><i class="fa fa-times-circle"></i></button>
-                                                            </td>
-                                                        </tr>
-                                                    <?php                                         
-                                                    }
-                                            }else{
+                                              $sql6 = "SELECT * FROM expe_4puntos WHERE expe_4puntos_idpostulante = $idpostulante";
+                                              $query6=mysqli_query($con, $sql6);
+                                              if(mysqli_num_rows($query6)>0){
+                                                  while ($row6= MySQLI_fetch_array($query6))
+                                                  {
+                                                  ?>
+                                                    <tr>
+                                                      <td style="font-size: 12px;"><?php echo $row6['id_4puntos'];?></td>
+                                                      <td style="font-size: 12px;"><?php echo $row6['lugar']; ?></td>
+                                                      <td style="font-size: 12px;"><?php echo $row6['cargo']; ?></td>
+                                                      <td style="font-size: 12px;"><?php echo $row6['fecha_inicio'] ?></td>
+                                                      <td style="font-size: 12px;"><?php echo $row6['fecha_fin'] ?></td>
+                                                      <td class="d-flex justify-content-center">
+                                                        <button class="btn btn-success btn-sm m-1 updateBtn1"><i class="fa fa-edit"></i></button>
+                                                        <button class="btn btn-danger btn-sm m-1 deleteBtn1"><i class="fa fa-times-circle"></i></button>
+                                                      </td>
+                                                    </tr>
+                                                  <?php                                         
+                                                  }
+                                              }else{
                                                 echo "<tr>
                                                 <td colspan='6' class='text-center text-danger' >NO HAY DATOS REGISTRADOS</td>
                                                 </tr>";
-                                            }
+                                              }
                                             ?>
                                         </tbody>
                                         </table> 

@@ -112,7 +112,7 @@
                         <?php
                           $consulta_form = "SELECT * FROM formacion_acad 
                           inner join tipo_estudios ON formacion_acad.tipo_estudios_id=tipo_estudios.id_tipo_estudios 
-                          WHERE postulante_id = $idpostulante";
+                          WHERE formacion_idpostulante = $idpostulante";
                           $query=mysqli_query($con, $consulta_form);
                           if(mysqli_num_rows($query)>0){
                             while ($row= MySQLI_fetch_array($query))
@@ -235,7 +235,6 @@
               <div class="col-md-6 col-sm-12 form-group" id="div_colegiatura">
                 <label for="title">(*) Colegiatura</label>
                 <select name="colegiatura" id="colegiatura_new" class="form-control">
-                  
                   <option value="NO">NO</option>
                   <option value="SI">SI</option>
                 </select>
@@ -413,13 +412,13 @@
         div_carrera = document.getElementById("div_carrera");
         div_carrera.style.display = "block";
         div_colegiatura = document.getElementById("div_colegiatura");
-        div_colegiatura.style.display = "none";
+        div_colegiatura.style.display = "block";
         div_nro_colegiatura = document.getElementById("div_nro_colegiatura");
-        div_nro_colegiatura.style.display = "none";
+        div_nro_colegiatura.style.display = "block";
         div_fecha_habilitacion = document.getElementById("div_fecha_habilitacion");
-        div_fecha_habilitacion.style.display = "none";
+        div_fecha_habilitacion.style.display = "block";
         div_lugar_colegiatura = document.getElementById("div_lugar_colegiatura");
-        div_lugar_colegiatura.style.display = "none";
+        div_lugar_colegiatura.style.display = "block";
         div_fecha_inicio = document.getElementById("div_fecha_inicio");
         div_fecha_inicio.style.display = "block";
         div_fecha_fin = document.getElementById("div_fecha_fin");

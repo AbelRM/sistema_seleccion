@@ -106,7 +106,7 @@
                         // $total = mysqli_num_rows(mysqli_query($con,"SELECT * from detalle_convocatoria WHERE iddetalle_convocatoria=$id"));
                         $sql = mysqli_query($con,"SELECT * from tipo_cargo") or die("Problemas en consulta").mysqli_error();
                           while ($registro=mysqli_fetch_array($sql)) {
-                          echo "<option value=\"tipo-".$registro['idtipo']."\">".$registro['tipo_cargo']."</option>";
+                          echo "<option value=\"tipo-".$registro['tipo-exp']."\">".$registro['tipo_cargo']."</option>";
                           }
                         // if($total==0){
                         //   $sql = mysqli_query($con,"SELECT * from tipo_cargo") or die("Problemas en consulta").mysqli_error();
@@ -239,7 +239,7 @@
                         <div class="form-row p-2 d-flex justify-content-center">
                             <div class="card border-primary">
                                 <div class="card-header header-formulario">
-                                    <h5 class="titulo-card">Experiencia laboral en MICROREDES de TACNA!</h5>
+                                    <h5 class="titulo-card">Experiencia laboral en MICROREDES de TACNA</h5>
                                 </div>
                                 <div class="card-body">
                                     <div class="table-responsive">
@@ -454,7 +454,7 @@
                                         </thead>
                                         <tbody>
                                             <?php
-                                                $sql9 = "SELECT * FROM expe_4puntos WHERE expe_4puntos_detalle_con = $iddetalle_conv";
+                                                $sql9 = "SELECT * FROM expe_4puntos WHERE expe_4puntos_idpostulante = $idpostulante";
 
                                                 $query9=mysqli_query($con, $sql9);
                                                 if(mysqli_num_rows($query9)>0){
@@ -507,7 +507,7 @@
                                         </table>
                                     </div>
                                     <input type="hidden" name="dni" value="<?php echo $dato_desencriptado; ?>">
-                                    <input type="hidden" name="iddetalle_conv" value="<?php echo $iddetalle_conv; ?>">
+                                    <input type="hidden" name="idpostulante" value="<?php echo $idpostulante; ?>">
                                     <div class="row d-flex justify-content-center">
                                         <div class="form-inline p-2">
                                             <button id="adicional-4" name="adicional" type="button" class="btn btn-warning"> AGREGAR FILA (+) </button>
@@ -527,7 +527,7 @@
                         <div class="form-row p-2 d-flex justify-content-center">
                             <div class="card border-success">
                                 <div class="card-header">
-                                    <h5 class="titulo-card">Experiencia en el sector público y privado DENTRO de TACNA!!</h5>
+                                    <h5 class="titulo-card">Experiencia en el sector público y privado DENTRO de TACNA</h5>
                                 </div>
                                 <div class="card-body">
                                     <div class="table-responsive">
@@ -544,7 +544,7 @@
                                         </thead>
                                         <tbody>
                                             <?php
-                                                $sql10 = "SELECT * FROM expe_3puntos WHERE expe_3puntos_detalle_con = $iddetalle_conv";
+                                                $sql10 = "SELECT * FROM expe_3puntos WHERE expe_3puntos_idpostulante = $idpostulante";
 
                                                 $query10=mysqli_query($con, $sql10);
                                                 if(mysqli_num_rows($query10)>0){
@@ -597,15 +597,15 @@
                                         </table>
                                     </div>
                                     <input type="hidden" name="dni" value="<?php echo $dato_desencriptado; ?>">
-                                    <input type="hidden" name="iddetalle_conv" value="<?php echo $iddetalle_conv; ?>">
+                                    <input type="hidden" name="idpostulante" value="<?php echo $idpostulante; ?>">
                                     <div class="row d-flex justify-content-end">
                                         <div class="form-inline p-2">
-                                            <button id="adicional-5" name="adicional" type="button" class="btn btn-warning"> AGREGAR FILA (+) </button>
+                                            <button id="adicional-5" name="adicional" type="button" class="btn btn-warning"> Agregar Fila (+) </button>
                                         </div>
                                     </div>
                                     <div class="row d-flex justify-content-center">
                                         <div class="form-inline p-2">
-                                            <button name="insertar2" type="submit" class="btn btn-primary">GUARDAR!</button>
+                                            <button name="insertar2" type="submit" class="btn btn-primary">Guardar</button>
                                         </div>
                                     </div>
                                 </form>
@@ -617,7 +617,7 @@
                         <div class="form-row p-2 d-flex justify-content-center">
                             <div class="card border-success">
                                 <div class="card-header">
-                                    <h5 class="titulo-card">Experiencia en el sector público y privado FUERA de TACNA!</h5>
+                                    <h5 class="titulo-card">Experiencia en el sector público y privado FUERA de TACNA</h5>
                                 </div>
                                 <div class="card-body">
                                     <div class="table-responsive">
@@ -634,7 +634,7 @@
                                         </thead>
                                         <tbody>
                                             <?php
-                                                $sql11 = "SELECT * FROM expe_1puntos WHERE expe_1puntos_detalle_con = $iddetalle_conv";
+                                                $sql11 = "SELECT * FROM expe_1puntos WHERE expe_1puntos_idpostulante = $idpostulante";
 
                                                 $query11=mysqli_query($con, $sql11);
                                                 if(mysqli_num_rows($query11)>0){
@@ -687,15 +687,15 @@
                                         </table>
                                     </div>
                                     <input type="hidden" name="dni" value="<?php echo $dato_desencriptado; ?>">
-                                    <input type="hidden" name="iddetalle_conv" value="<?php echo $iddetalle_conv; ?>">
+                                    <input type="hidden" name="idpostulante" value="<?php echo $idpostulante; ?>">
                                     <div class="row d-flex justify-content-end">
                                         <div class="form-inline p-2">
-                                            <button id="adicional-6" name="adicional" type="button" class="btn btn-warning">AGREGAR FILA (+)</button>
+                                            <button id="adicional-6" name="adicional" type="button" class="btn btn-warning">Agregar Fila (+)</button>
                                         </div>
                                     </div>
                                     <div class="row d-flex justify-content-center">
                                         <div class="form-inline p-2">
-                                            <button  name="insertar" type="submit" class="btn btn-primary">GUARDAR!</button>
+                                            <button  name="insertar" type="submit" class="btn btn-primary">Guardar</button>
                                         </div>
                                     </div>
                                 </form>

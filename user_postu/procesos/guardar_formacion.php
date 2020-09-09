@@ -6,10 +6,10 @@
   if(ISSET($_POST['insertData']))
   {
     $colegiatura_validar = $_POST['colegiatura'];
-    echo $colegiatura_validar;
     if($colegiatura_validar=='NO'){
       $dni = $_POST['dni'];
       $idpostulante = $_POST['postulante'];
+
       $tipo_estudios = $_POST['tipo_estudios'];
       $nivel_estudios = $_POST['nivel_estudios'];
       $centro_estudios = $_POST['centro_estudios'];
@@ -18,8 +18,10 @@
       $fecha_inicio = $_POST['fecha_inicio'];
       $fecha_fin = $_POST['fecha_fin'];
 
-      $sql = "INSERT INTO formacion_acad (tipo_estudios_id,nivel_estudios,centro_estudios,carrera,colegiatura,fecha_inicio, fecha_fin, postulante_id) 
-      VALUES('$tipo_estudios','$nivel_estudios','$centro_estudios', '$carrera','$colegiatura','$fecha_inicio','$fecha_fin','$idpostulante')";  
+      $sql = "INSERT INTO formacion_acad (tipo_estudios_id,nivel_estudios,centro_estudios,carrera,colegiatura,fecha_inicio, 
+      fecha_fin, formacion_idpostulante) 
+      VALUES('$tipo_estudios','$nivel_estudios','$centro_estudios', '$carrera','$colegiatura_validar','$fecha_inicio',
+      '$fecha_fin','$idpostulante')";  
           
       $result = mysqli_query($con, $sql);
       if($result){
@@ -27,6 +29,7 @@
           header('Location: ../formacion.php?dni='.$dni);
       }else{
           echo '<script> alert("Error al guardar PRIMERA!"); </script>';
+          // header('Location: ../formacion.php?dni='.$dni);
       }
     }else{
       $dni = $_POST['dni'];

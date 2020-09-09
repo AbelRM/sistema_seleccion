@@ -182,7 +182,7 @@
                     </div>
                     <div class="row d-flex justify-content-center">
                       <input type="hidden" id="idcon" name="idcon" value="<?php echo $idcon; ?>">
-                      <input type="hidden" id="dni" name="dni" value="<?php echo $dni; ?>">
+                      <input type="hidden" id="dni" name="dni" value="<?php echo $dato_desencriptado; ?>">
                       <div class="form-inline p-2">
                           <button id="adicional" name="adicional" type="button" class="btn btn-warning"> AGREGAR FILA (+) </button>
                       </div>
@@ -190,9 +190,6 @@
                           <input type="submit" name="insertar_2" class="btn btn-primary" value="GUARDAR"/>
                       </div>
                     </div>
-                    <!-- <div class="row d-flex justify-content-end">
-                      <a class="btn btn-danger" role="button" href="resumen_convocatoria.php?convocatoria_idcon=<?php echo $idcon; ?>">Siguente</a>
-                    </div> -->
                   </form>  
                 </div>
               </div>

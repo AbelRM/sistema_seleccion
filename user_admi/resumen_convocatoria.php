@@ -1,5 +1,6 @@
 <?php
   include 'conexion.php';
+  include "funcs/mcript.php";
   session_start();
   if(empty($_SESSION['active'])){
     header("Location: ../index.php");
@@ -35,8 +36,9 @@
   <!-- Page Wrapper -->
   <div id="wrapper">
     <?php     
-        $dni = $_GET['dni'];
-        include_once('conexion.php');
+        $dato_desencriptado = $_GET['dni'];
+        $dni = $desencriptar($dato_desencriptado);
+
         $sql="SELECT * FROM usuarios where dni=$dni";
         $datos=mysqli_query($con,$sql) or die(mysqli_error()); ;
         $fila= mysqli_fetch_array($datos);
@@ -71,7 +73,7 @@
                 <div class="card-body">
                   <?php
                     $idcon = $_GET['convocatoria_idcon'];
-                    include_once('conexion.php');
+
                     $sql="SELECT * FROM convocatoria where idcon=$idcon";
                     $datos=mysqli_query($con,$sql);
                     $fila= mysqli_fetch_array($datos);
@@ -232,7 +234,7 @@
             </div>
         </div>
         <div class="modal-footer">
-            <a type="button" class="btn btn-danger" href="listado_convocatorias.php?dni=<?php echo $dni ?>">ACEPTAR</a>
+            <a type="button" class="btn btn-danger" href="listado_convocatorias.php?dni=<?php echo $dato_desencriptado ?>">ACEPTAR</a>
         </div>
       </div>
     </div>

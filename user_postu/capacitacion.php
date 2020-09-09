@@ -336,7 +336,7 @@
                                             </thead>
                                             <tbody>
                                             <?php
-                                              $consulta3 = "SELECT * FROM cursos_extra WHERE idpostulante = $idpostulante";
+                                              $consulta3 = "SELECT * FROM cursos_extra WHERE curso_extra_idpostulante = $idpostulante";
                                               $query=mysqli_query($con, $consulta3);
                                               if(mysqli_num_rows($query)>0){
                                               while ($row3= MySQLI_fetch_array($query))

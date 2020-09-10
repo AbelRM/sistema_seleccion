@@ -27,6 +27,7 @@
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.css" rel="stylesheet">
   <!-- <link rel="stylesheet" href="css/style.css"> -->
+  <link rel="stylesheet" href="css/lib/chosen/chosen.css">
   <style>
     #total  {font-weight:bold;}
     .red    {border-color:red;}
@@ -118,21 +119,24 @@
                               <option value="FINALIZADO">FINALIZADO</option>
                           </select>
                       </div>
-                      <div class="form-group col-lg-12 col-md-12 col-sm-12">
-                          <label for="inputEmail4" class="form-control-label" >Ubicación del lugar a elaborar</label>
-                          <select name="ubicacion" class="form-control oficina"   id="ubicacion" required>
-                            
+                      <div class="col-sm-12 col-md-12">
+                        <div class="row form-group">
+                          <div class="col col-md-2"><label for="selectSm" class=" form-control-label">Ubicación</label></div>
+                          <div class="col-md-10" >
+                            <select name="chosen-unique" class="chosen1" data-placeholder="Elige la ubicación del personal requerido" required>
+                              <option value=""></option>
                               <?php
-                                include_once('conexion.php');
-                                $sql = mysqli_query($con,"SELECT * from ubicacion") or die("Problemas en consulta").mysqli_error();
-                                while ($registro=mysqli_fetch_array($sql)) {
-                                  echo "<option value=\"".$registro['iddireccion']."\">".$registro['direccion_ejec']." - ".$registro['equipo_ejec']."</option>";
-                                }
-                                // mysqli_close($con);
+                              $sql="SELECT * FROM ubicacion";
+                              $res=mysqli_query($con,$sql) or die("Problemas en consulta").mysqli_error();
+                              while ($rw= mysqli_fetch_array($res)){
+                                  echo "<option value=".$rw["iddireccion"].">".$rw["direccion_ejec"]." - ".$rw["equipo_ejec"]."</option> ";
+                              } 
                               ?>
-                          </select>
-                    
+                            </select>
+                          </div>
+                        </div>
                       </div>
+                      
                     </div>
                     <div class="form-group">
                         <h6 class="m-0 font-weight-bold text-danger">Porcentajes de la convocatoria</h6>
@@ -237,25 +241,27 @@
       </div>
     </div>
   </div>
-        <!-- Bootstrap core JavaScript-->
-        <script src="vendor/jquery/jquery.min.js"></script>
-        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+  <!-- Bootstrap core JavaScript-->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 
-        <!-- Core plugin JavaScript-->
-        <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+  <!-- Core plugin JavaScript-->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-        <!-- Custom scripts for all pages-->
-        <script src="js/sb-admin-2.js"></script>
-        <script src="js/sumar.js"></script>
-
-        <script>
-      jQuery(document).ready(function($){
-    $(document).ready(function() {
-        $('.oficina').select2();
-    });
-});
-        </script>
+  <!-- Custom scripts for all pages-->
+  <script src="js/sb-admin-2.js"></script>
+  <script src="js/sumar.js"></script>
+  <script src="js/lib/chosen/chosen.jquery.min.js"></script>
+  <script>
+		jQuery(document).ready(function() {
+				jQuery(".chosen1").chosen({
+						disable_search_threshold: 10,
+						no_results_text: "Oops, no ha sido encontrado!",
+						width: "100%"
+				});
+		});
+	</script>
 
 
 </body>

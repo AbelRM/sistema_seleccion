@@ -36,15 +36,30 @@
     </li>
 
     <li class="nav-item">
-      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCom" aria-expanded="true" aria-controls="collapseCom">
+      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseComm" aria-expanded="true" aria-controls="collapseComm">
         <i class="fas fa-fw fa-cog"></i>
         <span>Direccion Ejecutiva</span>
       </a>
-      <div id="collapseCom" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+      <div id="collapseComm" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
           <h6 class="collapse-header">Acciones:</h6>
           <a class="collapse-item" href="direccion_ejec.php?dni=<?php echo $dato_desencriptado ?>">Direccion Ejecutiva</a>
           <a class="collapse-item" href="nuevadireccionejec.php?dni=<?php echo $dato_desencriptado ?>">Nueva Direccion Ejecutiva</a>
+        </div>
+      </div>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseRess" aria-expanded="true" aria-controls="collapseRess">
+        <i class="fas fa-fw fa-cog"></i>
+        <span>Cargo</span>
+      </a>
+      <div id="collapseRess" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+          <h6 class="collapse-header">Acciones:</h6>
+          <a class="collapse-item" href="cargos.php?dni=<?php echo $dato_desencriptado ?>">Cargos</a>
+          <a class="collapse-item" href="agregarcargos.php?dni=<?php echo $dato_desencriptado ?>">Nuevo Cargo</a>
+      
         </div>
       </div>
     </li>

@@ -31,8 +31,6 @@
   <!-- Custom styles for this page -->
   <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
-
-
 </head>
 
 <body id="page-top">
@@ -70,7 +68,7 @@
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">CARGO</h6>
+              <h6 class="m-0 font-weight-bold text-primary">REQUERIMIENTOS</h6>
             </div>
             <?php
             include '../conexion.php';
@@ -83,27 +81,28 @@
                 <thead>
                     <tr class="bg-danger" style="text-align:center; font-size:0.813em;">
                       <th>N°</th>
-                      <th>Cargo</th>
-                      <th>Tipo Cargo</th>
+                      <th>Personal</th>
+                      <th>Requerimiento</th>
                       <th>Acciones</th>
                       
                     </tr>
                   </thead>
                   <?php
                  
-                      $sql = "SELECT * FROM cargo INNER JOIN tipo_cargo ON tipo_cargo.idtipo = cargo.tipo_cargo_id";
+                      $sql = "SELECT * FROM requerimientos";
                      
                       $query=mysqli_query($con, $sql);
                       while ($row= MySQLI_fetch_array($query))
                       {
                       ?>
                       <tr>
-                        <td><?php echo $row['idcargo'] ?></td>
-                        <td style="font-size: 16px;"><?php echo $row['cargo'] ?></td>
-                        <td style="font-size: 14px;"><?php echo $row['tipo_cargo'] ?></td>
+                        <td><?php echo $row['id_requerimientos'] ?></td>
+                        <td style="font-size: 16px;"><?php echo $row['condicion'] ?></td>
+                        <td style="font-size: 14px;"><?php echo $row['valor_condicion'] ?></td>
                         <td>
-                          <a href="modificarcargo.php?id=<?php echo $row['idcargo']?>&dni=<?php echo $dato_desencriptado?>"><button type="button" class="btn btn-success" id="editar" style="margin: 1px;"><i class="fa fa-pen"></i></button></a>
-                          <button type="button" class="btn btn-danger m-1  deleteBtn"> <i class="fas fa-trash-alt"></i></button> 
+                          <a href="modificarreq.php?id=<?php echo $row['id_requerimientos']?>&dni=<?php echo $dato_desencriptado?>"><button type="button" class="btn btn-success" id="editar" style="margin: 1px;"><i class="fa fa-pen"></i></button></a>
+                          <button type="button" class="btn btn-danger m-1  deleteBtn"> <i class="fas fa-trash-alt"></i></button>
+                         
                         </td>
                       </tr>
                       <?php
@@ -130,11 +129,12 @@
 
     </div>
     <!-- End of Content Wrapper -->
+
   </div>
   <!-- End of Page Wrapper -->
 
   <!-- Scroll to Top Button-->
-  <a class="scroll-to-top rounded" href="#page-top">
+  <a class="scroll-to-top rounded" href="#page-top"> 
     <i class="fas fa-angle-up"></i>
   </a>
 
@@ -157,22 +157,22 @@
     </div>
   </div>
 
-    <!-- Eliminar cargo -->
+    <!-- Eliminar Requerimiento -->
     <div class="modal fade" id="deleteModal">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header bg-danger text-white">
-          <h5 class="modal-title" id="exampleModalLabel">Eliminar registro de Cargos</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Eliminar Requerimiento</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">×</span>
           </button>
         </div>
-        <form action="procesos/borrar_cargo.php" method="POST">
+        <form action="procesos/eliminarreq.php" method="POST">
           <div class="modal-body">
 
-            <input type="hidden" name="idcargo" id="idcargo">
+            <input type="hidden" name="id_req" id="id_req">
             <input type="hidden" name="dni" value="<?php echo $dato_desencriptado ?>">
-            <h4>¿Desea eliminar el registro de cargos?</h4>
+            <h4>¿Desea eliminar el registro?</h4>
  
           </div>
         <div class="modal-footer">
@@ -201,6 +201,7 @@
 
   <!-- Page level custom scripts -->
   <script src="js/demo/datatables-demo.js"></script>
+
   <script>
     $(document).ready(function () {
       $('.deleteBtn').on('click', function(){
@@ -216,7 +217,7 @@
  
         console.log(data);
  
-        $('#idcargo').val(data[0]);
+        $('#id_req').val(data[0]);
  
         });
     });

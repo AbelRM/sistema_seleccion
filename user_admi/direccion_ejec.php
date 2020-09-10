@@ -84,7 +84,6 @@
                       <th>Direccion Ejecutiva</th>
                       <th>Equipo Ejecutivo</th>
                       <th>Acciones</th>
-                      
                     </tr>
                   </thead>
                   <?php
@@ -101,7 +100,7 @@
                         <td style="font-size: 14px;"><?php echo $row['equipo_ejec'] ?></td>
                         <td>
                           <a href="modificar_personalreq.php?id=<?php echo $row['iddireccion']?>&dni=<?php echo $dato_desencriptado?>"><button type="button" class="btn btn-success" id="editar" style="margin: 1px;"><i class="fa fa-pen"></i></button></a>
-                          <a href="eliminar.php?id=<?php echo $row['iddireccion']?>&dni=<?php echo $dato_desencriptado?>"><button type="button" class="btn btn-danger" id="editar" style="margin: 1px;"><i class="fa fa-trash"></i></button></a>
+                          <button type="button" class="btn btn-danger m-1  deleteBtn"> <i class="fas fa-trash-alt"></i></button>
                         </td>
                       </tr>
                       <?php
@@ -156,6 +155,34 @@
     </div>
   </div>
 
+   <!-- Eliminar PERSONAL -->
+   <div class="modal fade" id="deleteModal">
+    <div class="modal-dialog">
+      <div class="modal-content"> 
+        <div class="modal-header bg-danger text-white">
+          <h5 class="modal-title" id="exampleModalLabel">Eliminar Direccion Ejecutiva</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <form action="procesos/eliminardireccion.php" method="POST">
+          <div class="modal-body">
+
+            <input type="hidden" name="iddireccion" id="iddireccion">
+            <input type="hidden" name="dni" value="<?php echo $dato_desencriptado ?>">
+            <h4>¿Desea eliminar el registro?</h4>
+ 
+          </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">NO</button>
+          <button type="submit" class="btn btn-danger" name="deleteData1">SI</button>
+        </div>
+ 
+        </form>
+       </div>
+      </div>
+    </div>
+
   <!-- Bootstrap core JavaScript-->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -172,6 +199,27 @@
 
   <!-- Page level custom scripts -->
   <script src="js/demo/datatables-demo.js"></script>
+
+  <script>
+    $(document).ready(function () {
+      $('.deleteBtn').on('click', function(){
+ 
+        $('#deleteModal').modal('show');
+        
+        // Get the table row data.
+        $tr = $(this).closest('tr');
+ 
+        var data = $tr.children("td").map(function() {
+            return $(this).text();
+        }).get();
+ 
+        console.log(data);
+ 
+        $('#iddireccion').val(data[0]);
+ 
+        });
+    });
+  </script>
 
 </body>
 

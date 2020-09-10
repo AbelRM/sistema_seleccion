@@ -65,6 +65,21 @@
     </li>
 
     <li class="nav-item">
+      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseResss" aria-expanded="true" aria-controls="collapseResss">
+        <i class="fas fa-fw fa-cog"></i>
+        <span>Requerimientos</span>
+      </a>
+      <div id="collapseResss" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+          <h6 class="collapse-header">Acciones:</h6>
+          <a class="collapse-item" href="requisitos.php?dni=<?php echo $dato_desencriptado ?>">Requerimientos</a>
+          <a class="collapse-item" href="agregarrequerimiento.php?dni=<?php echo $dato_desencriptado ?>">Nuevo Requerimiento</a>
+      
+        </div>
+      </div>
+    </li>
+
+    <li class="nav-item">
       <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCom" aria-expanded="true" aria-controls="collapseCom">
         <i class="fas fa-fw fa-cog"></i>
         <span>Comisión</span>

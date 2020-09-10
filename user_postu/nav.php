@@ -3,6 +3,9 @@
     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
     <i class="fa fa-bars"></i>
     </button>
+    <?php 
+      include 'modalperfil.php';
+    ?>
     <!-- Topbar Navbar -->
     <ul class="navbar-nav ml-auto">
         <!-- Nav Item - User Information -->
@@ -13,10 +16,9 @@
             </a>
             <!-- Dropdown - User Information -->
             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-            <a class="dropdown-item" href="#">
-                <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                Perfil
-            </a>
+            
+            <button type="button" class="dropdown-item" data-toggle="modal" data-target="#perfil"><i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>Perfil</button>
+
             <a class="dropdown-item" href="#">
                 <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                 Opciones

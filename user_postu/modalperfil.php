@@ -22,27 +22,27 @@
                         <input type="hidden" name="iduser" id="iduser" >
                         <div class="form-group">
                         <label for="title">Nombre</label>
-                        <input type="text" class="form-control"  name="nombres" value="<?php echo $fila["nombres"]; ?>">    
+                        <input type="text" class="form-control" id="nombres" name="nombres" value="<?php echo $fila["nombres"]; ?>">    
                         </div> 
                         <div class="form-group">
                         <label for="title">Apellido Paterno</label>
-                        <input type="text" class="form-control"  name="ape_pat" value="<?php echo $fila["ape_pat"]; ?>">  
+                        <input type="text" class="form-control" id="ape_pat" name="ape_pat" value="<?php echo $fila["ape_pat"]; ?>">  
                         </div> 
                         <div class="form-group">
                         <label for="title">Apellido Materno</label>
-                        <input type="text" class="form-control"  name="ape_mat" value="<?php echo $fila["ape_mat"]; ?>">  
+                        <input type="text" class="form-control" id="ape_mat" name="ape_mat" value="<?php echo $fila["ape_mat"]; ?>">  
                         </div> 
                         <div class="form-group">
                         <label for="title">DNI</label>
-                        <input type="text" class="form-control"  name="dni" value="<?php echo $fila["dni"]; ?>" disabled="true">
+                        <input type="text" class="form-control"  id="dni" name="dni" value="<?php echo $fila["dni"]; ?>" disabled="true">
                         </div> 
                         <div class="form-group">
                         <label for="title">Correo </label>
-                        <input type="text" class="form-control"  name="correo" value="<?php echo $fila["correo"]; ?>">
+                        <input type="text" class="form-control" id="correo" name="correo" value="<?php echo $fila["correo"]; ?>">
                         </div> 
                         <div class="form-group">
                         <label for="title">Celular </label>
-                        <input type="text" class="form-control"  name="celular" value="<?php echo $fila["celular"]; ?>">
+                        <input type="text" class="form-control"  id="celular" name="celular" value="<?php echo $fila["celular"]; ?>">
                         </div>
 
                         <div class="modal-footer">

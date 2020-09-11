@@ -3,7 +3,9 @@
 include '../conexion.php';
 
 // Update data into the database
-   
+if(ISSET($_POST['updateData2']))
+{   
+  
     $dato_desencriptado= $_POST['dato_desencriptado'];
     $id = $_POST['iduser'];
     $dni = $_POST['dni'];
@@ -26,4 +28,5 @@ include '../conexion.php';
     {
         echo '<script> alert("Error al actualizar, verifique!"); </script>';
     }
+}
 ?>

@@ -31,6 +31,21 @@
     $lote = $_POST['lote'];
     $referencia = $_POST['referencia'];
     $distrito1 = $_POST['distrito_id1']; 
+
+       //DATOS ENCUESTA
+       $pre1 = $_POST['pregunta1'];
+       $pre2 = $_POST['pregunta2'];
+       $pre3 = $_POST['pregunta3'];
+       $pre4 = $_POST['pregunta4'];
+       $pre5 = $_POST['pregunta5'];
+       $pre6 = $_POST['pregunta6'];
+       $pre7 = $_POST['pregunta7'];
+       $pre8 = $_POST['pregunta8'];
+       $pre9 = $_POST['pregunta9'];
+       $pre10 = $_POST['pregunta10'];
+       $pre11 = $_POST['pregunta11'];
+       $pre12 = $_POST['pregunta12'];
+       $pre13 = $_POST['pregunta13'];
     
     $sql = "UPDATE postulante SET fech_nac = '".$fech_nac."',estado_civil='".$civil."',sexo = '".$sexo."', celular_emer ='".$num_emer."',parentesco_emer='".$nomb_parent."',ruc ='".$ruc."',num_cuenta = '".$cuenta_banc."',
      discapacidad = '".$discapacidad."', tipo_discap = '".$tip_discapacidad."',tipo_sangre = '".$tip_sangre."', alergias = '".$alergias."',suspension_cuarta = '".$cuarta."',seguro = '".$pension."',pais = '".$pais."' WHERE dni='".$dni_post."' ";

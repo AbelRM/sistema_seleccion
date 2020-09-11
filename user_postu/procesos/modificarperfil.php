@@ -8,7 +8,6 @@ if(ISSET($_POST['updateData2']))
   
     $dato_desencriptado= $_POST['dato_desencriptado'];
     $id = $_POST['iduser'];
-    $dni = $_POST['dni'];
     $nombre = $_POST['nombres'];
     $apellido_pat = $_POST['ape_pat'];
     $apellido_mat = $_POST['ape_mat'];

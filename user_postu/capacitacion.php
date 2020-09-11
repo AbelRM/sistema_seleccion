@@ -131,7 +131,7 @@
                                                             </tr>";
                                                         }
                                                         ?>
-                                                    </tbody>
+                                                    </tbody> 
                                                 </table>
                                             </div>
                                         </div>
@@ -368,7 +368,7 @@
                                         </table>
                                             </div>
                                         </div>
-                                        <div class="col-md-12"> 
+                                        <div class="col-md-12">  
                                         <form action="procesos/guardar_diplomados.php" method="POST">   
                                             <div class="modal-body">
                                                 <div class="table-responsive">
@@ -654,59 +654,7 @@
         </div>
     </div>
 
-    <!-- Actualizar Estudios Postgrado-->
-    <div class="modal fade" id="actualizarpostgrado">
-        <div class="modal-dialog modal-md">
-            <div class="modal-content">
-                <div class="modal-header bg-warning text-white">
-                    <h5 class="modal-title">Modificar Estudio Postgrado</h5>
-                    <button class="close" data-dismiss="modal"><span>×</span></button>
-                </div>
-                <div class="modal-body"> 
-                    <form action="procesos/actualizarpostgrado.php" method="POST">  
-                        <input type="hidden" name="dato_desencriptado" id="dato_desencriptado" value="<?php echo $dato_desencriptado ?>" >
-                        <input type="hidden" name="idmaestria_doc" id="idmaestria_doc" >
-                        <div class="form-group">
-                        <label for="title">Centro de estudios</label>
-                        <input type="text" name="centro_estudios" id="centro_estudios" class="form-control" placeholder="Enter first name" maxlength="50">
-                        </div>
-                        <div class="form-group">
-                        <label for="title">Especialidad </label>
-                        <input type="text" name="especialidades" id="especialidades" class="form-control" placeholder="Enter last name" maxlength="50">
-                        </div>                  
-                        <div class="form-group">
-                        <label for="title">Tipo </label>
-                        <select class="form-control" id="tipo_estu" name="tipo_estu">
-                            <option value="MAESTRIA">Maestria</option>
-                            <option value="DOCTORADO">Doctorado</option>
-                        </select> 
-                        </div>
-                        
-                        <div class="form-group">
-                        <label for="title">Fecha Inicio</label>
-                        <input type="text" name="fech_ini" id="fech_ini" class="form-control" placeholder="Enter address" maxlength="50">
-                        </div>
-                        <div class="form-group">
-                        <label for="title">Fecha término</label>
-                        <input type="text" name="fech_fin" id="fech_fin" class="form-control" placeholder="Enter skills" maxlength="50">
-                        </div>
-                        <div class="form-group">
-                        <label for="title">Nivel</label>
-                        <select class="form-control" id="nivel1" name="nivel1">
-                            <option value="MAGISTER">Magister</option>
-                            <option value="DOCTORADO">Doctorado</option>
-                            <option value="EGRESADO">Egresado</option>
-                            <option value="ESTUDIANTE">Estudiante</option>
-                        </select>    
-                        </div>
-                        <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary" name="updateData1">Actualizar!</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+
 
         <!-- Actualizar Diplomados-->
     <div class="modal fade" id="actualizardiplomados">

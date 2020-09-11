@@ -40,6 +40,8 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
         $datos=mysqli_query($con,$sql2) or die(mysqli_error()); ;
         $fila= mysqli_fetch_array($datos); 
         // include 'menu.php';
+
+        
     ?>
     <div class="container-fluid">
         <div class="row justify-content-center">
@@ -69,6 +71,12 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
                                 </ul>
                             </div>
                         </div>
+                        <?php  
+                          $sql1="SELECT * FROM postulante where dni=$dni";
+                          $datos1=mysqli_query($con,$sql1) or die(mysqli_error());
+                          $fila1= mysqli_fetch_array($datos1);
+                          $idpostulante=$fila1['idpostulante'];
+                        ?>
                         <fieldset>
                             <div class="form-card">
                                 <div class="row">
@@ -234,7 +242,7 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
                                     <div class="col-md-6 col-sm-6 mb-2 mb-sm-0">
                                         <label class="font-weight-bolder">Enfermedades/Alergias</label> 
                                         <input class="form-control form-control-user" type="text" placeholder="Separado por comas" name="alergias" id="alergias"/> 
-                                    </div>
+                                    </div> 
                                 </div> 
                             </div>
                             <input type="button" name="next" class="next action-button" value="Siguiente" />
@@ -251,6 +259,7 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
                                 <div class="form-group row">
 
                                     <input type="hidden" id="dni_post" name="dni_post" value="<?php echo $fila['dni']; ?>"/>
+                                    <input type="hidden" id="idpostulante" name="idpostulante" value="<?php echo $idpostulante ?>"/>
 
                                     <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
                                         <label class="font-weight-bolder" for="name2">Departamento nacimiento</label>
@@ -268,7 +277,6 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
                                             <option value="">-- SELECCIONE --</option>
                                         </select>                                 
                                     </div>
-
 
                                     <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
                                         <label class="font-weight-bolder" for="exampleInputEmail1">Distrito nacimiento</label>
@@ -432,12 +440,12 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
                                     <tr>
 
                                     <th scope="row">1</th>
-                                    <td >
+                                    <td>
                                         <h6 class="font-weight-bolder">Declaro bajo juramento lo siguiente:</h6>
                                         <label>Registra antecedentes policiales:</label> 
                                     </td>
                                     <td>
-                                        <select class="form-control " name="pension" id="inputSelect">
+                                        <select class="form-control " name="pregunta1" id="pregunta1">
                                                     <option value="NO">NO</option>
                                                     <option value="SI">SI</option>
                                         </select>
@@ -451,7 +459,7 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
                                         <label>Registra antecedentes penales:</label>
                                     </td>
                                     <td>
-                                        <select class="form-control " name="pension" id="inputSelect">
+                                        <select class="form-control " name="pregunta2" id="pregunta2">
                                                     <option value="NO">NO</option>
                                                     <option value="SI">SI</option>
                                         </select>
@@ -464,7 +472,7 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
                                                 <label>Registra antecedentes judiciales:</label>
                                             </td>
                                             <td>
-                                                <select class="form-control " name="pension" id="inputSelect">
+                                                <select class="form-control " name="pregunta3" id="pregunta3">
                                                             <option value="NO">NO</option>
                                                             <option value="SI">SI</option>
                                                 </select>
@@ -477,7 +485,7 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
                                                 <label>Tener inhabilitación vigente para prestar servicios al estado conforme al registro nacional de sanciones contra servidores civiles (RNSCC):</label>
                                             </td>
                                             <td>
-                                                <select class="form-control " name="pension" id="inputSelect">
+                                                <select class="form-control " name="pregunta4" id="pregunta4">
                                                             <option value="NO">NO</option>
                                                             <option value="SI">SI</option>
                                                 </select>
@@ -489,7 +497,7 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
                                                 <label>Estar inscrito en le registro de deudores alimentarios morosos (REDAM):</label>
                                             </td>
                                             <td>
-                                                <select class="form-control " name="pension" id="inputSelect">
+                                                <select class="form-control " name="pregunta5" id="pregunta5">
                                                             <option value="NO">NO</option>
                                                             <option value="SI">SI</option>
                                                 </select>
@@ -501,7 +509,7 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
                                                 <label>Estar inscrito en el registro nacional de abogados sancionados por mala practica profesional (RNS) (En caso corresponda):</label>
                                             </td>
                                             <td>
-                                                <select class="form-control " name="pension" id="inputSelect">
+                                                <select class="form-control " name="pregunta6" id="pregunta6">
                                                             <option value="NO">NO</option>
                                                             <option value="SI">SI</option>
                                                 </select>
@@ -513,7 +521,7 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
                                                 <label>Estar inscrito en la relacion de proveedores sancionados por el tribunal de contrataciones del estado de sancion vigente:</label>
                                             </td>
                                             <td>
-                                                <select class="form-control " name="pension" id="inputSelect">
+                                                <select class="form-control " name="pregunta7" id="pregunta7">
                                                             <option value="NO">NO</option>
                                                             <option value="SI">SI</option>
                                                 </select>
@@ -525,7 +533,7 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
                                                 <label>Estar inscrito en el registro de deudores de reparaciones civiles (REDERECI) y por lo tanto no contar con ninguno de los impedimentos establecidos en le articulo 5 de la Ley 30353 (Ley que crea el REDERECI) para acceder el ejercicio de la función pública y contratacion del estado:</label>
                                             </td>
                                             <td>
-                                                <select class="form-control " name="pension" id="inputSelect">
+                                                <select class="form-control " name="pregunta8" id="pregunta8">
                                                             <option value="NO">NO</option>
                                                             <option value="SI">SI</option>
                                                 </select>
@@ -537,7 +545,7 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
                                                 <label>Estar inscrito en la relacion de proveedores sancionados por el tribunal de contrataciones del estado de sancion vigente:</label>
                                             </td>
                                             <td>
-                                                <select class="form-control " name="pension" id="inputSelect">
+                                                <select class="form-control " name="pregunta9" id="pregunta9">
                                                             <option value="NO">NO</option>
                                                             <option value="SI">SI</option>
                                                 </select>
@@ -549,7 +557,7 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
                                                 <label>Tener impedimento, icompatibilidad o estar incurso en alguna prohibición o restricción para ser postor o contratista y/o para postular, acceder o ejercer el servicio, función o cargo convocado por el MVCS:</label>
                                             </td>
                                             <td>
-                                                <select class="form-control " name="pension" id="inputSelect">
+                                                <select class="form-control " name="pregunta10" id="pregunta10">
                                                             <option value="NO">NO</option>
                                                             <option value="SI">SI</option>
                                                 </select>
@@ -562,7 +570,7 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
                                                 <label>Ser conyugue conviviente o pariente hasta el segundo grado de consanguinidad o afinidad de las personas señaladas en los literales a) AL g) del articulo 11 del texto unico ordenado de la Ley de contrataciones del estado:</label>
                                             </td>
                                             <td>
-                                                <select class="form-control " name="pension" id="inputSelect">
+                                                <select class="form-control " name="pregunta11" id="pregunta11">
                                                             <option value="NO">NO</option>
                                                             <option value="SI">SI</option>
                                                 </select>
@@ -577,7 +585,7 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
                                                 otros órganos colegiados:</label>
                                             </td>
                                             <td>
-                                                <select class="form-control " name="pension" id="inputSelect">
+                                                <select class="form-control " name="pregunta12" id="pregunta12">
                                                             <option value="NO">NO</option>
                                                             <option value="SI">SI</option>
                                                 </select>
@@ -592,7 +600,7 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
                                                 otros órganos colegiados:</label>
                                             </td>
                                             <td>
-                                                <select class="form-control " name="pension" id="inputSelect">
+                                                <select class="form-control " name="pregunta13" id="pregunta13">
                                                             <option value="NO">NO</option>
                                                             <option value="SI">SI</option>
                                                 </select>

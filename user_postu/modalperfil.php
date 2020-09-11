@@ -13,18 +13,17 @@
                     
                     $sql="SELECT * FROM usuarios where dni=$dni";
                     $datos=mysqli_query($con,$sql) or die(mysqli_error()); 
-                    $fila= mysqli_fetch_array($datos);
-                   
+                    $fila= mysqli_fetch_array($datos);      
                 ?>
                 <div class="modal-body"> 
                     <form action="procesos/modificarperfil.php" method="POST">  
                         <input type="hidden" name="dato_desencriptado" id="dato_desencriptado" value="<?php echo $dato_desencriptado ?>" >
-                        <input type="hidden" name="iduser" id="iduser" >
-                        <div class="form-group">
+                        <input type="hidden" name="iduser" id="iduser" value="<?php echo $fila["iduser"]; ?>" >
+                        <div class="form-group"> 
                         <label for="title">Nombre</label>
                         <input type="text" class="form-control" id="nombres" name="nombres" value="<?php echo $fila["nombres"]; ?>">    
                         </div> 
-                        <div class="form-group">
+                        <div class="form-group"> 
                         <label for="title">Apellido Paterno</label>
                         <input type="text" class="form-control" id="ape_pat" name="ape_pat" value="<?php echo $fila["ape_pat"]; ?>">  
                         </div> 

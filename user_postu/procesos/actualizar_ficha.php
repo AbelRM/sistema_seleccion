@@ -4,7 +4,7 @@
     include '../funcs/mcript.php';
    
     $dni_post=$_POST['dni_post'];
-    $idpostulante=$_POST['idpostulante'];
+    $idpostulante=$_POST['idpostulante']; 
     // DATOS PERSONALES
     $pais = $_POST['pais'];
     $sexo = $_POST['sexo'];
@@ -14,7 +14,7 @@
     $celular_emer= $_POST['celular_emer'];
     $parentesco_emer= $_POST['parentesco_emer'];
     $ruc = $_POST['ruc'];
-    $num_cuenta = $_POST['num_cuenta'];  
+    $num_cuenta = $_POST['num_cuenta'];   
     $cuarta = $_POST['cuarta'];
     $pension = $_POST['pension'];
     $discapacidad = $_POST['discapacidad'];

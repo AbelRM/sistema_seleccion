@@ -264,11 +264,11 @@
                                                 {
                                                 ?>
                                                     <tr>
-                                                        <td><?php echo $row7['id_3puntos'] ?></td>
-                                                        <td style="font-size: 14px;"><?php echo $row7['lugar'] ?></td>
-                                                        <td style="font-size: 14px;"><?php echo $row7['cargo'] ?></td>
-                                                        <td style="font-size: 14px;"><?php echo $row7['fecha_inicio'] ?></td>
-                                                        <td style="font-size: 14px;"><?php echo $row7['fecha_fin'] ?></td>
+                                                        <td style="font-size: 12px;"><?php echo $row7['id_3puntos'] ?></td>
+                                                        <td style="font-size: 12px;"><?php echo $row7['lugar'] ?></td>
+                                                        <td style="font-size: 12px;"><?php echo $row7['cargo'] ?></td>
+                                                        <td style="font-size: 12px;"><?php echo $row7['fecha_inicio'] ?></td>
+                                                        <td style="font-size: 12px;"><?php echo $row7['fecha_fin'] ?></td>
                                                         <td class="d-flex justify-content-center">
                                                             <button class="btn btn-success btn-sm m-1 updateBtn2"><i class="fa fa-edit"></i></button>
                                                             <button class="btn btn-danger btn-sm m-1 deleteBtn2"><i class="fa fa-times-circle"></i></button>
@@ -552,7 +552,7 @@
                                                     {
                                                     ?>
                                                         <tr>
-                                                            <td><?php echo $row10['id_3puntos'] ?></td>
+                                                            <td style="font-size:12px;"><?php echo $row10['id_3puntos'] ?></td>
                                                             <td style="font-size:12px;"><?php echo $row10['lugar']?></td>
                                                             <td style="font-size:12px;"><?php echo $row10['cargo']?></td>
                                                             <td style="font-size:12px;"><?php echo $row10['fecha_inicio'] ?></td>
@@ -642,7 +642,7 @@
                                                     {
                                                     ?>
                                                         <tr>
-                                                            <td><?php echo $row11['id_1puntos'] ?></td>
+                                                            <td style="font-size: 12px;"><?php echo $row11['id_1puntos'] ?></td>
                                                             <td style="font-size: 12px;"><?php echo $row11['lugar'] ?></td>
                                                             <td style="font-size: 12px;"><?php echo $row11['cargo'] ?></td>
                                                             <td style="font-size: 12px;"><?php echo $row11['fecha_inicio'] ?></td>
@@ -796,7 +796,7 @@
                   <h5 class="modal-title" >Eliminar registro</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
               </div>
-              <form action="procesos/eliminarmicroredes.php" method="POST">
+              <form action="procesos/eliminarmicroredes.php" method="POST"> 
                   <div class="modal-body">
                       <input type="hidden" name="url" id="url" value="<?php echo $dato_desencriptado;?>">
                       <input type="hidden" name="id1" id="id1">

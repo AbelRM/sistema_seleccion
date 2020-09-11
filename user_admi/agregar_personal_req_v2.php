@@ -208,7 +208,7 @@
 
    <!-- ADD NUEVOS DATOS -->
    <div class="modal fade" id="addModal">
-    <div class="modal-dialog modal-md">
+    <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header bg-primary text-white">
           <h5 class="modal-title">Nuevo personal requerido</h5>
@@ -217,13 +217,20 @@
         <div class="modal-body">
           <form action="procesos/guardar_personal_req.php" autocomplete="off" method="POST">
             <div class="row"> 
+              <div class="form-group font-weight-bolder">
+                <p class="text-danger">(*) Indica un campo obligatorio.</p>
+              </div>
+              <div class="col-md-12">
+                <h6 class="m-0 font-weight-bold text-danger">Datos del personal requeridos</h6>
+                <hr class="sidebar-divider">
+              </div>
               <input type="hidden" name="dni" value="<?php echo $dato_desencriptado ?>">
               <input type="hidden" name="idconvocatoria" value="<?php echo $idcon ?>">
-              <div class="col-md-6 col-sm-12 form-group">
+              <div class="col-md-3 col-sm-12 form-group">
                 <label for="title">Cantidad requerida</label>
                 <input style="font-size:13px;" type="number" name="cantidad" class="form-control name_list" required/>
               </div>
-              <div class="col-md-6 col-sm-12 form-group">
+              <div class="col-md-3 col-sm-12 form-group">
                 <label for="title">(*) Cargo</label>
                 <select style="font-size:12px;" name="cargo" class="form-control" id="cargo" required>
                   <option value="" disabled selected>Elegir</option>
@@ -236,12 +243,12 @@
                   ?>
                 </select>
               </div>
-              <div class="col-md-6 col-sm-12 form-group">
+              <div class="col-md-3 col-sm-12 form-group">
                 <label for="title">(*) Remuneración</label>
                 <input style="font-size:13px;" type="text" name="remuneracion" placeholder="Ejemplo: 2000" class="form-control name_list" required/>
               </div>
-              <div class="col-md-6 col-sm-12 form-group">
-                <label for="title">(*) Fuente Financiamiento</label>
+              <div class="col-md-3 col-sm-12 form-group">
+                <label for="title">(*) Fuente Financ.</label>
                 <select style="font-size:13px;" class="form-control" name="fuente_finac" required>
                   <option value="R. ORDINARIOS">R. ORDINARIOS</option>
                   <option value="R. DIRECTAMENTE RECAUDADOS">R. D. RECAUDADOS</option>
@@ -249,11 +256,11 @@
                   <option value="R. DETERMINADOSS">R. DETERMINADOS</option>
                 </select>
               </div>
-              <div class="col-md-6 col-sm-12 form-group">
+              <div class="col-md-3 col-sm-12 form-group">
                 <label for="title">(*) Meta</label>
                 <input style="font-size:13px;" type="text" name="meta" placeholder="Ejemplo: 002" class="form-control name_list" required />
               </div>
-              <div class="col-md-12 col-sm-12 form-group">
+              <div class="col-md-9 col-sm-12 form-group">
                 <label for="title">(*) Ubicación del personal requerido</label>
                 <select name="chosen-unique" class="chosen1" data-placeholder="Elige la ubicación del personal requerido" required>
                   <option value=""></option>
@@ -266,9 +273,48 @@
                   ?>
                 </select>
               </div>
-            </div>
-            <div class="form-group font-weight-bolder">
-              <p class="text-danger">(*) Indica un campo obligatorio.</p>
+              <div class="col-md-12">
+                <h6 class="m-0 font-weight-bold text-danger">Elegir los Requesitos básicos</h6>
+                <hr class="sidebar-divider">
+              </div>
+              <div class="table-responsive">
+                  <table class="table table-bordered" id="tabla-1">
+                      <thead>
+                          <tr class="bg-danger" style="text-align:center; font-size:0.813em;">
+                              <th scope="col">Requerimiento</th>
+                              <th scope="col">Nivel de Prioridad</th>
+                              <th scope="col-1">Acción</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr class="fila-fija-1">
+                            <td style="font-size:12px;">
+                              <select name="requerimientos[]" class="form-control" id="lugar">
+                                <option value="" disabled selected>Elegir</option>
+                                <?php
+                                  include_once('conexion.php');
+                                  $sql = mysqli_query($con,"SELECT * from requerimientos") or die("Problemas en consulta").mysqli_error();
+                                  while ($registro=mysqli_fetch_array($sql)) {
+                                    echo "<option value=\"".$registro['id_requerimientos']."\">".$registro['condicion']."</option>";
+                                  }
+                                ?>
+                              </select>
+                            </td>
+                            <td><input style="font-size:12px;" type="text" name="nivel_priori[]" class="form-control name_list" /></td>
+                            <td class="eliminar"><button type="button" class="btn btn-danger" ><i class="fas fa-trash-alt"></i></button></td>
+                          </tr>
+                      </tdody>
+                  </table>
+              </div>
+              <input type="hidden" name="dni" value="<?php echo $dato_desencriptado; ?>">
+              <input type="hidden" name="idpostulante" value="<?php echo $idpostulante; ?>">
+              <div class="col-12 d-flex justify-content-end p-2">
+                <button id="adicional-1" name="adicional" type="button" class="btn btn-warning"><i class="far fa-plus-square"></i> Fila</button>
+              </div>
+              <div class="col-12 d-flex justify-content-center p-2">
+                <button  name="insertar" type="submit" class="btn btn-primary">Guardar</button>
+              </div>
+          
             </div>
             <div class="modal-footer">
               <button type="submit" class="btn btn-primary" name="insertData">Guardar</button>
@@ -365,7 +411,21 @@
 						width: "100%"
 				});
 		});
-	</script>                                   
+	</script>    
+  <script>
+    $(function(){
+      // Clona la fila oculta que tiene los campos base, y la agrega al final de la tabla
+      $("#adicional-1").on('click', function(){
+          $("#tabla-1 tbody tr:eq(0)").clone().removeClass('fila-fija-1').appendTo("#tabla-1").find("input[type=text],input[type=date]").val("");
+      });
+      
+      // Evento que selecciona la fila y la elimina 
+      $(document).on("click",".eliminar",function(){
+          var parent = $(this).parents().get(0);
+          $(parent).remove();
+      });
+    });
+  </script>                               
 
 
 </body>

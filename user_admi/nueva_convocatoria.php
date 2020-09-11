@@ -98,11 +98,11 @@
                       </div>
                       <div class="form-group col-lg-2 col-md-4 col-sm-6">
                           <label for="inputEmail4">N° de convocatoria</label>
-                          <input type="text" class="form-control" name="num_con" id="num_con" minlength="3" maxlength="3" placeholder="Ejm: 001" required>
+                          <input type="number" class="form-control" name="num_con" id="num_con" minlength="3" maxlength="3" placeholder="Ejm: 001" required>
                       </div>
                       <div class="form-group col-lg-2 col-md-4 col-sm-6">
                           <label for="inputEmail4">Año de convocatoria</label>
-                          <input type="text" class="form-control" name="anio_con" id="anio_con" minlength="4" maxlength="4" placeholder="Ejm: 2020" required>
+                          <input type="number" class="form-control" name="anio_con" id="anio_con" minlength="4" maxlength="4" placeholder="Ejm: 2020" required>
                       </div>
                       <div class="form-group col-lg-3 col-md-4 col-sm-6">
                           <label for="inputEmail4">Fecha de inicio</label>
@@ -119,7 +119,7 @@
                               <option value="FINALIZADO">FINALIZADO</option>
                           </select>
                       </div>
-                      <div class="col-sm-12 col-md-12">
+                      <!-- <div class="col-sm-12 col-md-12">
                         <div class="row form-group">
                           <div class="col col-md-2"><label for="selectSm" class=" form-control-label">Ubicación</label></div>
                           <div class="col-md-10" >
@@ -135,12 +135,11 @@
                             </select>
                           </div>
                         </div>
-                      </div>
-                      
+                      </div> -->
                     </div>
                     <div class="form-group">
-                        <h6 class="m-0 font-weight-bold text-danger">Porcentajes de la convocatoria</h6>
-                        <hr class="sidebar-divider">
+                      <h6 class="m-0 font-weight-bold text-danger">Porcentajes de la convocatoria</h6>
+                      <hr class="sidebar-divider">
                     </div>
                     <div class="form-row">
                       <div class="col-md-6">
@@ -253,7 +252,7 @@
   <script src="js/sb-admin-2.js"></script>
   <script src="js/sumar.js"></script>
   <script src="js/lib/chosen/chosen.jquery.min.js"></script>
-  <script>
+  <!-- <script>
 		jQuery(document).ready(function() {
 				jQuery(".chosen1").chosen({
 						disable_search_threshold: 10,
@@ -261,7 +260,7 @@
 						width: "100%"
 				});
 		});
-	</script>
+	</script> -->
 
 
 </body>

@@ -1069,6 +1069,7 @@
       });
     });
   </script> 
+  
   <script>
     $(document).ready(function () {
         $('.updateBtn2').on('click', function(){
@@ -1193,17 +1194,17 @@
   </script>
 
   <script>
-        $(function(){
-          // Clona la fila oculta que tiene los campos base, y la agrega al final de la tabla
-          $("#adicional-1").on('click', function(){
-              $("#tabla-1 tbody tr:eq(0)").clone().removeClass('fila-fija-1').appendTo("#tabla-1").find("input[type=text],input[type=date]").val("");
-          });
-          
-          // Evento que selecciona la fila y la elimina 
-          $(document).on("click",".eliminar",function(){
-              var parent = $(this).parents().get(0);
-              $(parent).remove();
-          });
+      $(function(){
+        // Clona la fila oculta que tiene los campos base, y la agrega al final de la tabla
+        $("#adicional-1").on('click', function(){
+            $("#tabla-1 tbody tr:eq(0)").clone().removeClass('fila-fija-1').appendTo("#tabla-1").find("input[type=text],input[type=date]").val("");
+        });
+        
+        // Evento que selecciona la fila y la elimina 
+        $(document).on("click",".eliminar",function(){
+            var parent = $(this).parents().get(0);
+            $(parent).remove();
+        });
       });
       $(function(){
           // Clona la fila oculta que tiene los campos base, y la agrega al final de la tabla

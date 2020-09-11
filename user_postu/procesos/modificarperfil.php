@@ -15,14 +15,14 @@ if(ISSET($_POST['updateData2']))
     $correo = $_POST['correo'];
     $celular = $_POST['celular'];   
 
-    $sql = "UPDATE usuarios SET dni='".$dni."', nombres='".$nombre."',ape_pat='".$apellido_pat."', ape_mat='".$apellido_mat."', 
+    $sql = "UPDATE usuarios SET  nombres='".$nombre."',ape_pat='".$apellido_pat."', ape_mat='".$apellido_mat."', 
     correo='".$correo."', celular='".$celular."' WHERE iduser='".$id."' ";
 
-    $result = mysqli_query($con, $sql);
+    $result = mysqli_query($con, $sql);  
 
     if($result)
     {
-        header("Location: ../capacitacion.php?dni=$dato_desencriptado");
+        header("Location: ../index.php?dni=$dato_desencriptado");
     }
     else
     {

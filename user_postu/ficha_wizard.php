@@ -40,6 +40,8 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
         $datos=mysqli_query($con,$sql2) or die(mysqli_error()); ;
         $fila= mysqli_fetch_array($datos); 
         // include 'menu.php';
+
+        
     ?>
     <div class="container-fluid">
         <div class="row justify-content-center">
@@ -69,6 +71,12 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
                                 </ul>
                             </div>
                         </div>
+                        <?php  
+                          $sql1="SELECT * FROM postulante where dni=$dni";
+                          $datos1=mysqli_query($con,$sql1) or die(mysqli_error());
+                          $fila1= mysqli_fetch_array($datos1);
+                          $idpostulante=$fila1['idpostulante'];
+                        ?>
                         <fieldset>
                             <div class="form-card">
                                 <div class="row">
@@ -234,7 +242,7 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
                                     <div class="col-md-6 col-sm-6 mb-2 mb-sm-0">
                                         <label class="font-weight-bolder">Enfermedades/Alergias</label> 
                                         <input class="form-control form-control-user" type="text" placeholder="Separado por comas" name="alergias" id="alergias"/> 
-                                    </div>
+                                    </div> 
                                 </div> 
                             </div>
                             <input type="button" name="next" class="next action-button" value="Siguiente" />
@@ -251,6 +259,7 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
                                 <div class="form-group row">
 
                                     <input type="hidden" id="dni_post" name="dni_post" value="<?php echo $fila['dni']; ?>"/>
+                                    <input type="hidden" id="idpostulante" name="idpostulante" value="<?php echo $idpostulante ?>"/>
 
                                     <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
                                         <label class="font-weight-bolder" for="name2">Departamento nacimiento</label>

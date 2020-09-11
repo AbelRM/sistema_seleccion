@@ -796,7 +796,7 @@
                   <h5 class="modal-title" >Eliminar registro</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
               </div>
-              <form action="procesos/eliminarmicroredes.php" method="POST">
+              <form action="procesos/eliminarmicroredes.php" method="POST"> 
                   <div class="modal-body">
                       <input type="hidden" name="url" id="url" value="<?php echo $dato_desencriptado;?>">
                       <input type="hidden" name="id1" id="id1">

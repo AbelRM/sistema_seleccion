@@ -19,7 +19,7 @@
                 <div class="modal-body"> 
                     <form action="procesos/modificarperfil.php" method="POST">  
                         <input type="hidden" name="dato_desencriptado" id="dato_desencriptado" value="<?php echo $dato_desencriptado ?>" >
-                        <input type="hidden" name="iduser" id="iduser" >
+                        <input type="hidden" name="iduser" id="iduser" value="<?php echo $fila["iduser"]; ?>" >
                         <div class="form-group">
                         <label for="title">Nombre</label>
                         <input type="text" class="form-control" id="nombres" name="nombres" value="<?php echo $fila["nombres"]; ?>">    

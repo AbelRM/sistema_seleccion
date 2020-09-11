@@ -1,7 +1,7 @@
 <?php
 
     include '../conexion.php';
-   
+    $idpostulante=$_POST['idpostulante'];
     $dni_post=$_POST['dni_post'];
     // DATOS PERSONALES
     $fech_nac = $_POST['fech_nac'];

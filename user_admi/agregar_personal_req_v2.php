@@ -279,7 +279,7 @@
               </div>
               <div class="table-responsive">
                   <table class="table table-bordered" id="tabla-1">
-                      <thead>
+                      <thead>s
                           <tr class="bg-danger" style="text-align:center; font-size:0.813em;">
                               <th scope="col">Requerimiento</th>
                               <th scope="col">Nivel de Prioridad</th>

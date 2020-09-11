@@ -117,7 +117,6 @@
                           if(mysqli_num_rows($query)>0){
                             while ($row= MySQLI_fetch_array($query))
                             {
-                            
                             ?>
                               <tr>
                                 <td style="font-size: 12px;"><?php echo $row['id_formacion'] ?></td>
@@ -134,7 +133,6 @@
                               </tr>
                             <?php
                             }
-                            
                           }else{
                             echo "<tr>
                               <td colspan='7' class='text-center text-danger font-weight-bold' >NO HAY DATOS REGISTRADOS</td>
@@ -188,7 +186,7 @@
 
   <!-- ADD NUEVOS DATOS -->
   <div class="modal fade" id="addModal">
-    <div class="modal-dialog modal-md">
+    <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header bg-primary text-white">
           <h5 class="modal-title">Nuevos datos profesionales</h5>
@@ -197,10 +195,12 @@
           </button>
         </div>
         <div class="modal-body">
-          <form action="procesos/guardar_formacion.php" autocomplete="off" method="POST">
+          <form action="procesos/guardar_formacion.php" enctype="multipart/form-data" autocomplete="off" method="POST">
             <div class="row"> 
-              <input type="hidden" name="dni" value="<?php echo $dato_desencriptado ?>">
+              <input type="hidden" name="dni_encriptado" value="<?php echo $dato_desencriptado ?>">
+              <input type="hidden" name="dni" value="<?php echo $dni ?>">
               <input type="hidden" name="postulante" value="<?php echo $idpostulante ?>">
+
               <div class="col-md-6 col-sm-12 form-group">
                 <label for="title">(*) Tipo estudio</label>
                 <select class="form-control" name="tipo_estudios" onChange="tipo_estudios_select(this)" required>
@@ -222,42 +222,60 @@
                   <option value="TITULADO">Titulado</option>
                 </select>
               </div>
-              <div class="col-md-12 col-sm-12 form-group" id="div_centro_estudios">
+              <div class="col-md-6 col-sm-12 form-group" id="div_centro_estudios">
                 <label for="title">(*) Centro estudios</label>
                 <input type="text" name="centro_estudios" class="form-control" placeholder="Nombre centro estudios" maxlength="100"
                 required>
               </div>
-              <div class="col-md-12 col-sm-12 form-group" id="div_carrera">
+              <div class="col-md-6 col-sm-12 form-group" id="div_carrera">
                 <label for="title">(*) Carrera</label>
                 <input type="text" name="carrera" class="form-control" placeholder="Nombre de la carrera" maxlength="100"
                 required>
               </div>
-              <div class="col-md-6 col-sm-12 form-group" id="div_colegiatura">
+              <div class="col-md-2 col-sm-12 form-group" id="div_colegiatura">
                 <label for="title">(*) Colegiatura</label>
                 <select name="colegiatura" id="colegiatura_new" class="form-control">
                   <option value="NO">NO</option>
                   <option value="SI">SI</option>
                 </select>
               </div>
-              <div class="col-md-6 col-sm-12 form-group" id="div_nro_colegiatura">
+              <div class="col-md-3 col-sm-12 form-group" id="div_nro_colegiatura">
                 <label for="title">(*) N° Colegiatura</label>
                 <input type="text" name="nro_colegiatura" id="nro_colegiatura_new" class="form-control" placeholder="N° colegiatura" maxlength="50" disabled>
               </div>
-              <div class="col-md-6 col-sm-12 form-group" id="div_fecha_habilitacion">
-                <label for="title">(*) Fecha última habilitación</label>
+              <div class="col-md-3 col-sm-12 form-group" id="div_fecha_habilitacion">
+                <label for="title">(*) Fecha habilitación</label>
                 <input type="date" name="fecha_colegiatura" id="fecha_colegiatura_new" class="form-control" disabled>
               </div>
-              <div class="col-md-6 col-sm-12 form-group" id="div_lugar_colegiatura">
+              <div class="col-md-4 col-sm-12 form-group" id="div_lugar_colegiatura">
                 <label for="title">(*) Lugar Colegiatura</label>
                 <input type="text" name="lugar_colegiatura" id="lugar_colegiatura_new" class="form-control" placeholder="Lugar de colegiatura" maxlength="70" disabled>
               </div>
-              <div class="col-md-6 col-sm-12 form-group" id="div_fecha_inicio">
+              <div class="col-md-3 col-sm-12 form-group" id="div_fecha_inicio">
                 <label for="title">(**) Fecha Inicio</label>
                 <input type="date" name="fecha_inicio" class="form-control" required>
               </div>
-              <div class="col-md-6 col-sm-12 form-group" id="div_fecha_fin">
+              <div class="col-md-3 col-sm-12 form-group" id="div_fecha_fin">
                 <label for="title">(**) Fecha Término</label>
                 <input type="date" name="fecha_fin" class="form-control" required>
+              </div>
+              <div class="col-md-6 col-sm-12 form-group" id="archivo">
+                <div class="row">
+                  <label for="title">(*) Elegir Archivo</label>
+                </div>
+                <div class="row">
+                  <div class="col-4 pf-0">
+                    <label for="file-upload" class="subir">
+                      <i class="fas fa-cloud-upload-alt"></i> Elegir
+                    </label>
+                    <input id="file-upload" onchange='cambiar()' name="archivo" type="file" style='display: none;'/>
+                  </div>
+                  <div class="col-8 p-0">
+                    <div id="info" class="font-weight-bold"></div>
+                  </div>
+                </div>
+                
+                
               </div>
             </div>
             <div class="form-group">
@@ -320,6 +338,12 @@
   <script src="js/demo/chart-area-demo.js"></script>
   <script src="js/demo/chart-pie-demo.js"></script>
   <script src="js/funciones.js"></script>
+  <script>
+    function cambiar(){
+      var pdrs = document.getElementById('file-upload').files[0].name;
+      document.getElementById('info').innerHTML = pdrs;
+    }
+  </script>
   <script>
     $(document).ready(function () {
       $('.deleteBtn').on('click', function(){

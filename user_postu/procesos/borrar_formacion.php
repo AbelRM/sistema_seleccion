@@ -7,8 +7,17 @@
     {
         $id = $_POST['deleteId']; 
         $dni = $_POST['dni'];
+        $dni_base = $_POST['dni_base'];
+        $consulta = "SELECT * FROM formacion_acad  WHERE id_formacion='$id'";  
+        $resultado = mysqli_query($con, $consulta);
+        $row= MySQLI_fetch_array($resultado);
+        $archivo = $row['archivo'];
+        $ruta = "../archivos/".$dni_base."/";
+
         $sql = "DELETE FROM formacion_acad WHERE id_formacion='$id'";
+        
         $result = mysqli_query($con, $sql);
+        unlink($ruta.$archivo);
  
         if($result){
             header("Location: ../formacion.php?dni=$dni");

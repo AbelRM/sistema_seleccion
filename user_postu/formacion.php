@@ -136,7 +136,7 @@
                             }
                           }else{
                             echo "<tr>
-                              <td colspan='7' class='text-center text-danger font-weight-bold' >NO HAY DATOS REGISTRADOS</td>
+                              <td colspan='8' class='text-center text-danger font-weight-bold' >NO HAY DATOS REGISTRADOS</td>
                             </tr>";
                           }
                         ?>
@@ -309,6 +309,7 @@
  
             <input type="hidden" name="deleteId" id="deleteId">
             <input type="hidden" name="dni" value="<?php echo $dato_desencriptado ?>">
+            <input type="hidden" name="dni_base" value="<?php echo $dni ?>">
             <h4>¿Desea eliminar el registro de formación?</h4>
  
           </div>

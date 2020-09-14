@@ -28,5 +28,6 @@
             <iframe src="archivos/<?php echo $dni ?>/<?php echo $datos['archivo']; ?>"  width="800px" height="600px"></iframe>
         
         <?php } } ?>
+    
 </body>
 </html>

@@ -26,8 +26,8 @@
       }elseif (! ($tamano_archivo <= 5000000)){
         echo "El archivo excede el tamaño máximo de 1MB";
       }elseif (move_uploaded_file($_FILES['archivo']['tmp_name'], $destino.$nombre_archivo)){
-        $titulo= $_POST['titulo'];
-        $descri= $_POST['descripcion'];
+        // $titulo= $_POST['titulo'];
+        // $descri= $_POST['descripcion'];
         $tipo_estudios = $_POST['tipo_estudios'];
         $nivel_estudios = $_POST['nivel_estudios'];
         $centro_estudios = $_POST['centro_estudios'];

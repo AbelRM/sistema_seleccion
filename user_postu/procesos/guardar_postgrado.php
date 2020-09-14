@@ -1,63 +1,50 @@
 <?php
-    include_once('../conexion.php');
-    $dni=$_POST['dni'];
-    $idpostulante= $_POST['idpostulante']; 
-    // $iddetalle_con=$_POST['iddetalle_convocatoria']; 
-    //////////////////////// PRESIONAR EL BOTÓN //////////////////////////
-    if(isset($_POST['insertar']))
+  // Insert the content of connection.php file
+  include('../conexion.php');
+  
+  // Insert data into the database
+  if(ISSET($_POST['insertData']))
     {
-        $items1 = ($_POST['centro_estu']);
-        $items2 = ($_POST['especialidad']);
-        $items3 = ($_POST['tipo_estu']);
-        $items4 = ($_POST['fech_ini']);
-        $items5 = ($_POST['fech_fin']);
-        $items6 = ($_POST['nivel']); 
     
-    ///////////// SEPARAR VALORES DE ARRAYS, EN ESTE CASO SON 5 ARRAYS UNO POR CADA INPUT (ID, NOMBRE, CARRERA Y GRUPO////////////////////)
-        while(true) {
+      $dato_desencriptado = $_POST['dni_encriptado'];
+      $dni = $_POST['dni'];
+      $idpostulante = $_POST['postulante'];
 
-            //// RECUPERAR LOS VALORES DE LOS ARREGLOS ////////
-            $item1 = current($items1);
-            $item2 = current($items2);
-            $item3 = current($items3);
-            $item4 = current($items4);
-            $item5 = current($items5);
-            $item6 = current($items6);
-            
-            ////// ASIGNARLOS A VARIABLES ///////////////////
-            $centro_estu=(( $item1 !== false) ? $item1 : ", &nbsp;");
-            $especialidad=(( $item2 !== false) ? $item2 : ", &nbsp;");
-            $tipo=(( $item3 !== false) ? $item3 : ", &nbsp;");
-            $fech_ini=(( $item4 !== false) ? $item4 : ", &nbsp;");
-            $fech_fin=(( $item5 !== false) ? $item5 : ", &nbsp;");
-            $nivel=(( $item6 !== false) ? $item6 : ", &nbsp;");
+     // Recibo los datos de la imagen
+      $nombre_archivo = $_FILES['archivo1']['name'];
+      $tipo_archivo = $_FILES['archivo1']['type'];
+      $tamano_archivo = $_FILES['archivo1']['size'];
+      
+      $destino =$_SERVER['DOCUMENT_ROOT']. "/sistema_seleccion/user_postu/archivos/" . $dni . "/";
+      // $path = "sample/path/newfolder"; 
+      if (!file_exists($destino)) {
+        $destino = mkdir($destino, 0777, true);
+      }elseif (!strpos($tipo_archivo, "pdf")) {
+        echo "Solo se permite archivos PDF o JPEG";
+      }elseif (! ($tamano_archivo < 5000000)){
+        echo "El archivo excede el tamaño máximo de 1MB";
+      }elseif (move_uploaded_file($_FILES['archivo1']['tmp_name'], $destino.$nombre_archivo))
+      {
+       
+            $centro_estudios = $_POST['centro_estudios'];
+            $especialidad = $_POST['especialidad'];
+            $tipo = $_POST['tipo'];
+            $fecha_inicio = $_POST['fecha_inicio'];
+            $fecha_fin = $_POST['fecha_fin'];
+            $nivel = $_POST['nivel_estudios'];
 
-            //// CONCATENAR LOS VALORES EN ORDEN PARA SU FUTURA INSERCIÓN ////////
-            $valores='("'.$centro_estu.'","'.$especialidad.'","'.$tipo.'","'.$fech_ini.'","'.$fech_fin.'","'.$nivel.'","'.$idpostulante.'"),';
-
-            //////// YA QUE TERMINA CON COMA CADA FILA, SE RESTA CON LA FUNCIÓN SUBSTR EN LA ULTIMA FILA /////////////////////
-            $valoresQ= substr($valores, 0, -1);
-            
-            ///////// QUERY DE INSERCIÓN ////////////////////////////
-            // include_once('conexion.php');
-            $sql = "INSERT INTO maestria_doc (centro_estu, especialidad, tipo_estu, fech_ini, fech_fin, nivel, idpostulante_postulante) 
-            VALUES $valoresQ";
-
-            $sqlRes=$con->query($sql) or mysqli_error($con);
-
-            // Up! Next Value
-            $item1 = next( $items1 );
-            $item2 = next( $items2 );
-            $item3 = next( $items3 );
-            $item4 = next( $items4 );
-            $item5 = next( $items5 );
-            $item6 = next( $items6 );
-            
-            // Check terminator
-            if($item1 === false && $item2 === false && $item3 === false && $item4 === false && $item5 === false && $item6 === false) break;
-
-        }
+            $sql = "INSERT INTO maestria_doc (centro_estu,especialidad,tipo_estu,fech_ini,fech_fin,nivel,idpostulante_postulante,archivo) 
+            VALUES('$centro_estudios','$especialidad','$tipo','$fecha_inicio','$fecha_fin','$nivel','$idpostulante','$nombre_archivo')";  
+                
+            $result = mysqli_query($con, $sql);
+            if($result){
+            echo '<script> alert("Guardado exitosamente"); </script>';
+            header('Location: ../capacitacion.php?dni='.$dato_desencriptado);
+            }else
+            {
+            echo '<script> alert("Error al guardar PRIMERA!"); </script>';
+            // header('Location: ../formacion.php?dni='.$dni);
+            }
+      } 
     }
-    //$dato_encriptado = $encriptar($dni);
-    header('Location: ../capacitacion.php?dni='.$dni);
 ?>

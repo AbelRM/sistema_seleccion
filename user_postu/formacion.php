@@ -125,6 +125,7 @@
                                 <td style="font-size: 12px;"><?php echo $row['carrera'] ?></td>
                                 <td style="font-size: 12px;"><?php echo $row['fecha_inicio'] ?></td>
                                 <td style="font-size: 12px;"><?php echo $row['fecha_fin'] ?></td>
+                               
                                 <td><a href="ver_pdf.php?id=<?php echo $row['id_formacion']?>&dni=<?php echo $dato_desencriptado ?>"><?php echo $row['archivo']; ?></a></td>
                                 <td class="d-flex justify-content-center">
                                   <a type="button" href="editarformacion.php?idformacion=<?php echo $row['id_formacion']?>&dni=<?php echo $dato_desencriptado ?>" class="btn btn-success btn-sm m-1">

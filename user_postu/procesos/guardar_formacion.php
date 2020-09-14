@@ -16,11 +16,10 @@
       $tipo_archivo = $_FILES['archivo']['type'];
       $tamano_archivo = $_FILES['archivo']['size'];
       // $ruta = $_FILES['archivo']['tmp_name'];
-      
-      $destino =$_SERVER['DOCUMENT_ROOT']. "/sistema_seleccion/user_postu/archivos/" . $dni . "/";
+      $destino_base = $_SERVER['DOCUMENT_ROOT']. "/sistema_seleccion/user_postu/archivos/".$dni;
       // $path = "sample/path/newfolder";
-      if (!file_exists($destino)) {
-        $destino = mkdir($destino, 0777, true);
+      if (!file_exists($destino_base)) {
+        $destino_base = mkdir($destino_base, 0777, true);
       }
       if (!strpos($tipo_archivo, "pdf")) {
         echo "Solo se permite archivos PDF";

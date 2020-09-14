@@ -253,11 +253,13 @@
                         <div class="form-row p-2 d-flex justify-content-center">
                             <div class="card border-primary">
                                 <div class="card-header header-formulario">
-                                  <div class="col-md-8">
-                                    <h5 class="titulo-card">DIRESA, Red de Salud y Hospital en TACNA</h5>
-                                  </div>
-                                  <div class="col-md-4 d-flex justify-content-end">
-                                    <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#expe4_2"><i class="fas fa-plus"></i> Nuevo</a>
+                                  <div class="row">
+                                    <div class="col-md-8">
+                                      <h5 class="titulo-card">DIRESA, Red de Salud y Hospital en TACNA</h5>
+                                    </div>
+                                    <div class="col-md-4 d-flex justify-content-end">
+                                      <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#expe4_2"><i class="fas fa-plus"></i> Nuevo</a>
+                                    </div>
                                   </div>
                                 </div>
                                 <div class="card-body">
@@ -289,7 +291,7 @@
                                                         <td style="font-size: 12px;"><?php echo $row7['cargo'] ?></td>
                                                         <td style="font-size: 12px;"><?php echo $row7['fecha_inicio'] ?></td>
                                                         <td style="font-size: 12px;"><?php echo $row7['fecha_fin'] ?></td>
-                                                        <td><a href="ver_pdf_expe3.php?id=<?php echo $row6['id_3puntos']?>&dni=<?php echo $dato_desencriptado ?>"><?php echo $row6['archivos']; ?></a></td>
+                                                        <td><a href="ver_pdf_expe3.php?id=<?php echo $row7['id_3puntos']?>&dni=<?php echo $dato_desencriptado ?>"><?php echo $row7['archivos']; ?></a></td>
                                                         <td class="d-flex justify-content-center">
                                                             <button class="btn btn-success btn-sm m-1 updateBtn2"><i class="fa fa-edit"></i></button>
                                                             <button class="btn btn-danger btn-sm m-1 deleteBtn2"><i class="fa fa-times-circle"></i></button>
@@ -769,6 +771,7 @@
                 <input type="date" name="fecha_fin_4exp" id="nro_colegiatura_new" class="form-control" required>
               </div>
               <div class="col-md-8 col-sm-12 form-group" id="archivo">
+                <label for="title">(*) Subir Constancia de trabajo</label>
                 <input type="file" name="archivo" required/>
               </div>
               <!-- <div class="col-md-8 col-sm-12 form-group" id="archivo">
@@ -882,21 +885,22 @@
 
               <div class="col-md-4 col-sm-12 form-group">
                 <label for="title">(*) Lugar de trabajo</label>
-                <input type="text" name="lugar_4exp_2" class="form-control" placeholder="Nombre de cargo" maxlength="100" required>
+                <input type="text" name="lugar_3exp" class="form-control" placeholder="Nombre de cargo" maxlength="100" required>
               </div>
               <div class="col-md-4 col-sm-12 form-group" >
                 <label for="title">(*) Cargo/Funciones</label>
-                <input type="text" name="cargo_funciones_4exp_2" class="form-control" placeholder="Nombre de cargo" maxlength="100" required>
+                <input type="text" name="cargo_funciones_3exp" class="form-control" placeholder="Nombre de cargo" maxlength="100" required>
               </div>
               <div class="col-md-4 col-sm-12 form-group" >
                 <label for="title">(*) Fecha de Inicio</label>
-                <input type="date" name="fecha_ini_4exp_2" class="form-control" required>
+                <input type="date" name="fecha_ini_3exp" class="form-control" required>
               </div>
               <div class="col-md-4 col-sm-12 form-group">
                 <label for="title">(*) Fecha de Término</label>
-                <input type="date" name="fecha_fin_4exp_2" class="form-control" required>
+                <input type="date" name="fecha_fin_3exp" class="form-control" required>
               </div>
               <div class="col-md-8 col-sm-12 form-group">
+                <label for="title">(*) Subir Constancia de trabajo</label>
                 <input type="file" name="archivo_2" required/>
               </div>
               <!-- <div class="col-md-8 col-sm-12 form-group" id="archivo">
@@ -971,8 +975,9 @@
               </div>
               <form action="procesos/eliminarmicroredTacna.php" method="POST">
                   <div class="modal-body">
-                      <input type="hidden" name="url" id="url" value="<?php echo $dato_desencriptado;?>">
+                      <input type="hidden" name="dni_url_2" id="url" value="<?php echo $dato_desencriptado;?>">
                       <input type="hidden" name="id2" id="id2">
+                      <input type="hidden" name="dni_base_2" value="<?php echo $dni ?>">
                       <h4>¿Desea eliminar el dato seleccionado?</h4>
                   </div>
                   <div class="modal-footer">

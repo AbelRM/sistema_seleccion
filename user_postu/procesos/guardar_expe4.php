@@ -43,7 +43,7 @@
     // }
 
     if($result){
-      $destino =$_SERVER['DOCUMENT_ROOT']. "/sistema_seleccion/user_postu/archivos/" . $dni . "/";
+      $destino =$_SERVER['DOCUMENT_ROOT']. "/sistema_seleccion/user_postu/archivos/".$dni."/";
       // $path = "sample/path/newfolder";
       if (!file_exists($destino)) {
         $destino = mkdir($destino, 0777, true);
@@ -54,11 +54,10 @@
       if (! ($tamano_archivo <= 3000000)){
         echo "El archivo excede el tamaño máximo de 3MB";
       }
-      $new_nombre = "expe_4_$nombre_archivo";
+      // $new_nombre = "expe_4_$nombre_archivo";
       if (move_uploaded_file($ruta, $destino.$nombre_archivo)){
         echo '<script> alert("Guardado exitosamente"); </script>';
         header('Location: ../exp_laboral.php?dni='.$dato_desencriptado);
-
       } else {
         echo "Error al subir el archivo";
       }
@@ -66,7 +65,5 @@
       echo '<script> alert("Error al guardar PRIMERA!"); </script>';
       // header('Location: ../formacion.php?dni='.$dni);
     }
-
-    
   }
 ?>

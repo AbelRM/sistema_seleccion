@@ -21,11 +21,14 @@
       // $path = "sample/path/newfolder";
       if (!file_exists($destino)) {
         $destino = mkdir($destino, 0777, true);
-      }elseif (!strpos($tipo_archivo, "pdf")) {
-        echo "Solo se permite archivos PDF o JPEG";
-      }elseif (! ($tamano_archivo <= 5000000)){
-        echo "El archivo excede el tamaño máximo de 1MB";
-      }elseif (move_uploaded_file($_FILES['archivo']['tmp_name'], $destino.$nombre_archivo)){
+      }
+      if (!strpos($tipo_archivo, "pdf")) {
+        echo "Solo se permite archivos PDF";
+      }
+      if (! ($tamano_archivo <= 3000000)){
+        echo "El archivo excede el tamaño máximo de 3MB";
+      }
+        if (move_uploaded_file($_FILES['archivo']['tmp_name'], $destino.$nombre_archivo)){
         // $titulo= $_POST['titulo'];
         // $descri= $_POST['descripcion'];
         $tipo_estudios = $_POST['tipo_estudios'];
@@ -41,17 +44,17 @@
         VALUES('$tipo_estudios','$nivel_estudios','$centro_estudios', '$carrera','$colegiatura_validar','$fecha_inicio',
         '$fecha_fin','$idpostulante','$nombre_archivo')";  
             
-        $result = mysqli_query($con, $sql);
-        if($result){
-          echo '<script> alert("Guardado exitosamente"); </script>';
-          header('Location: ../formacion.php?dni='.$dato_desencriptado);
-        }else{
-          echo '<script> alert("Error al guardar PRIMERA!"); </script>';
-          // header('Location: ../formacion.php?dni='.$dni);
+          $result = mysqli_query($con, $sql);
+          if($result){
+            echo '<script> alert("Guardado exitosamente"); </script>';
+            header('Location: ../formacion.php?dni='.$dato_desencriptado);
+          }else{
+            echo '<script> alert("Error al guardar PRIMERA!"); </script>';
+            // header('Location: ../formacion.php?dni='.$dni);
+          }
+        } else {
+          echo "Error";
         }
-      } else {
-        echo "Error";
-      }
     }else{
       $dni = $_POST['dni'];
       $idpostulante = $_POST['postulante'];

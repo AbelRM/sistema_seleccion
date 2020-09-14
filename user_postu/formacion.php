@@ -230,8 +230,7 @@
               </div>
               <div class="col-md-6 col-sm-12 form-group" id="div_carrera">
                 <label for="title">(*) Carrera</label>
-                <input type="text" name="carrera" class="form-control" placeholder="Nombre de la carrera" maxlength="100"
-                required>
+                <input type="text" name="carrera" class="form-control" placeholder="Nombre de la carrera" maxlength="100" required>
               </div>
               <div class="col-md-2 col-sm-12 form-group" id="div_colegiatura">
                 <label for="title">(*) Colegiatura</label>
@@ -269,14 +268,12 @@
                     <label for="file-upload" class="subir">
                       <i class="fas fa-cloud-upload-alt"></i> Elegir
                     </label>
-                    <input id="file-upload" onchange='cambiar()' name="archivo" type="file" style='display: none;'/>
+                    <input id="file-upload" onchange='cambiar()' name="archivo" type="file" style='display: none;' required/>
                   </div>
                   <div class="col-8 p-0">
                     <div id="info" class="font-weight-bold"></div>
                   </div>
                 </div>
-                
-                
               </div>
             </div>
             <div class="form-group">

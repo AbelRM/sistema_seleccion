@@ -8,7 +8,6 @@
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
   <meta charset="utf-8">
@@ -104,6 +103,7 @@
                           <th>Carrera</th>
                           <th>Fecha Inicio</th>
                           <th>Fecha Término</th>
+                          <th>Archivo</th>
                           <th>Acciones</th>
                         </tr>
                       </thead>
@@ -125,6 +125,7 @@
                                 <td style="font-size: 12px;"><?php echo $row['carrera'] ?></td>
                                 <td style="font-size: 12px;"><?php echo $row['fecha_inicio'] ?></td>
                                 <td style="font-size: 12px;"><?php echo $row['fecha_fin'] ?></td>
+                                <td><a href="ver_pdf.php?id=<?php echo $row['id_formacion']?>&dni=<?php echo $dato_desencriptado ?>"><?php echo $row['archivo']; ?></a></td>
                                 <td class="d-flex justify-content-center">
                                   <a type="button" href="editarformacion.php?idformacion=<?php echo $row['id_formacion']?>&dni=<?php echo $dato_desencriptado ?>" class="btn btn-success btn-sm m-1">
                                   <i class="fa fa-edit"></i> Editar</a>

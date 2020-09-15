@@ -17,11 +17,11 @@
       
       $destino =$_SERVER['DOCUMENT_ROOT']. "/sistema_seleccion/user_postu/archivos/" . $dni . "/";
       // $path = "sample/path/newfolder"; 
-      if (!file_exists($destino)) {
+      if (!file_exists($destino)) {  
         $destino = mkdir($destino, 0777, true);
       }elseif (!strpos($tipo_archivo, "pdf")) {
         echo "Solo se permite archivos PDF o JPEG";
-      }elseif (! ($tamano_archivo < 5000000)){
+      }elseif (! ($tamano_archivo <= 5000000)){
         echo "El archivo excede el tamaño máximo de 1MB";
       }elseif (move_uploaded_file($_FILES['archivo']['tmp_name'], $destino.$nombre_archivo))
       {

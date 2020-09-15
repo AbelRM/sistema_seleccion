@@ -53,71 +53,83 @@
 
 
     if ($datos == 1) {
-        $prueba="SELECT * FROM postulante where dni=$dni_post";
-        $datos=mysqli_query($con,$prueba) or die(mysqli_error()); 
-        $fila= mysqli_fetch_array($datos);
-        $idpostulante=$fila['idpostulante'];
+       
 
         $sql2 = "INSERT INTO domicilio_post (tip_via, nomb_via, num_via,tip_zona, nomb_zona, num_zona, referencia, numero, manzana, lote, postulante_idpostulante,distrito_idistrito) 
         VALUES ('".$tipo_via."', '".$nomb_via."', '".$num_via."', '".$tipo_zona."', '".$nomb_zona."', '".$num_zona."','".$referencia."','".$numero."','".$manzana."','".$lote."','".$idpostulante."' ,'".$distrito1."')";
         $datos2=mysqli_query($con,$sql2);
+
+
+        if ($datos2 == 1) {
+       
     
-        if($datos2 == 1){
-            $true = 'true';
-            $items1 = ($_POST['nombre']);
-            $items2 = ($_POST['apellidos']);
-            $items3 = ($_POST['fecha_nac']);
-            $items4 = ($_POST['dni']);
-            $items5 = ($_POST['parentesco']);
-            $items6 = ($_POST['entidad']);
-            
-            ///////////// SEPARAR VALORES DE ARRAYS, EN ESTE CASO SON 5 ARRAYS UNO POR CADA INPUT (ID, NOMBRE, CARRERA Y GRUPO////////////////////)
-            while($true == true) {
+            $sql4 = "INSERT INTO Encuesta (pregunta1, pregunta2, pregunta3,pregunta4, pregunta5, pregunta6, pregunta7, pregunta8, pregunta9, pregunta10, pregunta11,pregunta12, pregunta13,postulanteID) 
+            VALUES ('".$pre1."', '".$pre2."', '".$pre3."', '".$pre4."', '".$pre5."', '".$pre6."','".$pre7."','".$pre8."','".$pre9."','".$pre10."','".$pre11."','".$pre12."','".$pre13."','".$idpostulante."')";
+            $datos3=mysqli_query($con,$sql4);
     
-                //// RECUPERAR LOS VALORES DE LOS ARREGLOS ////////
-                $item1 = current($items1);
-                $item2 = current($items2);
-                $item3 = current($items3);
-                $item4 = current($items4);
-                $item5 = current($items5);
-                $item6 = current($items6);
+            if($datos3 == 1){
+                $true = 'true';
+                $items1 = ($_POST['nombre']);
+                $items2 = ($_POST['apellidos']);
+                $items3 = ($_POST['fecha_nac']);
+                $items4 = ($_POST['dni']);
+                $items5 = ($_POST['parentesco']);
+                $items6 = ($_POST['entidad']);
                 
-                ////// ASIGNARLOS A VARIABLES ///////////////////
-                $nombre=(( $item1 !== false) ? $item1 : ", &nbsp;");
-                $apellidos=(( $item2 !== false) ? $item2 : ", &nbsp;");
-                $fecha_nac=(( $item3 !== false) ? $item3 : ", &nbsp;");
-                $dni=(( $item4 !== false) ? $item4 : ", &nbsp;");
-                $parentesco=(( $item5 !== false) ? $item5 : ", &nbsp;");
-                $labora=(( $item6 !== false) ? $item6 : ", &nbsp;");
-    
-                //// CONCATENAR LOS VALORES EN ORDEN PARA SU FUTURA INSERCIÓN ////////
-                $valores='("'.$nombre.'","'.$apellidos.'","'.$fecha_nac.'","'.$dni.'","'.$parentesco.'","'.$labora.'","'.$idpostulante.'"),';
-    
-                //////// YA QUE TERMINA CON COMA CADA FILA, SE RESTA CON LA FUNCIÓN SUBSTR EN LA ULTIMA FILA /////////////////////
-                $valoresQ= substr($valores, 0, -1);
-                
-                ///////// QUERY DE INSERCIÓN ////////////////////////////
-                // include_once('conexion.php');
-                $sql3 = "INSERT INTO familia_post (nombre, apellidos, fech_nac, dni, parentesco, labora, postulante_idpostulante) 
-                VALUES $valoresQ";
-    
-                $sqlRes=$con->query($sql3) or mysqli_error($con);
-    
-                // Up! Next Value
-                $item1 = next( $items1 );
-                $item2 = next( $items2 );
-                $item3 = next( $items3 );
-                $item4 = next( $items4 );
-                $item5 = next( $items5 );
-                $item6 = next( $items6 );
-                
-                // Check terminator
-                if($item1 === false && $item2 === false && $item3 === false && $item4 === false && $item5 === false && $item6 === false) break;
-    
-            }
-            session_start();
-            header('Location: ../index.php?dni='.$dni_post);
-        }else{
+                ///////////// SEPARAR VALORES DE ARRAYS, EN ESTE CASO SON 5 ARRAYS UNO POR CADA INPUT (ID, NOMBRE, CARRERA Y GRUPO////////////////////)
+                while($true == true) {
+        
+                    //// RECUPERAR LOS VALORES DE LOS ARREGLOS ////////
+                    $item1 = current($items1);
+                    $item2 = current($items2);
+                    $item3 = current($items3);
+                    $item4 = current($items4);
+                    $item5 = current($items5);
+                    $item6 = current($items6);
+                    
+                    ////// ASIGNARLOS A VARIABLES ///////////////////
+                    $nombre=(( $item1 !== false) ? $item1 : ", &nbsp;");
+                    $apellidos=(( $item2 !== false) ? $item2 : ", &nbsp;");
+                    $fecha_nac=(( $item3 !== false) ? $item3 : ", &nbsp;");
+                    $dni=(( $item4 !== false) ? $item4 : ", &nbsp;");
+                    $parentesco=(( $item5 !== false) ? $item5 : ", &nbsp;");
+                    $labora=(( $item6 !== false) ? $item6 : ", &nbsp;");
+        
+                    //// CONCATENAR LOS VALORES EN ORDEN PARA SU FUTURA INSERCIÓN ////////
+                    $valores='("'.$nombre.'","'.$apellidos.'","'.$fecha_nac.'","'.$dni.'","'.$parentesco.'","'.$labora.'","'.$idpostulante.'"),';
+        
+                    //////// YA QUE TERMINA CON COMA CADA FILA, SE RESTA CON LA FUNCIÓN SUBSTR EN LA ULTIMA FILA /////////////////////
+                    $valoresQ= substr($valores, 0, -1);
+                    
+                    ///////// QUERY DE INSERCIÓN ////////////////////////////
+                    // include_once('conexion.php');
+                    $sql3 = "INSERT INTO familia_post (nombre, apellidos, fech_nac, dni, parentesco, labora, postulante_idpostulante) 
+                    VALUES $valoresQ";
+        
+                    $sqlRes=$con->query($sql3) or mysqli_error($con);
+        
+                    // Up! Next Value
+                    $item1 = next( $items1 );
+                    $item2 = next( $items2 );
+                    $item3 = next( $items3 );
+                    $item4 = next( $items4 );
+                    $item5 = next( $items5 );
+                    $item6 = next( $items6 );
+                    
+                    // Check terminator
+                    if($item1 === false && $item2 === false && $item3 === false && $item4 === false && $item5 === false && $item6 === false) break;
+        
+                    }
+                    session_start();
+                    header('Location: ../index.php?dni='.$dni_post);
+                }
+                else
+                {
+                    echo "Error: " . $sql . "<br>" . $con->error;
+                }
+        } 
+        else 
+        {
             echo "Error: " . $sql . "<br>" . $con->error;
         }
         

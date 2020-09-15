@@ -39,10 +39,12 @@
       $dni = $desencriptar($dato_desencriptado);
 
       $sql="SELECT * FROM usuarios where dni=$dni";
-      $datos=mysqli_query($con,$sql) or die(mysqli_error()); ;
+      $datos=mysqli_query($con,$sql) or die(mysqli_error());
       $buscar= mysqli_fetch_array($datos);
       include 'menu.php';
     ?>
+
+    
 
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
@@ -86,21 +88,21 @@
                   </div>
                   <div class="form-row">
                     <div class="form-group col-md-3 col-sm-12">
-                      <label for="inputEmail4">Número de convocatoria</label>
-                      <input type="text" class="form-control" value="<?php echo $fila['num_con'] ?>" disabled="true">
+                      <label for="inputEmail4">N° de convocatoria</label>
+                      <input type="text" class="form-control" value="<?php echo $fila['num_con']."-".$fila['anio_con']?>" disabled="true">
                     </div>
                     <div class="form-group col-md-3 col-sm-12">
                       <label for="inputEmail4">Tipo de convocatoria</label>
                       <input type="text" class="form-control" value="<?php echo $fila['tipo_con'] ?>" disabled="true">
                     </div>
-                    <div class="form-group col-md-6 col-sm-12">
+                    <!-- <div class="form-group col-md-6 col-sm-12">
                       <label for="inputEmail4">Dirección ejecutora</label>
                       <input type="text" class="form-control" value="<?php echo $fila_2['direccion_ejec']?>" disabled="true">
                     </div>
                     <div class="form-group col-md-6 col-sm-12">
                       <label for="inputEmail4">Equipo ejecutor</label>
                       <input type="text" class="form-control" value="<?php echo $fila_2['equipo_ejec']?>" disabled="true">
-                    </div>
+                    </div> -->
                     <div class="form-group col-md-3 col-sm-6">
                         <label for="inputEmail4">Fecha de inicio</label>
                         <input type="date" class="form-control" value="<?php echo $fila['fech_ini'] ?>" disabled="true">
@@ -217,9 +219,9 @@
         <div class="modal-body">
           <form action="procesos/guardar_personal_req.php" autocomplete="off" method="POST">
             <div class="row"> 
-              <div class="form-group font-weight-bolder">
+              <!-- <div class="form-group font-weight-bolder">
                 <p class="text-danger">(*) Indica un campo obligatorio.</p>
-              </div>
+              </div> -->
               <div class="col-md-12">
                 <h6 class="m-0 font-weight-bold text-danger">Datos del personal requeridos</h6>
                 <hr class="sidebar-divider">
@@ -228,11 +230,11 @@
               <input type="hidden" name="idconvocatoria" value="<?php echo $idcon ?>">
               <div class="col-md-3 col-sm-12 form-group">
                 <label for="title">Cantidad requerida</label>
-                <input style="font-size:13px;" type="number" name="cantidad" class="form-control name_list" required/>
+                <input style="font-size:13px;" type="number"  name="cantidad" class="form-control name_list" required/>
               </div>
               <div class="col-md-3 col-sm-12 form-group">
                 <label for="title">(*) Cargo</label>
-                <select style="font-size:12px;" name="cargo" class="form-control" id="cargo" required>
+                <select style="font-size:12px;" name="cargo" class="form-control"  required>
                   <option value="" disabled selected>Elegir</option>
                   <?php
                     include_once('conexion.php');
@@ -249,7 +251,7 @@
               </div>
               <div class="col-md-3 col-sm-12 form-group">
                 <label for="title">(*) Fuente Financ.</label>
-                <select style="font-size:13px;" class="form-control" name="fuente_finac" required>
+                <select style="font-size:13px;" class="form-control"  name="fuente_finac" required>
                   <option value="R. ORDINARIOS">R. ORDINARIOS</option>
                   <option value="R. DIRECTAMENTE RECAUDADOS">R. D. RECAUDADOS</option>
                   <option value="CANON SOBRE CANON">CANON SOBRE CANON</option>
@@ -258,11 +260,11 @@
               </div>
               <div class="col-md-3 col-sm-12 form-group">
                 <label for="title">(*) Meta</label>
-                <input style="font-size:13px;" type="text" name="meta" placeholder="Ejemplo: 002" class="form-control name_list" required />
+                <input style="font-size:13px;" type="text"  name="meta" placeholder="Ejemplo: 002" class="form-control name_list" required />
               </div>
               <div class="col-md-9 col-sm-12 form-group">
                 <label for="title">(*) Ubicación del personal requerido</label>
-                <select name="chosen-unique" class="chosen1" data-placeholder="Elige la ubicación del personal requerido" required>
+                <select name="chosen-unique"  class="chosen1" data-placeholder="Elige la ubicación del personal requerido" required>
                   <option value=""></option>
                   <?php
                     $sql="SELECT * FROM ubicacion";
@@ -272,52 +274,46 @@
                     } 
                   ?>
                 </select>
-              </div>
-              <div class="col-md-12">
+              </div> 
+              <!-- <div class="col-md-12">
                 <h6 class="m-0 font-weight-bold text-danger">Elegir los Requesitos básicos</h6>
                 <hr class="sidebar-divider">
               </div>
               <div class="table-responsive">
-                  <table class="table table-bordered" id="tabla-1">
-                      <thead>s
-                          <tr class="bg-danger" style="text-align:center; font-size:0.813em;">
-                              <th scope="col">Requerimiento</th>
-                              <th scope="col">Nivel de Prioridad</th>
-                              <th scope="col-1">Acción</th>
-                          </tr>
-                      </thead>
-                      <tbody>
-                          <tr class="fila-fija-1">
-                            <td style="font-size:12px;">
-                              <select name="requerimientos[]" class="form-control" id="lugar">
-                                <option value="" disabled selected>Elegir</option>
-                                <?php
-                                  include_once('conexion.php');
-                                  $sql = mysqli_query($con,"SELECT * from requerimientos") or die("Problemas en consulta").mysqli_error();
-                                  while ($registro=mysqli_fetch_array($sql)) {
-                                    echo "<option value=\"".$registro['id_requerimientos']."\">".$registro['condicion']."</option>";
-                                  }
-                                ?>
-                              </select>
-                            </td>
-                            <td><input style="font-size:12px;" type="text" name="nivel_priori[]" class="form-control name_list" /></td>
-                            <td class="eliminar"><button type="button" class="btn btn-danger" ><i class="fas fa-trash-alt"></i></button></td>
-                          </tr>
-                      </tdody>
-                  </table>
-              </div>
-              <input type="hidden" name="dni" value="<?php echo $dato_desencriptado; ?>">
-              <input type="hidden" name="idpostulante" value="<?php echo $idpostulante; ?>">
+                <table class="table table-bordered" id="tabla-1">
+                  <thead>
+                    <tr class="bg-danger" style="text-align:center; font-size:0.813em;">
+                      <th scope="col">Requerimiento</th>
+                      <th scope="col">Nivel de Prioridad</th>
+                      <th scope="col-1">Acción</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="fila-fija-1">
+                      <td style="font-size:12px;">
+                        <select name="requerimientos[]" class="form-control" id="lugar">
+                          <option value="" disabled selected>Elegir</option>
+                          <?php
+                            include_once('conexion.php');
+                            $sql = mysqli_query($con,"SELECT * from requerimientos") or die("Problemas en consulta").mysqli_error();
+                            while ($registro=mysqli_fetch_array($sql)) {
+                              echo "<option value=\"".$registro['id_requerimientos']."\">".$registro['condicion']."</option>";
+                            }
+                          ?>
+                        </select>
+                      </td>
+                      <td><input style="font-size:12px;" type="text" name="nivel_priori[]" class="form-control name_list" /></td>
+                      <td class="eliminar"><button type="button" class="btn btn-danger" ><i class="fas fa-trash-alt"></i></button></td>
+                    </tr>
+                  </tdody>
+                </table>
+              </div> -->
               <div class="col-12 d-flex justify-content-end p-2">
                 <button id="adicional-1" name="adicional" type="button" class="btn btn-warning"><i class="far fa-plus-square"></i> Fila</button>
               </div>
-              <div class="col-12 d-flex justify-content-center p-2">
-                <button  name="insertar" type="submit" class="btn btn-primary">Guardar</button>
-              </div>
-          
             </div>
             <div class="modal-footer">
-              <button type="submit" class="btn btn-primary" name="insertData">Guardar</button>
+              <button type="submit" name="insert" class="btn btn-primary">Guardar</button>
             </div>
           </form>
         </div>

@@ -569,7 +569,7 @@
             <span>×</span>
           </button>
         </div>
-        <div class="modal-body">
+        <div class="modal-body">    
           <form action="procesos/guardar_estudios_sup.php" enctype="multipart/form-data" autocomplete="off" method="POST">
             <div class="row"> 
               <input type="hidden" name="dni_encriptado" value="<?php echo $dato_desencriptado ?>">

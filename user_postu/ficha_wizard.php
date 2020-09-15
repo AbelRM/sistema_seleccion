@@ -44,7 +44,7 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
         
     ?>
     <div class="container-fluid">
-        <div class="row justify-content-center">
+        <div class="row justify-content-center"> 
             <div class="col-12 col-sm-12 col-md-12 col-lg-10 col-xl-10 text-center p-0 mt-3 mb-2">
                 <div class="card px-4 pt-4 mt-3 mb-3" style="padding: 30px;">
                     <div class="row">
@@ -415,8 +415,9 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
                                     </div> -->
                                 </div>
                             </div>
-                            <input type="submit" name="insertar" class="next action-button" value="Siguiente" /> 
+                            <input type="button" name="next" class="next action-button" value="Siguiente"/>
                             <input type="button" name="previous" class="previous action-button-previous" value="Atrás" />
+                           
                         </fieldset>
 
                         <fieldset>
@@ -445,10 +446,11 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
                                         <label>Registra antecedentes policiales:</label> 
                                     </td>
                                     <td>
-                                        <select class="form-control " name="pregunta1" id="pregunta1">
+                                        <select class="form-control custom-select" name="pregunta1" id="pregunta1">
                                                     <option value="NO">NO</option>
                                                     <option value="SI">SI</option>
                                         </select>
+                                    
                                     </td>
                                 
                                     </tr>
@@ -459,7 +461,7 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
                                         <label>Registra antecedentes penales:</label>
                                     </td>
                                     <td>
-                                        <select class="form-control " name="pregunta2" id="pregunta2">
+                                        <select class="form-control custom-select" name="pregunta2" id="pregunta2">
                                                     <option value="NO">NO</option>
                                                     <option value="SI">SI</option>
                                         </select>
@@ -610,8 +612,9 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
                                 </tbody>
 
                             </table>
+                            <input type="submit" name="insertar" class="next action-button" value="Siguiente" /> 
+                            <input type="button" name="previous" class="previous action-button-previous" value="Atrás" />
                             
-                            <input type="button" name="next" class="next action-button" value="Siguiente" /> <input type="button" name="previous" class="previous action-button-previous" value="Atrás" />
                         </fieldset>
                         
                         <fieldset>

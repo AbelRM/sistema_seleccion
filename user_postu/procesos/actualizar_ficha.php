@@ -34,6 +34,21 @@
     $lote = $_POST['lote'];
     $referencia = $_POST['referencia'];
    // $distrito = $_POST['distrito'];
+
+      //DATOS ENCUESTA
+      $pre1 = $_POST['pregunta1'];
+      $pre2 = $_POST['pregunta2'];
+      $pre3 = $_POST['pregunta3'];
+      $pre4 = $_POST['pregunta4'];
+      $pre5 = $_POST['pregunta5'];
+      $pre6 = $_POST['pregunta6'];
+      $pre7 = $_POST['pregunta7'];
+      $pre8 = $_POST['pregunta8'];
+      $pre9 = $_POST['pregunta9'];
+      $pre10 = $_POST['pregunta10'];
+      $pre11 = $_POST['pregunta11'];
+      $pre12 = $_POST['pregunta12'];
+      $pre13 = $_POST['pregunta13'];
     
     $sql = "UPDATE postulante SET pais='".$pais."',sexo='".$sexo."',celular = '".$celular."', correo ='".$correo."',estado_civil='".$estadocivil."',celular_emer='".$celular_emer."',parentesco_emer ='".$parentesco_emer."',ruc = '".$ruc."',
      num_cuenta = '".$num_cuenta."', suspension_cuarta = '".$cuarta."',discapacidad = '".$discapacidad."', tipo_discap = '".$tip_discapacidad."',tipo_sangre = '".$tip_sangre."',alergias = '".$alergias."' WHERE dni='".$dni_post."' ";
@@ -42,20 +57,33 @@
 
 
     if ($datos == 1) {
-        // $prueba="SELECT * FROM postulante where dni=$dni_post";
-        // $datos=mysqli_query($con,$prueba) or die(mysqli_error()); 
-        // $fila= mysqli_fetch_array($datos);
-        // $idpostulante=$fila['idpostulante'];
 
-        $sql2 = "UPDATE domicilio_post SET tip_via='".$tipo_via."', nomb_via='".$nomb_via."', num_via='".$num_via."',tip_zona='".$tipo_zona."',
-        nomb_zona='".$nomb_zona."',num_zona='".$num_zona."', referencia = '".$referencia."',numero ='".$numero."', manzana ='".$manzana."', 
-        lote ='".$lote."'  WHERE postulante_idpostulante='".$idpostulante."'";
+
+        $sql2 = "UPDATE encuesta SET pregunta1='".$pre1."', pregunta2='".$pre2."', pregunta3='".$pre3."',pregunta3='".$pre4."',
+        pregunta5='".$pre5."',pregunta6='".$pre6."', pregunta7 = '".$pre7."',pregunta8 ='".$pre8."', pregunta9 ='".$pre9."', 
+        pregunta10 ='".$pre10."', pregunta11 ='".$pre11."',pregunta12 ='".$pre12."',pregunta13 ='".$pre13."'  WHERE postulanteID='".$idpostulante."'";
         $datos2=mysqli_query($con,$sql2);    
 
+        if ($datos2 == 1) {
+
+                $sql3 = "UPDATE encuesta SET tip_via='".$tipo_via."', nomb_via='".$nomb_via."', num_via='".$num_via."',tip_zona='".$tipo_zona."',
+                nomb_zona='".$nomb_zona."',num_zona='".$num_zona."', referencia = '".$referencia."',numero ='".$numero."', manzana ='".$manzana."', 
+                lote ='".$lote."'  WHERE postulante_idpostulante='".$idpostulante."'";
+                $datos3=mysqli_query($con,$sql3);  
+                $dato_encriptado = $encriptar($dni_post);
+                header('Location: ../ver_ficha.php?dni='.$dato_encriptado);
+
+        }
+        else
+        {
+             echo "ERROR AL ACTUALIZAR";
         $dato_encriptado = $encriptar($dni_post);
-        header('Location: ../ver_ficha.php?dni='.$dato_encriptado);
+        header('Location: ../index.php?dni='.$dato_encriptado); 
+        }
+        $con->close();
     } 
-    else {
+     else 
+    {
         echo "ERROR AL ACTUALIZAR";
         $dato_encriptado = $encriptar($dni_post);
         header('Location: ../index.php?dni='.$dato_encriptado); 

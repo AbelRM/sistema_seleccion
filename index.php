@@ -148,7 +148,7 @@ if(!empty($_SESSION['active'])){
               <div class="col-lg-6">
                 <div class="p-5">
                   <div class="mb-4 d-flex justify-content-center">
-                    <img src="public/img/logo_diresa.png" alt="Logo de diresa" style="max-width: 70%; height: auto;">
+                    <img src="public/img/diresa.png" alt="Logo de diresa" style="max-width: 70%; height: auto;">
                   </div>
                   <div class="form-group text-danger font-weight-bold text-center">
                   <?php if(!empty($mensaje)): ?>

@@ -20,13 +20,13 @@ if (empty($_SESSION['active'])) {
   include 'funcs/mcript.php';
   $dato_desencriptado = $_GET['dni'];
   $dni = $desencriptar($dato_desencriptado);
-  $sql = "SELECT * FROM expe_3puntos WHERE id_3puntos=" . $_GET['id'];
+  $sql = "SELECT * FROM expe_1puntos WHERE id_1puntos=" . $_GET['id'];
   $query = mysqli_query($con, $sql);
   if ($datos = MySQLI_fetch_array($query)) {
     if ($datos['archivos'] == "") { ?>
       <p>No hay archivos agregados</p>
     <?php } else { ?>
-      <iframe src="archivos/<?php echo $dni ?>/expe3_laboral/<?php echo $datos['archivos']; ?>" width="800px" height="600px"></iframe>
+      <iframe src="archivos/<?php echo $dni ?>/expe1_laboral/<?php echo $datos['archivos']; ?>" width="800px" height="600px"></iframe>
 
   <?php }
   } ?>

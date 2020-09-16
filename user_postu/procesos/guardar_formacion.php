@@ -9,17 +9,11 @@ if (isset($_POST['insertData'])) {
     $dato_desencriptado = $_POST['dni_encriptado'];
     $dni = $_POST['dni'];
     $idpostulante = $_POST['postulante'];
-    echo $dni;
 
-    // Recibo los datos de la imagen
-    // $nombre_archivo = $_FILES['archivo']['name'];
-    // $tipo_archivo = $_FILES['archivo']['type'];
-    // $tamano_archivo = $_FILES['archivo']['size'];
-    // $ruta = $_FILES['archivo']['tmp_name'];
-    // $destino_base = $_SERVER['DOCUMENT_ROOT'] . "/sistema_seleccion/user_postu/archivos/" . $dni;
-    // $destino = mkdir($destino_base, 0777, true);
-    // $path = "sample/path/newfolder";
-
+    $micarpeta = $_SERVER['DOCUMENT_ROOT'] . '/sistema_seleccion/user_postu/archivos/' . $dni . '/formacion/';
+    if (!file_exists($micarpeta)) {
+      mkdir($micarpeta, 0777, true);
+    }
     //datos del arhivo
     $nombre_archivo = $_FILES['archivo']['name'];
     $tipo_archivo = $_FILES['archivo']['type'];
@@ -29,7 +23,7 @@ if (isset($_POST['insertData'])) {
     if (!((strpos($tipo_archivo, "pdf") || strpos($tipo_archivo, "jpeg")) && ($tamano_archivo < 3000000))) {
       echo "La extensión o el tamaño de los archivos no es correcta. <br><br><table><tr><td><li>Se permiten archivos .pdf<br><li>se permiten archivos de 3 Mb máximo.</td></tr></table>";
     } else {
-      if (move_uploaded_file($_FILES['archivo']['tmp_name'], $_SERVER['DOCUMENT_ROOT'] . "/sistema_seleccion/user_postu/archivos/" . $nombre_archivo)) {
+      if (move_uploaded_file($_FILES['archivo']['tmp_name'], $micarpeta . $nombre_archivo)) {
         $tipo_estudios = $_POST['tipo_estudios'];
         $nivel_estudios = $_POST['nivel_estudios'];
         $centro_estudios = $_POST['centro_estudios'];

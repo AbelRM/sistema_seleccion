@@ -379,18 +379,32 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
                                         <h2 class="fs-title">DATOS FAMILIARES:</h2>
                                     </div>
                                 </div>
-                                <div class="form-group">
 
-                                     <div class="col-md-6 col-sm-6 mb-2 mb-sm-0">
-                                        <label class="font-weight-bolder">¿Tiene familiares que laboran en la institución?</label>  
-                                     </div>
-                                    <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">            
-                                        <select class="form-control custom-select" name="pension"  onChange="prueba(this)" required>
-                                            <option value="SI">SI</option>
-                                            <option value="NO">NO</option>
-                                        </select> 
+                                <div class="col-md-6 col-sm-12 form-group">
+                                    <label class="font-weight-bolder" for="title">¿Tiene familiares que laboran en la institución?</label>
+                                    <select class="form-control" name="pension" onChange="tipo_estudios_select(this)" required>
+                                      <option value="0">Seleccione:</option>
+                                      <option value="SI">SI</option>
+                                      <option value="NO">NO</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-md-6 col-sm-12 form-group" id="div_nivel_estudio" style="display:none" >
+                                      <label for="title">(*) Carrera</label>
+                                      <input type="text" name="carrera" class="form-control" placeholder="Nombre de la carrera" maxlength="100" required>
                                     </div>
-                              
+
+                                    <div class="col-md-6 col-sm-12 form-group" id="div_centro_estudios" style="display:none">
+                                      <label for="title">(*) Profesional</label>
+                                      <input type="text" name="carrera" class="form-control" placeholder="Nombre de la carrera" maxlength="100" required>
+                                </div>
+
+                            
+
+                                  <div class="form-group" id="tabla" style="display:none">
+
+                           
+
                                     <div class="table-responsive" id="tablaa" >
                                       <!--  <label>Los familiares agregados son aquellos que viven actualmente con usted, caso contrario colocar uno de referencia.</label>-->
                                         <table class="table table-bordered" >
@@ -426,33 +440,18 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
                                                 </tr>
                                             </tdody>
                                         </table>
-                                    </div>
+                                    </div>                            
+                                  </div>
 
-                                    
-
-                                    
-
-                             <!--       <div class="col-md-6 col-sm-12 form-group" id="ejemplo1" style="display:none"  >
-                                      <label for="title">(*) Carrera</label>
-                                      <input type="text" name="carrera" class="form-control" placeholder="Nombre de la carrera" maxlength="100" required>
-                                    </div>
-
-                                    <div class="col-md-6 col-sm-12 form-group" id="ejemplo2" >
-                                      <label for="title">(*) Profesional</label>
-                                      <input type="text" name="carrera" class="form-control" placeholder="Nombre de la carrera" maxlength="100" required>
-                                    </div>-->
-
-                                  
-                                </div>
-                                  <div class="row d-flex justify-content-center">
-                                   <div class="form-inline p-2">
+                                  <div class="row d-flex justify-content-center" style="display:none">
+                                   <div class="form-inline p-2" style="display:none" id="boton_agregar"  >
                                         <button id="adicional" name="adicional" type="button" class="btn btn-warning"> AGREGAR FILA (+) </button>
                                     </div>
-                                <!--     <div class="form-inline p-2">
+                                   <!--     <div class="form-inline p-2">
                                         <input type="submit" name="insertar_1" class="btn btn-primary" value="GUARDAR"/>
                                     </div>-->
-                                </div>
-                            </div>
+                                  </div>
+                            </iv>
                             <input type="button" name="next" class="next action-button" value="Siguiente"/>
                             <input type="button" name="previous" class="previous action-button-previous" value="Atrás" />
                            
@@ -902,18 +901,18 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
     </script>
 
      <script>
-    function prueba(sel) {
-      if (sel.value=="SI"){
-        ejemplo1 = document.getElementById("ejemplo1");
-        ejemplo1.style.display = "block";
-        ejemplo2 = document.getElementById("ejemplo2");
-        ejemplo2.style.display = "block";
+    function tipo_estudios_select(sel) {
+      if (sel.value=="NO"){
+          tabla = document.getElementById("tabla");
+          tabla.style.display = "none";
+          boton_agregar = document.getElementById("boton_agregar");
+          boton_agregar.style.display = "none";
 
-      }else(sel.value=="NO"){
-        ejemplo2 = document.getElementById("ejemplo2");
-        ejemplo2.style.display = "none";
-        ejemplo1 = document.getElementById("ejemplo1");
-        ejemplo1.style.display = "none";
+      }else if(sel.value=="SI"){
+          tabla = document.getElementById("tabla");
+          tabla.style.display = "block";
+          boton_agregar = document.getElementById("boton_agregar");
+          boton_agregar.style.display = "block";
      
       }
     }

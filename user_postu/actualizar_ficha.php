@@ -70,7 +70,7 @@ if (empty($_SESSION['active'])) {
             <div class="col-12 text-center ">
               <div class="card border-primary mb-3">
                 <div class="card-header">
-                  <h4 id="heading">FICHA ÚNICA DE DATOS</h4>
+                  <h4 id="heading">FICHA ÚNICA DE DATOS</h4> 
                 </div>
                 <div class="card-body">
                   <form id="msform" method="post" action="procesos/actualizar_ficha.php">
@@ -242,9 +242,18 @@ if (empty($_SESSION['active'])) {
                               <option value="B+">B+</option>
                               <option value="B-">B-</option>
                               <option value="0+">0+</option>
-                              <option value="0-">0-</option>
+                              <option value="0-">0-</option> 
                             </select>
                           </div>
+
+                          <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
+                                        <label class="font-weight-bolder">Servicio militar Completo</label> 
+                                        <select class="form-control" name="servicio" id="servicio">
+                                            <option selected><?php echo $fila['servicio_militar']?></option>
+                                            <option value="NO">NO</option>
+                                            <option value="SI">SI</option>
+                                        </select>  
+                                    </div>
                           <div class="col-md-5 col-sm-6 mb-2 mb-sm-0">
                             <label class="font-weight-bolder">Enfermedades/Alergias</label>
                             <input class="form-control form-control-user" type="text" placeholder="Separado por comas" name="alergias" id="alergias" value="<?php echo $fila['alergias'] ?>" />
@@ -287,16 +296,16 @@ if (empty($_SESSION['active'])) {
                           <input type="hidden" id="idpostulante" name="idpostulante" value="<?php echo $idpostulante ?>" />
 
                           <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
-                            <label class="font-weight-bolder" for="name1">Departamento nacimiento</label>
+                            <label class="font-weight-bolder" for="name1">Departamento</label>
                             <input class="form-control form-control-user" type="text" value="<?php echo $row2['departamento'] ?>" disabled="true" />
                           </div>
 
                           <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
-                            <label class="font-weight-bolder" for="name1">Provincia nacimiento</label>
+                            <label class="font-weight-bolder" for="name1">Provincia</label>
                             <input class="form-control form-control-user" type="text" value="<?php echo $row2['provincia'] ?>" disabled="true" />
                           </div>
                           <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
-                            <label class="font-weight-bolder" for="exampleInputEmail1">Distrito nacimiento</label>
+                            <label class="font-weight-bolder" for="exampleInputEmail1">Distrito</label>
                             <input class="form-control form-control-user" type="text" name="distrito" value="<?php echo $row2['distrito'] ?>" disabled="true" />
                           </div>
 
@@ -324,7 +333,7 @@ if (empty($_SESSION['active'])) {
                           </div>
 
                           <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">
-                            <label class="font-weight-bolder">Número</label>
+                            <label class="font-weight-bolder">Número de Via</label>
                             <input class="form-control form-control-user" type="text" name="num_via" id="num_via" value="<?php echo $fila2['num_via'] ?>" />
                           </div>
                           <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
@@ -347,7 +356,7 @@ if (empty($_SESSION['active'])) {
                           </div>
 
                           <div class="col-md-7 col-sm-6 mb-2 mb-sm-0">
-                            <label class="font-weight-bolder">Nombre de la zona:</label>
+                            <label class="font-weight-bolder">Nombre de la zona</label>
                             <input class="form-control form-control-user" type="text" name="nomb_zona" id="nomb_zona" value="<?php echo $fila2['nomb_zona'] ?>" />
                           </div>
 
@@ -430,6 +439,7 @@ if (empty($_SESSION['active'])) {
                                 </tdody>
                             </table>
                           </div>
+                          
                         </div>
                       </div>
                       <input type="button" name="next" class="next action-button" value="Siguiente" />

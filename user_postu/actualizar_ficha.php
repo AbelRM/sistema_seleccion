@@ -98,7 +98,7 @@
                                         $datos=mysqli_query($con,$sql) or die(mysqli_error());
                                         $fila= mysqli_fetch_array($datos);
                                         $idpostulante=$fila['idpostulante'];
-                                    ?> 
+                                    ?>     
                                     
                                     <div class="form-group row" >
                                         <div class="col-md-4 col-sm-6 mb-2 mb-sm-0 ">
@@ -245,6 +245,14 @@
                                                 <option value="0-">0-</option>
                                             </select>  
                                         </div>
+                                        <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
+                                          <label class="font-weight-bolder">Servicio militar Completo</label> 
+                                          <select class="form-control" name="servicio" id="servicio">
+                                              <option selected><?php echo $fila['servicio_militar'] ?></option>
+                                              <option value="NO" selected>NO</option>
+                                              <option value="SI">SI</option>
+                                          </select>  
+                                        </div>
                                         <div class="col-md-5 col-sm-6 mb-2 mb-sm-0">
                                             <label class="font-weight-bolder">Enfermedades/Alergias</label> 
                                             <input class="form-control form-control-user" type="text" placeholder="Separado por comas" name="alergias" id="alergias" value="<?php echo $fila['alergias'] ?>"/> 
@@ -261,14 +269,6 @@
                                             <h2 class="fs-title">DOMICILIO:</h2>
                                         </div>
                                     </div>
-
-                                    <?php 
-                                    $sql2="SELECT * FROM domicilio_post where postulante_idpostulante=$idpostulante";
-                                    $datos2=mysqli_query($con,$sql2) or die(mysqli_error()); ;
-                                    $fila2= mysqli_fetch_array($datos2);
-                                    $distrito=$fila2['distrito_idistrito'];  
-
-                                    ?>
 
                                     <?php
                                         $sql2="SELECT * FROM domicilio_post where postulante_idpostulante=$idpostulante";
@@ -331,17 +331,20 @@
                                             <label class="font-weight-bolder" for="exampleInputEmail1">Tipo de Zona</label>
                                             <select class="form-control form-control-user" name="tipo_zona" id="tipo_zona">
                                             <option selected><?php echo $fila2['tip_zona'] ?></option>
-                                            <option value="AVENIDA">Urbanizacion</option>
-                                            <option value="JIRON">Pueblo Joven</option>
-                                            <option value="CALLE">Unidad vecinal</option>
-                                            <option value="PASAJE">Conjunto habitacional</option>
-                                            <option value="ALAMEDA">Asentamiento humano</option>
-                                            <option value="MALECON">Cooperativa</option>
-                                            <option value="OVALO">Residencial</option>
-                                            <option value="PASAJE">Zona industrial</option>
-                                            <option value="PARQUE">Grupo</option>
-                                            <option value="PLAZA">Caserio</option>
-                                            <option value="CARRETERA">Fundo</option>
+                                            <option value="Urbanizacion">Urbanizacion</option>
+                                            <option value="Pueblo Joven">Pueblo Joven</option>
+                                            <option value="Unidad Vecinal">Unidad vecinal</option>
+                                            <option value="Conjunto habitacional">Conjunto habitacional</option>
+                                            <option value="Asentamiento humano">Asentamiento humano</option>
+                                            <option value="Cooperativa">Cooperativa</option>
+                                            <option value="Residencial">Residencial</option>
+                                            <option value="Zona Industrial">Zona industrial</option>
+                                            <option value="Grupo">Grupo</option>
+                                            <option value="Caserio">Caserio</option>
+                                            <option value="Asociacion">Asociacion</option>
+                                            <option value="Fundo">Fundo</option>
+                                            <option value="Comité">Comité</option>
+                                            <option value="Otros">Otros</option>
                                             </select>
                                             <br>
                                         </div>
@@ -395,7 +398,7 @@
                                     <div class="form-group">
                                         <div class="table-responsive">
                                             <label >Los familiares agregados son aquellos que viven actualmente con usted, caso contrario colocar uno de referencia.</label>
-                                            <table class="table table-bordered" id="tabla">
+                                            <table class="table table-bordered" id="tabla" style="display:none">
                                                 <thead>
                                                 <tr class="bg-danger" style="text-align:center; font-size:0.813em;">
                                                     <th scope="col">Nombres</th>
@@ -444,14 +447,13 @@
                                               <h2 class="fs-title">DECLARACIÓN JURADA DE IMPEDIMENTOS E INCOMPATIBILIDADES:</h2>
                                           </div>
                               </div> 
-
-                                          <?php 
-                                              $sql10="SELECT * FROM encuesta where EncuestaID =$idpostulante";
-                                              $datos10=mysqli_query($con,$sql10) or die(mysqli_error()); ;
-                                              $fila10= mysqli_fetch_array($datos10);
-
-                                          ?> 
-                              
+                                    <?php  
+                                        $sql4="SELECT * FROM encuesta where postulanteID =$idpostulante";
+                                        $datos4=mysqli_query($con,$sql4) or die(mysqli_error());
+                                        $fila4= mysqli_fetch_array($datos4);
+                                 
+                                    ?>  
+                           
                               <table class="table table-bordered">
                                   
                                       <tr class="bg-primary" style="text-align:center; color:#000; font-size:0.95em;">
@@ -470,12 +472,13 @@
                                           <label>Registra antecedentes policiales:</label> 
                                       </td>
                                       <td>
-                                          <select class="form-control" name="pregunta1" id="pregunta1">
-                                                      
-                                                      <option value="NO">NO</option>
-                                                      <option value="SI">SI</option>
-                                          </select>
-                                      
+
+                                            <select class="form-control" name="pregunta1" id="pregunta1">
+                                                <option selected><?php echo $fila4['pregunta1']?></option>
+                                                <option value="NO">NO</option>
+                                                <option value="SI">SI</option>
+                                            </select>
+
                                       </td>        </tr>
                                       <tr>
                                       <th scope="row">2</th>
@@ -483,14 +486,12 @@
                                           <label>Registra antecedentes penales:</label>
                                       </td>
                                       <td>
-                                          <select class="form-control custom-select" name="pregunta2" id="pregunta2">
-                                                      <option value="NO">NO</option>
-                                                      <option value="SI">SI</option>
+                                          <select class="form-control" name="pregunta2" id="pregunta2">
+                                                <option selected><?php echo $fila4['pregunta2']?></option>
+                                                <option value="NO">NO</option>
+                                                <option value="SI">SI</option>
                                           </select>
                                       </td>
-
-                                    
-                                  
                                       </tr>
                                       <tr>
                                           <th scope="row">3</th>
@@ -498,23 +499,25 @@
                                                   <label>Registra antecedentes judiciales:</label>
                                               </td>
                                               <td>
-                                                  <select class="form-control " name="pregunta3" id="pregunta3">
-                                                              <option value="NO">NO</option>
-                                                              <option value="SI">SI</option>
-                                                  </select>
+                                                <select class="form-control" name="pregunta3" id="pregunta3">
+                                                  <option selected><?php echo $fila4['pregunta3']?></option>
+                                                  <option value="NO">NO</option>
+                                                  <option value="SI">SI</option>
+                                                 </select>
                                               </td>
                                       </tr>
 
                                       <tr>
-                                          <th scope="row">4</th>
+                                          <th scope="row">4</th> 
                                               <td>
                                                   <label>Tener inhabilitación vigente para prestar servicios al estado conforme al registro nacional de sanciones contra servidores civiles (RNSCC):</label>
                                               </td>
                                               <td>
-                                                  <select class="form-control " name="pregunta4" id="pregunta4">
-                                                              <option value="NO">NO</option>
-                                                              <option value="SI">SI</option>
-                                                  </select>
+                                                <select class="form-control" name="pregunta4" id="pregunta4">
+                                                  <option selected><?php echo $fila4['pregunta4']?></option>
+                                                  <option value="NO">NO</option>
+                                                  <option value="SI">SI</option>
+                                                 </select>
                                               </td>
                                       </tr>
                                       <tr>
@@ -632,6 +635,19 @@
                                                   </select>
                                               </td>
                                       </tr>
+
+                                      <tr>
+                                        <th scope="row">14</th>
+                                            <td>
+                                                <label>Sentencia Condenatoria por delito doloso</label>
+                                            </td>
+                                            <td>
+                                                <select class="form-control " name="pregunta14" id="pregunta14">
+                                                            <option value="NO">NO</option>
+                                                            <option value="SI">SI</option>
+                                                </select>
+                                            </td>
+                                    </tr>
 
                                   </tbody>
                               </table>

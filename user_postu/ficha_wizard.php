@@ -239,6 +239,14 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
                                             <option value="0-">0-</option>
                                         </select>  
                                     </div>
+
+                                    <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
+                                        <label class="font-weight-bolder">Servicio militar Completo</label> 
+                                        <select class="form-control" name="servicio" id="servicio">
+                                            <option value="NO" selected>NO</option>
+                                            <option value="SI">SI</option>
+                                        </select>  
+                                    </div>
                                     <div class="col-md-6 col-sm-6 mb-2 mb-sm-0">
                                         <label class="font-weight-bolder">Enfermedades/Alergias</label> 
                                         <input class="form-control form-control-user" type="text" placeholder="Separado por comas" name="alergias" id="alergias"/> 
@@ -262,7 +270,7 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
                                     <input type="hidden" id="idpostulante" name="idpostulante" value="<?php echo $idpostulante ?>"/>
 
                                     <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
-                                        <label class="font-weight-bolder" for="name2">Departamento nacimiento</label>
+                                        <label class="font-weight-bolder" for="name2">Departamento </label>
                                         <select id="departamento_id1" class="form-control" name="departamento_id1" required>
                                             <option value="">-- SELECCIONE --</option>
                                             <?php foreach($countries as $c):?>
@@ -272,14 +280,14 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
                                     </div>
 
                                     <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
-                                        <label class="font-weight-bolder" for="name2">Provincia nacimiento</label>
+                                        <label class="font-weight-bolder" for="name2">Provincia</label>
                                         <select id="provincia_id1" class="form-control" name="provincia_id1" required>
                                             <option value="">-- SELECCIONE --</option>
                                         </select>                                 
                                     </div>
 
                                     <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
-                                        <label class="font-weight-bolder" for="exampleInputEmail1">Distrito nacimiento</label>
+                                        <label class="font-weight-bolder" for="exampleInputEmail1">Distrito</label>
                                         <select id="distrito_id1" class="form-control" name="distrito_id1" required>
                                             <option value="">-- SELECCIONE --</option>        
                                         </select>
@@ -308,23 +316,26 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
                                     </div>
                                     
                                     <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">
-                                        <label class="font-weight-bolder">Número</label> 
+                                        <label class="font-weight-bolder">Número de via</label> 
                                         <input class="form-control form-control-user" type="text" name="num_via" id="num_via" placeholder="Número"/> 
                                     </div>
                                     <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
                                         <label class="font-weight-bolder" for="exampleInputEmail1">Tipo de Zona</label>
                                         <select class="form-control form-control-user" name="tipo_zona" id="tipo_zona">
-                                        <option value="AVENIDA">Urbanizacion</option>
-                                        <option value="JIRON">Pueblo Joven</option>
-                                        <option value="CALLE">Unidad vecinal</option>
-                                        <option value="PASAJE">Conjunto habitacional</option>
-                                        <option value="ALAMEDA">Asentamiento humano</option>
-                                        <option value="MALECON">Cooperativa</option>
-                                        <option value="OVALO">Residencial</option>
-                                        <option value="PASAJE">Zona industrial</option>
-                                        <option value="PARQUE">Grupo</option>
-                                        <option value="PLAZA">Caserio</option>
-                                        <option value="CARRETERA">Fundo</option>
+                                            <option value="Urbanizacion">Urbanizacion</option>
+                                            <option value="Pueblo Joven">Pueblo Joven</option>
+                                            <option value="Unidad Vecinal">Unidad vecinal</option>
+                                            <option value="Conjunto habitacional">Conjunto habitacional</option>
+                                            <option value="Asentamiento humano">Asentamiento humano</option>
+                                            <option value="Cooperativa">Cooperativa</option>
+                                            <option value="Residencial">Residencial</option>
+                                            <option value="Zona Industrial">Zona industrial</option>
+                                            <option value="Grupo">Grupo</option>
+                                            <option value="Caserio">Caserio</option>
+                                            <option value="Asociacion">Asociacion</option>
+                                            <option value="Fundo">Fundo</option>
+                                            <option value="Comité">Comité</option>
+                                            <option value="Otros">Otros</option>
                                         </select>
                                         <br>
                                     </div>
@@ -335,7 +346,7 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
                                     </div>
 
                                     <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">
-                                        <label class="font-weight-bolder">Número</label> 
+                                        <label class="font-weight-bolder">Número de zona</label> 
                                         <input class="form-control form-control-user" type="text" name="num_zona" id="num_zona" placeholder="Número"/> 
                                     </div>
                                     <div class="col-md-2 col-sm-2 mb-2 mb-sm-0">
@@ -369,9 +380,20 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <div class="table-responsive">
-                                        <label>Los familiares agregados son aquellos que viven actualmente con usted, caso contrario colocar uno de referencia.</label>
-                                        <table class="table table-bordered" id="tabla">
+
+                                     <div class="col-md-6 col-sm-6 mb-2 mb-sm-0">
+                                        <label class="font-weight-bolder">¿Tiene familiares que laboran en la institución?</label>  
+                                     </div>
+                                    <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">            
+                                        <select class="form-control custom-select" name="pension"  onChange="prueba(this)" required>
+                                            <option value="SI">SI</option>
+                                            <option value="NO">NO</option>
+                                        </select> 
+                                    </div>
+                              
+                                    <div class="table-responsive" id="tablaa" >
+                                      <!--  <label>Los familiares agregados son aquellos que viven actualmente con usted, caso contrario colocar uno de referencia.</label>-->
+                                        <table class="table table-bordered" >
                                             <thead>
                                             <tr class="bg-danger" style="text-align:center; font-size:0.813em;">
                                                 <th scope="col">Nombres</th>
@@ -405,14 +427,30 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
                                             </tdody>
                                         </table>
                                     </div>
+
+                                    
+
+                                    
+
+                             <!--       <div class="col-md-6 col-sm-12 form-group" id="ejemplo1" style="display:none"  >
+                                      <label for="title">(*) Carrera</label>
+                                      <input type="text" name="carrera" class="form-control" placeholder="Nombre de la carrera" maxlength="100" required>
+                                    </div>
+
+                                    <div class="col-md-6 col-sm-12 form-group" id="ejemplo2" >
+                                      <label for="title">(*) Profesional</label>
+                                      <input type="text" name="carrera" class="form-control" placeholder="Nombre de la carrera" maxlength="100" required>
+                                    </div>-->
+
+                                  
                                 </div>
-                                <div class="row d-flex justify-content-center">
-                                    <div class="form-inline p-2">
+                                  <div class="row d-flex justify-content-center">
+                                   <div class="form-inline p-2">
                                         <button id="adicional" name="adicional" type="button" class="btn btn-warning"> AGREGAR FILA (+) </button>
                                     </div>
-                                    <!-- <div class="form-inline p-2">
+                                <!--     <div class="form-inline p-2">
                                         <input type="submit" name="insertar_1" class="btn btn-primary" value="GUARDAR"/>
-                                    </div> -->
+                                    </div>-->
                                 </div>
                             </div>
                             <input type="button" name="next" class="next action-button" value="Siguiente"/>
@@ -427,7 +465,6 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
                                             <h2 class="fs-title">DECLARACIÓN JURADA DE IMPEDIMENTOS E INCOMPATIBILIDADES:</h2>
                                         </div>
                             </div> 
-                            
                             <table class="table table-bordered">
                                 
                                     <tr class="bg-primary" style="text-align:center; color:#000; font-size:0.95em;">
@@ -603,6 +640,19 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
                                             </td>
                                             <td>
                                                 <select class="form-control " name="pregunta13" id="pregunta13">
+                                                            <option value="NO">NO</option>
+                                                            <option value="SI">SI</option>
+                                                </select>
+                                            </td>
+                                    </tr>
+
+                                    <tr>
+                                        <th scope="row">14</th>
+                                            <td>
+                                                <label>Sentencia Condenatoria por delito doloso</label>
+                                            </td>
+                                            <td>
+                                                <select class="form-control " name="pregunta14" id="pregunta14">
                                                             <option value="NO">NO</option>
                                                             <option value="SI">SI</option>
                                                 </select>
@@ -850,6 +900,24 @@ while($r=$query->fetch_object()){ $countries[]=$r; }
 					});
 			});
     </script>
+
+     <script>
+    function prueba(sel) {
+      if (sel.value=="SI"){
+        ejemplo1 = document.getElementById("ejemplo1");
+        ejemplo1.style.display = "block";
+        ejemplo2 = document.getElementById("ejemplo2");
+        ejemplo2.style.display = "block";
+
+      }else(sel.value=="NO"){
+        ejemplo2 = document.getElementById("ejemplo2");
+        ejemplo2.style.display = "none";
+        ejemplo1 = document.getElementById("ejemplo1");
+        ejemplo1.style.display = "none";
+     
+      }
+    }
+  </script>
 
 </body>
 </html>

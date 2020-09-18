@@ -12,7 +12,7 @@
         $resultado = mysqli_query($con, $consulta);
         $row= MySQLI_fetch_array($resultado);
         $archivo = $row['archivo'];
-        $ruta = "../archivos/".$dni_base."/formacion/";
+        $ruta = "../archivos/".$dni_base."/";
 
         $sql = "DELETE FROM formacion_acad WHERE id_formacion='$id'";
         
@@ -25,3 +25,4 @@
             echo '<script> alert("No se puede borrar."); </script>';
         }
     }
+?>

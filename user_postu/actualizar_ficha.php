@@ -70,7 +70,7 @@ if (empty($_SESSION['active'])) {
             <div class="col-12 text-center ">
               <div class="card border-primary mb-3">
                 <div class="card-header">
-                  <h4 id="heading">FICHA ÚNICA DE DATOS</h4>
+                  <h4 id="heading">FICHA ÚNICA DE DATOS</h4> 
                 </div>
                 <div class="card-body">
                   <form id="msform" method="post" action="procesos/actualizar_ficha.php">
@@ -242,9 +242,18 @@ if (empty($_SESSION['active'])) {
                               <option value="B+">B+</option>
                               <option value="B-">B-</option>
                               <option value="0+">0+</option>
-                              <option value="0-">0-</option>
+                              <option value="0-">0-</option> 
                             </select>
                           </div>
+
+                          <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
+                                        <label class="font-weight-bolder">Servicio militar Completo</label> 
+                                        <select class="form-control" name="servicio" id="servicio">
+                                            <option selected><?php echo $fila['servicio_militar']?></option>
+                                            <option value="NO">NO</option>
+                                            <option value="SI">SI</option>
+                                        </select>  
+                                    </div>
                           <div class="col-md-5 col-sm-6 mb-2 mb-sm-0">
                             <label class="font-weight-bolder">Enfermedades/Alergias</label>
                             <input class="form-control form-control-user" type="text" placeholder="Separado por comas" name="alergias" id="alergias" value="<?php echo $fila['alergias'] ?>" />
@@ -287,16 +296,16 @@ if (empty($_SESSION['active'])) {
                           <input type="hidden" id="idpostulante" name="idpostulante" value="<?php echo $idpostulante ?>" />
 
                           <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
-                            <label class="font-weight-bolder" for="name1">Departamento nacimiento</label>
+                            <label class="font-weight-bolder" for="name1">Departamento</label>
                             <input class="form-control form-control-user" type="text" value="<?php echo $row2['departamento'] ?>" disabled="true" />
                           </div>
 
                           <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
-                            <label class="font-weight-bolder" for="name1">Provincia nacimiento</label>
+                            <label class="font-weight-bolder" for="name1">Provincia</label>
                             <input class="form-control form-control-user" type="text" value="<?php echo $row2['provincia'] ?>" disabled="true" />
                           </div>
                           <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
-                            <label class="font-weight-bolder" for="exampleInputEmail1">Distrito nacimiento</label>
+                            <label class="font-weight-bolder" for="exampleInputEmail1">Distrito</label>
                             <input class="form-control form-control-user" type="text" name="distrito" value="<?php echo $row2['distrito'] ?>" disabled="true" />
                           </div>
 
@@ -324,7 +333,7 @@ if (empty($_SESSION['active'])) {
                           </div>
 
                           <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">
-                            <label class="font-weight-bolder">Número</label>
+                            <label class="font-weight-bolder">Número de Via</label>
                             <input class="form-control form-control-user" type="text" name="num_via" id="num_via" value="<?php echo $fila2['num_via'] ?>" />
                           </div>
                           <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
@@ -347,7 +356,7 @@ if (empty($_SESSION['active'])) {
                           </div>
 
                           <div class="col-md-7 col-sm-6 mb-2 mb-sm-0">
-                            <label class="font-weight-bolder">Nombre de la zona:</label>
+                            <label class="font-weight-bolder">Nombre de la zona</label>
                             <input class="form-control form-control-user" type="text" name="nomb_zona" id="nomb_zona" value="<?php echo $fila2['nomb_zona'] ?>" />
                           </div>
 
@@ -430,6 +439,7 @@ if (empty($_SESSION['active'])) {
                                 </tdody>
                             </table>
                           </div>
+                          
                         </div>
                       </div>
                       <input type="button" name="next" class="next action-button" value="Siguiente" />
@@ -440,197 +450,226 @@ if (empty($_SESSION['active'])) {
                     <fieldset>
 
                       <div class="row">
-                        <div class="col-12">
-                          <h2 class="fs-title">DECLARACIÓN JURADA DE IMPEDIMENTOS E INCOMPATIBILIDADES:</h2>
-                        </div>
-                      </div>
-                      <?php
-                      $sql10 = "SELECT * FROM encuesta where EncuestaID =$idpostulante";
-                      $datos10 = mysqli_query($con, $sql10) or die(mysqli_error($datos10));;
-                      $fila10 = mysqli_fetch_array($datos10);
+                                          <div class="col-12">
+                                              <h2 class="fs-title">DECLARACIÓN JURADA DE IMPEDIMENTOS E INCOMPATIBILIDADES:</h2>
+                                          </div>
+                              </div> 
+                                    <?php  
+                                        $sql4="SELECT * FROM encuesta where postulanteID =$idpostulante";
+                                        $datos4=mysqli_query($con,$sql4) or die(mysqli_error());
+                                        $fila4= mysqli_fetch_array($datos4);
+                                 
+                                    ?>  
+                           
+                              <table class="table table-bordered">
+                                  
+                                      <tr class="bg-primary" style="text-align:center; color:#000; font-size:0.95em;">
+                                      <th scope="col">N°</th>
+                                      <th scope="col">Pregunta</th>
+                                      <th scope="col">Respuesta</th>
+                                      </tr>
+                                  </thead>
 
-                      ?>
-                      <table class="table table-bordered">
+                                  <tbody align="left">
+                                      <tr>
 
-                        <tr class="bg-primary" style="text-align:center; color:#000; font-size:0.95em;">
-                          <th scope="col">N°</th>
-                          <th scope="col">Pregunta</th>
-                          <th scope="col">Respuesta</th>
-                        </tr>
-                        </thead>
+                                      <th scope="row">1</th>
+                                      <td>
+                                          <h6 class="font-weight-bolder">Declaro bajo juramento lo siguiente:</h6>
+                                          <label>Registra antecedentes policiales:</label> 
+                                      </td>
+                                      <td>
 
-                        <tbody align="left">
-                          <tr>
-                            <th scope="row">1</th>
-                            <td>
-                              <h6 class="font-weight-bolder">Declaro bajo juramento lo siguiente:</h6>
-                              <label>Registra antecedentes policiales:</label>
-                            </td>
-                            <td>
-                              <select class="form-control" name="pregunta1" id="pregunta1">
-                                <option value="NO">NO</option>
-                                <option value="SI">SI</option>
-                              </select>
-                            </td>
-                          </tr>
-                          <tr>
-                            <th scope="row">2</th>
-                            <td>
-                              <label>Registra antecedentes penales:</label>
-                            </td>
-                            <td>
-                              <select class="form-control custom-select" name="pregunta2" id="pregunta2">
-                                <option value="NO">NO</option>
-                                <option value="SI">SI</option>
-                              </select>
-                            </td>
+                                            <select class="form-control" name="pregunta1" id="pregunta1">
+                                                <option selected><?php echo $fila4['pregunta1']?></option>
+                                                <option value="NO">NO</option>
+                                                <option value="SI">SI</option>
+                                            </select>
 
-                          </tr>
-                          <tr>
-                            <th scope="row">3</th>
-                            <td>
-                              <label>Registra antecedentes judiciales:</label>
-                            </td>
-                            <td>
-                              <select class="form-control " name="pregunta3" id="pregunta3">
-                                <option value="NO">NO</option>
-                                <option value="SI">SI</option>
-                              </select>
-                            </td>
-                          </tr>
+                                      </td>        </tr>
+                                      <tr>
+                                      <th scope="row">2</th>
+                                      <td>
+                                          <label>Registra antecedentes penales:</label>
+                                      </td>
+                                      <td>
+                                          <select class="form-control" name="pregunta2" id="pregunta2">
+                                                <option selected><?php echo $fila4['pregunta2']?></option>
+                                                <option value="NO">NO</option>
+                                                <option value="SI">SI</option>
+                                          </select>
+                                      </td>
+                                      </tr>
+                                      <tr>
+                                          <th scope="row">3</th>
+                                              <td >
+                                                  <label>Registra antecedentes judiciales:</label>
+                                              </td>
+                                              <td>
+                                                <select class="form-control" name="pregunta3" id="pregunta3">
+                                                  <option selected><?php echo $fila4['pregunta3']?></option>
+                                                  <option value="NO">NO</option>
+                                                  <option value="SI">SI</option>
+                                                 </select>
+                                              </td>
+                                      </tr>
 
-                          <tr>
-                            <th scope="row">4</th>
-                            <td>
-                              <label>Tener inhabilitación vigente para prestar servicios al estado conforme al registro nacional de sanciones contra servidores civiles (RNSCC):</label>
-                            </td>
-                            <td>
-                              <select class="form-control " name="pregunta4" id="pregunta4">
-                                <option value="NO">NO</option>
-                                <option value="SI">SI</option>
-                              </select>
-                            </td>
-                          </tr>
-                          <tr>
-                            <th scope="row">5</th>
-                            <td>
-                              <label>Estar inscrito en le registro de deudores alimentarios morosos (REDAM):</label>
-                            </td>
-                            <td>
-                              <select class="form-control " name="pregunta5" id="pregunta5">
-                                <option value="NO">NO</option>
-                                <option value="SI">SI</option>
-                              </select>
-                            </td>
-                          </tr>
-                          <tr>
-                            <th scope="row">6</th>
-                            <td>
-                              <label>Estar inscrito en el registro nacional de abogados sancionados por mala practica profesional (RNS) (En caso corresponda):</label>
-                            </td>
-                            <td>
-                              <select class="form-control " name="pregunta6" id="pregunta6">
-                                <option value="NO">NO</option>
-                                <option value="SI">SI</option>
-                              </select>
-                            </td>
-                          </tr>
-                          <tr>
-                            <th scope="row">7</th>
-                            <td>
-                              <label>Estar inscrito en la relacion de proveedores sancionados por el tribunal de contrataciones del estado de sancion vigente:</label>
-                            </td>
-                            <td>
-                              <select class="form-control " name="pregunta7" id="pregunta7">
-                                <option value="NO">NO</option>
-                                <option value="SI">SI</option>
-                              </select>
-                            </td>
-                          </tr>
-                          <tr>
-                            <th scope="row">8</th>
-                            <td>
-                              <label>Estar inscrito en el registro de deudores de reparaciones civiles (REDERECI) y por lo tanto no contar con ninguno de los impedimentos establecidos en le articulo 5 de la Ley 30353 (Ley que crea el REDERECI) para acceder el ejercicio de la función pública y contratacion del estado:</label>
-                            </td>
-                            <td>
-                              <select class="form-control " name="pregunta8" id="pregunta8">
-                                <option value="NO">NO</option>
-                                <option value="SI">SI</option>
-                              </select>
-                            </td>
-                          </tr>
-                          <tr>
-                            <th scope="row">9</th>
-                            <td>
-                              <label>Estar inscrito en la relacion de proveedores sancionados por el tribunal de contrataciones del estado de sancion vigente:</label>
-                            </td>
-                            <td>
-                              <select class="form-control " name="pregunta9" id="pregunta9">
-                                <option value="NO">NO</option>
-                                <option value="SI">SI</option>
-                              </select>
-                            </td>
-                          </tr>
-                          <tr>
-                            <th scope="row">10</th>
-                            <td>
-                              <label>Tener impedimento, icompatibilidad o estar incurso en alguna prohibición o restricción para ser postor o contratista y/o para postular, acceder o ejercer el servicio, función o cargo convocado por el MVCS:</label>
-                            </td>
-                            <td>
-                              <select class="form-control " name="pregunta10" id="pregunta10">
-                                <option value="NO">NO</option>
-                                <option value="SI">SI</option>
-                              </select>
-                            </td>
-                          </tr>
+                                      <tr>
+                                          <th scope="row">4</th> 
+                                              <td>
+                                                  <label>Tener inhabilitación vigente para prestar servicios al estado conforme al registro nacional de sanciones contra servidores civiles (RNSCC):</label>
+                                              </td>
+                                              <td>
+                                                <select class="form-control" name="pregunta4" id="pregunta4">
+                                                  <option selected><?php echo $fila4['pregunta4']?></option>
+                                                  <option value="NO">NO</option>
+                                                  <option value="SI">SI</option>
+                                                 </select>
+                                              </td>
+                                      </tr>
+                                      <tr>
+                                          <th scope="row">5</th>
+                                              <td>
+                                                  <label>Estar inscrito en le registro de deudores alimentarios morosos (REDAM):</label>
+                                              </td>
+                                              <td>
+                                                  <select class="form-control " name="pregunta5" id="pregunta5">
+                                                    <option selected><?php echo $fila4['pregunta5']?></option>
+                                                    <option value="NO">NO</option>
+                                                    <option value="SI">SI</option>
+                                                  </select>
+                                              </td>
+                                      </tr>
+                                      <tr>
+                                          <th scope="row">6</th>
+                                              <td>
+                                                  <label>Estar inscrito en el registro nacional de abogados sancionados por mala practica profesional (RNS) (En caso corresponda):</label>
+                                              </td>
+                                              <td>
+                                                  <select class="form-control " name="pregunta6" id="pregunta6">
+                                                      <option selected><?php echo $fila4['pregunta6']?></option>
+                                                      <option value="NO">NO</option>
+                                                      <option value="SI">SI</option>
+                                                  </select>
+                                              </td>
+                                      </tr>
+                                      <tr>
+                                          <th scope="row">7</th>
+                                              <td>
+                                                  <label>Estar inscrito en la relacion de proveedores sancionados por el tribunal de contrataciones del estado de sancion vigente:</label>
+                                              </td>
+                                              <td>
+                                                  <select class="form-control " name="pregunta7" id="pregunta7">
+                                                        <option selected><?php echo $fila4['pregunta7']?></option>
+                                                        <option value="NO">NO</option>
+                                                        <option value="SI">SI</option>
+                                                  </select>
+                                              </td>
+                                      </tr>
+                                      <tr>
+                                          <th scope="row">8</th>
+                                              <td>
+                                                  <label>Estar inscrito en el registro de deudores de reparaciones civiles (REDERECI) y por lo tanto no contar con ninguno de los impedimentos establecidos en le articulo 5 de la Ley 30353 (Ley que crea el REDERECI) para acceder el ejercicio de la función pública y contratacion del estado:</label>
+                                              </td>
+                                              <td>
+                                                  <select class="form-control " name="pregunta8" id="pregunta8">
+                                                          <option selected><?php echo $fila4['pregunta8']?></option>
+                                                          <option value="NO">NO</option>
+                                                          <option value="SI">SI</option>
+                                                  </select>
+                                              </td>
+                                      </tr>
+                                      <tr>
+                                          <th scope="row">9</th>
+                                              <td>
+                                                  <label>Estar inscrito en la relacion de proveedores sancionados por el tribunal de contrataciones del estado de sancion vigente:</label>
+                                              </td>
+                                              <td>
+                                                  <select class="form-control " name="pregunta9" id="pregunta9">
+                                                            <option selected><?php echo $fila4['pregunta9']?></option>
+                                                            <option value="NO">NO</option>
+                                                            <option value="SI">SI</option>
+                                                  </select>
+                                              </td>
+                                      </tr>
+                                      <tr>
+                                          <th scope="row">10</th>
+                                              <td>
+                                                  <label>Tener impedimento, icompatibilidad o estar incurso en alguna prohibición o restricción para ser postor o contratista y/o para postular, acceder o ejercer el servicio, función o cargo convocado por el MVCS:</label>
+                                              </td>
+                                              <td>
+                                                  <select class="form-control " name="pregunta10" id="pregunta10">
+                                                              <option selected><?php echo $fila4['pregunta10']?></option>
+                                                              <option value="NO">NO</option>
+                                                              <option value="SI">SI</option>
+                                                  </select>
+                                              </td>
+                                      </tr>
 
-                          <tr>
-                            <th scope="row">11</th>
-                            <td>
-                              <label>Ser conyugue conviviente o pariente hasta el segundo grado de consanguinidad o afinidad de las personas señaladas en los literales a) AL g) del articulo 11 del texto unico ordenado de la Ley de contrataciones del estado:</label>
-                            </td>
-                            <td>
-                              <select class="form-control " name="pregunta11" id="pregunta11">
-                                <option value="NO">NO</option>
-                                <option value="SI">SI</option>
-                              </select>
-                            </td>
-                          </tr>
-                          <tr>
-                            <th scope="row">12</th>
-                            <td>
-                              <label>Percibir simultaneamente remuneración, pensión y honorarios por concepto de locación de servicios asesorias o consultorias
-                                o cualquier otra doble percepción o ingreso del estado, salvo por el ejercicio de la función docente efectiva y la percepción
-                                de dietas por participación en uno de los directorios de entidades o empresas estatales o en tribunales administrativos o en
-                                otros órganos colegiados:</label>
-                            </td>
-                            <td>
-                              <select class="form-control " name="pregunta12" id="pregunta12">
-                                <option value="NO">NO</option>
-                                <option value="SI">SI</option>
-                              </select>
-                            </td>
-                          </tr>
-                          <tr>
-                            <th scope="row">13</th>
-                            <td>
-                              <label>Percibir simultaneamente remuneración, pensión y honorarios por concepto de locación de servicios asesorias o consultorias
-                                o cualquier otra doble percepción o ingreso del estado, salvo por el ejercicio de la función docente efectiva y la percepción
-                                de dietas por participación en uno de los directorios de entidades o empresas estatales o en tribunales administrativos o en
-                                otros órganos colegiados:</label>
-                            </td>
-                            <td>
-                              <select class="form-control " name="pregunta13" id="pregunta13">
-                                <option value="NO">NO</option>
-                                <option value="SI">SI</option>
-                              </select>
-                            </td>
-                          </tr>
+                                      <tr>
+                                          <th scope="row">11</th>
+                                              <td>
+                                                  <label>Ser conyugue conviviente o pariente hasta el segundo grado de consanguinidad o afinidad de las personas señaladas en los literales a) AL g) del articulo 11 del texto unico ordenado de la Ley de contrataciones del estado:</label>
+                                              </td>
+                                              <td>
+                                                  <select class="form-control " name="pregunta11" id="pregunta11">
+                                                              <option selected><?php echo $fila4['pregunta11']?></option>
+                                                              <option value="NO">NO</option>
+                                                              <option value="SI">SI</option>
+                                                  </select>
+                                              </td>
+                                      </tr>
+                                      <tr>
+                                          <th scope="row">12</th>
+                                              <td>
+                                                  <label>Percibir simultaneamente remuneración, pensión y honorarios por concepto de locación de servicios asesorias o consultorias
+                                                  o cualquier otra doble percepción o ingreso del estado, salvo por el ejercicio de la función docente efectiva y la percepción 
+                                                  de dietas por participación en uno de los directorios de entidades o empresas estatales o en tribunales administrativos o en 
+                                                  otros órganos colegiados:</label>
+                                              </td>
+                                              <td>
+                                                  <select class="form-control " name="pregunta12" id="pregunta12">
+                                                              <option selected><?php echo $fila4['pregunta12']?></option>
+                                                              <option value="NO">NO</option>
+                                                              <option value="SI">SI</option>
+                                                  </select>
+                                              </td>
+                                      </tr>
+                                      <tr>
+                                          <th scope="row">13</th>
+                                              <td>
+                                                  <label>Percibir simultaneamente remuneración, pensión y honorarios por concepto de locación de servicios asesorias o consultorias
+                                                  o cualquier otra doble percepción o ingreso del estado, salvo por el ejercicio de la función docente efectiva y la percepción 
+                                                  de dietas por participación en uno de los directorios de entidades o empresas estatales o en tribunales administrativos o en 
+                                                  otros órganos colegiados:</label>
+                                              </td>
+                                              <td>
+                                                  <select class="form-control " name="pregunta13" id="pregunta13">
+                                                  <option selected><?php echo $fila4['pregunta13']?></option>
+                                                  <option value="NO">NO</option>
+                                                  <option value="SI">SI</option>
+                                                  </select>
+                                              </td>
+                                      </tr>
 
-                        </tbody>
-                      </table>
-                      <input type="submit" name="insertar" class="next action-button" value="Siguiente" />
-                      <input type="button" name="previous" class="previous action-button-previous" value="Atrás" />
+                                      <tr>
+                                        <th scope="row">14</th>
+                                            <td>
+                                                <label>Sentencia Condenatoria por delito doloso</label>
+                                            </td>
+                                            <td>
+                                                <select class="form-control " name="pregunta14" id="pregunta14">
+                                                            <option selected><?php echo $fila4['pregunta14']?></option>
+                                                            <option value="NO">NO</option>
+                                                            <option value="SI">SI</option>
+                                                </select>
+                                            </td>
+                                      </tr>
+
+                                  </tbody>
+                              </table>
+                              <input type="submit" name="insertar" class="next action-button" value="Siguiente" /> 
+                              <input type="button" name="previous" class="previous action-button-previous" value="Atrás"/>   
                     </fieldset>
 
                     <fieldset>

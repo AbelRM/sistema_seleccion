@@ -18,6 +18,7 @@
     $tip_sangre = $_POST['tip_sangre'];
     $alergias = $_POST['alergias'];
     $pais = $_POST['pais'];
+    $servicio = $_POST['servicio'];
     //$direccion=$_POST['direccion'];
     //DATOS DOMICILIO
     $tipo_via = $_POST['tipo_via'];
@@ -46,9 +47,10 @@
        $pre11 = $_POST['pregunta11'];
        $pre12 = $_POST['pregunta12'];
        $pre13 = $_POST['pregunta13'];
+       $pre14 = $_POST['pregunta14'];
     
     $sql = "UPDATE postulante SET fech_nac = '".$fech_nac."',estado_civil='".$civil."',sexo = '".$sexo."', celular_emer ='".$num_emer."',parentesco_emer='".$nomb_parent."',ruc ='".$ruc."',num_cuenta = '".$cuenta_banc."',
-     discapacidad = '".$discapacidad."', tipo_discap = '".$tip_discapacidad."',tipo_sangre = '".$tip_sangre."', alergias = '".$alergias."',suspension_cuarta = '".$cuarta."',seguro = '".$pension."',pais = '".$pais."' WHERE dni='".$dni_post."' ";
+     discapacidad = '".$discapacidad."', tipo_discap = '".$tip_discapacidad."',tipo_sangre = '".$tip_sangre."', alergias = '".$alergias."',suspension_cuarta = '".$cuarta."',seguro = '".$pension."',pais = '".$pais."' ,servicio_militar = '".$servicio."'WHERE dni='".$dni_post."' ";
     $datos=mysqli_query($con,$sql);
 
 
@@ -60,11 +62,10 @@
         $datos2=mysqli_query($con,$sql2);
 
 
-        if ($datos2 == 1) {
-       
+        if ($datos2 == 1) {      
     
-            $sql4 = "INSERT INTO Encuesta (pregunta1, pregunta2, pregunta3,pregunta4, pregunta5, pregunta6, pregunta7, pregunta8, pregunta9, pregunta10, pregunta11,pregunta12, pregunta13,postulanteID) 
-            VALUES ('".$pre1."', '".$pre2."', '".$pre3."', '".$pre4."', '".$pre5."', '".$pre6."','".$pre7."','".$pre8."','".$pre9."','".$pre10."','".$pre11."','".$pre12."','".$pre13."','".$idpostulante."')";
+            $sql4 = "INSERT INTO Encuesta (pregunta1, pregunta2, pregunta3,pregunta4, pregunta5, pregunta6, pregunta7, pregunta8, pregunta9, pregunta10, pregunta11,pregunta12, pregunta13, pregunta14,postulanteID) 
+            VALUES ('".$pre1."', '".$pre2."', '".$pre3."', '".$pre4."', '".$pre5."', '".$pre6."','".$pre7."','".$pre8."','".$pre9."','".$pre10."','".$pre11."','".$pre12."','".$pre13."','".$pre14."','".$idpostulante."')";
             $datos3=mysqli_query($con,$sql4);
     
             if($datos3 == 1){

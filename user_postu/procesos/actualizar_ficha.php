@@ -20,7 +20,8 @@
     $discapacidad = $_POST['discapacidad'];
     $tip_discapacidad = $_POST['tip_discapacidad']; 
     $tip_sangre = $_POST['tip_sangre']; 
-    $alergias = $_POST['alergias'];  
+    $alergias = $_POST['alergias']; 
+    $servicio = $_POST['servicio']; 
     //$direccion=$_POST['direccion'];
     //DATOS DOMICILIO
     $tipo_via = $_POST['tipo_via'];
@@ -49,9 +50,10 @@
       $pre11 = $_POST['pregunta11'];
       $pre12 = $_POST['pregunta12'];
       $pre13 = $_POST['pregunta13'];
+      $pre14 = $_POST['pregunta14'];
     
     $sql = "UPDATE postulante SET pais='".$pais."',sexo='".$sexo."',celular = '".$celular."', correo ='".$correo."',estado_civil='".$estadocivil."',celular_emer='".$celular_emer."',parentesco_emer ='".$parentesco_emer."',ruc = '".$ruc."',
-     num_cuenta = '".$num_cuenta."', suspension_cuarta = '".$cuarta."',discapacidad = '".$discapacidad."', tipo_discap = '".$tip_discapacidad."',tipo_sangre = '".$tip_sangre."',alergias = '".$alergias."' WHERE dni='".$dni_post."' ";
+     num_cuenta = '".$num_cuenta."', suspension_cuarta = '".$cuarta."',discapacidad = '".$discapacidad."', tipo_discap = '".$tip_discapacidad."',tipo_sangre = '".$tip_sangre."',alergias = '".$alergias."' ,servicio_militar = '".$servicio."' WHERE dni='".$dni_post."' ";
     $datos=mysqli_query($con,$sql);
 
 
@@ -61,12 +63,12 @@
 
         $sql2 = "UPDATE encuesta SET pregunta1='".$pre1."', pregunta2='".$pre2."', pregunta3='".$pre3."',pregunta3='".$pre4."',
         pregunta5='".$pre5."',pregunta6='".$pre6."', pregunta7 = '".$pre7."',pregunta8 ='".$pre8."', pregunta9 ='".$pre9."', 
-        pregunta10 ='".$pre10."', pregunta11 ='".$pre11."',pregunta12 ='".$pre12."',pregunta13 ='".$pre13."'  WHERE postulanteID='".$idpostulante."'";
+        pregunta10 ='".$pre10."', pregunta11 ='".$pre11."',pregunta12 ='".$pre12."',pregunta13 ='".$pre13."' ,pregunta14 ='".$pre14."'  WHERE postulanteID='".$idpostulante."'";
         $datos2=mysqli_query($con,$sql2);    
 
         if ($datos2 == 1) {
 
-                $sql3 = "UPDATE encuesta SET tip_via='".$tipo_via."', nomb_via='".$nomb_via."', num_via='".$num_via."',tip_zona='".$tipo_zona."',
+                $sql3 = "UPDATE domicilio_post SET tip_via='".$tipo_via."', nomb_via='".$nomb_via."', num_via='".$num_via."',tip_zona='".$tipo_zona."',
                 nomb_zona='".$nomb_zona."',num_zona='".$num_zona."', referencia = '".$referencia."',numero ='".$numero."', manzana ='".$manzana."', 
                 lote ='".$lote."'  WHERE postulante_idpostulante='".$idpostulante."'";
                 $datos3=mysqli_query($con,$sql3);  

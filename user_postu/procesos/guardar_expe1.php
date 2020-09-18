@@ -1,67 +1,67 @@
 <?php
-// Insert the content of connection.php file
-include('../conexion.php');
+    include '../conexion.php';
+    $dato_desencriptado=$_POST['dni'];
+    $idpostulante=$_POST['idpostulante'];
+    //////////////////////// PRESIONAR EL BOTÓN //////////////////////////
+    if(isset($_POST['insertar']))
+    {
+        $items1 = ($_POST['lugar']);
+        $items2 = ($_POST['cargo']);
+        $items3 = ($_POST['fech_ini']);
+        $items4 = ($_POST['fech_fin']);
+    
+        ///////////// SEPARAR VALORES DE ARRAYS, EN ESTE CASO SON 4 ARRAYS UNO POR CADA INPUT (ID, NOMBRE, CARRERA Y GRUPO////////////////////)
+        while(true) {
 
-// Insert data into the database
-if (isset($_POST['insertData'])) {
-  $dato_desencriptado = $_POST['dni_encriptado'];
-  $dni = $_POST['dni'];
-  $idpostulante = $_POST['postulante'];
+            //// RECUPERAR LOS VALORES DE LOS ARREGLOS ////////
+            $item1 = current($items1);
+            $item2 = current($items2);
+            $item3 = current($items3);
+            $item4 = current($items4);
+            
+            ////// ASIGNARLOS A VARIABLES ///////////////////
+            $lugar=(( $item1 !== false) ? $item1 : ", &nbsp;");
+            $cargo=(( $item2 !== false) ? $item2 : ", &nbsp;");
+            $fecha_ini=(( $item3 !== false) ? $item3 : ", &nbsp;");
+            $fecha_fin=(( $item4 !== false) ? $item4 : ", &nbsp;");
 
-  $lugar_3exp = $_POST['lugar_1exp'];
-  $cargo_funciones_1exp = $_POST['cargo_funciones_1exp'];
-  $fecha_ini_1exp = $_POST['fecha_ini_1exp'];
-  $fecha_fin_1exp = $_POST['fecha_fin_1exp'];
+            /// VALORES AÑOS, MESES Y DIAS ///
+            $fechainicial = new DateTime($fecha_ini);
+            $fechaactual = new DateTime($fecha_fin);
 
-  $micarpeta = $_SERVER['DOCUMENT_ROOT'] . '/sistema_seleccion/user_postu/archivos/' . $dni . '/expe1_laboral/';
-  if (!file_exists($micarpeta)) {
-    mkdir($micarpeta, 0777, true);
-  }
-  //datos del arhivo
-  $nombre_archivo = $_FILES['archivo']['name'];
-  $tipo_archivo = $_FILES['archivo']['type'];
-  $tamano_archivo = $_FILES['archivo']['size'];
+            $diferencia = $fechainicial->diff($fechaactual); 
 
-  $query = mysqli_query($con, "SELECT * FROM expe_1puntos WHERE expe_1puntos_idpostulante = $idpostulante");
-  $result = mysqli_num_rows($query);
-  if ($result <= 0) {
-    $i = 1;
-    $new_nombre = "expe1_laboral_" . $i . ".pdf";
-  } else {
-    $row = mysqli_fetch_array($query);
-    $idformacion = $row['id_3puntos'];
-    $i = $idformacion;
-    $new_nombre = "expe1_laboral_" . $i . ".pdf";
-  }
+            $años=$diferencia->format('%Y');
+            $meses=$diferencia->format('%m');
+            $dias=$diferencia->format('%d');
 
-  /// VALORES AÑOS, MESES Y DIAS ///
-  $fechainicial = new DateTime($fecha_ini_4exp);
-  $fechaactual = new DateTime($fecha_fin_4exp);
-  $diferencia = $fechainicial->diff($fechaactual);
-  $años = $diferencia->format('%Y');
-  $meses = $diferencia->format('%m');
-  $dias = $diferencia->format('%d');
+            //// CONCATENAR LOS VALORES EN ORDEN PARA SU FUTURA INSERCIÓN ////////
+            $valores='("'.$lugar.'","'.$cargo.'","'.$fecha_ini.'","'.$fecha_fin.'","'.$años.'","'.$meses.'","'.$dias.'","'.$idpostulante.'"),';
 
-  //compruebo si las características del archivo son las que deseo
-  if (!(strpos($tipo_archivo, "pdf") && ($tamano_archivo <= 3000000))) {
-    echo "La extensión o el tamaño de los archivos no es correcta. <br><br><table><tr><td><li>Solo se permiten archivos .pdf<br><li>se permiten archivos de 3 Mb máximo.</td></tr></table>";
-  } else {
-    if (move_uploaded_file($_FILES['archivo']['tmp_name'], $micarpeta . $new_nombre)) {
-      $sql = "INSERT INTO expe_1puntos (lugar,cargo,fecha_inicio,fecha_fin,anios,meses,dias,archivos,expe_1puntos_idpostulante) 
-          VALUES('$lugar_1exp','$cargo_funciones_1exp', '$fecha_ini_1exp','$fecha_fin_1exp','$años','$meses','$dias','$new_nombre','$idpostulante')";
-      $result = mysqli_query($con, $sql);
-      if ($result) {
-        echo '<script> alert("Guardado exitosamente"); </script>';
-        header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
-      } else {
-        echo '<script> alert("Error al guardar"); </script>';
-        header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
-      }
-    } else {
-      echo "Ocurrió algún error al subir el fichero. No pudo guardarse.";
-      header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
+            //////// YA QUE TERMINA CON COMA CADA FILA, SE RESTA CON LA FUNCIÓN SUBSTR EN LA ULTIMA FILA /////////////////////
+            $valoresQ= substr($valores, 0, -1);
+            
+            ///////// QUERY DE INSERCIÓN ////////////////////////////
+            $sql = "INSERT INTO expe_1puntos (lugar,cargo,fecha_inicio,fecha_fin,anios,meses,dias,expe_1puntos_idpostulante) 
+            VALUES $valoresQ";
+
+            $sqlRes=$con->query($sql) or mysqli_error($con);
+        
+            // Up! Next Value
+            $item1 = next( $items1 );
+            $item2 = next( $items2 );
+            $item3 = next( $items3 );
+            $item4 = next( $items4 );
+            
+            // Check terminator
+            if($item1 === false && $item2 === false && $item3 === false && $item4 === false) break;
+
+        }
+
     }
-  }
-} else {
-  echo "ERROR NO ENTRA";
-}
+    //echo '<script>
+        //alert("Se agrego correctamente!");
+       // window.location="../exp_laboral.php?dni=".$dni;
+        //</script>';
+        header('Location: ../exp_laboral.php?dni='.$dato_desencriptado);
+?>

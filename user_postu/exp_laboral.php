@@ -883,7 +883,9 @@ if (empty($_SESSION['active'])) {
               </div>
               <div class="col-md-8 col-sm-12 form-group">
                 <label for="title">(*) Subir Constancia de trabajo</label>
-                <input type="file" name="archivo" accept=".pdf" required />
+                <input type="file" name="archivo" accept=".pdf" id="expe_archivo" required />
+                <div id="peso_archivo_valido" class="font-weight-bolder text-primary"></div>
+                <div id="peso_archivo_no" class="font-weight-bolder text-danger"></div>
               </div>
             </div>
             <div class="form-group">
@@ -995,8 +997,9 @@ if (empty($_SESSION['active'])) {
               </div>
               <div class="col-md-8 col-sm-12 form-group">
                 <label for="title">(*) Subir Constancia de trabajo</label>
-                <input type="file" name="archivo" accept=".pdf" id="expe1_archivo" required />
-
+                <input type="file" name="archivo" accept=".pdf" id="expe_archivo" required />
+                <div id="peso_archivo_valido" class="font-weight-bolder text-primary"></div>
+                <div id="peso_archivo_no" class="font-weight-bolder text-danger"></div>
               </div>
             </div>
             <div class="form-group">
@@ -1175,14 +1178,21 @@ if (empty($_SESSION['active'])) {
   </script> -->
   <script>
     //binds to onchange event of your input field
-    $('#expe1_archivo').bind('change', function() {
+    $('#expe_archivo').bind('change', function() {
 
       //this.files[0].size gets the size of your file.
-      $peso = (this.files[0].size);
-      if ($peso <= 3000000) {
-        alert("Archivo valido");
+      var peso = (this.files[0].size);
+      if (peso <= 3000000) {
+        document.getElementById('peso_archivo_valido').innerHTML = "Archivo válido";
+        document.getElementById("peso_archivo_valido").style.display = "block";
+        document.getElementById("peso_archivo_no").style.display = "none";
+        // alert("Archivo valido");
       } else {
-        alert("Archivo NO valido");
+        document.getElementById('peso_archivo_no').innerHTML = "El archivo sobre pasa los 3Mb máximos";
+        document.getElementById("peso_archivo_valido").style.display = "none";
+        document.getElementById("peso_archivo_no").style.display = "block";
+        document.getElementById("expe_archivo").value = '';
+        // alert("Archivo NO valido");
       }
       // alert(this.files[0].size);
 

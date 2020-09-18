@@ -19,13 +19,9 @@ if(ISSET($_POST['updateData3']))
     if($result)
     {
         header("Location: ../exp_laboral.php?dni=$dato_desencriptado");
-        // echo '<script> alert("Datos guardados exitosamente."); 
-        // window.location.href = "capacitacion.php?dni=".$dato_desencriptado;
-        // </script>';
     }
     else
     {
         echo '<script> alert("Error al actualizar, verifique!"); </script>';
     }
 }
-?>

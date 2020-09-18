@@ -186,64 +186,12 @@ if (empty($_SESSION['active'])) {
                             <?php
                               }
                             } else {
-                              echo "<tr>
-                                                <td colspan='7' class='text-center text-danger' >NO HAY DATOS REGISTRADOS</td>
-                                                </tr>";
+                              echo "<tr><td colspan='7' class='text-center text-danger' >NO HAY DATOS REGISTRADOS</td></tr>";
                             }
                             ?>
                           </tbody>
                         </table>
                       </div>
-                      <!-- <form action="procesos/guardar_expe4.php" method="POST">
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered" id="tabla-1">
-                                            <thead>
-                                                <tr class="bg-danger" style="text-align:center; font-size:0.813em;">
-                                                    <th scope="col">Lugar de trabajo</th>
-                                                    <th scope="col">Cargo/Función desempeñada</th>
-                                                    <th scope="col">Fecha Inicio</th>
-                                                    <th scope="col">Fecha Termino</th>
-                                                    <th scope="col">Archivos</th>
-                                                    <th scope="col-1">Acción</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr class="fila-fija-1">
-                                                    <td style="font-size:12px;">
-                                                        <select name="lugar[]" class="form-control" id="lugar">
-                                                            <option disabled selected>Elegir</option>
-                                                            <option value="Microred Tarata">Microred Tarata</option>
-                                                            <option value="Microred Candarave">Microred Candarave</option>
-                                                            <option value="Microred Alto Andino">Microred Alto Andino</option>
-                                                            <option value="Microred Frontera">Microred Frontera</option>
-                                                            <option value="Microred Jorge Basadre">Microred Jorge Basadre</option>
-                                                        </select>
-                                                    </td>
-                                                    <td><input style="font-size:12px;" type="text" name="cargo[]" class="form-control name_list" /></td>
-                                                    <td><input style="font-size:12px;" type="date" name="fech_ini[]" class="form-control name_list" /></td>
-                                                    <td><input style="font-size:12px;" type="date" name="fech_fin[]" class="form-control name_list"/></td>
-                                                    <td>
-                                                     
-                                                    </td>
-                                                    <td class="eliminar"><button type="button" class="btn btn-danger" ><i class="fas fa-trash-alt"></i></button></td>
-                                                </tr>
-                                            </tdody>
-                                        </table>
-                                    </div>
-                                    <input type="hidden" name="dni" value="<?php echo $dato_desencriptado; ?>">
-                                    <input type="hidden" name="dni_base" value="<?php echo $dni; ?>">
-                                    <input type="hidden" name="idpostulante" value="<?php echo $idpostulante; ?>">
-                                    <div class="row d-flex justify-content-end">
-                                        <div class="form-inline p-2">
-                                            <button id="adicional-1" name="adicional" type="button" class="btn btn-warning">Agregar Fila (+)</button>
-                                        </div>
-                                    </div>
-                                    <div class="row d-flex justify-content-center">
-                                        <div class="form-inline p-2">
-                                            <button  name="insertar" type="submit" class="btn btn-primary">Guardar</button>
-                                        </div>
-                                    </div>
-                                  </form> -->
                     </div>
                   </div>
                 </div>
@@ -298,9 +246,7 @@ if (empty($_SESSION['active'])) {
                             <?php
                               }
                             } else {
-                              echo "<tr>
-                                                <td colspan='7' class='text-center text-danger' >NO HAY DATOS REGISTRADOS</td>
-                                                </tr>";
+                              echo "<tr><td colspan='7' class='text-center text-danger' >NO HAY DATOS REGISTRADOS</td></tr>";
                             }
                             ?>
                           </tbody>
@@ -314,7 +260,12 @@ if (empty($_SESSION['active'])) {
                 <div class="form-row p-2 d-flex justify-content-center">
                   <div class="card border-primary">
                     <div class="card-header header-formulario">
-                      <h5 class="titulo-card">Experiencia laboral en el sector público o privado DENTRO O FUERA de TACNA</h5>
+                      <div class="col-md-10">
+                        <h5 class="titulo-card">En sector PÚBLICO/PRIVADO - DENTRO/FUERA de TACNA</h5>
+                      </div>
+                      <div class="col-md-2 d-flex justify-content-end">
+                        <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#expe1"><i class="fas fa-plus"></i> Nuevo</a>
+                      </div>
                     </div>
                     <div class="card-body">
                       <div class="table-responsive">
@@ -326,6 +277,7 @@ if (empty($_SESSION['active'])) {
                               <th>Cargo/Función desempeñada</th>
                               <th>Fecha Inicio</th>
                               <th>Fecha Término</th>
+                              <th>Archivos</th>
                               <th>Acciones</th>
                             </tr>
                           </thead>
@@ -343,6 +295,7 @@ if (empty($_SESSION['active'])) {
                                   <td style="font-size: 12px;"><?php echo $row8['cargo'] ?></td>
                                   <td style="font-size: 12px;"><?php echo $row8['fecha_inicio'] ?></td>
                                   <td style="font-size: 12px;"><?php echo $row8['fecha_fin'] ?></td>
+                                  <td><a href="ver_pdf_expe1.php?id=<?php echo $row8['id_4puntos'] ?>&dni=<?php echo $dato_desencriptado ?>"><?php echo $row8['archivos']; ?></a></td>
                                   <td class="d-flex justify-content-center">
                                     <button class="btn btn-success btn-sm m-1 updateBtn3"><i class="fa fa-edit"></i></button>
                                     <button class="btn btn-danger btn-sm m-1 deleteBtn3"><i class="fa fa-times-circle"></i></button>
@@ -351,51 +304,12 @@ if (empty($_SESSION['active'])) {
                             <?php
                               }
                             } else {
-
-                              echo "<tr>
-                                                <td colspan='5' class='text-center text-danger' >NO HAY DATOS REGISTRADOS</td>
-                                                </tr>";
+                              echo "<tr><td colspan='7' class='text-center text-danger' >NO HAY DATOS REGISTRADOS</td></tr>";
                             }
                             ?>
                           </tbody>
                         </table>
                       </div>
-                      <form action="procesos/guardar_expe1.php" method="POST">
-                        <div class="table-responsive">
-                          <table class="table table-bordered" id="tabla-3">
-                            <thead>
-                              <tr class="bg-danger" style="text-align:center; font-size:0.813em;">
-                                <th scope="col">Lugar de trabajo</th>
-                                <th scope="col">Cargo/Función desempeñada</th>
-                                <th scope="col">Fecha Inicio</th>
-                                <th scope="col">Fecha Termino</th>
-                                <th scope="col-1">Acción</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr class="fila-fija-3">
-                                <td><input style="font-size:12px;" type="text" name="lugar[]" class="form-control name_list" /></td>
-                                <td><input style="font-size:12px;" type="text" name="cargo[]" class="form-control name_list" /></td>
-                                <td><input style="font-size:12px;" type="date" name="fech_ini[]" class="form-control name_list" /></td>
-                                <td><input style="font-size:12px;" type="date" name="fech_fin[]" class="form-control name_list" /></td>
-                                <td class="eliminar"><button type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button></td>
-                              </tr>
-                              </tdody>
-                          </table>
-                        </div>
-                        <input type="hidden" name="dni" value="<?php echo $dato_desencriptado; ?>">
-                        <input type="hidden" name="idpostulante" value="<?php echo $idpostulante; ?>">
-                        <div class="row d-flex justify-content-end">
-                          <div class="form-inline p-2">
-                            <button id="adicional-3" name="adicional" type="button" class="btn btn-warning">Agregar Fila (+)</button>
-                          </div>
-                        </div>
-                        <div class="row d-flex justify-content-center">
-                          <div class="form-inline p-2">
-                            <button name="insertar" type="submit" class="btn btn-primary">Guardar</button>
-                          </div>
-                        </div>
-                      </form>
                     </div>
                   </div>
                 </div>
@@ -705,7 +619,7 @@ if (empty($_SESSION['active'])) {
     <i class="fas fa-angle-up"></i>
   </a>
 
-  <!-- Logout Modal-->
+  <!-- CERRAR SESION Modal-->
   <div class="modal fade" id="cerrarsesion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -766,18 +680,10 @@ if (empty($_SESSION['active'])) {
               </div>
               <div class="col-md-8 col-sm-12 form-group" id="archivo">
                 <label for="title">(*) Subir Constancia de trabajo</label>
-                <input type="file" name="archivo" required />
+                <input type="file" name="archivo" accept=".pdf" id="expe_archivo" required />
+                <div id="peso_archivo_valido" class="font-weight-bolder text-primary"></div>
+                <div id="peso_archivo_no" class="font-weight-bolder text-danger"></div>
               </div>
-              <!-- <div class="col-md-8 col-sm-12 form-group" id="archivo">
-                <label for="title">(*) Subir Constancia de trabajo</label>
-                <div class="row">
-                  <input type="file" name="archivo" id="file-1" class="inputfile inputfile-1" required/>
-                  <label for="file-1">
-                  <i class="fas fa-file-upload"></i>
-                  <span class="iborrainputfile">Seleccionar...</span>
-                  </label>
-                </div>
-              </div> -->
             </div>
             <div class="form-group">
               <p>(*) Indica un campo obligatorio.</p>
@@ -860,6 +766,7 @@ if (empty($_SESSION['active'])) {
       </div>
     </div>
   </div>
+
   <!-- ADD NUEVOS DATOS  TIPO 2-->
   <div class="modal fade" id="expe4_2">
     <div class="modal-dialog modal-lg">
@@ -895,23 +802,10 @@ if (empty($_SESSION['active'])) {
               </div>
               <div class="col-md-8 col-sm-12 form-group">
                 <label for="title">(*) Subir Constancia de trabajo</label>
-                <<<<<<< HEAD <input type="file" name="archivo" accept=".pdf" id="expe_archivo" required />
+                <input type="file" name="archivo" accept=".pdf" id="expe_archivo" required />
                 <div id="peso_archivo_valido" class="font-weight-bolder text-primary"></div>
                 <div id="peso_archivo_no" class="font-weight-bolder text-danger"></div>
-                =======
-                <input type="file" name="archivo_2" required />
-                >>>>>>> eec2263ba2c3abd0bd84ae80f2e1135cd067787f
               </div>
-              <!-- <div class="col-md-8 col-sm-12 form-group" id="archivo">
-                <label for="title">(*) Subir Constancia de trabajo</label>
-                <div class="row">
-                  <input type="file" name="archivo" id="file-1" class="inputfile inputfile-1" required/>
-                  <label for="file-1">
-                  <i class="fas fa-file-upload"></i>
-                  <span class="iborrainputfile">Seleccionar...</span>
-                  </label>
-                </div>
-              </div> -->
             </div>
             <div class="form-group">
               <p>(*) Indica un campo obligatorio.</p>
@@ -960,6 +854,29 @@ if (empty($_SESSION['active'])) {
             </div>
           </form>
         </div>
+      </div>
+    </div>
+  </div>
+  <!-- Eliminar MICROREDES DIRESA DE  TACNA-->
+  <div class="modal fade" id="eliminarmicroredes">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-danger text-white">
+          <h5 class="modal-title">Eliminar registro</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        </div>
+        <form action="procesos/eliminarmicroredes.php" method="POST">
+          <div class="modal-body">
+            <input type="hidden" name="dni_url" id="url" value="<?php echo $dato_desencriptado; ?>">
+            <input type="hidden" name="id1" id="id1">
+            <input type="hidden" name="dni_base" value="<?php echo $dni ?>">
+            <h4>¿Desea eliminar el dato seleccionado?</h4>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-primary" name="deleteData1">Si</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
@@ -1018,447 +935,449 @@ if (empty($_SESSION['active'])) {
             </div>
         </div>
       </div>
+    </div>
+  </div>
 
-      <!-- Actualizar MICROREDES DENTRO O FUERA de TACNA-->
-      <div class="modal fade" id="actualizarpublicoprivado">
-        <div class="modal-dialog modal-md">
-          <div class="modal-content">
-            <div class="modal-header bg-warning text-white">
-              <h5 class="modal-title">Modificar</h5>
-              <button class="close" data-dismiss="modal"><span>×</span></button>
-            </div>
-            <div class="modal-body">
-              <form action="procesos/actualizarpublicoprivado.php" method="POST">
-                <input type="hidden" name="dato_desencriptado" id="dato_desencriptado" value="<?php echo $dato_desencriptado ?>">
-                <input type="hidden" name="id_1puntos" id="id_1puntos">
+  <!-- Actualizar MICROREDES DENTRO O FUERA de TACNA-->
+  <div class="modal fade" id="actualizarpublicoprivado">
+    <div class="modal-dialog modal-md">
+      <div class="modal-content">
+        <div class="modal-header bg-warning text-white">
+          <h5 class="modal-title">Modificar</h5>
+          <button class="close" data-dismiss="modal"><span>×</span></button>
+        </div>
+        <div class="modal-body">
+          <form action="procesos/actualizarpublicoprivado.php" method="POST">
+            <input type="hidden" name="dato_desencriptado" id="dato_desencriptado" value="<?php echo $dato_desencriptado ?>">
+            <input type="hidden" name="id_1puntos" id="id_1puntos">
 
-                <div class="form-group">
-                  <label for="title">Lugar de Trabajo </label>
-                  <input type="text" name="lugar3" id="lugar3" class="form-control" placeholder="Enter last name" maxlength="50">
-                </div>
-                <div class="form-group">
-                  <label for="title">Cargo/Funcion desempeñada </label>
-                  <input type="text" name="cargo3" id="cargo3" class="form-control" placeholder="Enter last name" maxlength="50">
-                </div>
-                <div class="form-group">
-                  <label for="title">Fecha Inicio</label>
-                  <input type="text" name="fecha_inicio3" id="fecha_inicio3" class="form-control" placeholder="Horas" maxlength="50">
-                </div>
-                <div class="form-group">
-                  <label for="title">Fecha Fin </label>
-                  <input type="text" name="fecha_fin3" id="fecha_fin3" class="form-control" placeholder="Horas" maxlength="50">
-                </div>
-                <div class="modal-footer">
-                  <button type="submit" class="btn btn-primary" name="updateData3">Actualizar!</button>
-                </div>
-              </form>
+            <div class="form-group">
+              <label for="title">Lugar de Trabajo </label>
+              <input type="text" name="lugar3" id="lugar3" class="form-control" placeholder="Enter last name" maxlength="50">
             </div>
-          </div>
+            <div class="form-group">
+              <label for="title">Cargo/Funcion desempeñada </label>
+              <input type="text" name="cargo3" id="cargo3" class="form-control" placeholder="Enter last name" maxlength="50">
+            </div>
+            <div class="form-group">
+              <label for="title">Fecha Inicio</label>
+              <input type="text" name="fecha_inicio3" id="fecha_inicio3" class="form-control" placeholder="Horas" maxlength="50">
+            </div>
+            <div class="form-group">
+              <label for="title">Fecha Fin </label>
+              <input type="text" name="fecha_fin3" id="fecha_fin3" class="form-control" placeholder="Horas" maxlength="50">
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary" name="updateData3">Actualizar!</button>
+            </div>
+          </form>
         </div>
       </div>
+    </div>
+  </div>
 
-      <!-- !-- MODAL ELIMINAR MICROREDES DENTRO O FUERA de TACNA -->
-      <div class="modal fade" id="eliminarpublicoprivado">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header bg-danger text-white">
-              <h5 class="modal-title">Eliminar registro</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-            </div>
-            <form action="procesos/eliminarpublicoprivado.php" method="POST">
-              <div class="modal-body">
-                <input type="hidden" name="url" id="url" value="<?php echo $dato_desencriptado; ?>">
-                <input type="hidden" name="id3" id="id3">
-                <h4>¿Desea eliminar el dato seleccionado?</h4>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                <button type="submit" class="btn btn-primary" name="deleteData3">Si</button>
-              </div>
-            </form>
+  <!-- !-- MODAL ELIMINAR MICROREDES DENTRO O FUERA de TACNA -->
+  <div class="modal fade" id="eliminarpublicoprivado">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-danger text-white">
+          <h5 class="modal-title">Eliminar registro</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        </div>
+        <form action="procesos/eliminarpublicoprivado.php" method="POST">
+          <div class="modal-body">
+            <input type="hidden" name="url" id="url" value="<?php echo $dato_desencriptado; ?>">
+            <input type="hidden" name="id3" id="id3">
+            <h4>¿Desea eliminar el dato seleccionado?</h4>
           </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-primary" name="deleteData3">Si</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Actualizar Experiencia Laboral MICROREDES-->
+  <div class="modal fade" id="actualizardiresatacna">
+    <div class="modal-dialog modal-md">
+      <div class="modal-content">
+        <div class="modal-header bg-warning text-white">
+          <h5 class="modal-title">Modificar Experiencia Laboral</h5>
+          <button class="close" data-dismiss="modal"><span>×</span></button>
+        </div>
+        <div class="modal-body">
+          <form action="procesos/actualizardiresatacna.php" method="POST">
+            <input type="hidden" name="dato_desencriptado" id="dato_desencriptado" value="<?php echo $dato_desencriptado ?>">
+            <input type="hidden" name="id_4puntos1" id="id_4puntos1">
+
+            <div class="form-group">
+              <label for="title">Lugar de Trabajo</label>
+              <input type="text" name="lugar4" id="lugar4" class="form-control" placeholder="Enter last name" maxlength="50">
+            </div>
+            <div class="form-group">
+              <label for="title">Cargo/Funcion desempeñada </label>
+              <input type="text" name="cargo4" id="cargo4" class="form-control" placeholder="Enter last name" maxlength="50">
+            </div>
+            <div class="form-group">
+              <label for="title">Fecha Inicio</label>
+              <input type="text" name="fecha_inicio4" id="fecha_inicio4" class="form-control" placeholder="Horas" maxlength="50">
+            </div>
+            <div class="form-group">
+              <label for="title">Fecha Fin </label>
+              <input type="text" name="fecha_fin4" id="fecha_fin4" class="form-control" placeholder="Horas" maxlength="50">
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary" name="updateData5">Actualizar!</button>
+            </div>
+          </form>
         </div>
       </div>
+    </div>
+  </div>
 
-      <!-- Actualizar Experiencia Laboral MICROREDES-->
-      <div class="modal fade" id="actualizardiresatacna">
-        <div class="modal-dialog modal-md">
-          <div class="modal-content">
-            <div class="modal-header bg-warning text-white">
-              <h5 class="modal-title">Modificar Experiencia Laboral</h5>
-              <button class="close" data-dismiss="modal"><span>×</span></button>
-            </div>
-            <div class="modal-body">
-              <form action="procesos/actualizardiresatacna.php" method="POST">
-                <input type="hidden" name="dato_desencriptado" id="dato_desencriptado" value="<?php echo $dato_desencriptado ?>">
-                <input type="hidden" name="id_4puntos1" id="id_4puntos1">
-
-                <div class="form-group">
-                  <label for="title">Lugar de Trabajo</label>
-                  <input type="text" name="lugar4" id="lugar4" class="form-control" placeholder="Enter last name" maxlength="50">
-                </div>
-                <div class="form-group">
-                  <label for="title">Cargo/Funcion desempeñada </label>
-                  <input type="text" name="cargo4" id="cargo4" class="form-control" placeholder="Enter last name" maxlength="50">
-                </div>
-                <div class="form-group">
-                  <label for="title">Fecha Inicio</label>
-                  <input type="text" name="fecha_inicio4" id="fecha_inicio4" class="form-control" placeholder="Horas" maxlength="50">
-                </div>
-                <div class="form-group">
-                  <label for="title">Fecha Fin </label>
-                  <input type="text" name="fecha_fin4" id="fecha_fin4" class="form-control" placeholder="Horas" maxlength="50">
-                </div>
-                <div class="modal-footer">
-                  <button type="submit" class="btn btn-primary" name="updateData5">Actualizar!</button>
-                </div>
-              </form>
-            </div>
-          </div>
+  <!-- !-- MODAL ELIMINAR MICROREDES -->
+  <div class="modal fade" id="eliminardiresaTacna">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-danger text-white">
+          <h5 class="modal-title">Eliminar registro</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
         </div>
-      </div>
-
-      <!-- !-- MODAL ELIMINAR MICROREDES -->
-      <div class="modal fade" id="eliminardiresaTacna">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header bg-danger text-white">
-              <h5 class="modal-title">Eliminar registro</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-            </div>
-            <form action="procesos/eliminardiresatacna.php" method="POST">
-              <div class="modal-body">
-                <input type="hidden" name="url" id="url" value="<?php echo $dato_desencriptado; ?>">
-                <input type="hidden" name="id4" id="id4">
-                <h4>¿Desea eliminar el dato seleccionado?</h4>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                <button type="submit" class="btn btn-primary" name="deleteData4">Si</button>
-              </div>
-            </form>
+        <form action="procesos/eliminardiresatacna.php" method="POST">
+          <div class="modal-body">
+            <input type="hidden" name="url" id="url" value="<?php echo $dato_desencriptado; ?>">
+            <input type="hidden" name="id4" id="id4">
+            <h4>¿Desea eliminar el dato seleccionado?</h4>
           </div>
-        </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-primary" name="deleteData4">Si</button>
+          </div>
+        </form>
       </div>
+    </div>
+  </div>
 
-      <!-- Bootstrap core JavaScript-->
-      <script src="vendor/jquery/jquery.min.js"></script>
-      <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- Bootstrap core JavaScript-->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-      <!-- Core plugin JavaScript-->
-      <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+  <!-- Core plugin JavaScript-->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-      <!-- Custom scripts for all pages-->
-      <script src="js/sb-admin-2.min.js"></script>
+  <!-- Custom scripts for all pages-->
+  <script src="js/sb-admin-2.min.js"></script>
 
-      <!-- Page level plugins -->
-      <script src="vendor/chart.js/Chart.min.js"></script>
+  <!-- Page level plugins -->
+  <script src="vendor/chart.js/Chart.min.js"></script>
 
-      <!-- Page level custom scripts -->
-      <script src="js/demo/chart-area-demo.js"></script>
-      <script src="js/demo/chart-pie-demo.js"></script>
-      <script>
-        'use strict';;
-        (function(document, window, index) {
-          var inputs = document.querySelectorAll('.inputfile');
-          Array.prototype.forEach.call(inputs, function(input) {
-            var label = input.nextElementSibling,
-              labelVal = label.innerHTML;
+  <!-- Page level custom scripts -->
+  <script src="js/demo/chart-area-demo.js"></script>
+  <script src="js/demo/chart-pie-demo.js"></script>
+  <script>
+    'use strict';;
+    (function(document, window, index) {
+      var inputs = document.querySelectorAll('.inputfile');
+      Array.prototype.forEach.call(inputs, function(input) {
+        var label = input.nextElementSibling,
+          labelVal = label.innerHTML;
 
-            input.addEventListener('change', function(e) {
-              var fileName = '';
-              if (this.files && this.files.length > 1)
-                fileName = (this.getAttribute('data-multiple-caption') || '').replace('{count}', this.files.length);
-              else
-                fileName = e.target.value.split('\\').pop();
+        input.addEventListener('change', function(e) {
+          var fileName = '';
+          if (this.files && this.files.length > 1)
+            fileName = (this.getAttribute('data-multiple-caption') || '').replace('{count}', this.files.length);
+          else
+            fileName = e.target.value.split('\\').pop();
 
-              if (fileName)
-                label.querySelector('span').innerHTML = fileName;
-              else
-                label.innerHTML = labelVal;
-            });
-          });
-        }(document, window, 0));
-      </script> -->
-      <script>
-        //binds to onchange event of your input field
-        $('#expe_archivo').bind('change', function() {
-
-          //this.files[0].size gets the size of your file.
-          var peso = (this.files[0].size);
-          if (peso <= 3000000) {
-            document.getElementById('peso_archivo_valido').innerHTML = "Archivo válido";
-            document.getElementById("peso_archivo_valido").style.display = "block";
-            document.getElementById("peso_archivo_no").style.display = "none";
-            // alert("Archivo valido");
-          } else {
-            document.getElementById('peso_archivo_no').innerHTML = "El archivo sobre pasa los 3Mb máximos";
-            document.getElementById("peso_archivo_valido").style.display = "none";
-            document.getElementById("peso_archivo_no").style.display = "block";
-            document.getElementById("expe_archivo").value = '';
-            // alert("Archivo NO valido");
-          }
-          // alert(this.files[0].size);
-
+          if (fileName)
+            label.querySelector('span').innerHTML = fileName;
+          else
+            label.innerHTML = labelVal;
         });
-      </script>
+      });
+    }(document, window, 0));
+  </script> -->
+  <script>
+    //binds to onchange event of your input field
+    $('#expe_archivo').bind('change', function() {
 
-      <script>
-        $(function() {
-          $("#inputSelect").on('change', function() {
-            var selectValue = $(this).val();
-            switch (selectValue) {
-              case "tipo-1":
-                $("#tipo-1").show();
-                $("#tipo-2").hide();
-                break;
-              case "tipo-2":
-                $("#tipo-1").hide();
-                $("#tipo-2").show();
-                break;
-            }
-          }).change();
-        });
-      </script>
+      //this.files[0].size gets the size of your file.
+      var peso = (this.files[0].size);
+      if (peso <= 3000000) {
+        document.getElementById('peso_archivo_valido').innerHTML = "Archivo válido";
+        document.getElementById("peso_archivo_valido").style.display = "block";
+        document.getElementById("peso_archivo_no").style.display = "none";
+        // alert("Archivo valido");
+      } else {
+        document.getElementById('peso_archivo_no').innerHTML = "El archivo sobre pasa los 3Mb máximos";
+        document.getElementById("peso_archivo_valido").style.display = "none";
+        document.getElementById("peso_archivo_no").style.display = "block";
+        document.getElementById("expe_archivo").value = '';
+        // alert("Archivo NO valido");
+      }
+      // alert(this.files[0].size);
 
-      <script>
-        $(document).ready(function() {
-          $('.updateBtn1').on('click', function() {
+    });
+  </script>
 
-            $('#actualizarmicroredes').modal('show');
+  <script>
+    $(function() {
+      $("#inputSelect").on('change', function() {
+        var selectValue = $(this).val();
+        switch (selectValue) {
+          case "tipo-1":
+            $("#tipo-1").show();
+            $("#tipo-2").hide();
+            break;
+          case "tipo-2":
+            $("#tipo-1").hide();
+            $("#tipo-2").show();
+            break;
+        }
+      }).change();
+    });
+  </script>
 
-            // Get the table row data.
-            $tr = $(this).closest('tr');
+  <script>
+    $(document).ready(function() {
+      $('.updateBtn1').on('click', function() {
 
-            var data = $tr.children("td").map(function() {
-              return $(this).text();
-            }).get();
+        $('#actualizarmicroredes').modal('show');
 
-            console.log(data);
+        // Get the table row data.
+        $tr = $(this).closest('tr');
 
-            $('#id_4puntos').val(data[0]);
-            $('#lugar1').val(data[1]);
-            $('#cargo').val(data[2]);
-            $('#fecha_inicio').val(data[3]);
-            $('#fecha_fin').val(data[4]);
+        var data = $tr.children("td").map(function() {
+          return $(this).text();
+        }).get();
 
-          });
-        });
+        console.log(data);
 
-        $(document).ready(function() {
-          $('.deleteBtn1').on('click', function() {
+        $('#id_4puntos').val(data[0]);
+        $('#lugar1').val(data[1]);
+        $('#cargo').val(data[2]);
+        $('#fecha_inicio').val(data[3]);
+        $('#fecha_fin').val(data[4]);
 
-            $('#eliminarmicroredes').modal('show');
-            // Get the table row data.
-            $tr = $(this).closest('tr');
+      });
+    });
 
-            var data = $tr.children("td").map(function() {
-              return $(this).text();
-            }).get();
+    $(document).ready(function() {
+      $('.deleteBtn1').on('click', function() {
 
-            console.log(data);
-            $('#id1').val(data[0]);
-          });
-        });
-      </script>
+        $('#eliminarmicroredes').modal('show');
+        // Get the table row data.
+        $tr = $(this).closest('tr');
 
-      <script>
-        $(document).ready(function() {
-          $('.updateBtn2').on('click', function() {
+        var data = $tr.children("td").map(function() {
+          return $(this).text();
+        }).get();
 
-            $('#actualizarmicrotacna').modal('show');
+        console.log(data);
+        $('#id1').val(data[0]);
+      });
+    });
+  </script>
 
-            // Get the table row data.
-            $tr = $(this).closest('tr');
+  <script>
+    $(document).ready(function() {
+      $('.updateBtn2').on('click', function() {
 
-            var data = $tr.children("td").map(function() {
-              return $(this).text();
-            }).get();
+        $('#actualizarmicrotacna').modal('show');
 
-            console.log(data);
+        // Get the table row data.
+        $tr = $(this).closest('tr');
 
-            $('#id_3puntos').val(data[0]);
-            $('#lugar2').val(data[1]);
-            $('#cargo2').val(data[2]);
-            $('#fecha_inicio2').val(data[3]);
-            $('#fecha_fin2').val(data[4]);
+        var data = $tr.children("td").map(function() {
+          return $(this).text();
+        }).get();
 
-          });
-        });
+        console.log(data);
 
-        $(document).ready(function() {
-          $('.deleteBtn2').on('click', function() {
+        $('#id_3puntos').val(data[0]);
+        $('#lugar2').val(data[1]);
+        $('#cargo2').val(data[2]);
+        $('#fecha_inicio2').val(data[3]);
+        $('#fecha_fin2').val(data[4]);
 
-            $('#eliminarmicroredesTacna').modal('show');
-            // Get the table row data.
-            $tr = $(this).closest('tr');
+      });
+    });
 
-            var data = $tr.children("td").map(function() {
-              return $(this).text();
-            }).get();
+    $(document).ready(function() {
+      $('.deleteBtn2').on('click', function() {
 
-            console.log(data);
-            $('#id2').val(data[0]);
-          });
-        });
-      </script>
+        $('#eliminarmicroredesTacna').modal('show');
+        // Get the table row data.
+        $tr = $(this).closest('tr');
 
-      <script>
-        $(document).ready(function() {
-          $('.updateBtn3').on('click', function() {
+        var data = $tr.children("td").map(function() {
+          return $(this).text();
+        }).get();
 
-            $('#actualizarpublicoprivado').modal('show');
+        console.log(data);
+        $('#id2').val(data[0]);
+      });
+    });
+  </script>
 
-            // Get the table row data.
-            $tr = $(this).closest('tr');
+  <script>
+    $(document).ready(function() {
+      $('.updateBtn3').on('click', function() {
 
-            var data = $tr.children("td").map(function() {
-              return $(this).text();
-            }).get();
+        $('#actualizarpublicoprivado').modal('show');
 
-            console.log(data);
+        // Get the table row data.
+        $tr = $(this).closest('tr');
 
-            $('#id_1puntos').val(data[0]);
-            $('#lugar3').val(data[1]);
-            $('#cargo3').val(data[2]);
-            $('#fecha_inicio3').val(data[3]);
-            $('#fecha_fin3').val(data[4]);
+        var data = $tr.children("td").map(function() {
+          return $(this).text();
+        }).get();
 
-          });
-        });
+        console.log(data);
 
-        $(document).ready(function() {
-          $('.deleteBtn3').on('click', function() {
+        $('#id_1puntos').val(data[0]);
+        $('#lugar3').val(data[1]);
+        $('#cargo3').val(data[2]);
+        $('#fecha_inicio3').val(data[3]);
+        $('#fecha_fin3').val(data[4]);
 
-            $('#eliminarpublicoprivado').modal('show');
-            // Get the table row data.
-            $tr = $(this).closest('tr');
+      });
+    });
 
-            var data = $tr.children("td").map(function() {
-              return $(this).text();
-            }).get();
+    $(document).ready(function() {
+      $('.deleteBtn3').on('click', function() {
 
-            console.log(data);
-            $('#id3').val(data[0]);
-          });
-        });
-      </script>
+        $('#eliminarpublicoprivado').modal('show');
+        // Get the table row data.
+        $tr = $(this).closest('tr');
 
-      <script>
-        $(document).ready(function() {
-          $('.updateBtn4').on('click', function() {
+        var data = $tr.children("td").map(function() {
+          return $(this).text();
+        }).get();
 
-            $('#actualizardiresatacna').modal('show');
+        console.log(data);
+        $('#id3').val(data[0]);
+      });
+    });
+  </script>
 
-            // Get the table row data.
-            $tr = $(this).closest('tr');
+  <script>
+    $(document).ready(function() {
+      $('.updateBtn4').on('click', function() {
 
-            var data = $tr.children("td").map(function() {
-              return $(this).text();
-            }).get();
+        $('#actualizardiresatacna').modal('show');
 
-            console.log(data);
+        // Get the table row data.
+        $tr = $(this).closest('tr');
 
-            $('#id_4puntos1').val(data[0]);
-            $('#lugar4').val(data[1]);
-            $('#cargo4').val(data[2]);
-            $('#fecha_inicio4').val(data[3]);
-            $('#fecha_fin4').val(data[4]);
+        var data = $tr.children("td").map(function() {
+          return $(this).text();
+        }).get();
 
-          });
-        });
+        console.log(data);
 
-        $(document).ready(function() {
-          $('.deleteBtn4').on('click', function() {
+        $('#id_4puntos1').val(data[0]);
+        $('#lugar4').val(data[1]);
+        $('#cargo4').val(data[2]);
+        $('#fecha_inicio4').val(data[3]);
+        $('#fecha_fin4').val(data[4]);
 
-            $('#eliminardiresaTacna').modal('show');
-            // Get the table row data.
-            $tr = $(this).closest('tr');
+      });
+    });
 
-            var data = $tr.children("td").map(function() {
-              return $(this).text();
-            }).get();
+    $(document).ready(function() {
+      $('.deleteBtn4').on('click', function() {
 
-            console.log(data);
-            $('#id4').val(data[0]);
-          });
-        });
-      </script>
+        $('#eliminardiresaTacna').modal('show');
+        // Get the table row data.
+        $tr = $(this).closest('tr');
 
-      <script>
-        $(function() {
-          // Clona la fila oculta que tiene los campos base, y la agrega al final de la tabla
-          $("#adicional-1").on('click', function() {
-            $("#tabla-1 tbody tr:eq(0)").clone().removeClass('fila-fija-1').appendTo("#tabla-1").find("input[type=text],input[type=date]").val("");
-          });
+        var data = $tr.children("td").map(function() {
+          return $(this).text();
+        }).get();
 
-          // Evento que selecciona la fila y la elimina 
-          $(document).on("click", ".eliminar", function() {
-            var parent = $(this).parents().get(0);
-            $(parent).remove();
-          });
-        });
-        $(function() {
-          // Clona la fila oculta que tiene los campos base, y la agrega al final de la tabla
-          $("#adicional-2").on('click', function() {
-            $("#tabla-2 tbody tr:eq(0)").clone().removeClass('fila-fija-2').appendTo("#tabla-2").find("input[type=text],input[type=date]").val("");
-          });
+        console.log(data);
+        $('#id4').val(data[0]);
+      });
+    });
+  </script>
 
-          // Evento que selecciona la fila y la elimina 
-          $(document).on("click", ".eliminar", function() {
-            var parent = $(this).parents().get(0);
-            $(parent).remove();
-          });
-        });
-        $(function() {
-          // Clona la fila oculta que tiene los campos base, y la agrega al final de la tabla
-          $("#adicional-3").on('click', function() {
-            $("#tabla-3 tbody tr:eq(0)").clone().removeClass('fila-fija-3').appendTo("#tabla-3").find("input[type=text],input[type=date]").val("");
-          });
+  <script>
+    $(function() {
+      // Clona la fila oculta que tiene los campos base, y la agrega al final de la tabla
+      $("#adicional-1").on('click', function() {
+        $("#tabla-1 tbody tr:eq(0)").clone().removeClass('fila-fija-1').appendTo("#tabla-1").find("input[type=text],input[type=date]").val("");
+      });
 
-          // Evento que selecciona la fila y la elimina 
-          $(document).on("click", ".eliminar", function() {
-            var parent = $(this).parents().get(0);
-            $(parent).remove();
-          });
-        });
-        $(function() {
-          // Clona la fila oculta que tiene los campos base, y la agrega al final de la tabla
-          $("#adicional-4").on('click', function() {
-            $("#tabla-4 tbody tr:eq(0)").clone().removeClass('fila-fija-4').appendTo("#tabla-4").find("input[type=text],input[type=date]").val("");
-          });
+      // Evento que selecciona la fila y la elimina 
+      $(document).on("click", ".eliminar", function() {
+        var parent = $(this).parents().get(0);
+        $(parent).remove();
+      });
+    });
+    $(function() {
+      // Clona la fila oculta que tiene los campos base, y la agrega al final de la tabla
+      $("#adicional-2").on('click', function() {
+        $("#tabla-2 tbody tr:eq(0)").clone().removeClass('fila-fija-2').appendTo("#tabla-2").find("input[type=text],input[type=date]").val("");
+      });
 
-          // Evento que selecciona la fila y la elimina 
-          $(document).on("click", ".eliminar", function() {
-            var parent = $(this).parents().get(0);
-            $(parent).remove();
-          });
-        });
-        $(function() {
-          // Clona la fila oculta que tiene los campos base, y la agrega al final de la tabla
-          $("#adicional-5").on('click', function() {
-            $("#tabla-5 tbody tr:eq(0)").clone().removeClass('fila-fija-5').appendTo("#tabla-5").find("input[type=text],input[type=date]").val("");
-          });
+      // Evento que selecciona la fila y la elimina 
+      $(document).on("click", ".eliminar", function() {
+        var parent = $(this).parents().get(0);
+        $(parent).remove();
+      });
+    });
+    $(function() {
+      // Clona la fila oculta que tiene los campos base, y la agrega al final de la tabla
+      $("#adicional-3").on('click', function() {
+        $("#tabla-3 tbody tr:eq(0)").clone().removeClass('fila-fija-3').appendTo("#tabla-3").find("input[type=text],input[type=date]").val("");
+      });
 
-          // Evento que selecciona la fila y la elimina 
-          $(document).on("click", ".eliminar", function() {
-            var parent = $(this).parents().get(0);
-            $(parent).remove();
-          });
-        });
-        $(function() {
-          // Clona la fila oculta que tiene los campos base, y la agrega al final de la tabla
-          $("#adicional-6").on('click', function() {
-            $("#tabla-6 tbody tr:eq(0)").clone().removeClass('fila-fija-6').appendTo("#tabla-6").find("input[type=text],input[type=date]").val("");
-          });
+      // Evento que selecciona la fila y la elimina 
+      $(document).on("click", ".eliminar", function() {
+        var parent = $(this).parents().get(0);
+        $(parent).remove();
+      });
+    });
+    $(function() {
+      // Clona la fila oculta que tiene los campos base, y la agrega al final de la tabla
+      $("#adicional-4").on('click', function() {
+        $("#tabla-4 tbody tr:eq(0)").clone().removeClass('fila-fija-4').appendTo("#tabla-4").find("input[type=text],input[type=date]").val("");
+      });
 
-          // Evento que selecciona la fila y la elimina 
-          $(document).on("click", ".eliminar", function() {
-            var parent = $(this).parents().get(0);
-            $(parent).remove();
-          });
-        });
-      </script>
+      // Evento que selecciona la fila y la elimina 
+      $(document).on("click", ".eliminar", function() {
+        var parent = $(this).parents().get(0);
+        $(parent).remove();
+      });
+    });
+    $(function() {
+      // Clona la fila oculta que tiene los campos base, y la agrega al final de la tabla
+      $("#adicional-5").on('click', function() {
+        $("#tabla-5 tbody tr:eq(0)").clone().removeClass('fila-fija-5').appendTo("#tabla-5").find("input[type=text],input[type=date]").val("");
+      });
+
+      // Evento que selecciona la fila y la elimina 
+      $(document).on("click", ".eliminar", function() {
+        var parent = $(this).parents().get(0);
+        $(parent).remove();
+      });
+    });
+    $(function() {
+      // Clona la fila oculta que tiene los campos base, y la agrega al final de la tabla
+      $("#adicional-6").on('click', function() {
+        $("#tabla-6 tbody tr:eq(0)").clone().removeClass('fila-fija-6').appendTo("#tabla-6").find("input[type=text],input[type=date]").val("");
+      });
+
+      // Evento que selecciona la fila y la elimina 
+      $(document).on("click", ".eliminar", function() {
+        var parent = $(this).parents().get(0);
+        $(parent).remove();
+      });
+    });
+  </script>
 </body>
 
 </html>

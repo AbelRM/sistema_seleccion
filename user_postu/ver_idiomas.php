@@ -70,7 +70,7 @@
         {?>
             <p>No hay archivos agregados</p>
                     <?php }else{ ?>
-            <iframe src="archivos/<?php echo $dni ?>/<?php echo $datos['archivo']; ?>"  width="1000px" height="1000px"></iframe>
+            <iframe src="archivos/<?php echo $dni ?>/Idiomas_Computacion/<?php echo $datos['archivo']; ?>"  width="1000px" height="1000px"></iframe>
 
         <?php 
     } 

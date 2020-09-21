@@ -284,6 +284,12 @@
                             <div class="card border-left-info shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row">
+                                        <div class="col-md-12 d-flex justify-content-end">
+                                          
+                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#diplomados"><i class="fas fa-plus"></i>Nuevo</button>
+                                        </div>
+                                    </div>
+                                    <div class="row">
                                         <div class="col-md-12 p-2 d-flex justify-content-center">
                                             <h3 class="text-xs font-weight-bold text-info  text-uppercase mb-1">Diplomados - cursos - seminarios</h3>
                                         </div>
@@ -319,7 +325,7 @@
                                                 <td style="font-size: 12px;"><?php echo $row3['fech_ini']?></td>
                                                 <td style="font-size: 12px;"><?php echo $row3['fech_fin']?></td>
                                                 <td style="font-size: 12px;"><?php echo $row3['tipo']?></td>
-                                                <td style="font-size: 12px;"><?php echo $row3['nivel']; ?></td>
+                                                <td><a href="ver_diplomados.php?id=<?php echo $row3['idcursos_extra']?>&dni=<?php echo $dato_desencriptado ?>"><?php echo $row3['archivo']; ?></a></td>
                                                 <td class="d-flex justify-content-center">
                                                   <button class="btn btn-success btn-sm m-1 updateBtn2"><i class="fa fa-edit"></i></button>
                                                   <button class="btn btn-danger btn-sm m-1 deletebtn2"><i class="fa fa-times-circle"></i></button>
@@ -337,7 +343,8 @@
                                         </table>
                                             </div>
                                         </div>
-                                        <div class="col-md-12">  
+
+                                      <!--  <div class="col-md-12">  
                                         <form action="procesos/guardar_diplomados.php" method="POST">   
                                             <div class="modal-body">
                                                 <div class="table-responsive">
@@ -396,7 +403,7 @@
                                                 <button class="btn btn-primary" name="insertar" type="submit" >Guardar</button>
                                             </div>
                                         </form>
-                                        </div>
+                                        </div>-->
                                     </div>
                                 </div>
                             </div>
@@ -561,7 +568,7 @@
 
   <!--AGREGAR ESTUDIOS SUPERIORES -->
   <div class="modal fade" id="addModal">
-    <div class="modal-dialog modal-md">
+    <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header bg-primary text-white">
           <h5 class="modal-title">Estudios Superiores (Universitario - Tecnico)</h5> 
@@ -569,33 +576,24 @@
             <span>×</span>
           </button>
         </div> 
-        <div class="modal-body">    
+        <div class="modal-body">      
           <form action="procesos/guardar_estudios_sup.php" enctype="multipart/form-data" autocomplete="off" method="POST">
             <div class="row"> 
               <input type="hidden" name="dni_encriptado" value="<?php echo $dato_desencriptado ?>">  
               <input type="hidden" name="dni" value="<?php echo $dni ?>">
               <input type="hidden" name="postulante" value="<?php echo $idpostulante ?>">
 
-              <div class="col-md-12 col-sm-12 form-group" id="div_centro_estudios">
+              <div class="col-md-6 col-sm-12 form-group" id="div_centro_estudios">
                 <label for="title">(*) Centro estudios</label>
                 <input type="text" id="centro_estudios" name="centro_estudios" class="form-control" placeholder="Nombre centro estudios" maxlength="100"
                 required>
               </div>
-              <div class="col-md-12 col-sm-12 form-group" id="div_centro_estudios">
+              <div class="col-md-6 col-sm-12 form-group" id="div_centro_estudios">
                 <label for="title">(*) Especialidad</label>
                 <input type="text" id="especialidad" name="especialidad" class="form-control" placeholder="Especialidad" maxlength="100"
                 required>
               </div>
-              <div class="col-md-6 col-sm-12 form-group" id="div_fecha_inicio">
-                <label for="title">(**) Fecha Inicio</label>
-                <input type="date" id="fecha_inicio" name="fecha_inicio" class="form-control" required>
-              </div>
-              <div class="col-md-6 col-sm-12 form-group" id="div_fecha_fin">
-                <label for="title">(**) Fecha Término</label>
-                <input type="date" id="fecha_fin" name="fecha_fin" class="form-control" required>
-              </div>
-
-              <div class="col-md-12 col-sm-12 form-group" id="div_nivel_estudio">
+              <div class="col-md-4 col-sm-12 form-group" id="div_nivel_estudio">
                 <label for="title">(*) Nivel estudios</label>
                 <select name="nivel_estudios" id="nivel_estudios" class="form-control">
                         <option value="MAGISTER">Magister</option>
@@ -604,6 +602,15 @@
                         <option value="ESTUDIANTE">Estudiante</option>
                 </select>
               </div>
+              <div class="col-md-4 col-sm-12 form-group" id="div_fecha_inicio">
+                <label for="title">(**) Fecha Inicio</label>
+                <input type="date" id="fecha_inicio" name="fecha_inicio" class="form-control" required>
+              </div>
+              <div class="col-md-4 col-sm-12 form-group" id="div_fecha_fin">
+                <label for="title">(**) Fecha Término</label>
+                <input type="date" id="fecha_fin" name="fecha_fin" class="form-control" required>
+              </div>
+              
               <div class="col-md-8 col-sm-12 form-group">
                 <label for="title">(*) Subir Archivo</label>
                 <input type="file" name="archivo" accept=".pdf" id="expe1_archivo" required />
@@ -628,7 +635,7 @@
 
     <!--AGREGAR ESTUDIOS POSTGRADO-->
     <div class="modal fade" id="postgrado">
-     <div class="modal-dialog modal-md">
+     <div class="modal-dialog modal-lg"> 
       <div class="modal-content">
         <div class="modal-header bg-primary text-white">
           <h5 class="modal-title">Estudios Postgrado (Maestrias - Doctorados)</h5> 
@@ -643,17 +650,17 @@
               <input type="hidden" name="dni" value="<?php echo $dni ?>">
               <input type="hidden" name="postulante" value="<?php echo $idpostulante ?>">
 
-              <div class="col-md-12 col-sm-12 form-group" id="div_centro_estudios">
+              <div class="col-md-6 col-sm-12 form-group" id="div_centro_estudios">
                 <label for="title">(*) Centro estudios</label>
                 <input type="text" id="centro_estudios" name="centro_estudios" class="form-control" placeholder="Nombre centro estudios" maxlength="100"
                 required>
               </div>
-              <div class="col-md-12 col-sm-12 form-group" id="div_centro_estudios">
+              <div class="col-md-6 col-sm-12 form-group" id="div_centro_estudios">
                 <label for="title">(*) Especialidad</label>
                 <input type="text" id="especialidad" name="especialidad" class="form-control" placeholder="Especialidad" maxlength="100"
                 required>
               </div>
-              <div class="col-md-12 col-sm-12 form-group" id="div_nivel_estudio">
+              <div class="col-md-4 col-sm-12 form-group" id="div_nivel_estudio">
                 <label for="title">(*) Tipo estudios</label>
                 <select name="tipo" id="tipo" class="form-control">
                         <option value="MAESTRIA">Maestria</option>
@@ -661,16 +668,16 @@
                 </select>
               </div>
 
-              <div class="col-md-6 col-sm-12 form-group" id="div_fecha_inicio">
+              <div class="col-md-4 col-sm-12 form-group" id="div_fecha_inicio">
                 <label for="title">(**) Fecha Inicio</label>
                 <input type="date" id="fecha_inicio" name="fecha_inicio" class="form-control" required>
               </div>
-              <div class="col-md-6 col-sm-12 form-group" id="div_fecha_fin">
+              <div class="col-md-4 col-sm-12 form-group" id="div_fecha_fin">
                 <label for="title">(**) Fecha Término</label>
                 <input type="date" id="fecha_fin" name="fecha_fin" class="form-control" required>
               </div>
 
-              <div class="col-md-12 col-sm-12 form-group" id="div_nivel_estudio">
+              <div class="col-md-4 col-sm-12 form-group" id="div_nivel_estudio">
                 <label for="title">(*) Nivel estudios</label>
                 <select name="nivel_estudios" id="nivel_estudios" class="form-control">
                         <option value="MAGISTER">Magister</option>
@@ -680,7 +687,7 @@
                 </select>
               </div>
               <div class="col-md-8 col-sm-12 form-group">
-                <label for="title">(*) Subir Archivo</label>
+                <label for="title">(*) Subir Archivo</label><br>
                 <input type="file" name="archivo1" accept=".pdf" id="expe2_archivo" required />
                 <div id="peso_archivo_valido1" class="font-weight-bolder text-primary"></div>
                 <div id="peso_archivo_no1" class="font-weight-bolder text-danger"></div>
@@ -701,7 +708,78 @@
       </div>
     </div>
 
-    <!--AGREGAR ESTUDIOS POSTGRADO-->
+        <!--AGREGAR ESTUDIOS DIPLOMADOS-->
+    <div class="modal fade" id="diplomados">
+     <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header bg-primary text-white">
+          <h5 class="modal-title">Diplomados - cursos - seminarios</h5> 
+          <button class="close" data-dismiss="modal">
+            <span>×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form action="procesos/guardar_diplomados.php" enctype="multipart/form-data" autocomplete="off" method="POST">
+            <div class="row"> 
+              <input type="hidden" name="dni_encriptado" value="<?php echo $dato_desencriptado ?>">
+              <input type="hidden" name="dni" value="<?php echo $dni ?>">
+              <input type="hidden" name="postulante" value="<?php echo $idpostulante ?>">
+
+              <div class="col-md-6 col-sm-12 form-group" id="div_centro_estudios">
+                <label for="title">(*) Centro estudios</label>
+                <input type="text" id="centro_estudios" name="centro_estudios" class="form-control" placeholder="Nombre centro estudios" maxlength="100"
+                required>
+              </div>
+              <div class="col-md-6 col-sm-12 form-group" id="div_centro_estudios">
+                <label for="title">(*) Nombre de la materia</label>
+                <input type="text" id="materia" name="materia" class="form-control" placeholder="Materia" maxlength="100"
+                required>
+              </div>
+              <div class="col-md-6 col-sm-12 form-group" id="div_nivel_estudio">
+                <label for="title">(*) Nivel</label>
+                <select name="tipo" id="tipo" class="form-control">
+                        <option value="EGRESADO">Egresado</option>
+                        <option value="ACREDITADO">Acreditado</option>
+                </select>
+              </div>
+              <div class="col-md-3 col-sm-12 form-group" id="div_centro_estudios">
+                <label for="title">(*) Horas</label>
+                <input type="text" id="horas" name="horas" class="form-control" placeholder="Horas" maxlength="100"
+                required>
+              </div>
+
+              <div class="col-md-6 col-sm-12 form-group" id="div_fecha_inicio">
+                <label for="title">(**) Fecha Inicio</label>
+                <input type="date" id="fecha_inicio" name="fecha_inicio" class="form-control" required>
+              </div>
+              <div class="col-md-6 col-sm-12 form-group" id="div_fecha_fin">
+                <label for="title">(**) Fecha Término</label>
+                <input type="date" id="fecha_fin" name="fecha_fin" class="form-control" required>
+              </div>
+
+              <div class="col-md-8 col-sm-12 form-group">
+                <label for="title">(*) Subir Archivo</label>
+                <input type="file" name="archivo" accept=".pdf" id="expe4_archivo" required />
+                <div id="peso_archivo_valido3" class="font-weight-bolder text-primary"></div>
+                <div id="peso_archivo_no3" class="font-weight-bolder text-danger"></div>
+              </div> 
+              
+            </div>
+            <div class="form-group">
+              <p>(*) Indica un campo obligatorio.</p>
+              <p>(**) En el campo "FECHA" debe indicar la fecha de obtención del "NIVEL DE ESTUDIOS" que está registrando. 
+              En el caso de estudiante, debe indicar la fecha del ciclo culminado que está registrando.</p>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary" name="insertData4">Guardar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      </div>
+    </div>
+
+    <!--AGREGAR ESTUDIOS Estudios Computacion ingles -->
     <div class="modal fade" id="estcomp">
      <div class="modal-dialog modal-md">
       <div class="modal-content">
@@ -734,7 +812,7 @@
 
               <div class="col-md-8 col-sm-12 form-group">
                 <label for="title">(*) Subir Archivo</label>
-                <input type="file" name="archivo2" accept=".pdf" id="expe3_archivo" required />
+                <input type="file" name="archivo" accept=".pdf" id="expe3_archivo" required />
                 <div id="peso_archivo_valido2" class="font-weight-bolder text-primary"></div>
                 <div id="peso_archivo_no2" class="font-weight-bolder text-danger"></div>
               </div>   
@@ -1789,6 +1867,22 @@
           document.getElementById("peso_archivo_valido2").style.display = "none";
           document.getElementById("peso_archivo_no2").style.display = "block";
           document.getElementById("expe1_archivo2").value = '';
+        }
+      });
+    </script>
+    <script>
+      //binds to onchange event of your input field
+      $('#expe4_archivo').bind('change', function() {
+        var peso = (this.files[0].size);
+        if (peso <= 3000000) {
+          document.getElementById('peso_archivo_valido3').innerHTML = "Archivo válido";
+          document.getElementById("peso_archivo_valido3").style.display = "block";
+          document.getElementById("peso_archivo_no3").style.display = "none";
+        } else {
+          document.getElementById('peso_archivo_no3').innerHTML = "El archivo sobre pasa los 3Mb máximos";
+          document.getElementById("peso_archivo_valido3").style.display = "none";
+          document.getElementById("peso_archivo_no3").style.display = "block";
+          document.getElementById("expe1_archivo3").value = '';
         }
       });
     </script>

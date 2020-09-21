@@ -1,67 +1,126 @@
 <?php
-    include_once('../conexion.php');
-    $dni=$_POST['dni'];
-    $idpostulante= $_POST['idpostulante'];
-    //////////////////////// PRESIONAR EL BOTÓN //////////////////////////
-    if(isset($_POST['insertar']))
+  // Insert the content of connection.php file
+  include('../conexion.php');
+  
+  // Insert data into the database
+  if(ISSET($_POST['insertData4']))     
     {
-        $items1 = ($_POST['centro_estu']);
-        $items2 = ($_POST['materia']);
-        $items3 = ($_POST['horas']);
-        $items4 = ($_POST['fech_ini']);
-        $items5 = ($_POST['fech_fin']);
-        $items6 = ($_POST['nivel']);
-        $items7 = ($_POST['tipo']);
     
-    ///////////// SEPARAR VALORES DE ARRAYS, EN ESTE CASO SON 5 ARRAYS UNO POR CADA INPUT (ID, NOMBRE, CARRERA Y GRUPO////////////////////)
-        while(true) {
+      $dato_desencriptado = $_POST['dni_encriptado'];  
+      $dni = $_POST['dni'];
+      echo $dni;
+      $idpostulante = $_POST['postulante'];
 
-            //// RECUPERAR LOS VALORES DE LOS ARREGLOS ////////
-            $item1 = current($items1);
-            $item2 = current($items2);
-            $item3 = current($items3);
-            $item4 = current($items4);
-            $item5 = current($items5);
-            $item6 = current($items6);
-            $item7 = current($items7);
-            
-            ////// ASIGNARLOS A VARIABLES ///////////////////
-            $centro_estu=(( $item1 !== false) ? $item1 : ", &nbsp;");
-            $materia=(( $item2 !== false) ? $item2 : ", &nbsp;");
-            $horas=(( $item3 !== false) ? $item3 : ", &nbsp;");
-            $fech_ini=(( $item4 !== false) ? $item4 : ", &nbsp;");
-            $fech_fin=(( $item5 !== false) ? $item5 : ", &nbsp;");
-            $nivel=(( $item6 !== false) ? $item6 : ", &nbsp;");
-            $tipo=(( $item7 !== false) ? $item7 : ", &nbsp;");
-            
+      $centro_estudios = $_POST['centro_estudios']; 
+      $materia = $_POST['materia'];
+      $tipo = $_POST['tipo'];
+      $horas = $_POST['horas'];
+      $fecha_inicio = $_POST['fecha_inicio'];
+      $fecha_fin = $_POST['fecha_fin'];
 
-            //// CONCATENAR LOS VALORES EN ORDEN PARA SU FUTURA INSERCIÓN ////////
-            $valores='("'.$centro_estu.'","'.$materia.'" ,"'.$horas.'","'.$fech_ini.'","'.$fech_fin.'","'.$tipo.'" ,"'.$nivel.'","'.$idpostulante.'"),';
+      $micarpeta =$_SERVER['DOCUMENT_ROOT']. '/sistema_seleccion/user_postu/archivos/' . $dni . '/Diplomados/';
+      if (!file_exists($micarpeta)) {
+        mkdir($micarpeta, 0777, true);
+      }
 
-            //////// YA QUE TERMINA CON COMA CADA FILA, SE RESTA CON LA FUNCIÓN SUBSTR EN LA ULTIMA FILA /////////////////////
-            $valoresQ= substr($valores, 0, -1);
-            
-            ///////// QUERY DE INSERCIÓN ////////////////////////////
-            // include_once('conexion.php'); 
-            $sql = "INSERT INTO cursos_extra (centro_estu, materia, horas, fech_ini, fech_fin, tipo, nivel, curso_extra_idpostulante) 
-            VALUES $valoresQ";
+      $nombre_archivo = $_FILES['archivo']['name'];
+      $tipo_archivo = $_FILES['archivo']['type'];
+      $tamano_archivo = $_FILES['archivo']['size'];
 
-            $sqlRes=$con->query($sql) or mysqli_error($con);
+      $query = mysqli_query($con, "SELECT * FROM cursos_extra WHERE idcursos_extra = $idpostulante");
+      $result = mysqli_num_rows($query);
+      if ($result <= 0) {
+        $i = 1;
+        $new_nombre = "cursos_" . $i . ".pdf";
+      } else {
+        $row = mysqli_fetch_array($query);
+        $idformacion = $row['idcursos_extra'];
+        $i = $idformacion;
+        $new_nombre = "cursos_" . $i . ".pdf";
+      }
 
-            // Up! Next Value
-            $item1 = next( $items1 );
-            $item2 = next( $items2 );
-            $item3 = next( $items3 );
-            $item4 = next( $items4 );
-            $item5 = next( $items5 );
-            $item6 = next( $items6 );
-            $item7 = next( $items7 );
-            
-            // Check terminator
-            if($item1 === false && $item2 === false && $item3 === false && $item4 === false && $item5 === false && $item6 === false && $item7 === false) break;
+      if (!(strpos($tipo_archivo, "pdf") && ($tamano_archivo <= 3000000))) {
+        echo "La extensión o el tamaño de los archivos no es correcta. <br><br><table><tr><td><li>Solo se permiten archivos .pdf<br><li>se permiten archivos de 3 Mb máximo.</td></tr></table>";
+      } else {
+        if (move_uploaded_file($_FILES['archivo']['tmp_name'], $micarpeta . $new_nombre)) {
 
+          $centro_estudios = $_POST['centro_estudios']; 
+          $materia = $_POST['materia'];
+          $tipo = $_POST['tipo'];
+          $horas = $_POST['horas'];
+          $fecha_inicio = $_POST['fecha_inicio'];
+          $fecha_fin = $_POST['fecha_fin'];
+
+            $sql = "INSERT INTO cursos_extra (centro_estu,materia,horas,fech_ini,fech_fin,tipo,archivo, curso_extra_idpostulante) 
+            VALUES('$centro_estudios','$materia','$horas','$fecha_inicio','$fecha_fin','$tipo','$new_nombre', '$idpostulante')";  
+
+          $result = mysqli_query($con, $sql);
+          if ($result) {
+            echo '<script> alert("Guardado exitosamente"); </script>';
+            header('Location: ../capacitacion.php?dni=' . $dato_desencriptado);
+          } else {
+            echo '<script> alert("Error al guardar PRIMERA!"); </script>';
+            header('Location: ../capacitacion.php?dni=' . $dato_desencriptado);
+          }
+        } else {
+          echo "Ocurrió algún error al subir el fichero. No pudo guardarse.";
         }
+      }
+      }  
+      else {
+      //Crear carpeta
+      $micarpeta = $_SERVER['DOCUMENT_ROOT'] . '/sistema_seleccion/user_postu/archivos/' . $dni . '/Diplomados/';
+      if (!file_exists($micarpeta)) {
+        mkdir($micarpeta, 0777, true);
+      }
+      //Datos del arhivo
+      $nombre_archivo = $_FILES['archivo']['name'];
+      $tipo_archivo = $_FILES['archivo']['type'];
+      $tamano_archivo = $_FILES['archivo']['size'];
+      //Generar nombre de archivo
+     
+      $query = mysqli_query($con, "SELECT * FROM cursos_extra WHERE idcursos_extra = $idpostulante");
+      $result = mysqli_num_rows($query);
+
+      if ($result <= 0) {
+        $i = 1;
+        $new_nombre = "cursos_" . $i . ".pdf";
+      } else {
+        $row = mysqli_fetch_array($query);
+        $idformacion = $row['idcursos_extra'];
+        $i = $idformacion;
+        $new_nombre = "cursos_" . $i . ".pdf";
+      }
+      //compruebo si las características del archivo son las que deseo
+      if (!(strpos($tipo_archivo, "pdf") && ($tamano_archivo <= 2000000))) {
+        echo "La extensión o el tamaño de los archivos no es correcta. <br><br><table><tr><td><li>Solo se permiten archivos .pdf<br><li>se permiten archivos de 3 Mb máximo.</td></tr></table>";
+      } else {
+        if (move_uploaded_file($_FILES['archivo']['tmp_name'], $micarpeta . $new_nombre)) {
+          
+          $centro_estudios = $_POST['centro_estudios']; 
+          $materia = $_POST['materia'];
+          $tipo = $_POST['tipo'];
+          $horas = $_POST['horas'];
+          $fecha_inicio = $_POST['fecha_inicio'];
+          $fecha_fin = $_POST['fecha_fin'];
+         
+            $sql = "INSERT INTO cursos_extra (centro_estu,materia,horas,fech_ini,fech_fin,tipo,archivo, curso_extra_idpostulante) 
+            VALUES('$centro_estudios','$materia','$horas','$fecha_inicio','$fecha_fin','$tipo','$nombre_archivo', '$idpostulante')";  
+
+          $result = mysqli_query($con, $sql);
+          if ($result) {
+            echo '<script> alert("Guardado exitosamente"); </script>';
+            header('Location: ../capacitacion.php?dni=' . $dato_desencriptado);
+          } else {
+            echo '<script> alert("Error al guardar PRIMERA!"); </script>';
+            header('Location: ../capacitacion.php?dni=' . $dni);
+          }
+        }
+         else 
+        {
+          echo "Ocurrió algún error al subir el fichero. No pudo guardarse.";
+          header('Location: ../capacitacion.php?dni=' . $dni);
+        }
+      }
     }
-   // $dato_encriptado = $encriptar($dni);
-    header('Location: ../capacitacion.php?dni='.$dni);
 ?>

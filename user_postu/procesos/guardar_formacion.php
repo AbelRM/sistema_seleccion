@@ -210,13 +210,17 @@ if (isset($_POST['insertData'])) {
             echo '<script> alert("Error al guardar PRIMERA!"); </script>';
             header('Location: ../formacion.php?dni=' . $dni);
           }
-        } else {
+        }
+         else 
+        {
           echo "Ocurrió algún error al subir el fichero. No pudo guardarse.";
           header('Location: ../formacion.php?dni=' . $dni);
         }
       }
     }
-  } else {
+  } 
+  
+  else {
     echo "ERROR DE IF";
   }
 }

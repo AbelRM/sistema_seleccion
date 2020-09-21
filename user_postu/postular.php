@@ -4,7 +4,7 @@
 <head>
 
   <meta charset="utf-8">
-  
+
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
@@ -30,19 +30,19 @@
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-    <?php   
-        include 'conexion.php';
+    <?php
+    include 'conexion.php';
 
-        include 'funcs/mcript.php';
-        $dato_desencriptado = $_GET['dni'];
-        $dni = $desencriptar($dato_desencriptado);
-        
-        $sql2="SELECT * FROM usuarios where dni=$dni";
-        $datos=mysqli_query($con,$sql2) or die(mysqli_error()); ;
-        $fila= mysqli_fetch_array($datos);
-        include 'menu.php';
-        
-        //include 'modal_ver_convocatoria.php';
+    include 'funcs/mcript.php';
+    $dato_desencriptado = $_GET['dni'];
+    $dni = $desencriptar($dato_desencriptado);
+
+    $sql2 = "SELECT * FROM usuarios where dni=$dni";
+    $datos = mysqli_query($con, $sql2) or die(mysqli_error($datos));;
+    $fila = mysqli_fetch_array($datos);
+    include 'menu.php';
+
+    //include 'modal_ver_convocatoria.php';
     ?>
 
     <!-- Content Wrapper -->
@@ -51,7 +51,7 @@
       <div id="content">
         <!-- Topbar -->
         <?php
-            include_once 'nav.php';
+        include_once 'nav.php';
         ?>
         <!-- End of Topbar -->
 
@@ -72,81 +72,81 @@
 
                 <form action="procesos/guardar_postulante.php" method="post">
 
-                    <div class="form-card">                
-                           <!--  <input type="hidden" id="dni_post" name="dni_post" value="<?php echo $fila['dni']; ?>"> -->
-                            
-                            <div class="form-group row">
-                                <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
-                                    <div class="form-group">                                     
-                                         <div class="input-group-addon ">Convocatoria</div>
-                                            <div class="col-md-9" style="padding: 0;margin: 0;">
-                                                <select name="idcon" id="idcon" data-placeholder="Nivel" class="form-control">
-                                                <?php
-                                                $sql="SELECT * FROM convocatoria";
-                                                $res=mysqli_query($con,$sql);
-                                                while ($rw= mysqli_fetch_array($res)){
-                                                    echo "<option value=".$rw["idcon"].">".$rw["tipo_con"]."</option> ";
-                                                } 
-                                                ?>
-                                                 </select>
-                                            </div>
-                                    </div>
-                                </div>
+                  <div class="form-card">
+                    <!--  <input type="hidden" id="dni_post" name="dni_post" value="<?php echo $fila['dni']; ?>"> -->
+
+                    <div class="form-group row">
+                      <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
+                        <div class="form-group">
+                          <div class="input-group-addon ">Convocatoria</div>
+                          <div class="col-md-9" style="padding: 0;margin: 0;">
+                            <select name="idcon" id="idcon" data-placeholder="Nivel" class="form-control">
+                              <?php
+                              $sql = "SELECT * FROM convocatoria";
+                              $res = mysqli_query($con, $sql);
+                              while ($rw = mysqli_fetch_array($res)) {
+                                echo "<option value=" . $rw["idcon"] . ">" . $rw["tipo_con"] . "</option> ";
+                              }
+                              ?>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
 
 
-                                <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
-                                    <div class="form-group">                                     
-                                         <div class="input-group-addon ">DNI</div>
-                                            <div class="col-md-9" style="padding: 0;margin: 0;">
-                                                <select name="postula_id" id="postula_id"  class="form-control">
-                                                <?php
-                                                $sql="SELECT * FROM postulante";
-                                                $res=mysqli_query($con,$sql);
-                                                while ($rw= mysqli_fetch_array($res)){
-                                                    echo "<option value=".$rw["idpostulante"].">".$rw["dni"]."</option> ";
-                                                } 
-                                                ?>
-                                                </select>
-                                            </div>
-                                    </div>
-                                </div>
+                      <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
+                        <div class="form-group">
+                          <div class="input-group-addon ">DNI</div>
+                          <div class="col-md-9" style="padding: 0;margin: 0;">
+                            <select name="postula_id" id="postula_id" class="form-control">
+                              <?php
+                              $sql = "SELECT * FROM postulante";
+                              $res = mysqli_query($con, $sql);
+                              while ($rw = mysqli_fetch_array($res)) {
+                                echo "<option value=" . $rw["idpostulante"] . ">" . $rw["dni"] . "</option> ";
+                              }
+                              ?>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
 
-                                <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
-                                    <div class="form-group">                                     
-                                         <div class="input-group-addon ">Cargo</div>
-                                            <div class="col-md-9" style="padding: 0;margin: 0;">
-                                                <select name="idcargo" id="idcargo"  class="form-control">
-                                                <?php
-                                                $sql="SELECT * FROM cargo";
-                                                $res=mysqli_query($con,$sql);
-                                                while ($rw= mysqli_fetch_array($res)){
-                                                    echo "<option value=".$rw["idcargo"].">".$rw["cargo"]."</option> ";
-                                                } 
-                                                ?>
-                                                 </select>
-                                            </div>
-                                    </div>
-                                </div>
+                      <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
+                        <div class="form-group">
+                          <div class="input-group-addon ">Cargo</div>
+                          <div class="col-md-9" style="padding: 0;margin: 0;">
+                            <select name="idcargo" id="idcargo" class="form-control">
+                              <?php
+                              $sql = "SELECT * FROM cargo";
+                              $res = mysqli_query($con, $sql);
+                              while ($rw = mysqli_fetch_array($res)) {
+                                echo "<option value=" . $rw["idcargo"] . ">" . $rw["cargo"] . "</option> ";
+                              }
+                              ?>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
 
-                                <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
-                                <div class="col-md-9" style="padding: 0;margin: 0;">
-                                    <label> N° Recibo</label> 
-                                    <input type="text" class="form-control" id="reciboid" name="reciboid"> 
-                                </div>
-                                </div>
+                      <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
+                        <div class="col-md-9" style="padding: 0;margin: 0;">
+                          <label> N° Recibo</label>
+                          <input type="text" class="form-control" id="reciboid" name="reciboid">
+                        </div>
+                      </div>
 
-                                <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
-                                <div class="col-md-9" style="padding: 0;margin: 0;">
-                                    <label>Fecha Inscripcion</label> 
-                                    <input type="date" class="form-control" id="dateid" name="dateid" required>
-                                </div>      
-                                </div>                                             
+                      <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
+                        <div class="col-md-9" style="padding: 0;margin: 0;">
+                          <label>Fecha Inscripcion</label>
+                          <input type="date" class="form-control" id="dateid" name="dateid" required>
+                        </div>
+                      </div>
 
-                        </div> 
                     </div>
-                    <div class="form-actions form-group"><button type="submit" class="btn btn-info">Guardar</button>        
-                    </div>
-                    
+                  </div>
+                  <div class="form-actions form-group"><button type="submit" class="btn btn-info">Guardar</button>
+                  </div>
+
                 </form>
 
               </div>
@@ -212,13 +212,13 @@
 
   <script>
     jQuery(document).ready(function() {
-        jQuery(".standardSelect").chosen({
-            disable_search_threshold: 10,
-            no_results_text: "Oops, nothing found!",
-            width: "100%"
-        });
+      jQuery(".standardSelect").chosen({
+        disable_search_threshold: 10,
+        no_results_text: "Oops, nothing found!",
+        width: "100%"
+      });
     });
-</script>
+  </script>
 
 </body>
 

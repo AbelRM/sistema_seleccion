@@ -360,6 +360,7 @@ if (empty($_SESSION['active'])) {
                         <table class="table table-bordered">
                           <thead>
                             <tr class="bg-primary" style="text-align:center; color:#000; font-size:0.813em;">
+                              <th style="display: none">id</th>
                               <th>N°</th>
                               <th>Lugar de trabajo</th>
                               <th>Cargo/Función desempeñada</th>
@@ -374,10 +375,12 @@ if (empty($_SESSION['active'])) {
                             $sql9 = "SELECT * FROM expe_4puntos WHERE expe_4puntos_idpostulante = $idpostulante && tipo_expe = '2' ";
                             $query9 = mysqli_query($con, $sql9);
                             if (mysqli_num_rows($query9) > 0) {
+                              $i = 1;
                               while ($row9 = MySQLI_fetch_array($query9)) {
                             ?>
                                 <tr>
-                                  <td style="font-size: 12px;"><?php echo $row9['id_4puntos'] ?></td>
+                                  <td style="font-size: 12px; display: none"><?php echo $row9['id_4puntos']; ?></td>
+                                  <td style="font-size: 12px;"><?php echo $i ?></td>
                                   <td style="font-size: 12px;"><?php echo $row9['lugar'] ?></td>
                                   <td style="font-size: 12px;"><?php echo $row9['cargo'] ?></td>
                                   <td style="font-size: 12px;"><?php echo $row9['fecha_inicio'] ?></td>
@@ -389,6 +392,7 @@ if (empty($_SESSION['active'])) {
                                   </td>
                                 </tr>
                             <?php
+                                $i++;
                               }
                             } else {
                               echo "<tr><td colspan='7' class='text-center text-danger' >NO HAY DATOS REGISTRADOS</td></tr>";
@@ -403,7 +407,7 @@ if (empty($_SESSION['active'])) {
               </div>
               <div class="tab-pane fade" id="profile2" role="tabpanel" aria-labelledby="profile2-tab">
                 <div class="form-row p-2 d-flex justify-content-center">
-                  <div class="card border-success">
+                  <div class="card">
                     <div class="card-header header-formulario-danger">
                       <div class="row">
                         <div class="col-md-8 d-flex align-items-center">
@@ -419,6 +423,7 @@ if (empty($_SESSION['active'])) {
                         <table class="table table-bordered">
                           <thead>
                             <tr class="bg-primary" style="text-align:center; color:#000; font-size:0.813em;">
+                              <th style="display: none">id</th>
                               <th>N°</th>
                               <th>Lugar de trabajo</th>
                               <th>Cargo/Función desempeñada</th>
@@ -431,23 +436,26 @@ if (empty($_SESSION['active'])) {
                           <tbody>
                             <?php
                             $sql10 = "SELECT * FROM expe_3puntos WHERE expe_3puntos_idpostulante = $idpostulante && tipo_expe = '2'";
-
                             $query10 = mysqli_query($con, $sql10);
                             if (mysqli_num_rows($query10) > 0) {
+                              $i = 1;
                               while ($row10 = MySQLI_fetch_array($query10)) {
                             ?>
                                 <tr>
-                                  <td style="font-size:12px;"><?php echo $row10['id_3puntos'] ?></td>
+                                  <td style="font-size: 12px; display: none"><?php echo $row10['id_3puntos']; ?></td>
+                                  <td style="font-size:12px;"><?php echo $i ?></td>
                                   <td style="font-size:12px;"><?php echo $row10['lugar'] ?></td>
                                   <td style="font-size:12px;"><?php echo $row10['cargo'] ?></td>
                                   <td style="font-size:12px;"><?php echo $row10['fecha_inicio'] ?></td>
                                   <td style="font-size:12px;"><?php echo $row10['fecha_fin'] ?></td>
+                                  <td><a href="ver_pdf_expe3.php?id=<?php echo $row10['id_4puntos'] ?>&dni=<?php echo $dato_desencriptado ?>"><?php echo $row10['archivos']; ?></a></td>
                                   <td class="d-flex justify-content-center">
                                     <button class="btn btn-success btn-sm m-1 updateBtn2"><i class="fa fa-edit"></i></button>
                                     <button class="btn btn-danger btn-sm m-1 deleteBtn2"><i class="fa fa-times-circle"></i></button>
                                   </td>
                                 </tr>
                             <?php
+                                $i++;
                               }
                             } else {
                               echo "<tr><td colspan='7' class='text-center text-danger' >NO HAY DATOS AUN REGISTRADOS</td></tr>";
@@ -462,7 +470,7 @@ if (empty($_SESSION['active'])) {
               </div>
               <div class="tab-pane fade" id="contact2" role="tabpanel" aria-labelledby="contact2-tab">
                 <div class="form-row p-2 d-flex justify-content-center">
-                  <div class="card border-success">
+                  <div class="card">
                     <div class="card-header header-formulario-danger">
                       <div class="row">
                         <div class="col-md-8 d-flex align-items-center">
@@ -478,6 +486,7 @@ if (empty($_SESSION['active'])) {
                         <table class="table table-bordered">
                           <thead>
                             <tr class="bg-primary" style="text-align:center; color:#000; font-size:0.813em;">
+                              <th style="display: none">id</th>
                               <th>N°</th>
                               <th>Lugar de trabajo</th>
                               <th>Cargo/Función desempeñada</th>
@@ -493,20 +502,24 @@ if (empty($_SESSION['active'])) {
 
                             $query11 = mysqli_query($con, $sql11);
                             if (mysqli_num_rows($query11) > 0) {
+                              $i = 1;
                               while ($row11 = MySQLI_fetch_array($query11)) {
                             ?>
                                 <tr>
-                                  <td style="font-size: 12px;"><?php echo $row11['id_1puntos'] ?></td>
+                                  <td style="font-size: 12px; display: none"><?php echo $row11['id_1puntos']; ?></td>
+                                  <td style="font-size: 12px;"><?php echo $i ?></td>
                                   <td style="font-size: 12px;"><?php echo $row11['lugar'] ?></td>
                                   <td style="font-size: 12px;"><?php echo $row11['cargo'] ?></td>
                                   <td style="font-size: 12px;"><?php echo $row11['fecha_inicio'] ?></td>
                                   <td style="font-size: 12px;"><?php echo $row11['fecha_fin'] ?></td>
+                                  <td><a href="ver_pdf_expe1.php?id=<?php echo $row11['id_1puntos'] ?>&dni=<?php echo $dato_desencriptado ?>"><?php echo $row11['archivos']; ?></a></td>
                                   <td class="d-flex justify-content-center">
                                     <button class="btn btn-success btn-sm m-1 updateBtn3"><i class="fa fa-edit"></i></button>
                                     <button class="btn btn-danger btn-sm m-1 deleteBtn3"><i class="fa fa-times-circle"></i></button>
                                   </td>
                                 </tr>
                             <?php
+                                $i++;
                               }
                             } else {
                               echo "<tr><td colspan='7' class='text-center text-danger' >NO HAY DATOS REGISTRADOS</td></tr>";
@@ -631,7 +644,7 @@ if (empty($_SESSION['active'])) {
           <button class="close" data-dismiss="modal"><span>×</span></button>
         </div>
         <div class="modal-body">
-          <form action="procesos/actualizarmicrored.php" method="POST">
+          <form action="procesos/actualizar_experiencia.php" enctype="multipart/form-data" autocomplete="off" method="POST">
             <input type="hidden" name="dato_desencriptado" value="<?php echo $dato_desencriptado ?>">
             <input type="hidden" name="id_4puntos" id="id_4puntos">
             <input type="hidden" name="dni4" value="<?php echo $dni ?>">
@@ -664,7 +677,7 @@ if (empty($_SESSION['active'])) {
               <input type="file" name="archivos4" id="archivos4" class="form-control">
             </div>
             <div class="modal-footer">
-              <button type="submit" class="btn btn-primary" name="updateData4">Actualizar!</button>
+              <button type="submit" class="btn btn-primary" name="updateData4">Actualizar</button>
             </div>
           </form>
         </div>
@@ -759,9 +772,11 @@ if (empty($_SESSION['active'])) {
           <button class="close" data-dismiss="modal"><span>×</span></button>
         </div>
         <div class="modal-body">
-          <form action="procesos/modificarmicroredTacna.php" method="POST">
+          <form action="procesos/actualizar_experiencia.php" method="POST">
             <input type="hidden" name="dato_desencriptado" value="<?php echo $dato_desencriptado ?>">
             <input type="hidden" name="id_3puntos" id="id_3puntos">
+            <input type="hidden" name="dni3" value="<?php echo $dni ?>">
+            <input type="hidden" name="numero3" id="numero3">
 
             <div class="form-group">
               <label for="title">Lugar de Trabajo </label>
@@ -784,7 +799,7 @@ if (empty($_SESSION['active'])) {
               <input type="file" name="archivos3" id="archivos3" class="form-control">
             </div>
             <div class="modal-footer">
-              <button type="submit" class="btn btn-primary" name="updateData2">Actualizar!</button>
+              <button type="submit" class="btn btn-primary" name="updateData3">Actualizar</button>
             </div>
           </form>
         </div>
@@ -868,7 +883,6 @@ if (empty($_SESSION['active'])) {
       </div>
     </div>
   </div>
-
   <!-- Actualizar MICROREDES DENTRO O FUERA de TACNA-->
   <div class="modal fade" id="actualizarpublicoprivado">
     <div class="modal-dialog modal-md">
@@ -878,9 +892,11 @@ if (empty($_SESSION['active'])) {
           <button class="close" data-dismiss="modal"><span>×</span></button>
         </div>
         <div class="modal-body">
-          <form action="procesos/actualizarpublicoprivado.php" method="POST">
+          <form action="procesos/actualizar_experiencia.php" method="POST">
             <input type="hidden" name="dato_desencriptado" value="<?php echo $dato_desencriptado ?>">
             <input type="hidden" name="id_1puntos" id="id_1puntos">
+            <input type="hidden" name="dni1" value="<?php echo $dni ?>">
+            <input type="hidden" name="numero1" id="numero1">
 
             <div class="form-group">
               <label for="title">Lugar de Trabajo </label>
@@ -903,14 +919,13 @@ if (empty($_SESSION['active'])) {
               <input type="file" name="archivos1" id="archivos1" class="form-control">
             </div>
             <div class="modal-footer">
-              <button type="submit" class="btn btn-primary" name="updateData4">Actualizar</button>
+              <button type="submit" class="btn btn-primary" name="updateData1">Actualizar</button>
             </div>
           </form>
         </div>
       </div>
     </div>
   </div>
-
   <!-- !-- MODAL ELIMINAR MICROREDES DENTRO O FUERA de TACNA -->
   <div class="modal fade" id="eliminarpublicoprivado">
     <div class="modal-dialog">
@@ -934,6 +949,7 @@ if (empty($_SESSION['active'])) {
       </div>
     </div>
   </div>
+
 
   <!-- ADD NUEVOS DATOS  EXPE 4 - TIPO 2-->
   <div class="modal fade" id="agregar_tipo2">
@@ -986,9 +1002,8 @@ if (empty($_SESSION['active'])) {
       </div>
     </div>
   </div>
-
   <!-- Actualizar Experiencia Laboral MICROREDES-->
-  <div class="modal fade" id="actualizardiresatacna">
+  <div class="modal fade" id="actualizar_tipo2">
     <div class="modal-dialog modal-md">
       <div class="modal-content">
         <div class="modal-header bg-warning text-white">
@@ -996,37 +1011,42 @@ if (empty($_SESSION['active'])) {
           <button class="close" data-dismiss="modal"><span>×</span></button>
         </div>
         <div class="modal-body">
-          <form action="procesos/actualizardiresatacna.php" method="POST">
+          <form action="procesos/actualizar_experiencia.php" method="POST">
             <input type="hidden" name="dato_desencriptado" value="<?php echo $dato_desencriptado ?>">
-            <input type="hidden" name="id_4puntos1" id="id_4puntos1">
+            <input type="hidden" name="id_4puntos_tipo2" id="id_4puntos_tipo2">
+            <input type="hidden" name="dni4_tipo2" value="<?php echo $dni ?>">
+            <input type="hidden" name="numero4_tipo2" id="numero4_tipo2">
 
             <div class="form-group">
               <label for="title">Lugar de Trabajo</label>
-              <input type="text" name="lugar4_tip2" id="lugar4_tip2" class="form-control" placeholder="Enter last name" maxlength="50">
+              <input type="text" name="lugar4_tip2" id="lugar4_tip2" class="form-control" placeholder="(*) Lugar de trabajo" maxlength="45">
             </div>
             <div class="form-group">
               <label for="title">Cargo/Funcion desempeñada </label>
-              <input type="text" name="cargo4_tip2" id="cargo4_tip2" class="form-control" placeholder="Enter last name" maxlength="50">
+              <input type="text" name="cargo4_tip2" id="cargo4_tip2" class="form-control" placeholder="(*) Cargo/funciones" maxlength="45">
             </div>
             <div class="form-group">
               <label for="title">Fecha Inicio</label>
-              <input type="text" name="fecha_inicio4_tip2" id="fecha_inicio4_tip2" class="form-control" placeholder="Horas" maxlength="50">
+              <input type="text" name="fecha_inicio4_tip2" id="fecha_inicio4_tip2" class="form-control">
             </div>
             <div class="form-group">
               <label for="title">Fecha Fin </label>
-              <input type="text" name="fecha_fin4_tip2" id="fecha_fin4_tip2" class="form-control" placeholder="Horas" maxlength="50">
+              <input type="text" name="fecha_fin4_tip2" id="fecha_fin4_tip2" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="title">Archivo de constancia (Dejar en blanco si no desea actualizar)</label>
+              <input type="file" name="archivos4_tipo2" id="archivos4_tipo2" class="form-control">
             </div>
             <div class="modal-footer">
-              <button type="submit" class="btn btn-primary" name="updateData5">Actualizar!</button>
+              <button type="submit" class="btn btn-primary" name="updateData5">Actualizar</button>
             </div>
           </form>
         </div>
       </div>
     </div>
   </div>
-
   <!-- !-- MODAL ELIMINAR MICROREDES -->
-  <div class="modal fade" id="eliminardiresaTacna">
+  <div class="modal fade" id="eliminar_tipo2">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header bg-danger text-white">
@@ -1122,7 +1142,6 @@ if (empty($_SESSION['active'])) {
         }).get();
 
         console.log(data);
-
         $('#id_4puntos').val(data[0]);
         $('#numero4').val(data[1]);
         $('#lugar4').val(data[2]);
@@ -1166,7 +1185,7 @@ if (empty($_SESSION['active'])) {
 
         console.log(data);
         $('#id_3puntos').val(data[0]);
-        $('#numero').val(data[1]);
+        $('#numero3').val(data[1]);
         $('#lugar3').val(data[2]);
         $('#cargo3').val(data[3]);
         $('#fecha_inicio3').val(data[4]);
@@ -1205,15 +1224,14 @@ if (empty($_SESSION['active'])) {
         var data = $tr.children("td").map(function() {
           return $(this).text();
         }).get();
-
         console.log(data);
-
         $('#id_1puntos').val(data[0]);
-        $('#lugar3').val(data[1]);
-        $('#cargo3').val(data[2]);
-        $('#fecha_inicio3').val(data[3]);
-        $('#fecha_fin3').val(data[4]);
-        $('#archivos1').val(data[5]);
+        $('#numero1').val(data[1]);
+        $('#lugar1').val(data[2]);
+        $('#cargo1').val(data[3]);
+        $('#fecha_inicio1').val(data[4]);
+        $('#fecha_fin1').val(data[5]);
+        $('#archivos1').val(data[6]);
 
       });
     });
@@ -1235,11 +1253,12 @@ if (empty($_SESSION['active'])) {
     });
   </script>
 
+  <!-- Primer crud de tipo 2 - expe 4 -->
   <script>
     $(document).ready(function() {
       $('.updateBtn4').on('click', function() {
 
-        $('#actualizardiresatacna').modal('show');
+        $('#actualizar_tipo2').modal('show');
 
         // Get the table row data.
         $tr = $(this).closest('tr');
@@ -1250,19 +1269,20 @@ if (empty($_SESSION['active'])) {
 
         console.log(data);
 
-        $('#id_4puntos1').val(data[0]);
-        $('#lugar4').val(data[1]);
-        $('#cargo4').val(data[2]);
-        $('#fecha_inicio4').val(data[3]);
-        $('#fecha_fin4').val(data[4]);
-
+        $('#id_4puntos_tipo2').val(data[0]);
+        $('#numero4_tipo2').val(data[1]);
+        $('#lugar4_tipo2').val(data[2]);
+        $('#cargo4_tipo2').val(data[3]);
+        $('#fecha_inicio4_tipo2').val(data[4]);
+        $('#fecha_fin4_tipo2').val(data[5]);
+        $('#archivos4_tipo2').val(data[6]);
       });
     });
 
     $(document).ready(function() {
       $('.deleteBtn4').on('click', function() {
 
-        $('#eliminardiresaTacna').modal('show');
+        $('#eliminar_tipo2').modal('show');
         // Get the table row data.
         $tr = $(this).closest('tr');
 

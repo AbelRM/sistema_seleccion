@@ -122,6 +122,28 @@ if (empty($_SESSION['active'])) {
           </div>
 
           <div id="tipo-1" class="divOculto">
+            <div class="row ">
+              <div class="col-md-12 form-group">
+                <p>Se considera a los Profesionales de la Salud (Unicamente los que laboren en el campo asistencial de la Salud Pública)</p>
+                <ul class="list-group list-group-horizontal-lg d-flex justify-content-center">
+                  <li class="list-group-item">Médico Cirujano</li>
+                  <li class="list-group-item">Cirujano Dentista</li>
+                  <li class="list-group-item">Químico Farmacéutico</li>
+                  <li class="list-group-item">Obstetra</li>
+                  <li class="list-group-item">Enfermero</li>
+                  <li class="list-group-item">Biólogo</li>
+                </ul>
+              </div>
+              <div class="col-md-12 form-group">
+                <ul class="list-group list-group-horizontal-lg d-flex justify-content-center">
+                  <li class="list-group-item">Médico Veterinario</li>
+                  <li class="list-group-item">Psicólogo</li>
+                  <li class="list-group-item">Nutricionista</li>
+                  <li class="list-group-item">Ingeniero Sanitario</li>
+                  <li class="list-group-item">Asistente Social</li>
+                </ul>
+              </div>
+            </div>
             <ul class="nav nav-tabs" id="myTab" role="tablist">
               <li class="nav-item" role="presentation">
                 <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">MICROREDES</a>
@@ -330,6 +352,19 @@ if (empty($_SESSION['active'])) {
           </div>
 
           <div id="tipo-2" class="divOculto">
+            <div class="row ">
+              <div class="col-md-12 form-group">
+                <p>Se considera de Servicios Profesionales:</p>
+                <ul class="list-group list-group-horizontal-lg d-flex justify-content-center">
+                  <li class="list-group-item">Abogado</li>
+                  <li class="list-group-item">Ing. Informático</li>
+                  <li class="list-group-item">Ing. Civil</li>
+                  <li class="list-group-item">Arquitecto</li>
+                  <li class="list-group-item">Contador, Administración, Economía</li>
+                  <li class="list-group-item">Ing. Industrial, etc.</li>
+                </ul>
+              </div>
+            </div>
             <ul class="nav nav-tabs" id="myTab" role="tablist">
               <li class="nav-item" role="presentation">
                 <a class="nav-link active" id="home2-tab" data-toggle="tab" href="#home2" role="tab" aria-controls="home2" aria-selected="true">DIRESA - TACNA</a>
@@ -448,7 +483,7 @@ if (empty($_SESSION['active'])) {
                                   <td style="font-size:12px;"><?php echo $row10['cargo'] ?></td>
                                   <td style="font-size:12px;"><?php echo $row10['fecha_inicio'] ?></td>
                                   <td style="font-size:12px;"><?php echo $row10['fecha_fin'] ?></td>
-                                  <td><a href="ver_pdf_expe3.php?id=<?php echo $row10['id_4puntos'] ?>&dni=<?php echo $dato_desencriptado ?>"><?php echo $row10['archivos']; ?></a></td>
+                                  <td><a href="ver_pdf_expe3.php?id=<?php echo $row10['id_3puntos'] ?>&dni=<?php echo $dato_desencriptado ?>"><?php echo $row10['archivos']; ?></a></td>
                                   <td class="d-flex justify-content-center">
                                     <button class="btn btn-success btn-sm m-1 updateBtn2"><i class="fa fa-edit"></i></button>
                                     <button class="btn btn-danger btn-sm m-1 deleteBtn2"><i class="fa fa-times-circle"></i></button>
@@ -499,6 +534,665 @@ if (empty($_SESSION['active'])) {
                           <tbody>
                             <?php
                             $sql11 = "SELECT * FROM expe_1puntos WHERE expe_1puntos_idpostulante = $idpostulante && tipo_expe = '2'";
+
+                            $query11 = mysqli_query($con, $sql11);
+                            if (mysqli_num_rows($query11) > 0) {
+                              $i = 1;
+                              while ($row11 = MySQLI_fetch_array($query11)) {
+                            ?>
+                                <tr>
+                                  <td style="font-size: 12px; display: none"><?php echo $row11['id_1puntos']; ?></td>
+                                  <td style="font-size: 12px;"><?php echo $i ?></td>
+                                  <td style="font-size: 12px;"><?php echo $row11['lugar'] ?></td>
+                                  <td style="font-size: 12px;"><?php echo $row11['cargo'] ?></td>
+                                  <td style="font-size: 12px;"><?php echo $row11['fecha_inicio'] ?></td>
+                                  <td style="font-size: 12px;"><?php echo $row11['fecha_fin'] ?></td>
+                                  <td><a href="ver_pdf_expe1.php?id=<?php echo $row11['id_1puntos'] ?>&dni=<?php echo $dato_desencriptado ?>"><?php echo $row11['archivos']; ?></a></td>
+                                  <td class="d-flex justify-content-center">
+                                    <button class="btn btn-success btn-sm m-1 updateBtn3"><i class="fa fa-edit"></i></button>
+                                    <button class="btn btn-danger btn-sm m-1 deleteBtn3"><i class="fa fa-times-circle"></i></button>
+                                  </td>
+                                </tr>
+                            <?php
+                                $i++;
+                              }
+                            } else {
+                              echo "<tr><td colspan='7' class='text-center text-danger' >NO HAY DATOS REGISTRADOS</td></tr>";
+                            }
+                            ?>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="tipo-3" class="divOculto">
+            <div class="row ">
+              <div class="col-md-12 form-group">
+                <p>Se considera a los Técnicos y Auxiliares asistenciales de salud que desarrollan funciones en los servicios de:</p>
+                <ul class="list-group list-group-horizontal-lg d-flex justify-content-center">
+                  <li class="list-group-item">Enfermeria</li>
+                  <li class="list-group-item">Obstetricia</li>
+                  <li class="list-group-item">Laboratorio</li>
+                  <li class="list-group-item">Farmacia</li>
+                  <li class="list-group-item">Rayos X</li>
+                  <li class="list-group-item">Médico Física y Rehabilitación</li>
+                  <li class="list-group-item">Nutrición</li>
+                  <li class="list-group-item">Odontología</li>
+                </ul>
+              </div>
+            </div>
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+              <li class="nav-item" role="presentation">
+                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">MICROREDES</a>
+              </li>
+              <li class="nav-item" role="presentation">
+                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Microredes DIRESA</a>
+              </li>
+              <li class="nav-item" role="presentation">
+                <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Pública/privada</a>
+              </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+              <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                <div class="form-row p-2 d-flex justify-content-center">
+                  <div class="card border-primary">
+                    <div class="card-header header-formulario">
+                      <div class="row">
+                        <div class="col-md-8 d-flex align-items-center">
+                          <h5 class="titulo-card" style="font-size: 16px;">Experiencia laboral en MICROREDES RURALES</h5>
+                        </div>
+                        <div class="col-md-4 d-flex justify-content-end">
+                          <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#addModal"><i class="fas fa-plus"></i> Nuevo</a>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card-body">
+                      <div class="table-responsive">
+                        <table class="table table-bordered">
+                          <thead>
+                            <tr class="bg-primary" style="text-align:center; color:#000; font-size:0.813em;">
+                              <th style="display: none">id</th>
+                              <th>N°</th>
+                              <th>Lugar de trabajo</th>
+                              <th>Cargo/Función desempeñada</th>
+                              <th>Fecha Inicio</th>
+                              <th>Fecha Término</th>
+                              <th>Archivo</th>
+                              <th>Acciones</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <?php
+                            $sql6 = "SELECT * FROM expe_4puntos WHERE expe_4puntos_idpostulante = $idpostulante && tipo_expe = '3'";
+                            $query6 = mysqli_query($con, $sql6);
+                            if (mysqli_num_rows($query6) > 0) {
+                              $i = 1;
+                              while ($row6 = MySQLI_fetch_array($query6)) {
+                            ?>
+                                <tr>
+                                  <td style="font-size: 12px; display: none"><?php echo $row6['id_4puntos']; ?></td>
+                                  <td style="font-size: 12px;"><?php echo $i ?></td>
+                                  <td style="font-size: 12px;"><?php echo $row6['lugar']; ?></td>
+                                  <td style="font-size: 12px;"><?php echo $row6['cargo']; ?></td>
+                                  <td style="font-size: 12px;"><?php echo $row6['fecha_inicio'] ?></td>
+                                  <td style="font-size: 12px;"><?php echo $row6['fecha_fin'] ?></td>
+                                  <td><a href="ver_pdf_expe4.php?id=<?php echo $row6['id_4puntos'] ?>&dni=<?php echo $dato_desencriptado ?>"><?php echo $row6['archivos']; ?></a></td>
+                                  <td class="d-flex justify-content-center">
+                                    <button class="btn btn-success btn-sm m-1 updateBtn1"><i class="fa fa-edit"></i></button>
+                                    <button class="btn btn-danger btn-sm m-1 deleteBtn1"><i class="fa fa-times-circle"></i></button>
+                                  </td>
+                                </tr>
+                            <?php
+                                $i++;
+                              }
+                            } else {
+                              echo "<tr><td colspan='7' class='text-center text-danger' >NO HAY DATOS REGISTRADOS</td></tr>";
+                            }
+                            ?>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                <div class="form-row p-2 d-flex justify-content-center">
+                  <div class="card border-primary">
+                    <div class="card-header header-formulario">
+                      <div class="row">
+                        <div class="col-md-8 d-flex align-items-center">
+                          <h5 class="titulo-card" style="font-size: 16px;">DIRESA, Red de Salud y Hospital en TACNA</h5>
+                        </div>
+                        <div class="col-md-4 d-flex justify-content-end">
+                          <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#expe3_2"><i class="fas fa-plus"></i> Nuevo</a>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card-body">
+                      <div class="table-responsive">
+                        <table class="table table-bordered">
+                          <thead>
+                            <tr class="bg-primary" style="text-align:center; color:#000; font-size:0.813em;">
+                              <th style="display: none">id</th>
+                              <th>N°</th>
+                              <th>Lugar de trabajo</th>
+                              <th>Cargo/Función desempeñada</th>
+                              <th>Fecha Inicio</th>
+                              <th>Fecha Término</th>
+                              <th>Archivo</th>
+                              <th>Acciones</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <?php
+                            $sql7 = "SELECT * FROM expe_3puntos WHERE expe_3puntos_idpostulante = $idpostulante && tipo_expe = '3'";
+
+                            $query7 = mysqli_query($con, $sql7);
+                            if (mysqli_num_rows($query7) > 0) {
+                              $i = 1;
+                              while ($row7 = MySQLI_fetch_array($query7)) {
+                            ?>
+                                <tr>
+                                  <td style="font-size: 12px; display: none"><?php echo $row7['id_3puntos']; ?></td>
+                                  <td style="font-size: 12px;"><?php echo $i ?></td>
+                                  <td style="font-size: 12px;"><?php echo $row7['lugar'] ?></td>
+                                  <td style="font-size: 12px;"><?php echo $row7['cargo'] ?></td>
+                                  <td style="font-size: 12px;"><?php echo $row7['fecha_inicio'] ?></td>
+                                  <td style="font-size: 12px;"><?php echo $row7['fecha_fin'] ?></td>
+                                  <td><a href="ver_pdf_expe3.php?id=<?php echo $row7['id_3puntos'] ?>&dni=<?php echo $dato_desencriptado ?>"><?php echo $row7['archivos']; ?></a></td>
+                                  <td class="d-flex justify-content-center">
+                                    <button class="btn btn-success btn-sm m-1 updateBtn2"><i class="fa fa-edit"></i></button>
+                                    <button class="btn btn-danger btn-sm m-1 deleteBtn2"><i class="fa fa-times-circle"></i></button>
+                                  </td>
+                                </tr>
+                            <?php
+                                $i++;
+                              }
+                            } else {
+                              echo "<tr><td colspan='7' class='text-center text-danger' >NO HAY DATOS REGISTRADOS</td></tr>";
+                            }
+                            ?>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                <div class="form-row p-2 d-flex justify-content-center">
+                  <div class="card border-primary">
+                    <div class="card-header header-formulario">
+                      <div class="row">
+                        <div class="col-md-9 d-flex align-items-center">
+                          <h5 class="titulo-card" style="font-size: 16px;">En sector PÚBLICO/PRIVADO - DENTRO/FUERA de TACNA</h5>
+                        </div>
+                        <div class="col-md-3 d-flex justify-content-end">
+                          <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#expe1"><i class="fas fa-plus"></i> Nuevo</a>
+                        </div>
+                      </div>
+
+                    </div>
+                    <div class="card-body">
+                      <div class="table-responsive">
+                        <table class="table table-bordered">
+                          <thead>
+                            <tr class="bg-primary" style="text-align:center; color:#000; font-size:0.813em;">
+                              <th style="display: none">id</th>
+                              <th>N°</th>
+                              <th>Lugar de trabajo</th>
+                              <th>Cargo/Función desempeñada</th>
+                              <th>Fecha Inicio</th>
+                              <th>Fecha Término</th>
+                              <th>Archivos</th>
+                              <th>Acciones</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <?php
+                            $sql8 = "SELECT * FROM expe_1puntos WHERE expe_1puntos_idpostulante = $idpostulante && tipo_expe = '3'";
+
+                            $query8 = mysqli_query($con, $sql8);
+                            if (mysqli_num_rows($query8) > 0) {
+                              $i = 1;
+                              while ($row8 = MySQLI_fetch_array($query8)) {
+                            ?>
+                                <tr>
+                                  <td style="font-size: 12px; display: none"><?php echo $row8['id_1puntos']; ?></td>
+                                  <td style="font-size: 12px;"><?php echo $i ?></td>
+                                  <td style="font-size: 12px;"><?php echo $row8['lugar'] ?></td>
+                                  <td style="font-size: 12px;"><?php echo $row8['cargo'] ?></td>
+                                  <td style="font-size: 12px;"><?php echo $row8['fecha_inicio'] ?></td>
+                                  <td style="font-size: 12px;"><?php echo $row8['fecha_fin'] ?></td>
+                                  <td><a href="ver_pdf_expe1.php?id=<?php echo $row8['id_1puntos'] ?>&dni=<?php echo $dato_desencriptado ?>"><?php echo $row8['archivos']; ?></a></td>
+                                  <td class="d-flex justify-content-center">
+                                    <button class="btn btn-success btn-sm m-1 updateBtn3"><i class="fa fa-edit"></i></button>
+                                    <button class="btn btn-danger btn-sm m-1 deleteBtn3"><i class="fa fa-times-circle"></i></button>
+                                  </td>
+                                </tr>
+                            <?php
+                                $i++;
+                              }
+                            } else {
+                              echo "<tr><td colspan='7' class='text-center text-danger' >NO HAY DATOS REGISTRADOS</td></tr>";
+                            }
+                            ?>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="tipo-4" class="divOculto">
+            <div class="row ">
+              <div class="col-md-12 form-group">
+                <p>Se considera a los Técnicos y Auxiliares</p>
+                <ul class="list-group list-group-horizontal-lg d-flex justify-content-center">
+                  <li class="list-group-item">Tec. Administrativo</li>
+                  <li class="list-group-item">Tec. Comunicaciones</li>
+                  <li class="list-group-item">Tec. Informática</li>
+                  <li class="list-group-item">Secretaria</li>
+                  <li class="list-group-item">Aux. administrativo, contable, etc</li>
+                </ul>
+              </div>
+            </div>
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+              <li class="nav-item" role="presentation">
+                <a class="nav-link active" id="home2-tab" data-toggle="tab" href="#home2" role="tab" aria-controls="home2" aria-selected="true">DIRESA - TACNA</a>
+              </li>
+              <li class="nav-item" role="presentation">
+                <a class="nav-link" id="profile2-tab" data-toggle="tab" href="#profile2" role="tab" aria-controls="profile2" aria-selected="false">Pública/privada DENTRO de TACNA</a>
+              </li>
+              <li class="nav-item" role="presentation">
+                <a class="nav-link" id="contact2-tab" data-toggle="tab" href="#contact2" role="tab" aria-controls="contact2" aria-selected="false">Pública/privada FUERA de TACNA</a>
+              </li>
+            </ul>
+            <div class="tab-content" id="myTabContent2">
+              <div class="tab-pane fade show active" id="home2" role="tabpanel" aria-labelledby="home2-tab">
+                <div class="form-row p-2 d-flex justify-content-center">
+                  <div class="card">
+                    <div class="card-header header-formulario-danger">
+                      <div class="row">
+                        <div class="col-md-8 d-flex align-items-center">
+                          <h5 class="titulo-card" style="font-size: 16px;">Experiencia en la DIRESA TACNA</h5>
+                        </div>
+                        <div class="col-md-4 d-flex justify-content-end">
+                          <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#agregar_tipo2"><i class="fas fa-plus"></i> Nuevo</a>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card-body">
+                      <div class="table-responsive">
+                        <table class="table table-bordered">
+                          <thead>
+                            <tr class="bg-primary" style="text-align:center; color:#000; font-size:0.813em;">
+                              <th style="display: none">id</th>
+                              <th>N°</th>
+                              <th>Lugar de trabajo</th>
+                              <th>Cargo/Función desempeñada</th>
+                              <th>Fecha Inicio</th>
+                              <th>Fecha Término</th>
+                              <th>Archivos</th>
+                              <th>Acciones</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <?php
+                            $sql9 = "SELECT * FROM expe_4puntos WHERE expe_4puntos_idpostulante = $idpostulante && tipo_expe = '4' ";
+                            $query9 = mysqli_query($con, $sql9);
+                            if (mysqli_num_rows($query9) > 0) {
+                              $i = 1;
+                              while ($row9 = MySQLI_fetch_array($query9)) {
+                            ?>
+                                <tr>
+                                  <td style="font-size: 12px; display: none"><?php echo $row9['id_4puntos']; ?></td>
+                                  <td style="font-size: 12px;"><?php echo $i ?></td>
+                                  <td style="font-size: 12px;"><?php echo $row9['lugar'] ?></td>
+                                  <td style="font-size: 12px;"><?php echo $row9['cargo'] ?></td>
+                                  <td style="font-size: 12px;"><?php echo $row9['fecha_inicio'] ?></td>
+                                  <td style="font-size: 12px;"><?php echo $row9['fecha_fin'] ?></td>
+                                  <td><a href="ver_pdf_expe4.php?id=<?php echo $row9['id_4puntos'] ?>&dni=<?php echo $dato_desencriptado ?>"><?php echo $row9['archivos']; ?></a></td>
+                                  <td class="d-flex justify-content-center">
+                                    <button class="btn btn-success btn-sm m-1 updateBtn4"><i class="fa fa-edit"></i></button>
+                                    <button class="btn btn-danger btn-sm m-1 deleteBtn4"><i class="fa fa-times-circle"></i></button>
+                                  </td>
+                                </tr>
+                            <?php
+                                $i++;
+                              }
+                            } else {
+                              echo "<tr><td colspan='7' class='text-center text-danger' >NO HAY DATOS REGISTRADOS</td></tr>";
+                            }
+                            ?>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="tab-pane fade" id="profile2" role="tabpanel" aria-labelledby="profile2-tab">
+                <div class="form-row p-2 d-flex justify-content-center">
+                  <div class="card">
+                    <div class="card-header header-formulario-danger">
+                      <div class="row">
+                        <div class="col-md-8 d-flex align-items-center">
+                          <h5 class="titulo-card" style="font-size: 16px;">Experiencia PÚBLICA/PRIVADA DENTRO de TACNA</h5>
+                        </div>
+                        <div class="col-md-4 d-flex justify-content-end">
+                          <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#agregar_tipo2"><i class="fas fa-plus"></i> Nuevo</a>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card-body">
+                      <div class="table-responsive">
+                        <table class="table table-bordered">
+                          <thead>
+                            <tr class="bg-primary" style="text-align:center; color:#000; font-size:0.813em;">
+                              <th style="display: none">id</th>
+                              <th>N°</th>
+                              <th>Lugar de trabajo</th>
+                              <th>Cargo/Función desempeñada</th>
+                              <th>Fecha Inicio</th>
+                              <th>Fecha Término</th>
+                              <th>Archivos</th>
+                              <th>Acciones</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <?php
+                            $sql10 = "SELECT * FROM expe_3puntos WHERE expe_3puntos_idpostulante = $idpostulante && tipo_expe = '4'";
+                            $query10 = mysqli_query($con, $sql10);
+                            if (mysqli_num_rows($query10) > 0) {
+                              $i = 1;
+                              while ($row10 = MySQLI_fetch_array($query10)) {
+                            ?>
+                                <tr>
+                                  <td style="font-size: 12px; display: none"><?php echo $row10['id_3puntos']; ?></td>
+                                  <td style="font-size:12px;"><?php echo $i ?></td>
+                                  <td style="font-size:12px;"><?php echo $row10['lugar'] ?></td>
+                                  <td style="font-size:12px;"><?php echo $row10['cargo'] ?></td>
+                                  <td style="font-size:12px;"><?php echo $row10['fecha_inicio'] ?></td>
+                                  <td style="font-size:12px;"><?php echo $row10['fecha_fin'] ?></td>
+                                  <td><a href="ver_pdf_expe3.php?id=<?php echo $row10['id_3puntos'] ?>&dni=<?php echo $dato_desencriptado ?>"><?php echo $row10['archivos']; ?></a></td>
+                                  <td class="d-flex justify-content-center">
+                                    <button class="btn btn-success btn-sm m-1 updateBtn2"><i class="fa fa-edit"></i></button>
+                                    <button class="btn btn-danger btn-sm m-1 deleteBtn2"><i class="fa fa-times-circle"></i></button>
+                                  </td>
+                                </tr>
+                            <?php
+                                $i++;
+                              }
+                            } else {
+                              echo "<tr><td colspan='7' class='text-center text-danger' >NO HAY DATOS AUN REGISTRADOS</td></tr>";
+                            }
+                            ?>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="tab-pane fade" id="contact2" role="tabpanel" aria-labelledby="contact2-tab">
+                <div class="form-row p-2 d-flex justify-content-center">
+                  <div class="card">
+                    <div class="card-header header-formulario-danger">
+                      <div class="row">
+                        <div class="col-md-8 d-flex align-items-center">
+                          <h5 class="titulo-card" style="font-size: 16px;">Experiencia PÚBLICA/PRIVADA FUERA de TACNA</h5>
+                        </div>
+                        <div class="col-md-4 d-flex justify-content-end">
+                          <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#agregar_tipo2"><i class="fas fa-plus"></i> Nuevo</a>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card-body">
+                      <div class="table-responsive">
+                        <table class="table table-bordered">
+                          <thead>
+                            <tr class="bg-primary" style="text-align:center; color:#000; font-size:0.813em;">
+                              <th style="display: none">id</th>
+                              <th>N°</th>
+                              <th>Lugar de trabajo</th>
+                              <th>Cargo/Función desempeñada</th>
+                              <th>Fecha Inicio</th>
+                              <th>Fecha Término</th>
+                              <th>Archivos</th>
+                              <th>Acciones</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <?php
+                            $sql11 = "SELECT * FROM expe_1puntos WHERE expe_1puntos_idpostulante = $idpostulante && tipo_expe = '4'";
+
+                            $query11 = mysqli_query($con, $sql11);
+                            if (mysqli_num_rows($query11) > 0) {
+                              $i = 1;
+                              while ($row11 = MySQLI_fetch_array($query11)) {
+                            ?>
+                                <tr>
+                                  <td style="font-size: 12px; display: none"><?php echo $row11['id_1puntos']; ?></td>
+                                  <td style="font-size: 12px;"><?php echo $i ?></td>
+                                  <td style="font-size: 12px;"><?php echo $row11['lugar'] ?></td>
+                                  <td style="font-size: 12px;"><?php echo $row11['cargo'] ?></td>
+                                  <td style="font-size: 12px;"><?php echo $row11['fecha_inicio'] ?></td>
+                                  <td style="font-size: 12px;"><?php echo $row11['fecha_fin'] ?></td>
+                                  <td><a href="ver_pdf_expe1.php?id=<?php echo $row11['id_1puntos'] ?>&dni=<?php echo $dato_desencriptado ?>"><?php echo $row11['archivos']; ?></a></td>
+                                  <td class="d-flex justify-content-center">
+                                    <button class="btn btn-success btn-sm m-1 updateBtn3"><i class="fa fa-edit"></i></button>
+                                    <button class="btn btn-danger btn-sm m-1 deleteBtn3"><i class="fa fa-times-circle"></i></button>
+                                  </td>
+                                </tr>
+                            <?php
+                                $i++;
+                              }
+                            } else {
+                              echo "<tr><td colspan='7' class='text-center text-danger' >NO HAY DATOS REGISTRADOS</td></tr>";
+                            }
+                            ?>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="tipo-5" class="divOculto">
+            <div class="row ">
+              <div class="col-md-12 form-group">
+                <p>Se considera a los Técnicos y Auxiliares asistenciales de salud que desarrollan funciones en los servicios de:</p>
+                <ul class="list-group list-group-horizontal-lg d-flex justify-content-center">
+                  <li class="list-group-item">Chofer</li>
+                  <li class="list-group-item">Chofer de ambulancia</li>
+                  <li class="list-group-item">Vigilante</li>
+                  <li class="list-group-item">Trabajador de limpieza</li>
+                  <li class="list-group-item">Servicios (gastifetero, electricista, etc.)</li>
+                </ul>
+              </div>
+            </div>
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+              <li class="nav-item" role="presentation">
+                <a class="nav-link active" id="home2-tab" data-toggle="tab" href="#home2" role="tab" aria-controls="home2" aria-selected="true">DIRESA - TACNA</a>
+              </li>
+              <li class="nav-item" role="presentation">
+                <a class="nav-link" id="profile2-tab" data-toggle="tab" href="#profile2" role="tab" aria-controls="profile2" aria-selected="false">Pública/privada DENTRO de TACNA</a>
+              </li>
+              <li class="nav-item" role="presentation">
+                <a class="nav-link" id="contact2-tab" data-toggle="tab" href="#contact2" role="tab" aria-controls="contact2" aria-selected="false">Pública/privada FUERA de TACNA</a>
+              </li>
+            </ul>
+            <div class="tab-content" id="myTabContent2">
+              <div class="tab-pane fade show active" id="home2" role="tabpanel" aria-labelledby="home2-tab">
+                <div class="form-row p-2 d-flex justify-content-center">
+                  <div class="card">
+                    <div class="card-header header-formulario-danger">
+                      <div class="row">
+                        <div class="col-md-8 d-flex align-items-center">
+                          <h5 class="titulo-card" style="font-size: 16px;">Experiencia en la DIRESA TACNA</h5>
+                        </div>
+                        <div class="col-md-4 d-flex justify-content-end">
+                          <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#agregar_tipo2"><i class="fas fa-plus"></i> Nuevo</a>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card-body">
+                      <div class="table-responsive">
+                        <table class="table table-bordered">
+                          <thead>
+                            <tr class="bg-primary" style="text-align:center; color:#000; font-size:0.813em;">
+                              <th style="display: none">id</th>
+                              <th>N°</th>
+                              <th>Lugar de trabajo</th>
+                              <th>Cargo/Función desempeñada</th>
+                              <th>Fecha Inicio</th>
+                              <th>Fecha Término</th>
+                              <th>Archivos</th>
+                              <th>Acciones</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <?php
+                            $sql9 = "SELECT * FROM expe_4puntos WHERE expe_4puntos_idpostulante = $idpostulante && tipo_expe = '4' ";
+                            $query9 = mysqli_query($con, $sql9);
+                            if (mysqli_num_rows($query9) > 0) {
+                              $i = 1;
+                              while ($row9 = MySQLI_fetch_array($query9)) {
+                            ?>
+                                <tr>
+                                  <td style="font-size: 12px; display: none"><?php echo $row9['id_4puntos']; ?></td>
+                                  <td style="font-size: 12px;"><?php echo $i ?></td>
+                                  <td style="font-size: 12px;"><?php echo $row9['lugar'] ?></td>
+                                  <td style="font-size: 12px;"><?php echo $row9['cargo'] ?></td>
+                                  <td style="font-size: 12px;"><?php echo $row9['fecha_inicio'] ?></td>
+                                  <td style="font-size: 12px;"><?php echo $row9['fecha_fin'] ?></td>
+                                  <td><a href="ver_pdf_expe4.php?id=<?php echo $row9['id_4puntos'] ?>&dni=<?php echo $dato_desencriptado ?>"><?php echo $row9['archivos']; ?></a></td>
+                                  <td class="d-flex justify-content-center">
+                                    <button class="btn btn-success btn-sm m-1 updateBtn4"><i class="fa fa-edit"></i></button>
+                                    <button class="btn btn-danger btn-sm m-1 deleteBtn4"><i class="fa fa-times-circle"></i></button>
+                                  </td>
+                                </tr>
+                            <?php
+                                $i++;
+                              }
+                            } else {
+                              echo "<tr><td colspan='7' class='text-center text-danger' >NO HAY DATOS REGISTRADOS</td></tr>";
+                            }
+                            ?>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="tab-pane fade" id="profile2" role="tabpanel" aria-labelledby="profile2-tab">
+                <div class="form-row p-2 d-flex justify-content-center">
+                  <div class="card">
+                    <div class="card-header header-formulario-danger">
+                      <div class="row">
+                        <div class="col-md-8 d-flex align-items-center">
+                          <h5 class="titulo-card" style="font-size: 16px;">Experiencia PÚBLICA/PRIVADA DENTRO de TACNA</h5>
+                        </div>
+                        <div class="col-md-4 d-flex justify-content-end">
+                          <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#agregar_tipo2"><i class="fas fa-plus"></i> Nuevo</a>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card-body">
+                      <div class="table-responsive">
+                        <table class="table table-bordered">
+                          <thead>
+                            <tr class="bg-primary" style="text-align:center; color:#000; font-size:0.813em;">
+                              <th style="display: none">id</th>
+                              <th>N°</th>
+                              <th>Lugar de trabajo</th>
+                              <th>Cargo/Función desempeñada</th>
+                              <th>Fecha Inicio</th>
+                              <th>Fecha Término</th>
+                              <th>Archivos</th>
+                              <th>Acciones</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <?php
+                            $sql10 = "SELECT * FROM expe_3puntos WHERE expe_3puntos_idpostulante = $idpostulante && tipo_expe = '4'";
+                            $query10 = mysqli_query($con, $sql10);
+                            if (mysqli_num_rows($query10) > 0) {
+                              $i = 1;
+                              while ($row10 = MySQLI_fetch_array($query10)) {
+                            ?>
+                                <tr>
+                                  <td style="font-size: 12px; display: none"><?php echo $row10['id_3puntos']; ?></td>
+                                  <td style="font-size:12px;"><?php echo $i ?></td>
+                                  <td style="font-size:12px;"><?php echo $row10['lugar'] ?></td>
+                                  <td style="font-size:12px;"><?php echo $row10['cargo'] ?></td>
+                                  <td style="font-size:12px;"><?php echo $row10['fecha_inicio'] ?></td>
+                                  <td style="font-size:12px;"><?php echo $row10['fecha_fin'] ?></td>
+                                  <td><a href="ver_pdf_expe3.php?id=<?php echo $row10['id_3puntos'] ?>&dni=<?php echo $dato_desencriptado ?>"><?php echo $row10['archivos']; ?></a></td>
+                                  <td class="d-flex justify-content-center">
+                                    <button class="btn btn-success btn-sm m-1 updateBtn2"><i class="fa fa-edit"></i></button>
+                                    <button class="btn btn-danger btn-sm m-1 deleteBtn2"><i class="fa fa-times-circle"></i></button>
+                                  </td>
+                                </tr>
+                            <?php
+                                $i++;
+                              }
+                            } else {
+                              echo "<tr><td colspan='7' class='text-center text-danger' >NO HAY DATOS AUN REGISTRADOS</td></tr>";
+                            }
+                            ?>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="tab-pane fade" id="contact2" role="tabpanel" aria-labelledby="contact2-tab">
+                <div class="form-row p-2 d-flex justify-content-center">
+                  <div class="card">
+                    <div class="card-header header-formulario-danger">
+                      <div class="row">
+                        <div class="col-md-8 d-flex align-items-center">
+                          <h5 class="titulo-card" style="font-size: 16px;">Experiencia PÚBLICA/PRIVADA FUERA de TACNA</h5>
+                        </div>
+                        <div class="col-md-4 d-flex justify-content-end">
+                          <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#agregar_tipo2"><i class="fas fa-plus"></i> Nuevo</a>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card-body">
+                      <div class="table-responsive">
+                        <table class="table table-bordered">
+                          <thead>
+                            <tr class="bg-primary" style="text-align:center; color:#000; font-size:0.813em;">
+                              <th style="display: none">id</th>
+                              <th>N°</th>
+                              <th>Lugar de trabajo</th>
+                              <th>Cargo/Función desempeñada</th>
+                              <th>Fecha Inicio</th>
+                              <th>Fecha Término</th>
+                              <th>Archivos</th>
+                              <th>Acciones</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <?php
+                            $sql11 = "SELECT * FROM expe_1puntos WHERE expe_1puntos_idpostulante = $idpostulante && tipo_expe = '4'";
 
                             $query11 = mysqli_query($con, $sql11);
                             if (mysqli_num_rows($query11) > 0) {
@@ -772,7 +1466,7 @@ if (empty($_SESSION['active'])) {
           <button class="close" data-dismiss="modal"><span>×</span></button>
         </div>
         <div class="modal-body">
-          <form action="procesos/actualizar_experiencia.php" method="POST">
+          <form action="procesos/actualizar_experiencia.php" enctype="multipart/form-data" autocomplete="off" method="POST">
             <input type="hidden" name="dato_desencriptado" value="<?php echo $dato_desencriptado ?>">
             <input type="hidden" name="id_3puntos" id="id_3puntos">
             <input type="hidden" name="dni3" value="<?php echo $dni ?>">
@@ -788,11 +1482,11 @@ if (empty($_SESSION['active'])) {
             </div>
             <div class="form-group">
               <label for="title">Fecha Inicio</label>
-              <input type="text" name="fecha_inicio3" id="fecha_inicio3" class="form-control" placeholder="Horas" maxlength="50">
+              <input type="text" name="fecha_inicio3" id="fecha_inicio3" class="form-control">
             </div>
             <div class="form-group">
               <label for="title">Fecha Fin </label>
-              <input type="text" name="fecha_fin3" id="fecha_fin3" class="form-control" placeholder="Horas" maxlength="50">
+              <input type="text" name="fecha_fin3" id="fecha_fin3" class="form-control">
             </div>
             <div class="form-group">
               <label for="title">Archivo de constancia (Dejar en blanco si no desea actualizar)</label>
@@ -879,6 +1573,7 @@ if (empty($_SESSION['active'])) {
                 <button type="submit" class="btn btn-primary" name="insertData1">Guardar</button>
               </div>
             </div>
+          </form>
         </div>
       </div>
     </div>
@@ -892,7 +1587,7 @@ if (empty($_SESSION['active'])) {
           <button class="close" data-dismiss="modal"><span>×</span></button>
         </div>
         <div class="modal-body">
-          <form action="procesos/actualizar_experiencia.php" method="POST">
+          <form action="procesos/actualizar_experiencia.php" enctype="multipart/form-data" autocomplete="off" method="POST">
             <input type="hidden" name="dato_desencriptado" value="<?php echo $dato_desencriptado ?>">
             <input type="hidden" name="id_1puntos" id="id_1puntos">
             <input type="hidden" name="dni1" value="<?php echo $dni ?>">
@@ -965,6 +1660,7 @@ if (empty($_SESSION['active'])) {
               <input type="hidden" name="dni_encriptado" value="<?php echo $dato_desencriptado ?>">
               <input type="hidden" name="dni" value="<?php echo $dni ?>">
               <input type="hidden" name="postulante" value="<?php echo $idpostulante ?>">
+              <input type="hidden" name="tipo_expe" value="2">
 
               <div class="col-md-4 col-sm-12 form-group">
                 <label for="title">(*) Lugar de trabajo</label>
@@ -984,9 +1680,9 @@ if (empty($_SESSION['active'])) {
               </div>
               <div class="col-md-8 col-sm-12 form-group" id="archivo">
                 <label for="title">(*) Subir Constancia de trabajo</label>
-                <input type="file" name="archivo" accept=".pdf" id="expe_archivo" required />
-                <div id="peso_archivo_valido" class="font-weight-bolder text-primary"></div>
-                <div id="peso_archivo_no" class="font-weight-bolder text-danger"></div>
+                <input type="file" name="archivos_tipo2" accept=".pdf" id="expe_archivo_tipo2" required />
+                <div id="peso_archivo_valido_tipo2" class="font-weight-bolder text-primary"></div>
+                <div id="peso_archivo_no_tipo2" class="font-weight-bolder text-danger"></div>
               </div>
             </div>
             <div class="form-group">
@@ -995,7 +1691,7 @@ if (empty($_SESSION['active'])) {
                 quitado de la lista .</p>
             </div>
             <div class="modal-footer">
-              <button type="submit" class="btn btn-primary" name="insertData">Guardar</button>
+              <button type="submit" class="btn btn-primary" name="insertData_tipo2">Guardar</button>
             </div>
           </form>
         </div>
@@ -1118,10 +1814,37 @@ if (empty($_SESSION['active'])) {
           case "tipo-1":
             $("#tipo-1").show();
             $("#tipo-2").hide();
+            $("#tipo-3").hide();
+            $("#tipo-4").hide();
+            $("#tipo-5").hide();
             break;
           case "tipo-2":
             $("#tipo-1").hide();
             $("#tipo-2").show();
+            $("#tipo-3").hide();
+            $("#tipo-4").hide();
+            $("#tipo-5").hide();
+            break;
+          case "tipo-3":
+            $("#tipo-1").hide();
+            $("#tipo-2").hide();
+            $("#tipo-3").show();
+            $("#tipo-4").hide();
+            $("#tipo-5").hide();
+            break;
+          case "tipo-4":
+            $("#tipo-1").hide();
+            $("#tipo-2").hide();
+            $("#tipo-3").hide();
+            $("#tipo-4").show();
+            $("#tipo-5").hide();
+            break;
+          case "tipo-5":
+            $("#tipo-1").hide();
+            $("#tipo-2").hide();
+            $("#tipo-3").hide();
+            $("#tipo-4").hide();
+            $("#tipo-5").show();
             break;
         }
       }).change();
@@ -1215,9 +1938,7 @@ if (empty($_SESSION['active'])) {
   <script>
     $(document).ready(function() {
       $('.updateBtn3').on('click', function() {
-
         $('#actualizarpublicoprivado').modal('show');
-
         // Get the table row data.
         $tr = $(this).closest('tr');
 

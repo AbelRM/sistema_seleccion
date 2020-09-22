@@ -1341,8 +1341,8 @@ if (empty($_SESSION['active'])) {
             <input type="hidden" name="dato_desencriptado" value="<?php echo $dato_desencriptado ?>">
             <input type="hidden" name="id_4puntos" id="id_4puntos">
             <input type="hidden" name="dni4" value="<?php echo $dni ?>">
-            <input type="hidden" name="numero4" id="numero4">
-
+            <input type="hidden" name="numero4" id="numero4">  
+ 
             <div class="form-group">
               <label for="title">Lugar de Trabajo</label>
               <select class="form-control" name="lugar4" id="lugar4">

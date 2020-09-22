@@ -59,23 +59,23 @@
         <div class="container-fluid">
 
         <?php
-  include 'conexion.php'; 
-  include 'funcs/mcript.php';
-    $dato_desencriptado = $_GET['dni'];
-    $dni = $desencriptar($dato_desencriptado);
-    $sql = "SELECT * FROM idiomas_comp WHERE ididiomas_comp=".$_GET['id'];
-    $query=mysqli_query($con, $sql);
-    if($datos= MySQLI_fetch_array($query)){
-        if($datos['archivo']=="")
-        {?>
-            <p>No hay archivos agregados</p>
-                    <?php }else{ ?>
-            <iframe src="archivos/<?php echo $dni ?>/Idiomas_Computacion/<?php echo $datos['archivo']; ?>"  width="1000px" height="1000px"></iframe>
+        include 'conexion.php'; 
+        include 'funcs/mcript.php';
+          $dato_desencriptado = $_GET['dni'];
+          $dni = $desencriptar($dato_desencriptado);
+          $sql = "SELECT * FROM cursos_extra WHERE idcursos_extra=".$_GET['id'];
+          $query=mysqli_query($con, $sql);
+          if($datos= MySQLI_fetch_array($query)){
+              if($datos['archivo']=="")
+              {?>
+                  <p>No hay archivos agregados</p>
+                          <?php }else{ ?>
+                  <iframe src="archivos/<?php echo $dni ?>/Diplomados/<?php echo $datos['archivo']; ?>"  width="1000px" height="1000px"></iframe>
 
-        <?php 
-    } 
-    } 
-?>
+              <?php 
+          } 
+          } 
+      ?>
 
         </div>
         <!-- /.container-fluid -->
@@ -137,5 +137,3 @@
 </body>
 
 </html>
-
-        

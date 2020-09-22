@@ -40,8 +40,7 @@ if (isset($_POST['updateData4'])) {
     } else {
       if (move_uploaded_file($_FILES['archivos4']['tmp_name'], $micarpeta . $antiguo_nombre)) {
         $sql = "UPDATE expe_4puntos SET 
-        lugar='" . $lugar . "', cargo='" . $cargo . "',fecha_inicio='" . $fech_inicio . "', fecha_fin='" . $fech_fin . "', anios='" . $años . "', meses='" . $meses . "', dias='" . $dias . "', archivos='" . $antiguo_nombre . "'
-        WHERE id_4puntos='" . $id_4puntos . "'";
+        lugar='" . $lugar . "', cargo='" . $cargo . "',fecha_inicio='" . $fech_inicio . "', fecha_fin='" . $fech_fin . "', anios='" . $años . "', meses='" . $meses . "', dias='" . $dias . "', archivos='" . $antiguo_nombre . "' WHERE id_4puntos='" . $id_4puntos . "'";
         $result = mysqli_query($con, $sql);
         if ($result) {
           echo '<script> alert("Guardado exitosamente"); </script>';

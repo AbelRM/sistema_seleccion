@@ -449,7 +449,7 @@ if (empty($_SESSION['active'])) {
                           <h5 class="titulo-card" style="font-size: 16px;">Experiencia PÚBLICA/PRIVADA DENTRO de TACNA</h5>
                         </div>
                         <div class="col-md-4 d-flex justify-content-end">
-                          <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#agregar_tipo2"><i class="fas fa-plus"></i> Nuevo</a>
+                          <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#agregar3_tipo2"><i class="fas fa-plus"></i> Nuevo</a>
                         </div>
                       </div>
                     </div>
@@ -512,7 +512,7 @@ if (empty($_SESSION['active'])) {
                           <h5 class="titulo-card" style="font-size: 16px;">Experiencia PÚBLICA/PRIVADA FUERA de TACNA</h5>
                         </div>
                         <div class="col-md-4 d-flex justify-content-end">
-                          <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#agregar_tipo2"><i class="fas fa-plus"></i> Nuevo</a>
+                          <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#agregar1_tipo2"><i class="fas fa-plus"></i> Nuevo</a>
                         </div>
                       </div>
                     </div>
@@ -1328,7 +1328,6 @@ if (empty($_SESSION['active'])) {
       </div>
     </div>
   </div>
-
   <!-- Actualizar Experiencia Laboral MICROREDES-->
   <div class="modal fade" id="actualizarmicroredes">
     <div class="modal-dialog modal-md">
@@ -1378,7 +1377,6 @@ if (empty($_SESSION['active'])) {
       </div>
     </div>
   </div>
-
   <!-- !-- MODAL ELIMINAR MICROREDES -->
   <div class="modal fade" id="eliminarmicroredes">
     <div class="modal-dialog">
@@ -1402,6 +1400,7 @@ if (empty($_SESSION['active'])) {
       </div>
     </div>
   </div>
+
 
   <!-- ADD NUEVOS DATOS  EXPE 3 - TIPO 1-->
   <div class="modal fade" id="expe3_2">
@@ -1523,6 +1522,7 @@ if (empty($_SESSION['active'])) {
       </div>
     </div>
   </div>
+
 
   <!-- ADD NUEVOS DATOS  EXPE 1 - TIPO 1-->
   <div class="modal fade" id="expe1">
@@ -1655,7 +1655,7 @@ if (empty($_SESSION['active'])) {
           <button class="close" data-dismiss="modal"><span>×</span></button>
         </div>
         <div class="modal-body">
-          <form action="procesos/guardar_expe4.php" enctype="multipart/form-data" autocomplete="off" method="POST">
+          <form action="procesos/guardar_experiencia.php" enctype="multipart/form-data" autocomplete="off" method="POST">
             <div class="row">
               <input type="hidden" name="dni_encriptado" value="<?php echo $dato_desencriptado ?>">
               <input type="hidden" name="dni" value="<?php echo $dni ?>">
@@ -1691,7 +1691,7 @@ if (empty($_SESSION['active'])) {
                 quitado de la lista .</p>
             </div>
             <div class="modal-footer">
-              <button type="submit" class="btn btn-primary" name="insertData_tipo2">Guardar</button>
+              <button type="submit" class="btn btn-primary" name="insertData4_tipo2">Guardar</button>
             </div>
           </form>
         </div>
@@ -1707,7 +1707,7 @@ if (empty($_SESSION['active'])) {
           <button class="close" data-dismiss="modal"><span>×</span></button>
         </div>
         <div class="modal-body">
-          <form action="procesos/actualizar_experiencia.php" method="POST">
+          <form action="procesos/actualizar_experiencia.php" enctype="multipart/form-data" autocomplete="off" method="POST">
             <input type="hidden" name="dato_desencriptado" value="<?php echo $dato_desencriptado ?>">
             <input type="hidden" name="id_4puntos_tipo2" id="id_4puntos_tipo2">
             <input type="hidden" name="dni4_tipo2" value="<?php echo $dni ?>">
@@ -1715,23 +1715,25 @@ if (empty($_SESSION['active'])) {
 
             <div class="form-group">
               <label for="title">Lugar de Trabajo</label>
-              <input type="text" name="lugar4_tip2" id="lugar4_tip2" class="form-control" placeholder="(*) Lugar de trabajo" maxlength="45">
+              <input type="text" name="lugar4_tipo2" id="lugar4_tipo2" class="form-control" placeholder="(*) Lugar de trabajo" maxlength="45">
             </div>
             <div class="form-group">
               <label for="title">Cargo/Funcion desempeñada </label>
-              <input type="text" name="cargo4_tip2" id="cargo4_tip2" class="form-control" placeholder="(*) Cargo/funciones" maxlength="45">
+              <input type="text" name="cargo4_tipo2" id="cargo4_tipo2" class="form-control" placeholder="(*) Cargo/funciones" maxlength="45">
             </div>
             <div class="form-group">
               <label for="title">Fecha Inicio</label>
-              <input type="text" name="fecha_inicio4_tip2" id="fecha_inicio4_tip2" class="form-control">
+              <input type="text" name="fecha_inicio4_tipo2" id="fecha_inicio4_tipo2" class="form-control">
             </div>
             <div class="form-group">
               <label for="title">Fecha Fin </label>
-              <input type="text" name="fecha_fin4_tip2" id="fecha_fin4_tip2" class="form-control">
+              <input type="text" name="fecha_fin4_tipo2" id="fecha_fin4_tipo2" class="form-control">
             </div>
             <div class="form-group">
               <label for="title">Archivo de constancia (Dejar en blanco si no desea actualizar)</label>
-              <input type="file" name="archivos4_tipo2" id="archivos4_tipo2" class="form-control">
+              <input type="file" name="archivos4_tipo2" accept=".pdf" id="expe_archivo4_tipo2" />
+              <div id="peso_archivo_valido4_tipo2" class="font-weight-bolder text-primary"></div>
+              <div id="peso_archivo_no4_tipo2" class="font-weight-bolder text-danger"></div>
             </div>
             <div class="modal-footer">
               <button type="submit" class="btn btn-primary" name="updateData5">Actualizar</button>
@@ -1749,17 +1751,189 @@ if (empty($_SESSION['active'])) {
           <h5 class="modal-title">Eliminar registro</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
         </div>
-        <form action="procesos/eliminardiresatacna.php" method="POST">
+        <form action="procesos/eliminar_experiencia.php" method="POST">
           <div class="modal-body">
-            <input type="hidden" name="url" value="<?php echo $dato_desencriptado; ?>">
-            <input type="hidden" name="id4_tipo2">
+            <input type="hidden" name="dato_desencriptado" value="<?php echo $dato_desencriptado; ?>">
+            <input type="hidden" name="dni4_tipo2" value="<?php echo $dni; ?>">
+            <input type="hidden" name="id_4puntos_tipo2" id="id_4puntos_tipo2">
             <h4>¿Desea eliminar el dato seleccionado?</h4>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-            <button type="submit" class="btn btn-primary" name="deleteData4">Si</button>
+            <button type="submit" class="btn btn-primary" name="deleteData5">Si</button>
           </div>
         </form>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ADD NUEVOS DATOS  EXPE 3 - TIPO 2-->
+  <div class="modal fade" id="agregar3_tipo2">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header bg-primary text-white">
+          <h5 class="modal-title">Nueva experiencia laboral</h5>
+          <button class="close" data-dismiss="modal"><span>×</span></button>
+        </div>
+        <div class="modal-body">
+          <form action="procesos/guardar_experiencia.php" enctype="multipart/form-data" autocomplete="off" method="POST">
+            <div class="row">
+              <input type="hidden" name="dni_encriptado" value="<?php echo $dato_desencriptado ?>">
+              <input type="hidden" name="dni" value="<?php echo $dni ?>">
+              <input type="hidden" name="postulante" value="<?php echo $idpostulante ?>">
+              <input type="hidden" name="tipo_expe" value="2">
+
+              <div class="col-md-4 col-sm-12 form-group">
+                <label for="title">(*) Lugar de trabajo</label>
+                <input type="text" name="lugar_3exp_tip2" class="form-control" placeholder="(*) Lugar de trabajo" maxlength="45" required>
+              </div>
+              <div class="col-md-4 col-sm-12 form-group" id="div_centro_estudios">
+                <label for="title">(*) Cargo/Funciones</label>
+                <input type="text" name="cargo_funciones_3exp_tip2" class="form-control" placeholder="(*) Nombre de cargo" maxlength="45" required>
+              </div>
+              <div class="col-md-4 col-sm-12 form-group" id="div_carrera">
+                <label for="title">(*) Fecha de Inicio</label>
+                <input type="date" name="fecha_ini_3exp_tip2" class="form-control" required>
+              </div>
+              <div class="col-md-4 col-sm-12 form-group" id="div_nro_colegiatura">
+                <label for="title">(*) Fecha de Término</label>
+                <input type="date" name="fecha_fin_3exp_tip2" class="form-control" required>
+              </div>
+              <div class="col-md-8 col-sm-12 form-group" id="archivo">
+                <label for="title">(*) Subir Constancia de trabajo</label>
+                <input type="file" name="archivos3_tipo2" accept=".pdf" id="expe_archivo3_tipo2" required />
+                <div id="peso_archivo_valido3_tipo2" class="font-weight-bolder text-primary"></div>
+                <div id="peso_archivo_no3_tipo2" class="font-weight-bolder text-danger"></div>
+              </div>
+            </div>
+            <div class="form-group">
+              <p>(*) Indica un campo obligatorio.</p>
+              <p>(**) En el campo "FECHA" debe indicar la fecha de INICIO y TÉRMINO según el contrato, en caso de colocar fechas erroneas será
+                quitado de la lista .</p>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary" name="insertData3_tipo2">Guardar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ADD NUEVOS DATOS  EXPE 1 - TIPO 2-->
+  <div class="modal fade" id="agregar1_tipo2">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header bg-primary text-white">
+          <h5 class="modal-title">Nueva experiencia laboral</h5>
+          <button class="close" data-dismiss="modal"><span>×</span></button>
+        </div>
+        <div class="modal-body">
+          <form action="procesos/guardar_experiencia.php" enctype="multipart/form-data" autocomplete="off" method="POST">
+            <div class="row">
+              <input type="hidden" name="dni_encriptado" value="<?php echo $dato_desencriptado ?>">
+              <input type="hidden" name="dni" value="<?php echo $dni ?>">
+              <input type="hidden" name="postulante" value="<?php echo $idpostulante ?>">
+              <input type="hidden" name="tipo_expe" value="2">
+
+              <div class="col-md-4 col-sm-12 form-group">
+                <label for="title">(*) Lugar de trabajo</label>
+                <input type="text" name="lugar_1exp_tip2" class="form-control" placeholder="(*) Lugar de trabajo" maxlength="45" required>
+              </div>
+              <div class="col-md-4 col-sm-12 form-group" id="div_centro_estudios">
+                <label for="title">(*) Cargo/Funciones</label>
+                <input type="text" name="cargo_funciones_1exp_tip2" class="form-control" placeholder="(*) Nombre de cargo" maxlength="45" required>
+              </div>
+              <div class="col-md-4 col-sm-12 form-group" id="div_carrera">
+                <label for="title">(*) Fecha de Inicio</label>
+                <input type="date" name="fecha_ini_1exp_tip2" class="form-control" required>
+              </div>
+              <div class="col-md-4 col-sm-12 form-group" id="div_nro_colegiatura">
+                <label for="title">(*) Fecha de Término</label>
+                <input type="date" name="fecha_fin_1exp_tip2" class="form-control" required>
+              </div>
+              <div class="col-md-8 col-sm-12 form-group" id="archivo">
+                <label for="title">(*) Subir Constancia de trabajo</label>
+                <input type="file" name="archivos1_tipo2" accept=".pdf" id="expe_archivo1_tipo2" required />
+                <div id="peso_archivo_valido1_tipo2" class="font-weight-bolder text-primary"></div>
+                <div id="peso_archivo_no1tipo2" class="font-weight-bolder text-danger"></div>
+              </div>
+            </div>
+            <div class="form-group">
+              <p>(*) Indica un campo obligatorio.</p>
+              <p>(**) En el campo "FECHA" debe indicar la fecha de INICIO y TÉRMINO según el contrato, en caso de colocar fechas erroneas será
+                quitado de la lista .</p>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary" name="insertData1_tipo2">Guardar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ADD NUEVOS DATOS  EXPE 4 - TIPO 3-->
+  <div class="modal fade" id="addModal">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header bg-primary text-white">
+          <h5 class="modal-title">Nueva experiencia laboral</h5>
+          <button class="close" data-dismiss="modal">
+            <span>×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form action="procesos/guardar_experiencia.php" enctype="multipart/form-data" autocomplete="off" method="POST">
+            <div class="row">
+              <input type="hidden" name="dni_encriptado4" value="<?php echo $dato_desencriptado ?>">
+              <input type="hidden" name="dni4" value="<?php echo $dni ?>">
+              <input type="hidden" name="postulante4" value="<?php echo $idpostulante ?>">
+              <input type="hidden" name="tipo_expe4" value="1">
+
+              <div class="col-md-4 col-sm-12 form-group">
+                <label for="title">(*) Lugar de trabajo</label>
+                <select name="lugar_4exp" class="form-control" id="lugar">
+                  <option disabled selected>Elegir</option>
+                  <option value="Microred Tarata">Microred Tarata</option>
+                  <option value="Microred Candarave">Microred Candarave</option>
+                  <option value="Microred Alto Andino">Microred Alto Andino</option>
+                  <option value="Microred Frontera">Microred Frontera</option>
+                  <option value="Microred Jorge Basadre">Microred Jorge Basadre</option>
+                </select>
+              </div>
+              <div class="col-md-4 col-sm-12 form-group" id="div_centro_estudios">
+                <label for="title">(*) Cargo/Funciones</label>
+                <input type="text" name="cargo_funciones_4exp" class="form-control" placeholder="Nombre de cargo" maxlength="100" required>
+              </div>
+              <div class="col-md-4 col-sm-12 form-group" id="div_carrera">
+                <label for="title">(*) Fecha de Inicio</label>
+                <input type="date" name="fecha_ini_4exp" class="form-control" required>
+              </div>
+              <div class="col-md-4 col-sm-12 form-group" id="div_nro_colegiatura">
+                <label for="title">(*) Fecha de Término</label>
+                <input type="date" name="fecha_fin_4exp" id="nro_colegiatura_new" class="form-control" required>
+              </div>
+              <div class="col-md-8 col-sm-12 form-group" id="archivo">
+                <label for="title">(*) Subir Constancia de trabajo</label>
+                <input type="file" name="archivo" accept=".pdf" id="expe_archivo" required />
+                <div id="peso_archivo_valido" class="font-weight-bolder text-primary"></div>
+                <div id="peso_archivo_no" class="font-weight-bolder text-danger"></div>
+              </div>
+            </div>
+            <div class="form-group">
+              <p>(*) Indica un campo obligatorio.</p>
+              <p>(**) En el campo "FECHA" debe indicar la fecha de INICIO y TÉRMINO según el contrato, en caso de colocar fechas erroneas será
+                quitado de la lista .</p>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary" name="insertData4">Guardar</button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   </div>
@@ -1989,14 +2163,13 @@ if (empty($_SESSION['active'])) {
         }).get();
 
         console.log(data);
-
         $('#id_4puntos_tipo2').val(data[0]);
         $('#numero4_tipo2').val(data[1]);
         $('#lugar4_tipo2').val(data[2]);
         $('#cargo4_tipo2').val(data[3]);
         $('#fecha_inicio4_tipo2').val(data[4]);
         $('#fecha_fin4_tipo2').val(data[5]);
-        $('#archivos4_tipo2').val(data[6]);
+        $('#expe_archivo4_tipo2').val(data[6]);
       });
     });
 
@@ -2012,7 +2185,7 @@ if (empty($_SESSION['active'])) {
         }).get();
 
         console.log(data);
-        $('#id4_tipo2').val(data[0]);
+        $('#id_4puntos_tipo2').val(data[0]);
       });
     });
   </script>

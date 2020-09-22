@@ -64,6 +64,26 @@ if (isset($_POST['deleteData4'])) {
   } else {
     echo '<script> alert("ERROR al eliminar registro."); </script>';
   }
-} else {
-  echo "No entra";
+} elseif (isset($_POST['deleteData5'])) {
+  $dato_desencriptado = $_POST['dato_desencriptado'];
+  $dni_base = $_POST['dni4_tipo2'];
+  echo $dni_base;
+  $id = $_POST['id_4puntos_tipo2'];
+
+  $consulta = "SELECT * FROM expe_4puntos  WHERE id_4puntos='$id'";
+  $resultado = mysqli_query($con, $consulta);
+  $row = MySQLI_fetch_array($resultado);
+  $archivo = $row['archivos'];
+  $ruta = $_SERVER['DOCUMENT_ROOT'] . "/sistema_seleccion/user_postu/archivos/" . $dni_base . "/expe4_laboral/";
+
+  $sql = "DELETE FROM expe_4puntos WHERE id_4puntos='" . $id . "' ";
+  $result = mysqli_query($con, $sql);
+
+  unlink($ruta . $archivo);
+  if ($result) {
+    echo '<script> alert("Registro eliminado!"); </script>';
+    // header("Location: ../exp_laboral.php?dni=$dato_desencriptado");
+  } else {
+    echo '<script> alert("ERROR al eliminar registro."); </script>';
+  }
 }

@@ -263,11 +263,10 @@ if (isset($_POST['updateData4'])) {
     $antiguo_nombre = $row['archivos'];
     // $new_nombre = "nuevo_" . $antiguo_nombre;
 
-
-    $lugar = $_POST['lugar4_tip2'];
-    $cargo = $_POST['cargo4_tip2'];
-    $fech_inicio = $_POST['fecha_inicio4_tip2'];
-    $fech_fin = $_POST['fecha_fin4_tip2'];
+    $lugar = $_POST['lugar4_tipo2'];
+    $cargo = $_POST['cargo4_tipo2'];
+    $fech_inicio = $_POST['fecha_inicio4_tipo2'];
+    $fech_fin = $_POST['fecha_fin4_tipo2'];
 
     /// VALORES AÑOS, MESES Y DIAS ///
     $fechainicial = new DateTime($fech_inicio);

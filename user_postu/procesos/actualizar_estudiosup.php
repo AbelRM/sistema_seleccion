@@ -2,7 +2,7 @@
 include '../conexion.php';
 
 if (isset($_POST['updateData1'])) {
-  $dato_desencriptado= $_POST['dato_desencriptado'];
+  $dato_desencriptado = $_POST['dato_desencriptado'];
   $idestudios = $_POST['idestudios'];
   $dni = $_POST['dni1'];
   $verificar_archivo = $_FILES["archivos1"];
@@ -24,15 +24,15 @@ if (isset($_POST['updateData1'])) {
     $especialidad = $_POST['especialida'];
     $fecha_inicio = $_POST['fecha_i'];
     $fecha_fin = $_POST['fecha_f'];
-    $nivel = $_POST['nivel_estu']; 
+    $nivel = $_POST['nivel_estu'];
 
     //compruebo si las características del archivo son las que deseo
     if (!(strpos($tipo_archivo, "pdf") && ($tamano_archivo <= 3000000))) {
       echo "La extensión o el tamaño de los archivos no es correcta. <br><br><table><tr><td><li>Solo se permiten archivos .pdf<br><li>se permiten archivos de 3 Mb máximo.</td></tr></table>";
     } else {
       if (move_uploaded_file($_FILES['archivos1']['tmp_name'], $micarpeta . $antiguo_nombre)) {
-        
-        $sql = "UPDATE estudios_superiores SET centro_estu='".$centro_estu."', especialidad='".$especialidad."', fech_ini='".$fecha_inicio."', fech_fin='".$fecha_fin."', nivel='".$nivel."', archivo='".$antiguo_nombre."' WHERE idestudios='".$idestudios."' ";
+
+        $sql = "UPDATE estudios_superiores SET centro_estu='" . $centro_estu . "', especialidad='" . $especialidad . "', fech_ini='" . $fecha_inicio . "', fech_fin='" . $fecha_fin . "', nivel='" . $nivel . "', archivo='" . $antiguo_nombre . "' WHERE idestudios='" . $idestudios . "' ";
 
         $sql = "UPDATE expe_4puntos SET lugar='" . $lugar . "', cargo='" . $cargo . "',fecha_inicio='" . $fech_inicio . "', fecha_fin='" . $fech_fin . "', anios='" . $años . "', meses='" . $meses . "', dias='" . $dias . "', archivos='" . $antiguo_nombre . "' WHERE id_4puntos='" . $id_4puntos . "'";
         $result = mysqli_query($con, $sql);
@@ -56,10 +56,10 @@ if (isset($_POST['updateData1'])) {
     $especialidad = $_POST['especialida'];
     $fecha_inicio = $_POST['fecha_i'];
     $fecha_fin = $_POST['fecha_f'];
-    $nivel = $_POST['nivel_estu']; 
+    $nivel = $_POST['nivel_estu'];
 
-    $sql = "UPDATE estudios_superiores SET centro_estu='".$centro_estu."', especialidad='".$especialidad."', fech_ini='".$fecha_inicio."', 
-    fech_fin='".$fecha_fin."', nivel='".$nivel."' WHERE idestudios='".$idestudios."' ";
+    $sql = "UPDATE estudios_superiores SET centro_estu='" . $centro_estu . "', especialidad='" . $especialidad . "', fech_ini='" . $fecha_inicio . "', 
+    fech_fin='" . $fecha_fin . "', nivel='" . $nivel . "' WHERE idestudios='" . $idestudios . "' ";
 
     $result = mysqli_query($con, $sql);
     if ($result) {
@@ -94,16 +94,16 @@ if (isset($_POST['updateData1'])) {
     $tipoest = $_POST['tipo_estu'];
     $fecha_inicio = $_POST['fecha_inic'];
     $fecha_fin = $_POST['fecha_fi'];
-    $nivel = $_POST['nivel1'];  
+    $nivel = $_POST['nivel1'];
 
     //compruebo si las características del archivo son las que deseo
     if (!(strpos($tipo_archivo, "pdf") && ($tamano_archivo <= 3000000))) {
       echo "La extensión o el tamaño de los archivos no es correcta. <br><br><table><tr><td><li>Solo se permiten archivos .pdf<br><li>se permiten archivos de 3 Mb máximo.</td></tr></table>";
     } else {
       if (move_uploaded_file($_FILES['archivos2']['tmp_name'], $micarpeta . $antiguo_nombre)) {
-        
-        $sql = "UPDATE maestria_doc SET centro_estu='".$centro_estu."', especialidad='".$especialidad."',tipo_estu='".$tipoest."', fech_ini='".$fecha_inicio."', 
-        fech_fin='".$fecha_fin."', nivel='".$nivel."',archivos='" . $antiguo_nombre . "' WHERE idmaestria_doc='".$idestudios."' ";
+
+        $sql = "UPDATE maestria_doc SET centro_estu='" . $centro_estu . "', especialidad='" . $especialidad . "',tipo_estu='" . $tipoest . "', fech_ini='" . $fecha_inicio . "', 
+        fech_fin='" . $fecha_fin . "', nivel='" . $nivel . "',archivos='" . $antiguo_nombre . "' WHERE idmaestria_doc='" . $idestudios . "' ";
 
         $result = mysqli_query($con, $sql);
         if ($result) {
@@ -120,16 +120,16 @@ if (isset($_POST['updateData1'])) {
     }
   } else {
     echo "No hay datos";
-    
+
     $centro_estu = $_POST['centro_estudi'];
     $especialidad = $_POST['especialidades'];
     $tipoest = $_POST['tipo_estu'];
     $fecha_inicio = $_POST['fecha_inic'];
     $fecha_fin = $_POST['fecha_fi'];
-    $nivel = $_POST['nivel1']; 
+    $nivel = $_POST['nivel1'];
 
-    $sql = "UPDATE maestria_doc SET centro_estu='".$centro_estu."', especialidad='".$especialidad."',tipo_estu='".$tipoest."', fech_ini='".$fecha_inicio."', 
-    fech_fin='".$fecha_fin."', nivel='".$nivel."' WHERE idmaestria_doc='".$id_maestria."' ";
+    $sql = "UPDATE maestria_doc SET centro_estu='" . $centro_estu . "', especialidad='" . $especialidad . "',tipo_estu='" . $tipoest . "', fech_ini='" . $fecha_inicio . "', 
+    fech_fin='" . $fecha_fin . "', nivel='" . $nivel . "' WHERE idmaestria_doc='" . $id_maestria . "' ";
 
     $result = mysqli_query($con, $sql);
     if ($result) {
@@ -163,15 +163,15 @@ if (isset($_POST['updateData1'])) {
     $horas = $_POST['horas1'];
     $fecha_inicio = $_POST['fech_inic1'];
     $fecha_fin = $_POST['fech_fin1'];
-    $tipo = $_POST['tip']; 
+    $tipo = $_POST['tip'];
 
     //compruebo si las características del archivo son las que deseo
     if (!(strpos($tipo_archivo, "pdf") && ($tamano_archivo <= 3000000))) {
       echo "La extensión o el tamaño de los archivos no es correcta. <br><br><table><tr><td><li>Solo se permiten archivos .pdf<br><li>se permiten archivos de 3 Mb máximo.</td></tr></table>";
     } else {
       if (move_uploaded_file($_FILES['archivos3']['tmp_name'], $micarpeta . $antiguo_nombre)) {
-        
-        $sql = "UPDATE cursos_extra SET centro_estu='".$centro_estu."', materia='".$materia."',horas='".$horas."', fech_ini='".$fecha_inicio."', fech_fin='".$fecha_fin."', tipo='".$tipo."', archivo='".$antiguo_nombre."' WHERE idcursos_extra='".$idcursos."' ";
+
+        $sql = "UPDATE cursos_extra SET centro_estu='" . $centro_estu . "', materia='" . $materia . "',horas='" . $horas . "', fech_ini='" . $fecha_inicio . "', fech_fin='" . $fecha_fin . "', tipo='" . $tipo . "', archivo='" . $antiguo_nombre . "' WHERE idcursos_extra='" . $idcursos . "' ";
 
         $result = mysqli_query($con, $sql);
         if ($result) {
@@ -194,10 +194,10 @@ if (isset($_POST['updateData1'])) {
     $horas = $_POST['horas1'];
     $fecha_inicio = $_POST['fech_inic1'];
     $fecha_fin = $_POST['fech_fin1'];
-    $tipo = $_POST['tip']; 
+    $tipo = $_POST['tip'];
 
-    $sql = "UPDATE cursos_extra SET centro_estu='".$centro_estu."', materia='".$materia."',horas='".$horas."', fech_ini='".$fecha_inicio."', 
-    fech_fin='".$fecha_fin."', tipo='".$tipo."' WHERE idcursos_extra='".$idcursos."' ";
+    $sql = "UPDATE cursos_extra SET centro_estu='" . $centro_estu . "', materia='" . $materia . "',horas='" . $horas . "', fech_ini='" . $fecha_inicio . "', 
+    fech_fin='" . $fecha_fin . "', tipo='" . $tipo . "' WHERE idcursos_extra='" . $idcursos . "' ";
 
 
     $result = mysqli_query($con, $sql);
@@ -236,7 +236,7 @@ if (isset($_POST['updateData1'])) {
     } else {
       if (move_uploaded_file($_FILES['archivos4']['tmp_name'], $micarpeta . $antiguo_nombre)) {
 
-        $sql = "UPDATE idiomas_comp SET idioma_comp='".$idiomas."', nivel='".$nivel."',archivo='".$antiguo_nombre."' WHERE ididiomas_comp='".$ididiomas."' ";
+        $sql = "UPDATE idiomas_comp SET idioma_comp='" . $idiomas . "', nivel='" . $nivel . "',archivo='" . $antiguo_nombre . "' WHERE ididiomas_comp='" . $ididiomas . "' ";
 
         $result = mysqli_query($con, $sql);
         if ($result) {
@@ -255,8 +255,8 @@ if (isset($_POST['updateData1'])) {
     echo "No hay datos";
     $idiomas = $_POST['idioma_comp'];
     $nivel = $_POST['nivel4'];
-    
-    $sql = "UPDATE idiomas_comp SET idioma_comp='".$idiomas."', nivel='".$nivel."' WHERE ididiomas_comp='".$ididiomas."' ";
+
+    $sql = "UPDATE idiomas_comp SET idioma_comp='" . $idiomas . "', nivel='" . $nivel . "' WHERE ididiomas_comp='" . $ididiomas . "' ";
 
     $result = mysqli_query($con, $sql);
     if ($result) {

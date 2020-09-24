@@ -1,6 +1,5 @@
 //binds to onchange event of your input field
 $('#expe_archivo').bind('change', function () {
-
   //this.files[0].size gets the size of your file.
   var peso = (this.files[0].size);
   if (peso <= 3000000) {
@@ -16,11 +15,9 @@ $('#expe_archivo').bind('change', function () {
     // alert("Archivo NO valido");
   }
   // alert(this.files[0].size);
-
 });
 
 $('#expe_archivo_3').bind('change', function () {
-
   //this.files[0].size gets the size of your file.
   var peso = (this.files[0].size);
   if (peso <= 3000000) {
@@ -36,11 +33,9 @@ $('#expe_archivo_3').bind('change', function () {
     // alert("Archivo NO valido");
   }
   // alert(this.files[0].size);
-
 });
 
 $('#expe_archivo_1').bind('change', function () {
-
   //this.files[0].size gets the size of your file.
   var peso = (this.files[0].size);
   if (peso <= 3000000) {
@@ -56,11 +51,11 @@ $('#expe_archivo_1').bind('change', function () {
     // alert("Archivo NO valido");
   }
   // alert(this.files[0].size);
-
 });
 
-$('#expe_archivo_tipo2').bind('change', function () {
 
+
+$('#expe_archivo_tipo2').bind('change', function () {
   //this.files[0].size gets the size of your file.
   var peso = (this.files[0].size);
   if (peso <= 3000000) {
@@ -76,9 +71,7 @@ $('#expe_archivo_tipo2').bind('change', function () {
     // alert("Archivo NO valido");
   }
   // alert(this.files[0].size);
-
 });
-
 $('#expe_archivo3_tipo2').bind('change', function () {
 
   //this.files[0].size gets the size of your file.
@@ -96,11 +89,8 @@ $('#expe_archivo3_tipo2').bind('change', function () {
     // alert("Archivo NO valido");
   }
   // alert(this.files[0].size);
-
 });
-
 $('#expe_archivo1_tipo2').bind('change', function () {
-
   //this.files[0].size gets the size of your file.
   var peso = (this.files[0].size);
   if (peso <= 3000000) {
@@ -116,11 +106,11 @@ $('#expe_archivo1_tipo2').bind('change', function () {
     // alert("Archivo NO valido");
   }
   // alert(this.files[0].size);
-
 });
 
-$('#expe_archivo4_tipo2').bind('change', function () {
 
+
+$('#expe_archivo4_tipo2').bind('change', function () {
   //this.files[0].size gets the size of your file.
   var peso = (this.files[0].size);
   if (peso <= 3000000) {
@@ -136,5 +126,4 @@ $('#expe_archivo4_tipo2').bind('change', function () {
     // alert("Archivo NO valido");
   }
   // alert(this.files[0].size);
-
 });

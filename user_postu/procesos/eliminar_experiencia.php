@@ -17,10 +17,12 @@ if (isset($_POST['deleteData4'])) {
 
   unlink($ruta . $archivo);
   if ($result) {
-    echo '<script> alert("Registro eliminado!"); </script>';
-    header("Location: ../exp_laboral.php?dni=$url");
+
+    echo "<script type=\"text/javascript\">history.go(-1);</script>";
+    // header("Location: ../exp_laboral.php?dni=$url");
   } else {
     echo '<script> alert("ERROR al eliminar registro."); </script>';
+    echo "<script type=\"text/javascript\">history.go(-1);</script>";
   }
 } elseif (isset($_POST['deleteData3'])) {
   $url = $_POST['dni_url_3'];
@@ -38,10 +40,12 @@ if (isset($_POST['deleteData4'])) {
 
   unlink($ruta . $archivo);
   if ($result) {
-    echo '<script> alert("Registro eliminado"); </script>';
-    header("Location: ../exp_laboral.php?dni=$url");
+
+    echo "<script type=\"text/javascript\">history.go(-1);</script>";
+    // header("Location: ../exp_laboral.php?dni=$url");
   } else {
     echo '<script> alert("ERROR al eliminar registro."); </script>';
+    echo "<script type=\"text/javascript\">history.go(-1);</script>";
   }
 } elseif (isset($_POST['deleteData1'])) {
   $url = $_POST['dni_url_1'];
@@ -59,10 +63,12 @@ if (isset($_POST['deleteData4'])) {
 
   unlink($ruta . $archivo);
   if ($result) {
-    echo '<script> alert("Registro eliminado!"); </script>';
-    header("Location: ../exp_laboral.php?dni=$url");
+
+    echo "<script type=\"text/javascript\">history.go(-1);</script>";
+    // header("Location: ../exp_laboral.php?dni=$url");
   } else {
     echo '<script> alert("ERROR al eliminar registro."); </script>';
+    echo "<script type=\"text/javascript\">history.go(-1);</script>";
   }
 } elseif (isset($_POST['deleteData5'])) {
   $dato_desencriptado = $_POST['dato_desencriptado'];
@@ -81,9 +87,11 @@ if (isset($_POST['deleteData4'])) {
 
   unlink($ruta . $archivo);
   if ($result) {
-    echo '<script> alert("Registro eliminado!"); </script>';
+
+    echo "<script type=\"text/javascript\">history.go(-1);</script>";
     // header("Location: ../exp_laboral.php?dni=$dato_desencriptado");
   } else {
     echo '<script> alert("ERROR al eliminar registro."); </script>';
+    echo "<script type=\"text/javascript\">history.go(-1);</script>";
   }
 }

@@ -1,3 +1,13 @@
+<head>
+  <script src="../vendor/jquery/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+  <script>
+    function alerta_aceptar() {
+      Swal.fire("Se agrego correctamente.");
+    }
+  </script>
+</head>
+
 <?php
 include '../conexion.php';
 // Update data into the database
@@ -44,14 +54,16 @@ if (isset($_POST['updateData4'])) {
         $result = mysqli_query($con, $sql);
         if ($result) {
           echo '<script> alert("Guardado exitosamente"); </script>';
-          header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
+          echo "<script type=\"text/javascript\">history.go(-1);</script>";
+          // header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
         } else {
           echo '<script> alert("Error al guardar"); </script>';
-          header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
+          echo "<script type=\"text/javascript\">history.go(-1);</script>";
+          // header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
         }
       } else {
-        echo "Ocurrió algún error al subir el fichero. No pudo guardarse.";
-        header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
+        echo '<script> alert("Error al guardar el archivo."); </script>';
+        echo "<script type=\"text/javascript\">history.go(-1);</script>";
       }
     }
   } else {
@@ -75,10 +87,12 @@ if (isset($_POST['updateData4'])) {
     $result = mysqli_query($con, $sql);
     if ($result) {
       echo '<script> alert("Guardado exitosamente"); </script>';
-      header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
+      echo "<script type=\"text/javascript\">history.go(-1);</script>";
+      // header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
     } else {
       echo '<script> alert("Error al guardar"); </script>';
-      header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
+      echo "<script type=\"text/javascript\">history.go(-1);</script>";
+      // header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
     }
   }
 } elseif (isset($_POST['updateData3'])) {
@@ -125,14 +139,16 @@ if (isset($_POST['updateData4'])) {
         $result = mysqli_query($con, $sql);
         if ($result) {
           echo '<script> alert("Guardado exitosamente"); </script>';
-          header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
+          echo "<script type=\"text/javascript\">history.go(-1);</script>";
+          // header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
         } else {
           echo '<script> alert("Error al guardar"); </script>';
-          header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
+          echo "<script type=\"text/javascript\">history.go(-1);</script>";
+          // header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
         }
       } else {
-        echo "Ocurrió algún error al subir el fichero. No pudo guardarse.";
-        header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
+        echo '<script> alert("Error al guardar el archivo."); </script>';
+        echo "<script type=\"text/javascript\">history.go(-1);</script>";
       }
     }
   } else {
@@ -156,10 +172,12 @@ if (isset($_POST['updateData4'])) {
     $result = mysqli_query($con, $sql);
     if ($result) {
       echo '<script> alert("Guardado exitosamente"); </script>';
-      header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
+      echo "<script type=\"text/javascript\">history.go(-1);</script>";
+      // header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
     } else {
       echo '<script> alert("Error al guardar"); </script>';
-      header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
+      echo "<script type=\"text/javascript\">history.go(-1);</script>";
+      // header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
     }
   }
 } elseif (isset($_POST['updateData1'])) {
@@ -206,14 +224,16 @@ if (isset($_POST['updateData4'])) {
         $result = mysqli_query($con, $sql);
         if ($result) {
           echo '<script> alert("Guardado exitosamente"); </script>';
-          header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
+          echo "<script type=\"text/javascript\">history.go(-1);</script>";
+          // header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
         } else {
           echo '<script> alert("Error al guardar"); </script>';
-          header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
+          echo "<script type=\"text/javascript\">history.go(-1);</script>";
+          // header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
         }
       } else {
-        echo "Ocurrió algún error al subir el fichero. No pudo guardarse.";
-        header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
+        echo '<script> alert("Error al guardar el archivo."); </script>';
+        echo "<script type=\"text/javascript\">history.go(-1);</script>";
       }
     }
   } else {
@@ -237,10 +257,12 @@ if (isset($_POST['updateData4'])) {
     $result = mysqli_query($con, $sql);
     if ($result) {
       echo '<script> alert("Guardado exitosamente"); </script>';
-      header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
+      echo "<script type=\"text/javascript\">history.go(-1);</script>";
+      // header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
     } else {
       echo '<script> alert("Error al guardar"); </script>';
-      header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
+      echo "<script type=\"text/javascript\">history.go(-1);</script>";
+      // header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
     }
   }
 } elseif (isset($_POST['updateData5'])) {
@@ -286,22 +308,23 @@ if (isset($_POST['updateData4'])) {
         $result = mysqli_query($con, $sql);
         if ($result) {
           echo '<script> alert("Guardado exitosamente"); </script>';
-          header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
+          echo "<script type=\"text/javascript\">history.go(-1);</script>";
+          // header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
         } else {
           echo '<script> alert("Error al guardar"); </script>';
-          header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
+          echo "<script type=\"text/javascript\">history.go(-1);</script>";
+          // header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
         }
       } else {
-        echo "Ocurrió algún error al subir el fichero. No pudo guardarse.";
-        header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
+        echo '<script> alert("Error al guardar el archivo."); </script>';
+        echo "<script type=\"text/javascript\">history.go(-1);</script>";
       }
     }
   } else {
-    echo "No hay datos";
-    $lugar = $_POST['lugar4_tip2'];
-    $cargo = $_POST['cargo4_tip2'];
-    $fech_inicio = $_POST['fecha_inicio4_tip2'];
-    $fech_fin = $_POST['fecha_fin4_tip2'];
+    $lugar = $_POST['lugar4_tipo2'];
+    $cargo = $_POST['cargo4_tipo2'];
+    $fech_inicio = $_POST['fecha_inicio4_tipo2'];
+    $fech_fin = $_POST['fecha_fin4_tipo2'];
 
     /// VALORES AÑOS, MESES Y DIAS ///
     $fechainicial = new DateTime($fech_inicio);
@@ -316,11 +339,14 @@ if (isset($_POST['updateData4'])) {
 
     $result = mysqli_query($con, $sql);
     if ($result) {
-      echo '<script> alert("Guardado exitosamente"); </script>';
-      header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
+
+      echo "<script> alerta_aceptar(); </script>";
+      echo "<script type=\"text/javascript\">history.go(-1);</script>";
+      // header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
     } else {
       echo '<script> alert("Error al guardar"); </script>';
-      header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
+      echo "<script type=\"text/javascript\">history.go(-1);</script>";
+      // header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
     }
   }
 }

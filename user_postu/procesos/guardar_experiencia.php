@@ -26,12 +26,12 @@ if (isset($_POST['insertData4'])) {
   $result = mysqli_num_rows($query);
   if ($result <= 0) {
     $i = 1;
-    $new_nombre = "exp4_tip" . $tipo_expe . "_" . $i . ".pdf";
+    $new_nombre = "exp4_tip" . $tipo_expe4 . "_" . $i . ".pdf";
   } else {
     $row = mysqli_fetch_array($query);
     $idformacion = $row['id_4puntos'];
     $i = $idformacion + 1;
-    $new_nombre = "exp4_tip" . $tipo_expe . "_" . $i . ".pdf";
+    $new_nombre = "exp4_tip" . $tipo_expe4 . "_" . $i . ".pdf";
   }
   /// VALORES AÑOS, MESES Y DIAS ///
   $fechainicial = new DateTime($fecha_ini_4exp);
@@ -51,14 +51,17 @@ if (isset($_POST['insertData4'])) {
       $result = mysqli_query($con, $sql);
       if ($result) {
         echo '<script> alert("Guardado exitosamente"); </script>';
-        header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
+        echo "<script type=\"text/javascript\">history.go(-1);</script>";
+        // header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
       } else {
         echo '<script> alert("Error al guardar"); </script>';
-        header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
+        echo "<script type=\"text/javascript\">history.go(-1);</script>";
+        // header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
       }
     } else {
-      echo "Ocurrió algún error al subir el fichero. No pudo guardarse.";
-      header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
+      echo '<script> alert("Error al guardar el archivo."); </script>';
+      echo "<script type=\"text/javascript\">history.go(-1);</script>";
+      // header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
     }
   }
 } elseif (isset($_POST['insertData3'])) {
@@ -85,12 +88,12 @@ if (isset($_POST['insertData4'])) {
   $result = mysqli_num_rows($query);
   if ($result <= 0) {
     $i = 1;
-    $new_nombre = "exp3_tip" . $tipo_expe . "_" . $i . ".pdf";
+    $new_nombre = "exp3_tip" . $tipo_expe3 . "_" . $i . ".pdf";
   } else {
     $row = mysqli_fetch_array($query);
     $idformacion = $row['id_3puntos'];
     $i = $idformacion + 1;
-    $new_nombre = "exp3_tip" . $tipo_expe . "_" . $i . ".pdf";
+    $new_nombre = "exp3_tip" . $tipo_expe3 . "_" . $i . ".pdf";
   }
 
   /// VALORES AÑOS, MESES Y DIAS ///
@@ -111,14 +114,16 @@ if (isset($_POST['insertData4'])) {
       $result = mysqli_query($con, $sql);
       if ($result) {
         echo '<script> alert("Guardado exitosamente"); </script>';
-        header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
+        echo "<script type=\"text/javascript\">history.go(-1);</script>";
+        // header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
       } else {
         echo '<script> alert("Error al guardar"); </script>';
-        header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
+        echo "<script type=\"text/javascript\">history.go(-1);</script>";
+        // header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
       }
     } else {
-      echo 'Ocurrió algún error al subir el fichero. No pudo guardarse.';
-      header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
+      echo '<script> alert("Error al guardar el archivo."); </script>';
+      echo "<script type=\"text/javascript\">history.go(-1);</script>";
     }
   }
 } elseif (isset($_POST['insertData1'])) {
@@ -145,12 +150,12 @@ if (isset($_POST['insertData4'])) {
   $result = mysqli_num_rows($query);
   if ($result <= 0) {
     $i = 1;
-    $new_nombre = "exp1_tip" . $tipo_expe . "_" . $i . ".pdf";
+    $new_nombre = "exp1_tip" . $tipo_expe1 . "_" . $i . ".pdf";
   } else {
     $row = mysqli_fetch_array($query);
     $idformacion = $row['id_3puntos'];
     $i = $idformacion - 1;
-    $new_nombre = "exp1_tip" . $tipo_expe . "_" . $i . ".pdf";
+    $new_nombre = "exp1_tip" . $tipo_expe1 . "_" . $i . ".pdf";
   }
 
   /// VALORES AÑOS, MESES Y DIAS ///
@@ -171,14 +176,16 @@ if (isset($_POST['insertData4'])) {
       $result = mysqli_query($con, $sql);
       if ($result) {
         echo '<script> alert("Guardado exitosamente"); </script>';
-        header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
+        echo "<script type=\"text/javascript\">history.go(-1);</script>";
+        // header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
       } else {
         echo '<script> alert("Error al guardar"); </script>';
-        header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
+        echo "<script type=\"text/javascript\">history.go(-1);</script>";
+        // header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
       }
     } else {
-      echo "Ocurrió algún error al subir el fichero. No pudo guardarse.";
-      header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
+      echo '<script> alert("Ocurrio un problema al guardar el archivo."); </script>';
+      echo "<script type=\"text/javascript\">history.go(-1);</script>";
     }
   }
 } elseif (isset($_POST['insertData4_tipo2'])) {
@@ -230,14 +237,17 @@ if (isset($_POST['insertData4'])) {
       $result = mysqli_query($con, $sql);
       if ($result) {
         echo '<script> alert("Guardado exitosamente"); </script>';
-        header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
+        echo "<script type=\"text/javascript\">history.go(-1);</script>";
+        // header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
       } else {
         echo '<script> alert("Error al guardar"); </script>';
-        header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
+        echo "<script type=\"text/javascript\">history.go(-1);</script>";
+        // header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
       }
     } else {
-      echo "Ocurrió algún error al subir el fichero. No pudo guardarse.";
-      header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
+      echo "<script> alert(Ocurrió algún error al subir el fichero. No pudo guardarse.); </script>";
+      echo "<script type=\"text/javascript\">history.go(-1);</script>";
+      // header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
     }
   }
 } elseif (isset($_POST['insertData3_tipo2'])) {
@@ -289,14 +299,17 @@ if (isset($_POST['insertData4'])) {
       $result = mysqli_query($con, $sql);
       if ($result) {
         echo '<script> alert("Guardado exitosamente"); </script>';
-        header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
+        echo "<script type=\"text/javascript\">history.go(-1);</script>";
+        // header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
       } else {
         echo '<script> alert("Error al guardar"); </script>';
-        header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
+        echo "<script type=\"text/javascript\">history.go(-1);</script>";
+        // header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
       }
     } else {
-      echo "Ocurrió algún error al subir el fichero. No pudo guardarse.";
-      header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
+      echo "<script> alert(Ocurrió algún error al subir el fichero. No pudo guardarse.); </script>";
+      echo "<script type=\"text/javascript\">history.go(-1);</script>";
+      // header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
     }
   }
 } elseif (isset($_POST['insertData1_tipo2'])) {
@@ -348,14 +361,17 @@ if (isset($_POST['insertData4'])) {
       $result = mysqli_query($con, $sql);
       if ($result) {
         echo '<script> alert("Guardado exitosamente"); </script>';
-        header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
+        echo "<script type=\"text/javascript\">history.go(-1);</script>";
+        // header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
       } else {
         echo '<script> alert("Error al guardar"); </script>';
-        header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
+        echo "<script type=\"text/javascript\">history.go(-1);</script>";
+        // header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
       }
     } else {
       echo "Ocurrió algún error al subir el fichero. No pudo guardarse.";
-      header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
+      echo "<script type=\"text/javascript\">history.go(-1);</script>";
+      // header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
     }
   }
 }

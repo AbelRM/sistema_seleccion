@@ -1,9 +1,9 @@
 <?php
-  include 'conexion.php';
-  session_start();
-  if(empty($_SESSION['active'])){
-    header("Location: ../index.php");
-  }
+include 'conexion.php';
+session_start();
+if (empty($_SESSION['active'])) {
+  header("Location: ../index.php");
+}
 ?>
 
 <!DOCTYPE html>
@@ -32,17 +32,17 @@
 
 <body id="page-top">
   <!-- Page Wrapper -->
-  <div id="wrapper">  
-    <?php     
-			include 'funcs/mcript.php';
-			
-			$dato_desencriptado = $_GET['dni'];
-			$dni = $desencriptar($dato_desencriptado);
-			
-			$sql="SELECT * FROM usuarios where dni=$dni";
-			$datos=mysqli_query($con,$sql) or die(mysqli_error()); ;
-			$fila= mysqli_fetch_array($datos);
-			include 'menu.php';
+  <div id="wrapper">
+    <?php
+    include 'funcs/mcript.php';
+
+    $dato_desencriptado = $_GET['dni'];
+    $dni = $desencriptar($dato_desencriptado);
+
+    $sql = "SELECT * FROM usuarios where dni=$dni";
+    $datos = mysqli_query($con, $sql) or die(mysqli_error($sql2));;
+    $fila = mysqli_fetch_array($datos);
+    include 'menu.php';
     ?>
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
@@ -52,45 +52,45 @@
 
         <!-- Topbar -->
         <?php
-          include_once 'nav.php';
+        include_once 'nav.php';
         ?>
         <!-- End of Topbar -->
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
-					<?php
-						include 'conexion.php';
-		
-						$sql2="SELECT * FROM postulante WHERE dni=$dni";
-						$datos2=mysqli_query($con,$sql2) or die(mysqli_error()); ;
-						$fila2= mysqli_fetch_array($datos2);
-						$idpostulante=$fila2['idpostulante'];
-					?>
+          <?php
+          include 'conexion.php';
+
+          $sql2 = "SELECT * FROM postulante WHERE dni=$dni";
+          $datos2 = mysqli_query($con, $sql2) or die(mysqli_error($sql2));;
+          $fila2 = mysqli_fetch_array($datos2);
+          $idpostulante = $fila2['idpostulante'];
+          ?>
           <!-- Page Heading -->
-            <!-- Content Row -->
-						<div class="card border-success">
-              <div class="card-header bg-success">
-                <div class="row">
-                  <div class="col-md-6">
-                    <h5 class="titulo-card text-white">Mis datos profesionales</h5>
-                  </div>
+          <!-- Content Row -->
+          <div class="card border-success">
+            <div class="card-header bg-success">
+              <div class="row">
+                <div class="col-md-6">
+                  <h5 class="titulo-card text-white">Mis datos profesionales</h5>
                 </div>
               </div>
-              <div class="card-body">
+            </div>
+            <div class="card-body">
               <?php
-                $id_formacion = $_GET['idformacion'];
-                $consulta_form = "SELECT * FROM formacion_acad 
+              $id_formacion = $_GET['idformacion'];
+              $consulta_form = "SELECT * FROM formacion_acad 
                 inner join tipo_estudios ON formacion_acad.tipo_estudios_id=tipo_estudios.id_tipo_estudios 
                 WHERE id_formacion = $id_formacion";
-                $query=mysqli_query($con, $consulta_form);
-                $row= MySQLI_fetch_array($query)
+              $query = mysqli_query($con, $consulta_form);
+              $row = MySQLI_fetch_array($query)
               ?>
               <form action="procesos/actualizar_formacion.php" autocomplete="off" method="POST">
-                <div class="row"> 
+                <div class="row">
                   <div class="form-group text-danger font-weight-bold">
                     <p>(*) Indica un campo obligatorio.</p>
-                    <p>(**) En el campo "FECHA" debe indicar la fecha de obtención del "NIVEL DE ESTUDIOS" que está registrando. 
-                    En el caso de estudiante, debe indicar la fecha del ciclo culminado que está registrando.</p>
+                    <p>(**) En el campo "FECHA" debe indicar la fecha de obtención del "NIVEL DE ESTUDIOS" que está registrando.
+                      En el caso de estudiante, debe indicar la fecha del ciclo culminado que está registrando.</p>
                   </div>
                   <input type="hidden" name="dni" value="<?php echo $dato_desencriptado ?>">
                   <input type="hidden" name="idformacion" value="<?php echo $id_formacion ?>">
@@ -100,10 +100,10 @@
                     <select class="form-control" name="tipo_estudios_edit" id="tipo_estudios_edit" required>
                       <option value="0" disabled>Seleccione:</option>
                       <?php
-                        $query = $con -> query ("SELECT * FROM tipo_estudios");
-                        while ($valores = mysqli_fetch_array($query)) {
-                          echo '<option value="'.$valores['id_tipo_estudios'].'">'.$valores['tipo_estudios'].'</option>';
-                        }
+                      $query = $con->query("SELECT * FROM tipo_estudios");
+                      while ($valores = mysqli_fetch_array($query)) {
+                        echo '<option value="' . $valores['id_tipo_estudios'] . '">' . $valores['tipo_estudios'] . '</option>';
+                      }
                       ?>
                     </select>
                   </div>
@@ -135,18 +135,30 @@
                   </div>
                   <div class="col-md-4 col-sm-12 form-group">
                     <label for="title">(*) N° Colegiatura</label>
-                    <input type="text" name="nro_colegiatura_edit" id="nro_colegiatura_edit"  class="form-control" value="<?php 
-                    if(is_null($row['nro_colegiatura'])){echo "-";}else{echo $row['nro_colegiatura'];}?>" disabled>
+                    <input type="text" name="nro_colegiatura_edit" id="nro_colegiatura_edit" class="form-control" value="<?php
+                                                                                                                          if (is_null($row['nro_colegiatura'])) {
+                                                                                                                            echo "-";
+                                                                                                                          } else {
+                                                                                                                            echo $row['nro_colegiatura'];
+                                                                                                                          } ?>" disabled>
                   </div>
                   <div class="col-md-4 col-sm-12 form-group">
                     <label for="title">(*) Fecha última habilitación</label>
-                    <input type="date" name="fecha_colegiatura_edit" id="fecha_colegiatura_edit" class="form-control" value="<?php 
-                    if(is_null($row['fech_habilitacion'])){echo "yyyy-MM-dd";}else{echo $row['fech_habilitacion'];}?>" disabled>
+                    <input type="date" name="fecha_colegiatura_edit" id="fecha_colegiatura_edit" class="form-control" value="<?php
+                                                                                                                              if (is_null($row['fech_habilitacion'])) {
+                                                                                                                                echo "yyyy-MM-dd";
+                                                                                                                              } else {
+                                                                                                                                echo $row['fech_habilitacion'];
+                                                                                                                              } ?>" disabled>
                   </div>
                   <div class="col-md-4 col-sm-12 form-group">
                     <label for="title">(*) Lugar Colegiatura</label>
-                    <input type="text" name="lugar_colegiatura_edit" id="lugar_colegiatura_edit" class="form-control" value="<?php 
-                    if(is_null($row['lugar_colegiatura'])){echo "-";}else{echo $row['lugar_colegiatura'];}?>" disabled>
+                    <input type="text" name="lugar_colegiatura_edit" id="lugar_colegiatura_edit" class="form-control" value="<?php
+                                                                                                                              if (is_null($row['lugar_colegiatura'])) {
+                                                                                                                                echo "-";
+                                                                                                                              } else {
+                                                                                                                                echo $row['lugar_colegiatura'];
+                                                                                                                              } ?>" disabled>
                   </div>
                   <div class="col-md-4 col-sm-12 form-group">
                     <label for="title">(**) Fecha Inicio</label>
@@ -156,18 +168,24 @@
                     <label for="title">(**) Fecha Término</label>
                     <input type="date" name="fecha_fin" class="form-control" value="<?php echo $row['fecha_fin'] ?>" required>
                   </div>
+                  <div class="col-md-8 col-sm-12 form-group">
+                    <label for="title">Archivo (Dejar en blanco si no desea actualizar)</label>
+                    <input type="file" name="archivos1" accept=".pdf" id="expe1_archivo" class="form-control">
+                    <div id="peso_archivo_valido" class="font-weight-bolder text-primary"></div>
+                    <div id="peso_archivo_no" class="font-weight-bolder text-danger"></div>
+                  </div>
                 </div>
-              </div>
-              <div class="modal-footer">
-                <a href="formacion.php?dni=<?php echo $dato_desencriptado  ?>" type="button" class="btn btn-default">Cancelar</a>
-                <button type="submit" name="editar" class="btn btn-success">Actualizar!</a>
-              </div>
-              </form>
             </div>
-			</div>
+            <div class="modal-footer">
+              <a href="formacion.php?dni=<?php echo $dato_desencriptado  ?>" type="button" class="btn btn-default">Cancelar</a>
+              <button type="submit" name="editar" class="btn btn-success">Actualizar!</a>
+            </div>
+            </form>
+          </div>
+        </div>
 
         <!-- /.container-fluid -->
-        </div>
+      </div>
       <!-- End of Main Content -->
 
       <!-- Footer -->
@@ -190,10 +208,10 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">¿Desea cerrar sesión?</h5>
-        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+          <h5 class="modal-title" id="exampleModalLabel">¿Desea cerrar sesión?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">×</span>
-        </button>
+          </button>
         </div>
         <div class="modal-body">Seleccione "Cerrar sesión" a continuación si está listo para finalizar su sesión actual.</div>
         <div class="modal-footer">
@@ -203,7 +221,7 @@
       </div>
     </div>
   </div>
-  
+
   <!-- Bootstrap core JavaScript-->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -221,35 +239,10 @@
   <script src="js/demo/chart-area-demo.js"></script>
   <script src="js/demo/chart-pie-demo.js"></script>
   <script src="js/funciones.js"></script>
+  <script src="js/script_formacion.js"></script>
 
-  <script>
-    $(document).ready(function(){
-        $('#nivel_estudios_edit > option[value="<?php echo $nivel_estudio?>"]').attr('selected', 'selected');
-        $('#tipo_estudios_edit > option[value="<?php echo $tipo_estudio_edit?>"]').attr('selected', 'selected');
-        $('#colegiatura_edit > option[value="<?php echo $colegiatura_edit?>"]').attr('selected', 'selected');
-    });
-  </script>
 
-  <script>
-    $(function() {
-      $("#colegiatura_edit").on('change', function() {
-      var selectValue = $(this).val();
-      switch (selectValue) {
-      case "NO":
-        $("#nro_colegiatura_edit").prop('disabled',true);
-        $("#fecha_colegiatura_edit").prop('disabled',true);
-        $("#lugar_colegiatura_edit").prop('disabled',true);
-      break;
-      case "SI":
-        $("#nro_colegiatura_edit").removeAttr('disabled');
-        $("#fecha_colegiatura_edit").removeAttr('disabled');
-        $("#lugar_colegiatura_edit").removeAttr('disabled');
-      break;
-      }
-      }).change();
-    });
-  </script>
-  
+
 </body>
 
 </html>

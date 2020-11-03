@@ -3,106 +3,100 @@ session_start();
 include "funcs/mcript.php";
 $mensaje = '';
 
-if(!empty($_SESSION['active'])){
-    $dni = $_POST['dni'];
-    header("Location: user_postu/index.php?dni=$dni");
-}else{
-    if(empty($_POST['dni']) || empty($_POST['clave'])){
-        $mensaje ='Ingrese su usuario y su contraseña!';
-    }else{
-        require_once "conexion.php";
+if (!empty($_SESSION['active'])) {
+  $dni = $_POST['dni'];
+  header("Location: user_postu/index.php?dni=$dni");
+} else {
+  if (empty($_POST['dni']) || empty($_POST['clave'])) {
+    $mensaje = 'Ingrese su usuario y su contraseña!';
+  } else {
+    require_once "conexion.php";
 
-        $dni = mysqli_real_escape_string($con,$_POST['dni']);
-        $clave = md5(mysqli_real_escape_string($con,$_POST['clave']));
+    $dni = mysqli_real_escape_string($con, $_POST['dni']);
+    $clave = md5(mysqli_real_escape_string($con, $_POST['clave']));
 
-        date_default_timezone_set('America/Lima');
-        $ultima_sesion = date('Y-m-d H:i:s', time());
+    date_default_timezone_set('America/Lima');
+    $ultima_sesion = date('Y-m-d H:i:s', time());
 
-        $captcha = $_POST['g-recaptcha-response'];
-        $secret = '6LcAvMQZAAAAAGu1OUSSvdIyp5Y-Gd-AgzvJbb1e';
+    $captcha = $_POST['g-recaptcha-response'];
+    $secret = '6LcAvMQZAAAAAGu1OUSSvdIyp5Y-Gd-AgzvJbb1e';
 
-        $query = mysqli_query($con, "SELECT * FROM usuarios WHERE dni='$dni' AND clave='$clave' ");
-        $result = mysqli_num_rows($query);
-        if(!$captcha){
- 
-          $mensaje = "Por favor verifica el captcha";
-          
-          } else {
-          
-          $response = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=$secret&response=$captcha");
-          
-          $arr = json_decode($response, TRUE);
-          
-          if($arr['success'])
-          {
-            if($result > 0){
-              $data = mysqli_fetch_array($query);
-  
-              $query2 = mysqli_query($con,"SELECT * FROM usuarios WHERE dni='$dni' AND tipo_user='ESTUDIANTE' ");
-              $resultado = mysqli_num_rows($query2);
+    $query = mysqli_query($con, "SELECT * FROM usuarios WHERE dni='$dni' AND clave='$clave' ");
+    $result = mysqli_num_rows($query);
+    if (!$captcha) {
 
-              $actualizar = "UPDATE user SET ultima_sesion = '$ultima_sesion' WHERE dni = '$dni' ";
-              $act_query = mysqli_query($con,$actualizar);
-  
-              if($resultado > 0){
-                  $prueba="SELECT * FROM postulante where dni=$dni";
-                  $datos=mysqli_query($con,$prueba); 
-                  $fila= mysqli_fetch_array($datos);
-                  $idpostulante=$fila['idpostulante'];
-  
-                  $resultado=$con->query("SELECT EXISTS (SELECT * FROM familia_post WHERE postulante_idpostulante=$idpostulante);");
-                  $row=mysqli_fetch_row($resultado);
+      $mensaje = 'Conexión inestable, por favor verifica el captcha';
+    } else {
+      $response = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=$secret&response=$captcha");
 
-                  if ($row[0]=="1") {
-                  $idpostulante=$fila['idpostulante'];
-                  $_SESSION['active']=true;
-                  $_SESSION['idUser']=$data['iduser'];
-                  $_SESSION['dni']=$data['dni'];
-                  $_SESSION['correo']=$data['correo'];
-                  $_SESSION['rol']=$data['tipo_user'];
+      $arr = json_decode($response, TRUE);
 
-                  // Como usar las funciones para encriptar y desencriptar.
-                  //$dato = "Esta es información importante";
+      if ($arr['success']) {
+        if ($result > 0) {
+          $data = mysqli_fetch_array($query);
 
-                  //Encripta información:
-                  $dato_encriptado = $encriptar($dni);
+          $query2 = mysqli_query($con, "SELECT * FROM usuarios WHERE dni='$dni' AND tipo_user='ESTUDIANTE' ");
+          $resultado = mysqli_num_rows($query2);
 
-                  //Desencripta información:
-                  //$dato_desencriptado = $desencriptar($dato_encriptado);
+          $actualizar = "UPDATE user SET ultima_sesion = '$ultima_sesion' WHERE dni = '$dni' ";
+          $act_query = mysqli_query($con, $actualizar);
 
-  
-                  header("Location: user_postu/index.php?dni=$dato_encriptado");
-                     
-                  }else{
-                      $dato_encriptado = $encriptar($dni);
-                      header("Location: user_postu/ficha_wizard.php?dni=$dato_encriptado");
-                  } 
-              }else{
-                  $dato_encriptado = $encriptar($dni);
+          if ($resultado > 0) {
+            $prueba = "SELECT * FROM postulante where dni=$dni";
+            $datos = mysqli_query($con, $prueba);
+            $fila = mysqli_fetch_array($datos);
+            $idpostulante = $fila['idpostulante'];
 
-                  $query3 = mysqli_query($con,"SELECT * FROM usuarios WHERE dni='$dni' AND tipo_user='ADMINISTRADOR' ");
-                  $resultado2 = mysqli_num_rows($query3);
-                  if($resultado2 > 0)
-                  $data2 = mysqli_fetch_array($query);
-                  $_SESSION['active']=true;
-                  $_SESSION['idUser']=$data2['iduser'];
-                  $_SESSION['dni']=$data2['dni'];
-                  $_SESSION['correo']=$data2['correo'];
-                  $_SESSION['rol']=$data2['tipo_user'];
-                  header("Location: user_admi/index.php?dni=$dato_encriptado");
-              }
-              
-            }else{
-                session_destroy();
-                $mensaje = 'Usuario y/o contraseña incorrecta';
-            }
-           // echo '<h2>Thanks</h2>';
+            $resultado = $con->query("SELECT EXISTS (SELECT * FROM familia_post WHERE postulante_idpostulante=$idpostulante);");
+            $row = mysqli_fetch_row($resultado);
+
+            if ($row[0] == "1") {
+              $idpostulante = $fila['idpostulante'];
+              $_SESSION['active'] = true;
+              $_SESSION['idUser'] = $data['iduser'];
+              $_SESSION['dni'] = $data['dni'];
+              $_SESSION['correo'] = $data['correo'];
+              $_SESSION['rol'] = $data['tipo_user'];
+
+              // Como usar las funciones para encriptar y desencriptar.
+              //$dato = "Esta es información importante";
+
+              //Encripta información:
+              $dato_encriptado = $encriptar($dni);
+
+              //Desencripta información:
+              //$dato_desencriptado = $desencriptar($dato_encriptado);
+
+
+              header("Location: user_postu/index.php?dni=$dato_encriptado");
             } else {
-            $mensaje = 'Error al comprobar Captcha';
+              $dato_encriptado = $encriptar($dni);
+              header("Location: user_postu/ficha_wizard.php?dni=$dato_encriptado");
+            }
+          } else {
+            $dato_encriptado = $encriptar($dni);
+
+            $query3 = mysqli_query($con, "SELECT * FROM usuarios WHERE dni='$dni' AND tipo_user='ADMINISTRADOR' ");
+            $resultado2 = mysqli_num_rows($query3);
+            if ($resultado2 > 0)
+              $data2 = mysqli_fetch_array($query);
+            $_SESSION['active'] = true;
+            $_SESSION['idUser'] = $data2['iduser'];
+            $_SESSION['dni'] = $data2['dni'];
+            $_SESSION['correo'] = $data2['correo'];
+            $_SESSION['rol'] = $data2['tipo_user'];
+            header("Location: user_admi/index.php?dni=$dato_encriptado");
           }
+        } else {
+          session_destroy();
+          $mensaje = 'Usuario y/o contraseña incorrecta';
         }
-       
+        // echo '<h2>Thanks</h2>';
+      } else {
+        $mensaje = 'Error al comprobar Captcha';
+      }
     }
+  }
 }
 ?>
 
@@ -142,7 +136,7 @@ if(!empty($_SESSION['active'])){
           <div class="card-body p-0">
             <!-- Nested Row within Card Body -->
             <div class="row">
-              <div class="col-lg-6 d-none d-lg-flex justify-content-center"  >
+              <div class="col-lg-6 d-none d-lg-flex justify-content-center">
                 <img src="public/img/postulante_2.png" style="max-width: 100%; margin: auto;" alt="Imagen del postulante">
               </div>
               <div class="col-lg-6">
@@ -151,9 +145,9 @@ if(!empty($_SESSION['active'])){
                     <img src="public/img/diresa.png" alt="Logo de diresa" style="max-width: 70%; height: auto;">
                   </div>
                   <div class="form-group text-danger font-weight-bold text-center">
-                  <?php if(!empty($mensaje)): ?>
-                    <p><?= $mensaje ?></p>
-                  <?php endif; ?>
+                    <?php if (!empty($mensaje)) : ?>
+                      <p><?= $mensaje ?></p>
+                    <?php endif; ?>
                   </div>
                   <form action="<?php $_SERVER['PHP_SELF']; ?>" method="POST" class="user">
                     <div class="form-group">
@@ -164,7 +158,8 @@ if(!empty($_SESSION['active'])){
                     </div>
                     <div class="form-group d-flex justify-content-center">
                       <div class="g-recaptcha" data-sitekey="6LcAvMQZAAAAABpMCKbjwzzFlH4IK5OCjePzxkh7"></div>
-                    <?php //echo isset($alert) ? $alert : '';?>
+                      <?php //echo isset($alert) ? $alert : '';
+                      ?>
                     </div>
                     <div class="form-group d-flex justify-content-center">
                       <button type="submit" class="btn btn-primary btn-user btn-block">Iniciar sesión</button>

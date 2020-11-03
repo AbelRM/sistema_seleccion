@@ -1,9 +1,5 @@
 //binds to onchange event of your input field
- $(document).ready(function() {
-      $('#nivel_estudios_edit > option[value="<?php echo $nivel_estudio ?>"]').attr('selected', 'selected');
-      $('#tipo_estudios_edit > option[value="<?php echo $tipo_estudio_edit ?>"]').attr('selected', 'selected');
-      $('#colegiatura_edit > option[value="<?php echo $colegiatura_edit ?>"]').attr('selected', 'selected');
-    });
+ 
 
 $('#expe1_archivo').bind('change', function () {
    var peso = (this.files[0].size);

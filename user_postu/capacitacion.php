@@ -99,6 +99,7 @@ if (empty($_SESSION['active'])) {
                                 <thead>
                                   <tr class="bg-primary" style="text-align:center; color:#000; font-size:0.813em;">
                                     <th>N°</th>
+                                    <th style="display: none;">ID</th>
                                     <th>Centro de estudios</th>
                                     <th>Especialidad</th>
                                     <th>Fecha Inicio</th>
@@ -111,26 +112,29 @@ if (empty($_SESSION['active'])) {
                                 <tbody>
                                   <?php
                                   $sql1 = "SELECT * FROM estudios_superiores WHERE idpostulante_postulante = $idpostulante";
+                                  $i = 1;
                                   $query1 = mysqli_query($con, $sql1);
                                   if (mysqli_num_rows($query1) > 0) {
                                     while ($row1 = MySQLI_fetch_array($query1)) {
                                   ?>
                                       <tr>
-                                        <td style="font-size: 12px;"><?php echo $row1['idestudios']; ?></td>
+                                        <td style="font-size: 12px;"><?php echo $i ?></td>
+                                        <td style="font-size: 12px; display: none;"><?php echo $row1['idestudios']; ?></td>
                                         <td style="font-size: 12px;"><?php echo $row1['centro_estu']; ?></td>
                                         <td style="font-size: 12px;"><?php echo $row1['especialidad']; ?></td>
                                         <td style="font-size: 12px;"><?php echo $row1['fech_ini'] ?></td>
                                         <td style="font-size: 12px;"><?php echo $row1['fech_fin'] ?></td>
                                         <td style="font-size: 12px;"><?php echo $row1['nivel'] ?></td>
-                                        <td><a href="ver_estudiossup.php?id=<?php echo $row1['idestudios'] ?>&dni=<?php echo $dato_desencriptado ?>"><?php echo $row1['archivo']; ?></a></td>
+                                        <td><a href="ver_estudiossup.php?id=<?php echo $row1['idestudios'] ?>&dni=<?php echo $dato_desencriptado ?>" target="_blank"><?php echo $row1['archivo']; ?></a></td>
 
                                         <td class="d-flex justify-content-center">
                                           <button class="btn btn-success btn-sm m-1 updateBtn"><i class="fa fa-edit"></i></button>
                                           <button class="btn btn-danger btn-sm m-1 deleteBtn"><i class="fa fa-times-circle"></i></button>
                                         </td>
                                       </tr>
-                                  <?php
 
+                                  <?php
+                                      $i++;
                                     }
                                   } else {
                                     echo "<tr><td colspan='8' class='text-center text-danger' >NO HAY DATOS REGISTRADOS</td></tr>";
@@ -166,6 +170,7 @@ if (empty($_SESSION['active'])) {
                                 <thead>
                                   <tr class="bg-primary" style="text-align:center; color:#000; font-size:0.813em;">
                                     <th>N°</th>
+                                    <th style="display: none;">ID</th>
                                     <th>Centro de estudios</th>
                                     <th>Especialidad</th>
                                     <th>Tipo</th>
@@ -179,25 +184,28 @@ if (empty($_SESSION['active'])) {
                                 <tbody>
                                   <?php
                                   $consulta3 = "SELECT * FROM maestria_doc WHERE idpostulante_postulante = $idpostulante";
+                                  $i = 1;
                                   $query = mysqli_query($con, $consulta3);
                                   if (mysqli_num_rows($query) > 0) {
                                     while ($row3 = MySQLI_fetch_array($query)) {
                                   ?>
                                       <tr>
-                                        <td style="font-size: 12px;"><?php echo $row3['idmaestria_doc'] ?></td>
+                                        <td style="font-size: 12px;"><?php echo $i ?></td>
+                                        <td style="font-size: 12px; display: none"><?php echo $row3['idmaestria_doc'] ?></td>
                                         <td style="font-size: 12px;"><?php echo $row3['centro_estu'] ?></td>
                                         <td style="font-size: 12px;"><?php echo $row3['especialidad'] ?></td>
                                         <td style="font-size: 12px;"><?php echo $row3['tipo_estu'] ?></td>
                                         <td style="font-size: 12px;"><?php echo $row3['fech_ini'] ?></td>
                                         <td style="font-size: 12px;"><?php echo $row3['fech_fin'] ?></td>
                                         <td style="font-size: 12px;"><?php echo $row3['nivel']; ?></td>
-                                        <td><a href="verpostgrado.php?id=<?php echo $row3['idmaestria_doc'] ?>&dni=<?php echo $dato_desencriptado ?>"><?php echo $row3['archivo']; ?></a></td>
+                                        <td><a href="verpostgrado.php?id=<?php echo $row3['idmaestria_doc'] ?>&dni=<?php echo $dato_desencriptado ?>" target="_blank"><?php echo $row3['archivo']; ?></a></td>
                                         <td class="d-flex justify-content-center">
                                           <button class="btn btn-success btn-sm m-1 updateBtn1"><i class="fa fa-edit"></i></button>
                                           <button class="btn btn-danger btn-sm m-1 deleteBtn1"><i class="fa fa-times-circle"></i></button>
                                         </td>
                                       </tr>
                                   <?php
+                                      $i++;
                                     }
                                   } else {
                                     echo "<tr><td colspan='9' class='text-center text-danger' >NO HAY DATOS REGISTRADOS</td></tr>";
@@ -233,6 +241,7 @@ if (empty($_SESSION['active'])) {
                                 <thead>
                                   <tr class="bg-primary" style="text-align:center; color:#000; font-size:0.813em;">
                                     <th>N°</th>
+                                    <th style="display: none;">ID</th>
                                     <th>Centro de estudios</th>
                                     <th>Nombre de materia</th>
                                     <th>Horas</th>
@@ -247,24 +256,27 @@ if (empty($_SESSION['active'])) {
                                   <?php
                                   $consulta3 = "SELECT * FROM cursos_extra WHERE curso_extra_idpostulante = $idpostulante";
                                   $query = mysqli_query($con, $consulta3);
+                                  $i = 1;
                                   if (mysqli_num_rows($query) > 0) {
                                     while ($row3 = MySQLI_fetch_array($query)) {
                                   ?>
                                       <tr>
-                                        <td style="font-size: 12px;"><?php echo $row3['idcursos_extra'] ?></td>
+                                        <td style="font-size: 12px;"><?php echo $i ?></td>
+                                        <td style="font-size: 12px; display:none"><?php echo $row3['idcursos_extra'] ?></td>
                                         <td style="font-size: 12px;"><?php echo $row3['centro_estu'] ?></td>
                                         <td style="font-size: 12px;"><?php echo $row3['materia'] ?></td>
                                         <td style="font-size: 12px;"><?php echo $row3['horas'] ?></td>
                                         <td style="font-size: 12px;"><?php echo $row3['fech_ini'] ?></td>
                                         <td style="font-size: 12px;"><?php echo $row3['fech_fin'] ?></td>
                                         <td style="font-size: 12px;"><?php echo $row3['tipo'] ?></td>
-                                        <td><a href="ver_diplomados.php?id=<?php echo $row3['idcursos_extra'] ?>&dni=<?php echo $dato_desencriptado ?>"><?php echo $row3['archivo']; ?></a></td>
+                                        <td><a href="ver_diplomados.php?id=<?php echo $row3['idcursos_extra'] ?>&dni=<?php echo $dato_desencriptado ?>" target="_blank"><?php echo $row3['archivo']; ?></a></td>
                                         <td class="d-flex justify-content-center">
                                           <button class="btn btn-success btn-sm m-1 updateBtn2"><i class="fa fa-edit"></i></button>
                                           <button class="btn btn-danger btn-sm m-1 deletebtn2"><i class="fa fa-times-circle"></i></button>
                                         </td>
                                       </tr>
                                   <?php
+                                      $i++;
                                     }
                                   } else {
                                     echo "<tr><td colspan='9' class='text-center text-danger' >NO HAY DATOS REGISTRADOS</td></tr>";
@@ -299,6 +311,7 @@ if (empty($_SESSION['active'])) {
                                 <thead>
                                   <tr class="bg-primary" style="text-align:center; color:#000; font-size:0.813em;">
                                     <th>N°</th>
+                                    <th style="display: none;">ID</th>
                                     <th scope="col">Idioma/Computación</th>
                                     <th scope="col">Nivel</th>
                                     <th scope="col">Archivo</th>
@@ -308,22 +321,24 @@ if (empty($_SESSION['active'])) {
                                 <tbody>
                                   <?php
                                   $consulta4 = "SELECT * FROM idiomas_comp WHERE idpostulante_postulante = $idpostulante";
-
+                                  $i = 1;
                                   $query = mysqli_query($con, $consulta4);
                                   if (mysqli_num_rows($query) > 0) {
                                     while ($row4 = MySQLI_fetch_array($query)) {
                                   ?>
                                       <tr>
-                                        <td style="font-size: 12px;"><?php echo $row4['ididiomas_comp'] ?></td>
+                                        <td style="font-size: 12px;"><?php echo $i ?></td>
+                                        <td style="font-size: 12px; display:none"><?php echo $row4['ididiomas_comp'] ?></td>
                                         <td style="font-size: 12px;"><?php echo $row4['idioma_comp'] ?></td>
                                         <td style="font-size: 12px;"><?php echo $row4['nivel'] ?></td>
-                                        <td><a href="ver_idiomas.php?id=<?php echo $row4['ididiomas_comp'] ?>&dni=<?php echo $dato_desencriptado ?>"><?php echo $row4['archivo']; ?></a></td>
+                                        <td><a href="ver_idiomas.php?id=<?php echo $row4['ididiomas_comp'] ?>&dni=<?php echo $dato_desencriptado ?>" target="_blank"><?php echo $row4['archivo']; ?></a></td>
                                         <td class="d-flex justify-content-center">
                                           <button class="btn btn-success btn-sm m-1 updateBtn3"><i class="fa fa-edit"></i></button>
                                           <button class="btn btn-danger btn-sm m-1 deleteBtn3"><i class="fa fa-times-circle"></i></button>
                                         </td>
                                       </tr>
                                   <?php
+                                      $i++;
                                     }
                                   } else {
                                     echo "<tr><td colspan='7' class='text-center text-danger' >NO HAY DATOS REGISTRADOS</td></tr>";
@@ -845,7 +860,7 @@ if (empty($_SESSION['active'])) {
       <div class="modal-dialog modal-md">
         <div class="modal-content">
           <div class="modal-header bg-warning text-white">
-            <h5 class="modal-title">Modificar Estudio Ingles/Computacion</h5>
+            <h5 class="modal-title">Modificar Estudio Ingles/Computación</h5>
             <button class="close" data-dismiss="modal"><span>×</span></button>
           </div>
           <div class="modal-body">
@@ -855,7 +870,7 @@ if (empty($_SESSION['active'])) {
               <input type="hidden" name="dni4" name="dni4" value="<?php echo $dni ?>">
               <div class="form-group">
                 <label for="title">Idiomas/Computacion</label>
-                <input type="text" name="idioma_comp" id="idioma_comp" class="form-control" placeholder="Enter first name" maxlength="50">
+                <input type="text" name="idioma_comp" id="idioma_comp" class="form-control" placeholder="Ingrese el idioma/computación" maxlength="50">
               </div>
 
               <div class="form-group">
@@ -1414,14 +1429,14 @@ if (empty($_SESSION['active'])) {
           }).get();
 
           console.log(data);
-
-          $('#idestudios').val(data[0]);
-          $('#centro_estu').val(data[1]);
-          $('#especialida').val(data[2]);
-          $('#fecha_i').val(data[3]);
-          $('#fecha_f').val(data[4]);
-          $('#nivel_estu').val(data[5]);
-          $('#archivos1').val(data[6]);
+          $('#num').val(data[0]);
+          $('#idestudios').val(data[1]);
+          $('#centro_estu').val(data[2]);
+          $('#especialida').val(data[3]);
+          $('#fecha_i').val(data[4]);
+          $('#fecha_f').val(data[5]);
+          $('#nivel_estu').val(data[6]);
+          $('#archivos1').val(data[7]);
         });
       });
 
@@ -1437,7 +1452,8 @@ if (empty($_SESSION['active'])) {
           }).get();
 
           console.log(data);
-          $('#id').val(data[0]);
+          $('#num').val(data[0]);
+          $('#id').val(data[1]);
         });
       });
     </script>
@@ -1456,15 +1472,15 @@ if (empty($_SESSION['active'])) {
           }).get();
 
           console.log(data);
-
-          $('#idmaestria_doc').val(data[0]);
-          $('#centro_estudi').val(data[1]);
-          $('#especialidades').val(data[2]);
-          $('#tipo_estu').val(data[3]);
-          $('#fecha_inic').val(data[4]);
-          $('#fecha_fi').val(data[5]);
-          $('#nivel1').val(data[6]);
-          $('#archivos2').val(data[7]);
+          $('#num').val(data[0]);
+          $('#idmaestria_doc').val(data[1]);
+          $('#centro_estudi').val(data[2]);
+          $('#especialidades').val(data[3]);
+          $('#tipo_estu').val(data[4]);
+          $('#fecha_inic').val(data[5]);
+          $('#fecha_fi').val(data[6]);
+          $('#nivel1').val(data[7]);
+          $('#archivos2').val(data[8]);
 
         });
       });
@@ -1481,7 +1497,8 @@ if (empty($_SESSION['active'])) {
           }).get();
 
           console.log(data);
-          $('#id1').val(data[0]);
+          $('#num').val(data[0]);
+          $('#id1').val(data[1]);
         });
       });
     </script>
@@ -1500,15 +1517,15 @@ if (empty($_SESSION['active'])) {
           }).get();
 
           console.log(data);
-
-          $('#idcursos_extra').val(data[0]);
-          $('#centro_estud').val(data[1]);
-          $('#materia1').val(data[2]);
-          $('#horas1').val(data[3]);
-          $('#fech_inic1').val(data[4]);
-          $('#fech_fin1').val(data[5]);
-          $('#tip').val(data[6]);
-          $('#archivo3').val(data[7]);
+          $('#num').val(data[0]);
+          $('#idcursos_extra').val(data[1]);
+          $('#centro_estud').val(data[2]);
+          $('#materia1').val(data[3]);
+          $('#horas1').val(data[4]);
+          $('#fech_inic1').val(data[5]);
+          $('#fech_fin1').val(data[6]);
+          $('#tip').val(data[7]);
+          $('#archivo3').val(data[8]);
 
         });
       });
@@ -1525,7 +1542,8 @@ if (empty($_SESSION['active'])) {
           }).get();
 
           console.log(data);
-          $('#id2').val(data[0]);
+          $('#num').val(data[0]);
+          $('#id2').val(data[1]);
         });
       });
     </script>
@@ -1544,11 +1562,11 @@ if (empty($_SESSION['active'])) {
           }).get();
 
           console.log(data);
-
-          $('#ididiomas_comp').val(data[0]);
-          $('#idioma_comp').val(data[1]);
-          $('#nivel4').val(data[2]);
-          $('#archivos4').val(data[3]);
+          $('#num').val(data[0]);
+          $('#ididiomas_comp').val(data[1]);
+          $('#idioma_comp').val(data[2]);
+          $('#nivel4').val(data[3]);
+          $('#archivos4').val(data[4]);
 
         });
       });
@@ -1565,7 +1583,8 @@ if (empty($_SESSION['active'])) {
           }).get();
 
           console.log(data);
-          $('#id3').val(data[0]);
+          $('#num').val(data[0]);
+          $('#id3').val(data[1]);
         });
       });
     </script>

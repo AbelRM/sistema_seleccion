@@ -1,10 +1,10 @@
 <?php
-  include 'conexion.php';
-  include "funcs/mcript.php";
-  session_start();
-  if(empty($_SESSION['active'])){
-    header("Location: ../index.php");
-  }
+include 'conexion.php';
+include "funcs/mcript.php";
+session_start();
+if (empty($_SESSION['active'])) {
+  header("Location: ../index.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,15 +29,23 @@
   <!-- <link rel="stylesheet" href="css/style.css"> -->
   <link rel="stylesheet" href="css/lib/chosen/chosen.css">
   <style>
-    #total  {font-weight:bold;}
-    .red    {border-color:red;}
-    .green  {border-color:green;}
+    #total {
+      font-weight: bold;
+    }
+
+    .red {
+      border-color: red;
+    }
+
+    .green {
+      border-color: green;
+    }
   </style>
 
   <!-- Select-->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
 
-  
+
 </head>
 
 <body id="page-top">
@@ -45,14 +53,14 @@
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-    <?php     
-      $dato_desencriptado = $_GET['dni'];
-      $dni = $desencriptar($dato_desencriptado);
+    <?php
+    $dato_desencriptado = $_GET['dni'];
+    $dni = $desencriptar($dato_desencriptado);
 
-      $sql="SELECT * FROM usuarios where dni=$dni";
-      $datos=mysqli_query($con,$sql) or die(mysqli_error()); ;
-      $fila= mysqli_fetch_array($datos);
-      include 'menu.php';
+    $sql = "SELECT * FROM usuarios where dni=$dni";
+    $datos = mysqli_query($con, $sql) or die(mysqli_error($datos));;
+    $fila = mysqli_fetch_array($datos);
+    include 'menu.php';
     ?>
 
     <!-- Content Wrapper -->
@@ -80,45 +88,40 @@
                   <h6 class="m-0 font-weight-bold text-primary">NUEVA CONVOCATORIA</h6>
                 </div>
                 <div class="card-body">
-                  <form action="procesos/guardar_nueva_convo.php" class="needs-validation" method="POST" >
+                  <form action="procesos/guardar_nueva_convo.php" class="needs-validation" method="POST">
                     <div class="form-group">
-                        <h6 class="m-0 font-weight-bold text-danger">Datos de la convocatoria</h6>
-                        <hr class="sidebar-divider">
+                      <h6 class="m-0 font-weight-bold text-danger">Datos de la convocatoria</h6>
+                      <hr class="sidebar-divider">
                     </div>
                     <div class="form-row">
                       <input type="hidden" name="dni" id="dni" value="<?php echo $dato_desencriptado ?>">
                       <div class="form-group col-lg-2 col-md-4 col-sm-12">
-                          <label for="inputState">Tipo de concurso</label>
-                          <select name="tipo_con" id="tipo_con" class="form-control" autofocus required>
-                              <option selected>Elegir...</option>
-                              <option value="C.A.S.">C.A.S.</option>
-                              <option value="P.E. 276">Provisión Externa 276</option>
-                              <option value="PRACTICANTE">Practicante</option>
-                          </select>
+                        <label for="inputState">Tipo de concurso</label>
+                        <select name="tipo_con" id="tipo_con" class="form-control" autofocus required>
+                          <option selected>Elegir...</option>
+                          <option value="C.A.S.">C.A.S.</option>
+                          <option value="P.E. 276">Provisión Externa 276</option>
+                          <option value="PRACTICANTE">Practicante</option>
+                        </select>
                       </div>
                       <div class="form-group col-lg-2 col-md-4 col-sm-6">
-                          <label for="inputEmail4">N° de convocatoria</label>
-                          <input type="number" class="form-control" name="num_con" id="num_con" minlength="3" maxlength="3" placeholder="Ejm: 001" required>
+                        <label for="inputEmail4">N° de convocatoria</label>
+                        <input type="number" class="form-control" name="num_con" id="num_con" minlength="3" maxlength="3" placeholder="Ejm: 001" required>
                       </div>
                       <div class="form-group col-lg-2 col-md-4 col-sm-6">
-                          <label for="inputEmail4">Año de convocatoria</label>
-                          <input type="number" class="form-control" name="anio_con" id="anio_con" minlength="4" maxlength="4" placeholder="Ejm: 2020" required>
+                        <label for="inputEmail4">Año de convocatoria</label>
+                        <input type="number" class="form-control" name="anio_con" id="anio_con" minlength="4" maxlength="4" placeholder="Ejm: 2020" required>
                       </div>
                       <div class="form-group col-lg-3 col-md-4 col-sm-6">
-                          <label for="inputEmail4">Fecha de inicio</label>
-                          <input type="date" name="fech_ini" id="fech_ini" class="form-control" required>
+                        <label for="inputEmail4">Fecha de inicio</label>
+                        <input type="date" name="fech_ini" id="fech_ini" class="form-control" required>
                       </div>
                       <div class="form-group col-lg-3 col-md-4 col-sm-6">
-                          <label for="inputEmail4">Fecha de fin</label>
-                          <input type="date" name="fech_fin" id="fech_fin" class="form-control" required>
+                        <label for="inputEmail4">Fecha de fin</label>
+                        <input type="date" name="fech_fin" id="fech_fin" class="form-control" required>
                       </div>
-                      <div class="form-group col-lg-2 col-md-4 col-sm-12">
-                          <label for="inputState">Estado convocatoria</label>
-                          <select name="estado" id="estado" class="form-control" required>
-                              <option value="ACTIVO" >ACTIVO</option>
-                              <option value="FINALIZADO">FINALIZADO</option>
-                          </select>
-                      </div>
+                      <input type="hidden" name="estado" value="ACTIVO">
+
                       <!-- <div class="col-sm-12 col-md-12">
                         <div class="row form-group">
                           <div class="col col-md-2"><label for="selectSm" class=" form-control-label">Ubicación</label></div>
@@ -126,11 +129,11 @@
                             <select name="chosen-unique" class="chosen1" data-placeholder="Elige la ubicación del personal requerido" required>
                               <option value=""></option>
                               <?php
-                              $sql="SELECT * FROM ubicacion";
-                              $res=mysqli_query($con,$sql) or die("Problemas en consulta").mysqli_error();
-                              while ($rw= mysqli_fetch_array($res)){
-                                  echo "<option value=".$rw["iddireccion"].">".$rw["direccion_ejec"]." - ".$rw["equipo_ejec"]."</option> ";
-                              } 
+                              $sql = "SELECT * FROM ubicacion";
+                              $res = mysqli_query($con, $sql) or die("Problemas en consulta") . mysqli_error($res);
+                              while ($rw = mysqli_fetch_array($res)) {
+                                echo "<option value=" . $rw["iddireccion"] . ">" . $rw["direccion_ejec"] . " - " . $rw["equipo_ejec"] . "</option> ";
+                              }
                               ?>
                             </select>
                           </div>
@@ -160,7 +163,7 @@
                         <div class="form-group row">
                           <label for="staticEmail" class="col-sm-6 col-form-label">% EXÁMEN ESCRITO:</label>
                           <div class="col-sm-2">
-                            <input type="text" name="escrito" class="form-control sumar" id="escrito" value="0" >
+                            <input type="text" name="escrito" class="form-control sumar" id="escrito" value="0">
                           </div>
                           <label for="staticEmail" class="col-sm-4 col-form-label">%</label>
                         </div>
@@ -191,9 +194,9 @@
                       </div>
                     </div>
                     <div class="form-row d-flex justify-content-end">
-                        <button type="submit" class="btn btn-danger">SIGUIENTE</button>
+                      <button type="submit" class="btn btn-danger">SIGUIENTE</button>
                     </div>
-                  </form> 
+                  </form>
                 </div>
               </div>
 
@@ -226,17 +229,17 @@
   <div class="modal fade" id="cerrarsesion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
-          <div class="modal-header">
+        <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">¿Desea cerrar sesión?</h5>
           <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">×</span>
+            <span aria-hidden="true">×</span>
           </button>
-          </div>
-          <div class="modal-body">Seleccione "Cerrar sesión" a continuación si está listo para finalizar su sesión actual.</div>
-          <div class="modal-footer">
+        </div>
+        <div class="modal-body">Seleccione "Cerrar sesión" a continuación si está listo para finalizar su sesión actual.</div>
+        <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
           <a class="btn btn-primary" href="procesos/cerrar_sesion.php">Cerrar sesión</a>
-          </div>
+        </div>
       </div>
     </div>
   </div>

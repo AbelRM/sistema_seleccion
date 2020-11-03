@@ -240,7 +240,13 @@ if (empty($_SESSION['active'])) {
   <script src="js/demo/chart-pie-demo.js"></script>
   <script src="js/funciones.js"></script>
   <script src="js/script_formacion.js"></script>
-
+  <script>
+    $(document).ready(function() {
+      $('#nivel_estudios_edit > option[value="<?php echo $nivel_estudio ?>"]').attr('selected', 'selected');
+      $('#tipo_estudios_edit > option[value="<?php echo $tipo_estudio_edit ?>"]').attr('selected', 'selected');
+      $('#colegiatura_edit > option[value="<?php echo $colegiatura_edit ?>"]').attr('selected', 'selected');
+    });
+  </script>
 
 
 </body>

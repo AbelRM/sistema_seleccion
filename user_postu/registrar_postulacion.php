@@ -140,6 +140,10 @@
                     <label for="disabled-input">Remuneración del cargo:</label>
                     <input type="text" class="form-control" value="<?php echo $fila4['remuneracion'] ?>" disabled>
                   </div>
+                  <div class="col-md-3 col-sm-12">
+                    <label for="disabled-input">Remuneración del cargo:</label>
+                    <input type="text" class="form-control" value="<?php echo $fila4['remuneracion'] ?>" disabled>
+                  </div>
                 </div>
                 <hr class="sidebar-divider d-none d-md-block">
                 <div class="form-group row">

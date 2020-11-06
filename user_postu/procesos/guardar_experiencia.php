@@ -13,6 +13,7 @@ if (isset($_POST['insertData4'])) {
   $fecha_ini_4exp = $_POST['fecha_ini_4exp'];
   $fecha_fin_4exp = $_POST['fecha_fin_4exp'];
 
+
   $micarpeta = $_SERVER['DOCUMENT_ROOT'] . '/sistema_seleccion/user_postu/archivos/' . $dni . '/expe4_laboral/';
   if (!file_exists($micarpeta)) {
     mkdir($micarpeta, 0777, true);
@@ -46,17 +47,35 @@ if (isset($_POST['insertData4'])) {
     echo "La extensión o el tamaño de los archivos no es correcta. <br><br><table><tr><td><li>Solo se permiten archivos .pdf<br><li>se permiten archivos de 3 Mb máximo.</td></tr></table>";
   } else {
     if (move_uploaded_file($_FILES['archivo']['tmp_name'], $micarpeta . $new_nombre)) {
-      $sql = "INSERT INTO expe_4puntos (lugar,cargo,fecha_inicio,fecha_fin,anios,meses,dias,archivos,tipo_expe,expe_4puntos_idpostulante) 
-          VALUES('$lugar_4exp','$cargo_funciones_4exp', '$fecha_ini_4exp','$fecha_fin_4exp','$años','$meses','$dias','$new_nombre','$tipo_expe4','$idpostulante')";
-      $result = mysqli_query($con, $sql);
-      if ($result) {
-        echo '<script> alert("Guardado exitosamente"); </script>';
-        echo "<script type=\"text/javascript\">history.go(-1);</script>";
-        // header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
+      if ($tipo_comprobante == 'contrato') {
+        $nro_contrato = $_POST['nro_contrato'];
+        $sql = "INSERT INTO expe_4puntos (lugar,cargo,fecha_inicio,fecha_fin,anios,meses,dias,archivos,tipo_expe,expe_4puntos_idpostulante, tipo_comprobante,nro_contrato) 
+          VALUES('$lugar_4exp','$cargo_funciones_4exp', '$fecha_ini_4exp','$fecha_fin_4exp','$años','$meses','$dias','$new_nombre','$tipo_expe4','$idpostulante','$tipo_comprobante','$nro_contrato')";
+        $result = mysqli_query($con, $sql);
+        if ($result) {
+          echo '<script> alert("Guardado exitosamente"); </script>';
+          echo "<script type=\"text/javascript\">history.go(-1);</script>";
+          // header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
+        } else {
+          echo '<script> alert("Error al guardar"); </script>';
+          echo "<script type=\"text/javascript\">history.go(-1);</script>";
+          // header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
+        }
       } else {
-        echo '<script> alert("Error al guardar"); </script>';
-        echo "<script type=\"text/javascript\">history.go(-1);</script>";
-        // header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
+        $fech_emision = $_POST['fecha_boleta'];
+        $monto_boleta = $_POST['boleta'];
+        $sql = "INSERT INTO expe_4puntos (lugar,cargo,fecha_inicio,fecha_fin,anios,meses,dias,archivos,tipo_expe,expe_4puntos_idpostulante, tipo_comprobante,fech_emision,monto_boleta) 
+          VALUES('$lugar_4exp','$cargo_funciones_4exp', '$fecha_ini_4exp','$fecha_fin_4exp','$años','$meses','$dias','$new_nombre','$tipo_expe4','$idpostulante','$tipo_comprobante','$fech_emision','$monto_boleta')";
+        $result = mysqli_query($con, $sql);
+        if ($result) {
+          echo '<script> alert("Guardado exitosamente"); </script>';
+          echo "<script type=\"text/javascript\">history.go(-1);</script>";
+          // header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
+        } else {
+          echo '<script> alert("Error al guardar"); </script>';
+          echo "<script type=\"text/javascript\">history.go(-1);</script>";
+          // header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
+        }
       }
     } else {
       echo '<script> alert("Error al guardar el archivo."); </script>';
@@ -109,18 +128,39 @@ if (isset($_POST['insertData4'])) {
     echo "La extensión o el tamaño de los archivos no es correcta. <br><br><table><tr><td><li>Solo se permiten archivos .pdf<br><li>se permiten archivos de 3 Mb máximo.</td></tr></table>";
   } else {
     if (move_uploaded_file($_FILES['archivo']['tmp_name'], $micarpeta . $new_nombre)) {
-      $sql = "INSERT INTO expe_3puntos (lugar,cargo,fecha_inicio,fecha_fin,anios,meses,dias,archivos,tipo_expe,expe_3puntos_idpostulante) 
-          VALUES('$lugar_3exp','$cargo_funciones_3exp', '$fecha_ini_3exp','$fecha_fin_3exp','$años','$meses','$dias','$new_nombre','$tipo_expe3','$idpostulante')";
-      $result = mysqli_query($con, $sql);
-      if ($result) {
-        echo '<script> alert("Guardado exitosamente"); </script>';
-        echo "<script type=\"text/javascript\">history.go(-1);</script>";
-        // header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
+      if ($tipo_comprobante == 'contrato') {
+        $nro_contrato = $_POST['nro_contrato'];
+        $sql = "INSERT INTO expe_3puntos (lugar,cargo,fecha_inicio,fecha_fin,anios,meses,dias,archivos,tipo_expe,expe_3puntos_idpostulante) 
+          VALUES('$lugar_3exp','$cargo_funciones_3exp', '$fecha_ini_3exp','$fecha_fin_3exp','$años','$meses','$dias','$new_nombre','$tipo_expe3','$idpostulante','$tipo_comprobante','$nro_contrato')";
+        
+        $result = mysqli_query($con, $sql);
+        if ($result) {
+          echo '<script> alert("Guardado exitosamente"); </script>';
+          echo "<script type=\"text/javascript\">history.go(-1);</script>";
+          // header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
+        } else {
+          echo '<script> alert("Error al guardar"); </script>';
+          echo "<script type=\"text/javascript\">history.go(-1);</script>";
+          // header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
+        }
       } else {
-        echo '<script> alert("Error al guardar"); </script>';
-        echo "<script type=\"text/javascript\">history.go(-1);</script>";
-        // header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
+        $fech_emision = $_POST['fecha_boleta'];
+        $monto_boleta = $_POST['boleta'];
+        
+        $sql = "INSERT INTO expe_3puntos (lugar,cargo,fecha_inicio,fecha_fin,anios,meses,dias,archivos,tipo_expe,expe_3puntos_idpostulante) 
+          VALUES('$lugar_3exp','$cargo_funciones_3exp', '$fecha_ini_3exp','$fecha_fin_3exp','$años','$meses','$dias','$new_nombre','$tipo_expe3','$idpostulante','$tipo_comprobante','$fech_emision','$monto_boleta')";
+        $result = mysqli_query($con, $sql);
+        if ($result) {
+          echo '<script> alert("Guardado exitosamente"); </script>';
+          echo "<script type=\"text/javascript\">history.go(-1);</script>";
+          // header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
+        } else {
+          echo '<script> alert("Error al guardar"); </script>';
+          echo "<script type=\"text/javascript\">history.go(-1);</script>";
+          // header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
+        }
       }
+      
     } else {
       echo '<script> alert("Error al guardar el archivo."); </script>';
       echo "<script type=\"text/javascript\">history.go(-1);</script>";
@@ -171,18 +211,40 @@ if (isset($_POST['insertData4'])) {
     echo "La extensión o el tamaño de los archivos no es correcta. <br><br><table><tr><td><li>Solo se permiten archivos .pdf<br><li>se permiten archivos de 3 Mb máximo.</td></tr></table>";
   } else {
     if (move_uploaded_file($_FILES['archivo']['tmp_name'], $micarpeta . $new_nombre)) {
-      $sql = "INSERT INTO expe_1puntos (lugar,cargo,fecha_inicio,fecha_fin,anios,meses,dias,archivos,tipo_expe,expe_1puntos_idpostulante) 
-          VALUES('$lugar_1exp','$cargo_funciones_1exp', '$fecha_ini_1exp','$fecha_fin_1exp','$años','$meses','$dias','$new_nombre','$tipo_expe1','$idpostulante')";
-      $result = mysqli_query($con, $sql);
-      if ($result) {
-        echo '<script> alert("Guardado exitosamente"); </script>';
-        echo "<script type=\"text/javascript\">history.go(-1);</script>";
-        // header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
+      if ($tipo_comprobante == 'contrato') {
+        $nro_contrato = $_POST['nro_contrato'];
+        $sql = "INSERT INTO expe_1puntos (lugar,cargo,fecha_inicio,fecha_fin,anios,meses,dias,archivos,tipo_expe,expe_1puntos_idpostulante) 
+          VALUES('$lugar_1exp','$cargo_funciones_1exp', '$fecha_ini_1exp','$fecha_fin_1exp','$años','$meses','$dias','$new_nombre','$tipo_expe1','$idpostulante','$tipo_comprobante','$nro_contrato')";
+
+        $result = mysqli_query($con, $sql);
+        if ($result) {
+          echo '<script> alert("Guardado exitosamente"); </script>';
+          echo "<script type=\"text/javascript\">history.go(-1);</script>";
+          // header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
+        } else {
+          echo '<script> alert("Error al guardar"); </script>';
+          echo "<script type=\"text/javascript\">history.go(-1);</script>";
+          // header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
+        }
       } else {
-        echo '<script> alert("Error al guardar"); </script>';
-        echo "<script type=\"text/javascript\">history.go(-1);</script>";
-        // header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
+        $fech_emision = $_POST['fecha_boleta'];
+        $monto_boleta = $_POST['boleta'];
+        $sql = "INSERT INTO expe_1puntos (lugar,cargo,fecha_inicio,fecha_fin,anios,meses,dias,archivos,tipo_expe,expe_1puntos_idpostulante) 
+          VALUES('$lugar_1exp','$cargo_funciones_1exp', '$fecha_ini_1exp','$fecha_fin_1exp','$años','$meses','$dias','$new_nombre','$tipo_expe1','$idpostulante','$tipo_comprobante','$fech_emision','$monto_boleta')"
+      
+        $result = mysqli_query($con, $sql);
+        if ($result) {
+          echo '<script> alert("Guardado exitosamente"); </script>';
+          echo "<script type=\"text/javascript\">history.go(-1);</script>";
+          // header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
+        } else {
+          echo '<script> alert("Error al guardar"); </script>';
+          echo "<script type=\"text/javascript\">history.go(-1);</script>";
+          // header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
+        }
       }
+
+   
     } else {
       echo '<script> alert("Ocurrio un problema al guardar el archivo."); </script>';
       echo "<script type=\"text/javascript\">history.go(-1);</script>";

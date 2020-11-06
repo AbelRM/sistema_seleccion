@@ -59,10 +59,10 @@ if (empty($_SESSION['active'])) {
         $row = mysqli_fetch_array($datos);
         $idpostulante = $row['idpostulante'];
 
-        $consulta1 = "SELECT * FROM detalle_convocatoria where postulante_idpostulante=$idpostulante";
-        $datos1 = mysqli_query($con, $consulta1) or die(mysqli_error($datos1));;
-        $row1 = mysqli_fetch_array($datos1);
-        $iddetalle_con = $row1['iddetalle_convocatoria'];
+        // $consulta1 = "SELECT * FROM detalle_convocatoria where postulante_idpostulante=$idpostulante";
+        // $datos1 = mysqli_query($con, $consulta1) or die(mysqli_error($datos1));;
+        // $row1 = mysqli_fetch_array($datos1);
+        // $iddetalle_con = $row1['iddetalle_convocatoria'];
 
         $consulta2 = "SELECT * FROM datos_profesionales where postulante_idpostulante=$idpostulante";
         $datos2 = mysqli_query($con, $consulta2) or die(mysqli_error($datos2));;
@@ -80,7 +80,7 @@ if (empty($_SESSION['active'])) {
           <div class="row">
             <div class="col-10 p-0">
               <div class="tab-content" id="nav-tabContent">
-                <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
+                <!-- <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
                   <div class="col-xl-12 col-md-12 mb-4">
                     <div class="card border-left-danger shadow h-100 py-2">
                       <div class="card-body">
@@ -149,9 +149,8 @@ if (empty($_SESSION['active'])) {
                       </div>
                     </div>
                   </div>
-                </div>
-
-                <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
+                </div> -->
+                <div class="tab-pane fade show active" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
                   <div class="col-xl-12 col-md-12 mb-4">
                     <div class="card border-left-success shadow h-100 py-2">
                       <div class="card-body">
@@ -357,8 +356,8 @@ if (empty($_SESSION['active'])) {
             </div>
             <div class="col-2 p-0">
               <div class="list-group" id="list-tab" role="tablist" style="font-size:12px;">
-                <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">Estudios Superiores</a>
-                <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">Estudios Postgrado</a>
+                <!-- <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">Estudios Superiores</a> -->
+                <a class="list-group-item list-group-item-action active" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">Estudios Postgrado</a>
                 <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#list-messages" role="tab" aria-controls="messages">Diplomados - Cursos</a>
                 <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-settings" role="tab" aria-controls="settings">Idioma - Computación</a>
               </div>
@@ -404,7 +403,7 @@ if (empty($_SESSION['active'])) {
     </div>
 
     <!--AGREGAR ESTUDIOS SUPERIORES -->
-    <div class="modal fade" id="addModal">
+    <!-- <div class="modal fade" id="addModal">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header bg-primary text-white">
@@ -466,7 +465,7 @@ if (empty($_SESSION['active'])) {
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
     <!--AGREGAR ESTUDIOS POSTGRADO-->
     <div class="modal fade" id="postgrado">
       <div class="modal-dialog modal-lg">

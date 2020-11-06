@@ -4,13 +4,13 @@
 <head>
 
   <meta charset="utf-8">
-  
+
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Listado</title>
+  <title>Listado de convocatorias - DIRESA TACNA</title>
 
   <!-- Custom fonts for this template -->
   <link rel="icon" type="image/png" href="img/icono_diresa.png" />
@@ -30,19 +30,19 @@
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-    <?php   
-        include 'conexion.php';
-        
-        include 'funcs/mcript.php';
-        $dato_desencriptado = $_GET['dni'];
-        $dni = $desencriptar($dato_desencriptado);
+    <?php
+    include 'conexion.php';
 
-        $sql2="SELECT * FROM usuarios where dni=$dni";
-        $datos=mysqli_query($con,$sql2) or die(mysqli_error()); ;
-        $fila= mysqli_fetch_array($datos);
-        include 'menu.php';
-        
-        //include 'modal_ver_convocatoria.php';
+    include 'funcs/mcript.php';
+    $dato_desencriptado = $_GET['dni'];
+    $dni = $desencriptar($dato_desencriptado);
+
+    $sql2 = "SELECT * FROM usuarios where dni=$dni";
+    $datos = mysqli_query($con, $sql2) or die(mysqli_error($datos));;
+    $fila = mysqli_fetch_array($datos);
+    include 'menu.php';
+
+    //include 'modal_ver_convocatoria.php';
     ?>
 
     <!-- Content Wrapper -->
@@ -51,7 +51,7 @@
       <div id="content">
         <!-- Topbar -->
         <?php
-            include_once 'nav.php';
+        include_once 'nav.php';
         ?>
         <!-- End of Topbar -->
 
@@ -66,34 +66,37 @@
             <div class="card-body">
               <div class="table-responsive">
                 <table class="table table-bordered display" id="dataTable" width="100%" cellspacing="0">
-                <thead>
+                  <thead>
                     <tr class="bg-danger" style="text-align:center; font-size:0.813em;">
                       <th>N° CONVOCATORIA</th>
                       <th>TIPO</th>
-                      <th>DIRECCION EJECUTORA</th>
+                      <th>ESTADO</th>
+                      <th>F. INICIO</th>
+                      <th>F. TERMINO</th>
                       <th>ACCIONES</th>
-                      
+
                     </tr>
                   </thead>
                   <tbody>
-                     <?php
-                      $dni = $_GET['dni'];
-                      
-                      $sql3 = "SELECT * FROM convocatoria INNER JOIN direccion_ejec ON direccion_ejec.iddireccion = convocatoria.direccion_ejec_iddireccion";
-                      $query=mysqli_query($con, $sql3);
-                      while ($row= MySQLI_fetch_array($query))  
-                      {
+                    <?php
+                    $dni = $_GET['dni'];
+
+                    $sql3 = "SELECT * FROM convocatoria";
+                    $query = mysqli_query($con, $sql3);
+                    while ($row = MySQLI_fetch_array($query)) {
                     ?>
                       <tr>
-                        <td style="font-size: 16px;"><?php echo $row['num_con']."-".$row['anio_con'] ?></td>
-                        <td style="font-size: 14px;"><?php echo $row['tipo_con']?></td>
-                        <td style="font-size: 14px;"><?php echo $row['direccion_ejec']?></td>
+                        <td style="font-size: 16px;"><?php echo $row['num_con'] . "-" . $row['anio_con'] ?></td>
+                        <td style="font-size: 14px;"><?php echo $row['tipo_con'] ?></td>
+                        <td style="font-size: 14px;"><?php echo $row['estado'] ?></td>
+                        <td style="font-size: 14px;"><?php echo $row['fech_ini'] ?></td>
+                        <td style="font-size: 14px;"><?php echo $row['fech_term'] ?></td>
                         <td>
-                          <a href="verconvocatoria.php?id=<?php echo $row['idcon']?>&dni=<?php echo $dato_desencriptado?>"><button type="button" class="btn btn-primary" id="editar" style="margin: 1px;"><i class="fa fa-eye"></i> Ver</button></a>
-                        </td>           
+                          <a href="verconvocatoria.php?id=<?php echo $row['idcon'] ?>&dni=<?php echo $dato_desencriptado ?>"><button type="button" class="btn btn-primary" id="editar" style="margin: 1px;"><i class="fa fa-eye"></i> Ver</button></a>
+                        </td>
                       </tr>
                     <?php
-                      }
+                    }
                     ?>
                   </tbody>
                 </table>

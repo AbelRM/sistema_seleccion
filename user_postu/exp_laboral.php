@@ -680,8 +680,28 @@ if (empty($_SESSION['active'])) {
                 <label for="title">(*) Fecha de Término</label>
                 <input type="date" name="fecha_fin_4exp" id="nro_colegiatura_new" class="form-control" required>
               </div>
+              <div class="col-md-4 col-sm-12 form-group" id="div_tipo_comprobante">
+                <label for="title">(*) Tipo de comprobante</label>
+                <select name="tipo_comprobante" id="" class="form-control" onChange="tipo_comprobante_select(this)">
+                  <option value="">Elegir...</option>
+                  <option value="contrato">Contrato</option>
+                  <option value="boleta">Boleta de pago</option>
+                </select>
+              </div>
+              <div class="col-md-4 col-sm-12 form-group" id="div_nro_contrato">
+                <label for="title">(*)Nro Contrato</label>
+                <input type="text" name="nro_contrato" class="form-control">
+              </div>
+              <div class="col-md-4 col-sm-12 form-group" id="div_fecha_boleta">
+                <label for="title">(*)Fecha emisión</label>
+                <input type="date" name="fecha_boleta" class="form-control">
+              </div>
+              <div class="col-md-4 col-sm-12 form-group" id="div_boleta_pago">
+                <label for="title">(*)Monto de boleta (Mayor a S./425.00)</label>
+                <input type="number" name="boleta" class="form-control">
+              </div>
               <div class="col-md-8 col-sm-12 form-group" id="archivo">
-                <label for="title">(*) Subir Constancia de trabajo</label>
+                <label for="title">(*) Subir Contrato o boleta</label>
                 <input type="file" name="archivo" accept=".pdf" id="expe_archivo" required />
                 <div id="peso_archivo_valido" class="font-weight-bolder text-primary"></div>
                 <div id="peso_archivo_no" class="font-weight-bolder text-danger"></div>
@@ -808,8 +828,29 @@ if (empty($_SESSION['active'])) {
                 <label for="title">(*) Fecha de Término</label>
                 <input type="date" name="fecha_fin_3exp" class="form-control" required>
               </div>
+              <div class="col-md-4 col-sm-12 form-group" id="div_tipo_comprobante">
+                <label for="title">(*) Tipo de comprobante</label>
+                <select name="tipo_comprobante" id="" class="form-control" onChange="tipo_comprobante_select(this)">
+                  <option value="">Elegir...</option>
+                  <option value="contrato">Contrato</option>
+                  <option value="boleta">Boleta de pago</option>
+                </select>
+              </div>
+              <div class="col-md-4 col-sm-12 form-group" id="div_nro_contrato">
+                <label for="title">(*)Nro Contrato</label>
+                <input type="text" name="nro_contrato" class="form-control">
+              </div>
+              <div class="col-md-4 col-sm-12 form-group" id="div_fecha_boleta">
+                <label for="title">(*)Fecha emisión </label>
+                <input type="date" name="fecha_boleta" class="form-control">
+              </div>
+              <div class="col-md-4 col-sm-12 form-group" id="div_boleta_pago">
+                <label for="title">(*)Boleta de pago (Mayor a S./425.00)</label>
+                <input type="number" name="boleta" class="form-control">
+              </div>
+
               <div class="col-md-8 col-sm-12 form-group" id="archivo">
-                <label for="title">(*) Subir Constancia de trabajo</label>
+                <label for="title">(*) Subir Contrato o boleta</label>
                 <input type="file" name="archivo" accept=".pdf" id="expe_archivo_3" required />
                 <div id="peso_archivo_valido_3" class="font-weight-bolder text-primary"></div>
                 <div id="peso_archivo_no_3" class="font-weight-bolder text-danger"></div>
@@ -930,8 +971,28 @@ if (empty($_SESSION['active'])) {
                 <label for="title">(*) Fecha de Término</label>
                 <input type="date" name="fecha_fin_1exp" class="form-control" required>
               </div>
+              <div class="col-md-4 col-sm-12 form-group" id="div_tipo_comprobante">
+                <label for="title">(*) Tipo de comprobante</label>
+                <select name="tipo_comprobante" id="" class="form-control" onChange="tipo_comprobante_select(this)">
+                  <option value="">Elegir...</option>
+                  <option value="contrato">Contrato</option>
+                  <option value="boleta">Boleta de pago</option>
+                </select>
+              </div>
+              <div class="col-md-4 col-sm-12 form-group" id="div_nro_contrato">
+                <label for="title">(*)Nro Contrato</label>
+                <input type="text" name="nro_contrato" class="form-control">
+              </div>
+              <div class="col-md-4 col-sm-12 form-group" id="div_fecha_boleta">
+                <label for="title">(*)Fecha emisión </label>
+                <input type="date" name="fecha_boleta" class="form-control">
+              </div>
+              <div class="col-md-4 col-sm-12 form-group" id="div_boleta_pago">
+                <label for="title">(*)Boleta de pago (Mayor a S./425.00)</label>
+                <input type="number" name="boleta" class="form-control">
+              </div>
               <div class="col-md-8 col-sm-12 form-group">
-                <label for="title">(*) Subir Constancia de trabajo</label>
+                <label for="title">(*) Subir contrato o boleta</label>
                 <input type="file" name="archivo" accept=".pdf" id="expe_archivo_1" required />
                 <div id="peso_archivo_valido_1" class="font-weight-bolder text-primary"></div>
                 <div id="peso_archivo_no_1" class="font-weight-bolder text-danger"></div>
@@ -1050,8 +1111,28 @@ if (empty($_SESSION['active'])) {
                 <label for="title">(*) Fecha de Término</label>
                 <input type="date" name="fecha_fin_4exp_tip2" class="form-control" required>
               </div>
+              <div class="col-md-4 col-sm-12 form-group" id="div_tipo_comprobante">
+                <label for="title">(*) Tipo de comprobante</label>
+                <select name="tipo_comprobante" id="" class="form-control" onChange="tipo_comprobante_select(this)">
+                  <option value="">Elegir...</option>
+                  <option value="contrato">Contrato</option>
+                  <option value="boleta">Boleta de pago</option>
+                </select>
+              </div>
+              <div class="col-md-4 col-sm-12 form-group" id="div_nro_contrato">
+                <label for="title">(*)Nro Contrato</label>
+                <input type="text" name="nro_contrato" class="form-control">
+              </div>
+              <div class="col-md-4 col-sm-12 form-group" id="div_fecha_boleta">
+                <label for="title">(*)Fecha emisión </label>
+                <input type="date" name="fecha_boleta" class="form-control">
+              </div>
+              <div class="col-md-4 col-sm-12 form-group" id="div_boleta_pago">
+                <label for="title">(*)Boleta de pago (Mayor a S./425.00)</label>
+                <input type="number" name="boleta" class="form-control">
+              </div>
               <div class="col-md-8 col-sm-12 form-group" id="archivo">
-                <label for="title">(*) Subir Constancia de trabajo</label>
+                <label for="title">(*) Subir contrato o boleta</label>
                 <input type="file" name="archivos_tipo2" accept=".pdf" id="expe_archivo_tipo2" required />
                 <div id="peso_archivo_valido_tipo2" class="font-weight-bolder text-primary"></div>
                 <div id="peso_archivo_no_tipo2" class="font-weight-bolder text-danger"></div>
@@ -1172,8 +1253,28 @@ if (empty($_SESSION['active'])) {
                 <label for="title">(*) Fecha de Término</label>
                 <input type="date" name="fecha_fin_3exp_tip2" class="form-control" required>
               </div>
+              <div class="col-md-4 col-sm-12 form-group" id="div_tipo_comprobante">
+                <label for="title">(*) Tipo de comprobante</label>
+                <select name="tipo_comprobante" id="" class="form-control" onChange="tipo_comprobante_select(this)">
+                  <option value="">Elegir...</option>
+                  <option value="contrato">Contrato</option>
+                  <option value="boleta">Boleta de pago</option>
+                </select>
+              </div>
+              <div class="col-md-4 col-sm-12 form-group" id="div_nro_contrato">
+                <label for="title">(*)Nro Contrato</label>
+                <input type="text" name="nro_contrato" class="form-control">
+              </div>
+              <div class="col-md-4 col-sm-12 form-group" id="div_fecha_boleta">
+                <label for="title">(*)Fecha emisión </label>
+                <input type="date" name="fecha_boleta" class="form-control">
+              </div>
+              <div class="col-md-4 col-sm-12 form-group" id="div_boleta_pago">
+                <label for="title">(*)Boleta de pago (Mayor a S./425.00)</label>
+                <input type="number" name="boleta" class="form-control">
+              </div>
               <div class="col-md-8 col-sm-12 form-group" id="archivo">
-                <label for="title">(*) Subir Constancia de trabajo</label>
+                <label for="title">(*) Subir contrato o boleta</label>
                 <input type="file" name="archivos3_tipo2" accept=".pdf" id="expe_archivo3_tipo2" required />
                 <div id="peso_archivo_valido3_tipo2" class="font-weight-bolder text-primary"></div>
                 <div id="peso_archivo_no3_tipo2" class="font-weight-bolder text-danger"></div>
@@ -1226,8 +1327,28 @@ if (empty($_SESSION['active'])) {
                 <label for="title">(*) Fecha de Término</label>
                 <input type="date" name="fecha_fin_1exp_tip2" class="form-control" required>
               </div>
+              <div class="col-md-4 col-sm-12 form-group" id="div_tipo_comprobante">
+                <label for="title">(*) Tipo de comprobante</label>
+                <select name="tipo_comprobante" id="" class="form-control" onChange="tipo_comprobante_select(this)">
+                  <option value="">Elegir...</option>
+                  <option value="contrato">Contrato</option>
+                  <option value="boleta">Boleta de pago</option>
+                </select>
+              </div>
+              <div class="col-md-4 col-sm-12 form-group" id="div_nro_contrato">
+                <label for="title">(*)Nro Contrato</label>
+                <input type="text" name="nro_contrato" class="form-control">
+              </div>
+              <div class="col-md-4 col-sm-12 form-group" id="div_fecha_boleta">
+                <label for="title">(*)Fecha emisión </label>
+                <input type="date" name="fecha_boleta" class="form-control">
+              </div>
+              <div class="col-md-4 col-sm-12 form-group" id="div_boleta_pago">
+                <label for="title">(*)Monto de boleta (Mayor a S./425.00)</label>
+                <input type="number" name="boleta" class="form-control">
+              </div>
               <div class="col-md-8 col-sm-12 form-group" id="archivo">
-                <label for="title">(*) Subir Constancia de trabajo</label>
+                <label for="title">(*) Subir contrato o boleta</label>
                 <input type="file" name="archivos1_tipo2" accept=".pdf" id="expe_archivo1_tipo2" required />
                 <div id="peso_archivo_valido1_tipo2" class="font-weight-bolder text-primary"></div>
                 <div id="peso_archivo_no1_tipo2" class="font-weight-bolder text-danger"></div>
@@ -1476,6 +1597,35 @@ if (empty($_SESSION['active'])) {
         $('#id_4puntos_tipo2').val(data[0]);
       });
     });
+  </script>
+  <script>
+    div_nro_contrato = document.getElementById("div_nro_contrato");
+    div_nro_contrato.style.display = "none";
+    div_boleta_pago = document.getElementById("div_boleta_pago");
+    div_boleta_pago.style.display = "none";
+    div_fecha_boleta = document.getElementById("div_fecha_boleta");
+    div_fecha_boleta.style.display = "none";
+
+
+    function tipo_comprobante_select(sel) {
+      if (sel.value == "contrato") {
+        div_nro_contrato = document.getElementById("div_nro_contrato");
+        div_nro_contrato.style.display = "block";
+        div_boleta_pago = document.getElementById("div_boleta_pago");
+        div_boleta_pago.style.display = "none";
+        div_fecha_boleta = document.getElementById("div_fecha_boleta");
+        div_fecha_boleta.style.display = "none";
+
+      } else if (sel.value == "boleta") {
+        div_nro_contrato = document.getElementById("div_nro_contrato");
+        div_nro_contrato.style.display = "none";
+        div_boleta_pago = document.getElementById("div_boleta_pago");
+        div_boleta_pago.style.display = "block";
+        div_fecha_boleta = document.getElementById("div_fecha_boleta");
+        div_fecha_boleta.style.display = "block";
+
+      }
+    }
   </script>
 </body>
 

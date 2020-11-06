@@ -215,22 +215,39 @@ if (empty($_SESSION['active'])) {
                     ?>
                   </select>
                 </div>
-                <div class="col-md-6 col-sm-12 form-group" id="div_nivel_estudio">
+                <div class="col-md-6 col-sm-12 form-group" id="div_nivel_estudio_tecnico">
                   <label for="title">(*) Nivel estudios</label>
-                  <select name="nivel_estudios" id="nivel_estudios" class="form-control">
+                  <select name="nivel_estudios_tec" id="nivel_estudios_tec" class="form-control">
+                    <option value="EGRESADO">Egresado</option>
+                    <option value="TITULADO">Titulado</option>
+                  </select>
+                </div>
+                <div class="col-md-6 col-sm-12 form-group" id="div_nivel_estudio_prof">
+                  <label for="title">(*) Nivel estudios</label>
+                  <select name="nivel_estudios_prof" onChange="tipo_nivel_estudio_select(this)" class="form-control">
+                    <option value="">Elegir...</option>
                     <option value="ESTUDIANTE">Estudiante</option>
                     <option value="EGRESADO">Egresado</option>
                     <option value="BACHILLER">Bachiller</option>
                     <option value="TITULADO">Titulado</option>
                   </select>
                 </div>
+                <div class="col-md-6 col-sm-12 form-group" id="div_ciclo_actual">
+                  <label for="title">(*) Ciclo actual</label>
+                  <select name="ciclo_actual" class="form-control">
+                    <option value="VII">VII</option>
+                    <option value="VIII">VIII</option>
+                    <option value="IX">IX</option>
+                    <option value="X">X</option>
+                  </select>
+                </div>
                 <div class="col-md-6 col-sm-12 form-group" id="div_centro_estudios">
                   <label for="title">(*) Centro estudios</label>
-                  <input type="text" name="centro_estudios" class="form-control" placeholder="Nombre centro estudios" maxlength="100" required>
+                  <input type="text" style="text-transform:uppercase; font-size:13px" name="centro_estudios" class="form-control" placeholder="Nombre centro estudios" required>
                 </div>
                 <div class="col-md-6 col-sm-12 form-group" id="div_carrera">
                   <label for="title">(*) Carrera</label>
-                  <input type="text" name="carrera" class="form-control" placeholder="Nombre de la carrera" maxlength="100" required>
+                  <input type="text" name="carrera" style="text-transform:uppercase; font-size:13px" class="form-control" placeholder="Nombre de la carrera">
                 </div>
                 <div class="col-md-2 col-sm-12 form-group" id="div_colegiatura">
                   <label for="title">(*) Colegiatura</label>
@@ -239,29 +256,30 @@ if (empty($_SESSION['active'])) {
                     <option value="SI">SI</option>
                   </select>
                 </div>
-                <div class="col-md-3 col-sm-12 form-group" id="div_nro_colegiatura">
+                <div class="col-md-3 col-sm-12 form-group" id="div_nro_colegiatura" disabled>
                   <label for="title">(*) N° Colegiatura</label>
                   <input type="text" name="nro_colegiatura" id="nro_colegiatura_new" class="form-control" placeholder="N° colegiatura" maxlength="50" disabled>
                 </div>
-                <div class="col-md-3 col-sm-12 form-group" id="div_fecha_habilitacion">
-                  <label for="title">(*) Fecha habilitación</label>
-                  <input type="date" name="fecha_colegiatura" id="fecha_colegiatura_new" class="form-control" disabled>
+                <div class="col-md-3 col-sm-12 form-group" id="div_fech_colegiatura" disabled>
+                  <label for="title">(*) Fecha Colegiatura</label>
+                  <input type="date" name="fech_colegiatura" id="fech_colegiatura_new" class="form-control" disabled>
                 </div>
-                <div class="col-md-4 col-sm-12 form-group" id="div_lugar_colegiatura">
-                  <label for="title">(*) Lugar Colegiatura</label>
-                  <input type="text" name="lugar_colegiatura" id="lugar_colegiatura_new" class="form-control" placeholder="Lugar de colegiatura" maxlength="70" disabled>
+                <div class="col-md-3 col-sm-12 form-group" id="div_fech_habilitacion">
+                  <label for="title">(*) Fecha Habilitación</label>
+                  <input type="date" name="fech_habilitacion" id="fech_habilitacion" class="form-control" disabled>
                 </div>
+
                 <div class="col-md-3 col-sm-12 form-group" id="div_fecha_inicio">
                   <label for="title">(**) Fecha Inicio</label>
-                  <input type="date" name="fecha_inicio" class="form-control" required>
+                  <input type="date" name="fecha_inicio" class="form-control">
                 </div>
                 <div class="col-md-3 col-sm-12 form-group" id="div_fecha_fin">
                   <label for="title">(**) Fecha Término</label>
-                  <input type="date" name="fecha_fin" class="form-control" required>
+                  <input type="date" name="fecha_fin" class="form-control">
                 </div>
                 <div class="col-md-6 col-sm-12 form-group" id="archivo">
                   <div class="row">
-                    <label for="title">(*) Elegir Archivo</label>
+                    <label for="title">(*) Elegir Archivo (No mayor a 2MB)</label>
                   </div>
                   <div class="row">
                     <div class="col-4 pf-0">
@@ -274,6 +292,45 @@ if (empty($_SESSION['active'])) {
                       <div id="info" class="font-weight-bold"></div>
                     </div>
                   </div>
+                </div>
+                <div class="col-md-3 col-sm-12 form-group">
+                  <label for="title">(*) Licencia de conducir</label>
+                  <select name="licencia_conducir" id="licencia_conducir" class="form-control">
+                    <option value="Ninguna">Ninguna</option>
+                    <option value="A-I">A-I</option>
+                    <option value="A-IIa">A-IIa</option>
+                    <option value="A-IIb">A-IIb</option>
+                    <option value="A-IIIa">A-IIIa</option>
+                    <option value="A-IIIb">A-IIIb</option>
+                    <option value="A-IIIc">A-IIIc</option>
+                  </select>
+                </div>
+                <div class="col-md-3 col-sm-12 form-group" id="div_tipo_profesional">
+                  <label for="title">(*) Tipo profesional</label>
+                  <select name="tipo_prof" id="tipo_prof" class="form-control" onChange="tipo_profesional_select(this)">
+                    <option value="vacio" selected>Elegir...</option>
+                    <option value="administrativo">Administrativo</option>
+                    <option value="asistencial">Asistencial</option>
+                  </select>
+                </div>
+                <div class="col-md-3 col-sm-12 form-group" id="div_serums">
+                  <label for="title">(*) ¿Hizo SERUMS?</label>
+                  <select name="serums" id="serums" class="form-control">
+                    <option value="">Elegir...</option>
+                    <option value="SI">SI</option>
+                    <option value="NO">NO</option>
+                  </select>
+                </div>
+                <div class="col-md-3 col-sm-12 form-group" id="div_valor_quintil">
+                  <label for="title">(*) ¿Valor de Quintil?</label>
+                  <select name="quintil" id="quintil" class="form-control">
+                    <option value="">Elegir...</option>
+                    <option value="15">1</option>
+                    <option value="10">2</option>
+                    <option value="15">3</option>
+                    <option value="2">4</option>
+                    <option value="0">5</option>
+                  </select>
                 </div>
               </div>
               <div class="form-group">
@@ -370,13 +427,13 @@ if (empty($_SESSION['active'])) {
           switch (selectValue) {
             case "NO":
               $("#nro_colegiatura_new").prop('disabled', true);
-              $("#fecha_colegiatura_new").prop('disabled', true);
-              $("#lugar_colegiatura_new").prop('disabled', true);
+              $("#fech_colegiatura_new").prop('disabled', true);
+              $("#fech_habilitacion").prop('disabled', true);
               break;
             case "SI":
               $("#nro_colegiatura_new").removeAttr('disabled');
-              $("#fecha_colegiatura_new").removeAttr('disabled');
-              $("#lugar_colegiatura_new").removeAttr('disabled');
+              $("#fech_colegiatura_new").removeAttr('disabled');
+              $("#fech_habilitacion").removeAttr('disabled');
               break;
           }
         }).change();
@@ -385,8 +442,13 @@ if (empty($_SESSION['active'])) {
     <script>
       function tipo_estudios_select(sel) {
         if (sel.value == "1") {
-          div_nivel_estudio = document.getElementById("div_nivel_estudio");
-          div_nivel_estudio.style.display = "none";
+          div_nivel_estudio_tecnico = document.getElementById("div_nivel_estudio_tecnico");
+          div_nivel_estudio_tecnico.style.display = "none";
+          div_nivel_estudio_prof = document.getElementById("div_nivel_estudio_prof");
+          div_nivel_estudio_prof.style.display = "none";
+
+          div_ciclo_actual = document.getElementById("div_ciclo_actual");
+          div_ciclo_actual.style.display = "none";
           div_centro_estudios = document.getElementById("div_centro_estudios");
           div_centro_estudios.style.display = "block";
           div_carrera = document.getElementById("div_carrera");
@@ -395,21 +457,29 @@ if (empty($_SESSION['active'])) {
           div_colegiatura.style.display = "none";
           div_nro_colegiatura = document.getElementById("div_nro_colegiatura");
           div_nro_colegiatura.style.display = "none";
-          div_fecha_habilitacion = document.getElementById("div_fecha_habilitacion");
-          div_fecha_habilitacion.style.display = "none";
-          div_lugar_colegiatura = document.getElementById("div_lugar_colegiatura");
-          div_lugar_colegiatura.style.display = "none";
+          div_fech_colegiatura = document.getElementById("div_fech_colegiatura");
+          div_fech_colegiatura.style.display = "none";
+          div_fech_habilitacion = document.getElementById("div_fech_habilitacion");
+          div_fech_habilitacion.style.display = "none";
           div_fecha_inicio = document.getElementById("div_fecha_inicio");
           div_fecha_inicio.style.display = "block";
           div_fecha_fin = document.getElementById("div_fecha_fin");
           div_fecha_fin.style.display = "block";
-          // divC = document.getElementById("nCuenta");
-          // divC.style.display = "block";
+          div_tipo_profesional = document.getElementById("div_tipo_profesional");
+          div_tipo_profesional.style.display = "none";
+          div_div_serums = document.getElementById("div_serums");
+          div_div_serums.style.display = "none";
+          div_div_valor_quintil = document.getElementById("div_valor_quintil");
+          div_div_valor_quintil.style.display = "none";
           // max = document.getElementById("dni");
           // max.setAttribute("maxlength", "8");
         } else if (sel.value == "2") {
-          div_nivel_estudio = document.getElementById("div_nivel_estudio");
-          div_nivel_estudio.style.display = "block";
+          div_nivel_estudio_tecnico = document.getElementById("div_nivel_estudio_tecnico");
+          div_nivel_estudio_tecnico.style.display = "block";
+          div_nivel_estudio_prof = document.getElementById("div_nivel_estudio_prof");
+          div_nivel_estudio_prof.style.display = "none";
+          div_ciclo_actual = document.getElementById("div_ciclo_actual");
+          div_ciclo_actual.style.display = "none";
           div_centro_estudios = document.getElementById("div_centro_estudios");
           div_centro_estudios.style.display = "block";
           div_carrera = document.getElementById("div_carrera");
@@ -418,17 +488,27 @@ if (empty($_SESSION['active'])) {
           div_colegiatura.style.display = "none";
           div_nro_colegiatura = document.getElementById("div_nro_colegiatura");
           div_nro_colegiatura.style.display = "none";
-          div_fecha_habilitacion = document.getElementById("div_fecha_habilitacion");
-          div_fecha_habilitacion.style.display = "none";
-          div_lugar_colegiatura = document.getElementById("div_lugar_colegiatura");
-          div_lugar_colegiatura.style.display = "none";
+          div_fech_colegiatura = document.getElementById("div_fech_colegiatura");
+          div_fech_colegiatura.style.display = "none";
+          div_fech_habilitacion = document.getElementById("div_fech_habilitacion");
+          div_fech_habilitacion.style.display = "none";
           div_fecha_inicio = document.getElementById("div_fecha_inicio");
           div_fecha_inicio.style.display = "block";
           div_fecha_fin = document.getElementById("div_fecha_fin");
           div_fecha_fin.style.display = "block";
+          div_tipo_profesional = document.getElementById("div_tipo_profesional");
+          div_tipo_profesional.style.display = "none";
+          div_div_serums = document.getElementById("div_serums");
+          div_div_serums.style.display = "none";
+          div_div_valor_quintil = document.getElementById("div_valor_quintil");
+          div_div_valor_quintil.style.display = "none";
         } else if (sel.value == "3") {
-          div_nivel_estudio = document.getElementById("div_nivel_estudio");
-          div_nivel_estudio.style.display = "block";
+          div_nivel_estudio_tecnico = document.getElementById("div_nivel_estudio_tecnico");
+          div_nivel_estudio_tecnico.style.display = "none";
+          div_nivel_estudio_prof = document.getElementById("div_nivel_estudio_prof");
+          div_nivel_estudio_prof.style.display = "block";
+          div_ciclo_actual = document.getElementById("div_ciclo_actual");
+          div_ciclo_actual.style.display = "none";
           div_centro_estudios = document.getElementById("div_centro_estudios");
           div_centro_estudios.style.display = "block";
           div_carrera = document.getElementById("div_carrera");
@@ -437,14 +517,69 @@ if (empty($_SESSION['active'])) {
           div_colegiatura.style.display = "block";
           div_nro_colegiatura = document.getElementById("div_nro_colegiatura");
           div_nro_colegiatura.style.display = "block";
-          div_fecha_habilitacion = document.getElementById("div_fecha_habilitacion");
-          div_fecha_habilitacion.style.display = "block";
-          div_lugar_colegiatura = document.getElementById("div_lugar_colegiatura");
-          div_lugar_colegiatura.style.display = "block";
+          div_fech_colegiatura = document.getElementById("div_fech_colegiatura");
+          div_fech_colegiatura.style.display = "block";
+          div_fech_habilitacion = document.getElementById("div_fech_habilitacion");
+          div_fech_habilitacion.style.display = "block";
           div_fecha_inicio = document.getElementById("div_fecha_inicio");
           div_fecha_inicio.style.display = "block";
           div_fecha_fin = document.getElementById("div_fecha_fin");
           div_fecha_fin.style.display = "block";
+          div_tipo_profesional = document.getElementById("div_tipo_profesional");
+          div_tipo_profesional.style.display = "block";
+          div_div_serums = document.getElementById("div_serums");
+          div_div_serums.style.display = "none";
+          div_div_valor_quintil = document.getElementById("div_valor_quintil");
+          div_div_valor_quintil.style.display = "none";
+        }
+      }
+    </script>
+    <script>
+      function tipo_profesional_select(sel) {
+        if (sel.value == "vacio") {
+          div_div_serums = document.getElementById("div_serums");
+          div_div_serums.style.display = "none";
+          div_div_valor_quintil = document.getElementById("div_valor_quintil");
+          div_div_valor_quintil.style.display = "none";
+
+        } else if (sel.value == "administrativo") {
+          div_div_serums = document.getElementById("div_serums");
+          div_div_serums.style.display = "none";
+          div_div_valor_quintil = document.getElementById("div_valor_quintil");
+          div_div_valor_quintil.style.display = "none";
+
+        } else if (sel.value == "asistencial") {
+          div_div_serums = document.getElementById("div_serums");
+          div_div_serums.style.display = "block";
+          div_div_valor_quintil = document.getElementById("div_valor_quintil");
+          div_div_valor_quintil.style.display = "block";
+
+        }
+      }
+
+      function tipo_nivel_estudio_select(sel) {
+        if (sel.value == "ESTUDIANTE") {
+          div_ciclo_actual = document.getElementById("div_ciclo_actual");
+          div_ciclo_actual.style.display = "block";
+          div_tipo_profesional = document.getElementById("div_tipo_profesional");
+          div_tipo_profesional.style.display = "none";
+
+        } else if (sel.value == "EGRESADO") {
+          div_ciclo_actual = document.getElementById("div_ciclo_actual");
+          div_ciclo_actual.style.display = "none";
+          div_tipo_profesional = document.getElementById("div_tipo_profesional");
+          div_tipo_profesional.style.display = "none";
+        } else if (sel.value == "BACHILLER") {
+          div_ciclo_actual = document.getElementById("div_ciclo_actual");
+          div_ciclo_actual.style.display = "none";
+          div_tipo_profesional = document.getElementById("div_tipo_profesional");
+          div_tipo_profesional.style.display = "none";
+        } else if (sel.value == "TITULADO") {
+          div_ciclo_actual = document.getElementById("div_ciclo_actual");
+          div_ciclo_actual.style.display = "none";
+          div_tipo_profesional = document.getElementById("div_tipo_profesional");
+          div_tipo_profesional.style.display = "block";
+
         }
       }
     </script>

@@ -4,7 +4,7 @@
 <head>
 
   <meta charset="utf-8">
-  
+
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
@@ -30,19 +30,19 @@
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-    <?php   
-        include 'conexion.php';
-        
-        include 'funcs/mcript.php';
+    <?php
+    include 'conexion.php';
 
-        $dato_desencriptado = $_GET['dni'];
-        $dni = $desencriptar($dato_desencriptado);
+    include 'funcs/mcript.php';
 
-        $sql2="SELECT * FROM usuarios where dni=$dni";
-        $datos=mysqli_query($con,$sql2) or die(mysqli_error()); ;
-        $fila= mysqli_fetch_array($datos);
-        include 'menu.php';
-        
+    $dato_desencriptado = $_GET['dni'];
+    $dni = $desencriptar($dato_desencriptado);
+
+    $sql2 = "SELECT * FROM usuarios where dni=$dni";
+    $datos = mysqli_query($con, $sql2) or die(mysqli_error($datos));;
+    $fila = mysqli_fetch_array($datos);
+    include 'menu.php';
+
     ?>
 
     <!-- Content Wrapper -->
@@ -51,12 +51,12 @@
       <div id="content">
         <!-- Topbar -->
         <?php
-            include_once 'nav.php';
+        include_once 'nav.php';
         ?>
         <!-- End of Topbar -->
 
         <!-- Begin Page Content -->
-        <div class="container-fluid">  
+        <div class="container-fluid">
 
           <!-- Page Heading -->
           <!-- <h1 class="h3 mb-2 text-gray-800">Tables</h1>
@@ -70,47 +70,45 @@
             <div class="card-body">
               <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                <thead>  
-                
+                  <thead>
+
                     <tr class="bg-danger" style="text-align:center; font-size:0.813em;">
                       <th>N°</th>
                       <th>Tipo concurso</th>
                       <th>N° convocatoria</th>
-                      <th>Direccion</th>
+                      <th>Fecha inicio</th>
+                      <th>Fecha termino</th>
                       <th>Estado</th>
                       <th>Acciones</th>
-                      
+
                     </tr>
                   </thead>
                   <?php
-                      $dni = $_GET['dni'];
-                      
-                      $sql = "SELECT con.idcon, con.tipo_con, con.num_con, con.anio_con, con.estado, dir.direccion_ejec
-                                        FROM convocatoria con
-                                        INNER JOIN direccion_ejec dir ON con.direccion_ejec_iddireccion=dir.iddireccion WHERE estado='ACTIVO'";
+                  $dni = $_GET['dni'];
 
-                      $query=mysqli_query($con, $sql);
-                      while ($row= MySQLI_fetch_array($query))
-                      {
-                      ?>
-                      <tr>
-                        <td><?php echo $row['idcon'] ?></td>
-                        <td style="font-size: 16px;"><?php echo $row['tipo_con'] ?></td>
-                        <td style="font-size: 14px;"><?php echo $row['num_con']."-".$row['anio_con']?></td>
-                        <td style="font-size: 14px;"><?php echo $row['direccion_ejec']?></td>
-                        <td style="font-size: 14px;"><?php echo $row['estado']?></td>
-                       <!-- <td style="font-size: 14px;"><?php echo $row['direccion_ejec']." - ".$row['equipo_ejec']; ?></td> -->
-                        <td>
-                          <a href="cargo.php?idcon=<?php echo $row['idcon']?>&dni=<?php echo $dni?>"><button type="button" class="btn btn-primary" id="editar" style="margin: 1px;"><i class="fa fa-pencil-alt"></i> Postular</button></a>
-                        </td>
+                  $sql = "SELECT * FROM convocatoria WHERE estado='ACTIVO'";
 
-                        
-                      </tr>
-                      <?php
-                      }
-                      ?>
+                  $query = mysqli_query($con, $sql);
+                  while ($row = MySQLI_fetch_array($query)) {
+                  ?>
+                    <tr>
+                      <td><?php echo $row['idcon'] ?></td>
+                      <td style="font-size: 16px;"><?php echo $row['tipo_con'] ?></td>
+                      <td style="font-size: 14px;"><?php echo $row['num_con'] . "-" . $row['anio_con'] ?></td>
+                      <td style="font-size: 14px;"><?php echo $row['fech_ini'] ?></td>
+                      <td style="font-size: 14px;"><?php echo $row['fech_term'] ?></td>
+                      <td style="font-size: 14px;"><?php echo $row['estado'] ?></td>
+                      <td>
+                        <a href="cargo.php?idcon=<?php echo $row['idcon'] ?>&dni=<?php echo $dni ?>"><button type="button" class="btn btn-primary" style="margin: 1px;"><i class="fa fa-pencil-alt"></i> Postular</button></a>
+                      </td>
+
+
+                    </tr>
+                  <?php
+                  }
+                  ?>
                   <tbody>
-                    
+
                   </tbody>
                 </table>
               </div>

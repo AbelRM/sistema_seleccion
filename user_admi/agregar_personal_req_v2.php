@@ -45,8 +45,6 @@ if (empty($_SESSION['active'])) {
     include 'menu.php';
     ?>
 
-
-
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
       <!-- Main Content -->
@@ -112,26 +110,31 @@ if (empty($_SESSION['active'])) {
                     </div>
                     <div class="table-responsive">
                       <table class="table table-bordered">
-                        <thead>
-                          <tr class="bg-primary" style="text-align:center; color:#000; font-size:0.813em;">
-                            <th>N°</th>
-                            <th>Cantidad</th>
-                            <th>Remuneración</th>
-                            <th>Fuente Finac.</th>
-                            <th>Meta</th>
-                            <th>Cargo</th>
-                            <th>Acciones</th>
-                          </tr>
-                        </thead>
                         <tbody>
                           <?php
                           $consulta_form = "SELECT * FROM total_personal_req WHERE convocatoria_idcon = $idcon";
                           $query = mysqli_query($con, $consulta_form);
+
                           if (mysqli_num_rows($query) > 0) {
+                            $i = 1;
                             while ($row = MySQLI_fetch_array($query)) {
+                              $idpersonal = $row['idpersonal'];
                           ?>
+                              <thead>
+                                <tr class="bg-primary" style="text-align:center; color:#000; font-size:0.813em;">
+                                  <th style="display:none;">id</th>
+                                  <th>N°</th>
+                                  <th>Cantidad</th>
+                                  <th>Remuneración</th>
+                                  <th>Fuente Finac.</th>
+                                  <th>Meta</th>
+                                  <th>Cargo</th>
+                                  <th>Acciones</th>
+                                </tr>
+                              </thead>
                               <tr>
-                                <td style="font-size: 12px;"><?php echo $row['idpersonal'] ?></td>
+                                <td style="font-size: 12px; display:none;"><?php echo $idpersonal ?></td>
+                                <td style="font-size: 12px;"><?php echo $i ?></td>
                                 <td style="font-size: 12px;"><?php echo $row['cantidad'] ?></td>
                                 <td style="font-size: 12px;"><?php echo $row['remuneracion'] ?></td>
                                 <td style="font-size: 12px;"><?php echo $row['fuente_finac'] ?></td>
@@ -143,18 +146,54 @@ if (empty($_SESSION['active'])) {
                                   <button type="button" class="btn btn-danger btn-sm m-1 deleteBtn"> <i class="fas fa-trash-alt"></i></button>
                                 </td>
                               </tr>
+                              <?php
+                              $select = "SELECT * FROM detalle_requerimientos INNER JOIN requerimientos 
+                                ON detalle_requerimientos.detalle_req_idrequerimientos = requerimientos.id_requerimientos WHERE detalle_req_idpersonal_req ='$idpersonal' ";
+                              $consulta = mysqli_query($con, $select);
+                              ?>
+                              <thead>
+                                <tr class="bg-secondary" style="text-align:center; color:#000; font-size:0.813em;">
+                                  <th style="display:none;">id</th>
+                                  <th>N°</th>
+                                  <th>Condición</th>
+                                  <th>Nivel de prioridad</th>
+                                  <th>Acciones</th>
+                                </tr>
+                              </thead>
+                              <?php
+                              $ii = 1;
+                              while ($row = mysqli_fetch_array($consulta)) {
+                              ?>
+
+                                <tr>
+                                  <td style="font-size: 12px; display: none;"><?php echo $row['id_detalle_req'] ?></td>
+                                  <td style="font-size: 12px;"><?php echo $ii ?></td>
+                                  <td style="font-size: 12px;"><?php echo $row['condicion'] ?></td>
+                                  <td style="font-size: 12px;"><?php echo $row['nivel_prioridad'] ?></td>
+                                  <td class="d-flex justify-content-center">
+                                    <a type="button" href="editarformacion.php?idformacion=<?php echo $row['id_formacion'] ?>&dni=<?php echo $dato_desencriptado ?>" class="btn btn-success btn-sm m-1">
+                                      <i class="fa fa-edit"></i> Editar</a>
+                                    <button type="button" class="btn btn-danger btn-sm m-1 deleteBtn"> <i class="fas fa-trash-alt"></i></button>
+                                  </td>
+                                </tr>
+                              <?php
+                                $ii++;
+                              }
+                              ?>
                           <?php
+                              $i++;
                             }
                           } else {
-                            echo "<tr>
-                                <td colspan='7' class='text-center text-danger font-weight-bold' >NO HAY DATOS REGISTRADOS</td>
-                              </tr>";
+                            echo "<tr><td colspan='7' class='text-center text-danger font-weight-bold' >NO HAY DATOS REGISTRADOS</td></tr>";
                           }
                           ?>
                         </tbody>
                       </table>
                     </div>
                   </form>
+                </div>
+                <div class="card-footer d-flex justify-content-end">
+                  <a href="agregar_comision.php?convocatoria_idcon=<?php echo $idcon ?>&dni=<?php echo $dato_desencriptado ?>" type="button" class="btn btn-primary">Siguiente</a>
                 </div>
               </div>
             </div>

@@ -40,15 +40,23 @@ if (isset($_POST['insert'])) {
       $requerimientos = (($item1 !== false) ? $item1 : ", &nbsp;");
       $nivel_priori = (($item2 !== false) ? $item2 : ", &nbsp;");
 
+      if ($nivel_priori = '1') {
+        $nom_nivel_prioridad = 'PRINCIPAL';
+      } elseif ($nivel_priori = '2') {
+        $nom_nivel_prioridad = 'SECUNDARIO';
+      } else {
+        $nom_nivel_prioridad = 'COMPLEMENTARIO';
+      }
+
       //// CONCATENAR LOS VALORES EN ORDEN PARA SU FUTURA INSERCIÓN ////////
-      $valores = '("' . $id_requerimiento . '","' . $requerimientos . '","' . $nivel_priori . '"),';
+      $valores = '("' . $id_requerimiento . '","' . $requerimientos . '","' . $nivel_priori . '","' . $nom_nivel_prioridad . '"),';
 
       //////// YA QUE TERMINA CON COMA CADA FILA, SE RESTA CON LA FUNCIÓN SUBSTR EN LA ULTIMA FILA /////////////////////
       $valoresQ = substr($valores, 0, -1);
 
       ///////// QUERY DE INSERCIÓN ////////////////////////////
       // include_once('conexion.php');
-      $sql = "INSERT INTO detalle_requerimientos (detalle_req_idpersonal_req, detalle_req_idrequerimientos,nivel_prioridad) 
+      $sql = "INSERT INTO detalle_requerimientos (detalle_req_idpersonal_req, detalle_req_idrequerimientos,nivel_prioridad, nom_nivel_prioridad) 
           VALUES $valoresQ";
 
       $sqlRes = $con->query($sql) or mysqli_error($con);
@@ -61,7 +69,7 @@ if (isset($_POST['insert'])) {
       // Check terminator
       if ($item1 === false && $item2 === false) break;
     }
-    echo "Agrego correctamnete";
+    header('Location: ../agregar_personal_req_v2.php?convocatoria_idcon=' . $idcon . '&dni=' . $dni);
   } else {
     echo '<script> alert("Error al guardar PRIMERA!"); 
           window.history.back(-1);</script>';

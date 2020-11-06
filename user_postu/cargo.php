@@ -4,13 +4,13 @@
 <head>
 
   <meta charset="utf-8">
-  
+
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Listado</title>
+  <title>Listado de personal requerido - DIRESA TACNA</title>
 
   <!-- Custom fonts for this template -->
   <link rel="icon" type="image/png" href="img/icono_diresa.png" />
@@ -30,17 +30,17 @@
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-    <?php   
-        include 'conexion.php';
-        include 'funcs/mcript.php';
-        
-        $dato_desencriptado = $_GET['dni'];
-        $dni = $desencriptar($dato_desencriptado);
-        $sql2="SELECT * FROM usuarios where dni=$dni";
-        $datos=mysqli_query($con,$sql2) or die(mysqli_error()); ;
-        $fila= mysqli_fetch_array($datos);
-        include 'menu.php';
-        //include 'modal_ver_convocatoria.php';
+    <?php
+    include 'conexion.php';
+    include 'funcs/mcript.php';
+
+    $dato_desencriptado = $_GET['dni'];
+    $dni = $desencriptar($dato_desencriptado);
+    $sql2 = "SELECT * FROM usuarios where dni=$dni";
+    $datos = mysqli_query($con, $sql2) or die(mysqli_error($datos));;
+    $fila = mysqli_fetch_array($datos);
+    include 'menu.php';
+    //include 'modal_ver_convocatoria.php';
     ?>
 
     <!-- Content Wrapper -->
@@ -49,7 +49,7 @@
       <div id="content">
         <!-- Topbar -->
         <?php
-            include_once 'nav.php';
+        include_once 'nav.php';
         ?>
         <!-- End of Topbar -->
 
@@ -68,38 +68,74 @@
             <div class="card-body">
               <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                <thead>
-                      <tr class="bg-danger" style="text-align:center; font-size:0.813em;">
-                      <th>N°</th>
-                      <th>Cantidad requerida</th>
-                      <th>Cargo</th>
-                      <th>Remuneración</th>
-                      <th>Acciones</th>
-                    </tr>
-                  </thead>
                   <tbody>
-                  <?php
+                    <?php
                     $dni = $_GET['dni'];
-                    $idcon=$_GET['idcon'];
-
+                    $idcon = $_GET['idcon'];
                     include_once('conexion.php');
-                    $sql = "SELECT * FROM total_personal_req WHERE convocatoria_idcon=$idcon";
-                    $query=mysqli_query($con, $sql);
-                    while($row=mysqli_fetch_array($query)){ 
-                  ?>
-                    <tr>
-                      <td style="font-size: 16px; text-align: center"><?php echo $row['idpersonal'] ?></td>
-                      <td style="font-size: 16px; text-align: center"><?php echo $row['cantidad'] ?></td>
-                      <td style="font-size: 16px;"><?php echo $row['cargo'] ?></td>
-                      <td style="font-size: 16px; text-align: center"><?php echo $row['remuneracion'] ?></td>
-                      <td>
-                        <a href="registrar_postulacion.php?idcargo=<?php echo $row['idpersonal']?>&dni=<?php echo $dni?>&idcon=<?php echo $idcon?>">
-                        <button type="button" class="btn btn-primary" id="editar" style="margin: 1px;"><i class="fa fa-pencil-alt"></i> Elegir</button></a>
-                      </td>
-                    </tr>
-                  <?php
-                  }
-                  ?>
+                    $sql = "SELECT * FROM sistema_seleccion.personal_req INNER JOIN sistema_seleccion.ubicacion 
+                      ON personal_req.personal_req_idubicacion = ubicacion.iddireccion INNER JOIN sistema_seleccion.cargo 
+                      ON personal_req.cargo_idcargo = cargo.idcargo
+                      WHERE convocatoria_idcon='$idcon'";
+                    $query = mysqli_query($con, $sql);
+                    $i = 1;
+                    while ($row = mysqli_fetch_array($query)) {
+                      $idpersonal = $row['idpersonal'];
+                    ?>
+                      <thead>
+                        <tr class="bg-danger" style="text-align:center; font-size:0.813em;">
+                          <th>N°</th>
+                          <th style="display: none;">id</th>
+                          <th>Cargo personal requerido</th>
+                          <th>Cantidad</th>
+                          <th>Remuneración</th>
+                          <th>Dirección ejecutora</th>
+                          <th>Acciones</th>
+                        </tr>
+                      </thead>
+                      <tr>
+                        <td style="font-size: 14px; text-align: center"><?php echo $i ?></td>
+                        <td style="font-size: 14px; display:none"><?php echo $idpersonal ?></td>
+                        <td style="font-size: 14px;"><?php echo $row['cargo'] ?></td>
+                        <td style="font-size: 14px; text-align: center"><?php echo $row['cantidad'] ?></td>
+                        <td style="font-size: 14px; text-align: center"><?php echo $row['remuneracion'] ?></td>
+                        <td style="font-size: 14px;"><?php echo $row['direccion_ejec'] . " - " . $row['equipo_ejec'] ?></td>
+                        <td>
+                          <a href="registrar_postulacion.php?idcargo=<?php echo $idpersonal ?>&dni=<?php echo $dni ?>&idcon=<?php echo $idcon ?>">
+                            <button type="button" class="btn btn-primary" id="editar" style="margin: 1px;"><i class="fa fa-pencil-alt"></i> Elegir</button></a>
+                        </td>
+                      </tr>
+                      <?php
+                      $select = "SELECT * FROM detalle_requerimientos INNER JOIN requerimientos 
+                                ON detalle_requerimientos.detalle_req_idrequerimientos = requerimientos.id_requerimientos WHERE detalle_req_idpersonal_req ='$idpersonal' ";
+                      $consulta = mysqli_query($con, $select);
+                      ?>
+                      <thead>
+                        <tr class="bg-secondary" style="text-align:center; color:#000; font-size:0.813em;">
+                          <th style="display:none;">id</th>
+                          <th>N°</th>
+                          <th>Condición</th>
+                          <th>Nivel</th>
+                        </tr>
+                      </thead>
+                      <?php
+                      $ii = 1;
+                      while ($row = mysqli_fetch_array($consulta)) {
+                      ?>
+                        <tr>
+                          <td style="font-size: 12px; display: none;"><?php echo $row['id_detalle_req'] ?></td>
+                          <td style="font-size: 12px;"><?php echo $ii ?></td>
+                          <td style="font-size: 12px;"><?php echo $row['condicion'] ?></td>
+                          <td style="font-size: 12px;"><?php echo $row['nom_nivel_prioridad'] ?></td>
+                        </tr>
+                      <?php
+                        $ii++;
+                      }
+                      ?>
+                    <?php
+                      $i++;
+                    }
+                    ?>
                   </tbody>
                 </table>
               </div>

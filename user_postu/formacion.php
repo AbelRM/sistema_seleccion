@@ -218,8 +218,8 @@ if (empty($_SESSION['active'])) {
                 <div class="col-md-6 col-sm-12 form-group" id="div_nivel_estudio_tecnico">
                   <label for="title">(*) Nivel estudios</label>
                   <select name="nivel_estudios_tec" id="nivel_estudios_tec" class="form-control">
-                    <option value="EGRESADO">Egresado</option>
                     <option value="TITULADO">Titulado</option>
+                    <option value="EGRESADO">Egresado</option>
                   </select>
                 </div>
                 <div class="col-md-6 col-sm-12 form-group" id="div_nivel_estudio_prof">

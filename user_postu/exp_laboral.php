@@ -670,7 +670,7 @@ if (empty($_SESSION['active'])) {
               </div>
               <div class="col-md-4 col-sm-12 form-group" id="div_centro_estudios">
                 <label for="title">(*) Cargo/Funciones</label>
-                <input type="text" name="cargo_funciones_4exp" class="form-control" placeholder="Nombre de cargo" maxlength="100" required>
+                <input type="text" name="cargo_funciones_4exp" style="text-transform:uppercase; font-size:13px" class="form-control" placeholder="Nombre de cargo" maxlength="100" required>
               </div>
               <div class="col-md-4 col-sm-12 form-group" id="div_carrera">
                 <label for="title">(*) Fecha de Inicio</label>
@@ -814,11 +814,11 @@ if (empty($_SESSION['active'])) {
 
               <div class="col-md-4 col-sm-12 form-group">
                 <label for="title">(*) Lugar de trabajo</label>
-                <input type="text" name="lugar_3exp" class="form-control" placeholder="Nombre de cargo" maxlength="100" required>
+                <input type="text" name="lugar_3exp" style="text-transform:uppercase; font-size:13px" class="form-control" placeholder="Nombre de cargo" maxlength="100" required>
               </div>
               <div class="col-md-4 col-sm-12 form-group">
                 <label for="title">(*) Cargo/Funciones</label>
-                <input type="text" name="cargo_funciones_3exp" class="form-control" placeholder="Nombre de cargo" maxlength="100" required>
+                <input type="text" name="cargo_funciones_3exp" style="text-transform:uppercase; font-size:13px" class="form-control" placeholder="Nombre de cargo" maxlength="100" required>
               </div>
               <div class="col-md-4 col-sm-12 form-group">
                 <label for="title">(*) Fecha de Inicio</label>
@@ -830,21 +830,21 @@ if (empty($_SESSION['active'])) {
               </div>
               <div class="col-md-4 col-sm-12 form-group" id="div_tipo_comprobante">
                 <label for="title">(*) Tipo de comprobante</label>
-                <select name="tipo_comprobante" id="" class="form-control" onChange="tipo_comprobante_select(this)">
+                <select name="tipo_comprobante" id="" class="form-control" onChange="tipo_comprobante_expe3_select(this)">
                   <option value="">Elegir...</option>
                   <option value="contrato">Contrato</option>
                   <option value="boleta">Boleta de pago</option>
                 </select>
               </div>
-              <div class="col-md-4 col-sm-12 form-group" id="div_nro_contrato">
+              <div class="col-md-4 col-sm-12 form-group" id="div_nro_contrato_expe3">
                 <label for="title">(*)Nro Contrato</label>
                 <input type="text" name="nro_contrato" class="form-control">
               </div>
-              <div class="col-md-4 col-sm-12 form-group" id="div_fecha_boleta">
+              <div class="col-md-4 col-sm-12 form-group" id="div_fecha_boleta_expe3">
                 <label for="title">(*)Fecha emisión </label>
                 <input type="date" name="fecha_boleta" class="form-control">
               </div>
-              <div class="col-md-4 col-sm-12 form-group" id="div_boleta_pago">
+              <div class="col-md-4 col-sm-12 form-group" id="div_boleta_pago_expe3">
                 <label for="title">(*)Boleta de pago (Mayor a S./425.00)</label>
                 <input type="number" name="boleta" class="form-control">
               </div>
@@ -957,11 +957,11 @@ if (empty($_SESSION['active'])) {
 
               <div class="col-md-4 col-sm-12 form-group">
                 <label for="title">(*) Lugar de trabajo</label>
-                <input type="text" name="lugar_1exp" class="form-control" placeholder="Nombre de cargo" maxlength="100" required>
+                <input type="text" name="lugar_1exp" style="text-transform:uppercase; font-size:13px" class="form-control" placeholder="Nombre de cargo" maxlength="100" required>
               </div>
               <div class="col-md-4 col-sm-12 form-group">
                 <label for="title">(*) Cargo/Funciones</label>
-                <input type="text" name="cargo_funciones_1exp" class="form-control" placeholder="Nombre de cargo" maxlength="100" required>
+                <input type="text" name="cargo_funciones_1exp" style="text-transform:uppercase; font-size:13px" class="form-control" placeholder="Nombre de cargo" maxlength="100" required>
               </div>
               <div class="col-md-4 col-sm-12 form-group">
                 <label for="title">(*) Fecha de Inicio</label>
@@ -973,21 +973,21 @@ if (empty($_SESSION['active'])) {
               </div>
               <div class="col-md-4 col-sm-12 form-group" id="div_tipo_comprobante">
                 <label for="title">(*) Tipo de comprobante</label>
-                <select name="tipo_comprobante" id="" class="form-control" onChange="tipo_comprobante_select(this)">
+                <select name="tipo_comprobante" id="" class="form-control" onChange="tipo_comprobante_expe1_select(this)">
                   <option value="">Elegir...</option>
                   <option value="contrato">Contrato</option>
                   <option value="boleta">Boleta de pago</option>
                 </select>
               </div>
-              <div class="col-md-4 col-sm-12 form-group" id="div_nro_contrato">
+              <div class="col-md-4 col-sm-12 form-group" id="div_nro_contrato_expe1">
                 <label for="title">(*)Nro Contrato</label>
                 <input type="text" name="nro_contrato" class="form-control">
               </div>
-              <div class="col-md-4 col-sm-12 form-group" id="div_fecha_boleta">
+              <div class="col-md-4 col-sm-12 form-group" id="div_fecha_boleta_expe1">
                 <label for="title">(*)Fecha emisión </label>
                 <input type="date" name="fecha_boleta" class="form-control">
               </div>
-              <div class="col-md-4 col-sm-12 form-group" id="div_boleta_pago">
+              <div class="col-md-4 col-sm-12 form-group" id="div_boleta_pago_expe1">
                 <label for="title">(*)Boleta de pago (Mayor a S./425.00)</label>
                 <input type="number" name="boleta" class="form-control">
               </div>
@@ -1097,11 +1097,11 @@ if (empty($_SESSION['active'])) {
 
               <div class="col-md-4 col-sm-12 form-group">
                 <label for="title">(*) Lugar de trabajo</label>
-                <input type="text" name="lugar_4exp_tip2" class="form-control" placeholder="(*) Lugar de trabajo" maxlength="45" required>
+                <input type="text" name="lugar_4exp_tip2" class="form-control" style="text-transform:uppercase; font-size:13px" placeholder="(*) Lugar de trabajo" maxlength="45" required>
               </div>
               <div class="col-md-4 col-sm-12 form-group" id="div_centro_estudios">
                 <label for="title">(*) Cargo/Funciones</label>
-                <input type="text" name="cargo_funciones_4exp_tip2" class="form-control" placeholder="(*) Nombre de cargo" maxlength="45" required>
+                <input type="text" name="cargo_funciones_4exp_tip2" style="text-transform:uppercase; font-size:13px" class="form-control" placeholder="(*) Nombre de cargo" maxlength="45" required>
               </div>
               <div class="col-md-4 col-sm-12 form-group" id="div_carrera">
                 <label for="title">(*) Fecha de Inicio</label>
@@ -1113,21 +1113,21 @@ if (empty($_SESSION['active'])) {
               </div>
               <div class="col-md-4 col-sm-12 form-group" id="div_tipo_comprobante">
                 <label for="title">(*) Tipo de comprobante</label>
-                <select name="tipo_comprobante" id="" class="form-control" onChange="tipo_comprobante_select(this)">
+                <select name="tipo_comprobante" id="" class="form-control" onChange="tipo_comprobante_tip2_select(this)">
                   <option value="">Elegir...</option>
                   <option value="contrato">Contrato</option>
                   <option value="boleta">Boleta de pago</option>
                 </select>
               </div>
-              <div class="col-md-4 col-sm-12 form-group" id="div_nro_contrato">
-                <label for="title">(*)Nro Contrato</label>
+              <div class="col-md-4 col-sm-12 form-group" id="div_nro_contrato_tip2">
+                <label for=" title">(*)Nro Contrato</label>
                 <input type="text" name="nro_contrato" class="form-control">
               </div>
-              <div class="col-md-4 col-sm-12 form-group" id="div_fecha_boleta">
+              <div class="col-md-4 col-sm-12 form-group" id="div_fecha_boleta_tip2">
                 <label for="title">(*)Fecha emisión </label>
                 <input type="date" name="fecha_boleta" class="form-control">
               </div>
-              <div class="col-md-4 col-sm-12 form-group" id="div_boleta_pago">
+              <div class="col-md-4 col-sm-12 form-group" id="div_boleta_pago_tip2">
                 <label for="title">(*)Boleta de pago (Mayor a S./425.00)</label>
                 <input type="number" name="boleta" class="form-control">
               </div>
@@ -1255,21 +1255,21 @@ if (empty($_SESSION['active'])) {
               </div>
               <div class="col-md-4 col-sm-12 form-group" id="div_tipo_comprobante">
                 <label for="title">(*) Tipo de comprobante</label>
-                <select name="tipo_comprobante" id="" class="form-control" onChange="tipo_comprobante_select(this)">
+                <select name="tipo_comprobante" id="" class="form-control" onChange="tipo_comprobante_tip2_expe3_select(this)">
                   <option value="">Elegir...</option>
                   <option value="contrato">Contrato</option>
                   <option value="boleta">Boleta de pago</option>
                 </select>
               </div>
-              <div class="col-md-4 col-sm-12 form-group" id="div_nro_contrato">
+              <div class="col-md-4 col-sm-12 form-group" id="div_nro_contrato_tip2_expe3">
                 <label for="title">(*)Nro Contrato</label>
                 <input type="text" name="nro_contrato" class="form-control">
               </div>
-              <div class="col-md-4 col-sm-12 form-group" id="div_fecha_boleta">
+              <div class="col-md-4 col-sm-12 form-group" id="div_fecha_boleta_tip2_expe3">
                 <label for="title">(*)Fecha emisión </label>
                 <input type="date" name="fecha_boleta" class="form-control">
               </div>
-              <div class="col-md-4 col-sm-12 form-group" id="div_boleta_pago">
+              <div class="col-md-4 col-sm-12 form-group" id="div_boleta_pago_tip2_expe3">
                 <label for="title">(*)Boleta de pago (Mayor a S./425.00)</label>
                 <input type="number" name="boleta" class="form-control">
               </div>
@@ -1329,21 +1329,21 @@ if (empty($_SESSION['active'])) {
               </div>
               <div class="col-md-4 col-sm-12 form-group" id="div_tipo_comprobante">
                 <label for="title">(*) Tipo de comprobante</label>
-                <select name="tipo_comprobante" id="" class="form-control" onChange="tipo_comprobante_select(this)">
+                <select name="tipo_comprobante" id="" class="form-control" onChange="tipo_comprobante_tip1_expe_1_select(this)">
                   <option value="">Elegir...</option>
                   <option value="contrato">Contrato</option>
                   <option value="boleta">Boleta de pago</option>
                 </select>
               </div>
-              <div class="col-md-4 col-sm-12 form-group" id="div_nro_contrato">
+              <div class="col-md-4 col-sm-12 form-group" id="div_nro_contrato_tip1_expe_1">
                 <label for="title">(*)Nro Contrato</label>
                 <input type="text" name="nro_contrato" class="form-control">
               </div>
-              <div class="col-md-4 col-sm-12 form-group" id="div_fecha_boleta">
+              <div class="col-md-4 col-sm-12 form-group" id="div_fecha_boleta_tip1_expe_1">
                 <label for="title">(*)Fecha emisión </label>
                 <input type="date" name="fecha_boleta" class="form-control">
               </div>
-              <div class="col-md-4 col-sm-12 form-group" id="div_boleta_pago">
+              <div class="col-md-4 col-sm-12 form-group" id="div_boleta_pago_tip1_expe_1">
                 <label for="title">(*)Monto de boleta (Mayor a S./425.00)</label>
                 <input type="number" name="boleta" class="form-control">
               </div>
@@ -1387,29 +1387,6 @@ if (empty($_SESSION['active'])) {
   <script src="js/demo/chart-pie-demo.js"></script>
   <script src="js/mis_script.js"></script>
   <script src="js/sweetalert2.all.min.js"></script>
-  <!-- <script>
-    'use strict';;
-    (function(document, window, index) {
-      var inputs = document.querySelectorAll('.inputfile');
-      Array.prototype.forEach.call(inputs, function(input) {
-        var label = input.nextElementSibling,
-          labelVal = label.innerHTML;
-
-        input.addEventListener('change', function(e) {
-          var fileName = '';
-          if (this.files && this.files.length > 1)
-            fileName = (this.getAttribute('data-multiple-caption') || '').replace('{count}', this.files.length);
-          else
-            fileName = e.target.value.split('\\').pop();
-
-          if (fileName)
-            label.querySelector('span').innerHTML = fileName;
-          else
-            label.innerHTML = labelVal;
-        });
-      });
-    }(document, window, 0));
-  </script> -->
   <script>
     function alerta_aceptar() {
       Swal.fire("Se agrego correctamente.");
@@ -1599,13 +1576,67 @@ if (empty($_SESSION['active'])) {
     });
   </script>
   <script>
+    div_nro_contrato_expe1 = document.getElementById("div_nro_contrato_expe1");
+    div_nro_contrato_expe1.style.display = "none";
+    div_boleta_pago_expe1 = document.getElementById("div_boleta_pago_expe1");
+    div_boleta_pago_expe1.style.display = "none";
+    div_fecha_boleta_expe1 = document.getElementById("div_fecha_boleta_expe1");
+    div_fecha_boleta_expe1.style.display = "none";
+
+    function tipo_comprobante_expe1_select(sel) {
+      if (sel.value == "contrato") {
+        div_nro_contrato_expe1 = document.getElementById("div_nro_contrato_expe1");
+        div_nro_contrato_expe1.style.display = "block";
+        div_boleta_pago_expe1 = document.getElementById("div_boleta_pago_expe1");
+        div_boleta_pago_expe1.style.display = "none";
+        div_fecha_boleta_expe1 = document.getElementById("div_fecha_boleta_expe1");
+        div_fecha_boleta_expe1.style.display = "none";
+
+      } else if (sel.value == "boleta") {
+        div_nro_contrato_expe1 = document.getElementById("div_nro_contrato_expe1");
+        div_nro_contrato_expe3.style.display = "none";
+        div_boleta_pago_expe1 = document.getElementById("div_boleta_pago_expe1");
+        div_boleta_pago_expe1.style.display = "block";
+        div_fecha_boleta_expe1 = document.getElementById("div_fecha_boleta_expe1");
+        div_fecha_boleta_expe1.style.display = "block";
+
+      }
+    }
+
+    div_nro_contrato_expe3 = document.getElementById("div_nro_contrato_expe3");
+    div_nro_contrato_expe3.style.display = "none";
+    div_boleta_pago_expe3 = document.getElementById("div_boleta_pago_expe3");
+    div_boleta_pago_expe3.style.display = "none";
+    div_fecha_boleta_expe3 = document.getElementById("div_fecha_boleta_expe3");
+    div_fecha_boleta_expe3.style.display = "none";
+
+
+    function tipo_comprobante_expe3_select(sel) {
+      if (sel.value == "contrato") {
+        div_nro_contrato_expe3 = document.getElementById("div_nro_contrato_expe3");
+        div_nro_contrato_expe3.style.display = "block";
+        div_boleta_pago_expe3 = document.getElementById("div_boleta_pago_expe3");
+        div_boleta_pago_expe3.style.display = "none";
+        div_fecha_boleta_expe3 = document.getElementById("div_fecha_boleta_expe3");
+        div_fecha_boleta_expe3.style.display = "none";
+
+      } else if (sel.value == "boleta") {
+        div_nro_contrato_expe3 = document.getElementById("div_nro_contrato_expe3");
+        div_nro_contrato_expe3.style.display = "none";
+        div_boleta_pago_expe3 = document.getElementById("div_boleta_pago_expe3");
+        div_boleta_pago_expe3.style.display = "block";
+        div_fecha_boleta_expe3 = document.getElementById("div_fecha_boleta_expe3");
+        div_fecha_boleta_expe3.style.display = "block";
+
+      }
+    }
+
     div_nro_contrato = document.getElementById("div_nro_contrato");
     div_nro_contrato.style.display = "none";
     div_boleta_pago = document.getElementById("div_boleta_pago");
     div_boleta_pago.style.display = "none";
     div_fecha_boleta = document.getElementById("div_fecha_boleta");
     div_fecha_boleta.style.display = "none";
-
 
     function tipo_comprobante_select(sel) {
       if (sel.value == "contrato") {
@@ -1623,6 +1654,87 @@ if (empty($_SESSION['active'])) {
         div_boleta_pago.style.display = "block";
         div_fecha_boleta = document.getElementById("div_fecha_boleta");
         div_fecha_boleta.style.display = "block";
+
+      }
+    }
+
+    div_nro_contrato_tip2 = document.getElementById("div_nro_contrato_tip2");
+    div_nro_contrato_tip2.style.display = "none";
+    div_fecha_boleta_tip2 = document.getElementById("div_fecha_boleta_tip2");
+    div_fecha_boleta_tip2.style.display = "none";
+    div_boleta_pago_tip2 = document.getElementById("div_boleta_pago_tip2");
+    div_boleta_pago_tip2.style.display = "none";
+
+    function tipo_comprobante_tip2_select(sel) {
+      if (sel.value == "contrato") {
+        div_nro_contrato_tip2 = document.getElementById("div_nro_contrato_tip2");
+        div_nro_contrato_tip2.style.display = "block";
+        div_fecha_boleta_tip2 = document.getElementById("div_fecha_boleta_tip2");
+        div_fecha_boleta_tip2.style.display = "none";
+        div_boleta_pago_tip2 = document.getElementById("div_boleta_pago_tip2");
+        div_boleta_pago_tip2.style.display = "none";
+
+      } else if (sel.value == "boleta") {
+        div_nro_contrato_tip2 = document.getElementById("div_nro_contrato_tip2");
+        div_nro_contrato_tip2.style.display = "none";
+        div_fecha_boleta_tip2 = document.getElementById("div_fecha_boleta_tip2");
+        div_fecha_boleta_tip2.style.display = "block";
+        div_boleta_pago_tip2 = document.getElementById("div_boleta_pago_tip2");
+        div_boleta_pago_tip2.style.display = "block";
+
+      }
+    }
+
+    div_nro_contrato_tip2_expe3 = document.getElementById("div_nro_contrato_tip2_expe3");
+    div_nro_contrato_tip2_expe3.style.display = "none";
+    div_fecha_boleta_tip2_expe3 = document.getElementById("div_fecha_boleta_tip2_expe3");
+    div_fecha_boleta_tip2_expe3.style.display = "none";
+    div_boleta_pago_tip2_expe3 = document.getElementById("div_boleta_pago_tip2_expe3");
+    div_boleta_pago_tip2_expe3.style.display = "none";
+
+    function tipo_comprobante_tip2_expe3_select(sel) {
+      if (sel.value == "contrato") {
+        div_nro_contrato_tip2_expe3 = document.getElementById("div_nro_contrato_tip2_expe3");
+        div_nro_contrato_tip2_expe3.style.display = "block";
+        div_fecha_boleta_tip2_expe3 = document.getElementById("div_fecha_boleta_tip2_expe3");
+        div_fecha_boleta_tip2_expe3.style.display = "none";
+        div_boleta_pago_tip2_expe3 = document.getElementById("div_boleta_pago_tip2_expe3");
+        div_boleta_pago_tip2_expe3.style.display = "none";
+
+      } else if (sel.value == "boleta") {
+        div_nro_contrato_tip2_expe3 = document.getElementById("div_nro_contrato_tip2_expe3");
+        div_nro_contrato_tip2_expe3.style.display = "none";
+        div_fecha_boleta_tip2_expe3 = document.getElementById("div_fecha_boleta_tip2_expe3");
+        div_fecha_boleta_tip2_expe3.style.display = "block";
+        div_boleta_pago_tip2_expe3 = document.getElementById("div_boleta_pago_tip2_expe3");
+        div_boleta_pago_tip2_expe3.style.display = "block";
+
+      }
+    }
+
+    div_nro_contrato_tip1_expe_1 = document.getElementById("div_nro_contrato_tip1_expe_1");
+    div_nro_contrato_tip1_expe_1.style.display = "none";
+    div_fecha_boleta_tip1_expe_1 = document.getElementById("div_fecha_boleta_tip1_expe_1");
+    div_fecha_boleta_tip1_expe_1.style.display = "none";
+    div_boleta_pago_tip1_expe_1 = document.getElementById("div_boleta_pago_tip1_expe_1");
+    div_boleta_pago_tip1_expe_1.style.display = "none";
+
+    function tipo_comprobante_tip1_expe_1_select(sel) {
+      if (sel.value == "contrato") {
+        div_nro_contrato_tip1_expe_1 = document.getElementById("div_nro_contrato_tip1_expe_1");
+        div_nro_contrato_tip1_expe_1.style.display = "block";
+        div_fecha_boleta_tip1_expe_1 = document.getElementById("div_fecha_boleta_tip1_expe_1");
+        div_fecha_boleta_tip1_expe_1.style.display = "none";
+        div_boleta_pago_tip1_expe_1 = document.getElementById("div_boleta_pago_tip1_expe_1");
+        div_boleta_pago_tip1_expe_1.style.display = "none";
+
+      } else if (sel.value == "boleta") {
+        div_nro_contrato_tip1_expe_1 = document.getElementById("div_nro_contrato_tip1_expe_1");
+        div_nro_contrato_tip1_expe_1.style.display = "none";
+        div_fecha_boleta_tip1_expe_1 = document.getElementById("div_fecha_boleta_tip1_expe_1");
+        div_fecha_boleta_tip1_expe_1.style.display = "block";
+        div_boleta_pago_tip1_expe_1 = document.getElementById("div_boleta_pago_tip1_expe_1");
+        div_boleta_pago_tip1_expe_1.style.display = "block";
 
       }
     }

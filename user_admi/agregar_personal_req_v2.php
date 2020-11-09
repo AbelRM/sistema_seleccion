@@ -147,16 +147,19 @@ if (empty($_SESSION['active'])) {
                                 </td>
                               </tr>
                               <?php
-                              $select = "SELECT * FROM detalle_requerimientos INNER JOIN requerimientos 
-                                ON detalle_requerimientos.detalle_req_idrequerimientos = requerimientos.id_requerimientos WHERE detalle_req_idpersonal_req ='$idpersonal' ";
+                              $select = "SELECT * FROM sistema_seleccion.requerimientos INNER JOIN sistema_seleccion.tipo_estudios
+                              ON requerimientos.reque_tipo_estudios=tipo_estudios.id_tipo_estudios  WHERE reque_id_personal ='$idpersonal' ";
+                              // $select = "SELECT * FROM detalle_requerimientos INNER JOIN requerimientos 
+                              //   ON detalle_requerimientos.detalle_req_idrequerimientos = requerimientos.id_requerimientos WHERE detalle_req_idpersonal_req ='$idpersonal' ";
                               $consulta = mysqli_query($con, $select);
                               ?>
                               <thead>
                                 <tr class="bg-secondary" style="text-align:center; color:#000; font-size:0.813em;">
                                   <th style="display:none;">id</th>
                                   <th>N°</th>
-                                  <th>Condición</th>
-                                  <th>Nivel de prioridad</th>
+                                  <th>Tipo de estudios</th>
+                                  <th>Tipo experiencia</th>
+                                  <th>Cantidad exp.</th>
                                   <th>Acciones</th>
                                 </tr>
                               </thead>
@@ -166,10 +169,11 @@ if (empty($_SESSION['active'])) {
                               ?>
 
                                 <tr>
-                                  <td style="font-size: 12px; display: none;"><?php echo $row['id_detalle_req'] ?></td>
+                                  <td style="font-size: 12px; display: none;"><?php echo $row['id_requerimientos'] ?></td>
                                   <td style="font-size: 12px;"><?php echo $ii ?></td>
-                                  <td style="font-size: 12px;"><?php echo $row['condicion'] ?></td>
-                                  <td style="font-size: 12px;"><?php echo $row['nivel_prioridad'] ?></td>
+                                  <td style="font-size: 12px;"><?php echo $row['tipo_estudios'] ?></td>
+                                  <td style="font-size: 12px;"><?php echo $row['tipo_experiencia'] ?></td>
+                                  <td style="font-size: 12px;"><?php echo $row['cantidad_experiencia'] ?></td>
                                   <td class="d-flex justify-content-center">
                                     <a type="button" href="editarformacion.php?idformacion=<?php echo $row['id_formacion'] ?>&dni=<?php echo $dato_desencriptado ?>" class="btn btn-success btn-sm m-1">
                                       <i class="fa fa-edit"></i> Editar</a>
@@ -242,7 +246,7 @@ if (empty($_SESSION['active'])) {
           <button class="close" data-dismiss="modal"><span>×</span></button>
         </div>
         <div class="modal-body">
-          <form action="procesos/guardar_personal_req.php" autocomplete="off" method="POST">
+          <form action="procesos/guardar_personal_req_v2.php" autocomplete="off" method="POST">
             <div class="row">
               <!-- <div class="form-group font-weight-bolder">
                 <p class="text-danger">(*) Indica un campo obligatorio.</p>
@@ -304,7 +308,7 @@ if (empty($_SESSION['active'])) {
                 <h6 class="m-0 font-weight-bold text-danger">Elegir los Requesitos básicos</h6>
                 <hr class="sidebar-divider">
               </div>
-              <div class="table-responsive">
+              <!-- <div class="table-responsive">
                 <table class="table table-bordered" id="tabla-1">
                   <thead>
                     <tr class="bg-danger" style="text-align:center; font-size:0.813em;">
@@ -338,9 +342,92 @@ if (empty($_SESSION['active'])) {
                     </tr>
                     </tdody>
                 </table>
+              </div> -->
+              <div class="col-md-4 col-sm-12 form-group">
+                <label for="title">(*) Formación Academica</label>
+                <select name="formacion_requerida" class="form-control" onChange="tipo_estudios_select(this)" required>
+                  <option value="0">Seleccione:</option>
+                  <?php
+                  $query = $con->query("SELECT * FROM tipo_estudios");
+                  while ($valores = mysqli_fetch_array($query)) {
+                    echo '<option value="' . $valores['id_tipo_estudios'] . '">' . $valores['tipo_estudios'] . '</option>';
+                  }
+                  ?>
+                </select>
               </div>
-              <div class="col-12 d-flex justify-content-end p-2">
-                <button id="adicional-1" name="adicional" type="button" class="btn btn-warning"><i class="far fa-plus-square"></i> Fila</button>
+              <div class="col-md-4 col-sm-12 form-group" id="div_nivel_estudio_tecnico">
+                <label for="title">(*) Nivel estudios</label>
+                <select name="nivel_estudios_tec" id="nivel_estudios_tec" class="form-control">
+                  <option value="TITULADO">Titulado</option>
+                  <option value="EGRESADO">Egresado</option>
+                </select>
+              </div>
+              <div class="col-md-4 col-sm-12 form-group" id="div_nivel_estudio_prof">
+                <label for="title">(*) Nivel estudios</label>
+                <select name="nivel_estudios_prof" onChange="tipo_nivel_estudio_select(this)" class="form-control">
+                  <option value="">Elegir...</option>
+                  <option value="ESTUDIANTE">Estudiante</option>
+                  <option value="EGRESADO">Egresado</option>
+                  <option value="BACHILLER">Bachiller</option>
+                  <option value="TITULADO">Titulado</option>
+                </select>
+              </div>
+              <div class="col-md-4 col-sm-12 form-group" id="div_ciclo_actual">
+                <label for="title">(*) Ciclo actual requerido</label>
+                <select name="ciclo_actual" class="form-control">
+                  <option value="">Elegir</option>
+                  <option value="VIII">VIII</option>
+                  <option value="IX">IX</option>
+                  <option value="X">X</option>
+                </select>
+              </div>
+              <div class="col-md-4 col-sm-12 form-group">
+                <label for="title">(*) Colegiatura </label>
+                <select name="colegiatura" class="form-control">
+                  <option value="NO">NO</option>
+                  <option value="SI">SI</option>
+                </select>
+              </div>
+
+              <div class="col-md-4 col-sm-12 form-group">
+                <label for="title">(*) Habilitación Profesional</label>
+                <select name="habilitacion" class="form-control">
+                  <option value="NO">NO</option>
+                  <option value="SI">SI</option>
+                </select>
+              </div>
+              <div class="col-md-4 col-sm-12 form-group">
+                <label for="title">(*) SERUMS </label>
+                <select name="serums" class="form-control">
+                  <option value="NO">NO</option>
+                  <option value="SI">SI</option>
+                </select>
+              </div>
+              <div class="col-md-4 col-sm-12 form-group">
+                <label for="title">(*) Experiencia laboral MÍNIMA</label>
+                <select name="tipo_experiencia" class="form-control" onChange="tipo_experiencia_select(this)">
+                  <option value="">Elegir...</option>
+                  <option value="anios">AÑOS</option>
+                  <option value="meses">MESES</option>
+                </select>
+              </div>
+              <div class="col-md-4 col-sm-12 form-group" id="div_experiencia_meses">
+                <label for="title">(*) Tiempo experiencia en MESES</label>
+                <input type="number" name="cantidad_meses" class="form-control">
+              </div>
+              <div class="col-md-4 col-sm-12 form-group" id="div_experiencia_años">
+                <label for="title">(*) Tiempo experiencia en AÑOS</label>
+                <input type="number" name="cantidad_anios" class="form-control">
+              </div>
+              <div class="col-md-4 col-sm-12 form-group">
+                <label for="title">(*) Licencia de conducir </label>
+                <select name="licencia_conducir" id="licencia_conducir" class="form-control">
+                  <option value="Ninguna">Ninguna</option>
+                  <option value="A-IIb">A-IIb</option>
+                  <option value="A-IIIa">A-IIIa</option>
+                  <option value="A-IIIb">A-IIIb</option>
+                  <option value="A-IIIc">A-IIIc</option>
+                </select>
               </div>
             </div>
             <div class="modal-footer">
@@ -357,16 +444,17 @@ if (empty($_SESSION['active'])) {
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header bg-danger text-white">
-          <h5 class="modal-title" id="exampleModalLabel">Eliminar registro de Formación</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Eliminar registro de personal requerido</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">×</span>
           </button>
         </div>
-        <form action="procesos/borrar_formacion.php" method="POST">
+        <form action="procesos/borrar_personal_req.php" method="POST">
 
           <div class="modal-body">
 
             <input type="hidden" name="deleteId" id="deleteId">
+            <input type="hidden" name="idconvocatoria" value="<?php echo $idcon ?>">
             <input type="hidden" name="dni" value="<?php echo $dato_desencriptado ?>">
             <h4>¿Desea eliminar el registro de formación?</h4>
 
@@ -453,7 +541,69 @@ if (empty($_SESSION['active'])) {
       });
     });
   </script>
+  <script>
+    div_experiencia_meses = document.getElementById("div_experiencia_meses");
+    div_experiencia_meses.style.display = "none";
+    div_experiencia_años = document.getElementById("div_experiencia_años");
+    div_experiencia_años.style.display = "none";
 
+    function tipo_experiencia_select(sel) {
+      if (sel.value == "anios") {
+        div_experiencia_meses = document.getElementById("div_experiencia_meses");
+        div_experiencia_meses.style.display = "none";
+        div_experiencia_años = document.getElementById("div_experiencia_años");
+        div_experiencia_años.style.display = "block";
+
+      } else if (sel.value == "meses") {
+        div_experiencia_meses = document.getElementById("div_experiencia_meses");
+        div_experiencia_meses.style.display = "block";
+        div_experiencia_años = document.getElementById("div_experiencia_años");
+        div_experiencia_años.style.display = "none";
+
+      }
+    }
+
+    function tipo_estudios_select(sel) {
+      if (sel.value == "1") {
+
+        div_nivel_estudio_tecnico = document.getElementById("div_nivel_estudio_tecnico");
+        div_nivel_estudio_tecnico.style.display = "none";
+        div_nivel_estudio_prof = document.getElementById("div_nivel_estudio_prof");
+        div_nivel_estudio_prof.style.display = "none";
+        div_ciclo_actual = document.getElementById("div_ciclo_actual");
+        div_ciclo_actual.style.display = "none";
+
+      } else if (sel.value == "2") {
+        div_nivel_estudio_tecnico = document.getElementById("div_nivel_estudio_tecnico");
+        div_nivel_estudio_tecnico.style.display = "block";
+        div_nivel_estudio_prof = document.getElementById("div_nivel_estudio_prof");
+        div_nivel_estudio_prof.style.display = "none";
+        div_ciclo_actual = document.getElementById("div_ciclo_actual");
+        div_ciclo_actual.style.display = "none";
+
+
+      } else if (sel.value == "3") {
+        div_nivel_estudio_tecnico = document.getElementById("div_nivel_estudio_tecnico");
+        div_nivel_estudio_tecnico.style.display = "none";
+        div_nivel_estudio_prof = document.getElementById("div_nivel_estudio_prof");
+        div_nivel_estudio_prof.style.display = "block";
+        div_ciclo_actual = document.getElementById("div_ciclo_actual");
+        div_ciclo_actual.style.display = "none";
+
+      }
+    }
+
+    function tipo_nivel_estudio_select(sel) {
+      if (sel.value == "ESTUDIANTE") {
+        div_ciclo_actual = document.getElementById("div_ciclo_actual");
+        div_ciclo_actual.style.display = "block";
+
+      } else if (sel.value == "EGRESADO" || sel.value == "EGRESADO" || sel.value == "BACHILLER" || sel.value == "TITULADO") {
+        div_ciclo_actual = document.getElementById("div_ciclo_actual");
+        div_ciclo_actual.style.display = "none";
+      }
+    }
+  </script>
 
 </body>
 

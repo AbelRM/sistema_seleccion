@@ -10,7 +10,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Listado</title>
+  <title>Registrar postulación DIRESA TACNA</title>
 
 
   <!-- Custom fonts for this template -->
@@ -62,10 +62,17 @@
 
     $idpersonal = $_GET['idcargo'];
 
-    $sql5 = "SELECT * FROM total_personal_req where idpersonal=$idpersonal";
+    // $sql5 = "SELECT * FROM convocatoria INNER JOIN ubicacion
+    //                 ON convocatoria.direccion_ejec_iddireccion = ubicacion.iddireccion WHERE idcon=$idcon";
+    // $datos4 = mysqli_query($con, $sql5) or die(mysqli_error($datos4));;
+    // $fila4 = mysqli_fetch_array($datos4);
+    // $idpersonal = $fila4['idpersonal'];
+
+    $sql5 = "SELECT * FROM sistema_seleccion.personal_req INNER JOIN sistema_seleccion.cargo
+                    ON personal_req.cargo_idcargo = cargo.idcargo INNER JOIN sistema_seleccion.ubicacion 
+                    ON personal_req.personal_req_idubicacion = ubicacion.iddireccion WHERE idpersonal='$idpersonal'";
     $datos4 = mysqli_query($con, $sql5) or die(mysqli_error($datos4));;
     $fila4 = mysqli_fetch_array($datos4);
-    $idpersonal = $fila4['idpersonal'];
 
     include 'menu.php';
     ?>
@@ -127,40 +134,45 @@
                   </div>
                 </div>
                 <hr class="sidebar-divider d-none d-md-block">
-                <div class="form-group row">
-                  <div class="col-md-3 col-sm-12">
+                <div class="row">
+                  <div class="col-md-3 col-sm-12 form-group">
                     <label for="disabled-input">Cargo a postular:</label>
                     <input type="text" class="form-control" value="<?php echo $fila4['cargo'] ?>" disabled>
                   </div>
-                  <div class="col-md-3 col-sm-12">
-                    <label for="disabled-input">Cantidad solicitada:</label>
+                  <div class="col-md-2 col-sm-12 form-group">
+                    <label for="disabled-input">Cantidad requerida:</label>
                     <input type="text" class="form-control" value="<?php echo $fila4['cantidad'] ?>" disabled>
                   </div>
-                  <div class="col-md-3 col-sm-12">
+                  <div class="col-md-3 col-sm-12 form-group">
                     <label for="disabled-input">Remuneración del cargo:</label>
                     <input type="text" class="form-control" value="<?php echo $fila4['remuneracion'] ?>" disabled>
                   </div>
-                  <div class="col-md-3 col-sm-12">
-                    <label for="disabled-input">Remuneración del cargo:</label>
-                    <input type="text" class="form-control" value="<?php echo $fila4['remuneracion'] ?>" disabled>
+                  <div class="col-md-3 col-sm-12 form-group">
+                    <label for="disabled-input">Fuente</label>
+                    <input type="text" class="form-control" value="<?php echo $fila4['fuente_finac'] ?>" disabled>
+                  </div>
+                  <div class="col-md-1 col-sm-12 form-group">
+                    <label for="disabled-input">Meta</label>
+                    <input type="text" class="form-control" value="<?php echo $fila4['meta'] ?>" disabled>
+                  </div>
+                  <div class="col-md-12 col-sm-12 form-group">
+                    <label for="disabled-input">Dirección ejecutra</label>
+                    <input type="text" style="font-size: 14px;" class="form-control" value="<?php echo $fila4['direccion_ejec'] . " - " . $fila4['equipo_ejec'] ?>" disabled>
                   </div>
                 </div>
                 <hr class="sidebar-divider d-none d-md-block">
                 <div class="form-group row">
-                  <div class="col-md-6 col-sm-12">
+                  <!-- <div class="col-md-6 col-sm-12">
                     <img src="img/boleta.jpg" style="width:100%; height:auto;" alt="Boleta de ejemplo para el llenado del código">
+                  </div> -->
+                  <!-- <div class="col-md-6 col-sm-6"> -->
+                  <!-- <div class="row"> -->
+
+                  <div class="col-12 m-2 d-flex justify-content-center">
+                    <button type="submit" id="button1" class="btn btn-info btn-lg"><i class="fas fa-briefcase"></i> POSTULAR!</button>
                   </div>
-                  <div class="col-md-6 col-sm-6">
-                    <div class="row">
-                      <div class="col-6 m-2">
-                        <label for="disabled-input">Boleta de banco:</label>
-                        <input type="text" class="form-control" name="boleta" id="boleta" placeholder="Ejm: 003266" maxlength="6" required>
-                      </div>
-                      <div class="col-12 m-2 d-flex justify-content-center">
-                        <button type="submit" id="button1" class="btn btn-info btn-lg"><i class="fas fa-briefcase"></i> POSTULAR!</button>
-                      </div>
-                    </div>
-                  </div>
+                  <!-- </div> -->
+                  <!-- </div> -->
                 </div>
 
               </form>

@@ -86,7 +86,7 @@
                         <tr class="bg-danger" style="text-align:center; font-size:0.813em;">
                           <th>N°</th>
                           <th style="display: none;">id</th>
-                          <th>Cargo personal requerido</th>
+                          <th>Cargo</th>
                           <th>Cantidad</th>
                           <th>Remuneración</th>
                           <th>Dirección ejecutora</th>
@@ -106,16 +106,19 @@
                         </td>
                       </tr>
                       <?php
-                      $select = "SELECT * FROM detalle_requerimientos INNER JOIN requerimientos 
-                                ON detalle_requerimientos.detalle_req_idrequerimientos = requerimientos.id_requerimientos WHERE detalle_req_idpersonal_req ='$idpersonal' ";
+                      // $select = "SELECT * FROM detalle_requerimientos INNER JOIN requerimientos 
+                      //           ON detalle_requerimientos.detalle_req_idrequerimientos = requerimientos.id_requerimientos WHERE detalle_req_idpersonal_req ='$idpersonal' ";
+                      $select = "SELECT * FROM sistema_seleccion.requerimientos INNER JOIN sistema_seleccion.tipo_estudios
+                              ON requerimientos.reque_tipo_estudios=tipo_estudios.id_tipo_estudios  WHERE reque_id_personal ='$idpersonal'";
                       $consulta = mysqli_query($con, $select);
                       ?>
                       <thead>
                         <tr class="bg-secondary" style="text-align:center; color:#000; font-size:0.813em;">
                           <th style="display:none;">id</th>
                           <th>N°</th>
-                          <th>Condición</th>
-                          <th>Nivel</th>
+                          <th>Tipo de estudios</th>
+                          <th>Tipo experiencia</th>
+                          <th>Cantidad exp.</th>
                         </tr>
                       </thead>
                       <?php
@@ -123,10 +126,11 @@
                       while ($row = mysqli_fetch_array($consulta)) {
                       ?>
                         <tr>
-                          <td style="font-size: 12px; display: none;"><?php echo $row['id_detalle_req'] ?></td>
+                          <td style="font-size: 12px; display: none;"><?php echo $row['id_requerimientos'] ?></td>
                           <td style="font-size: 12px;"><?php echo $ii ?></td>
-                          <td style="font-size: 12px;"><?php echo $row['condicion'] ?></td>
-                          <td style="font-size: 12px;"><?php echo $row['nom_nivel_prioridad'] ?></td>
+                          <td style="font-size: 12px;"><?php echo $row['tipo_estudios'] ?></td>
+                          <td style="font-size: 12px;"><?php echo $row['tipo_experiencia'] ?></td>
+                          <td style="font-size: 12px;"><?php echo $row['cantidad_experiencia'] ?></td>
                         </tr>
                       <?php
                         $ii++;

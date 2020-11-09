@@ -9,9 +9,11 @@ if (isset($_POST['insertData'])) {
   $tipo_estudios = $_POST['tipo_estudios'];
   if ($tipo_estudios == '1') {
     $centro_estudios = $_POST['centro_estudios'];
+    $colegiatura = $_POST['colegiatura'];
     $fecha_inicio = $_POST['fecha_inicio'];
     $fecha_fin = $_POST['fecha_fin'];
     $licencia_conducir = $_POST['licencia_conducir'];
+    $serums = $_POST['serums'];
 
     //crear carpeta
     $micarpeta = $_SERVER['DOCUMENT_ROOT'] . '/sistema_seleccion/user_postu/archivos/' . $dni . '/formacion/';
@@ -40,9 +42,9 @@ if (isset($_POST['insertData'])) {
       header('Location: ../formacion.php?dni=' . $dato_desencriptado);
     } else {
       if (move_uploaded_file($_FILES['archivo']['tmp_name'], $micarpeta . $new_nombre)) {
-        $sql = "INSERT INTO formacion_acad (tipo_estudios_id,centro_estudios,fecha_inicio, 
-          fecha_fin, formacion_idpostulante,archivo, brevete) 
-          VALUES('$tipo_estudios','$centro_estudios','$fecha_inicio','$fecha_fin','$idpostulante','$new_nombre','$licencia_conducir')";
+        $sql = "INSERT INTO formacion_acad (tipo_estudios_id,centro_estudios,colegiatura,fecha_inicio,
+          fecha_fin, formacion_idpostulante,archivo, brevete, serums) 
+          VALUES('$tipo_estudios','$centro_estudios','$colegiatura','$fecha_inicio','$fecha_fin','$idpostulante','$new_nombre','$licencia_conducir','$serums')";
 
         $result = mysqli_query($con, $sql);
         if ($result) {
@@ -61,9 +63,11 @@ if (isset($_POST['insertData'])) {
     $nivel_estudios_tec = $_POST['nivel_estudios_tec'];
     $centro_estudios = $_POST['centro_estudios'];
     $carrera = $_POST['carrera'];
+    $colegiatura = $_POST['colegiatura'];
     $fecha_inicio = $_POST['fecha_inicio'];
     $fecha_fin = $_POST['fecha_fin'];
     $licencia_conducir = $_POST['licencia_conducir'];
+    $serums = $_POST['serums'];
 
     //crear carpeta
     $micarpeta = $_SERVER['DOCUMENT_ROOT'] . '/sistema_seleccion/user_postu/archivos/' . $dni . '/formacion/';
@@ -92,8 +96,8 @@ if (isset($_POST['insertData'])) {
       header('Location: ../formacion.php?dni=' . $dato_desencriptado);
     } else {
       if (move_uploaded_file($_FILES['archivo']['tmp_name'], $micarpeta . $new_nombre)) {
-        $sql = "INSERT INTO formacion_acad (tipo_estudios_id,nivel_estudios,centro_estudios,carrera,fecha_inicio,fecha_fin, formacion_idpostulante,archivo,brevete) 
-          VALUES('$tipo_estudios','$nivel_estudios_tec','$centro_estudios','$carrera','$fecha_inicio','$fecha_fin','$idpostulante','$new_nombre','$licencia_conducir')";
+        $sql = "INSERT INTO formacion_acad (tipo_estudios_id,nivel_estudios,centro_estudios,carrera,colegiatura,fecha_inicio,fecha_fin, formacion_idpostulante,archivo,brevete,serums) 
+          VALUES('$tipo_estudios','$nivel_estudios_tec','$centro_estudios','$carrera','$colegiatura,'$fecha_inicio','$fecha_fin','$idpostulante','$new_nombre','$licencia_conducir','$serums')";
         $result = mysqli_query($con, $sql);
         if ($result) {
           echo '<script> alert("Guardado exitosamente"); </script>';
@@ -110,6 +114,7 @@ if (isset($_POST['insertData'])) {
   } elseif ($tipo_estudios == '3') {
     $colegiatura_validar = $_POST['colegiatura'];
     $licencia_conducir = $_POST['licencia_conducir'];
+    $serums = $_POST['serums'];
     if ($colegiatura_validar == 'NO') {
       $micarpeta = $_SERVER['DOCUMENT_ROOT'] . '/sistema_seleccion/user_postu/archivos/' . $dni . '/formacion/';
       if (!file_exists($micarpeta)) {
@@ -147,9 +152,9 @@ if (isset($_POST['insertData'])) {
 
           if ($nivel_estudios == 'ESTUDIANTE') {
             $ciclo_actual = $_POST['ciclo_actual'];
-            $sql = "INSERT INTO formacion_acad (tipo_estudios_id,nivel_estudios,ciclo_actual,centro_estudios,carrera,colegiatura,fecha_inicio,fecha_fin, formacion_idpostulante,archivo,brevete) 
+            $sql = "INSERT INTO formacion_acad (tipo_estudios_id,nivel_estudios,ciclo_actual,centro_estudios,carrera,colegiatura,fecha_inicio,fecha_fin, formacion_idpostulante,archivo,brevete,serums) 
             VALUES('$tipo_estudios','$nivel_estudios','$ciclo_actual','$centro_estudios', '$carrera','$colegiatura_validar','$fecha_inicio',
-            '$fecha_fin','$idpostulante','$new_nombre','$licencia_conducir')";
+            '$fecha_fin','$idpostulante','$new_nombre','$licencia_conducir','serums')";
 
             $result = mysqli_query($con, $sql);
             if ($result) {
@@ -160,9 +165,9 @@ if (isset($_POST['insertData'])) {
               // header('Location: ../formacion.php?dni=' . $dato_desencriptado);
             }
           } elseif ($nivel_estudios == 'EGRESADO' || $nivel_estudios == 'BACHILLER') {
-            $sql = "INSERT INTO formacion_acad (tipo_estudios_id,nivel_estudios,centro_estudios,carrera,colegiatura,fecha_inicio,fecha_fin, formacion_idpostulante,archivo,brevete) 
+            $sql = "INSERT INTO formacion_acad (tipo_estudios_id,nivel_estudios,centro_estudios,carrera,colegiatura,fecha_inicio,fecha_fin, formacion_idpostulante,archivo,brevete,serums) 
             VALUES('$tipo_estudios','$nivel_estudios','$centro_estudios', '$carrera','$colegiatura_validar','$fecha_inicio',
-            '$fecha_fin','$idpostulante','$new_nombre','$licencia_conducir')";
+            '$fecha_fin','$idpostulante','$new_nombre','$licencia_conducir','$serums')";
 
             $result = mysqli_query($con, $sql);
             if ($result) {

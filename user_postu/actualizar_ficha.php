@@ -18,7 +18,7 @@ if (empty($_SESSION['active'])) {
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Sistema de postulación DIRESA - TACNA</title>
+  <title>Actualizar ficha de registro DIRESA - TACNA</title>
 
   <!-- Custom fonts for this template-->
   <link rel="icon" type="image/png" href="img/icono_diresa.png" />
@@ -48,9 +48,7 @@ if (empty($_SESSION['active'])) {
     $fila = mysqli_fetch_array($datos);
 
     include 'menu.php';
-
     ?>
-
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
 
@@ -115,11 +113,11 @@ if (empty($_SESSION['active'])) {
                           </div>
 
                           <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
+                            <?php $pais = $fila['pais'] ?>
                             <label class="font-weight-bolder">Pais</label>
-                            <select class="form-control" name="pais" id="pais">
-                              <option selected><?php echo $fila['pais'] ?></option>
-                              <option value="ECUADOR">ECUADOR</option>
+                            <select class="form-control" name="pais_editar" id="pais_editar">
                               <option value="PERU">PERU</option>
+                              <option value="ECUADOR">ECUADOR</option>
                               <option value="CHILE">CHILE</option>
                               <option value="BRASIL">BRASIL</option>
                               <option value="BOLIVIA">BOLIVIA</option>
@@ -131,9 +129,9 @@ if (empty($_SESSION['active'])) {
                             </select>
                           </div>
                           <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
+                            <?php $sexo = $fila['sexo'] ?>
                             <label class="font-weight-bolder">Sexo</label>
-                            <select class="form-control" name="sexo" id="sexo">
-                              <option selected><?php echo $fila['sexo'] ?></option>
+                            <select class="form-control" name="sexo_editar" id="sexo_editar">
                               <option value="MASCULINO">MASCULINO</option>
                               <option value="FEMENINO">FEMENINO</option>
                             </select>
@@ -150,9 +148,9 @@ if (empty($_SESSION['active'])) {
                           </div>
 
                           <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">
+                            <?php $estado_civil = $fila['estado_civil'] ?>
                             <label class="font-weight-bolder">Estado civil</label>
-                            <select class="form-control" name="estado_civil" id="estado_civil">
-                              <option selected><?php echo $fila['estado_civil'] ?></option>
+                            <select class="form-control" name="estado_civil_editar" id="estado_civil_editar">
                               <option value="SOLTERO(A)">Soltero(a)</option>
                               <option value="CASADO(A)">Casado(a)</option>
                               <option value="VIUDO(A)">Viudo(a)</option>
@@ -178,17 +176,17 @@ if (empty($_SESSION['active'])) {
                             <input class="form-control form-control-user" placeholder="Banco de la Nación" type="text" name="num_cuenta" id="num_cuenta" value="<?php echo $fila['num_cuenta'] ?>" maxlength="16" required />
                           </div>
                           <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
+                            <?php $suspension_cuarta = $fila['suspension_cuarta'] ?>
                             <label class="font-weight-bolder">Suspensión de 4ta.</label>
-                            <select class="form-control" name="cuarta" id="cuarta">
-                              <option select><?php echo $fila['suspension_cuarta'] ?></option>
-                              <option value="NO" selected>NO</option>
+                            <select class="form-control" name="cuarta_editar" id="cuarta_editar">
+                              <option value="NO">NO</option>
                               <option value="SI">SI</option>
                             </select>
                           </div>
                           <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
+                            <?php $seguro = $fila['seguro'] ?>
                             <label class="font-weight-bolder">Tipo de pensión</label>
-                            <select class="form-control custom-select" name="pension" id="inputSelect">
-                              <option select><?php echo $fila['seguro'] ?></option>
+                            <select class="form-control custom-select" name="pension_editar" id="pension_editar">
                               <option value="ONP">ONP</option>
                               <option value="AFP">AFP</option>
                             </select>
@@ -213,18 +211,18 @@ if (empty($_SESSION['active'])) {
                             <input type="text" name="nombre_afp_pregunta" class="form-control">
                           </div>
                           <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">
-                            <label class="font-weight-bolder">Discapacidad</label>
-                            <select class="form-control" name="discapacidad" id="discapacidad">
-                              <option select><?php echo $fila['discapacidad'] ?></option>
-                              <option value="NO" selected>NO</option>
+                            <?php $discapacidad = $fila['discapacidad'] ?>
+                            <label class="font-weight-bolder">¿Discapacidad?</label>
+                            <select class="form-control" name="discapacidad_editar" id="discapacidad_editar">
+                              <option value="NO">NO</option>
                               <option value="SI">SI</option>
                             </select>
                           </div>
                           <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
+                            <?php $tipo_discapacidad = $fila['tipo_discap'] ?>
                             <label class="font-weight-bolder">Tipo de discapacidad</label>
-                            <select class="form-control" name="tip_discapacidad" id="tip_discapacidad">
-                              <option select><?php echo $fila['tipo_discap'] ?></option>
-                              <option value="NINGUNA" select>Ninguna</option>
+                            <select class="form-control" name="tip_discapacidad_editar" id="tip_discapacidad_editar">
+                              <option value="NINGUNA">Ninguna</option>
                               <option value="FISICA">Físicas</option>
                               <option value="SENSORIAL">Sensoriales</option>
                               <option value="MENTAL">Mentales</option>
@@ -232,9 +230,9 @@ if (empty($_SESSION['active'])) {
                             </select>
                           </div>
                           <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">
+                            <?php $tipo_sangre = $fila['tipo_sangre'] ?>
                             <label class="font-weight-bolder">Grupo sanguineo</label>
-                            <select class="form-control" name="tip_sangre" id="tip_sangre">
-                              <option selected><?php echo $fila['tipo_sangre'] ?></option>
+                            <select class="form-control" name="tip_sangre" id="tip_sangre_editar">
                               <option value="AB+">AB+</option>
                               <option value="AB-">AB-</option>
                               <option value="A+">A+</option>
@@ -247,9 +245,9 @@ if (empty($_SESSION['active'])) {
                           </div>
 
                           <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
+                            <?php $servicio_militar = $fila['servicio_militar'] ?>
                             <label class="font-weight-bolder">Servicio militar Completo</label>
-                            <select class="form-control" name="servicio" id="servicio">
-                              <option selected><?php echo $fila['servicio_militar'] ?></option>
+                            <select class="form-control" name="servicio" id="servicio_editar">
                               <option value="NO">NO</option>
                               <option value="SI">SI</option>
                             </select>
@@ -277,9 +275,6 @@ if (empty($_SESSION['active'])) {
                         $fila2 = mysqli_fetch_array($datos2);
                         $distrito = $fila2['distrito_idistrito'];
 
-                        ?>
-
-                        <?php
                         $sql2 = "SELECT * FROM domicilio_post where postulante_idpostulante=$idpostulante";
                         $datos2 = mysqli_query($con, $sql2) or die(mysqli_error($datos2));
                         $fila2 = mysqli_fetch_array($datos2);
@@ -309,10 +304,10 @@ if (empty($_SESSION['active'])) {
                             <input class="form-control form-control-user" type="text" name="distrito" value="<?php echo $row2['distrito'] ?>" disabled="true" />
                           </div>
 
-                          <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
+                          <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">
+                            <?php $tip_via = $fila2['tip_via'] ?>
                             <label class="font-weight-bolder" for="exampleInputEmail1">Tipo de Via</label>
-                            <select class="form-control form-control-user" name="tipo_via" id="tipo_via">
-                              <option selected><?php echo $fila2['tip_via'] ?></option>
+                            <select class="form-control form-control-user" name="tipo_via" id="tipo_via_editar">
                               <option value="AVENIDA">Avenida</option>
                               <option value="JIRON">Jiron</option>
                               <option value="CALLE">Calle</option>
@@ -327,19 +322,19 @@ if (empty($_SESSION['active'])) {
                               <option value="TROCHA">Trocha</option>
                             </select>
                           </div>
-                          <div class="col-md-7 col-sm-6 mb-2 mb-sm-0">
+                          <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
                             <label class="font-weight-bolder">Nombre de via</label>
                             <input class="form-control form-control-user" type="text" name="nomb_via" id="nomb_via" value="<?php echo $fila2['nomb_via'] ?>" />
                           </div>
 
-                          <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">
+                          <!-- <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">
                             <label class="font-weight-bolder">Número de Via</label>
                             <input class="form-control form-control-user" type="text" name="num_via" id="num_via" value="<?php echo $fila2['num_via'] ?>" />
-                          </div>
-                          <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
+                          </div> -->
+                          <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">
+                            <?php $tip_zona = $fila2['tip_zona'] ?>
                             <label class="font-weight-bolder" for="exampleInputEmail1">Tipo de Zona</label>
-                            <select class="form-control form-control-user" name="tipo_zona" id="tipo_zona">
-                              <option selected><?php echo $fila2['tip_zona'] ?></option>
+                            <select class="form-control form-control-user" name="tipo_zona" id="tipo_zona_editar">
                               <option value="AVENIDA">Urbanizacion</option>
                               <option value="JIRON">Pueblo Joven</option>
                               <option value="CALLE">Unidad vecinal</option>
@@ -355,15 +350,15 @@ if (empty($_SESSION['active'])) {
                             <br>
                           </div>
 
-                          <div class="col-md-7 col-sm-6 mb-2 mb-sm-0">
+                          <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
                             <label class="font-weight-bolder">Nombre de la zona</label>
                             <input class="form-control form-control-user" type="text" name="nomb_zona" id="nomb_zona" value="<?php echo $fila2['nomb_zona'] ?>" />
                           </div>
 
-                          <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">
+                          <!-- <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">
                             <label class="font-weight-bolder">Número zona:</label>
                             <input class="form-control form-control-user" type="text" name="num_zona" id="num_zona" value="<?php echo $fila2['num_zona'] ?>" />
-                          </div>
+                          </div> -->
                           <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">
                             <label class="font-weight-bolder"># Número:</label>
                             <input class="form-control form-control-user" type="text" name="numero" id="numero" value="<?php echo $fila2['numero'] ?>" />
@@ -455,9 +450,8 @@ if (empty($_SESSION['active'])) {
                       </div>
                       <?php
                       $sql4 = "SELECT * FROM encuesta where postulanteID =$idpostulante";
-                      $datos4 = mysqli_query($con, $sql4) or die(mysqli_error());
+                      $datos4 = mysqli_query($con, $sql4) or die(mysqli_error($datos4));
                       $fila4 = mysqli_fetch_array($datos4);
-
                       ?>
 
                       <table class="table table-bordered">
@@ -474,7 +468,7 @@ if (empty($_SESSION['active'])) {
 
                             <th scope="row">1</th>
                             <td>
-                              <h6 class="font-weight-bolder">Declaro bajo juramento lo siguiente:</h6>
+                              <!-- <h6 class="font-weight-bolder">Declaro bajo juramento lo siguiente:</h6> -->
                               <label>Registra antecedentes policiales:</label>
                             </td>
                             <td>
@@ -784,6 +778,22 @@ if (empty($_SESSION['active'])) {
             break;
         }
       }).change();
+    });
+  </script>
+  <script>
+    $(document).ready(function() {
+
+      $('#pais_editar > option[value="<?php echo $pais ?>"]').attr('selected', 'selected');
+      $('#sexo_editar > option[value="<?php echo $sexo ?>"]').attr('selected', 'selected');
+      $('#estado_civil_editar > option[value="<?php echo $estado_civil ?>"]').attr('selected', 'selected');
+      $('#cuarta_editar > option[value="<?php echo $suspension_cuarta ?>"]').attr('selected', 'selected');
+      $('#pension_editar > option[value="<?php echo $seguro ?>"]').attr('selected', 'selected');
+      $('#discapacidad_editar > option[value="<?php echo $discapacidad ?>"]').attr('selected', 'selected');
+      $('#tip_discapacidad_editar > option[value="<?php echo $tipo_discapacidad ?>"]').attr('selected', 'selected');
+      $('#tip_sangre_editar > option[value="<?php echo $tipo_sangre ?>"]').attr('selected', 'selected');
+      $('#servicio_editar > option[value="<?php echo $servicio_militar ?>"]').attr('selected', 'selected');
+      $('#tipo_via_editar > option[value="<?php echo $tip_via ?>"]').attr('selected', 'selected');
+      $('#tipo_zona_editar > option[value="<?php echo $tip_zona ?>"]').attr('selected', 'selected');
     });
   </script>
 

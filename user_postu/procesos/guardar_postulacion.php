@@ -17,11 +17,11 @@ $resultado = MYSQLI_query($con, $personal_req_consulta);
 $row_2 = mysqli_fetch_array($resultado);
 $cargo = $row_2['cargo'];
 
-$$select_1 = "SELECT * FROM sistema_seleccion.formacion_acad WHERE formacion_idpostulante ='$idpostulante' ";
+$select_1 = "SELECT * FROM sistema_seleccion.formacion_acad WHERE formacion_idpostulante ='$idpostulante' ";
 $resultado_1 = MYSQLI_query($con, $select_1);
 $row = mysqli_fetch_array($resultado_1);
 $tipo_estudios_id = $row['tipo_estudios_id'];
-$$select_2 = "SELECT * FROM sistema_seleccion.requerimientos WHERE reque_id_personal ='$personal_req' ";
+$select_2 = "SELECT * FROM sistema_seleccion.requerimientos WHERE reque_id_personal ='$personal_req' ";
 $resultado_2 = MYSQLI_query($con, $select_2);
 $rw = mysqli_fetch_array($resultado_2);
 $reque_tipo_estudios = $rw['reque_tipo_estudios'];
@@ -32,7 +32,7 @@ if ($tipo_estudios_id == '1') {
   if ($tipo_estudios_id == $reque_tipo_estudios) {
     if ($tipo_experiencia == 'anios') {
       $cantidad_experiencia = $rw['cantidad_experiencia'];
-      $total_anios_requerido = $cantidad_experiencia * '365';
+      $total_anios_requerido = $cantidad_experiencia * 365;
 
       $experiencia = "SELECT * FROM sistema_seleccion.expe_4puntos 
       where expe_4puntos_idpostulante = '$idpostulante' UNION
@@ -42,18 +42,24 @@ if ($tipo_estudios_id == '1') {
       where expe_1puntos_idpostulante = '$idpostulante'";
       $resultado = MYSQLI_query($con, $experiencia);
       $total_dias = 0; // total declarado antes del bucle
+
       while ($array = mysqli_fetch_array($resultado)) {
         $total_dias = $total_dias + $array['dias']; // Sumar variable $total + resultado de la consulta
       }
-      while ($array = mysqli_fetch_array($resultado)) {
-        $total_meses = $total_dias + $array['meses']; // Sumar variable $total + resultado de la consulta
-      }
-      $totel_meses = $total_meses * '31';
 
-      while ($array = mysqli_fetch_array($resultado)) {
-        $total_anios = $total_dias + $array['anios']; // Sumar variable $total + resultado de la consulta
-      }
-      $total_anios = $total_anios * '365';
+      $suma_meses = "SELECT SUM(meses) AS meses_total FROM total_expe WHERE expe_4puntos_idpostulante = '$idpostulante'";
+      $cantidad_meses = mysqli_query($con, $suma_meses);
+      $array_2 = mysqli_fetch_array($cantidad_meses);
+      $total_meses = $array_2['meses_total'];
+
+      $total_meses = $total_meses * 31;
+
+      $suma_anios = "SELECT SUM(anios) AS anios_total FROM total_expe WHERE expe_4puntos_idpostulante = '$idpostulante'";
+      $cantidad_anios = mysqli_query($con, $suma_anios);
+      $array_3 = mysqli_fetch_array($cantidad_anios);
+      $total_anios = $array_3['anios_total'];
+
+      $total_anios = $total_anios * 365;
 
       $total_total_dias = $total_dias + $total_meses + $total_anios;
 
@@ -68,6 +74,7 @@ if ($tipo_estudios_id == '1') {
             if ($result) {
               header('Location: ../mispostulaciones.php?dni=' . $dni);
             } else {
+
               echo '<script> alert("Error al guardar la postulación."); 
               window.history.back(-1);</script>';
             }
@@ -84,12 +91,14 @@ if ($tipo_estudios_id == '1') {
           if ($result) {
             header('Location: ../mispostulaciones.php?dni=' . $dni);
           } else {
+
             echo '<script> alert("Error al guardar la postulación."); 
               window.history.back(-1);</script>';
           }
           mysqli_close($con);
         }
       } else {
+        // echo "Error al guardar la postulación.";
         echo '<script> alert("No cumple con el tiempo de experiencia laboral requerdo."); 
         window.history.back(-1);</script>';
       }
@@ -105,18 +114,24 @@ if ($tipo_estudios_id == '1') {
       where expe_1puntos_idpostulante = '$idpostulante'";
       $resultado = MYSQLI_query($con, $experiencia);
       $total_dias = 0; // total declarado antes del bucle
+
       while ($array = mysqli_fetch_array($resultado)) {
         $total_dias = $total_dias + $array['dias']; // Sumar variable $total + resultado de la consulta
       }
-      while ($array = mysqli_fetch_array($resultado)) {
-        $total_meses = $total_dias + $array['meses']; // Sumar variable $total + resultado de la consulta
-      }
-      $totel_meses = $total_meses * '31';
 
-      while ($array = mysqli_fetch_array($resultado)) {
-        $total_anios = $total_dias + $array['anios']; // Sumar variable $total + resultado de la consulta
-      }
-      $total_anios = $total_anios * '365';
+      $suma_meses = "SELECT SUM(meses) AS meses_total FROM total_expe WHERE expe_4puntos_idpostulante = '$idpostulante'";
+      $cantidad_meses = mysqli_query($con, $suma_meses);
+      $array_2 = mysqli_fetch_array($cantidad_meses);
+      $total_meses = $array_2['meses_total'];
+
+      $total_meses = $total_meses * 31;
+
+      $suma_anios = "SELECT SUM(anios) AS anios_total FROM total_expe WHERE expe_4puntos_idpostulante = '$idpostulante'";
+      $cantidad_anios = mysqli_query($con, $suma_anios);
+      $array_3 = mysqli_fetch_array($cantidad_anios);
+      $total_anios = $array_3['anios_total'];
+
+      $total_anios = $total_anios * 365;
 
       $total_total_dias = $total_dias + $total_meses + $total_anios;
 
@@ -168,25 +183,31 @@ if ($tipo_estudios_id == '1') {
         $total_anios_requerido = $cantidad_experiencia * '365';
 
         $experiencia = "SELECT * FROM sistema_seleccion.expe_4puntos 
-        WHERE expe_4puntos_idpostulante = '$idpostulante' UNION
+        where expe_4puntos_idpostulante = '$idpostulante' UNION
         SELECT * FROM sistema_seleccion.expe_3puntos 
-        WHERE expe_3puntos_idpostulante = '$idpostulante' UNION
+        where expe_3puntos_idpostulante = '$idpostulante' UNION
         SELECT * FROM sistema_seleccion.expe_1puntos
-        WHERE expe_1puntos_idpostulante = '$idpostulante'";
+        where expe_1puntos_idpostulante = '$idpostulante'";
         $resultado = MYSQLI_query($con, $experiencia);
         $total_dias = 0; // total declarado antes del bucle
+
         while ($array = mysqli_fetch_array($resultado)) {
           $total_dias = $total_dias + $array['dias']; // Sumar variable $total + resultado de la consulta
         }
-        while ($array = mysqli_fetch_array($resultado)) {
-          $total_meses = $total_dias + $array['meses']; // Sumar variable $total + resultado de la consulta
-        }
-        $totel_meses = $total_meses * '31';
 
-        while ($array = mysqli_fetch_array($resultado)) {
-          $total_anios = $total_dias + $array['anios']; // Sumar variable $total + resultado de la consulta
-        }
-        $total_anios = $total_anios * '365';
+        $suma_meses = "SELECT SUM(meses) AS meses_total FROM total_expe WHERE expe_4puntos_idpostulante = '$idpostulante'";
+        $cantidad_meses = mysqli_query($con, $suma_meses);
+        $array_2 = mysqli_fetch_array($cantidad_meses);
+        $total_meses = $array_2['meses_total'];
+
+        $total_meses = $total_meses * 31;
+
+        $suma_anios = "SELECT SUM(anios) AS anios_total FROM total_expe WHERE expe_4puntos_idpostulante = '$idpostulante'";
+        $cantidad_anios = mysqli_query($con, $suma_anios);
+        $array_3 = mysqli_fetch_array($cantidad_anios);
+        $total_anios = $array_3['anios_total'];
+
+        $total_anios = $total_anios * 365;
 
         $total_total_dias = $total_dias + $total_meses + $total_anios;
 
@@ -218,18 +239,24 @@ if ($tipo_estudios_id == '1') {
         where expe_1puntos_idpostulante = '$idpostulante'";
         $resultado = MYSQLI_query($con, $experiencia);
         $total_dias = 0; // total declarado antes del bucle
+
         while ($array = mysqli_fetch_array($resultado)) {
           $total_dias = $total_dias + $array['dias']; // Sumar variable $total + resultado de la consulta
         }
-        while ($array = mysqli_fetch_array($resultado)) {
-          $total_meses = $total_dias + $array['meses']; // Sumar variable $total + resultado de la consulta
-        }
-        $totel_meses = $total_meses * '31';
 
-        while ($array = mysqli_fetch_array($resultado)) {
-          $total_anios = $total_dias + $array['anios']; // Sumar variable $total + resultado de la consulta
-        }
-        $total_anios = $total_anios * '365';
+        $suma_meses = "SELECT SUM(meses) AS meses_total FROM total_expe WHERE expe_4puntos_idpostulante = '$idpostulante'";
+        $cantidad_meses = mysqli_query($con, $suma_meses);
+        $array_2 = mysqli_fetch_array($cantidad_meses);
+        $total_meses = $array_2['meses_total'];
+
+        $total_meses = $total_meses * 31;
+
+        $suma_anios = "SELECT SUM(anios) AS anios_total FROM total_expe WHERE expe_4puntos_idpostulante = '$idpostulante'";
+        $cantidad_anios = mysqli_query($con, $suma_anios);
+        $array_3 = mysqli_fetch_array($cantidad_anios);
+        $total_anios = $array_3['anios_total'];
+
+        $total_anios = $total_anios * 365;
 
         $total_total_dias = $total_dias + $total_meses + $total_anios;
 
@@ -262,34 +289,245 @@ if ($tipo_estudios_id == '1') {
   if ($tipo_estudios_id == $reque_tipo_estudios) {
     $nivel_estudio = $row['nivel_estudios'];
     $nivel_estudio_req = $rw['nivel_estudio'];
-    if ($nivel_estudio_req == 'ESTUDIANTE') {
+    if ($nivel_estudio == 'ESTUDIANTE') {
       if ($nivel_estudio = $nivel_estudio_req) {
-        # code...
+        $ciclo_actual = $row['ciclo_actual'];
+        $ciclo_actual_req = $rw['ciclo_actual'];
+        if ($ciclo_actual == $ciclo_actual_req) {
+          if ($tipo_experiencia == 'anios') {
+            $cantidad_experiencia = $rw['cantidad_experiencia'];
+            $total_anios_requerido = $cantidad_experiencia * '365';
+
+            $experiencia = "SELECT * FROM sistema_seleccion.expe_4puntos 
+            where expe_4puntos_idpostulante = '$idpostulante' UNION
+            SELECT * FROM sistema_seleccion.expe_3puntos 
+            where expe_3puntos_idpostulante = '$idpostulante' UNION
+            SELECT * FROM sistema_seleccion.expe_1puntos
+            where expe_1puntos_idpostulante = '$idpostulante'";
+            $resultado = MYSQLI_query($con, $experiencia);
+            $total_dias = 0; // total declarado antes del bucle
+
+            while ($array = mysqli_fetch_array($resultado)) {
+              $total_dias = $total_dias + $array['dias']; // Sumar variable $total + resultado de la consulta
+            }
+
+            $suma_meses = "SELECT SUM(meses) AS meses_total FROM total_expe WHERE expe_4puntos_idpostulante = '$idpostulante'";
+            $cantidad_meses = mysqli_query($con, $suma_meses);
+            $array_2 = mysqli_fetch_array($cantidad_meses);
+            $total_meses = $array_2['meses_total'];
+
+            $total_meses = $total_meses * 31;
+
+            $suma_anios = "SELECT SUM(anios) AS anios_total FROM total_expe WHERE expe_4puntos_idpostulante = '$idpostulante'";
+            $cantidad_anios = mysqli_query($con, $suma_anios);
+            $array_3 = mysqli_fetch_array($cantidad_anios);
+            $total_anios = $array_3['anios_total'];
+
+            $total_anios = $total_anios * 365;
+
+            $total_total_dias = $total_dias + $total_meses + $total_anios;
+            if ($total_total_dias >= $total_anios_requerido) {
+              $sql = "INSERT INTO detalle_convocatoria (convocatoria_idcon, postulante_idpostulante, personal_req_idpersonal, fecha_postulacion) 
+              VALUES ('" . $idcon . "','" . $idpostulante . "','" . $personal_req . "','" . $date . "')";
+
+              $result = MYSQLI_query($con, $sql);
+              if ($result) {
+                header('Location: ../mispostulaciones.php?dni=' . $dni);
+              } else {
+                echo '<script> alert("Error al guardar la postulación."); 
+              window.history.back(-1);</script>';
+              }
+              mysqli_close($con);
+            } else {
+              echo '<script> alert("No cumple con el tiempo de experiencia laboral requerdo."); 
+              window.history.back(-1);</script>';
+            }
+          } elseif ($tipo_experiencia == 'meses') {
+            $cantidad_experiencia = $rw['cantidad_experiencia'];
+            $total_anios_requerido = $cantidad_experiencia * '30';
+
+            $experiencia = "SELECT * FROM sistema_seleccion.expe_4puntos 
+            where expe_4puntos_idpostulante = '$idpostulante' UNION
+            SELECT * FROM sistema_seleccion.expe_3puntos 
+            where expe_3puntos_idpostulante = '$idpostulante' UNION
+            SELECT * FROM sistema_seleccion.expe_1puntos
+            where expe_1puntos_idpostulante = '$idpostulante'";
+            $resultado = MYSQLI_query($con, $experiencia);
+            $total_dias = 0; // total declarado antes del bucle
+
+            while ($array = mysqli_fetch_array($resultado)) {
+              $total_dias = $total_dias + $array['dias']; // Sumar variable $total + resultado de la consulta
+            }
+
+            $suma_meses = "SELECT SUM(meses) AS meses_total FROM total_expe WHERE expe_4puntos_idpostulante = '$idpostulante'";
+            $cantidad_meses = mysqli_query($con, $suma_meses);
+            $array_2 = mysqli_fetch_array($cantidad_meses);
+            $total_meses = $array_2['meses_total'];
+
+            $total_meses = $total_meses * 31;
+
+            $suma_anios = "SELECT SUM(anios) AS anios_total FROM total_expe WHERE expe_4puntos_idpostulante = '$idpostulante'";
+            $cantidad_anios = mysqli_query($con, $suma_anios);
+            $array_3 = mysqli_fetch_array($cantidad_anios);
+            $total_anios = $array_3['anios_total'];
+
+            $total_anios = $total_anios * 365;
+
+            $total_total_dias = $total_dias + $total_meses + $total_anios;
+
+            if ($total_total_dias >= $total_anios_requerido) {
+              $sql = "INSERT INTO detalle_convocatoria (convocatoria_idcon, postulante_idpostulante, personal_req_idpersonal, fecha_postulacion) 
+              VALUES ('" . $idcon . "','" . $idpostulante . "','" . $personal_req . "','" . $date . "')";
+
+              $result = MYSQLI_query($con, $sql);
+              if ($result) {
+                header('Location: ../mispostulaciones.php?dni=' . $dni);
+              } else {
+                echo '<script> alert("Error al guardar la postulación."); 
+              window.history.back(-1);</script>';
+              }
+              mysqli_close($con);
+            } else {
+              echo '<script> alert("No cumple con el tiempo de experiencia laboral requerdo."); 
+              window.history.back(-1);</script>';
+            }
+          }
+        } elseif ($$ciclo_actual == 'IX' || 'X') {
+          if ($tipo_experiencia == 'anios') {
+            $cantidad_experiencia = $rw['cantidad_experiencia'];
+            $total_anios_requerido = $cantidad_experiencia * '365';
+
+            $experiencia = "SELECT * FROM sistema_seleccion.expe_4puntos 
+            where expe_4puntos_idpostulante = '$idpostulante' UNION
+            SELECT * FROM sistema_seleccion.expe_3puntos 
+            where expe_3puntos_idpostulante = '$idpostulante' UNION
+            SELECT * FROM sistema_seleccion.expe_1puntos
+            where expe_1puntos_idpostulante = '$idpostulante'";
+            $resultado = MYSQLI_query($con, $experiencia);
+            $total_dias = 0; // total declarado antes del bucle
+
+            while ($array = mysqli_fetch_array($resultado)) {
+              $total_dias = $total_dias + $array['dias']; // Sumar variable $total + resultado de la consulta
+            }
+
+            $suma_meses = "SELECT SUM(meses) AS meses_total FROM total_expe WHERE expe_4puntos_idpostulante = '$idpostulante'";
+            $cantidad_meses = mysqli_query($con, $suma_meses);
+            $array_2 = mysqli_fetch_array($cantidad_meses);
+            $total_meses = $array_2['meses_total'];
+
+            $total_meses = $total_meses * 31;
+
+            $suma_anios = "SELECT SUM(anios) AS anios_total FROM total_expe WHERE expe_4puntos_idpostulante = '$idpostulante'";
+            $cantidad_anios = mysqli_query($con, $suma_anios);
+            $array_3 = mysqli_fetch_array($cantidad_anios);
+            $total_anios = $array_3['anios_total'];
+
+            $total_anios = $total_anios * 365;
+
+            $total_total_dias = $total_dias + $total_meses + $total_anios;
+
+            if ($total_total_dias >= $total_anios_requerido) {
+              $sql = "INSERT INTO detalle_convocatoria (convocatoria_idcon, postulante_idpostulante, personal_req_idpersonal, fecha_postulacion) 
+              VALUES ('" . $idcon . "','" . $idpostulante . "','" . $personal_req . "','" . $date . "')";
+
+              $result = MYSQLI_query($con, $sql);
+              if ($result) {
+                header('Location: ../mispostulaciones.php?dni=' . $dni);
+              } else {
+                echo '<script> alert("Error al guardar la postulación."); 
+              window.history.back(-1);</script>';
+              }
+              mysqli_close($con);
+            } else {
+              echo '<script> alert("No cumple con el tiempo de experiencia laboral requerdo."); 
+              window.history.back(-1);</script>';
+            }
+          } elseif ($tipo_experiencia == 'meses') {
+            $cantidad_experiencia = $rw['cantidad_experiencia'];
+            $total_anios_requerido = $cantidad_experiencia * '30';
+
+            $experiencia = "SELECT * FROM sistema_seleccion.expe_4puntos 
+            WHERE expe_4puntos_idpostulante = '$idpostulante' UNION
+            SELECT * FROM sistema_seleccion.expe_3puntos 
+            WHERE expe_3puntos_idpostulante = '$idpostulante' UNION
+            SELECT * FROM sistema_seleccion.expe_1puntos
+            WHERE expe_1puntos_idpostulante = '$idpostulante'";
+            $resultado = MYSQLI_query($con, $experiencia);
+            $total_dias = 0; // total declarado antes del bucle
+
+            while ($array = mysqli_fetch_array($resultado)) {
+              $total_dias = $total_dias + $array['dias']; // Sumar variable $total + resultado de la consulta
+            }
+
+            $suma_meses = "SELECT SUM(meses) AS meses_total FROM total_expe WHERE expe_4puntos_idpostulante = '$idpostulante'";
+            $cantidad_meses = mysqli_query($con, $suma_meses);
+            $array_2 = mysqli_fetch_array($cantidad_meses);
+            $total_meses = $array_2['meses_total'];
+
+            $total_meses = $total_meses * 31;
+
+            $suma_anios = "SELECT SUM(anios) AS anios_total FROM total_expe WHERE expe_4puntos_idpostulante = '$idpostulante'";
+            $cantidad_anios = mysqli_query($con, $suma_anios);
+            $array_3 = mysqli_fetch_array($cantidad_anios);
+            $total_anios = $array_3['anios_total'];
+
+            $total_anios = $total_anios * 365;
+
+            $total_total_dias = $total_dias + $total_meses + $total_anios;
+
+            if ($total_total_dias >= $total_anios_requerido) {
+              $sql = "INSERT INTO detalle_convocatoria (convocatoria_idcon, postulante_idpostulante, personal_req_idpersonal, fecha_postulacion) 
+              VALUES ('" . $idcon . "','" . $idpostulante . "','" . $personal_req . "','" . $date . "')";
+
+              $result = MYSQLI_query($con, $sql);
+              if ($result) {
+                header('Location: ../mispostulaciones.php?dni=' . $dni);
+              } else {
+                echo '<script> alert("Error al guardar la postulación."); 
+              window.history.back(-1);</script>';
+              }
+              mysqli_close($con);
+            } else {
+              echo '<script> alert("No cumple con el tiempo de experiencia laboral requerdo."); 
+              window.history.back(-1);</script>';
+            }
+          }
+        } else {
+          echo '<script> alert("No cumple con el ciclo minimo requerido"); 
+          window.history.back(-1);</script>';
+        }
       }
+    } elseif ($nivel_estudio == 'EGRESADO' || 'BACHILLER') {
       if ($tipo_experiencia == 'anios') {
         $cantidad_experiencia = $rw['cantidad_experiencia'];
         $total_anios_requerido = $cantidad_experiencia * '365';
 
         $experiencia = "SELECT * FROM sistema_seleccion.expe_4puntos 
-        WHERE expe_4puntos_idpostulante = '$idpostulante' UNION
+        where expe_4puntos_idpostulante = '$idpostulante' UNION
         SELECT * FROM sistema_seleccion.expe_3puntos 
-        WHERE expe_3puntos_idpostulante = '$idpostulante' UNION
+        where expe_3puntos_idpostulante = '$idpostulante' UNION
         SELECT * FROM sistema_seleccion.expe_1puntos
-        WHERE expe_1puntos_idpostulante = '$idpostulante'";
+        where expe_1puntos_idpostulante = '$idpostulante'";
         $resultado = MYSQLI_query($con, $experiencia);
         $total_dias = 0; // total declarado antes del bucle
+
         while ($array = mysqli_fetch_array($resultado)) {
           $total_dias = $total_dias + $array['dias']; // Sumar variable $total + resultado de la consulta
         }
-        while ($array = mysqli_fetch_array($resultado)) {
-          $total_meses = $total_dias + $array['meses']; // Sumar variable $total + resultado de la consulta
-        }
-        $totel_meses = $total_meses * '31';
 
-        while ($array = mysqli_fetch_array($resultado)) {
-          $total_anios = $total_dias + $array['anios']; // Sumar variable $total + resultado de la consulta
-        }
-        $total_anios = $total_anios * '365';
+        $suma_meses = "SELECT SUM(meses) AS meses_total FROM total_expe WHERE expe_4puntos_idpostulante = '$idpostulante'";
+        $cantidad_meses = mysqli_query($con, $suma_meses);
+        $array_2 = mysqli_fetch_array($cantidad_meses);
+        $total_meses = $array_2['meses_total'];
+
+        $total_meses = $total_meses * 31;
+
+        $suma_anios = "SELECT SUM(anios) AS anios_total FROM total_expe WHERE expe_4puntos_idpostulante = '$idpostulante'";
+        $cantidad_anios = mysqli_query($con, $suma_anios);
+        $array_3 = mysqli_fetch_array($cantidad_anios);
+        $total_anios = $array_3['anios_total'];
+
+        $total_anios = $total_anios * 365;
 
         $total_total_dias = $total_dias + $total_meses + $total_anios;
 
@@ -307,7 +545,7 @@ if ($tipo_estudios_id == '1') {
           mysqli_close($con);
         } else {
           echo '<script> alert("No cumple con el tiempo de experiencia laboral requerdo."); 
-          window.history.back(-1);</script>';
+              window.history.back(-1);</script>';
         }
       } elseif ($tipo_experiencia == 'meses') {
         $cantidad_experiencia = $rw['cantidad_experiencia'];
@@ -321,18 +559,24 @@ if ($tipo_estudios_id == '1') {
         where expe_1puntos_idpostulante = '$idpostulante'";
         $resultado = MYSQLI_query($con, $experiencia);
         $total_dias = 0; // total declarado antes del bucle
+
         while ($array = mysqli_fetch_array($resultado)) {
           $total_dias = $total_dias + $array['dias']; // Sumar variable $total + resultado de la consulta
         }
-        while ($array = mysqli_fetch_array($resultado)) {
-          $total_meses = $total_dias + $array['meses']; // Sumar variable $total + resultado de la consulta
-        }
-        $totel_meses = $total_meses * '31';
 
-        while ($array = mysqli_fetch_array($resultado)) {
-          $total_anios = $total_dias + $array['anios']; // Sumar variable $total + resultado de la consulta
-        }
-        $total_anios = $total_anios * '365';
+        $suma_meses = "SELECT SUM(meses) AS meses_total FROM total_expe WHERE expe_4puntos_idpostulante = '$idpostulante'";
+        $cantidad_meses = mysqli_query($con, $suma_meses);
+        $array_2 = mysqli_fetch_array($cantidad_meses);
+        $total_meses = $array_2['meses_total'];
+
+        $total_meses = $total_meses * 31;
+
+        $suma_anios = "SELECT SUM(anios) AS anios_total FROM total_expe WHERE expe_4puntos_idpostulante = '$idpostulante'";
+        $cantidad_anios = mysqli_query($con, $suma_anios);
+        $array_3 = mysqli_fetch_array($cantidad_anios);
+        $total_anios = $array_3['anios_total'];
+
+        $total_anios = $total_anios * 365;
 
         $total_total_dias = $total_dias + $total_meses + $total_anios;
 
@@ -350,11 +594,135 @@ if ($tipo_estudios_id == '1') {
           mysqli_close($con);
         } else {
           echo '<script> alert("No cumple con el tiempo de experiencia laboral requerdo."); 
-          window.history.back(-1);</script>';
+              window.history.back(-1);</script>';
         }
       }
+    } elseif ($nivel_estudio == 'TITULADO') {
+      $colegiatura = $row['colegiatura'];
+      $colegiatura_req = $rw['colegiatura'];
+      if ($colegiatura == 'SI') {
+        $fech_habilitacion = $row['fech_habilitacion'];
+        if (!empty($fech_habilitacion)) {
+          $fecha_actual = strtotime($date);
+          $fecha_entrada = strtotime($fech_habilitacion);
+          if ($fecha_entrada >= $fecha_actual) {
+            $serums = $row['serums'];
+            $serums_req = $rw['serums'];
+            if ($serums_req == $serums) {
+              if ($tipo_experiencia == 'anios') {
+                $experiencia = "SELECT * FROM sistema_seleccion.expe_4puntos 
+                where expe_4puntos_idpostulante = '$idpostulante' UNION
+                SELECT * FROM sistema_seleccion.expe_3puntos 
+                where expe_3puntos_idpostulante = '$idpostulante' UNION
+                SELECT * FROM sistema_seleccion.expe_1puntos
+                where expe_1puntos_idpostulante = '$idpostulante'";
+                $resultado = MYSQLI_query($con, $experiencia);
+                $total_dias = 0; // total declarado antes del bucle
+
+                while ($array = mysqli_fetch_array($resultado)) {
+                  $total_dias = $total_dias + $array['dias']; // Sumar variable $total + resultado de la consulta
+                }
+
+                $suma_meses = "SELECT SUM(meses) AS meses_total FROM total_expe WHERE expe_4puntos_idpostulante = '$idpostulante'";
+                $cantidad_meses = mysqli_query($con, $suma_meses);
+                $array_2 = mysqli_fetch_array($cantidad_meses);
+                $total_meses = $array_2['meses_total'];
+
+                $total_meses = $total_meses * 31;
+
+                $suma_anios = "SELECT SUM(anios) AS anios_total FROM total_expe WHERE expe_4puntos_idpostulante = '$idpostulante'";
+                $cantidad_anios = mysqli_query($con, $suma_anios);
+                $array_3 = mysqli_fetch_array($cantidad_anios);
+                $total_anios = $array_3['anios_total'];
+
+                $total_anios = $total_anios * 365;
+
+                $total_total_dias = $total_dias + $total_meses + $total_anios;
+
+                if ($total_total_dias >= $total_anios_requerido) {
+                  $sql = "INSERT INTO detalle_convocatoria (convocatoria_idcon, postulante_idpostulante, personal_req_idpersonal, fecha_postulacion) 
+                  VALUES ('" . $idcon . "','" . $idpostulante . "','" . $personal_req . "','" . $date . "')";
+
+                  $result = MYSQLI_query($con, $sql);
+                  if ($result) {
+                    header('Location: ../mispostulaciones.php?dni=' . $dni);
+                  } else {
+                    echo '<script> alert("Error al guardar la postulación."); 
+                    window.history.back(-1);</script>';
+                  }
+                  mysqli_close($con);
+                } else {
+                  echo '<script> alert("No cumple con el tiempo de experiencia laboral requerdo."); 
+                  window.history.back(-1);</script>';
+                }
+              } elseif ($tipo_experiencia == 'meses') {
+                $cantidad_experiencia = $rw['cantidad_experiencia'];
+                $total_anios_requerido = $cantidad_experiencia * '30';
+
+                $experiencia = "SELECT * FROM sistema_seleccion.expe_4puntos 
+                where expe_4puntos_idpostulante = '$idpostulante' UNION
+                SELECT * FROM sistema_seleccion.expe_3puntos 
+                where expe_3puntos_idpostulante = '$idpostulante' UNION
+                SELECT * FROM sistema_seleccion.expe_1puntos
+                where expe_1puntos_idpostulante = '$idpostulante'";
+                $resultado = MYSQLI_query($con, $experiencia);
+                $total_dias = 0; // total declarado antes del bucle
+
+                while ($array = mysqli_fetch_array($resultado)) {
+                  $total_dias = $total_dias + $array['dias']; // Sumar variable $total + resultado de la consulta
+                }
+
+                $suma_meses = "SELECT SUM(meses) AS meses_total FROM total_expe WHERE expe_4puntos_idpostulante = '$idpostulante'";
+                $cantidad_meses = mysqli_query($con, $suma_meses);
+                $array_2 = mysqli_fetch_array($cantidad_meses);
+                $total_meses = $array_2['meses_total'];
+
+                $total_meses = $total_meses * 31;
+
+                $suma_anios = "SELECT SUM(anios) AS anios_total FROM total_expe WHERE expe_4puntos_idpostulante = '$idpostulante'";
+                $cantidad_anios = mysqli_query($con, $suma_anios);
+                $array_3 = mysqli_fetch_array($cantidad_anios);
+                $total_anios = $array_3['anios_total'];
+
+                $total_anios = $total_anios * 365;
+
+                $total_total_dias = $total_dias + $total_meses + $total_anios;
+
+                if ($total_total_dias >= $total_anios_requerido) {
+                  $sql = "INSERT INTO detalle_convocatoria (convocatoria_idcon, postulante_idpostulante, personal_req_idpersonal, fecha_postulacion) 
+                  VALUES ('" . $idcon . "','" . $idpostulante . "','" . $personal_req . "','" . $date . "')";
+
+                  $result = MYSQLI_query($con, $sql);
+                  if ($result) {
+                    header('Location: ../mispostulaciones.php?dni=' . $dni);
+                  } else {
+                    echo '<script> alert("Error al guardar la postulación."); 
+                    window.history.back(-1);</script>';
+                  }
+                  mysqli_close($con);
+                } else {
+                  echo '<script> alert("No cumple con el tiempo de experiencia laboral requerdo."); 
+                  window.history.back(-1);</script>';
+                }
+              }
+            } else {
+              echo '<script> alert("No cumple con el serums requerido."); 
+              window.history.back(-1);</script>';
+            }
+          } else {
+            echo '<script> alert("La fecha de habilitación profesional está vencida."); 
+            window.history.back(-1);</script>';
+          }
+        } else {
+          echo '<script> alert("No tiene habilitación profesional."); 
+          window.history.back(-1);</script>';
+        }
+      } else {
+        echo '<script> alert("No cumple con la colegiatura."); 
+        window.history.back(-1);</script>';
+      }
     } else {
-      echo '<script> alert("No cumple con el nivel de estudio."); 
+      echo '<script> alert("No cumple con el nivel de estudio mínimo requerido."); 
         window.history.back(-1);</script>';
     }
   } else {

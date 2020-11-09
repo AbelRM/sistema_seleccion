@@ -108,8 +108,8 @@
                       <?php
                       // $select = "SELECT * FROM detalle_requerimientos INNER JOIN requerimientos 
                       //           ON detalle_requerimientos.detalle_req_idrequerimientos = requerimientos.id_requerimientos WHERE detalle_req_idpersonal_req ='$idpersonal' ";
-                      $select = "SELECT * FROM sistema_seleccion.requerimientos INNER JOIN sistema_seleccion.tipo_estudios
-                              ON requerimientos.reque_tipo_estudios=tipo_estudios.id_tipo_estudios  WHERE reque_id_personal ='$idpersonal'";
+                      $select = "SELECT * FROM requerimientos INNER JOIN tipo_estudios 
+                      ON requerimientos.reque_tipo_estudios = tipo_estudios.id_tipo_estudios WHERE reque_id_personal ='$idpersonal'";
                       $consulta = mysqli_query($con, $select);
                       ?>
                       <thead>
@@ -123,14 +123,14 @@
                       </thead>
                       <?php
                       $ii = 1;
-                      while ($row = mysqli_fetch_array($consulta)) {
+                      while ($rw = mysqli_fetch_array($consulta)) {
                       ?>
                         <tr>
-                          <td style="font-size: 12px; display: none;"><?php echo $row['id_requerimientos'] ?></td>
+                          <td style="font-size: 12px; display: none;"><?php echo $rw['id_requerimientos'] ?></td>
                           <td style="font-size: 12px;"><?php echo $ii ?></td>
-                          <td style="font-size: 12px;"><?php echo $row['tipo_estudios'] ?></td>
-                          <td style="font-size: 12px;"><?php echo $row['tipo_experiencia'] ?></td>
-                          <td style="font-size: 12px;"><?php echo $row['cantidad_experiencia'] ?></td>
+                          <td style="font-size: 12px;"><?php echo $rw['reque_tipo_estudios'] ?></td>
+                          <td style="font-size: 12px;"><?php echo $rw['tipo_experiencia'] ?></td>
+                          <td style="font-size: 12px;"><?php echo $rw['cantidad_experiencia'] ?></td>
                         </tr>
                       <?php
                         $ii++;

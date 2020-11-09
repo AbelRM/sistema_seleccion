@@ -316,9 +316,8 @@ if (empty($_SESSION['active'])) {
                 <div class="col-md-3 col-sm-12 form-group" id="div_serums">
                   <label for="title">(*) ¿Hizo SERUMS?</label>
                   <select name="serums" id="serums" class="form-control">
-                    <option value="">Elegir...</option>
-                    <option value="SI">SI</option>
                     <option value="NO">NO</option>
+                    <option value="SI">SI</option>
                   </select>
                 </div>
                 <div class="col-md-3 col-sm-12 form-group" id="div_valor_quintil">

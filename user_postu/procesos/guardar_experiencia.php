@@ -132,7 +132,7 @@ if (isset($_POST['insertData4'])) {
         $nro_contrato = $_POST['nro_contrato'];
         $sql = "INSERT INTO expe_3puntos (lugar,cargo,fecha_inicio,fecha_fin,anios,meses,dias,archivos,tipo_expe,expe_3puntos_idpostulante) 
           VALUES('$lugar_3exp','$cargo_funciones_3exp', '$fecha_ini_3exp','$fecha_fin_3exp','$años','$meses','$dias','$new_nombre','$tipo_expe3','$idpostulante','$tipo_comprobante','$nro_contrato')";
-        
+
         $result = mysqli_query($con, $sql);
         if ($result) {
           echo '<script> alert("Guardado exitosamente"); </script>';
@@ -146,7 +146,7 @@ if (isset($_POST['insertData4'])) {
       } else {
         $fech_emision = $_POST['fecha_boleta'];
         $monto_boleta = $_POST['boleta'];
-        
+
         $sql = "INSERT INTO expe_3puntos (lugar,cargo,fecha_inicio,fecha_fin,anios,meses,dias,archivos,tipo_expe,expe_3puntos_idpostulante) 
           VALUES('$lugar_3exp','$cargo_funciones_3exp', '$fecha_ini_3exp','$fecha_fin_3exp','$años','$meses','$dias','$new_nombre','$tipo_expe3','$idpostulante','$tipo_comprobante','$fech_emision','$monto_boleta')";
         $result = mysqli_query($con, $sql);
@@ -160,7 +160,6 @@ if (isset($_POST['insertData4'])) {
           // header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
         }
       }
-      
     } else {
       echo '<script> alert("Error al guardar el archivo."); </script>';
       echo "<script type=\"text/javascript\">history.go(-1);</script>";
@@ -230,8 +229,8 @@ if (isset($_POST['insertData4'])) {
         $fech_emision = $_POST['fecha_boleta'];
         $monto_boleta = $_POST['boleta'];
         $sql = "INSERT INTO expe_1puntos (lugar,cargo,fecha_inicio,fecha_fin,anios,meses,dias,archivos,tipo_expe,expe_1puntos_idpostulante) 
-          VALUES('$lugar_1exp','$cargo_funciones_1exp', '$fecha_ini_1exp','$fecha_fin_1exp','$años','$meses','$dias','$new_nombre','$tipo_expe1','$idpostulante','$tipo_comprobante','$fech_emision','$monto_boleta')"
-      
+          VALUES('$lugar_1exp','$cargo_funciones_1exp', '$fecha_ini_1exp','$fecha_fin_1exp','$años','$meses','$dias','$new_nombre','$tipo_expe1','$idpostulante','$tipo_comprobante','$fech_emision','$monto_boleta')";
+
         $result = mysqli_query($con, $sql);
         if ($result) {
           echo '<script> alert("Guardado exitosamente"); </script>';
@@ -243,8 +242,6 @@ if (isset($_POST['insertData4'])) {
           // header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
         }
       }
-
-   
     } else {
       echo '<script> alert("Ocurrio un problema al guardar el archivo."); </script>';
       echo "<script type=\"text/javascript\">history.go(-1);</script>";

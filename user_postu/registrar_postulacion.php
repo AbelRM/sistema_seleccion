@@ -24,9 +24,10 @@
   <!-- Custom styles for this page -->
   <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
+  <link rel="stylesheet" type="text/css" href="vendor/sweetalert/sweetalert2.min.css">
   <script type="text/javascript" src="vendor/sweetalert/sweetalert2.min.js"></script>
   <script type="text/javascript" src="vendor/jquery.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="vendor/sweetalert/sweetalert2.min.css">
+
   <script type="text/javascript" src="vendor/bootstrap/js/bootstrap.min.js"></script>
 
 </head>
@@ -156,7 +157,7 @@
                     <input type="text" class="form-control" value="<?php echo $fila4['meta'] ?>" disabled>
                   </div>
                   <div class="col-md-12 col-sm-12 form-group">
-                    <label for="disabled-input">Dirección ejecutra</label>
+                    <label for="disabled-input">Dirección ejecutora</label>
                     <input type="text" style="font-size: 14px;" class="form-control" value="<?php echo $fila4['direccion_ejec'] . " - " . $fila4['equipo_ejec'] ?>" disabled>
                   </div>
                 </div>
@@ -250,15 +251,15 @@
     $(document).ready(function() {
 
 
-      $("#button1").click(function() {
-        swal({
-          title: 'Registro con exito!',
-          //text:"Hola, estamos probando Sweet Alert 2",
-          type: 'success',
-          timer: 10000
-        })
+      // $("#button1").click(function() {
+      //   swal({
+      //     title: 'Registro con exito!',
+      //     //text:"Hola, estamos probando Sweet Alert 2",
+      //     type: 'success',
+      //     timer: 10000
+      //   })
 
-      });
+      // });
 
       $("#button2").click(function() {
         swal({

@@ -74,9 +74,9 @@ if ($tipo_estudios_id == '1') {
             if ($result) {
               header('Location: ../mispostulaciones.php?dni=' . $dni);
             } else {
-
-              echo '<script> alert("Error al guardar la postulación."); 
-              window.history.back(-1);</script>';
+              echo "error guardar postulacion chofer";
+              // echo '<script> alert("Error al guardar la postulación."); 
+              // window.history.back(-1);</script>';
             }
             mysqli_close($con);
           } else {
@@ -91,9 +91,9 @@ if ($tipo_estudios_id == '1') {
           if ($result) {
             header('Location: ../mispostulaciones.php?dni=' . $dni);
           } else {
-
-            echo '<script> alert("Error al guardar la postulación."); 
-              window.history.back(-1);</script>';
+            echo "error postulacon";
+            // echo '<script> alert("Error al guardar la postulación."); 
+            //   window.history.back(-1);</script>';
           }
           mysqli_close($con);
         }
@@ -146,8 +146,9 @@ if ($tipo_estudios_id == '1') {
             if ($result) {
               header('Location: ../mispostulaciones.php?dni=' . $dni);
             } else {
-              echo '<script> alert("Error al guardar la postulación."); 
-              window.history.back(-1);</script>';
+              echo "error guardar postulacion meses";
+              // echo '<script> alert("Error al guardar la postulación."); 
+              // window.history.back(-1);</script>';
             }
             mysqli_close($con);
           }
@@ -159,8 +160,9 @@ if ($tipo_estudios_id == '1') {
           if ($result) {
             header('Location: ../mispostulaciones.php?dni=' . $dni);
           } else {
-            echo '<script> alert("Error al guardar la postulación."); 
-              window.history.back(-1);</script>';
+            echo "error guardar postulacion meses";
+            // echo '<script> alert("Error al guardar la postulación."); 
+            //   window.history.back(-1);</script>';
           }
           mysqli_close($con);
         }

@@ -136,9 +136,7 @@ if (empty($_SESSION['active'])) {
                     <?php
                       }
                     } else {
-                      echo "<tr>
-                              <td colspan='8' class='text-center text-danger font-weight-bold' >NO HAY DATOS REGISTRADOS</td>
-                            </tr>";
+                      echo "<tr><td colspan='8' class='text-center text-danger font-weight-bold' >NO HAY DATOS REGISTRADOS</td></tr>";
                     }
                     ?>
 

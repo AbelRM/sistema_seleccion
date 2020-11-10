@@ -333,19 +333,23 @@ if (empty($_SESSION['active'])) {
                           </div> -->
                           <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">
                             <?php $tip_zona = $fila2['tip_zona'] ?>
-                            <label class="font-weight-bolder" for="exampleInputEmail1">Tipo de Zona</label>
+                            <label class="font-weight-bolder">Tipo de Zona</label>
                             <select class="form-control form-control-user" name="tipo_zona" id="tipo_zona_editar">
-                              <option value="AVENIDA">Urbanizacion</option>
-                              <option value="JIRON">Pueblo Joven</option>
-                              <option value="CALLE">Unidad vecinal</option>
-                              <option value="PASAJE">Conjunto habitacional</option>
-                              <option value="ALAMEDA">Asentamiento humano</option>
-                              <option value="MALECON">Cooperativa</option>
-                              <option value="OVALO">Residencial</option>
-                              <option value="PASAJE">Zona industrial</option>
-                              <option value="PARQUE">Grupo</option>
-                              <option value="PLAZA">Caserio</option>
-                              <option value="CARRETERA">Fundo</option>
+                              <option value="Urbanizacion">Urbanizacion</option>
+                              <option value="Pueblo Joven">Pueblo Joven</option>
+                              <option value="Unidad Vecinal">Unidad vecinal</option>
+                              <option value="Conjunto habitacional">Conjunto habitacional</option>
+                              <option value="Asentamiento humano">Asentamiento humano</option>
+                              <option value="Cooperativa">Cooperativa</option>
+                              <option value="Residencial">Residencial</option>
+                              <option value="Zona Industrial">Zona industrial</option>
+                              <option value="Grupo">Grupo</option>
+                              <option value="Caserio">Caserio</option>
+                              <option value="Asociacion">Asociacion</option>
+                              <option value="Fundo">Fundo</option>
+                              <option value="Comité">Comité</option>
+                              <option value="Otros">Otros</option>
+                            </select>
                             </select>
                             <br>
                           </div>
@@ -396,18 +400,24 @@ if (empty($_SESSION['active'])) {
                         $fila3 = mysqli_fetch_array($datos3);
 
                         ?>
-                        <div class="form-group">
-                          <div class="table-responsive">
+                        <div class="col-md-6 col-sm-12 form-group">
+                          <?php $familiar_trabajando = $fila3['familiar_trabajando']; ?>
+                          <label class="font-weight-bolder" for="title">¿Tiene familiares que laboran en la institución?</label>
+                          <select class="form-control" name="familiares_lab" id="familiares_lab" onChange="familiares_lab_select(this)" required>
+                            <option value="SI">SI</option>
+                            <option value="NO">NO</option>
+                          </select>
+                        </div>
+                        <div class="form-group" id="tabla_div" style="display:none">
+                          <div class="table-responsive" id="tabla">
                             <label>Los familiares agregados son aquellos que viven actualmente con usted, caso contrario colocar uno de referencia.</label>
-                            <table class="table table-bordered" id="tabla">
+                            <table class="table table-bordered">
                               <thead>
                                 <tr class="bg-danger" style="text-align:center; font-size:0.813em;">
                                   <th scope="col">Nombres</th>
                                   <th scope="col">Apellidos</th>
-                                  <th scope="col">Fecha Nacimiento</th>
                                   <th scope="col">N° DNI</th>
                                   <th scope="col">Parentesco</th>
-                                  <th scope="col">Entidad que labora</th>
                                   <th scope="col">Acción</th>
                                 </tr>
                               </thead>
@@ -421,11 +431,9 @@ if (empty($_SESSION['active'])) {
                                   <tr>
                                     <td style="font-size: 16px;"><?php echo $row['nombre'] ?></td>
                                     <td style="font-size: 14px;"><?php echo $row['apellidos'] ?></td>
-                                    <td style="font-size: 14px;"><?php echo $row['fech_nac'] ?></td>
                                     <td style="font-size: 14px;"><?php echo $row['dni'] ?></td>
                                     <td style="font-size: 14px;"><?php echo $row['parentesco'] ?></td>
-                                    <td style="font-size: 14px;"><?php echo $row['labora'] ?></td>
-                                    <td class="eliminar"><input type="button" class="btn btn-danger" value=" - "></td>
+                                    <td class="eliminar"><button type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button></td>
 
                                   </tr>
                                 <?php
@@ -474,7 +482,7 @@ if (empty($_SESSION['active'])) {
                             <td>
 
                               <select class="form-control" name="pregunta1" id="pregunta1">
-                                <option selected><?php echo $fila4['pregunta1'] ?></option>
+                                <option selected><?php echo $fila4['respuesta1'] ?></option>
                                 <option value="NO">NO</option>
                                 <option value="SI">SI</option>
                               </select>
@@ -488,7 +496,7 @@ if (empty($_SESSION['active'])) {
                             </td>
                             <td>
                               <select class="form-control" name="pregunta2" id="pregunta2">
-                                <option selected><?php echo $fila4['pregunta2'] ?></option>
+                                <option selected><?php echo $fila4['respuesta2'] ?></option>
                                 <option value="NO">NO</option>
                                 <option value="SI">SI</option>
                               </select>
@@ -501,7 +509,7 @@ if (empty($_SESSION['active'])) {
                             </td>
                             <td>
                               <select class="form-control" name="pregunta3" id="pregunta3">
-                                <option selected><?php echo $fila4['pregunta3'] ?></option>
+                                <option selected><?php echo $fila4['respuesta3'] ?></option>
                                 <option value="NO">NO</option>
                                 <option value="SI">SI</option>
                               </select>
@@ -515,7 +523,7 @@ if (empty($_SESSION['active'])) {
                             </td>
                             <td>
                               <select class="form-control" name="pregunta4" id="pregunta4">
-                                <option selected><?php echo $fila4['pregunta4'] ?></option>
+                                <option selected><?php echo $fila4['respuesta4'] ?></option>
                                 <option value="NO">NO</option>
                                 <option value="SI">SI</option>
                               </select>
@@ -528,7 +536,7 @@ if (empty($_SESSION['active'])) {
                             </td>
                             <td>
                               <select class="form-control " name="pregunta5" id="pregunta5">
-                                <option selected><?php echo $fila4['pregunta5'] ?></option>
+                                <option selected><?php echo $fila4['respuesta5'] ?></option>
                                 <option value="NO">NO</option>
                                 <option value="SI">SI</option>
                               </select>
@@ -541,7 +549,7 @@ if (empty($_SESSION['active'])) {
                             </td>
                             <td>
                               <select class="form-control " name="pregunta6" id="pregunta6">
-                                <option selected><?php echo $fila4['pregunta6'] ?></option>
+                                <option selected><?php echo $fila4['respuesta6'] ?></option>
                                 <option value="NO">NO</option>
                                 <option value="SI">SI</option>
                               </select>
@@ -554,7 +562,7 @@ if (empty($_SESSION['active'])) {
                             </td>
                             <td>
                               <select class="form-control " name="pregunta7" id="pregunta7">
-                                <option selected><?php echo $fila4['pregunta7'] ?></option>
+                                <option selected><?php echo $fila4['respuesta7'] ?></option>
                                 <option value="NO">NO</option>
                                 <option value="SI">SI</option>
                               </select>
@@ -567,7 +575,7 @@ if (empty($_SESSION['active'])) {
                             </td>
                             <td>
                               <select class="form-control " name="pregunta8" id="pregunta8">
-                                <option selected><?php echo $fila4['pregunta8'] ?></option>
+                                <option selected><?php echo $fila4['respuesta8'] ?></option>
                                 <option value="NO">NO</option>
                                 <option value="SI">SI</option>
                               </select>
@@ -580,7 +588,7 @@ if (empty($_SESSION['active'])) {
                             </td>
                             <td>
                               <select class="form-control " name="pregunta9" id="pregunta9">
-                                <option selected><?php echo $fila4['pregunta9'] ?></option>
+                                <option selected><?php echo $fila4['respuesta9'] ?></option>
                                 <option value="NO">NO</option>
                                 <option value="SI">SI</option>
                               </select>
@@ -593,7 +601,7 @@ if (empty($_SESSION['active'])) {
                             </td>
                             <td>
                               <select class="form-control " name="pregunta10" id="pregunta10">
-                                <option selected><?php echo $fila4['pregunta10'] ?></option>
+                                <option selected><?php echo $fila4['respuesta10'] ?></option>
                                 <option value="NO">NO</option>
                                 <option value="SI">SI</option>
                               </select>
@@ -607,7 +615,7 @@ if (empty($_SESSION['active'])) {
                             </td>
                             <td>
                               <select class="form-control " name="pregunta11" id="pregunta11">
-                                <option selected><?php echo $fila4['pregunta11'] ?></option>
+                                <option selected><?php echo $fila4['respuesta11'] ?></option>
                                 <option value="NO">NO</option>
                                 <option value="SI">SI</option>
                               </select>
@@ -623,7 +631,7 @@ if (empty($_SESSION['active'])) {
                             </td>
                             <td>
                               <select class="form-control " name="pregunta12" id="pregunta12">
-                                <option selected><?php echo $fila4['pregunta12'] ?></option>
+                                <option selected><?php echo $fila4['respuesta12'] ?></option>
                                 <option value="NO">NO</option>
                                 <option value="SI">SI</option>
                               </select>
@@ -639,7 +647,7 @@ if (empty($_SESSION['active'])) {
                             </td>
                             <td>
                               <select class="form-control " name="pregunta13" id="pregunta13">
-                                <option selected><?php echo $fila4['pregunta13'] ?></option>
+                                <option selected><?php echo $fila4['respuesta13'] ?></option>
                                 <option value="NO">NO</option>
                                 <option value="SI">SI</option>
                               </select>
@@ -653,7 +661,7 @@ if (empty($_SESSION['active'])) {
                             </td>
                             <td>
                               <select class="form-control " name="pregunta14" id="pregunta14">
-                                <option selected><?php echo $fila4['pregunta14'] ?></option>
+                                <option selected><?php echo $fila4['respuesta14'] ?></option>
                                 <option value="NO">NO</option>
                                 <option value="SI">SI</option>
                               </select>
@@ -794,7 +802,21 @@ if (empty($_SESSION['active'])) {
       $('#servicio_editar > option[value="<?php echo $servicio_militar ?>"]').attr('selected', 'selected');
       $('#tipo_via_editar > option[value="<?php echo $tip_via ?>"]').attr('selected', 'selected');
       $('#tipo_zona_editar > option[value="<?php echo $tip_zona ?>"]').attr('selected', 'selected');
+      $('#familiares_lab > option[value="<?php echo $familiar_trabajando ?>"]').attr('selected', 'selected');
     });
+  </script>
+  <script>
+    function familiares_lab_select(sel) {
+      if (sel.value == "NO") {
+        tabla = document.getElementById("tabla_div");
+        tabla.style.display = "none";
+
+      } else if (sel.value == "SI") {
+        tabla = document.getElementById("tabla_div");
+        tabla.style.display = "block";
+
+      }
+    }
   </script>
 
 </body>

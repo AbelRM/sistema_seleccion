@@ -125,17 +125,10 @@ if (isset($_POST['insertData'])) {
       $tipo_archivo = $_FILES['archivo']['type'];
       $tamano_archivo = $_FILES['archivo']['size'];
 
-      $query = mysqli_query($con, "SELECT * FROM formacion_acad WHERE formacion_idpostulante = $idpostulante");
-      $result = mysqli_num_rows($query);
-      if ($result <= 0) {
-        $i = 1;
-        $new_nombre = "formacion_" . $i . ".pdf";
-      } else {
-        $rw = mysqli_fetch_array($query);
-        $idformacion = $rw['id_formacion'];
-        $i = $idformacion;
-        $new_nombre = "formacion_" . $i . ".pdf";
-      }
+      $query = mysqli_query($con, "SELECT * FROM formacion_acad WHERE id_formacion = $idformacion");
+      $row = mysqli_fetch_array($query);
+      $antiguo_nombre = $row['archivo'];
+
       //compruebo si las características del archivo son las que deseo
       if (!(strpos($tipo_archivo, "pdf") && ($tamano_archivo <= 3000000))) {
         echo '<script> alert("Archivo muy pesado"); </script>';
@@ -144,8 +137,8 @@ if (isset($_POST['insertData'])) {
         if (move_uploaded_file($_FILES['archivo']['tmp_name'], $micarpeta . $new_nombre)) {
           $tipo_estudios = $_POST['tipo_estudios'];
           $nivel_estudios = $_POST['nivel_estudios_prof'];
-          $centro_estudios = $_POST['centro_estudios'];
-          $carrera = $_POST['carrera'];
+          $centro_estudios = strtoupper($_POST['centro_estudios']);
+          $carrera = strtoupper($_POST['carrera']);
           $colegiatura = $_POST['colegiatura'];
           $fecha_inicio = $_POST['fecha_inicio'];
           $fecha_fin = $_POST['fecha_fin'];
@@ -154,7 +147,7 @@ if (isset($_POST['insertData'])) {
             $ciclo_actual = $_POST['ciclo_actual'];
             $sql = "INSERT INTO formacion_acad (tipo_estudios_id,nivel_estudios,ciclo_actual,centro_estudios,carrera,colegiatura,fecha_inicio,fecha_fin, formacion_idpostulante,archivo,brevete,serums) 
             VALUES('$tipo_estudios','$nivel_estudios','$ciclo_actual','$centro_estudios', '$carrera','$colegiatura_validar','$fecha_inicio',
-            '$fecha_fin','$idpostulante','$new_nombre','$licencia_conducir','serums')";
+            '$fecha_fin','$idpostulante','$new_nombre','$licencia_conducir','$serums')";
 
             $result = mysqli_query($con, $sql);
             if ($result) {

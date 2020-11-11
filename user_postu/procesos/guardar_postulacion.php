@@ -65,8 +65,9 @@ if ($tipo_estudios_id == '1') {
 
       if ($total_total_dias >= $total_anios_requerido) {
         if ($cargo = 'Chofer' || $cargo = 'Piloto de ambulancia') {
-          $licencia_conducir = $rw['licencia_conducir'];
-          if ($licencia_conducir = 'A-IIb' || 'A-IIIa' || 'A-IIIb' || 'A-IIIc') {
+          $licencia_conducir = $row['brevete'];
+          echo $licencia_conducir;
+          if ($licencia_conducir == 'A-IIb' || $licencia_conducir == 'A-IIIa' || $licencia_conducir == 'A-IIIb' || $licencia_conducir == 'A-IIIc') {
             $sql = "INSERT INTO detalle_convocatoria (convocatoria_idcon, postulante_idpostulante, personal_req_idpersonal, fecha_postulacion) 
             VALUES ('" . $idcon . "','" . $idpostulante . "','" . $personal_req . "','" . $date . "')";
 
@@ -74,13 +75,14 @@ if ($tipo_estudios_id == '1') {
             if ($result) {
               header('Location: ../mispostulaciones.php?dni=' . $dni);
             } else {
-              echo "error guardar postulacion chofer";
-              // echo '<script> alert("Error al guardar la postulación."); 
-              // window.history.back(-1);</script>';
+              // echo "error guardar postulacion chofer ESTA ES";
+              echo '<script> alert("Error al guardar la postulación."); 
+              window.history.back(-1);</script>';
             }
             mysqli_close($con);
           } else {
-            echo '<script> alert("No cumple con el tipo de licencia de conducir mínimo requerido."); 
+            // echo "No cumple con el tipo de licencia de conducir mínimo requerido";
+            echo '<script> alert("No cumple con el tipo de licencia de conducir mínimo requerida: A-IIb"); 
               window.history.back(-1);</script>';
           }
         } else {
@@ -138,7 +140,7 @@ if ($tipo_estudios_id == '1') {
       if ($total_total_dias >= $total_anios_requerido) {
         if ($cargo = 'Chofer' || $cargo = 'Piloto de ambulancia') {
           $licencia_conducir = $rw['licencia_conducir'];
-          if ($licencia_conducir = 'A-IIb' || 'A-IIIa' || 'A-IIIb' || 'A-IIIc') {
+          if ($licencia_conducir == 'A-IIb' || $licencia_conducir == 'A-IIIa' || $licencia_conducir == 'A-IIIb' || $licencia_conducir == 'A-IIIc') {
             $sql = "INSERT INTO detalle_convocatoria (convocatoria_idcon, postulante_idpostulante, personal_req_idpersonal, fecha_postulacion) 
             VALUES ('" . $idcon . "','" . $idpostulante . "','" . $personal_req . "','" . $date . "')";
 

@@ -95,6 +95,7 @@ if (empty($_SESSION['active'])) {
             </div>
             <div class="card-body">
               <div class="table-responsive">
+                <h6 style="font-weight: 700;">Se recomienda registrar solo un registro, acorde al puesto a postular.</h6>
                 <table class="table table-bordered">
                   <thead>
                     <tr class="bg-primary" style="text-align:center; color:#000; font-size:0.813em;">
@@ -111,8 +112,8 @@ if (empty($_SESSION['active'])) {
 
                   <tbody>
                     <?php
-                    $consulta_form = "SELECT * FROM formacion_acad 
-                          inner join tipo_estudios ON formacion_acad.tipo_estudios_id=tipo_estudios.id_tipo_estudios 
+                    $consulta_form = "SELECT * FROM formacion_acad inner join tipo_estudios 
+                    ON formacion_acad.tipo_estudios_id=tipo_estudios.id_tipo_estudios 
                           WHERE formacion_idpostulante = $idpostulante";
                     $query = mysqli_query($con, $consulta_form);
                     if (mysqli_num_rows($query) > 0) {
@@ -126,7 +127,7 @@ if (empty($_SESSION['active'])) {
                           <td style="font-size: 12px;"><?php echo $row['fecha_inicio'] ?></td>
                           <td style="font-size: 12px;"><?php echo $row['fecha_fin'] ?></td>
 
-                          <td><a href="ver_pdf.php?id=<?php echo $row['id_formacion'] ?>&dni=<?php echo $dato_desencriptado ?>"><?php echo $row['archivo']; ?></a></td>
+                          <td><a href="ver_pdf.php?id=<?php echo $row['id_formacion'] ?>&dni=<?php echo $dato_desencriptado ?>" target="_blank"><?php echo $row['archivo']; ?></a></td>
                           <td class="d-flex justify-content-center">
                             <a type="button" href="editarformacion.php?idformacion=<?php echo $row['id_formacion'] ?>&dni=<?php echo $dato_desencriptado ?>" class="btn btn-success btn-sm m-1">
                               <i class="fa fa-edit"></i> Editar</a>
@@ -139,7 +140,6 @@ if (empty($_SESSION['active'])) {
                       echo "<tr><td colspan='8' class='text-center text-danger font-weight-bold' >NO HAY DATOS REGISTRADOS</td></tr>";
                     }
                     ?>
-
                   </tbody>
                 </table>
               </div>

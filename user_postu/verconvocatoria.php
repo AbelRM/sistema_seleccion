@@ -217,66 +217,93 @@ if (empty($_SESSION['active'])) {
                           <hr class="sidebar-divider">
                           <div class="card-body">
                             <div class="table-responsive">
-                              <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                              <table class="table table-bordered">
+                                <thead>
+                                  <tr class="bg-danger" style="text-align:center; font-size:0.813em;">
+                                    <th>N°</th>
+                                    <th style="display: none;">id</th>
+                                    <th>Cargo</th>
+                                    <th>Financiero</th>
+                                    <th>Dirección ejecutora</th>
+                                  </tr>
+                                </thead>
                                 <tbody>
                                   <?php
-                                  $sql = " SELECT * FROM total_personal_req where convocatoria_idcon='$idcon'";
+                                  $dni = $_GET['dni'];
+                                  $idcon = $_GET['id'];
+                                  include_once('conexion.php');
+                                  $sql = "SELECT * FROM sistema_seleccion.personal_req INNER JOIN sistema_seleccion.ubicacion 
+                                  ON personal_req.personal_req_idubicacion = ubicacion.iddireccion INNER JOIN sistema_seleccion.cargo 
+                                  ON personal_req.cargo_idcargo = cargo.idcargo
+                                  WHERE convocatoria_idcon='$idcon'";
                                   $query = mysqli_query($con, $sql);
                                   $i = 1;
-                                  while ($row = MySQLI_fetch_array($query)) {
-                                    $idpersonal = $row['idpersonal'];
-                                    $cantidad = $row['cantidad'];
-                                    $remuneracion = $row['remuneracion'];
-                                    $fuente = $row['fuente_finac'];
-                                    $meta = $row['meta'];
-                                    $cargo = $row['cargo'];
+                                  if (mysqli_num_rows($query) > 0) {
+                                    while ($row = mysqli_fetch_array($query)) {
+                                      $idpersonal = $row['idpersonal'];
                                   ?>
-                                    <thead>
-                                      <tr class="bg-info">
-                                        <th>N°</th>
-                                        <th>Cantidad</th>
-                                        <th>Remuneracion</th>
-                                        <th>Fuente</th>
-                                        <th>Meta</th>
-                                        <th>Cargo</th>
-                                      </tr>
-                                    </thead>
-                                    <tr>
-                                      <td><?php echo $i; ?></td>
-                                      <td><?php echo $cantidad; ?></td>
-                                      <td><?php echo $remuneracion; ?></td>
-                                      <td><?php echo $fuente; ?></td>
-                                      <td><?php echo $meta; ?></td>
-                                      <td><?php echo $cargo; ?></td>
-                                    </tr>
-                                    <?php
-                                    $select = "SELECT * FROM detalle_requerimientos INNER JOIN requerimientos 
-                                    ON detalle_requerimientos.detalle_req_idrequerimientos = requerimientos.id_requerimientos WHERE detalle_req_idpersonal_req ='$idpersonal' ";
-                                    $consulta = mysqli_query($con, $select);
-                                    ?>
-                                    <thead>
-                                      <tr class="bg-secondary" style="text-align:center; color:#000; font-size:0.813em;">
-                                        <th>N°</th>
-                                        <th>Condición</th>
-                                        <th>Nivel de prioridad</th>
-                                      </tr>
-                                    </thead>
-                                    <?php
-                                    $ii = 1;
-                                    while ($row = mysqli_fetch_array($consulta)) {
-                                    ?>
-
                                       <tr>
-                                        <td style="font-size: 12px;"><?php echo $ii ?></td>
-                                        <td style="font-size: 12px;"><?php echo $row['condicion'] ?></td>
-                                        <td style="font-size: 12px;"><?php echo $row['nom_nivel_prioridad'] ?></td>
+                                        <td style="font-size: 14px; font-weight:900; text-align: center"><?php echo $i ?></td>
+                                        <td style="font-size: 12px; display:none"><?php echo $idpersonal ?></td>
+                                        <td style="font-size: 12px;">
+                                          <small style="font-weight:700; font-size: 14px;">Cargo requerido: </small><?php echo $row['cargo'] ?><br>
+                                          <small style="font-weight:700; font-size: 14px;">Nro requerido: </small><?php echo $row['cantidad'] ?>
+                                        </td>
+                                        <td style="font-size: 12px;">
+                                          <small style="font-weight:700; font-size: 14px;">Fuente finac.: </small><?php echo $row['fuente_finac'] ?><br>
+                                          <small style="font-weight:700; font-size: 14px;">Meta: </small><?php echo $row['meta'] ?>
+                                          <small style="font-weight:700; font-size: 14px;">Remuneracion: </small>S/.<?php echo $row['remuneracion'] ?>
+                                        </td>
+                                        <td style="font-size: 12px;">
+                                          <small style="font-weight:700; font-size: 14px;">Dirección Ejecutora: </small><?php echo $row['direccion_ejec'] . " - " . $row['equipo_ejec'] ?>
+                                        </td>
                                       </tr>
-                                    <?php
-                                      $ii++;
-                                    }
-                                    ?>
+                                      <?php
+                                      $select = "SELECT * FROM requerimientos INNER JOIN tipo_estudios 
+                                      ON requerimientos.reque_tipo_estudios = tipo_estudios.id_tipo_estudios WHERE reque_id_personal ='$idpersonal'";
+                                      $consulta = mysqli_query($con, $select);
+                                      ?>
+                                      <thead>
+                                        <tr style="color:#000; background:#85879666; font-size:0.813em;">
+                                          <th style="display:none;">id</th>
+                                          <th colspan='5'>Requerimientos requeridos</th>
+                                        </tr>
+                                      </thead>
+                                      <?php
+                                      $ii = 1;
+                                      while ($rw = mysqli_fetch_array($consulta)) {
+                                      ?>
+                                        <tr>
+                                          <td style=" font-size: 12px; display: none;"><?php echo $rw['id_requerimientos'] ?></td>
+                                          <td style="font-size: 12px;"></td>
+                                          <td style="font-size: 12px;">
+                                            <small style="font-weight:700; font-size: 14px;">Tipo estudio: </small><?php echo $rw['tipo_estudios'] ?><br>
+                                            <small style="font-weight:700; font-size: 14px;">Nivel estudio: </small><?php echo $rw['nivel_estudio'] ?>
+                                          </td>
+                                          <td style="font-size: 12px;">
+                                            <small style="font-weight:700; font-size: 14px;">Cantidad experiencia: </small><br><?php echo $rw['cantidad_experiencia'] ?>
+                                            <?php if ($rw['nivel_estudio'] = 'anios') {
+                                              echo "AÑO (S)";
+                                            } else {
+                                              echo "MES (ES)";
+                                            }  ?>
+                                          </td>
+                                          <td style="font-size: 12px;">
+                                            <small style="font-weight:700; font-size: 14px;">Colegiatura: </small><?php echo $rw['colegiatura'] ?><br>
+                                            <small style="font-weight:700; font-size: 14px;">Habilitación: </small><?php echo $rw['habilitacion'] ?><br>
+                                            <small style="font-weight:700; font-size: 14px;">Serums: </small><?php echo $rw['serums'] ?><br>
+                                            <small style="font-weight:700; font-size: 14px;">Licencia de conducir: </small><?php echo $rw['licencia_conducir'] ?>
+                                          </td>
+                                        </tr>
+                                      <?php
+                                        $ii++;
+                                      }
+                                      ?>
                                   <?php
-                                    $i++;
+                                      $i++;
+                                    }
+                                  } else {
+                                    echo "<tr><td colspan='6' class='text-center text-danger font-weight-bold' >NO HAY PERSONAL REQUERIDO</td></tr>";
                                   }
                                   ?>
                                 </tbody>

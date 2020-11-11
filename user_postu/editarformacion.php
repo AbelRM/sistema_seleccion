@@ -17,7 +17,7 @@ if (empty($_SESSION['active'])) {
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Sistema de postulación DIRESA - TACNA</title>
+  <title>Editar formación DIRESA - TACNA</title>
 
   <!-- Custom fonts for this template-->
   <link rel="icon" type="image/png" href="img/icono_diresa.png" />
@@ -94,10 +94,10 @@ if (empty($_SESSION['active'])) {
                   </div>
                   <input type="hidden" name="dni" value="<?php echo $dato_desencriptado ?>">
                   <input type="hidden" name="idformacion" value="<?php echo $id_formacion ?>">
-                  <div class="col-md-6 col-sm-12 form-group">
+                  <div class="col-md-4 col-sm-12 form-group">
                     <?php $tipo_estudio_edit = $row['tipo_estudios_id'] ?>
                     <label for="title">(*) Tipo estudio</label>
-                    <select class="form-control" name="tipo_estudios_edit" id="tipo_estudios_edit" required>
+                    <select class="form-control" name="tipo_estudios_edit" id="tipo_estudios_select" required>
                       <option value="0" disabled>Seleccione:</option>
                       <?php
                       $query = $con->query("SELECT * FROM tipo_estudios");
@@ -107,25 +107,43 @@ if (empty($_SESSION['active'])) {
                       ?>
                     </select>
                   </div>
-                  <div class="col-md-6 col-sm-12 form-group">
+                  <div class="col-md-4 col-sm-12 form-group" id="div_nivel_estudio_tecnico">
+                    <label for="title">(*) Nivel estudios</label>
+                    <select name="nivel_estudios_tec" id="nivel_estudios_tec" class="form-control">
+                      <option value="TITULADO">Titulado</option>
+                      <option value="EGRESADO">Egresado</option>
+                    </select>
+                  </div>
+                  <div class="col-md-4 col-sm-12 form-group" id="div_nivel_estudio_prof">
                     <?php $nivel_estudio = $row['nivel_estudios'] ?>
+                    <!-- onChange="tipo_nivel_estudio_select(this)" -->
                     <label for="title">(*) Nivel estudios</label>
                     <select name="nivel_estudios_edit" id="nivel_estudios_edit" class="form-control">
+                      <option value="">Elegir...</option>
                       <option value="ESTUDIANTE">Estudiante</option>
                       <option value="EGRESADO">Egresado</option>
                       <option value="BACHILLER">Bachiller</option>
                       <option value="TITULADO">Titulado</option>
                     </select>
                   </div>
+                  <div class="col-md-4 col-sm-12 form-group" id="div_ciclo_actual">
+                    <label for="title">(*) Ciclo actual</label>
+                    <select name="ciclo_actual" class="form-control">
+                      <option value="VII">VII</option>
+                      <option value="VIII">VIII</option>
+                      <option value="IX">IX</option>
+                      <option value="X">X</option>
+                    </select>
+                  </div>
                   <div class="col-md-6 col-sm-12 form-group">
                     <label for="title">(*) Centro estudios</label>
                     <input type="text" name="centro_estudios" class="form-control" value="<?php echo $row['centro_estudios'] ?>" required>
                   </div>
-                  <div class="col-md-6 col-sm-12 form-group">
+                  <div class="col-md-6 col-sm-12 form-group" id="div_carrera">
                     <label for="title">(*) Carrera</label>
-                    <input type="text" name="carrera" class="form-control" value="<?php echo $row['carrera'] ?>" required>
+                    <input type="text" name="carrera" class="form-control" value="<?php echo $row['carrera'] ?>">
                   </div>
-                  <div class="col-md-4 col-sm-12 form-group">
+                  <div class="col-md-3 col-sm-12 form-group">
                     <?php $colegiatura_edit = $row['colegiatura'] ?>
                     <label for="title">(*) Colegiatura</label>
                     <select name="colegiatura_edit" id="colegiatura_edit" class="form-control">
@@ -133,46 +151,85 @@ if (empty($_SESSION['active'])) {
                       <option value="SI">SI</option>
                     </select>
                   </div>
-                  <div class="col-md-4 col-sm-12 form-group">
+                  <div class="col-md-3 col-sm-12 form-group">
                     <label for="title">(*) N° Colegiatura</label>
                     <input type="text" name="nro_colegiatura_edit" id="nro_colegiatura_edit" class="form-control" value="<?php
                                                                                                                           if (is_null($row['nro_colegiatura'])) {
                                                                                                                             echo "-";
                                                                                                                           } else {
                                                                                                                             echo $row['nro_colegiatura'];
-                                                                                                                          } ?>" disabled>
+                                                                                                                          } ?>">
                   </div>
-                  <div class="col-md-4 col-sm-12 form-group">
-                    <label for="title">(*) Fecha última habilitación</label>
+                  <div class="col-md-3 col-sm-12 form-group">
+                    <label for="title">(*) Fecha colegiatura</label>
                     <input type="date" name="fecha_colegiatura_edit" id="fecha_colegiatura_edit" class="form-control" value="<?php
+                                                                                                                              if (is_null($row['fech_colegiatura'])) {
+                                                                                                                                echo "yyyy-MM-dd";
+                                                                                                                              } else {
+                                                                                                                                echo $row['fech_colegiatura'];
+                                                                                                                              } ?>">
+                  </div>
+                  <div class="col-md-3 col-sm-12 form-group">
+                    <label for="title">(*) última fecha habilitación</label>
+                    <input type="date" name="lugar_colegiatura_edit" id="lugar_colegiatura_edit" class="form-control" value="<?php
                                                                                                                               if (is_null($row['fech_habilitacion'])) {
                                                                                                                                 echo "yyyy-MM-dd";
                                                                                                                               } else {
                                                                                                                                 echo $row['fech_habilitacion'];
-                                                                                                                              } ?>" disabled>
+                                                                                                                              } ?>">
                   </div>
-                  <div class="col-md-4 col-sm-12 form-group">
-                    <label for="title">(*) Lugar Colegiatura</label>
-                    <input type="text" name="lugar_colegiatura_edit" id="lugar_colegiatura_edit" class="form-control" value="<?php
-                                                                                                                              if (is_null($row['lugar_colegiatura'])) {
-                                                                                                                                echo "-";
-                                                                                                                              } else {
-                                                                                                                                echo $row['lugar_colegiatura'];
-                                                                                                                              } ?>" disabled>
-                  </div>
-                  <div class="col-md-4 col-sm-12 form-group">
+                  <div class="col-md-3 col-sm-12 form-group">
                     <label for="title">(**) Fecha Inicio</label>
                     <input type="date" name="fecha_inicio" class="form-control" value="<?php echo $row['fecha_inicio'] ?>" required>
                   </div>
-                  <div class="col-md-4 col-sm-12 form-group">
+                  <div class="col-md-3 col-sm-12 form-group">
                     <label for="title">(**) Fecha Término</label>
                     <input type="date" name="fecha_fin" class="form-control" value="<?php echo $row['fecha_fin'] ?>" required>
                   </div>
-                  <div class="col-md-8 col-sm-12 form-group">
+                  <div class="col-md-6 col-sm-12 form-group">
                     <label for="title">Archivo (Dejar en blanco si no desea actualizar)</label>
-                    <input type="file" name="archivos1" accept=".pdf" id="expe1_archivo" class="form-control">
+                    <input type="file" name="archivos1" accept=".pdf" id="expe1_archivo">
                     <div id="peso_archivo_valido" class="font-weight-bolder text-primary"></div>
                     <div id="peso_archivo_no" class="font-weight-bolder text-danger"></div>
+                  </div>
+                  <div class="col-md-3 col-sm-12 form-group">
+                    <?php $brevete_edit = $row['brevete'] ?>
+                    <label for="title">(*) Licencia de conducir</label>
+                    <select name="licencia_conducir" id="licencia_conducir_editar" class="form-control">
+                      <option value="Ninguna">Ninguna</option>
+                      <option value="A-I">A-I</option>
+                      <option value="A-IIa">A-IIa</option>
+                      <option value="A-IIb">A-IIb</option>
+                      <option value="A-IIIa">A-IIIa</option>
+                      <option value="A-IIIb">A-IIIb</option>
+                      <option value="A-IIIc">A-IIIc</option>
+                    </select>
+                  </div>
+                  <div class="col-md-3 col-sm-12 form-group" id="div_tipo_profesional">
+                    <label for="title">(*) Tipo profesional</label>
+                    <select name="tipo_prof" id="tipo_prof" class="form-control" onChange="tipo_profesional_select(this)">
+                      <option value="vacio" selected>Elegir...</option>
+                      <option value="administrativo">Administrativo</option>
+                      <option value="asistencial">Asistencial</option>
+                    </select>
+                  </div>
+                  <div class="col-md-3 col-sm-12 form-group" id="div_serums">
+                    <label for="title">(*) ¿Hizo SERUMS?</label>
+                    <select name="serums" id="serums" class="form-control">
+                      <option value="NO">NO</option>
+                      <option value="SI">SI</option>
+                    </select>
+                  </div>
+                  <div class="col-md-3 col-sm-12 form-group" id="div_valor_quintil">
+                    <label for="title">(*) ¿Valor de Quintil?</label>
+                    <select name="quintil" id="quintil" class="form-control">
+                      <option value="">Elegir...</option>
+                      <option value="15">1</option>
+                      <option value="10">2</option>
+                      <option value="15">3</option>
+                      <option value="2">4</option>
+                      <option value="0">5</option>
+                    </select>
                   </div>
                 </div>
             </div>
@@ -243,9 +300,138 @@ if (empty($_SESSION['active'])) {
   <script>
     $(document).ready(function() {
       $('#nivel_estudios_edit > option[value="<?php echo $nivel_estudio ?>"]').attr('selected', 'selected');
-      $('#tipo_estudios_edit > option[value="<?php echo $tipo_estudio_edit ?>"]').attr('selected', 'selected');
+      $('#tipo_estudios_select > option[value="<?php echo $tipo_estudio_edit ?>"]').attr('selected', 'selected');
       $('#colegiatura_edit > option[value="<?php echo $colegiatura_edit ?>"]').attr('selected', 'selected');
+      $('#licencia_conducir_editar > option[value="<?php echo $brevete_edit ?>"]').attr('selected', 'selected');
     });
+
+    $(function() {
+      $("#tipo_estudios_select").on('change', function() {
+        var selectValue = $(this).val();
+        switch (selectValue) {
+          case "1":
+            $("#div_nivel_estudio_tecnico").hide();
+            $("#div_ciclo_actual").hide();
+            $("#div_nivel_estudio_prof").hide();
+            $("#div_carrera").hide();
+            $("#div_serums").hide();
+            $("#div_valor_quintil").hide();
+            $("#div_tipo_profesional").hide();
+
+            break;
+          case "2":
+            $("#div_nivel_estudio_tecnico").show();
+            $("#div_ciclo_actual").hide();
+            $("#div_nivel_estudio_prof").hide();
+            $("#div_carrera").show();
+            $("#div_serums").hide();
+            $("#div_valor_quintil").hide();
+            break;
+          case "3":
+            $("#div_nivel_estudio_tecnico").hide();
+            $("#div_ciclo_actual").hide();
+            $("#div_nivel_estudio_prof").show();
+            $("#div_carrera").show();
+            $("#div_serums").hide();
+            $("#div_valor_quintil").hide();
+            break;
+        }
+      }).change();
+    });
+
+
+    $(function() {
+      $("#nivel_estudios_edit").on('change', function() {
+        var selectValue = $(this).val();
+        switch (selectValue) {
+          case "ESTUDIANTE":
+            $("#div_ciclo_actual").show();
+            $("#div_tipo_profesional").hide();
+            $("#div_serums").hide();
+            $("#div_valor_quintil").hide();
+            break;
+          case "EGRESADO":
+            $("#div_ciclo_actual").hide();
+            $("#div_tipo_profesional").hide();
+            $("#div_serums").hide();
+            $("#div_valor_quintil").hide();
+            break;
+          case "BACHILLER":
+            $("#div_ciclo_actual").hide();
+            $("#div_tipo_profesional").hide();
+            $("#div_serums").hide();
+            $("#div_valor_quintil").hide();
+            break;
+          case "TITULADO":
+            $("#div_ciclo_actual").hide();
+            $("#div_tipo_profesional").show();
+            $("#div_serums").hide();
+            $("#div_valor_quintil").hide();
+            break;
+        }
+      }).change();
+    });
+
+    function tipo_nivel_estudio_select(sel) {
+      if (sel.value == "ESTUDIANTE") {
+        div_ciclo_actual = document.getElementById("div_ciclo_actual");
+        div_ciclo_actual.style.display = "block";
+        div_tipo_profesional = document.getElementById("div_tipo_profesional");
+        div_tipo_profesional.style.display = "none";
+        div_serums = document.getElementById("div_serums");
+        div_serums.style.display = "none";
+        div_valor_quintil = document.getElementById("div_valor_quintil");
+        div_valor_quintil.style.display = "none";
+
+      } else if (sel.value == "EGRESADO") {
+        div_ciclo_actual = document.getElementById("div_ciclo_actual");
+        div_ciclo_actual.style.display = "none";
+        div_tipo_profesional = document.getElementById("div_tipo_profesional");
+        div_tipo_profesional.style.display = "none";
+        div_serums = document.getElementById("div_serums");
+        div_serums.style.display = "none";
+        div_valor_quintil = document.getElementById("div_valor_quintil");
+        div_valor_quintil.style.display = "none";
+      } else if (sel.value == "BACHILLER") {
+        div_ciclo_actual = document.getElementById("div_ciclo_actual");
+        div_ciclo_actual.style.display = "none";
+        div_tipo_profesional = document.getElementById("div_tipo_profesional");
+        div_tipo_profesional.style.display = "none";
+        div_serums = document.getElementById("div_serums");
+        div_serums.style.display = "none";
+        div_valor_quintil = document.getElementById("div_valor_quintil");
+        div_valor_quintil.style.display = "none";
+
+      } else if (sel.value == "TITULADO") {
+        div_ciclo_actual = document.getElementById("div_ciclo_actual");
+        div_ciclo_actual.style.display = "none";
+        div_tipo_profesional = document.getElementById("div_tipo_profesional");
+        div_tipo_profesional.style.display = "block";
+
+      }
+    }
+
+    function tipo_profesional_select(sel) {
+      if (sel.value == "vacio") {
+        div_div_serums = document.getElementById("div_serums");
+        div_div_serums.style.display = "none";
+        div_div_valor_quintil = document.getElementById("div_valor_quintil");
+        div_div_valor_quintil.style.display = "none";
+
+      } else if (sel.value == "administrativo") {
+        div_div_serums = document.getElementById("div_serums");
+        div_div_serums.style.display = "none";
+        div_div_valor_quintil = document.getElementById("div_valor_quintil");
+        div_div_valor_quintil.style.display = "none";
+
+      } else if (sel.value == "asistencial") {
+        div_div_serums = document.getElementById("div_serums");
+        div_div_serums.style.display = "block";
+        div_div_valor_quintil = document.getElementById("div_valor_quintil");
+        div_div_valor_quintil.style.display = "block";
+
+      }
+    }
   </script>
 
 

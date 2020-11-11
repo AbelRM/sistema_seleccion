@@ -28,7 +28,8 @@ if (isset($_POST['updateData1'])) {
 
     //compruebo si las características del archivo son las que deseo
     if (!(strpos($tipo_archivo, "pdf") && ($tamano_archivo <= 3000000))) {
-      echo "La extensión o el tamaño de los archivos no es correcta. <br><br><table><tr><td><li>Solo se permiten archivos .pdf<br><li>se permiten archivos de 3 Mb máximo.</td></tr></table>";
+      echo '<script> alert("El archivo sobrepasa los 3MB máximos."); 
+        window.history.back(-1);</script>';
     } else {
       if (move_uploaded_file($_FILES['archivos1']['tmp_name'], $micarpeta . $antiguo_nombre)) {
 

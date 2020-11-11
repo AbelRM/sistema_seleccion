@@ -93,8 +93,8 @@
                       while ($row = mysqli_fetch_array($query)) {
                         $idpersonal = $row['idpersonal'];
                     ?>
-                        <tr>
-                          <td style="font-size: 12px; text-align: center"><?php echo $i ?></td>
+                        <tr style="background-color: #8287e061;">
+                          <td style="font-size: 14px; font-weight:900; text-align: center"><?php echo $i ?></td>
                           <td style="font-size: 12px; display:none"><?php echo $idpersonal ?></td>
                           <td style="font-size: 12px;">
                             <small style="font-weight:700; font-size: 14px;">Cargo requerido: </small><?php echo $row['cargo'] ?><br>
@@ -120,9 +120,10 @@
                         $consulta = mysqli_query($con, $select);
                         ?>
                         <thead>
-                          <tr style="color:#000; background:#85879666; font-size:0.813em;">
+                          <tr>
                             <th style="display:none;">id</th>
-                            <th colspan='5'>Requerimientos requeridos</th>
+                            <th></th>
+                            <th colspan='4' style="color:#000; background:#85879666; font-size:0.813em;">Requerimientos requeridos</th>
                           </tr>
                         </thead>
                         <?php

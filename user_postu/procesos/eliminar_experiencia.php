@@ -11,11 +11,11 @@ if (isset($_POST['deleteData4'])) {
   $row = MySQLI_fetch_array($resultado);
   $archivo = $row['archivos'];
   $ruta = "../archivos/" . $dni_base . "/expe4_laboral/";
+  unlink($ruta . $archivo);
 
   $sql = "DELETE FROM expe_4puntos WHERE id_4puntos='" . $id . "' ";
   $result = mysqli_query($con, $sql);
 
-  unlink($ruta . $archivo);
   if ($result) {
 
     echo "<script type=\"text/javascript\">history.go(-1);</script>";
@@ -34,11 +34,12 @@ if (isset($_POST['deleteData4'])) {
   $row = MySQLI_fetch_array($resultado);
   $archivo = $row['archivos'];
   $ruta = "../archivos/" . $dni_base . "/expe3_laboral/";
+  unlink($ruta . $archivo);
 
   $sql = "DELETE FROM expe_3puntos WHERE id_3puntos='" . $id . "' ";
   $result = mysqli_query($con, $sql);
 
-  unlink($ruta . $archivo);
+
   if ($result) {
 
     echo "<script type=\"text/javascript\">history.go(-1);</script>";
@@ -57,11 +58,12 @@ if (isset($_POST['deleteData4'])) {
   $row = MySQLI_fetch_array($resultado);
   $archivo = $row['archivos'];
   $ruta = "../archivos/" . $dni_base . "/expe1_laboral/";
+  unlink($ruta . $archivo);
 
   $sql = "DELETE FROM expe_1puntos WHERE id_1puntos='" . $id . "' ";
   $result = mysqli_query($con, $sql);
 
-  unlink($ruta . $archivo);
+
   if ($result) {
 
     echo "<script type=\"text/javascript\">history.go(-1);</script>";
@@ -73,7 +75,7 @@ if (isset($_POST['deleteData4'])) {
 } elseif (isset($_POST['deleteData5'])) {
   $dato_desencriptado = $_POST['dato_desencriptado'];
   $dni_base = $_POST['dni4_tipo2'];
-  echo $dni_base;
+
   $id = $_POST['id_4puntos_tipo2'];
 
   $consulta = "SELECT * FROM expe_4puntos  WHERE id_4puntos='$id'";
@@ -81,13 +83,13 @@ if (isset($_POST['deleteData4'])) {
   $row = MySQLI_fetch_array($resultado);
   $archivo = $row['archivos'];
   $ruta = $_SERVER['DOCUMENT_ROOT'] . "/sistema_seleccion/user_postu/archivos/" . $dni_base . "/expe4_laboral/";
+  unlink($ruta . $archivo);
 
   $sql = "DELETE FROM expe_4puntos WHERE id_4puntos='" . $id . "' ";
   $result = mysqli_query($con, $sql);
 
-  unlink($ruta . $archivo);
-  if ($result) {
 
+  if ($result) {
     echo "<script type=\"text/javascript\">history.go(-1);</script>";
     // header("Location: ../exp_laboral.php?dni=$dato_desencriptado");
   } else {

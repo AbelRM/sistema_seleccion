@@ -127,3 +127,188 @@ $('#expe_archivo4_tipo2').bind('change', function () {
   }
   // alert(this.files[0].size);
 });
+
+
+//PARA TIPO COMPROBANTE//
+/////////////////////////
+    div_nro_contrato = document.getElementById("div_nro_contrato");
+    div_nro_contrato.style.display = "none";
+    div_boleta_pago = document.getElementById("div_boleta_pago");
+    div_boleta_pago.style.display = "none";
+    div_fecha_boleta = document.getElementById("div_fecha_boleta");
+    div_fecha_boleta.style.display = "none";
+
+    function tipo_comprobante_select(sel) {
+      if (sel.value == "Contrato") {
+        div_nro_contrato = document.getElementById("div_nro_contrato");
+        div_nro_contrato.style.display = "block";
+        div_boleta_pago = document.getElementById("div_boleta_pago");
+        div_boleta_pago.style.display = "none";
+        div_fecha_boleta = document.getElementById("div_fecha_boleta");
+        div_fecha_boleta.style.display = "none";
+
+      } else if (sel.value == "Boleta") {
+        div_nro_contrato = document.getElementById("div_nro_contrato");
+        div_nro_contrato.style.display = "none";
+        div_boleta_pago = document.getElementById("div_boleta_pago");
+        div_boleta_pago.style.display = "block";
+        div_fecha_boleta = document.getElementById("div_fecha_boleta");
+        div_fecha_boleta.style.display = "block";
+
+      }
+    }
+
+    div_nro_contrato_expe1 = document.getElementById("div_nro_contrato_expe1");
+    div_nro_contrato_expe1.style.display = "none";
+    div_boleta_pago_expe1 = document.getElementById("div_boleta_pago_expe1");
+    div_boleta_pago_expe1.style.display = "none";
+    div_fecha_boleta_expe1 = document.getElementById("div_fecha_boleta_expe1");
+    div_fecha_boleta_expe1.style.display = "none";
+
+    function tipo_comprobante_expe1_select(sel) {
+      if (sel.value == "Contrato") {
+        div_nro_contrato_expe1 = document.getElementById("div_nro_contrato_expe1");
+        div_nro_contrato_expe1.style.display = "block";
+        div_boleta_pago_expe1 = document.getElementById("div_boleta_pago_expe1");
+        div_boleta_pago_expe1.style.display = "none";
+        div_fecha_boleta_expe1 = document.getElementById("div_fecha_boleta_expe1");
+        div_fecha_boleta_expe1.style.display = "none";
+
+      } else if (sel.value == "Boleta") {
+        div_nro_contrato_expe1 = document.getElementById("div_nro_contrato_expe1");
+        div_nro_contrato_expe3.style.display = "none";
+        div_boleta_pago_expe1 = document.getElementById("div_boleta_pago_expe1");
+        div_boleta_pago_expe1.style.display = "block";
+        div_fecha_boleta_expe1 = document.getElementById("div_fecha_boleta_expe1");
+        div_fecha_boleta_expe1.style.display = "block";
+
+      }
+    }
+
+    div_nro_contrato_expe3 = document.getElementById("div_nro_contrato_expe3");
+    div_nro_contrato_expe3.style.display = "none";
+    div_boleta_pago_expe3 = document.getElementById("div_boleta_pago_expe3");
+    div_boleta_pago_expe3.style.display = "none";
+    div_fecha_boleta_expe3 = document.getElementById("div_fecha_boleta_expe3");
+    div_fecha_boleta_expe3.style.display = "none";
+
+
+    function tipo_comprobante_expe3_select(sel) {
+      if (sel.value == "Contrato") {
+        div_nro_contrato_expe3 = document.getElementById("div_nro_contrato_expe3");
+        div_nro_contrato_expe3.style.display = "block";
+        div_boleta_pago_expe3 = document.getElementById("div_boleta_pago_expe3");
+        div_boleta_pago_expe3.style.display = "none";
+        div_fecha_boleta_expe3 = document.getElementById("div_fecha_boleta_expe3");
+        div_fecha_boleta_expe3.style.display = "none";
+
+      } else if (sel.value == "Boleta") {
+        div_nro_contrato_expe3 = document.getElementById("div_nro_contrato_expe3");
+        div_nro_contrato_expe3.style.display = "none";
+        div_boleta_pago_expe3 = document.getElementById("div_boleta_pago_expe3");
+        div_boleta_pago_expe3.style.display = "block";
+        div_fecha_boleta_expe3 = document.getElementById("div_fecha_boleta_expe3");
+        div_fecha_boleta_expe3.style.display = "block";
+
+      }
+    }
+
+    div_nro_contrato_tip2 = document.getElementById("div_nro_contrato_tip2");
+    div_nro_contrato_tip2.style.display = "none";
+    div_fecha_boleta_tip2 = document.getElementById("div_fecha_boleta_tip2");
+    div_fecha_boleta_tip2.style.display = "none";
+    div_boleta_pago_tip2 = document.getElementById("div_boleta_pago_tip2");
+    div_boleta_pago_tip2.style.display = "none";
+
+    function tipo_comprobante_tip2_select(sel) {
+      if (sel.value == "Contrato") {
+        div_nro_contrato_tip2 = document.getElementById("div_nro_contrato_tip2");
+        div_nro_contrato_tip2.style.display = "block";
+        div_fecha_boleta_tip2 = document.getElementById("div_fecha_boleta_tip2");
+        div_fecha_boleta_tip2.style.display = "none";
+        div_boleta_pago_tip2 = document.getElementById("div_boleta_pago_tip2");
+        div_boleta_pago_tip2.style.display = "none";
+
+      } else if (sel.value == "Boleta") {
+        div_nro_contrato_tip2 = document.getElementById("div_nro_contrato_tip2");
+        div_nro_contrato_tip2.style.display = "none";
+        div_fecha_boleta_tip2 = document.getElementById("div_fecha_boleta_tip2");
+        div_fecha_boleta_tip2.style.display = "block";
+        div_boleta_pago_tip2 = document.getElementById("div_boleta_pago_tip2");
+        div_boleta_pago_tip2.style.display = "block";
+
+      }
+    }
+
+    div_nro_contrato_tip2_expe3 = document.getElementById("div_nro_contrato_tip2_expe3");
+    div_nro_contrato_tip2_expe3.style.display = "none";
+    div_fecha_boleta_tip2_expe3 = document.getElementById("div_fecha_boleta_tip2_expe3");
+    div_fecha_boleta_tip2_expe3.style.display = "none";
+    div_boleta_pago_tip2_expe3 = document.getElementById("div_boleta_pago_tip2_expe3");
+    div_boleta_pago_tip2_expe3.style.display = "none";
+
+    function tipo_comprobante_tip2_expe3_select(sel) {
+      if (sel.value == "Contrato") {
+        div_nro_contrato_tip2_expe3 = document.getElementById("div_nro_contrato_tip2_expe3");
+        div_nro_contrato_tip2_expe3.style.display = "block";
+        div_fecha_boleta_tip2_expe3 = document.getElementById("div_fecha_boleta_tip2_expe3");
+        div_fecha_boleta_tip2_expe3.style.display = "none";
+        div_boleta_pago_tip2_expe3 = document.getElementById("div_boleta_pago_tip2_expe3");
+        div_boleta_pago_tip2_expe3.style.display = "none";
+
+      } else if (sel.value == "Boleta") {
+        div_nro_contrato_tip2_expe3 = document.getElementById("div_nro_contrato_tip2_expe3");
+        div_nro_contrato_tip2_expe3.style.display = "none";
+        div_fecha_boleta_tip2_expe3 = document.getElementById("div_fecha_boleta_tip2_expe3");
+        div_fecha_boleta_tip2_expe3.style.display = "block";
+        div_boleta_pago_tip2_expe3 = document.getElementById("div_boleta_pago_tip2_expe3");
+        div_boleta_pago_tip2_expe3.style.display = "block";
+
+      }
+    }
+
+    div_nro_contrato_tip1_expe_1 = document.getElementById("div_nro_contrato_tip1_expe_1");
+    div_nro_contrato_tip1_expe_1.style.display = "none";
+    div_fecha_boleta_tip1_expe_1 = document.getElementById("div_fecha_boleta_tip1_expe_1");
+    div_fecha_boleta_tip1_expe_1.style.display = "none";
+    div_boleta_pago_tip1_expe_1 = document.getElementById("div_boleta_pago_tip1_expe_1");
+    div_boleta_pago_tip1_expe_1.style.display = "none";
+
+    function tipo_comprobante_tip1_expe_1_select(sel) {
+      if (sel.value == "Contrato") {
+        div_nro_contrato_tip1_expe_1 = document.getElementById("div_nro_contrato_tip1_expe_1");
+        div_nro_contrato_tip1_expe_1.style.display = "block";
+        div_fecha_boleta_tip1_expe_1 = document.getElementById("div_fecha_boleta_tip1_expe_1");
+        div_fecha_boleta_tip1_expe_1.style.display = "none";
+        div_boleta_pago_tip1_expe_1 = document.getElementById("div_boleta_pago_tip1_expe_1");
+        div_boleta_pago_tip1_expe_1.style.display = "none";
+
+      } else if (sel.value == "Boleta") {
+        div_nro_contrato_tip1_expe_1 = document.getElementById("div_nro_contrato_tip1_expe_1");
+        div_nro_contrato_tip1_expe_1.style.display = "none";
+        div_fecha_boleta_tip1_expe_1 = document.getElementById("div_fecha_boleta_tip1_expe_1");
+        div_fecha_boleta_tip1_expe_1.style.display = "block";
+        div_boleta_pago_tip1_expe_1 = document.getElementById("div_boleta_pago_tip1_expe_1");
+        div_boleta_pago_tip1_expe_1.style.display = "block";
+
+      }
+    }
+
+  //ACTUALIZAR EXPERIENCIA LABORAL//
+  // $(function() {
+  //   $("#edit_tipo_comprobante_exp4_tip2").on('change', function() {
+  //     var selectValue = $(this).val();
+  //     switch (selectValue) {
+  //       case "Contrato":
+  //         $("#div_nro_contrato").show();
+  //         $("#div_fecha_boleta").hide();
+  //         $("#div_boleta_pago").hide();
+  //         break;
+  //       case "Boleta":
+  //         $("#div_nro_contrato").hide();
+  //         $("#div_fecha_boleta").show();
+  //         $("#div_boleta_pago").show();
+  //         break;
+  //     }
+  //   }).change();
+  // });

@@ -137,11 +137,11 @@ if (empty($_SESSION['active'])) {
                   </div>
                   <div class="col-md-6 col-sm-12 form-group">
                     <label for="title">(*) Centro estudios</label>
-                    <input type="text" name="centro_estudios" class="form-control" value="<?php echo $row['centro_estudios'] ?>" required>
+                    <input type="text" name="centro_estudios" style="text-transform:uppercase; font-size:13px" class="form-control" value="<?php echo $row['centro_estudios'] ?>" required>
                   </div>
                   <div class="col-md-6 col-sm-12 form-group" id="div_carrera">
                     <label for="title">(*) Carrera</label>
-                    <input type="text" name="carrera" class="form-control" value="<?php echo $row['carrera'] ?>">
+                    <input type="text" name="carrera" style="text-transform:uppercase; font-size:13px" class="form-control" value="<?php echo $row['carrera'] ?>">
                   </div>
                   <div class="col-md-3 col-sm-12 form-group">
                     <?php $colegiatura_edit = $row['colegiatura'] ?>
@@ -433,8 +433,6 @@ if (empty($_SESSION['active'])) {
       }
     }
   </script>
-
-
 </body>
 
 </html>

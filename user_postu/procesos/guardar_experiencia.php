@@ -7,6 +7,7 @@ if (isset($_POST['insertData4'])) {
   $dni = $_POST['dni4'];
   $idpostulante = $_POST['postulante4'];
   $tipo_expe4 = $_POST['tipo_expe4'];
+  $tipo_comprobante = $_POST['tipo_comprobante_exp4_tip1'];
 
   $lugar_4exp = $_POST['lugar_4exp'];
   $cargo_funciones_4exp = $_POST['cargo_funciones_4exp'];
@@ -44,10 +45,11 @@ if (isset($_POST['insertData4'])) {
 
   //compruebo si las características del archivo son las que deseo
   if (!(strpos($tipo_archivo, "pdf") && ($tamano_archivo <= 3000000))) {
-    echo "La extensión o el tamaño de los archivos no es correcta. <br><br><table><tr><td><li>Solo se permiten archivos .pdf<br><li>se permiten archivos de 3 Mb máximo.</td></tr></table>";
+    echo '<script> alert("El archivo excede los 3 MB máximos permitidos."); </script>';
+    echo "<script type=\"text/javascript\">history.go(-1);</script>";
   } else {
     if (move_uploaded_file($_FILES['archivo']['tmp_name'], $micarpeta . $new_nombre)) {
-      if ($tipo_comprobante == 'contrato') {
+      if ($tipo_comprobante == 'Contrato') {
         $nro_contrato = $_POST['nro_contrato'];
         $sql = "INSERT INTO expe_4puntos (lugar,cargo,fecha_inicio,fecha_fin,anios,meses,dias,archivos,tipo_expe,expe_4puntos_idpostulante, tipo_comprobante,nro_contrato) 
           VALUES('$lugar_4exp','$cargo_funciones_4exp', '$fecha_ini_4exp','$fecha_fin_4exp','$años','$meses','$dias','$new_nombre','$tipo_expe4','$idpostulante','$tipo_comprobante','$nro_contrato')";
@@ -88,6 +90,8 @@ if (isset($_POST['insertData4'])) {
   $dni = $_POST['dni3'];
   $idpostulante = $_POST['postulante3'];
   $tipo_expe3 = $_POST['tipo_expe3'];
+  $tipo_comprobante = $_POST['tipo_comprobante_exp3_tip1'];
+
 
   $lugar_3exp = $_POST['lugar_3exp'];
   $cargo_funciones_3exp = $_POST['cargo_funciones_3exp'];
@@ -125,12 +129,13 @@ if (isset($_POST['insertData4'])) {
 
   //compruebo si las características del archivo son las que deseo
   if (!(strpos($tipo_archivo, "pdf") && ($tamano_archivo <= 3000000))) {
-    echo "La extensión o el tamaño de los archivos no es correcta. <br><br><table><tr><td><li>Solo se permiten archivos .pdf<br><li>se permiten archivos de 3 Mb máximo.</td></tr></table>";
+    echo '<script> alert("El archivo excede los 3 MB máximos permitidos."); </script>';
+    echo "<script type=\"text/javascript\">history.go(-1);</script>";
   } else {
     if (move_uploaded_file($_FILES['archivo']['tmp_name'], $micarpeta . $new_nombre)) {
-      if ($tipo_comprobante == 'contrato') {
+      if ($tipo_comprobante == 'Contrato') {
         $nro_contrato = $_POST['nro_contrato'];
-        $sql = "INSERT INTO expe_3puntos (lugar,cargo,fecha_inicio,fecha_fin,anios,meses,dias,archivos,tipo_expe,expe_3puntos_idpostulante) 
+        $sql = "INSERT INTO expe_3puntos (lugar,cargo,fecha_inicio,fecha_fin,anios,meses,dias,archivos,tipo_expe,expe_3puntos_idpostulante, tipo_comprobante, nro_contrato) 
           VALUES('$lugar_3exp','$cargo_funciones_3exp', '$fecha_ini_3exp','$fecha_fin_3exp','$años','$meses','$dias','$new_nombre','$tipo_expe3','$idpostulante','$tipo_comprobante','$nro_contrato')";
 
         $result = mysqli_query($con, $sql);
@@ -147,7 +152,7 @@ if (isset($_POST['insertData4'])) {
         $fech_emision = $_POST['fecha_boleta'];
         $monto_boleta = $_POST['boleta'];
 
-        $sql = "INSERT INTO expe_3puntos (lugar,cargo,fecha_inicio,fecha_fin,anios,meses,dias,archivos,tipo_expe,expe_3puntos_idpostulante) 
+        $sql = "INSERT INTO expe_3puntos (lugar,cargo,fecha_inicio,fecha_fin,anios,meses,dias,archivos,tipo_expe,expe_3puntos_idpostulante,tipo_comprobante, fech_emision, monto_boleta) 
           VALUES('$lugar_3exp','$cargo_funciones_3exp', '$fecha_ini_3exp','$fecha_fin_3exp','$años','$meses','$dias','$new_nombre','$tipo_expe3','$idpostulante','$tipo_comprobante','$fech_emision','$monto_boleta')";
         $result = mysqli_query($con, $sql);
         if ($result) {
@@ -170,6 +175,8 @@ if (isset($_POST['insertData4'])) {
   $dni = $_POST['dni'];
   $idpostulante = $_POST['postulante'];
   $tipo_expe1 = $_POST['tipo_expe1'];
+  $tipo_comprobante = $_POST['tipo_comprobante_exp1_tip1'];
+
 
   $lugar_1exp = $_POST['lugar_1exp'];
   $cargo_funciones_1exp = $_POST['cargo_funciones_1exp'];
@@ -207,12 +214,13 @@ if (isset($_POST['insertData4'])) {
 
   //compruebo si las características del archivo son las que deseo
   if (!(strpos($tipo_archivo, "pdf") && ($tamano_archivo <= 3000000))) {
-    echo "La extensión o el tamaño de los archivos no es correcta. <br><br><table><tr><td><li>Solo se permiten archivos .pdf<br><li>se permiten archivos de 3 Mb máximo.</td></tr></table>";
+    echo '<script> alert("El archivo excede los 3 MB máximos permitidos."); </script>';
+    echo "<script type=\"text/javascript\">history.go(-1);</script>";
   } else {
     if (move_uploaded_file($_FILES['archivo']['tmp_name'], $micarpeta . $new_nombre)) {
-      if ($tipo_comprobante == 'contrato') {
+      if ($tipo_comprobante == 'Contrato') {
         $nro_contrato = $_POST['nro_contrato'];
-        $sql = "INSERT INTO expe_1puntos (lugar,cargo,fecha_inicio,fecha_fin,anios,meses,dias,archivos,tipo_expe,expe_1puntos_idpostulante) 
+        $sql = "INSERT INTO expe_1puntos (lugar,cargo,fecha_inicio,fecha_fin,anios,meses,dias,archivos,tipo_expe,expe_1puntos_idpostulante, tipo_comprobante, nro_contrato) 
           VALUES('$lugar_1exp','$cargo_funciones_1exp', '$fecha_ini_1exp','$fecha_fin_1exp','$años','$meses','$dias','$new_nombre','$tipo_expe1','$idpostulante','$tipo_comprobante','$nro_contrato')";
 
         $result = mysqli_query($con, $sql);
@@ -228,9 +236,9 @@ if (isset($_POST['insertData4'])) {
       } else {
         $fech_emision = $_POST['fecha_boleta'];
         $monto_boleta = $_POST['boleta'];
-        $sql = "INSERT INTO expe_1puntos (lugar,cargo,fecha_inicio,fecha_fin,anios,meses,dias,archivos,tipo_expe,expe_1puntos_idpostulante) 
-          VALUES('$lugar_1exp','$cargo_funciones_1exp', '$fecha_ini_1exp','$fecha_fin_1exp','$años','$meses','$dias','$new_nombre','$tipo_expe1','$idpostulante','$tipo_comprobante','$fech_emision','$monto_boleta')";
 
+        $sql = "INSERT INTO expe_1puntos (lugar,cargo,fecha_inicio,fecha_fin,anios,meses,dias,archivos,tipo_expe,expe_1puntos_idpostulante,tipo_comprobante, fech_emision, monto_boleta) 
+          VALUES('$lugar_1exp','$cargo_funciones_1exp', '$fecha_ini_1exp','$fecha_fin_1exp','$años','$meses','$dias','$new_nombre','$tipo_expe1','$idpostulante','$tipo_comprobante','$fech_emision','$monto_boleta')";
         $result = mysqli_query($con, $sql);
         if ($result) {
           echo '<script> alert("Guardado exitosamente"); </script>';
@@ -252,9 +260,10 @@ if (isset($_POST['insertData4'])) {
   $dni = $_POST['dni'];
   $idpostulante = $_POST['postulante'];
   $tipo_expe = $_POST['tipo_expe'];
+  $tipo_comprobante = $_POST['tipo_comprobante_exp4_tip2'];
 
-  $lugar_4exp = $_POST['lugar_4exp_tip2'];
-  $cargo_funciones_4exp = $_POST['cargo_funciones_4exp_tip2'];
+  $lugar_4exp = strtoupper($_POST['lugar_4exp_tip2']);
+  $cargo_funciones_4exp = strtoupper($_POST['cargo_funciones_4exp_tip2']);
   $fecha_ini_4exp = $_POST['fecha_ini_4exp_tip2'];
   $fecha_fin_4exp = $_POST['fecha_fin_4exp_tip2'];
 
@@ -288,20 +297,41 @@ if (isset($_POST['insertData4'])) {
 
   //compruebo si las características del archivo son las que deseo
   if (!(strpos($tipo_archivo, "pdf") && ($tamano_archivo <= 3000000))) {
-    echo "La extensión o el tamaño de los archivos no es correcta. <br><br><table><tr><td><li>Solo se permiten archivos .pdf<br><li>se permiten archivos de 3 Mb máximo.</td></tr></table>";
+    echo '<script> alert("El archivo excede los 3 MB máximos permitidos."); </script>';
+    echo "<script type=\"text/javascript\">history.go(-1);</script>";
   } else {
     if (move_uploaded_file($_FILES['archivos_tipo2']['tmp_name'], $micarpeta . $new_nombre)) {
-      $sql = "INSERT INTO expe_4puntos (lugar,cargo,fecha_inicio,fecha_fin,anios,meses,dias,archivos,tipo_expe,expe_4puntos_idpostulante) 
-          VALUES('$lugar_4exp','$cargo_funciones_4exp', '$fecha_ini_4exp','$fecha_fin_4exp','$años','$meses','$dias','$new_nombre','$tipo_expe','$idpostulante')";
-      $result = mysqli_query($con, $sql);
-      if ($result) {
-        echo '<script> alert("Guardado exitosamente"); </script>';
-        echo "<script type=\"text/javascript\">history.go(-1);</script>";
-        // header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
+      if ($tipo_comprobante == 'Contrato') {
+        $nro_contrato = $_POST['nro_contrato'];
+        $sql = "INSERT INTO expe_4puntos (lugar,cargo,fecha_inicio,fecha_fin,anios,meses,dias,archivos,tipo_expe,expe_4puntos_idpostulante, tipo_comprobante, nro_contrato) 
+          VALUES('$lugar_4exp','$cargo_funciones_4exp', '$fecha_ini_4exp','$fecha_fin_4exp','$años','$meses','$dias','$new_nombre','$tipo_expe','$idpostulante','$tipo_comprobante','$nro_contrato')";
+
+        $result = mysqli_query($con, $sql);
+        if ($result) {
+          echo '<script> alert("Guardado exitosamente"); </script>';
+          echo "<script type=\"text/javascript\">history.go(-1);</script>";
+          // header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
+        } else {
+          echo '<script> alert("Error al guardar"); </script>';
+          echo "<script type=\"text/javascript\">history.go(-1);</script>";
+          // header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
+        }
       } else {
-        echo '<script> alert("Error al guardar"); </script>';
-        echo "<script type=\"text/javascript\">history.go(-1);</script>";
-        // header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
+        $fech_emision = $_POST['fecha_boleta'];
+        $monto_boleta = $_POST['boleta'];
+
+        $sql = "INSERT INTO expe_4puntos (lugar,cargo,fecha_inicio,fecha_fin,anios,meses,dias,archivos,tipo_expe,expe_4puntos_idpostulante,tipo_comprobante, fech_emision, monto_boleta) 
+          VALUES('$lugar_4exp','$cargo_funciones_4exp', '$fecha_ini_4exp','$fecha_fin_4exp','$años','$meses','$dias','$new_nombre','$tipo_expe','$idpostulante','$tipo_comprobante','$fech_emision','$monto_boleta')";
+        $result = mysqli_query($con, $sql);
+        if ($result) {
+          echo '<script> alert("Guardado exitosamente"); </script>';
+          echo "<script type=\"text/javascript\">history.go(-1);</script>";
+          // header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
+        } else {
+          echo '<script> alert("Error al guardar"); </script>';
+          echo "<script type=\"text/javascript\">history.go(-1);</script>";
+          // header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
+        }
       }
     } else {
       echo "<script> alert(Ocurrió algún error al subir el fichero. No pudo guardarse.); </script>";
@@ -314,9 +344,11 @@ if (isset($_POST['insertData4'])) {
   $dni = $_POST['dni'];
   $idpostulante = $_POST['postulante'];
   $tipo_expe = $_POST['tipo_expe'];
+  $tipo_comprobante = $_POST['tipo_comprobante_exp3_tip2'];
 
-  $lugar_3exp = $_POST['lugar_3exp_tip2'];
-  $cargo_funciones_3exp = $_POST['cargo_funciones_3exp_tip2'];
+
+  $lugar_3exp = strtoupper($_POST['lugar_3exp_tip2']);
+  $cargo_funciones_3exp = strtoupper($_POST['cargo_funciones_3exp_tip2']);
   $fecha_ini_3exp = $_POST['fecha_ini_3exp_tip2'];
   $fecha_fin_3exp = $_POST['fecha_fin_3exp_tip2'];
 
@@ -350,20 +382,41 @@ if (isset($_POST['insertData4'])) {
 
   //compruebo si las características del archivo son las que deseo
   if (!(strpos($tipo_archivo, "pdf") && ($tamano_archivo <= 3000000))) {
-    echo "La extensión o el tamaño de los archivos no es correcta. <br><br><table><tr><td><li>Solo se permiten archivos .pdf<br><li>se permiten archivos de 3 Mb máximo.</td></tr></table>";
+    echo '<script> alert("El archivo excede los 3 MB máximos permitidos."); </script>';
+    echo "<script type=\"text/javascript\">history.go(-1);</script>";
   } else {
     if (move_uploaded_file($_FILES['archivos3_tipo2']['tmp_name'], $micarpeta . $new_nombre)) {
-      $sql = "INSERT INTO expe_3puntos (lugar,cargo,fecha_inicio,fecha_fin,anios,meses,dias,archivos,tipo_expe,expe_3puntos_idpostulante) 
-          VALUES('$lugar_3exp','$cargo_funciones_3exp', '$fecha_ini_3exp','$fecha_fin_3exp','$años','$meses','$dias','$new_nombre','$tipo_expe','$idpostulante')";
-      $result = mysqli_query($con, $sql);
-      if ($result) {
-        echo '<script> alert("Guardado exitosamente"); </script>';
-        echo "<script type=\"text/javascript\">history.go(-1);</script>";
-        // header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
+      if ($tipo_comprobante == 'Contrato') {
+        $nro_contrato = $_POST['nro_contrato'];
+        $sql = "INSERT INTO expe_3puntos (lugar,cargo,fecha_inicio,fecha_fin,anios,meses,dias,archivos,tipo_expe,expe_3puntos_idpostulante, tipo_comprobante, nro_contrato) 
+          VALUES('$lugar_3exp','$cargo_funciones_3exp', '$fecha_ini_3exp','$fecha_fin_3exp','$años','$meses','$dias','$new_nombre','$tipo_expe','$idpostulante','$tipo_comprobante','$nro_contrato')";
+
+        $result = mysqli_query($con, $sql);
+        if ($result) {
+          echo '<script> alert("Guardado exitosamente"); </script>';
+          echo "<script type=\"text/javascript\">history.go(-1);</script>";
+          // header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
+        } else {
+          echo '<script> alert("Error al guardar"); </script>';
+          echo "<script type=\"text/javascript\">history.go(-1);</script>";
+          // header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
+        }
       } else {
-        echo '<script> alert("Error al guardar"); </script>';
-        echo "<script type=\"text/javascript\">history.go(-1);</script>";
-        // header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
+        $fech_emision = $_POST['fecha_boleta'];
+        $monto_boleta = $_POST['boleta'];
+
+        $sql = "INSERT INTO expe_3puntos (lugar,cargo,fecha_inicio,fecha_fin,anios,meses,dias,archivos,tipo_expe,expe_3puntos_idpostulante,tipo_comprobante, fech_emision, monto_boleta) 
+          VALUES('$lugar_3exp','$cargo_funciones_3exp', '$fecha_ini_3exp','$fecha_fin_3exp','$años','$meses','$dias','$new_nombre','$tipo_expe','$idpostulante','$tipo_comprobante','$fech_emision','$monto_boleta')";
+        $result = mysqli_query($con, $sql);
+        if ($result) {
+          echo '<script> alert("Guardado exitosamente"); </script>';
+          echo "<script type=\"text/javascript\">history.go(-1);</script>";
+          // header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
+        } else {
+          echo '<script> alert("Error al guardar"); </script>';
+          echo "<script type=\"text/javascript\">history.go(-1);</script>";
+          // header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
+        }
       }
     } else {
       echo "<script> alert(Ocurrió algún error al subir el fichero. No pudo guardarse.); </script>";
@@ -376,9 +429,11 @@ if (isset($_POST['insertData4'])) {
   $dni = $_POST['dni'];
   $idpostulante = $_POST['postulante'];
   $tipo_expe = $_POST['tipo_expe'];
+  $tipo_comprobante = $_POST['tipo_comprobante_exp1_tip2'];
 
-  $lugar_1exp = $_POST['lugar_1exp_tip2'];
-  $cargo_funciones_1exp = $_POST['cargo_funciones_1exp_tip2'];
+
+  $lugar_1exp = strtoupper($_POST['lugar_1exp_tip2']);
+  $cargo_funciones_1exp = strtoupper($_POST['cargo_funciones_1exp_tip2']);
   $fecha_ini_1exp = $_POST['fecha_ini_1exp_tip2'];
   $fecha_fin_1exp = $_POST['fecha_fin_1exp_tip2'];
 
@@ -412,20 +467,41 @@ if (isset($_POST['insertData4'])) {
 
   //compruebo si las características del archivo son las que deseo
   if (!(strpos($tipo_archivo, "pdf") && ($tamano_archivo <= 3000000))) {
-    echo "La extensión o el tamaño de los archivos no es correcta. <br><br><table><tr><td><li>Solo se permiten archivos .pdf<br><li>se permiten archivos de 3 Mb máximo.</td></tr></table>";
+    echo '<script> alert("El archivo excede los 3 MB máximos permitidos."); </script>';
+    echo "<script type=\"text/javascript\">history.go(-1);</script>";
   } else {
     if (move_uploaded_file($_FILES['archivos1_tipo2']['tmp_name'], $micarpeta . $new_nombre)) {
-      $sql = "INSERT INTO expe_1puntos (lugar,cargo,fecha_inicio,fecha_fin,anios,meses,dias,archivos,tipo_expe,expe_1puntos_idpostulante) 
-          VALUES('$lugar_1exp','$cargo_funciones_1exp', '$fecha_ini_1exp','$fecha_fin_1exp','$años','$meses','$dias','$new_nombre','$tipo_expe','$idpostulante')";
-      $result = mysqli_query($con, $sql);
-      if ($result) {
-        echo '<script> alert("Guardado exitosamente"); </script>';
-        echo "<script type=\"text/javascript\">history.go(-1);</script>";
-        // header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
+      if ($tipo_comprobante == 'Contrato') {
+        $nro_contrato = $_POST['nro_contrato'];
+        $sql = "INSERT INTO expe_1puntos (lugar,cargo,fecha_inicio,fecha_fin,anios,meses,dias,archivos,tipo_expe,expe_1puntos_idpostulante, tipo_comprobante, nro_contrato) 
+          VALUES('$lugar_1exp','$cargo_funciones_1exp', '$fecha_ini_1exp','$fecha_fin_1exp','$años','$meses','$dias','$new_nombre','$tipo_expe','$idpostulante','$tipo_comprobante','$nro_contrato')";
+
+        $result = mysqli_query($con, $sql);
+        if ($result) {
+          echo '<script> alert("Guardado exitosamente"); </script>';
+          echo "<script type=\"text/javascript\">history.go(-1);</script>";
+          // header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
+        } else {
+          echo '<script> alert("Error al guardar"); </script>';
+          echo "<script type=\"text/javascript\">history.go(-1);</script>";
+          // header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
+        }
       } else {
-        echo '<script> alert("Error al guardar"); </script>';
-        echo "<script type=\"text/javascript\">history.go(-1);</script>";
-        // header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
+        $fech_emision = $_POST['fecha_boleta'];
+        $monto_boleta = $_POST['boleta'];
+
+        $sql = "INSERT INTO expe_1puntos (lugar,cargo,fecha_inicio,fecha_fin,anios,meses,dias,archivos,tipo_expe,expe_1puntos_idpostulante,tipo_comprobante, fech_emision, monto_boleta) 
+          VALUES('$lugar_1exp','$cargo_funciones_1exp', '$fecha_ini_1exp','$fecha_fin_1exp','$años','$meses','$dias','$new_nombre','$tipo_expe','$idpostulante','$tipo_comprobante','$fech_emision','$monto_boleta')";
+        $result = mysqli_query($con, $sql);
+        if ($result) {
+          echo '<script> alert("Guardado exitosamente"); </script>';
+          echo "<script type=\"text/javascript\">history.go(-1);</script>";
+          // header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
+        } else {
+          echo '<script> alert("Error al guardar"); </script>';
+          echo "<script type=\"text/javascript\">history.go(-1);</script>";
+          // header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
+        }
       }
     } else {
       echo "Ocurrió algún error al subir el fichero. No pudo guardarse.";
@@ -433,4 +509,7 @@ if (isset($_POST['insertData4'])) {
       // header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
     }
   }
+} else {
+  echo '<script> alert("Error al guardar."); </script>';
+  echo "<script type=\"text/javascript\">history.go(-1);</script>";
 }

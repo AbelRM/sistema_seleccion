@@ -188,6 +188,10 @@ if (empty($_SESSION['active'])) {
                                   <th>Fecha Inicio</th>
                                   <th>Fecha Término</th>
                                   <th>Archivo</th>
+                                  <th>Tipo comprobante</th>
+                                  <th style="display: none">nro_contrato</th>
+                                  <th style="display: none">fecha_emision</th>
+                                  <th style="display: none">monto_boleta</th>
                                   <th>Acciones</th>
                                 </tr>
                               </thead>
@@ -207,6 +211,10 @@ if (empty($_SESSION['active'])) {
                                       <td style="font-size: 12px;"><?php echo $row6['fecha_inicio'] ?></td>
                                       <td style="font-size: 12px;"><?php echo $row6['fecha_fin'] ?></td>
                                       <td><a href="ver_pdf_expe4.php?id=<?php echo $row6['id_4puntos'] ?>&dni=<?php echo $dato_desencriptado ?>" target="_blank"><?php echo $row6['archivos']; ?></a></td>
+                                      <td style="display: none;"><?php echo $row6['tipo_comprobante'] ?></td>
+                                      <td style="display: none;"><?php echo $row6['nro_contrato'] ?></td>
+                                      <td style="display: none;"><?php echo $row6['fech_emision'] ?></td>
+                                      <td style="display: none;"><?php echo $row6['monto_boleta'] ?></td>
                                       <td class="d-flex justify-content-center">
                                         <button class="btn btn-success btn-sm m-1 updateBtn1"><i class="fa fa-edit"></i></button>
                                         <button class="btn btn-danger btn-sm m-1 deleteBtn1"><i class="fa fa-times-circle"></i></button>
@@ -251,6 +259,7 @@ if (empty($_SESSION['active'])) {
                                   <th>Fecha Inicio</th>
                                   <th>Fecha Término</th>
                                   <th>Archivo</th>
+                                  <th>Tipo comprobante</th>
                                   <th>Acciones</th>
                                 </tr>
                               </thead>
@@ -271,6 +280,7 @@ if (empty($_SESSION['active'])) {
                                       <td style="font-size: 12px;"><?php echo $row7['fecha_inicio'] ?></td>
                                       <td style="font-size: 12px;"><?php echo $row7['fecha_fin'] ?></td>
                                       <td><a href="ver_pdf_expe3.php?id=<?php echo $row7['id_3puntos'] ?>&dni=<?php echo $dato_desencriptado ?>" target="_blank"><?php echo $row7['archivos']; ?></a></td>
+                                      <td style="font-size: 12px;"><?php echo $row7['tipo_comprobante'] ?></td>
                                       <td class="d-flex justify-content-center">
                                         <button class="btn btn-success btn-sm m-1 updateBtn2"><i class="fa fa-edit"></i></button>
                                         <button class="btn btn-danger btn-sm m-1 deleteBtn2"><i class="fa fa-times-circle"></i></button>
@@ -316,6 +326,7 @@ if (empty($_SESSION['active'])) {
                                   <th>Fecha Inicio</th>
                                   <th>Fecha Término</th>
                                   <th>Archivos</th>
+                                  <th>Tipo comprobante</th>
                                   <th>Acciones</th>
                                 </tr>
                               </thead>
@@ -336,6 +347,7 @@ if (empty($_SESSION['active'])) {
                                       <td style="font-size: 12px;"><?php echo $row8['fecha_inicio'] ?></td>
                                       <td style="font-size: 12px;"><?php echo $row8['fecha_fin'] ?></td>
                                       <td><a href="ver_pdf_expe1.php?id=<?php echo $row8['id_1puntos'] ?>&dni=<?php echo $dato_desencriptado ?>" target="_blank"><?php echo $row8['archivos']; ?></a></td>
+                                      <td style="font-size: 12px;"><?php echo $row8['tipo_comprobante'] ?></td>
                                       <td class="d-flex justify-content-center">
                                         <button class="btn btn-success btn-sm m-1 updateBtn3"><i class="fa fa-edit"></i></button>
                                         <button class="btn btn-danger btn-sm m-1 deleteBtn3"><i class="fa fa-times-circle"></i></button>
@@ -430,6 +442,10 @@ if (empty($_SESSION['active'])) {
                                   <th>Cargo/Función desempeñada</th>
                                   <th>Fecha Inicio</th>
                                   <th>Fecha Término</th>
+                                  <th>Tipo comprobante</th>
+                                  <th style="display: none">nro_contrato</th>
+                                  <th style="display: none">fecha_emision</th>
+                                  <th style="display: none">monto_boleta</th>
                                   <th>Archivos</th>
                                   <th>Acciones</th>
                                 </tr>
@@ -449,7 +465,12 @@ if (empty($_SESSION['active'])) {
                                       <td style="font-size: 12px;"><?php echo $row9['cargo'] ?></td>
                                       <td style="font-size: 12px;"><?php echo $row9['fecha_inicio'] ?></td>
                                       <td style="font-size: 12px;"><?php echo $row9['fecha_fin'] ?></td>
+                                      <td style="display: none;"><?php echo $row9['nro_contrato'] ?></td>
+                                      <td style="display: none;"><?php echo $row9['fech_emision'] ?></td>
+                                      <td style="display: none;"><?php echo $row9['monto_boleta'] ?></td>
                                       <td><a href="ver_pdf_expe4.php?id=<?php echo $row9['id_4puntos'] ?>&dni=<?php echo $dato_desencriptado ?>" target="_blank"><?php echo $row9['archivos']; ?></a></td>
+                                      <td><?php echo $row9['tipo_comprobante'] ?></td>
+
                                       <td class="d-flex justify-content-center">
                                         <button class="btn btn-success btn-sm m-1 updateBtn4"><i class="fa fa-edit"></i></button>
                                         <button class="btn btn-danger btn-sm m-1 deleteBtn4"><i class="fa fa-times-circle"></i></button>
@@ -494,6 +515,7 @@ if (empty($_SESSION['active'])) {
                                   <th>Fecha Inicio</th>
                                   <th>Fecha Término</th>
                                   <th>Archivos</th>
+                                  <th>Tipo comprobante</th>
                                   <th>Acciones</th>
                                 </tr>
                               </thead>
@@ -513,6 +535,7 @@ if (empty($_SESSION['active'])) {
                                       <td style="font-size:12px;"><?php echo $row10['fecha_inicio'] ?></td>
                                       <td style="font-size:12px;"><?php echo $row10['fecha_fin'] ?></td>
                                       <td><a href="ver_pdf_expe3.php?id=<?php echo $row10['id_3puntos'] ?>&dni=<?php echo $dato_desencriptado ?>" target="_blank"><?php echo $row10['archivos']; ?></a></td>
+                                      <td style="font-size: 12px;"><?php echo $row10['tipo_comprobante'] ?></td>
                                       <td class="d-flex justify-content-center">
                                         <button class="btn btn-success btn-sm m-1 updateBtn2"><i class="fa fa-edit"></i></button>
                                         <button class="btn btn-danger btn-sm m-1 deleteBtn2"><i class="fa fa-times-circle"></i></button>
@@ -557,6 +580,7 @@ if (empty($_SESSION['active'])) {
                                   <th>Fecha Inicio</th>
                                   <th>Fecha Término</th>
                                   <th>Archivos</th>
+                                  <th>Tipo comprobante</th>
                                   <th>Acciones</th>
                                 </tr>
                               </thead>
@@ -577,6 +601,7 @@ if (empty($_SESSION['active'])) {
                                       <td style="font-size: 12px;"><?php echo $row11['fecha_inicio'] ?></td>
                                       <td style="font-size: 12px;"><?php echo $row11['fecha_fin'] ?></td>
                                       <td><a href="ver_pdf_expe1.php?id=<?php echo $row11['id_1puntos'] ?>&dni=<?php echo $dato_desencriptado ?>" target="_blank"><?php echo $row11['archivos']; ?></a></td>
+                                      <td style="font-size: 12px;"><?php echo $row11['tipo_comprobante'] ?></td>
                                       <td class="d-flex justify-content-center">
                                         <button class="btn btn-success btn-sm m-1 updateBtn3"><i class="fa fa-edit"></i></button>
                                         <button class="btn btn-danger btn-sm m-1 deleteBtn3"><i class="fa fa-times-circle"></i></button>
@@ -682,10 +707,10 @@ if (empty($_SESSION['active'])) {
               </div>
               <div class="col-md-4 col-sm-12 form-group" id="div_tipo_comprobante">
                 <label for="title">(*) Tipo de comprobante</label>
-                <select name="tipo_comprobante" id="" class="form-control" onChange="tipo_comprobante_select(this)">
+                <select name="tipo_comprobante_exp4_tip1" class="form-control" onChange="tipo_comprobante_select(this)">
                   <option value="">Elegir...</option>
-                  <option value="contrato">Contrato</option>
-                  <option value="boleta">Boleta de pago</option>
+                  <option value="Contrato">Contrato</option>
+                  <option value="Boleta">Boleta de pago</option>
                 </select>
               </div>
               <div class="col-md-4 col-sm-12 form-group" id="div_nro_contrato">
@@ -754,8 +779,27 @@ if (empty($_SESSION['active'])) {
               <input type="date" name="fecha_inicio4" id="fecha_inicio4" class="form-control">
             </div>
             <div class="form-group">
-              <label for="title">Fecha Fin </label>
+              <label for="title">Fecha Término</label>
               <input type="date" name="fecha_fin4" id="fecha_fin4" class="form-control">
+            </div>
+            <div class="col-md-4 col-sm-12 form-group" id="div_tipo_comprobante">
+              <label for="title">(*) Tipo de comprobante</label>
+              <select name="tipo_comprobante_exp4_tip1" class="form-control" onChange="tipo_comprobante_select(this)">
+                <option value="Contrato">Contrato</option>
+                <option value="Boleta">Boleta de pago</option>
+              </select>
+            </div>
+            <div class="col-md-4 col-sm-12 form-group" id="div_nro_contrato">
+              <label for="title">(*)Nro Contrato</label>
+              <input type="text" name="nro_contrato" class="form-control">
+            </div>
+            <div class="col-md-4 col-sm-12 form-group" id="div_fecha_boleta">
+              <label for="title">(*)Fecha emisión</label>
+              <input type="date" name="fecha_boleta" class="form-control">
+            </div>
+            <div class="col-md-4 col-sm-12 form-group" id="div_boleta_pago">
+              <label for="title">(*)Monto de boleta (Mayor a S./425.00)</label>
+              <input type="number" name="boleta" class="form-control">
             </div>
             <div class="form-group">
               <label for="title">Archivo de constancia (Dejar en blanco si no desea actualizar)</label>
@@ -830,10 +874,10 @@ if (empty($_SESSION['active'])) {
               </div>
               <div class="col-md-4 col-sm-12 form-group" id="div_tipo_comprobante">
                 <label for="title">(*) Tipo de comprobante</label>
-                <select name="tipo_comprobante" id="" class="form-control" onChange="tipo_comprobante_expe3_select(this)">
+                <select name="tipo_comprobante_exp3_tip1" class="form-control" onChange="tipo_comprobante_expe3_select(this)">
                   <option value="">Elegir...</option>
-                  <option value="contrato">Contrato</option>
-                  <option value="boleta">Boleta de pago</option>
+                  <option value="Contrato">Contrato</option>
+                  <option value="Boleta">Boleta de pago</option>
                 </select>
               </div>
               <div class="col-md-4 col-sm-12 form-group" id="div_nro_contrato_expe3">
@@ -953,7 +997,7 @@ if (empty($_SESSION['active'])) {
               <input type="hidden" name="dni_encriptado" value="<?php echo $dato_desencriptado ?>">
               <input type="hidden" name="dni" value="<?php echo $dni ?>">
               <input type="hidden" name="postulante" value="<?php echo $idpostulante ?>">
-              <input type="hidden" name="tipo_expe1" value="1">
+              <input type="hidden" name="tipo_expe" value="1">
 
               <div class="col-md-4 col-sm-12 form-group">
                 <label for="title">(*) Lugar de trabajo</label>
@@ -973,10 +1017,10 @@ if (empty($_SESSION['active'])) {
               </div>
               <div class="col-md-4 col-sm-12 form-group" id="div_tipo_comprobante">
                 <label for="title">(*) Tipo de comprobante</label>
-                <select name="tipo_comprobante" id="" class="form-control" onChange="tipo_comprobante_expe1_select(this)">
+                <select name="tipo_comprobante_exp1_tip1" class="form-control" onChange="tipo_comprobante_expe1_select(this)">
                   <option value="">Elegir...</option>
-                  <option value="contrato">Contrato</option>
-                  <option value="boleta">Boleta de pago</option>
+                  <option value="Contrato">Contrato</option>
+                  <option value="Boleta">Boleta de pago</option>
                 </select>
               </div>
               <div class="col-md-4 col-sm-12 form-group" id="div_nro_contrato_expe1">
@@ -1113,10 +1157,10 @@ if (empty($_SESSION['active'])) {
               </div>
               <div class="col-md-4 col-sm-12 form-group" id="div_tipo_comprobante">
                 <label for="title">(*) Tipo de comprobante</label>
-                <select name="tipo_comprobante" id="" class="form-control" onChange="tipo_comprobante_tip2_select(this)">
+                <select name="tipo_comprobante_exp4_tip2" class="form-control" onChange="tipo_comprobante_tip2_select(this)">
                   <option value="">Elegir...</option>
-                  <option value="contrato">Contrato</option>
-                  <option value="boleta">Boleta de pago</option>
+                  <option value="Contrato">Contrato</option>
+                  <option value="Boleta">Boleta de pago</option>
                 </select>
               </div>
               <div class="col-md-4 col-sm-12 form-group" id="div_nro_contrato_tip2">
@@ -1162,10 +1206,9 @@ if (empty($_SESSION['active'])) {
         <div class="modal-body">
           <form action="procesos/actualizar_experiencia.php" enctype="multipart/form-data" autocomplete="off" method="POST">
             <input type="hidden" name="dato_desencriptado" value="<?php echo $dato_desencriptado ?>">
-            <input type="hidden" name="id_4puntos_tipo2" id="id_4puntos_tipo2">
+            <input type="hidden" name="edit_id_4puntos_tipo2" id="edit_id_4puntos_tipo2">
             <input type="hidden" name="dni4_tipo2" value="<?php echo $dni ?>">
             <input type="hidden" name="numero4_tipo2" id="numero4_tipo2">
-
             <div class="form-group">
               <label for="title">Lugar de Trabajo</label>
               <input type="text" name="lugar4_tipo2" id="lugar4_tipo2" class="form-control" placeholder="(*) Lugar de trabajo" maxlength="45">
@@ -1179,8 +1222,30 @@ if (empty($_SESSION['active'])) {
               <input type="date" name="fecha_inicio4_tipo2" id="fecha_inicio4_tipo2" class="form-control">
             </div>
             <div class="form-group">
-              <label for="title">Fecha Fin </label>
+              <label for="title">Fecha Término</label>
               <input type="date" name="fecha_fin4_tipo2" id="fecha_fin4_tipo2" class="form-control">
+            </div>
+            <div class="row">
+              <div class="col-md-6 col-sm-12" id="div_tipo_comprobante">
+                <label for="title">(*) Tipo de comprobante</label>
+                <select name="tipo_comprobante_exp4_tip2" id="edit_tipo_comprobante_exp4_tip2" class="form-control">
+                  <option value="">Elegir...</option>
+                  <option value="Contrato">Contrato</option>
+                  <option value="Boleta">Boleta de pago</option>
+                </select>
+              </div>
+              <div class="col-md-6 col-sm-12" id="div_nro_contrato">
+                <label for="title">(*)Nro Contrato</label>
+                <input type="text" name="edit_nro_contrato_exp4_tip2" id="edit_nro_contrato_exp4_tip2" class="form-control">
+              </div>
+              <div class="col-md-6 col-sm-12 form-group" id="div_fecha_boleta">
+                <label for="title">(*)Fecha emisión</label>
+                <input type="date" name="fecha_boleta" id="edit_fecha_boleta_exp4_tip2" class="form-control">
+              </div>
+              <div class="col-md-6 col-sm-12 form-group" id="div_boleta_pago">
+                <label for="title">(*)Monto de boleta (Mayor a S./425.00)</label>
+                <input type="number" name="boleta" id="edit_boleta_exp4_tip2" class="form-control">
+              </div>
             </div>
             <div class="form-group">
               <label for="title">Archivo de constancia (Dejar en blanco si no desea actualizar)</label>
@@ -1188,6 +1253,7 @@ if (empty($_SESSION['active'])) {
               <div id="peso_archivo_valido4_tipo2" class="font-weight-bolder text-primary"></div>
               <div id="peso_archivo_no4_tipo2" class="font-weight-bolder text-danger"></div>
             </div>
+
             <div class="modal-footer">
               <button type="submit" class="btn btn-primary" name="updateData5">Actualizar</button>
             </div>
@@ -1255,10 +1321,10 @@ if (empty($_SESSION['active'])) {
               </div>
               <div class="col-md-4 col-sm-12 form-group" id="div_tipo_comprobante">
                 <label for="title">(*) Tipo de comprobante</label>
-                <select name="tipo_comprobante" id="" class="form-control" onChange="tipo_comprobante_tip2_expe3_select(this)">
+                <select name="tipo_comprobante_exp3_tip2" class="form-control" onChange="tipo_comprobante_tip2_expe3_select(this)">
                   <option value="">Elegir...</option>
-                  <option value="contrato">Contrato</option>
-                  <option value="boleta">Boleta de pago</option>
+                  <option value="Contrato">Contrato</option>
+                  <option value="Boleta">Boleta de pago</option>
                 </select>
               </div>
               <div class="col-md-4 col-sm-12 form-group" id="div_nro_contrato_tip2_expe3">
@@ -1329,10 +1395,10 @@ if (empty($_SESSION['active'])) {
               </div>
               <div class="col-md-4 col-sm-12 form-group" id="div_tipo_comprobante">
                 <label for="title">(*) Tipo de comprobante</label>
-                <select name="tipo_comprobante" id="" class="form-control" onChange="tipo_comprobante_tip1_expe_1_select(this)">
+                <select name="tipo_comprobante_exp1_tip2" onChange="tipo_comprobante_tip1_expe_1_select(this)" class="form-control">
                   <option value="">Elegir...</option>
-                  <option value="contrato">Contrato</option>
-                  <option value="boleta">Boleta de pago</option>
+                  <option value="Contrato">Contrato</option>
+                  <option value="Boleta">Boleta de pago</option>
                 </select>
               </div>
               <div class="col-md-4 col-sm-12 form-group" id="div_nro_contrato_tip1_expe_1">
@@ -1549,13 +1615,17 @@ if (empty($_SESSION['active'])) {
         }).get();
 
         console.log(data);
-        $('#id_4puntos_tipo2').val(data[0]);
+        $('#edit_id_4puntos_tipo2').val(data[0]);
         $('#numero4_tipo2').val(data[1]);
         $('#lugar4_tipo2').val(data[2]);
         $('#cargo4_tipo2').val(data[3]);
         $('#fecha_inicio4_tipo2').val(data[4]);
         $('#fecha_fin4_tipo2').val(data[5]);
         $('#expe_archivo4_tipo2').val(data[6]);
+        $('#edit_tipo_comprobante_exp4_tip2').val(data[7]);
+        $('#edit_nro_contrato_exp4_tip2').val(data[8]);
+        $('#edit_fecha_boleta_exp4_tip2').val(data[9]);
+        $('#edit_boleta_exp4_tip2').val(data[10]);
       });
     });
 
@@ -1571,174 +1641,11 @@ if (empty($_SESSION['active'])) {
         }).get();
 
         console.log(data);
-        $('#id_4puntos_tipo2').val(data[0]);
+        $('#edit_id_4puntos_tipo2').val(data[0]);
       });
     });
   </script>
-  <script>
-    div_nro_contrato_expe1 = document.getElementById("div_nro_contrato_expe1");
-    div_nro_contrato_expe1.style.display = "none";
-    div_boleta_pago_expe1 = document.getElementById("div_boleta_pago_expe1");
-    div_boleta_pago_expe1.style.display = "none";
-    div_fecha_boleta_expe1 = document.getElementById("div_fecha_boleta_expe1");
-    div_fecha_boleta_expe1.style.display = "none";
 
-    function tipo_comprobante_expe1_select(sel) {
-      if (sel.value == "contrato") {
-        div_nro_contrato_expe1 = document.getElementById("div_nro_contrato_expe1");
-        div_nro_contrato_expe1.style.display = "block";
-        div_boleta_pago_expe1 = document.getElementById("div_boleta_pago_expe1");
-        div_boleta_pago_expe1.style.display = "none";
-        div_fecha_boleta_expe1 = document.getElementById("div_fecha_boleta_expe1");
-        div_fecha_boleta_expe1.style.display = "none";
-
-      } else if (sel.value == "boleta") {
-        div_nro_contrato_expe1 = document.getElementById("div_nro_contrato_expe1");
-        div_nro_contrato_expe3.style.display = "none";
-        div_boleta_pago_expe1 = document.getElementById("div_boleta_pago_expe1");
-        div_boleta_pago_expe1.style.display = "block";
-        div_fecha_boleta_expe1 = document.getElementById("div_fecha_boleta_expe1");
-        div_fecha_boleta_expe1.style.display = "block";
-
-      }
-    }
-
-    div_nro_contrato_expe3 = document.getElementById("div_nro_contrato_expe3");
-    div_nro_contrato_expe3.style.display = "none";
-    div_boleta_pago_expe3 = document.getElementById("div_boleta_pago_expe3");
-    div_boleta_pago_expe3.style.display = "none";
-    div_fecha_boleta_expe3 = document.getElementById("div_fecha_boleta_expe3");
-    div_fecha_boleta_expe3.style.display = "none";
-
-
-    function tipo_comprobante_expe3_select(sel) {
-      if (sel.value == "contrato") {
-        div_nro_contrato_expe3 = document.getElementById("div_nro_contrato_expe3");
-        div_nro_contrato_expe3.style.display = "block";
-        div_boleta_pago_expe3 = document.getElementById("div_boleta_pago_expe3");
-        div_boleta_pago_expe3.style.display = "none";
-        div_fecha_boleta_expe3 = document.getElementById("div_fecha_boleta_expe3");
-        div_fecha_boleta_expe3.style.display = "none";
-
-      } else if (sel.value == "boleta") {
-        div_nro_contrato_expe3 = document.getElementById("div_nro_contrato_expe3");
-        div_nro_contrato_expe3.style.display = "none";
-        div_boleta_pago_expe3 = document.getElementById("div_boleta_pago_expe3");
-        div_boleta_pago_expe3.style.display = "block";
-        div_fecha_boleta_expe3 = document.getElementById("div_fecha_boleta_expe3");
-        div_fecha_boleta_expe3.style.display = "block";
-
-      }
-    }
-
-    div_nro_contrato = document.getElementById("div_nro_contrato");
-    div_nro_contrato.style.display = "none";
-    div_boleta_pago = document.getElementById("div_boleta_pago");
-    div_boleta_pago.style.display = "none";
-    div_fecha_boleta = document.getElementById("div_fecha_boleta");
-    div_fecha_boleta.style.display = "none";
-
-    function tipo_comprobante_select(sel) {
-      if (sel.value == "contrato") {
-        div_nro_contrato = document.getElementById("div_nro_contrato");
-        div_nro_contrato.style.display = "block";
-        div_boleta_pago = document.getElementById("div_boleta_pago");
-        div_boleta_pago.style.display = "none";
-        div_fecha_boleta = document.getElementById("div_fecha_boleta");
-        div_fecha_boleta.style.display = "none";
-
-      } else if (sel.value == "boleta") {
-        div_nro_contrato = document.getElementById("div_nro_contrato");
-        div_nro_contrato.style.display = "none";
-        div_boleta_pago = document.getElementById("div_boleta_pago");
-        div_boleta_pago.style.display = "block";
-        div_fecha_boleta = document.getElementById("div_fecha_boleta");
-        div_fecha_boleta.style.display = "block";
-
-      }
-    }
-
-    div_nro_contrato_tip2 = document.getElementById("div_nro_contrato_tip2");
-    div_nro_contrato_tip2.style.display = "none";
-    div_fecha_boleta_tip2 = document.getElementById("div_fecha_boleta_tip2");
-    div_fecha_boleta_tip2.style.display = "none";
-    div_boleta_pago_tip2 = document.getElementById("div_boleta_pago_tip2");
-    div_boleta_pago_tip2.style.display = "none";
-
-    function tipo_comprobante_tip2_select(sel) {
-      if (sel.value == "contrato") {
-        div_nro_contrato_tip2 = document.getElementById("div_nro_contrato_tip2");
-        div_nro_contrato_tip2.style.display = "block";
-        div_fecha_boleta_tip2 = document.getElementById("div_fecha_boleta_tip2");
-        div_fecha_boleta_tip2.style.display = "none";
-        div_boleta_pago_tip2 = document.getElementById("div_boleta_pago_tip2");
-        div_boleta_pago_tip2.style.display = "none";
-
-      } else if (sel.value == "boleta") {
-        div_nro_contrato_tip2 = document.getElementById("div_nro_contrato_tip2");
-        div_nro_contrato_tip2.style.display = "none";
-        div_fecha_boleta_tip2 = document.getElementById("div_fecha_boleta_tip2");
-        div_fecha_boleta_tip2.style.display = "block";
-        div_boleta_pago_tip2 = document.getElementById("div_boleta_pago_tip2");
-        div_boleta_pago_tip2.style.display = "block";
-
-      }
-    }
-
-    div_nro_contrato_tip2_expe3 = document.getElementById("div_nro_contrato_tip2_expe3");
-    div_nro_contrato_tip2_expe3.style.display = "none";
-    div_fecha_boleta_tip2_expe3 = document.getElementById("div_fecha_boleta_tip2_expe3");
-    div_fecha_boleta_tip2_expe3.style.display = "none";
-    div_boleta_pago_tip2_expe3 = document.getElementById("div_boleta_pago_tip2_expe3");
-    div_boleta_pago_tip2_expe3.style.display = "none";
-
-    function tipo_comprobante_tip2_expe3_select(sel) {
-      if (sel.value == "contrato") {
-        div_nro_contrato_tip2_expe3 = document.getElementById("div_nro_contrato_tip2_expe3");
-        div_nro_contrato_tip2_expe3.style.display = "block";
-        div_fecha_boleta_tip2_expe3 = document.getElementById("div_fecha_boleta_tip2_expe3");
-        div_fecha_boleta_tip2_expe3.style.display = "none";
-        div_boleta_pago_tip2_expe3 = document.getElementById("div_boleta_pago_tip2_expe3");
-        div_boleta_pago_tip2_expe3.style.display = "none";
-
-      } else if (sel.value == "boleta") {
-        div_nro_contrato_tip2_expe3 = document.getElementById("div_nro_contrato_tip2_expe3");
-        div_nro_contrato_tip2_expe3.style.display = "none";
-        div_fecha_boleta_tip2_expe3 = document.getElementById("div_fecha_boleta_tip2_expe3");
-        div_fecha_boleta_tip2_expe3.style.display = "block";
-        div_boleta_pago_tip2_expe3 = document.getElementById("div_boleta_pago_tip2_expe3");
-        div_boleta_pago_tip2_expe3.style.display = "block";
-
-      }
-    }
-
-    div_nro_contrato_tip1_expe_1 = document.getElementById("div_nro_contrato_tip1_expe_1");
-    div_nro_contrato_tip1_expe_1.style.display = "none";
-    div_fecha_boleta_tip1_expe_1 = document.getElementById("div_fecha_boleta_tip1_expe_1");
-    div_fecha_boleta_tip1_expe_1.style.display = "none";
-    div_boleta_pago_tip1_expe_1 = document.getElementById("div_boleta_pago_tip1_expe_1");
-    div_boleta_pago_tip1_expe_1.style.display = "none";
-
-    function tipo_comprobante_tip1_expe_1_select(sel) {
-      if (sel.value == "contrato") {
-        div_nro_contrato_tip1_expe_1 = document.getElementById("div_nro_contrato_tip1_expe_1");
-        div_nro_contrato_tip1_expe_1.style.display = "block";
-        div_fecha_boleta_tip1_expe_1 = document.getElementById("div_fecha_boleta_tip1_expe_1");
-        div_fecha_boleta_tip1_expe_1.style.display = "none";
-        div_boleta_pago_tip1_expe_1 = document.getElementById("div_boleta_pago_tip1_expe_1");
-        div_boleta_pago_tip1_expe_1.style.display = "none";
-
-      } else if (sel.value == "boleta") {
-        div_nro_contrato_tip1_expe_1 = document.getElementById("div_nro_contrato_tip1_expe_1");
-        div_nro_contrato_tip1_expe_1.style.display = "none";
-        div_fecha_boleta_tip1_expe_1 = document.getElementById("div_fecha_boleta_tip1_expe_1");
-        div_fecha_boleta_tip1_expe_1.style.display = "block";
-        div_boleta_pago_tip1_expe_1 = document.getElementById("div_boleta_pago_tip1_expe_1");
-        div_boleta_pago_tip1_expe_1.style.display = "block";
-
-      }
-    }
-  </script>
 </body>
 
 </html>

@@ -284,7 +284,7 @@ if (empty($_SESSION['active'])) {
                       <label for="file-upload" class="subir">
                         <i class="fas fa-cloud-upload-alt"></i> Elegir
                       </label>
-                      <input id="file-upload" onchange='cambiar()' name="archivo" type="file" style='display: none;' required />
+                      <input id="file-upload" onchange='cambiar()' name="archivo" type="file" accept=".pdf" style='display: none;' required />
                     </div>
                     <div class="col-8 p-0">
                       <div id="info" class="font-weight-bold"></div>

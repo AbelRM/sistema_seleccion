@@ -132,7 +132,7 @@
   <!-- Custom scripts for all pages-->
   <script src="https://www.google.com/recaptcha/api.js?render=6LeVwMQZAAAAABWIaLf9mZZAoV1sJvF9aYTRzexH"></script>
   <script src="public/js/sb-admin-2.min.js"></script>
-  <script src="public/js/validacion.js"></script>
+  <!-- <script src="public/js/validacion.js"></script> -->
   <script>
     $('#form').submit(function(event) {
       event.preventDefault();

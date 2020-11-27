@@ -33,9 +33,9 @@
     <?php
     include 'conexion.php';
     include 'funcs/mcript.php';
-
+    $dni = $_GET['dni'];
     $dato_desencriptado = $_GET['dni'];
-    $dni = $desencriptar($dato_desencriptado);
+    // $dni = $desencriptar($dato_desencriptado);
     $sql2 = "SELECT * FROM usuarios where dni=$dni";
     $datos = mysqli_query($con, $sql2) or die(mysqli_error($datos));;
     $fila = mysqli_fetch_array($datos);
@@ -63,7 +63,7 @@
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">CARGOS</h6>
+              <h6 class="m-0 font-weight-bold text-primary">PERSONAL REQUERIDO DE LA CONVOCATORIA</h6>
             </div>
             <div class="card-body">
               <div class="table-responsive">
@@ -98,7 +98,7 @@
                           <td style="font-size: 12px; display:none"><?php echo $idpersonal ?></td>
                           <td style="font-size: 12px;">
                             <small style="font-weight:700; font-size: 14px;">Cargo requerido: </small><?php echo $row['cargo'] ?><br>
-                            <small style="font-weight:700; font-size: 14px;">Nro requerido: </small><?php echo $row['cantidad'] ?>
+                            <small style="font-weight:700; font-size: 14px;">Cantidad requerida: </small><?php echo $row['cantidad'] ?>
                           </td>
                           <td style="font-size: 12px;">
                             <small style="font-weight:700; font-size: 14px;">Fuente finac.: </small><?php echo $row['fuente_finac'] ?><br>
@@ -110,13 +110,13 @@
                           </td>
                           <td>
                             <a href="registrar_postulacion.php?idcargo=<?php echo $idpersonal ?>&dni=<?php echo $dni ?>&idcon=<?php echo $idcon ?>">
-                              <button type="button" class="btn btn-primary" id="editar" style="margin: 1px;"><i class="fa fa-pencil-alt"></i> Elegir</button>
+                              <button type="button" class="btn btn-success" id="editar" style="margin: 1px;"><i class="fa fa-pencil-alt"></i> Elegir</button>
                             </a>
                           </td>
                         </tr>
                         <?php
                         $select = "SELECT * FROM requerimientos INNER JOIN tipo_estudios 
-                      ON requerimientos.reque_tipo_estudios = tipo_estudios.id_tipo_estudios WHERE reque_id_personal ='$idpersonal'";
+                        ON requerimientos.reque_tipo_estudios = tipo_estudios.id_tipo_estudios WHERE reque_id_personal ='$idpersonal'";
                         $consulta = mysqli_query($con, $select);
                         ?>
                         <thead>

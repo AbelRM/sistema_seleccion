@@ -19,8 +19,9 @@ if (empty($_SESSION['active'])) {
   <?php
   include 'conexion.php';
   include 'funcs/mcript.php';
+  $dni = $_GET['dni'];
   $dato_desencriptado = $_GET['dni'];
-  $dni = $desencriptar($dato_desencriptado);
+  // $dni = $desencriptar($dato_desencriptado);
   $sql = "SELECT * FROM formacion_acad WHERE id_formacion=" . $_GET['id'];
   $query = mysqli_query($con, $sql);
   if ($datos = MySQLI_fetch_array($query)) {

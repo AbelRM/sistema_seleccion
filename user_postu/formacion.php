@@ -35,9 +35,10 @@ if (empty($_SESSION['active'])) {
   <div id="wrapper">
     <?php
     include 'funcs/mcript.php';
-
+    $dni = $_GET['dni'];
     $dato_desencriptado = $_GET['dni'];
-    $dni = $desencriptar($dato_desencriptado);
+    // $dato_desencriptado = $_GET['dni'];
+    // $dni = $desencriptar($dato_desencriptado);
 
     $sql = "SELECT * FROM usuarios where dni=$dni";
     $datos = mysqli_query($con, $sql) or die(mysqli_error($datos));;
@@ -86,7 +87,7 @@ if (empty($_SESSION['active'])) {
             <div class="card-header">
               <div class="row">
                 <div class="col-md-6">
-                  <h5 class="titulo-card">Mis datos profesionales</h5>
+                  <h5 class="titulo-card">Mi formación académica:</h5>
                 </div>
                 <div class="col-md-6 d-flex justify-content-end">
                   <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#addModal"><i class="fas fa-plus"></i> Nuevo</a>
@@ -239,6 +240,14 @@ if (empty($_SESSION['active'])) {
                     <option value="X">X</option>
                   </select>
                 </div>
+                <div class="col-md-3 col-sm-12 form-group" id="div_fecha_inicio">
+                  <label for="title">(**) Fecha Inicio</label>
+                  <input type="date" name="fecha_inicio" class="form-control">
+                </div>
+                <div class="col-md-3 col-sm-12 form-group" id="div_fecha_fin">
+                  <label for="title">(**) Fecha Término</label>
+                  <input type="date" name="fecha_fin" class="form-control">
+                </div>
                 <div class="col-md-6 col-sm-12 form-group" id="div_centro_estudios">
                   <label for="title">(*) Centro estudios</label>
                   <input type="text" style="text-transform:uppercase; font-size:13px" name="centro_estudios" class="form-control" placeholder="Nombre centro estudios" required>
@@ -267,45 +276,26 @@ if (empty($_SESSION['active'])) {
                   <input type="date" name="fech_habilitacion" id="fech_habilitacion" class="form-control" disabled>
                 </div>
 
-                <div class="col-md-3 col-sm-12 form-group" id="div_fecha_inicio">
-                  <label for="title">(**) Fecha Inicio</label>
-                  <input type="date" name="fecha_inicio" class="form-control">
-                </div>
-                <div class="col-md-3 col-sm-12 form-group" id="div_fecha_fin">
-                  <label for="title">(**) Fecha Término</label>
-                  <input type="date" name="fecha_fin" class="form-control">
-                </div>
                 <div class="col-md-6 col-sm-12 form-group" id="archivo">
                   <div class="row">
                     <label for="title">(*) Elegir Archivo (No mayor a 2MB)</label>
                   </div>
                   <div class="row">
                     <div class="col-4 pf-0">
-                      <label for="file-upload" class="subir">
-                        <i class="fas fa-cloud-upload-alt"></i> Elegir
-                      </label>
+                      <label for="file-upload" class="subir"><i class="fas fa-cloud-upload-alt"></i> Elegir</label>
                       <input id="file-upload" onchange='cambiar()' name="archivo" type="file" accept=".pdf" style='display: none;' required />
                     </div>
                     <div class="col-8 p-0">
                       <div id="info" class="font-weight-bold"></div>
                     </div>
+                    <div id="peso_archivo_valido" class="font-weight-bolder text-primary"></div>
+                    <div id="peso_archivo_no" class="font-weight-bolder text-danger"></div>
                   </div>
                 </div>
-                <div class="col-md-3 col-sm-12 form-group">
-                  <label for="title">(*) Licencia de conducir</label>
-                  <select name="licencia_conducir" id="licencia_conducir" class="form-control">
-                    <option value="Ninguna">Ninguna</option>
-                    <option value="A-I">A-I</option>
-                    <option value="A-IIa">A-IIa</option>
-                    <option value="A-IIb">A-IIb</option>
-                    <option value="A-IIIa">A-IIIa</option>
-                    <option value="A-IIIb">A-IIIb</option>
-                    <option value="A-IIIc">A-IIIc</option>
-                  </select>
-                </div>
+
                 <div class="col-md-3 col-sm-12 form-group" id="div_tipo_profesional">
                   <label for="title">(*) Tipo profesional</label>
-                  <select name="tipo_prof" id="tipo_prof" class="form-control" onChange="tipo_profesional_select(this)">
+                  <select name="tipo_prof" id="tipo_prof" class="form-control" onChange="tipo_profesional_select(this)" required>
                     <option value="vacio" selected>Elegir...</option>
                     <option value="administrativo">Administrativo</option>
                     <option value="asistencial">Asistencial</option>
@@ -329,7 +319,20 @@ if (empty($_SESSION['active'])) {
                     <option value="0">5</option>
                   </select>
                 </div>
+                <div class="col-md-3 col-sm-12 form-group">
+                  <label for="title">(*) Licencia de conducir</label>
+                  <select name="licencia_conducir" id="licencia_conducir" class="form-control">
+                    <option value="Ninguna">Ninguna</option>
+                    <option value="A-I">A-I</option>
+                    <option value="A-IIa">A-IIa</option>
+                    <option value="A-IIb">A-IIb</option>
+                    <option value="A-IIIa">A-IIIa</option>
+                    <option value="A-IIIb">A-IIIb</option>
+                    <option value="A-IIIc">A-IIIc</option>
+                  </select>
+                </div>
               </div>
+
               <div class="form-group">
                 <p>(*) Indica un campo obligatorio.</p>
                 <p>(**) En el campo "FECHA" debe indicar la fecha de obtención del "NIVEL DE ESTUDIOS" que está registrando.
@@ -391,32 +394,6 @@ if (empty($_SESSION['active'])) {
     <script src="js/demo/chart-area-demo.js"></script>
     <script src="js/demo/chart-pie-demo.js"></script>
     <script src="js/funciones.js"></script>
-    <script>
-      function cambiar() {
-        var pdrs = document.getElementById('file-upload').files[0].name;
-        document.getElementById('info').innerHTML = pdrs;
-      }
-    </script>
-    <script>
-      $(document).ready(function() {
-        $('.deleteBtn').on('click', function() {
-
-          $('#deleteModal').modal('show');
-
-          // Get the table row data.
-          $tr = $(this).closest('tr');
-
-          var data = $tr.children("td").map(function() {
-            return $(this).text();
-          }).get();
-
-          console.log(data);
-
-          $('#deleteId').val(data[0]);
-
-        });
-      });
-    </script>
     <script>
       $(function() {
         $("#colegiatura_new").on('change', function() {

@@ -9,8 +9,8 @@ if (isset($_POST['insertData4'])) {
   $tipo_expe4 = $_POST['tipo_expe4'];
   $tipo_comprobante = $_POST['tipo_comprobante_exp4_tip1'];
 
-  $lugar_4exp = $_POST['lugar_4exp'];
-  $cargo_funciones_4exp = $_POST['cargo_funciones_4exp'];
+  $lugar_4exp = strtoupper($_POST['lugar_4exp']);
+  $cargo_funciones_4exp = strtoupper($_POST['cargo_funciones_4exp']);
   $fecha_ini_4exp = $_POST['fecha_ini_4exp'];
   $fecha_fin_4exp = $_POST['fecha_fin_4exp'];
 
@@ -24,17 +24,20 @@ if (isset($_POST['insertData4'])) {
   $tipo_archivo = $_FILES['archivo']['type'];
   $tamano_archivo = $_FILES['archivo']['size'];
 
-  $query = mysqli_query($con, "SELECT * FROM expe_4puntos WHERE expe_4puntos_idpostulante = $idpostulante");
+  $query = mysqli_query($con, "SELECT MAX(id_4puntos) AS id FROM expe_4puntos WHERE expe_4puntos_idpostulante = $idpostulante");
+  if ($row = mysqli_fetch_row($query)) {
+    $id = trim($row[0]);
+  }
   $result = mysqli_num_rows($query);
   if ($result <= 0) {
     $i = 1;
-    $new_nombre = "exp4_tip" . $tipo_expe4 . "_" . $i . ".pdf";
+    $new_nombre = "exp4_tip_" . $i . ".pdf";
   } else {
-    $row = mysqli_fetch_array($query);
-    $idformacion = $row['id_4puntos'];
-    $i = $idformacion + 1;
-    $new_nombre = "exp4_tip" . $tipo_expe4 . "_" . $i . ".pdf";
+    $i = $id + 1;
+    echo $i;
+    $new_nombre = "exp4_tip_" . $i . ".pdf";
   }
+
   /// VALORES AÑOS, MESES Y DIAS ///
   $fechainicial = new DateTime($fecha_ini_4exp);
   $fechaactual = new DateTime($fecha_fin_4exp);
@@ -55,11 +58,11 @@ if (isset($_POST['insertData4'])) {
           VALUES('$lugar_4exp','$cargo_funciones_4exp', '$fecha_ini_4exp','$fecha_fin_4exp','$años','$meses','$dias','$new_nombre','$tipo_expe4','$idpostulante','$tipo_comprobante','$nro_contrato')";
         $result = mysqli_query($con, $sql);
         if ($result) {
-          echo '<script> alert("Guardado exitosamente"); </script>';
+          // echo '<script> alert("Guardado exitosamente"); </script>';
           echo "<script type=\"text/javascript\">history.go(-1);</script>";
           // header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
         } else {
-          echo '<script> alert("Error al guardar"); </script>';
+          // echo '<script> alert("Error al guardar"); </script>';
           echo "<script type=\"text/javascript\">history.go(-1);</script>";
           // header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
         }
@@ -70,11 +73,11 @@ if (isset($_POST['insertData4'])) {
           VALUES('$lugar_4exp','$cargo_funciones_4exp', '$fecha_ini_4exp','$fecha_fin_4exp','$años','$meses','$dias','$new_nombre','$tipo_expe4','$idpostulante','$tipo_comprobante','$fech_emision','$monto_boleta')";
         $result = mysqli_query($con, $sql);
         if ($result) {
-          echo '<script> alert("Guardado exitosamente"); </script>';
+          // echo '<script> alert("Guardado exitosamente"); </script>';
           echo "<script type=\"text/javascript\">history.go(-1);</script>";
           // header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
         } else {
-          echo '<script> alert("Error al guardar"); </script>';
+          // echo '<script> alert("Error al guardar"); </script>';
           echo "<script type=\"text/javascript\">history.go(-1);</script>";
           // header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
         }
@@ -93,8 +96,8 @@ if (isset($_POST['insertData4'])) {
   $tipo_comprobante = $_POST['tipo_comprobante_exp3_tip1'];
 
 
-  $lugar_3exp = $_POST['lugar_3exp'];
-  $cargo_funciones_3exp = $_POST['cargo_funciones_3exp'];
+  $lugar_3exp = strtoupper($_POST['lugar_3exp']);
+  $cargo_funciones_3exp = strtoupper($_POST['cargo_funciones_3exp']);
   $fecha_ini_3exp = $_POST['fecha_ini_3exp'];
   $fecha_fin_3exp = $_POST['fecha_fin_3exp'];
 
@@ -107,16 +110,18 @@ if (isset($_POST['insertData4'])) {
   $tipo_archivo = $_FILES['archivo']['type'];
   $tamano_archivo = $_FILES['archivo']['size'];
 
-  $query = mysqli_query($con, "SELECT * FROM expe_3puntos WHERE expe_3puntos_idpostulante = $idpostulante");
+  $query = mysqli_query($con, "SELECT MAX(id_3puntos) AS id FROM expe_3puntos WHERE expe_3puntos_idpostulante = $idpostulante");
+  if ($row = mysqli_fetch_row($query)) {
+    $id = trim($row[0]);
+  }
   $result = mysqli_num_rows($query);
   if ($result <= 0) {
     $i = 1;
-    $new_nombre = "exp3_tip" . $tipo_expe3 . "_" . $i . ".pdf";
+    $new_nombre = "exp3_tip_" . $i . ".pdf";
   } else {
-    $row = mysqli_fetch_array($query);
-    $idformacion = $row['id_3puntos'];
-    $i = $idformacion + 1;
-    $new_nombre = "exp3_tip" . $tipo_expe3 . "_" . $i . ".pdf";
+    $i = $id + 1;
+    echo $i;
+    $new_nombre = "exp3_tip_" . $i . ".pdf";
   }
 
   /// VALORES AÑOS, MESES Y DIAS ///
@@ -140,7 +145,7 @@ if (isset($_POST['insertData4'])) {
 
         $result = mysqli_query($con, $sql);
         if ($result) {
-          echo '<script> alert("Guardado exitosamente"); </script>';
+          // echo '<script> alert("Guardado exitosamente"); </script>';
           echo "<script type=\"text/javascript\">history.go(-1);</script>";
           // header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
         } else {
@@ -156,7 +161,7 @@ if (isset($_POST['insertData4'])) {
           VALUES('$lugar_3exp','$cargo_funciones_3exp', '$fecha_ini_3exp','$fecha_fin_3exp','$años','$meses','$dias','$new_nombre','$tipo_expe3','$idpostulante','$tipo_comprobante','$fech_emision','$monto_boleta')";
         $result = mysqli_query($con, $sql);
         if ($result) {
-          echo '<script> alert("Guardado exitosamente"); </script>';
+          // echo '<script> alert("Guardado exitosamente"); </script>';
           echo "<script type=\"text/javascript\">history.go(-1);</script>";
           // header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
         } else {
@@ -178,8 +183,8 @@ if (isset($_POST['insertData4'])) {
   $tipo_comprobante = $_POST['tipo_comprobante_exp1_tip1'];
 
 
-  $lugar_1exp = $_POST['lugar_1exp'];
-  $cargo_funciones_1exp = $_POST['cargo_funciones_1exp'];
+  $lugar_1exp = strtoupper($_POST['lugar_1exp']);
+  $cargo_funciones_1exp = strtoupper($_POST['cargo_funciones_1exp']);
   $fecha_ini_1exp = $_POST['fecha_ini_1exp'];
   $fecha_fin_1exp = $_POST['fecha_fin_1exp'];
 
@@ -192,16 +197,18 @@ if (isset($_POST['insertData4'])) {
   $tipo_archivo = $_FILES['archivo']['type'];
   $tamano_archivo = $_FILES['archivo']['size'];
 
-  $query = mysqli_query($con, "SELECT * FROM expe_1puntos WHERE expe_1puntos_idpostulante = $idpostulante");
+  $query = mysqli_query($con, "SELECT MAX(id_1puntos) AS id FROM expe_1puntos WHERE expe_1puntos_idpostulante = $idpostulante");
+  if ($row = mysqli_fetch_row($query)) {
+    $id = trim($row[0]);
+  }
   $result = mysqli_num_rows($query);
   if ($result <= 0) {
     $i = 1;
-    $new_nombre = "exp1_tip" . $tipo_expe1 . "_" . $i . ".pdf";
+    $new_nombre = "exp1_tip_" . $i . ".pdf";
   } else {
-    $row = mysqli_fetch_array($query);
-    $idformacion = $row['id_3puntos'];
-    $i = $idformacion - 1;
-    $new_nombre = "exp1_tip" . $tipo_expe1 . "_" . $i . ".pdf";
+    $i = $id + 1;
+    echo $i;
+    $new_nombre = "exp1_tip_" . $i . ".pdf";
   }
 
   /// VALORES AÑOS, MESES Y DIAS ///
@@ -225,7 +232,7 @@ if (isset($_POST['insertData4'])) {
 
         $result = mysqli_query($con, $sql);
         if ($result) {
-          echo '<script> alert("Guardado exitosamente"); </script>';
+          // echo '<script> alert("Guardado exitosamente"); </script>';
           echo "<script type=\"text/javascript\">history.go(-1);</script>";
           // header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
         } else {
@@ -241,7 +248,7 @@ if (isset($_POST['insertData4'])) {
           VALUES('$lugar_1exp','$cargo_funciones_1exp', '$fecha_ini_1exp','$fecha_fin_1exp','$años','$meses','$dias','$new_nombre','$tipo_expe1','$idpostulante','$tipo_comprobante','$fech_emision','$monto_boleta')";
         $result = mysqli_query($con, $sql);
         if ($result) {
-          echo '<script> alert("Guardado exitosamente"); </script>';
+          // echo '<script> alert("Guardado exitosamente"); </script>';
           echo "<script type=\"text/javascript\">history.go(-1);</script>";
           // header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
         } else {
@@ -276,17 +283,20 @@ if (isset($_POST['insertData4'])) {
   $tipo_archivo = $_FILES['archivos_tipo2']['type'];
   $tamano_archivo = $_FILES['archivos_tipo2']['size'];
 
-  $query = mysqli_query($con, "SELECT * FROM expe_4puntos WHERE expe_4puntos_idpostulante = $idpostulante");
+  $query = mysqli_query($con, "SELECT MAX(id_4puntos) AS id FROM expe_4puntos WHERE expe_4puntos_idpostulante = $idpostulante");
+  if ($row = mysqli_fetch_row($query)) {
+    $id = trim($row[0]);
+  }
   $result = mysqli_num_rows($query);
   if ($result <= 0) {
     $i = 1;
-    $new_nombre = "exp4_tip" . $tipo_expe . "_" . $i . ".pdf";
+    $new_nombre = "exp4_tip2_" . $i . ".pdf";
   } else {
-    $row = mysqli_fetch_array($query);
-    $idformacion = $row['id_4puntos'];
-    $i = $idformacion + 1;
-    $new_nombre = "exp4_tip" . $tipo_expe . "_" . $i . ".pdf";
+    $i = $id + 1;
+    echo $i;
+    $new_nombre = "exp4_tip2_" . $i . ".pdf";
   }
+
   /// VALORES AÑOS, MESES Y DIAS ///
   $fechainicial = new DateTime($fecha_ini_4exp);
   $fechaactual = new DateTime($fecha_fin_4exp);
@@ -308,7 +318,7 @@ if (isset($_POST['insertData4'])) {
 
         $result = mysqli_query($con, $sql);
         if ($result) {
-          echo '<script> alert("Guardado exitosamente"); </script>';
+          // echo '<script> alert("Guardado exitosamente"); </script>';
           echo "<script type=\"text/javascript\">history.go(-1);</script>";
           // header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
         } else {
@@ -324,7 +334,7 @@ if (isset($_POST['insertData4'])) {
           VALUES('$lugar_4exp','$cargo_funciones_4exp', '$fecha_ini_4exp','$fecha_fin_4exp','$años','$meses','$dias','$new_nombre','$tipo_expe','$idpostulante','$tipo_comprobante','$fech_emision','$monto_boleta')";
         $result = mysqli_query($con, $sql);
         if ($result) {
-          echo '<script> alert("Guardado exitosamente"); </script>';
+          // echo '<script> alert("Guardado exitosamente"); </script>';
           echo "<script type=\"text/javascript\">history.go(-1);</script>";
           // header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
         } else {
@@ -361,17 +371,20 @@ if (isset($_POST['insertData4'])) {
   $tipo_archivo = $_FILES['archivos3_tipo2']['type'];
   $tamano_archivo = $_FILES['archivos3_tipo2']['size'];
 
-  $query = mysqli_query($con, "SELECT * FROM expe_3puntos WHERE expe_3puntos_idpostulante = $idpostulante");
+  $query = mysqli_query($con, "SELECT MAX(id_3puntos) AS id FROM expe_3puntos WHERE expe_3puntos_idpostulante = $idpostulante");
+  if ($row = mysqli_fetch_row($query)) {
+    $id = trim($row[0]);
+  }
   $result = mysqli_num_rows($query);
   if ($result <= 0) {
     $i = 1;
-    $new_nombre = "exp3_tip" . $tipo_expe . "_" . $i . ".pdf";
+    $new_nombre = "exp3_tip2_" . $i . ".pdf";
   } else {
-    $row = mysqli_fetch_array($query);
-    $idformacion = $row['id_3puntos'];
-    $i = $idformacion + 1;
-    $new_nombre = "exp3_tip" . $tipo_expe . "_" . $i . ".pdf";
+    $i = $id + 1;
+    echo $i;
+    $new_nombre = "exp3_tip2_" . $i . ".pdf";
   }
+
   /// VALORES AÑOS, MESES Y DIAS ///
   $fechainicial = new DateTime($fecha_ini_3exp);
   $fechaactual = new DateTime($fecha_fin_3exp);
@@ -393,7 +406,7 @@ if (isset($_POST['insertData4'])) {
 
         $result = mysqli_query($con, $sql);
         if ($result) {
-          echo '<script> alert("Guardado exitosamente"); </script>';
+          // echo '<script> alert("Guardado exitosamente"); </script>';
           echo "<script type=\"text/javascript\">history.go(-1);</script>";
           // header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
         } else {
@@ -409,7 +422,7 @@ if (isset($_POST['insertData4'])) {
           VALUES('$lugar_3exp','$cargo_funciones_3exp', '$fecha_ini_3exp','$fecha_fin_3exp','$años','$meses','$dias','$new_nombre','$tipo_expe','$idpostulante','$tipo_comprobante','$fech_emision','$monto_boleta')";
         $result = mysqli_query($con, $sql);
         if ($result) {
-          echo '<script> alert("Guardado exitosamente"); </script>';
+          // echo '<script> alert("Guardado exitosamente"); </script>';
           echo "<script type=\"text/javascript\">history.go(-1);</script>";
           // header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
         } else {
@@ -446,17 +459,20 @@ if (isset($_POST['insertData4'])) {
   $tipo_archivo = $_FILES['archivos1_tipo2']['type'];
   $tamano_archivo = $_FILES['archivos1_tipo2']['size'];
 
-  $query = mysqli_query($con, "SELECT * FROM expe_1puntos WHERE expe_1puntos_idpostulante = $idpostulante");
+  $query = mysqli_query($con, "SELECT MAX(id_1puntos) AS id FROM expe_1puntos WHERE expe_1puntos_idpostulante = $idpostulante");
+  if ($row = mysqli_fetch_row($query)) {
+    $id = trim($row[0]);
+  }
   $result = mysqli_num_rows($query);
   if ($result <= 0) {
     $i = 1;
-    $new_nombre = "exp1_tip" . $tipo_expe . "_" . $i . ".pdf";
+    $new_nombre = "exp1_tip2_" . $i . ".pdf";
   } else {
-    $row = mysqli_fetch_array($query);
-    $idformacion = $row['id_1puntos'];
-    $i = $idformacion + 1;
-    $new_nombre = "exp1_tip" . $tipo_expe . "_" . $i . ".pdf";
+    $i = $id + 1;
+    echo $i;
+    $new_nombre = "exp1_tip2_" . $i . ".pdf";
   }
+
   /// VALORES AÑOS, MESES Y DIAS ///
   $fechainicial = new DateTime($fecha_ini_1exp);
   $fechaactual = new DateTime($fecha_fin_1exp);
@@ -478,7 +494,7 @@ if (isset($_POST['insertData4'])) {
 
         $result = mysqli_query($con, $sql);
         if ($result) {
-          echo '<script> alert("Guardado exitosamente"); </script>';
+          // echo '<script> alert("Guardado exitosamente"); </script>';
           echo "<script type=\"text/javascript\">history.go(-1);</script>";
           // header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
         } else {
@@ -494,7 +510,7 @@ if (isset($_POST['insertData4'])) {
           VALUES('$lugar_1exp','$cargo_funciones_1exp', '$fecha_ini_1exp','$fecha_fin_1exp','$años','$meses','$dias','$new_nombre','$tipo_expe','$idpostulante','$tipo_comprobante','$fech_emision','$monto_boleta')";
         $result = mysqli_query($con, $sql);
         if ($result) {
-          echo '<script> alert("Guardado exitosamente"); </script>';
+          // echo '<script> alert("Guardado exitosamente"); </script>';
           echo "<script type=\"text/javascript\">history.go(-1);</script>";
           // header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
         } else {

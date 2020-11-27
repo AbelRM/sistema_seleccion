@@ -40,9 +40,9 @@ if (empty($_SESSION['active'])) {
 
     <?php
     include 'funcs/mcript.php';
-
+    $dni = $_GET['dni'];
     $dato_desencriptado = $_GET['dni'];
-    $dni = $desencriptar($dato_desencriptado);
+    // $dni = $desencriptar($dato_desencriptado);
 
     include_once('conexion.php');
     $sql = "SELECT * FROM usuarios where dni=$dni";
@@ -193,9 +193,6 @@ if (empty($_SESSION['active'])) {
                     </div>
                   </div>
                   <?php
-                  include 'conexion.php';
-                  $dni = $_GET['dni'];
-                  include_once('conexion.php');
                   $sql2 = "SELECT * FROM domicilio_post where postulante_idpostulante=$idpostulante";
                   $datos2 = mysqli_query($con, $sql2) or die(mysqli_error($datos2));;
                   $fila2 = mysqli_fetch_array($datos2);
@@ -261,15 +258,31 @@ if (empty($_SESSION['active'])) {
                   </div>
                   <h5 class="text-left font-weight-bold"><i class="fa fa-arrow-circle-right" aria-hidden="true"></i> DATOS FAMILIARES:</h5>
                   <div class="form-group row">
+                    <div class="col-md-12 col-sm-12 form-group">
+                      <?php
+                      $consulta = "SELECT * FROM familia_post WHERE postulante_idpostulante = $idpostulante";
+                      $procesar = mysqli_query($con, $consulta);
+                      $fila3 = MySQLI_fetch_array($procesar);
+                      $familiar_trabajando = $fila3['familiar_trabajando'];
+                      ?>
+                      <label class="font-weight-bolder">¿Tiene familiares que laboran en la institución?</label>
+                      <select class="form-control" name="familiares_lab" id="familiares_lab">
+                        <option value="SI">SI</option>
+                        <option value="NO">NO</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
                     <div class="table-responsive">
                       <table class="table table-bordered">
                         <thead>
                           <tr class="bg-primary" style="text-align:center; color:#000; font-size:0.813em;">
                             <th>Apellidos y Nombres</th>
-                            <th>Fecha de Nacimiento</th>
                             <th>DNI</th>
                             <th>Parentesco</th>
-                            <th>Entidad que labora</th>
+                            <th>Cargo</th>
+                            <th>Dirección/Oficina</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -281,10 +294,10 @@ if (empty($_SESSION['active'])) {
                           ?>
                               <tr>
                                 <td style="font-size: 14px;"><?php echo $row2['apellidos'] . " " . $row2['nombre']; ?></td>
-                                <td style="font-size: 14px;"><?php echo $row2['fech_nac']; ?></td>
                                 <td style="font-size: 14px;"><?php echo $row2['dni'] ?></td>
                                 <td style="font-size: 14px;"><?php echo $row2['parentesco'] ?></td>
-                                <td style="font-size: 14px;"><?php echo $row2['labora'] ?></td>
+                                <td style="font-size: 14px;"><?php echo $row2['cargo'] ?></td>
+                                <td style="font-size: 14px;"><?php echo $row2['area'] ?></td>
                               </tr>
                           <?php
 
@@ -590,6 +603,11 @@ if (empty($_SESSION['active'])) {
   <!-- Page level custom scripts -->
   <script src="js/demo/chart-area-demo.js"></script>
   <script src="js/demo/chart-pie-demo.js"></script>
+  <script>
+    $(document).ready(function() {
+      $('#familiares_lab > option[value="<?php echo $familiar_trabajando ?>"]').attr('selected', 'selected');
+    });
+  </script>
 
 </body>
 

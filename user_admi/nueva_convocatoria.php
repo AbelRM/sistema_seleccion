@@ -54,8 +54,10 @@ if (empty($_SESSION['active'])) {
   <div id="wrapper">
 
     <?php
+    $dni = $_GET['dni'];
+
     $dato_desencriptado = $_GET['dni'];
-    $dni = $desencriptar($dato_desencriptado);
+    // $dni = $desencriptar($dato_desencriptado);
 
     $sql = "SELECT * FROM usuarios where dni=$dni";
     $datos = mysqli_query($con, $sql) or die(mysqli_error($datos));;

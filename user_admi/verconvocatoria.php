@@ -48,8 +48,9 @@ if (empty($_SESSION['active'])) {
   <!-- Page Wrapper -->
   <div id="wrapper">
     <?php
+    $dni = $_GET['dni'];
     $dato_desencriptado = $_GET['dni'];
-    $dni = $desencriptar($dato_desencriptado);
+    // $dni = $desencriptar($dato_desencriptado);
 
     $sql = "SELECT * FROM usuarios where dni=$dni";
     $datos = mysqli_query($con, $sql) or die(mysqli_error($datos));;
@@ -99,7 +100,7 @@ if (empty($_SESSION['active'])) {
 
                       <div class="form-group col-md-2 col-sm-12">
                         <label for="disabled-input">N° de convocatoria</label>
-                        <input type="text" class="form-control" name="num_con" value="<?php echo $fila["num_con"]; ?>" disabled="true">
+                        <input type="text" class="form-control" name="num_con" value="<?php echo $fila["num_con"] . "-" . $fila["anio_con"]; ?>" disabled="true">
                       </div>
 
                       <!-- <div class="form-group col-md-8 col-sm-12">
@@ -117,6 +118,10 @@ if (empty($_SESSION['active'])) {
                         <input type="text" class="form-control" name="fech_term" value="<?php echo $fila["fech_term"]; ?>" disabled="true">
                       </div>
 
+                      <div class="form-group col-md-2 col-sm-12">
+                        <label for="disabled-input">Estado</label>
+                        <input type="text" class="form-control" name="num_con" value="<?php echo $fila["estado"]; ?>" disabled="true">
+                      </div>
                     </div>
 
                     <div class="form-group">
@@ -169,6 +174,110 @@ if (empty($_SESSION['active'])) {
                     <div class="row">
                       <div class="col-md-12 col-sm-12">
                         <div class="form-group">
+                          <h6 class="m-0 font-weight-bold text-danger">Personal requerido</h6>
+                          <hr class="sidebar-divider">
+                          <div class="card-body">
+                            <div class="table-responsive">
+                              <table class="table table-bordered">
+                                <thead>
+                                  <tr class="bg-danger" style="text-align:center; font-size:0.813em;">
+                                    <th>N°</th>
+                                    <th style="display: none;">id</th>
+                                    <th>Cargo</th>
+                                    <th>Financiero</th>
+                                    <th>Dirección ejecutora</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <?php
+                                  $dni = $_GET['dni'];
+                                  $idcon = $_GET['id'];
+                                  include_once('conexion.php');
+                                  $sql = "SELECT * FROM sistema_seleccion.personal_req INNER JOIN sistema_seleccion.ubicacion 
+                                  ON personal_req.personal_req_idubicacion = ubicacion.iddireccion INNER JOIN sistema_seleccion.cargo 
+                                  ON personal_req.cargo_idcargo = cargo.idcargo
+                                  WHERE convocatoria_idcon='$idcon'";
+                                  $query = mysqli_query($con, $sql);
+                                  $i = 1;
+                                  if (mysqli_num_rows($query) > 0) {
+                                    while ($row = mysqli_fetch_array($query)) {
+                                      $idpersonal = $row['idpersonal'];
+                                  ?>
+                                      <tr style="background-color: #8287e061;">
+                                        <td style="font-size: 14px; font-weight:900; text-align: center"><?php echo $i ?></td>
+                                        <td style="font-size: 12px; display:none"><?php echo $idpersonal ?></td>
+                                        <td style="font-size: 12px;">
+                                          <small style="font-weight:700; font-size: 14px;">Cargo requerido: </small><?php echo $row['cargo'] ?><br>
+                                          <small style="font-weight:700; font-size: 14px;">Cantidad requerida: </small><?php echo $row['cantidad'] ?>
+                                        </td>
+                                        <td style="font-size: 12px;">
+                                          <small style="font-weight:700; font-size: 14px;">Fuente finac.: </small><?php echo $row['fuente_finac'] ?><br>
+                                          <small style="font-weight:700; font-size: 14px;">Meta: </small><?php echo $row['meta'] ?><br>
+                                          <small style="font-weight:700; font-size: 14px;">Remuneracion: </small>S/.<?php echo $row['remuneracion'] ?>
+                                        </td>
+                                        <td style="font-size: 12px;">
+                                          <small style="font-weight:700; font-size: 14px;">Dirección Ejecutora: </small><?php echo $row['direccion_ejec'] . " - " . $row['equipo_ejec'] ?>
+                                        </td>
+                                      </tr>
+                                      <?php
+                                      $select = "SELECT * FROM requerimientos INNER JOIN tipo_estudios 
+                                      ON requerimientos.reque_tipo_estudios = tipo_estudios.id_tipo_estudios WHERE reque_id_personal ='$idpersonal'";
+                                      $consulta = mysqli_query($con, $select);
+                                      ?>
+                                      <thead>
+                                        <tr>
+                                          <th style="display:none;">id</th>
+                                          <th></th>
+                                          <th colspan='4' style="color:#000; background:#85879666; font-size:0.813em;">Requerimientos mínimos</th>
+                                        </tr>
+                                      </thead>
+                                      <?php
+                                      $ii = 1;
+                                      while ($rw = mysqli_fetch_array($consulta)) {
+                                      ?>
+                                        <tr>
+                                          <td style=" font-size: 12px; display: none;"><?php echo $rw['id_requerimientos'] ?></td>
+                                          <td style="font-size: 12px;"></td>
+                                          <td style="font-size: 12px;">
+                                            <small style="font-weight:700; font-size: 14px;">Tipo estudio: </small><?php echo $rw['tipo_estudios'] ?><br>
+                                            <small style="font-weight:700; font-size: 14px;">Nivel estudio: </small><?php echo $rw['nivel_estudio'] ?>
+                                          </td>
+                                          <td style="font-size: 12px;">
+                                            <small style="font-weight:700; font-size: 14px;">Cantidad experiencia: </small><br><?php echo $rw['cantidad_experiencia'] ?>
+                                            <?php if ($rw['nivel_estudio'] = 'anios') {
+                                              echo "AÑO (S)";
+                                            } else {
+                                              echo "MES (ES)";
+                                            }  ?>
+                                          </td>
+                                          <td style="font-size: 12px;">
+                                            <small style="font-weight:700; font-size: 14px;">Colegiatura: </small><?php echo $rw['colegiatura'] ?><br>
+                                            <small style="font-weight:700; font-size: 14px;">Habilitación: </small><?php echo $rw['habilitacion'] ?><br>
+                                            <small style="font-weight:700; font-size: 14px;">Serums: </small><?php echo $rw['serums'] ?><br>
+                                            <small style="font-weight:700; font-size: 14px;">Licencia de conducir: </small><?php echo $rw['licencia_conducir'] ?>
+                                          </td>
+                                        </tr>
+                                      <?php
+                                        $ii++;
+                                      }
+                                      ?>
+                                  <?php
+                                      $i++;
+                                    }
+                                  } else {
+                                    echo "<tr><td colspan='6' class='text-center text-danger font-weight-bold' >NO HAY PERSONAL REQUERIDO</td></tr>";
+                                  }
+                                  ?>
+                                </tbody>
+                              </table>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12 col-sm-12">
+                        <div class="form-group">
                           <h6 class="m-0 font-weight-bold text-danger">Comision</h6>
                           <hr class="sidebar-divider">
                           <div class="card-body">
@@ -210,51 +319,6 @@ if (empty($_SESSION['active'])) {
                               </table>
                             </div>
 
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-md-12 col-sm-12">
-                        <div class="form-group">
-                          <h6 class="m-0 font-weight-bold text-danger">Personal Requerido</h6>
-                          <hr class="sidebar-divider">
-                          <div class="card-body">
-                            <div class="table-responsive">
-                              <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                <thead>
-                                  <tr>
-                                    <th>Cantidad</th>
-                                    <th>Remuneracion</th>
-                                    <th>Fuente</th>
-                                    <th>Meta</th>
-                                    <th>Cargo</th>
-                                  </tr>
-                                </thead>
-                                <tbody>
-                                  <?php
-                                  $sql = " SELECT * FROM total_personal_req where convocatoria_idcon='" . $idcon . "'";
-
-                                  $query = mysqli_query($con, $sql);
-
-                                  while ($row = MySQLI_fetch_array($query)) {
-                                    $cantidad = $row['cantidad'];
-                                    $remuneracion = $row['remuneracion'];
-                                    $fuente = $row['fuente_finac'];
-                                    $meta = $row['meta'];
-                                    $cargo = $row['cargo'];
-
-                                  ?>
-                                    <tr>
-                                      <td><?php echo $cantidad; ?></td>
-                                      <td><?php echo $remuneracion; ?></td>
-                                      <td><?php echo $fuente; ?></td>
-                                      <td><?php echo $meta; ?></td>
-                                      <td><?php echo $cargo; ?></td>
-                                    <?php
-                                  }
-                                    ?>
-                                </tbody>
-                              </table>
-                            </div>
                           </div>
                         </div>
                       </div>

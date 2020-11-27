@@ -61,8 +61,8 @@ if (isset($_POST['insertData'])) {
   $dni = $_POST['dni'];
   $idpostulante = $_POST['postulante'];
 
-  $centro_estudios = $_POST['centro_estudios'];
-  $especialidad = $_POST['especialidad'];
+  $centro_estudios = strtoupper($_POST['centro_estudios']);
+  $especialidad = strtoupper($_POST['especialidad']);
   $tipo = $_POST['tipo'];
   $fecha_inicio = $_POST['fecha_inicio'];
   $fecha_fin = $_POST['fecha_fin'];
@@ -77,20 +77,24 @@ if (isset($_POST['insertData'])) {
   $tipo_archivo = $_FILES['archivo1']['type'];
   $tamano_archivo = $_FILES['archivo1']['size'];
 
-  $query = mysqli_query($con, "SELECT * FROM maestria_doc WHERE idpostulante_postulante = $idpostulante");
+  $query = mysqli_query($con, "SELECT MAX(idmaestria_doc) AS id FROM maestria_doc WHERE idpostulante_postulante = $idpostulante");
+  if ($row = mysqli_fetch_row($query)) {
+    $id = trim($row[0]);
+  }
   $result = mysqli_num_rows($query);
   if ($result <= 0) {
     $i = 1;
-    $new_nombre = "maestria_" . $i . ".pdf";
+    $new_nombre = "postgrado_" . $i . ".pdf";
   } else {
-    $row = mysqli_fetch_array($query);
-    $idformacion = $row['idmaestria_doc'];
-    $i = $idformacion;
-    $new_nombre = "maestria_" . $i . ".pdf";
+    $i = $id + 1;
+    echo $i;
+    $new_nombre = "postgrado_" . $i . ".pdf";
   }
 
+
   if (!(strpos($tipo_archivo, "pdf") && ($tamano_archivo <= 3000000))) {
-    echo "La extensión o el tamaño de los archivos no es correcta. <br><br><table><tr><td><li>Solo se permiten archivos .pdf<br><li>se permiten archivos de 3 Mb máximo.</td></tr></table>";
+    echo '<script> alert("El archivo excede el tamaño de 3 MB."); </script>';
+    echo "<script type=\"text/javascript\">history.go(-1);</script>";
   } else {
     if (move_uploaded_file($_FILES['archivo1']['tmp_name'], $micarpeta . $new_nombre)) {
 
@@ -99,14 +103,14 @@ if (isset($_POST['insertData'])) {
 
       $result = mysqli_query($con, $sql);
       if ($result) {
-        echo '<script> alert("Guardado exitosamente"); </script>';
+        // echo '<script> alert("Guardado exitosamente"); </script>';
         echo "<script type=\"text/javascript\">history.go(-1);</script>";
       } else {
-        echo '<script> alert("Error al guardar la informacion"); </script>';
+        // echo '<script> alert("Error al guardar la informacion"); </script>';
         echo "<script type=\"text/javascript\">history.go(-1);</script>";
       }
     } else {
-      echo '<script> alert("Error al guardar el archivo"); </script>';
+      // echo '<script> alert("Error al guardar el archivo"); </script>';
       echo "<script type=\"text/javascript\">history.go(-1);</script>";
     }
   }
@@ -115,8 +119,8 @@ if (isset($_POST['insertData'])) {
   $dni = $_POST['dni'];
   $idpostulante = $_POST['postulante'];
 
-  $centro_estudios = $_POST['centro_estudios'];
-  $materia = $_POST['materia'];
+  $centro_estudios = strtoupper($_POST['centro_estudios']);
+  $materia = strtoupper($_POST['materia']);
   $tipo = $_POST['tipo'];
   $horas = $_POST['horas'];
   $fecha_inicio = $_POST['fecha_inicio'];
@@ -131,15 +135,17 @@ if (isset($_POST['insertData'])) {
   $tipo_archivo = $_FILES['archivo']['type'];
   $tamano_archivo = $_FILES['archivo']['size'];
 
-  $query = mysqli_query($con, "SELECT * FROM cursos_extra WHERE curso_extra_idpostulante = $idpostulante");
+  $query = mysqli_query($con, "SELECT MAX(idcursos_extra) AS id FROM cursos_extra WHERE curso_extra_idpostulante = $idpostulante");
+  if ($row = mysqli_fetch_row($query)) {
+    $id = trim($row[0]);
+  }
   $result = mysqli_num_rows($query);
   if ($result <= 0) {
     $i = 1;
     $new_nombre = "cursos_" . $i . ".pdf";
   } else {
-    $row = mysqli_fetch_array($query);
-    $idformacion = $row['idcursos_extra'];
-    $i = $idformacion;
+    $i = $id + 1;
+    echo $i;
     $new_nombre = "cursos_" . $i . ".pdf";
   }
 
@@ -155,11 +161,11 @@ if (isset($_POST['insertData'])) {
       if ($result) {
         echo "<script type=\"text/javascript\">history.go(-1);</script>";
       } else {
-        echo '<script> alert("Error al guardar la información."); </script>';
+        // echo '<script> alert("Error al guardar la información."); </script>';
         echo "<script type=\"text/javascript\">history.go(-1);</script>";
       }
     } else {
-      echo '<script> alert("Error al guardar el archivo."); </script>';
+      // echo '<script> alert("Error al guardar el archivo."); </script>';
       echo "<script type=\"text/javascript\">history.go(-1);</script>";
     }
   }
@@ -169,6 +175,7 @@ if (isset($_POST['insertData'])) {
   $idpostulante = $_POST['postulante'];
 
   $idioma = $_POST['idioma'];
+  $centro_estudios_idio = $_POST['centro_estudios_idio'];
   $nivel = $_POST['nivel'];
 
   $micarpeta = $_SERVER['DOCUMENT_ROOT'] . '/sistema_seleccion/user_postu/archivos/' . $dni . '/Idiomas_Computacion/';
@@ -180,38 +187,42 @@ if (isset($_POST['insertData'])) {
   $tipo_archivo = $_FILES['archivo']['type'];
   $tamano_archivo = $_FILES['archivo']['size'];
 
-  $query = mysqli_query($con, "SELECT * FROM idiomas_comp  WHERE idpostulante_postulante = $idpostulante");
+  $query = mysqli_query($con, "SELECT MAX(ididiomas_comp) AS id FROM idiomas_comp WHERE idpostulante_postulante = $idpostulante");
+  if ($row = mysqli_fetch_row($query)) {
+    $id = trim($row[0]);
+  }
   $result = mysqli_num_rows($query);
   if ($result <= 0) {
     $i = 1;
-    $new_nombre = "estudios_" . $i . ".pdf";
+    $new_nombre = "idiomas_comp_" . $i . ".pdf";
   } else {
-    $row = mysqli_fetch_array($query);
-    $idformacion = $row['ididiomas_comp'];
-    $i = $idformacion;
-    $new_nombre = "estudios_" . $i . ".pdf";
+    $i = $id + 1;
+    echo $i;
+    $new_nombre = "idiomas_comp_" . $i . ".pdf";
   }
 
   if (!(strpos($tipo_archivo, "pdf") && ($tamano_archivo <= 3000000))) {
-    echo "La extensión o el tamaño de los archivos no es correcta. <br><br><table><tr><td><li>Solo se permiten archivos .pdf<br><li>se permiten archivos de 3 Mb máximo.</td></tr></table>";
+    echo '<script> alert("El archivo pesa más de 3 MB."); </script>';
+    echo "<script type=\"text/javascript\">history.go(-1);</script>";
   } else {
     if (move_uploaded_file($_FILES['archivo']['tmp_name'], $micarpeta . $new_nombre)) {
 
-      $sql = "INSERT INTO idiomas_comp (idioma_comp,nivel,archivo,idpostulante_postulante) 
-            VALUES('$idioma','$nivel','$new_nombre','$idpostulante')";
+      $sql = "INSERT INTO idiomas_comp (idioma_comp,lugar_estudio,nivel,archivo,idpostulante_postulante) 
+            VALUES('$idioma','$centro_estudios_idio','$nivel','$new_nombre','$idpostulante')";
 
       $result = mysqli_query($con, $sql);
       if ($result) {
+
         // echo '<script> alert("Guardado exitosamente"); </script>';
         echo "<script type=\"text/javascript\">history.go(-1);</script>";
         // header('Location: ../capacitacion.php?dni=' . $dato_desencriptado);
       } else {
-        echo '<script> alert("Error al guardar la información."); </script>';
-
-        echo "<script type=\"text/javascript\">history.go(-1);</script>";
+        // echo '<script> alert("Error al guardar la información."); </script>';
+        echo "error";
+        // echo "<script type=\"text/javascript\">history.go(-1);</script>";
       }
     } else {
-      echo '<script> alert("Error al guardar el archivo."); </script>';
+      // echo '<script> alert("Error al guardar el archivo."); </script>';
       echo "<script type=\"text/javascript\">history.go(-1);</script>";
     }
   }

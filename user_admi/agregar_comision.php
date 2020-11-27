@@ -37,8 +37,9 @@ if (empty($_SESSION['active'])) {
   <div id="wrapper">
 
     <?php
+    $dni = $_GET['dni'];
     $dato_desencriptado = $_GET['dni'];
-    $dni = $desencriptar($dato_desencriptado);
+    // $dni = $desencriptar($dato_desencriptado);
 
     $sql = "SELECT * FROM usuarios where dni=$dni";
     $datos = mysqli_query($con, $sql) or die(mysqli_error($datos));;
@@ -171,10 +172,10 @@ if (empty($_SESSION['active'])) {
                                   <option value="MIEMBRO">Miembro</option>
                                 </select>
                               </td>
-                              <td><input type="text" name="nombre[]" id="nombre[]" placeholder="Nombres completos" class="form-control name_list" /></td>
-                              <td><input type="text" name="apellidos[]" id="apellidos[]" placeholder="Apellidos completos" class="form-control name_list" /></td>
-                              <td><input type="text" name="area_user[]" id="area_user[]" placeholder="Area usuario que proviene" class="form-control name_list" /></td>
-                              <td class="eliminar"><input type="button" class="btn btn-danger" value=" - "></td>
+                              <td><input type="text" style="text-transform: uppercase; font-size:13px;" name="nombre[]" id="nombre[]" placeholder="Nombres completos" class="form-control name_list" /></td>
+                              <td><input type="text" style="text-transform: uppercase; font-size:13px;" name="apellidos[]" id="apellidos[]" placeholder="Apellidos completos" class="form-control name_list" /></td>
+                              <td><input type="text" style="text-transform: uppercase; font-size:13px;" name="area_user[]" id="area_user[]" placeholder="Area usuario que proviene" class="form-control name_list" /></td>
+                              <td class="eliminar"><button type="button" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></button></td>
                             </tr>
                             </tdody>
                         </table>

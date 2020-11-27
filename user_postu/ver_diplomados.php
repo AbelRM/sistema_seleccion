@@ -4,7 +4,7 @@
 <head>
 
   <meta charset="utf-8">
-  
+
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
@@ -30,19 +30,20 @@
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-    <?php   
-        include 'conexion.php';
-        
-        include 'funcs/mcript.php';
-        $dato_desencriptado = $_GET['dni'];
-        $dni = $desencriptar($dato_desencriptado);
+    <?php
+    include 'conexion.php';
 
-        $sql2="SELECT * FROM usuarios where dni=$dni";
-        $datos=mysqli_query($con,$sql2) or die(mysqli_error()); ;
-        $fila= mysqli_fetch_array($datos);
-        include 'menu.php';
-        
-        //include 'modal_ver_convocatoria.php';
+    include 'funcs/mcript.php';
+    $dni = $_GET['dni'];
+    $dato_desencriptado = $_GET['dni'];
+    // $dni = $desencriptar($dato_desencriptado);
+
+    $sql2 = "SELECT * FROM usuarios where dni=$dni";
+    $datos = mysqli_query($con, $sql2) or die(mysqli_error($datos));;
+    $fila = mysqli_fetch_array($datos);
+    include 'menu.php';
+
+    //include 'modal_ver_convocatoria.php';
     ?>
 
     <!-- Content Wrapper -->
@@ -51,31 +52,27 @@
       <div id="content">
         <!-- Topbar -->
         <?php
-            include_once 'nav.php';
+        include_once 'nav.php';
         ?>
         <!-- End of Topbar -->
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
-        <?php
-        include 'conexion.php'; 
-        include 'funcs/mcript.php';
-          $dato_desencriptado = $_GET['dni'];
-          $dni = $desencriptar($dato_desencriptado);
-          $sql = "SELECT * FROM cursos_extra WHERE idcursos_extra=".$_GET['id'];
-          $query=mysqli_query($con, $sql);
-          if($datos= MySQLI_fetch_array($query)){
-              if($datos['archivo']=="")
-              {?>
-                  <p>No hay archivos agregados</p>
-                          <?php }else{ ?>
-                  <iframe src="archivos/<?php echo $dni ?>/Diplomados/<?php echo $datos['archivo']; ?>"  width="1000px" height="1000px"></iframe>
+          <?php
 
-              <?php 
-          } 
-          } 
-      ?>
+          $sql = "SELECT * FROM cursos_extra WHERE idcursos_extra=" . $_GET['id'];
+          $query = mysqli_query($con, $sql);
+          if ($datos = MySQLI_fetch_array($query)) {
+            if ($datos['archivo'] == "") { ?>
+              <p>No hay archivos agregados</p>
+            <?php } else { ?>
+              <iframe src="archivos/<?php echo $dni ?>/Diplomados/<?php echo $datos['archivo']; ?>" width="1000px" height="1000px"></iframe>
+
+          <?php
+            }
+          }
+          ?>
 
         </div>
         <!-- /.container-fluid -->

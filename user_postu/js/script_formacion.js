@@ -1,3 +1,26 @@
+function cambiar() {
+    var pdrs = document.getElementById('file-upload').files[0].name;
+    document.getElementById('info').innerHTML = pdrs;
+  }
+  //binds to onchange event of your input field
+  $('#file-upload').bind('change', function() {
+    //this.files[0].size gets the size of your file.
+    var peso = (this.files[0].size);
+    if (peso <= 3000000) {
+      document.getElementById('peso_archivo_valido').innerHTML = "Archivo válido";
+      document.getElementById("peso_archivo_valido").style.display = "block";
+      document.getElementById("peso_archivo_no").style.display = "none";
+    } else {
+      document.getElementById('peso_archivo_no').innerHTML = "El archivo sobre pasa los 3Mb máximos";
+      document.getElementById("peso_archivo_valido").style.display = "none";
+      document.getElementById("peso_archivo_no").style.display = "block";
+      document.getElementById("info").value = '';
+      document.getElementById("file-upload").value = '';
+
+    }
+    // alert(this.files[0].size);
+  });
+
 //binds to onchange event of your input field
 $('#expe1_archivo').bind('change', function () {
   var peso = (this.files[0].size);
@@ -159,3 +182,42 @@ function tipo_profesional_select(sel) {
 
   }
 }
+
+//ACTUALIZAR FORMACION
+
+$(function() {
+  $("#tipo_prof").on('change', function() {
+    var selectValue = $(this).val();
+    switch (selectValue) {
+      case "administrativo":
+        $("#div_serums").hide();
+        $("#div_valor_quintil").hide();
+        break;
+      case "asistencial":
+        $("#div_serums").show();
+        $("#div_valor_quintil").show();
+    }
+  }).change();
+});
+
+
+//CRUD DELETE
+
+$(document).ready(function() {
+  $('.deleteBtn').on('click', function() {
+
+    $('#deleteModal').modal('show');
+
+    // Get the table row data.
+    $tr = $(this).closest('tr');
+
+    var data = $tr.children("td").map(function() {
+      return $(this).text();
+    }).get();
+
+    console.log(data);
+
+    $('#deleteId').val(data[0]);
+
+  });
+});

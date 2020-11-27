@@ -1,3 +1,12 @@
+<?php
+include 'conexion.php';
+include 'funcs/mcript.php';
+session_start();
+if (empty($_SESSION['active'])) {
+  header("Location: ../index.php");
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,11 +33,11 @@
   <!-- Custom styles for this page -->
   <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
-  <link rel="stylesheet" type="text/css" href="vendor/sweetalert/sweetalert2.min.css">
-  <script type="text/javascript" src="vendor/sweetalert/sweetalert2.min.js"></script>
-  <script type="text/javascript" src="vendor/jquery.min.js"></script>
+  <!-- <link rel="stylesheet" type="text/css" href="vendor/sweetalert/sweetalert2.min.css">
+  <script type="text/javascript" src="vendor/sweetalert/sweetalert2.min.js"></script> -->
+  <!-- <script type="text/javascript" src="vendor/jquery.min.js"></script> -->
 
-  <script type="text/javascript" src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
 
 </head>
 
@@ -41,9 +50,9 @@
     include 'conexion.php';
 
     include 'funcs/mcript.php';
-
+    $dni = $_GET['dni'];
     $dato_desencriptado = $_GET['dni'];
-    $dni = $desencriptar($dato_desencriptado);
+    // $dni = $desencriptar($dato_desencriptado);
 
     $sql2 = "SELECT * FROM usuarios where dni=$dni";
     $datos = mysqli_query($con, $sql2) or die(mysqli_error($datos));;
@@ -101,7 +110,7 @@
               $idcargo = $_GET['idcargo'];
               $idcon = $_GET['idcon'];
               ?>
-              <form action="procesos/guardar_postulacion.php" method="POST">
+              <form id="frmajax" method="POST">
                 <div class="form-group row d-flex justify-content-center">
                   <label class="col-lg-2 col-md-4 col-form-label text-success">Fecha de inscripción:</label>
                   <div class="col-lg-3 col-md-4">
@@ -163,19 +172,10 @@
                 </div>
                 <hr class="sidebar-divider d-none d-md-block">
                 <div class="form-group row">
-                  <!-- <div class="col-md-6 col-sm-12">
-                    <img src="img/boleta.jpg" style="width:100%; height:auto;" alt="Boleta de ejemplo para el llenado del código">
-                  </div> -->
-                  <!-- <div class="col-md-6 col-sm-6"> -->
-                  <!-- <div class="row"> -->
-
                   <div class="col-12 m-2 d-flex justify-content-center">
-                    <button type="submit" id="button1" class="btn btn-info btn-lg"><i class="fas fa-briefcase"></i> POSTULAR!</button>
+                    <button id="button1" class="btn btn-info btn-lg"><i class="fas fa-briefcase"></i> POSTULAR</button>
                   </div>
-                  <!-- </div> -->
-                  <!-- </div> -->
                 </div>
-
               </form>
             </div>
           </div>
@@ -222,6 +222,8 @@
 
   <!-- Bootstrap core JavaScript-->
   <script src="vendor/jquery/jquery.min.js"></script>
+  <!-- <script src="vendor/jquery/jquery.min.js"></script> -->
+  <script type="text/javascript" src="vendor/bootstrap/js/bootstrap.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   <!-- Core plugin JavaScript-->
@@ -236,6 +238,7 @@
 
   <!-- Page level custom scripts -->
   <script src="js/demo/datatables-demo.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
   <script>
     jQuery(document).ready(function() {
@@ -246,44 +249,39 @@
       });
     });
   </script>
-
   <script type="text/javascript">
     $(document).ready(function() {
+      $('#button1').click(function() {
+        var datos = $('#frmajax').serialize();
+        $.ajax({
+          type: "POST",
+          url: "procesos/guardar_postulacion.php",
+          data: datos,
+          success: function(r) {
+            if (r == 1) {
+              Swal.fire({
+                title: 'Te has registrado correctamente!',
+                text: 'Verifique el calendario, para resultados de evalacuación.',
+                icon: 'success',
+                confirmButtonText: 'Aceptar'
+              }).then(function() {
+                window.location = "mispostulaciones.php".$dni;
+              });
 
+            } else {
+              Swal.fire({
+                title: 'Error al postular!',
+                text: r,
+                icon: 'error',
+                confirmButtonText: 'Aceptar',
+              });
+            }
+          }
+        });
 
-      // $("#button1").click(function() {
-      //   swal({
-      //     title: 'Registro con exito!',
-      //     //text:"Hola, estamos probando Sweet Alert 2",
-      //     type: 'success',
-      //     timer: 10000
-      //   })
-
-      // });
-
-      $("#button2").click(function() {
-        swal({
-          title: 'Boton 2!',
-          text: "Esta es la opcion 2",
-          type: 'warning',
-          showConfirmButton: false,
-          timer: 1000
-        })
-
+        return false;
       });
-
-      $("#button3").click(function() {
-        swal({
-          title: 'Boton 3!',
-          text: "Esta es la opcion 3",
-          type: 'error',
-          showConfirmButton: false,
-          timer: 1000,
-          position: 'bottom-end'
-        })
-      });
-
-    })
+    });
   </script>
 
 </body>

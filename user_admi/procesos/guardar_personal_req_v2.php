@@ -27,16 +27,22 @@ if (isset($_POST['insert'])) {
 
   if ($result) {
     $reque_tipo_estudios = $_POST['formacion_requerida'];
+    $reque_tipo_estudios_max = $_POST['formacion_requerida_max'];
     if ($reque_tipo_estudios == '1') {
       $colegiatura = $_POST['colegiatura'];
       $habilitaicon = $_POST['habilitacion'];
       $serums = $_POST['serums'];
+
+      $colegiatura_max = $_POST['colegiatura_max'];
+      $habilitacion_max = $_POST['habilitacion_max'];
+      $serums_max = $_POST['serums_max'];
+
       $tipo_experiencia = $_POST['tipo_experiencia'];
       $licencia_conducir = $_POST['licencia_conducir'];
       if ($tipo_experiencia = 'anios') {
         $cantidad_anios = $_POST['cantidad_anios'];
-        $sql = "INSERT INTO requerimientos (reque_tipo_estudios,colegiatura,habilitacion,serums,tipo_experiencia,cantidad_experiencia,licencia_conducir,reque_id_personal) 
-        VALUES('" . $reque_tipo_estudios . "','" . $colegiatura . "','" . $habilitaicon . "','" . $serums . "','" . $tipo_experiencia . "','" . $cantidad_anios . "','" . $licencia_conducir . "','" . $id_requerimiento . "')";
+        $sql = "INSERT INTO requerimientos (reque_tipo_estudios,colegiatura,habilitacion,serums,tipo_experiencia,cantidad_experiencia,licencia_conducir,reque_id_personal,reque_tipo_estudios_max,colegiatura_max,habilitacion_max,serums_max) 
+        VALUES('" . $reque_tipo_estudios . "','" . $colegiatura . "','" . $habilitaicon . "','" . $serums . "','" . $tipo_experiencia . "','" . $cantidad_anios . "','" . $licencia_conducir . "','" . $id_requerimiento . "','" . $reque_tipo_estudios_max . "','" . $colegiatura_max . "','" . $habilitacion_max . "','" . $serums_max . "')";
         $resultado = mysqli_query($con, $sql);
         if ($resultado) {
           echo "agregado con exito";
@@ -49,7 +55,7 @@ if (isset($_POST['insert'])) {
       } else {
         $cantidad_meses = $_POST['cantidad_meses'];
         $sql = "INSERT INTO requerimientos (reque_tipo_estudios,colegiatura,habilitacion,serums,tipo_experiencia,cantidad_experiencia,licencia_conducir,reque_id_personal) 
-        VALUES('" . $reque_tipo_estudios . "','" . $colegiatura . "','" . $habilitaicon . "','" . $serums . "','" . $tipo_experiencia . "','" . $cantidad_meses . "','" . $licencia_conducir . "','" . $id_requerimiento . "')";
+        VALUES('" . $reque_tipo_estudios . "','" . $colegiatura . "','" . $habilitaicon . "','" . $serums . "','" . $tipo_experiencia . "','" . $cantidad_meses . "','" . $licencia_conducir . "','" . $id_requerimiento . "','" . $reque_tipo_estudios_max . "','" . $colegiatura_max . "','" . $habilitacion_max . "','" . $serums_max . "')";
         $resultado = mysqli_query($con, $sql);
         if ($resultado) {
           echo "agregado con exito 1";
@@ -65,12 +71,19 @@ if (isset($_POST['insert'])) {
       $colegiatura = $_POST['colegiatura'];
       $habilitaicon = $_POST['habilitacion'];
       $serums = $_POST['serums'];
+
+      $nivel_estudios_prof_max = $_POST['nivel_estudios_prof_max'];
+      $ciclo_actual_max = $_POST['ciclo_actual_max'];
+      $colegiatura_max = $_POST['colegiatura_max'];
+      $habilitacion_max = $_POST['habilitacion_max'];
+      $serums_max = $_POST['serums_max'];
+
       $tipo_experiencia = $_POST['tipo_experiencia'];
       $licencia_conducir = $_POST['licencia_conducir'];
       if ($tipo_experiencia == 'anios') {
         $cantidad_anios = $_POST['cantidad_anios'];
-        $sql = "INSERT INTO requerimientos (reque_tipo_estudios,nivel_estudio,colegiatura,habilitacion,serums,tipo_experiencia,cantidad_experiencia,licencia_conducir,reque_id_personal) 
-        VALUES('" . $reque_tipo_estudios . "','" . $nivel_estudios_tec . "','" . $colegiatura . "','" . $habilitaicon . "','" . $serums . "','" . $tipo_experiencia . "','" . $cantidad_anios . "','" . $licencia_conducir . "','" . $id_requerimiento . "')";
+        $sql = "INSERT INTO requerimientos (reque_tipo_estudios,nivel_estudio,colegiatura,habilitacion,serums,tipo_experiencia,cantidad_experiencia,licencia_conducir,reque_id_personal,reque_tipo_estudios_max, nivel_estudio_max, ciclo_actual_max, colegiatura_max,habilitacion_max,serums_max) 
+        VALUES('" . $reque_tipo_estudios . "','" . $nivel_estudios_tec . "','" . $colegiatura . "','" . $habilitaicon . "','" . $serums . "','" . $tipo_experiencia . "','" . $cantidad_anios . "','" . $licencia_conducir . "','" . $id_requerimiento . "','" . $reque_tipo_estudios_max . "','" . $nivel_estudios_prof_max . "','" . $ciclo_actual_max . "','" . $colegiatura_max . "','" . $habilitacion_max . "','" . $serums_max . "')";
         $resultado = mysqli_query($con, $sql);
         if ($resultado) {
           echo "agregado con exito 2";
@@ -81,8 +94,8 @@ if (isset($_POST['insert'])) {
         }
       } else {
         $cantidad_meses = $_POST['cantidad_meses'];
-        $sql = "INSERT INTO requerimientos (reque_tipo_estudios,nivel_estudio,colegiatura,habilitacion,serums,tipo_experiencia,cantidad_experiencia,licencia_conducir,reque_id_personal) 
-        VALUES('" . $reque_tipo_estudios . "','" . $nivel_estudios_tec . "','" . $colegiatura . "','" . $habilitaicon . "','" . $serums . "','" . $tipo_experiencia . "','" . $cantidad_meses . "','" . $licencia_conducir . "','" . $id_requerimiento . "')";
+        $sql = "INSERT INTO requerimientos (reque_tipo_estudios,nivel_estudio,colegiatura,habilitacion,serums,tipo_experiencia,cantidad_experiencia,licencia_conducir,reque_id_personal,reque_tipo_estudios_max, nivel_estudio_max, ciclo_actual_max, colegiatura_max,habilitacion_max,serums_max) 
+        VALUES('" . $reque_tipo_estudios . "','" . $nivel_estudios_tec . "','" . $colegiatura . "','" . $habilitaicon . "','" . $serums . "','" . $tipo_experiencia . "','" . $cantidad_meses . "','" . $licencia_conducir . "','" . $id_requerimiento . "','" . $reque_tipo_estudios_max . "','" . $nivel_estudios_prof_max . "','" . $ciclo_actual_max . "','" . $colegiatura_max . "','" . $habilitacion_max . "','" . $serums_max . "')";
         $resultado = mysqli_query($con, $sql);
         if ($resultado) {
           echo "ERROR 2";
@@ -99,12 +112,19 @@ if (isset($_POST['insert'])) {
         $colegiatura = $_POST['colegiatura'];
         $habilitaicon = $_POST['habilitacion'];
         $serums = $_POST['serums'];
+
+        $nivel_estudios_prof_max = $_POST['nivel_estudios_prof_max'];
+        $ciclo_actual_max = $_POST['ciclo_actual_max'];
+        $colegiatura_max = $_POST['colegiatura_max'];
+        $habilitacion_max = $_POST['habilitacion_max'];
+        $serums_max = $_POST['serums_max'];
+
         $tipo_experiencia = $_POST['tipo_experiencia'];
         $licencia_conducir = $_POST['licencia_conducir'];
         if ($tipo_experiencia = 'anios') {
           $cantidad_anios = $_POST['cantidad_anios'];
-          $sql = "INSERT INTO requerimientos (reque_tipo_estudios,nivel_estudio,ciclo_actual,colegiatura,habilitacion,serums,tipo_experiencia,cantidad_experiencia,licencia_conducir,reque_id_personal) 
-          VALUES('" . $reque_tipo_estudios . "','" . $nivel_estudios_prof . "','" . $ciclo_actual . "','" . $colegiatura . "','" . $habilitaicon . "','" . $serums . "','" . $tipo_experiencia . "','" . $cantidad_anios . "','" . $licencia_conducir . "','" . $id_requerimiento . "')";
+          $sql = "INSERT INTO requerimientos (reque_tipo_estudios,nivel_estudio,ciclo_actual,colegiatura,habilitacion,serums,tipo_experiencia,cantidad_experiencia,licencia_conducir,reque_id_personal,reque_tipo_estudios_max, nivel_estudio_max, ciclo_actual_max, colegiatura_max,habilitacion_max,serums_max) 
+          VALUES('" . $reque_tipo_estudios . "','" . $nivel_estudios_prof . "','" . $ciclo_actual . "','" . $colegiatura . "','" . $habilitaicon . "','" . $serums . "','" . $tipo_experiencia . "','" . $cantidad_anios . "','" . $licencia_conducir . "','" . $id_requerimiento . "','" . $reque_tipo_estudios_max . "','" . $nivel_estudios_prof_max . "','" . $ciclo_actual_max . "','" . $colegiatura_max . "','" . $habilitacion_max . "','" . $serums_max . "')";
           $resultado = mysqli_query($con, $sql);
           if ($resultado) {
             echo "ERROR 3";
@@ -115,7 +135,7 @@ if (isset($_POST['insert'])) {
           }
         } else {
           $cantidad_meses = $_POST['cantidad_meses'];
-          $sql = "INSERT INTO requerimientos (reque_tipo_estudios,nivel_estudio,ciclo_actual,colegiatura,habilitacion,serums,tipo_experiencia,cantidad_experiencia,licencia_conducir,reque_id_personal) 
+          $sql = "INSERT INTO requerimientos (reque_tipo_estudios,nivel_estudio,ciclo_actual,colegiatura,habilitacion,serums,tipo_experiencia,cantidad_experiencia,licencia_conducir,reque_id_personal,reque_tipo_estudios_max, nivel_estudio_max, ciclo_actual_max, colegiatura_max,habilitacion_max,serums_max) 
           VALUES('" . $reque_tipo_estudios . "','" . $nivel_estudios_prof . "','" . $ciclo_actual . "','" . $colegiatura . "','" . $habilitaicon . "','" . $serums . "','" . $tipo_experiencia . "','" . $cantidad_meses . "','" . $licencia_conducir . "','" . $id_requerimiento . "')";
           $resultado = mysqli_query($con, $sql);
           if ($resultado) {
@@ -130,12 +150,19 @@ if (isset($_POST['insert'])) {
         $colegiatura = $_POST['colegiatura'];
         $habilitaicon = $_POST['habilitacion'];
         $serums = $_POST['serums'];
+
+        $nivel_estudios_prof_max = $_POST['nivel_estudios_prof_max'];
+        $ciclo_actual_max = $_POST['ciclo_actual_max'];
+        $colegiatura_max = $_POST['colegiatura_max'];
+        $habilitacion_max = $_POST['habilitacion_max'];
+        $serums_max = $_POST['serums_max'];
+
         $tipo_experiencia = $_POST['tipo_experiencia'];
         $licencia_conducir = $_POST['licencia_conducir'];
         if ($tipo_experiencia = 'anios') {
           $cantidad_anios = $_POST['cantidad_anios'];
-          $sql = "INSERT INTO requerimientos (reque_tipo_estudios,nivel_estudio,,colegiatura,habilitacion,serums,tipo_experiencia,cantidad_experiencia,licencia_conducir,reque_id_personal) 
-          VALUES('" . $reque_tipo_estudios . "','" . $nivel_estudios_prof . "','" . $colegiatura . "','" . $habilitaicon . "','" . $serums . "','" . $tipo_experiencia . "','" . $cantidad_anios . "','" . $licencia_conducir . "','" . $id_requerimiento . "')";
+          $sql = "INSERT INTO requerimientos (reque_tipo_estudios,nivel_estudio,colegiatura,habilitacion,serums,tipo_experiencia,cantidad_experiencia,licencia_conducir,reque_id_personal,reque_tipo_estudios_max, nivel_estudio_max, ciclo_actual_max, colegiatura_max,habilitacion_max,serums_max) 
+          VALUES('" . $reque_tipo_estudios . "','" . $nivel_estudios_prof . "','" . $colegiatura . "','" . $habilitaicon . "','" . $serums . "','" . $tipo_experiencia . "','" . $cantidad_anios . "','" . $licencia_conducir . "','" . $id_requerimiento . "','" . $reque_tipo_estudios_max . "','" . $nivel_estudios_prof_max . "','" . $ciclo_actual_max . "','" . $colegiatura_max . "','" . $habilitacion_max . "','" . $serums_max . "')";
           $resultado = mysqli_query($con, $sql);
           if ($resultado) {
             echo "ERROR 3";
@@ -146,8 +173,8 @@ if (isset($_POST['insert'])) {
           }
         } else {
           $cantidad_meses = $_POST['cantidad_meses'];
-          $sql = "INSERT INTO requerimientos (reque_tipo_estudios,nivel_estudio,colegiatura,habilitacion,serums,tipo_experiencia,cantidad_experiencia,licencia_conducir,reque_id_personal) 
-          VALUES('" . $reque_tipo_estudios . "','" . $nivel_estudios_prof . "','" . $colegiatura . "','" . $habilitaicon . "','" . $serums . "','" . $tipo_experiencia . "','" . $cantidad_meses . "','" . $licencia_conducir . "','" . $id_requerimiento . "')";
+          $sql = "INSERT INTO requerimientos (reque_tipo_estudios,nivel_estudio,colegiatura,habilitacion,serums,tipo_experiencia,cantidad_experiencia,licencia_conducir,reque_id_personal,reque_tipo_estudios_max, nivel_estudio_max, ciclo_actual_max, colegiatura_max,habilitacion_max,serums_max) 
+          VALUES('" . $reque_tipo_estudios . "','" . $nivel_estudios_prof . "','" . $colegiatura . "','" . $habilitaicon . "','" . $serums . "','" . $tipo_experiencia . "','" . $cantidad_meses . "','" . $licencia_conducir . "','" . $id_requerimiento . "','" . $reque_tipo_estudios_max . "','" . $nivel_estudios_prof_max . "','" . $ciclo_actual_max . "','" . $colegiatura_max . "','" . $habilitacion_max . "','" . $serums_max . "')";
           $resultado = mysqli_query($con, $sql);
           if ($resultado) {
             echo "ERROR 3";

@@ -10,7 +10,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Listado</title>
+  <title>Listado de convocatorias vigentes - SISTEMA DE SELECCIÓN DIRESA TACNA</title>
 
   <!-- Custom fonts for this template -->
   <link rel="icon" type="image/png" href="img/icono_diresa.png" />
@@ -34,9 +34,9 @@
     include 'conexion.php';
 
     include 'funcs/mcript.php';
-
-    $dato_desencriptado = $_GET['dni'];
-    $dni = $desencriptar($dato_desencriptado);
+    $dni = $_GET['dni'];
+    // $dato_desencriptado = $_GET['dni'];
+    // $dni = $desencriptar($dato_desencriptado);
 
     $sql2 = "SELECT * FROM usuarios where dni=$dni";
     $datos = mysqli_query($con, $sql2) or die(mysqli_error($datos));;

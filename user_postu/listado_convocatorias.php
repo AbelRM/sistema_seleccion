@@ -34,8 +34,9 @@
     include 'conexion.php';
 
     include 'funcs/mcript.php';
-    $dato_desencriptado = $_GET['dni'];
-    $dni = $desencriptar($dato_desencriptado);
+    $dni = $_GET['dni'];
+    // $dato_desencriptado = $_GET['dni'];
+    // $dni = $desencriptar($dato_desencriptado);
 
     $sql2 = "SELECT * FROM usuarios where dni=$dni";
     $datos = mysqli_query($con, $sql2) or die(mysqli_error($datos));;

@@ -21,7 +21,7 @@ if (isset($_POST['editar'])) {
       $serums = $_POST['serums'];
       $nivel_estudios = '';
       $carrera = '';
-    
+
       //crear carpeta
       $micarpeta = $_SERVER['DOCUMENT_ROOT'] . '/sistema_seleccion/user_postu/archivos/' . $dni_descrip . '/formacion/';
       //datos del arhivo
@@ -169,106 +169,106 @@ if (isset($_POST['editar'])) {
         window.history.back(-1);</script>';
       } else {
         if (move_uploaded_file($_FILES['archivos1']['tmp_name'], $micarpeta . $new_nombre)) {
-         $tipo_estudios = $_POST['tipo_estudios'];
-         $nivel_estudios = $_POST['nivel_estudios_edit'];
-         $centro_estudios = strtoupper($_POST['centro_estudios']);
-         $carrera = strtoupper($_POST['carrera']);
-         $colegiatura = $_POST['colegiatura_edit'];
-         $fecha_inicio = $_POST['fecha_inicio'];
-         $fecha_fin = $_POST['fecha_fin'];
-         if ($nivel_estudios == 'ESTUDIANTE') {
-          $ciclo_actual = $_POST['ciclo_actual'];
-          $sql = "UPDATE formacion_acad SET tipo_estudios_id = '$tipo_estudios',nivel_estudios = '$nivel_estudios',ciclo_actual = '$ciclo_actual',centro_estudios = '$centro_estudios',carrera = '$carrera',colegiatura = '$colegiatura',fecha_inicio='$fecha_inicio',fecha_fin = '$fecha_fin',archivo = '$nombre_archivo', brevete ='$licencia_conducir', serums='$serums')";
+          $tipo_estudios = $_POST['tipo_estudios'];
+          $nivel_estudios = $_POST['nivel_estudios_edit'];
+          $centro_estudios = strtoupper($_POST['centro_estudios']);
+          $carrera = strtoupper($_POST['carrera']);
+          $colegiatura = $_POST['colegiatura_edit'];
+          $fecha_inicio = $_POST['fecha_inicio'];
+          $fecha_fin = $_POST['fecha_fin'];
+          if ($nivel_estudios == 'ESTUDIANTE') {
+            $ciclo_actual = $_POST['ciclo_actual'];
+            $sql = "UPDATE formacion_acad SET tipo_estudios_id = '$tipo_estudios',nivel_estudios = '$nivel_estudios',ciclo_actual = '$ciclo_actual',centro_estudios = '$centro_estudios',carrera = '$carrera',colegiatura = '$colegiatura',fecha_inicio='$fecha_inicio',fecha_fin = '$fecha_fin',archivo = '$nombre_archivo', brevete ='$licencia_conducir', serums='$serums' WHERE id_formacion='$idformacion'";
 
-          $result = mysqli_query($con, $sql);
-          if ($result) {
-            echo '<script> alert("Guardado exitosamente"); </script>';
-            // header('Location: ../formacion.php?dni=' . $dato_desencriptado);
-          } else {
-            echo '<script> alert("Error al guardar PRIMERA!"); </script>';
-            // header('Location: ../formacion.php?dni=' . $dato_desencriptado);
-          }
-         } elseif ($nivel_estudios == 'EGRESADO' || $nivel_estudios == 'BACHILLER') {
-          $sql = "UPDATE formacion_acad SET tipo_estudios_id = '$tipo_estudios',nivel_estudios = '$nivel_estudios',centro_estudios = '$centro_estudios',carrera = '$carrera',colegiatura = '$colegiatura',fecha_inicio='$fecha_inicio',fecha_fin = '$fecha_fin',archivo = '$nombre_archivo', brevete ='$licencia_conducir', serums='$serums')";
+            $result = mysqli_query($con, $sql);
+            if ($result) {
+              // echo '<script> alert("Guardado exitosamente"); </script>';
+              header('Location: ../formacion.php?dni=' . $dni);
+            } else {
+              echo '<script> alert("Error al guardar la información"); </script>';
+              header('Location: ../formacion.php?dni=' . $dni);
+            }
+          } elseif ($nivel_estudios == 'EGRESADO' || $nivel_estudios == 'BACHILLER') {
+            $sql = "UPDATE formacion_acad SET tipo_estudios_id = '$tipo_estudios',nivel_estudios = '$nivel_estudios',centro_estudios = '$centro_estudios',carrera = '$carrera',colegiatura = '$colegiatura',fecha_inicio='$fecha_inicio',fecha_fin = '$fecha_fin',archivo = '$nombre_archivo', brevete ='$licencia_conducir', serums='$serums' WHERE id_formacion='$idformacion'";
 
-          $result = mysqli_query($con, $sql);
-          if ($result) {
-            echo '<script> alert("Guardado exitosamente"); </script>';
-            header('Location: ../formacion.php?dni=' . $dato_desencriptado);
-          } else {
-            echo '<script> alert("Error al guardar PRIMERA!"); </script>';
-            header('Location: ../formacion.php?dni=' . $dato_desencriptado);
-          }
-         } elseif ($nivel_estudios == 'TITULADO') {
-          if ($colegiatura == 'SI') {
-            $nro_colegiatura_edit = $_POST['nro_colegiatura_edit'];
-            $fecha_colegiatura_edit = $_POST['fecha_colegiatura_edit'];
-            $fech_habilitacion = $_POST['fech_habilitacion'];
-            $tipo_profesional = $_POST['tipo_prof'];
-            if ($tipo_profesional == 'administrativo') {
-              $sql = "UPDATE formacion_acad SET tipo_estudios_id = '$tipo_estudios',nivel_estudios = '$nivel_estudios',centro_estudios = '$centro_estudios',carrera = '$carrera',colegiatura = '$colegiatura_validar',nro_colegiatura = '$nro_colegiatura_edit', fech_colegiatura='$fecha_colegiatura_edit',fech_habilitacion='$fech_habilitacion',fecha_inicio='$fecha_inicio',fecha_fin = '$fecha_fin', archivo = '$nombre_archivo', brevete ='$licencia_conducir', tipo_profesional='$tipo_profesional', serums='$serums')";
+            $result = mysqli_query($con, $sql);
+            if ($result) {
+              // echo '<script> alert("Guardado exitosamente"); </script>';
+              header('Location: ../formacion.php?dni=' . $dni);
+            } else {
+              echo '<script> alert("Error al actualizar la información."); </script>';
+              header('Location: ../formacion.php?dni=' . $dni);
+            }
+          } elseif ($nivel_estudios == 'TITULADO') {
+            if ($colegiatura == 'SI') {
+              $nro_colegiatura_edit = $_POST['nro_colegiatura_edit'];
+              $fecha_colegiatura_edit = $_POST['fecha_colegiatura_edit'];
+              $fech_habilitacion = $_POST['fech_habilitacion'];
+              $tipo_profesional = $_POST['tipo_prof'];
+              if ($tipo_profesional == 'administrativo') {
+                $sql = "UPDATE formacion_acad SET tipo_estudios_id = '$tipo_estudios',nivel_estudios = '$nivel_estudios',centro_estudios = '$centro_estudios',carrera = '$carrera',colegiatura = '$colegiatura_validar',nro_colegiatura = '$nro_colegiatura_edit', fech_colegiatura='$fecha_colegiatura_edit',fech_habilitacion='$fech_habilitacion',fecha_inicio='$fecha_inicio',fecha_fin = '$fecha_fin', archivo = '$nombre_archivo', brevete ='$licencia_conducir', tipo_profesional='$tipo_profesional', serums='$serums' WHERE id_formacion='$idformacion'";
 
-              $result = mysqli_query($con, $sql);
-              if ($result) {
-                echo '<script> alert("Guardado exitosamente"); </script>';
-                header('Location: ../formacion.php?dni=' . $dato_desencriptado);
+                $result = mysqli_query($con, $sql);
+                if ($result) {
+                  echo '<script> alert("Guardado exitosamente"); </script>';
+                  header('Location: ../formacion.php?dni=' . $dni);
+                } else {
+                  echo '<script> alert("Error al guardar PRIMERA!"); </script>';
+                  header('Location: ../formacion.php?dni=' . $dni);
+                }
               } else {
-                echo '<script> alert("Error al guardar PRIMERA!"); </script>';
-                header('Location: ../formacion.php?dni=' . $dato_desencriptado);
+                $serums = $_POST['serums'];
+                $quintil = $_POST['quintil'];
+                $sql = "UPDATE formacion_acad SET tipo_estudios_id = '$tipo_estudios',nivel_estudios = '$nivel_estudios',centro_estudios = '$centro_estudios',carrera = '$carrera',colegiatura = '$colegiatura_validar',nro_colegiatura = '$nro_colegiatura_edit', fech_colegiatura='$fecha_colegiatura_edit',fech_habilitacion='$fech_habilitacion',fecha_inicio='$fecha_inicio',fecha_fin = '$fecha_fin', archivo = '$nombre_archivo', brevete ='$licencia_conducir',tipo_profesional='$tipo_profesional',serums='$serums',valor_quintil='$quintil' WHERE id_formacion='$idformacion'";
+
+                $result = mysqli_query($con, $sql);
+                if ($result) {
+                  echo '<script> alert("Guardado exitosamente"); </script>';
+                  header('Location: ../formacion.php?dni=' . $dni);
+                } else {
+                  echo '<script> alert("Error al guardar PRIMERA!"); </script>';
+                  header('Location: ../formacion.php?dni=' . $dni);
+                }
               }
-            }else{
-              $serums = $_POST['serums'];
-              $quintil = $_POST['quintil'];
-              $sql = "UPDATE formacion_acad SET tipo_estudios_id = '$tipo_estudios',nivel_estudios = '$nivel_estudios',centro_estudios = '$centro_estudios',carrera = '$carrera',colegiatura = '$colegiatura_validar',nro_colegiatura = '$nro_colegiatura_edit', fech_colegiatura='$fecha_colegiatura_edit',fech_habilitacion='$fech_habilitacion',fecha_inicio='$fecha_inicio',fecha_fin = '$fecha_fin', archivo = '$nombre_archivo', brevete ='$licencia_conducir',tipo_profesional='$tipo_profesional',serums='$serums',valor_quintil='$quintil')";
+            } else {
+              if ($tipo_profesional == 'administrativo') {
+                $sql = "UPDATE formacion_acad SET tipo_estudios_id = '$tipo_estudios',nivel_estudios = '$nivel_estudios',centro_estudios = '$centro_estudios',carrera = '$carrera',colegiatura = '$colegiatura', fecha_inicio='$fecha_inicio',fecha_fin = '$fecha_fin', archivo = '$nombre_archivo', brevete ='$licencia_conducir', tipo_profesional='$tipo_profesional', serums='$serums' WHERE id_formacion='$idformacion'";
 
-              $result = mysqli_query($con, $sql);
-              if ($result) {
-                echo '<script> alert("Guardado exitosamente"); </script>';
-                header('Location: ../formacion.php?dni=' . $dato_desencriptado);
+                $result = mysqli_query($con, $sql);
+                if ($result) {
+                  echo '<script> alert("Guardado exitosamente"); </script>';
+                  header('Location: ../formacion.php?dni=' . $dni);
+                } else {
+                  echo '<script> alert("Error al guardar PRIMERA!"); </script>';
+                  header('Location: ../formacion.php?dni=' . $dni);
+                }
               } else {
-                echo '<script> alert("Error al guardar PRIMERA!"); </script>';
-                header('Location: ../formacion.php?dni=' . $dato_desencriptado);
+                $serums = $_POST['serums'];
+                $quintil = $_POST['quintil'];
+                $sql = "UPDATE formacion_acad SET tipo_estudios_id = '$tipo_estudios',nivel_estudios = '$nivel_estudios',centro_estudios = '$centro_estudios',carrera = '$carrera',colegiatura = '$colegiatura', fecha_inicio='$fecha_inicio',fecha_fin = '$fecha_fin', archivo = '$nombre_archivo', brevete ='$licencia_conducir', tipo_profesional='$tipo_profesional', serums='$serums',valor_quintil='$quintil' WHERE id_formacion='$idformacion'";
+
+                $result = mysqli_query($con, $sql);
+                if ($result) {
+                  echo '<script> alert("Guardado exitosamente"); </script>';
+                  header('Location: ../formacion.php?dni=' . $dni);
+                } else {
+                  echo '<script> alert("Error al guardar PRIMERA!"); </script>';
+                  header('Location: ../formacion.php?dni=' . $dni);
+                }
               }
             }
-          }else {
-            if ($tipo_profesional == 'administrativo') {
-              $sql = "UPDATE formacion_acad SET tipo_estudios_id = '$tipo_estudios',nivel_estudios = '$nivel_estudios',centro_estudios = '$centro_estudios',carrera = '$carrera',colegiatura = '$colegiatura', fecha_inicio='$fecha_inicio',fecha_fin = '$fecha_fin', archivo = '$nombre_archivo', brevete ='$licencia_conducir', tipo_profesional='$tipo_profesional', serums='$serums')";
-
-              $result = mysqli_query($con, $sql);
-              if ($result) {
-                echo '<script> alert("Guardado exitosamente"); </script>';
-                header('Location: ../formacion.php?dni=' . $dato_desencriptado);
-              } else {
-                echo '<script> alert("Error al guardar PRIMERA!"); </script>';
-                header('Location: ../formacion.php?dni=' . $dato_desencriptado);
-              }
-            }else{
-              $serums = $_POST['serums'];
-              $quintil = $_POST['quintil'];
-              $sql = "UPDATE formacion_acad SET tipo_estudios_id = '$tipo_estudios',nivel_estudios = '$nivel_estudios',centro_estudios = '$centro_estudios',carrera = '$carrera',colegiatura = '$colegiatura', fecha_inicio='$fecha_inicio',fecha_fin = '$fecha_fin', archivo = '$nombre_archivo', brevete ='$licencia_conducir', tipo_profesional='$tipo_profesional', serums='$serums',valor_quintil='$quintil')";
-
-              $result = mysqli_query($con, $sql);
-              if ($result) {
-                echo '<script> alert("Guardado exitosamente"); </script>';
-                header('Location: ../formacion.php?dni=' . $dato_desencriptado);
-              } else {
-                echo '<script> alert("Error al guardar PRIMERA!"); </script>';
-                header('Location: ../formacion.php?dni=' . $dato_desencriptado);
-              }
-            }
           }
-         } 
         } else {
           echo '<script> alert("Ocurrió algún error al subir el fichero. No pudo guardarse."); </script>';
           header('Location: ../formacion.php?dni=' . $dni);
         }
-      }  
+      }
     } else {
       $colegiatura_validar = $_POST['colegiatura_edit'];
       $licencia_conducir = $_POST['licencia_conducir'];
       $serums = $_POST['serums'];
 
-      $tipo_estudios = $_POST['tipo_estudios'];
+      $tipo_estudios = $_POST['tipo_estudios_edit'];
       $nivel_estudios = $_POST['nivel_estudios_edit'];
       $centro_estudios = strtoupper($_POST['centro_estudios']);
       $carrera = strtoupper($_POST['carrera']);
@@ -278,26 +278,26 @@ if (isset($_POST['editar'])) {
 
       if ($nivel_estudios == 'ESTUDIANTE') {
         $ciclo_actual = $_POST['ciclo_actual'];
-        $sql = "UPDATE formacion_acad SET tipo_estudios_id = '$tipo_estudios',nivel_estudios = '$nivel_estudios',ciclo_actual = '$ciclo_actual',centro_estudios = '$centro_estudios',carrera = '$carrera',colegiatura = '$colegiatura',fecha_inicio='$fecha_inicio',fecha_fin = '$fecha_fin',archivo = '$nombre_archivo', brevete ='$licencia_conducir', serums='$serums')";
+        $sql = "UPDATE formacion_acad SET tipo_estudios_id = '$tipo_estudios',nivel_estudios = '$nivel_estudios',ciclo_actual = '$ciclo_actual',centro_estudios = '$centro_estudios',carrera = '$carrera',colegiatura = '$colegiatura',fecha_inicio='$fecha_inicio',fecha_fin = '$fecha_fin', brevete ='$licencia_conducir', serums='$serums' WHERE id_formacion='$idformacion'";
 
         $result = mysqli_query($con, $sql);
         if ($result) {
           echo '<script> alert("Guardado exitosamente"); </script>';
-          // header('Location: ../formacion.php?dni=' . $dato_desencriptado);
+          // header('Location: ../formacion.php?dni=' . $dni);
         } else {
           echo '<script> alert("Error al guardar PRIMERA!"); </script>';
-          // header('Location: ../formacion.php?dni=' . $dato_desencriptado);
+          // header('Location: ../formacion.php?dni=' . $dni);
         }
       } elseif ($nivel_estudios == 'EGRESADO' || $nivel_estudios == 'BACHILLER') {
-        $sql = "UPDATE formacion_acad SET tipo_estudios_id = '$tipo_estudios',nivel_estudios = '$nivel_estudios',centro_estudios = '$centro_estudios',carrera = '$carrera',colegiatura = '$colegiatura',fecha_inicio='$fecha_inicio',fecha_fin = '$fecha_fin',archivo = '$nombre_archivo', brevete ='$licencia_conducir', serums='$serums')";
+        $sql = "UPDATE formacion_acad SET tipo_estudios_id = '$tipo_estudios',nivel_estudios = '$nivel_estudios',centro_estudios = '$centro_estudios',carrera = '$carrera',colegiatura = '$colegiatura',fecha_inicio='$fecha_inicio',fecha_fin = '$fecha_fin', brevete ='$licencia_conducir', serums='$serums' WHERE id_formacion='$idformacion'";
 
         $result = mysqli_query($con, $sql);
         if ($result) {
-          echo '<script> alert("Guardado exitosamente"); </script>';
-          // header('Location: ../formacion.php?dni=' . $dato_desencriptado);
+          // echo '<script> alert("Guardado exitosamente"); </script>';
+          header('Location: ../formacion.php?dni=' . $dni);
         } else {
-          echo '<script> alert("Error al guardar PRIMERA!"); </script>';
-          // header('Location: ../formacion.php?dni=' . $dato_desencriptado);
+          echo '<script> alert("Error al actualizar tu información."); </script>';
+          header('Location: ../formacion.php?dni=' . $dni);
         }
       } elseif ($nivel_estudios == 'TITULADO') {
         if ($colegiatura == 'SI') {
@@ -306,58 +306,58 @@ if (isset($_POST['editar'])) {
           $fech_habilitacion = $_POST['fech_habilitacion'];
           $tipo_profesional = $_POST['tipo_prof'];
           if ($tipo_profesional == 'administrativo') {
-            $sql = "UPDATE formacion_acad SET tipo_estudios_id = '$tipo_estudios',nivel_estudios = '$nivel_estudios',centro_estudios = '$centro_estudios',carrera = '$carrera',colegiatura = '$colegiatura_validar',nro_colegiatura = '$nro_colegiatura_edit', fech_colegiatura='$fecha_colegiatura_edit',fech_habilitacion='$fech_habilitacion',fecha_inicio='$fecha_inicio',fecha_fin = '$fecha_fin', archivo = '$nombre_archivo', brevete ='$licencia_conducir', tipo_profesional='$tipo_profesional', serums='$serums')";
+            $sql = "UPDATE formacion_acad SET tipo_estudios_id = '$tipo_estudios',nivel_estudios = '$nivel_estudios',centro_estudios = '$centro_estudios',carrera = '$carrera',colegiatura = '$colegiatura_validar',nro_colegiatura = '$nro_colegiatura_edit', fech_colegiatura='$fecha_colegiatura_edit',fech_habilitacion='$fech_habilitacion',fecha_inicio='$fecha_inicio',fecha_fin = '$fecha_fin', brevete ='$licencia_conducir', tipo_profesional='$tipo_profesional', serums='$serums' WHERE id_formacion='$idformacion'";
 
             $result = mysqli_query($con, $sql);
             if ($result) {
               echo '<script> alert("Guardado exitosamente"); </script>';
-              header('Location: ../formacion.php?dni=' . $dato_desencriptado);
+              header('Location: ../formacion.php?dni=' . $dni);
             } else {
               echo '<script> alert("Error al guardar PRIMERA!"); </script>';
-              header('Location: ../formacion.php?dni=' . $dato_desencriptado);
+              header('Location: ../formacion.php?dni=' . $dni);
             }
-          }else{
+          } else {
             $serums = $_POST['serums'];
             $quintil = $_POST['quintil'];
-            $sql = "UPDATE formacion_acad SET tipo_estudios_id = '$tipo_estudios',nivel_estudios = '$nivel_estudios',centro_estudios = '$centro_estudios',carrera = '$carrera',colegiatura = '$colegiatura_validar',nro_colegiatura = '$nro_colegiatura_edit', fech_colegiatura='$fecha_colegiatura_edit',fech_habilitacion='$fech_habilitacion',fecha_inicio='$fecha_inicio',fecha_fin = '$fecha_fin', archivo = '$nombre_archivo', brevete ='$licencia_conducir',tipo_profesional='$tipo_profesional',serums='$serums',valor_quintil='$quintil')";
+            $sql = "UPDATE formacion_acad SET tipo_estudios_id = '$tipo_estudios',nivel_estudios = '$nivel_estudios',centro_estudios = '$centro_estudios',carrera = '$carrera',colegiatura = '$colegiatura_validar',nro_colegiatura = '$nro_colegiatura_edit', fech_colegiatura='$fecha_colegiatura_edit',fech_habilitacion='$fech_habilitacion',fecha_inicio='$fecha_inicio',fecha_fin = '$fecha_fin', archivo = '$nombre_archivo', brevete ='$licencia_conducir',tipo_profesional='$tipo_profesional',serums='$serums',valor_quintil='$quintil' WHERE id_formacion='$idformacion'";
 
             $result = mysqli_query($con, $sql);
             if ($result) {
               echo '<script> alert("Guardado exitosamente"); </script>';
-              header('Location: ../formacion.php?dni=' . $dato_desencriptado);
+              header('Location: ../formacion.php?dni=' . $dni);
             } else {
               echo '<script> alert("Error al guardar PRIMERA!"); </script>';
-              header('Location: ../formacion.php?dni=' . $dato_desencriptado);
+              header('Location: ../formacion.php?dni=' . $dni);
             }
           }
-        }else {
+        } else {
           if ($tipo_profesional == 'administrativo') {
-            $sql = "UPDATE formacion_acad SET tipo_estudios_id = '$tipo_estudios',nivel_estudios = '$nivel_estudios',centro_estudios = '$centro_estudios',carrera = '$carrera',colegiatura = '$colegiatura', fecha_inicio='$fecha_inicio',fecha_fin = '$fecha_fin', archivo = '$nombre_archivo', brevete ='$licencia_conducir', tipo_profesional='$tipo_profesional', serums='$serums')";
+            $sql = "UPDATE formacion_acad SET tipo_estudios_id = '$tipo_estudios',nivel_estudios = '$nivel_estudios',centro_estudios = '$centro_estudios',carrera = '$carrera',colegiatura = '$colegiatura', fecha_inicio='$fecha_inicio',fecha_fin = '$fecha_fin', archivo = '$nombre_archivo', brevete ='$licencia_conducir', tipo_profesional='$tipo_profesional', serums='$serums' WHERE id_formacion='$idformacion'";
 
             $result = mysqli_query($con, $sql);
             if ($result) {
               echo '<script> alert("Guardado exitosamente"); </script>';
-              header('Location: ../formacion.php?dni=' . $dato_desencriptado);
+              header('Location: ../formacion.php?dni=' . $dni);
             } else {
               echo '<script> alert("Error al guardar PRIMERA!"); </script>';
-              header('Location: ../formacion.php?dni=' . $dato_desencriptado);
+              header('Location: ../formacion.php?dni=' . $dni);
             }
-          }else{
+          } else {
             $serums = $_POST['serums'];
             $quintil = $_POST['quintil'];
-            $sql = "UPDATE formacion_acad SET tipo_estudios_id = '$tipo_estudios',nivel_estudios = '$nivel_estudios',centro_estudios = '$centro_estudios',carrera = '$carrera',colegiatura = '$colegiatura', fecha_inicio='$fecha_inicio',fecha_fin = '$fecha_fin', archivo = '$nombre_archivo', brevete ='$licencia_conducir', tipo_profesional='$tipo_profesional', serums='$serums',valor_quintil='$quintil')";
+            $sql = "UPDATE formacion_acad SET tipo_estudios_id = '$tipo_estudios',nivel_estudios = '$nivel_estudios',centro_estudios = '$centro_estudios',carrera = '$carrera',colegiatura = '$colegiatura', fecha_inicio='$fecha_inicio',fecha_fin = '$fecha_fin', archivo = '$nombre_archivo', brevete ='$licencia_conducir', tipo_profesional='$tipo_profesional', serums='$serums',valor_quintil='$quintil' WHERE id_formacion='$idformacion'";
 
             $result = mysqli_query($con, $sql);
             if ($result) {
               echo '<script> alert("Guardado exitosamente"); </script>';
-              header('Location: ../formacion.php?dni=' . $dato_desencriptado);
+              header('Location: ../formacion.php?dni=' . $dni);
             } else {
               echo '<script> alert("Error al guardar PRIMERA!"); </script>';
-              header('Location: ../formacion.php?dni=' . $dato_desencriptado);
+              header('Location: ../formacion.php?dni=' . $dni);
             }
           }
         }
-      } 
+      }
     }
-  } 
+  }
 }

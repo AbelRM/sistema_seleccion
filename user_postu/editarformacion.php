@@ -35,9 +35,9 @@ if (empty($_SESSION['active'])) {
   <div id="wrapper">
     <?php
     include 'funcs/mcript.php';
-
+    $dni = $_GET['dni'];
     $dato_desencriptado = $_GET['dni'];
-    $dni = $desencriptar($dato_desencriptado);
+    // $dni = $desencriptar($dato_desencriptado);
 
     $sql = "SELECT * FROM usuarios where dni=$dni";
     $datos = mysqli_query($con, $sql) or die(mysqli_error($sql2));;
@@ -173,11 +173,11 @@ if (empty($_SESSION['active'])) {
                   <div class="col-md-3 col-sm-12 form-group">
                     <label for="title">(*) última fecha habilitación</label>
                     <input type="date" name="fech_habilitacion" id="fech_habilitacion" class="form-control" value="<?php
-                                                                                                                              if (is_null($row['fech_habilitacion'])) {
-                                                                                                                                echo "yyyy-MM-dd";
-                                                                                                                              } else {
-                                                                                                                                echo $row['fech_habilitacion'];
-                                                                                                                              } ?>">
+                                                                                                                    if (is_null($row['fech_habilitacion'])) {
+                                                                                                                      echo "yyyy-MM-dd";
+                                                                                                                    } else {
+                                                                                                                      echo $row['fech_habilitacion'];
+                                                                                                                    } ?>">
                   </div>
                   <div class="col-md-3 col-sm-12 form-group">
                     <label for="title">(**) Fecha Inicio</label>
@@ -207,8 +207,9 @@ if (empty($_SESSION['active'])) {
                     </select>
                   </div>
                   <div class="col-md-3 col-sm-12 form-group" id="div_tipo_profesional">
+                    <?php $tipo_prof = $row['tipo_profesional'] ?>
                     <label for="title">(*) Tipo profesional</label>
-                    <select name="tipo_prof" id="tipo_prof" class="form-control" onChange="tipo_profesional_select(this)">
+                    <select name="tipo_prof" id="tipo_prof" class="form-control">
                       <option value="vacio" selected>Elegir...</option>
                       <option value="administrativo">Administrativo</option>
                       <option value="asistencial">Asistencial</option>
@@ -303,6 +304,7 @@ if (empty($_SESSION['active'])) {
       $('#tipo_estudios_select > option[value="<?php echo $tipo_estudio_edit ?>"]').attr('selected', 'selected');
       $('#colegiatura_edit > option[value="<?php echo $colegiatura_edit ?>"]').attr('selected', 'selected');
       $('#licencia_conducir_editar > option[value="<?php echo $brevete_edit ?>"]').attr('selected', 'selected');
+      $('#tipo_prof > option[value="<?php echo $tipo_prof ?>"]').attr('selected', 'selected');
     });
   </script>
   <script src="js/script_formacion.js"></script>

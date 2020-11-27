@@ -1,22 +1,23 @@
 <?php
-  include 'conexion.php';
-  include "funcs/mcript.php";
-  session_start();
-  if(empty($_SESSION['active'])){
-    header("Location: ../index.php");
-  }
+include 'conexion.php';
+include "funcs/mcript.php";
+session_start();
+if (empty($_SESSION['active'])) {
+  header("Location: ../index.php");
+}
 
-  // if(!isset($_SESSION['rol'])){
-  //   header('location: ../index.php');
-  // }else{
-  //   if($_SESSION['rol'] != 2){
-  //     header('location: ../index.php');
-  //   }
-  // }
+// if(!isset($_SESSION['rol'])){
+//   header('location: ../index.php');
+// }else{
+//   if($_SESSION['rol'] != 2){
+//     header('location: ../index.php');
+//   }
+// }
 
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
   <meta charset="utf-8">
@@ -40,15 +41,16 @@
 <body id="page-top">
 
   <!-- Page Wrapper -->
-  <div id="wrapper">  
-    <?php     
-      $dato_desencriptado = $_GET['dni'];
-      $dni = $desencriptar($dato_desencriptado);
-      
-      $sql="SELECT * FROM usuarios where dni=$dni";
-      $datos=mysqli_query($con,$sql) or die(mysqli_error()); ;
-      $fila= mysqli_fetch_array($datos);
-      include 'menu.php';
+  <div id="wrapper">
+    <?php
+    $dni = $_GET['dni'];
+    $dato_desencriptado = $_GET['dni'];
+    // $dni = $desencriptar($dato_desencriptado);
+
+    $sql = "SELECT * FROM usuarios where dni=$dni";
+    $datos = mysqli_query($con, $sql) or die(mysqli_error($datos));;
+    $fila = mysqli_fetch_array($datos);
+    include 'menu.php';
     ?>
 
     <!-- Content Wrapper -->
@@ -63,12 +65,6 @@
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
-
-          <!-- Page Heading -->
-          <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
-          </div>
 
           <!-- Content Row -->
           <div class="row">
@@ -123,17 +119,17 @@
   <div class="modal fade" id="cerrarsesion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
-          <div class="modal-header">
+        <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">¿Desea cerrar sesión?</h5>
           <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">×</span>
+            <span aria-hidden="true">×</span>
           </button>
-          </div>
-          <div class="modal-body">Seleccione "Cerrar sesión" a continuación si está listo para finalizar su sesión actual.</div>
-          <div class="modal-footer">
+        </div>
+        <div class="modal-body">Seleccione "Cerrar sesión" a continuación si está listo para finalizar su sesión actual.</div>
+        <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
           <a class="btn btn-primary" href="procesos/cerrar_sesion.php">Cerrar sesión</a>
-          </div>
+        </div>
       </div>
     </div>
   </div>

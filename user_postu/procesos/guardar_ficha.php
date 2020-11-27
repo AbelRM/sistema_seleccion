@@ -6,24 +6,18 @@ $dni_post = $_POST['dni_post'];
 
 // DATOS PERSONALES
 $fech_nac = $_POST['fech_nac'];
+$pais = $_POST['pais'];
 $civil = $_POST['civil'];
 $sexo = $_POST['sexo'];
 $num_emer = $_POST['num_emer'];
-$nomb_parent = $_POST['nomb_parent'];
+$nomb_parent = strtoupper($_POST['nomb_parent']);
 $ruc = $_POST['ruc'];
 $cuarta = $_POST['cuarta'];
 $cuenta_banc = $_POST['cuenta_banc'];
 $discapacidad = $_POST['discapacidad'];
 $tip_discapacidad = $_POST['tip_discapacidad'];
 $tip_sangre = $_POST['tip_sangre'];
-$alergias = $_POST['alergias'];
-$pais = $_POST['pais'];
-$cuenta_banc = $_POST['cuenta_banc'];
-$discapacidad = $_POST['discapacidad'];
-$tip_discapacidad = $_POST['tip_discapacidad'];
-$tip_sangre = $_POST['tip_sangre'];
-$alergias = $_POST['alergias'];
-$pais = $_POST['pais'];
+$alergias = strtoupper($_POST['alergias']);
 $servicio_militar = $_POST['servicio_militar'];
 $deportista_calif = $_POST['deportista_calif'];
 
@@ -34,44 +28,44 @@ if ($pension = 'NINGUNA') {
     $nombre_afp_pregunta = $_POST['nombre_afp_pregunta'];
 
     $sql = "UPDATE postulante SET estado_civil='" . $civil . "', sexo = '" . $sexo . "', fech_nac = '" . $fech_nac . "', num_cuenta = '" . $cuenta_banc . "',  celular_emer ='" . $num_emer . "',parentesco_emer='" . $nomb_parent . "',ruc ='" . $ruc . "',
-     discapacidad = '" . $discapacidad . "', tipo_discap = '" . $tip_discapacidad . "',tipo_sangre = '" . $tip_sangre . "', alergias = '" . $alergias . "',suspension_cuarta = '" . $cuarta . "',seguro = '" . $pension . "', pertenecer_seguro = '" . $pertenecer_pension . "',
+     discapacidad = '" . $discapacidad . "', tipo_discap = '" . $tip_discapacidad . "',tipo_sangre = '" . $tip_sangre . "', alergias = '" . $alergias . "',suspension_cuarta = '" . $cuarta . "',seguro = '" . $pension . "', desea_pertenecer_seguro = '" . $pertenecer_pension . "',
      nombre_afp = '" . $nombre_afp_pregunta . "',pais = '" . $pais . "' ,servicio_militar = '" . $servicio_militar . "', 
-     deportista_calificado = '" . $deportista_calif . "' WHERE dni='" . $dni_post . "' ";
+     deportista_calificado = '" . $deportista_calif . "' WHERE idpostulante='" . $idpostulante . "' ";
     $datos = mysqli_query($con, $sql);
   } else {
     $sql = "UPDATE postulante SET estado_civil='" . $civil . "', sexo = '" . $sexo . "', fech_nac = '" . $fech_nac . "', num_cuenta = '" . $cuenta_banc . "',  celular_emer ='" . $num_emer . "',parentesco_emer='" . $nomb_parent . "',ruc ='" . $ruc . "',
-     discapacidad = '" . $discapacidad . "', tipo_discap = '" . $tip_discapacidad . "',tipo_sangre = '" . $tip_sangre . "', alergias = '" . $alergias . "',suspension_cuarta = '" . $cuarta . "',seguro = '" . $pension . "', pertenecer_seguro = '" . $pertenecer_pension . "',
+     discapacidad = '" . $discapacidad . "', tipo_discap = '" . $tip_discapacidad . "',tipo_sangre = '" . $tip_sangre . "', alergias = '" . $alergias . "',suspension_cuarta = '" . $cuarta . "',seguro = '" . $pension . "', desea_pertenecer_seguro = '" . $pertenecer_pension . "',
      pais = '" . $pais . "' ,servicio_militar = '" . $servicio_militar . "', 
-     deportista_calificado = '" . $deportista_calif . "' WHERE dni='" . $dni_post . "' ";
+     deportista_calificado = '" . $deportista_calif . "' WHERE idpostulante='" . $idpostulante . "' ";
     $datos = mysqli_query($con, $sql);
   }
 } elseif ($pension = 'AFP') {
   $nombre_afp = $_POST['nombre_afp'];
   $codigo_cussp = $_POST['codigo_cussp'];
   $sql = "UPDATE postulante SET estado_civil='" . $civil . "', sexo = '" . $sexo . "', fech_nac = '" . $fech_nac . "', num_cuenta = '" . $cuenta_banc . "',  celular_emer ='" . $num_emer . "',parentesco_emer='" . $nomb_parent . "',ruc ='" . $ruc . "',
-     discapacidad = '" . $discapacidad . "', tipo_discap = '" . $tip_discapacidad . "',tipo_sangre = '" . $tip_sangre . "', alergias = '" . $alergias . "', suspension_cuarta = '" . $cuarta . "',seguro = '" . $pension . "', pertenecer_seguro = '" . $pertenecer_pension . "',
-     nombre_afp = '" . $nombre_afp_pregunta . "',pais = '" . $pais . "' ,servicio_militar = '" . $servicio_militar . "', 
-     deportista_calificado = '" . $deportista_calif . "' WHERE dni='" . $dni_post . "' ";
+     discapacidad = '" . $discapacidad . "', tipo_discap = '" . $tip_discapacidad . "', tipo_sangre = '" . $tip_sangre . "', alergias = '" . $alergias . "', suspension_cuarta = '" . $cuarta . "',seguro = '" . $pension . "', nombre_afp = '" . $nombre_afp . "',
+     codigo_cussp = '" . $codigo_cussp . "', pais = '" . $pais . "' ,servicio_militar = '" . $servicio_militar . "', 
+     deportista_calificado = '" . $deportista_calif . "' WHERE idpostulante='" . $idpostulante . "' ";
   $datos = mysqli_query($con, $sql);
 } else {
   $nombre_afp = $_POST['nombre_afp'];
   $codigo_cussp = $_POST['codigo_cussp'];
 
   $sql = "UPDATE postulante SET estado_civil='" . $civil . "', sexo = '" . $sexo . "', fech_nac = '" . $fech_nac . "', num_cuenta = '" . $cuenta_banc . "',  celular_emer ='" . $num_emer . "',parentesco_emer='" . $nomb_parent . "',ruc ='" . $ruc . "',
-     discapacidad = '" . $discapacidad . "', tipo_discap = '" . $tip_discapacidad . "',tipo_sangre = '" . $tip_sangre . "', alergias = '" . $alergias . "', suspension_cuarta = '" . $cuarta . "',seguro = '" . $pension . "', pais = '" . $pais . "' ,servicio_militar = '" . $servicio_militar . "', deportista_calificado = '" . $deportista_calif . "' WHERE dni='" . $dni_post . "' ";
+     discapacidad = '" . $discapacidad . "', tipo_discap = '" . $tip_discapacidad . "',tipo_sangre = '" . $tip_sangre . "', alergias = '" . $alergias . "', suspension_cuarta = '" . $cuarta . "',seguro = '" . $pension . "', pais = '" . $pais . "' ,servicio_militar = '" . $servicio_militar . "', deportista_calificado = '" . $deportista_calif . "' WHERE idpostulante='" . $idpostulante . "' ";
   $datos = mysqli_query($con, $sql);
 }
 
 
 //DATOS DOMICILIO
 $tipo_via = $_POST['tipo_via'];
-$nomb_via = $_POST['nomb_via'];
+$nomb_via = strtoupper($_POST['nomb_via']);
 $tipo_zona = $_POST['tipo_zona'];
-$nomb_zona = $_POST['nomb_zona'];
+$nomb_zona = strtoupper($_POST['nomb_zona']);
 $numero = $_POST['numero'];
 $manzana = $_POST['manzana'];
 $lote = $_POST['lote'];
-$referencia = $_POST['referencia'];
+$referencia = strtoupper($_POST['referencia']);
 $distrito1 = $_POST['distrito_id1'];
 
 $sql2 = "INSERT INTO domicilio_post (tip_via, nomb_via,tip_zona, nomb_zona, referencia, numero, manzana, lote, postulante_idpostulante,distrito_idistrito) 
@@ -108,6 +102,8 @@ if ($datos == 1) {
         $items2 = ($_POST['apellidos']);
         $items3 = ($_POST['dni']);
         $items4 = ($_POST['parentesco']);
+        $items5 = ($_POST['cargo']);
+        $items6 = ($_POST['area']);
 
         ///////////// SEPARAR VALORES DE ARRAYS, EN ESTE CASO SON 5 ARRAYS UNO POR CADA INPUT (ID, NOMBRE, CARRERA Y GRUPO////////////////////)
         while ($true == true) {
@@ -117,23 +113,26 @@ if ($datos == 1) {
           $item2 = current($items2);
           $item3 = current($items3);
           $item4 = current($items4);
+          $item5 = current($items5);
+          $item6 = current($items6);
 
           ////// ASIGNARLOS A VARIABLES ///////////////////
           $nombre = (($item1 !== false) ? $item1 : ", &nbsp;");
           $apellidos = (($item2 !== false) ? $item2 : ", &nbsp;");
           $dni = (($item3 !== false) ? $item3 : ", &nbsp;");
           $parentesco = (($item4 !== false) ? $item4 : ", &nbsp;");
+          $cargo = (($item5 !== false) ? $item5 : ", &nbsp;");
+          $area = (($item6 !== false) ? $item6 : ", &nbsp;");
 
           //// CONCATENAR LOS VALORES EN ORDEN PARA SU FUTURA INSERCIÓN ////////
-          $valores = '("' . $nombre . '","' . $apellidos . '","' . $dni . '","' . $parentesco . '","' . $idpostulante . '","' . $familiares_lab . '"),';
+          $valores = '("' . strtoupper($nombre) . '","' . strtoupper($apellidos) . '","' . $dni . '","' . $parentesco . '","' . $idpostulante . '","' . $familiares_lab . '","' . strtoupper($cargo) . '","' . strtoupper($area) . '"),';
 
           //////// YA QUE TERMINA CON COMA CADA FILA, SE RESTA CON LA FUNCIÓN SUBSTR EN LA ULTIMA FILA /////////////////////
           $valoresQ = substr($valores, 0, -1);
 
           ///////// QUERY DE INSERCIÓN ////////////////////////////
           // include_once('conexion.php');
-          $sql3 = "INSERT INTO familia_post (nombre, apellidos, fech_nac, dni, parentesco, labora, postulante_idpostulante, familiar_trabajando) 
-                    VALUES $valoresQ";
+          $sql3 = "INSERT INTO familia_post (nombre, apellidos, dni, parentesco, postulante_idpostulante, familiar_trabajando, cargo, area) VALUES $valoresQ";
 
           $sqlRes = $con->query($sql3) or mysqli_error($con);
 
@@ -142,9 +141,11 @@ if ($datos == 1) {
           $item2 = next($items2);
           $item3 = next($items3);
           $item4 = next($items4);
+          $item5 = next($items5);
+          $item6 = next($items6);
 
           // Check terminator
-          if ($item1 === false && $item2 === false && $item3 === false && $item4 === false) break;
+          if ($item1 === false && $item2 === false && $item3 === false && $item4 === false && $item5 === false && $item6 === false) break;
         }
         session_start();
         header('Location: ../index.php?dni=' . $dni_post);

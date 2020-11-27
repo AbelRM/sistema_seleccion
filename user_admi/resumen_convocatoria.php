@@ -36,11 +36,12 @@ if (empty($_SESSION['active'])) {
   <!-- Page Wrapper -->
   <div id="wrapper">
     <?php
+    $dni = $_GET['dni'];
     $dato_desencriptado = $_GET['dni'];
-    $dni = $desencriptar($dato_desencriptado);
+    // $dni = $desencriptar($dato_desencriptado);
 
     $sql = "SELECT * FROM usuarios where dni=$dni";
-    $datos = mysqli_query($con, $sql) or die(mysqli_error());;
+    $datos = mysqli_query($con, $sql) or die(mysqli_error($datos));;
     $fila = mysqli_fetch_array($datos);
     include 'menu.php';
 
@@ -85,7 +86,7 @@ if (empty($_SESSION['active'])) {
                   <div class="form-row">
                     <div class="form-group col-md-3 col-sm-12">
                       <label for="inputEmail4">Número de convocatoria</label>
-                      <input type="text" class="form-control" value="<?php echo $fila['num_con'] ?>" disabled="true">
+                      <input type="text" class="form-control" value="<?php echo $fila['num_con'] . "-" . $fila['anio_con']  ?>" disabled="true">
                     </div>
                     <div class="form-group col-md-3 col-sm-12">
                       <label for="inputEmail4">Tipo de convocatoria</label>

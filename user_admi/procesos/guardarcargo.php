@@ -11,5 +11,4 @@
     $result=mysqli_query($con,$sql);
 
 header('Location: ../cargos.php?dni='.$dni);
-mysqli_close($con);  
-?>
+mysqli_close($con);

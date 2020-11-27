@@ -34,9 +34,9 @@ if (empty($_SESSION['active'])) {
   <div id="wrapper">
     <?php
     include 'funcs/mcript.php';
-
+    $dni = $_GET['dni'];
     $dato_desencriptado = $_GET['dni'];
-    $dni = $desencriptar($dato_desencriptado);
+    // $dni = $desencriptar($dato_desencriptado);
 
     $sql = "SELECT * FROM usuarios where dni=$dni";
     $datos = mysqli_query($con, $sql) or die(mysqli_error($datos));
@@ -211,7 +211,7 @@ if (empty($_SESSION['active'])) {
                                       <td style="font-size: 12px;"><?php echo $row6['fecha_inicio'] ?></td>
                                       <td style="font-size: 12px;"><?php echo $row6['fecha_fin'] ?></td>
                                       <td><a href="ver_pdf_expe4.php?id=<?php echo $row6['id_4puntos'] ?>&dni=<?php echo $dato_desencriptado ?>" target="_blank"><?php echo $row6['archivos']; ?></a></td>
-                                      <td style="display: none;"><?php echo $row6['tipo_comprobante'] ?></td>
+                                      <td style="font-size: 12px;"><?php echo $row6['tipo_comprobante'] ?></td>
                                       <td style="display: none;"><?php echo $row6['nro_contrato'] ?></td>
                                       <td style="display: none;"><?php echo $row6['fech_emision'] ?></td>
                                       <td style="display: none;"><?php echo $row6['monto_boleta'] ?></td>
@@ -260,6 +260,9 @@ if (empty($_SESSION['active'])) {
                                   <th>Fecha Término</th>
                                   <th>Archivo</th>
                                   <th>Tipo comprobante</th>
+                                  <th style="display: none">nro_contrato</th>
+                                  <th style="display: none">fecha_emision</th>
+                                  <th style="display: none">monto_boleta</th>
                                   <th>Acciones</th>
                                 </tr>
                               </thead>
@@ -281,6 +284,9 @@ if (empty($_SESSION['active'])) {
                                       <td style="font-size: 12px;"><?php echo $row7['fecha_fin'] ?></td>
                                       <td><a href="ver_pdf_expe3.php?id=<?php echo $row7['id_3puntos'] ?>&dni=<?php echo $dato_desencriptado ?>" target="_blank"><?php echo $row7['archivos']; ?></a></td>
                                       <td style="font-size: 12px;"><?php echo $row7['tipo_comprobante'] ?></td>
+                                      <td style="display: none;"><?php echo $row7['nro_contrato'] ?></td>
+                                      <td style="display: none;"><?php echo $row7['fech_emision'] ?></td>
+                                      <td style="display: none;"><?php echo $row7['monto_boleta'] ?></td>
                                       <td class="d-flex justify-content-center">
                                         <button class="btn btn-success btn-sm m-1 updateBtn2"><i class="fa fa-edit"></i></button>
                                         <button class="btn btn-danger btn-sm m-1 deleteBtn2"><i class="fa fa-times-circle"></i></button>
@@ -327,6 +333,9 @@ if (empty($_SESSION['active'])) {
                                   <th>Fecha Término</th>
                                   <th>Archivos</th>
                                   <th>Tipo comprobante</th>
+                                  <th style="display: none">nro_contrato</th>
+                                  <th style="display: none">fecha_emision</th>
+                                  <th style="display: none">monto_boleta</th>
                                   <th>Acciones</th>
                                 </tr>
                               </thead>
@@ -348,6 +357,9 @@ if (empty($_SESSION['active'])) {
                                       <td style="font-size: 12px;"><?php echo $row8['fecha_fin'] ?></td>
                                       <td><a href="ver_pdf_expe1.php?id=<?php echo $row8['id_1puntos'] ?>&dni=<?php echo $dato_desencriptado ?>" target="_blank"><?php echo $row8['archivos']; ?></a></td>
                                       <td style="font-size: 12px;"><?php echo $row8['tipo_comprobante'] ?></td>
+                                      <td style="display: none;"><?php echo $row8['nro_contrato'] ?></td>
+                                      <td style="display: none;"><?php echo $row8['fech_emision'] ?></td>
+                                      <td style="display: none;"><?php echo $row8['monto_boleta'] ?></td>
                                       <td class="d-flex justify-content-center">
                                         <button class="btn btn-success btn-sm m-1 updateBtn3"><i class="fa fa-edit"></i></button>
                                         <button class="btn btn-danger btn-sm m-1 deleteBtn3"><i class="fa fa-times-circle"></i></button>
@@ -442,11 +454,11 @@ if (empty($_SESSION['active'])) {
                                   <th>Cargo/Función desempeñada</th>
                                   <th>Fecha Inicio</th>
                                   <th>Fecha Término</th>
+                                  <th>Archivos</th>
                                   <th>Tipo comprobante</th>
                                   <th style="display: none">nro_contrato</th>
                                   <th style="display: none">fecha_emision</th>
                                   <th style="display: none">monto_boleta</th>
-                                  <th>Archivos</th>
                                   <th>Acciones</th>
                                 </tr>
                               </thead>
@@ -465,11 +477,11 @@ if (empty($_SESSION['active'])) {
                                       <td style="font-size: 12px;"><?php echo $row9['cargo'] ?></td>
                                       <td style="font-size: 12px;"><?php echo $row9['fecha_inicio'] ?></td>
                                       <td style="font-size: 12px;"><?php echo $row9['fecha_fin'] ?></td>
+                                      <td><a href="ver_pdf_expe4.php?id=<?php echo $row9['id_4puntos'] ?>&dni=<?php echo $dato_desencriptado ?>" target="_blank"><?php echo $row9['archivos']; ?></a></td>
+                                      <td style="font-size: 12px;"><?php echo $row9['tipo_comprobante'] ?></td>
                                       <td style="display: none;"><?php echo $row9['nro_contrato'] ?></td>
                                       <td style="display: none;"><?php echo $row9['fech_emision'] ?></td>
                                       <td style="display: none;"><?php echo $row9['monto_boleta'] ?></td>
-                                      <td><a href="ver_pdf_expe4.php?id=<?php echo $row9['id_4puntos'] ?>&dni=<?php echo $dato_desencriptado ?>" target="_blank"><?php echo $row9['archivos']; ?></a></td>
-                                      <td><?php echo $row9['tipo_comprobante'] ?></td>
 
                                       <td class="d-flex justify-content-center">
                                         <button class="btn btn-success btn-sm m-1 updateBtn4"><i class="fa fa-edit"></i></button>
@@ -516,6 +528,9 @@ if (empty($_SESSION['active'])) {
                                   <th>Fecha Término</th>
                                   <th>Archivos</th>
                                   <th>Tipo comprobante</th>
+                                  <th style="display: none">nro_contrato</th>
+                                  <th style="display: none">fecha_emision</th>
+                                  <th style="display: none">monto_boleta</th>
                                   <th>Acciones</th>
                                 </tr>
                               </thead>
@@ -536,6 +551,9 @@ if (empty($_SESSION['active'])) {
                                       <td style="font-size:12px;"><?php echo $row10['fecha_fin'] ?></td>
                                       <td><a href="ver_pdf_expe3.php?id=<?php echo $row10['id_3puntos'] ?>&dni=<?php echo $dato_desencriptado ?>" target="_blank"><?php echo $row10['archivos']; ?></a></td>
                                       <td style="font-size: 12px;"><?php echo $row10['tipo_comprobante'] ?></td>
+                                      <td style="display: none;"><?php echo $row10['nro_contrato'] ?></td>
+                                      <td style="display: none;"><?php echo $row10['fech_emision'] ?></td>
+                                      <td style="display: none;"><?php echo $row10['monto_boleta'] ?></td>
                                       <td class="d-flex justify-content-center">
                                         <button class="btn btn-success btn-sm m-1 updateBtn2"><i class="fa fa-edit"></i></button>
                                         <button class="btn btn-danger btn-sm m-1 deleteBtn2"><i class="fa fa-times-circle"></i></button>
@@ -581,6 +599,9 @@ if (empty($_SESSION['active'])) {
                                   <th>Fecha Término</th>
                                   <th>Archivos</th>
                                   <th>Tipo comprobante</th>
+                                  <th style="display: none">nro_contrato</th>
+                                  <th style="display: none">fecha_emision</th>
+                                  <th style="display: none">monto_boleta</th>
                                   <th>Acciones</th>
                                 </tr>
                               </thead>
@@ -602,6 +623,9 @@ if (empty($_SESSION['active'])) {
                                       <td style="font-size: 12px;"><?php echo $row11['fecha_fin'] ?></td>
                                       <td><a href="ver_pdf_expe1.php?id=<?php echo $row11['id_1puntos'] ?>&dni=<?php echo $dato_desencriptado ?>" target="_blank"><?php echo $row11['archivos']; ?></a></td>
                                       <td style="font-size: 12px;"><?php echo $row11['tipo_comprobante'] ?></td>
+                                      <td style="display: none;"><?php echo $row11['nro_contrato'] ?></td>
+                                      <td style="display: none;"><?php echo $row11['fech_emision'] ?></td>
+                                      <td style="display: none;"><?php echo $row11['monto_boleta'] ?></td>
                                       <td class="d-flex justify-content-center">
                                         <button class="btn btn-success btn-sm m-1 updateBtn3"><i class="fa fa-edit"></i></button>
                                         <button class="btn btn-danger btn-sm m-1 deleteBtn3"><i class="fa fa-times-circle"></i></button>
@@ -1210,12 +1234,12 @@ if (empty($_SESSION['active'])) {
             <input type="hidden" name="dni4_tipo2" value="<?php echo $dni ?>">
             <input type="hidden" name="numero4_tipo2" id="numero4_tipo2">
             <div class="form-group">
-              <label for="title">Lugar de Trabajo</label>
-              <input type="text" name="lugar4_tipo2" id="lugar4_tipo2" class="form-control" placeholder="(*) Lugar de trabajo" maxlength="45">
+              <label for="title">(*) Lugar de Trabajo</label>
+              <input type="text" name="lugar4_tipo2" id="lugar4_tipo2" class="form-control">
             </div>
             <div class="form-group">
               <label for="title">Cargo/Funcion desempeñada </label>
-              <input type="text" name="cargo4_tipo2" id="cargo4_tipo2" class="form-control" placeholder="(*) Cargo/funciones" maxlength="45">
+              <input type="text" name="cargo4_tipo2" id="cargo4_tipo2" class="form-control">
             </div>
             <div class="form-group">
               <label for="title">Fecha Inicio</label>
@@ -1379,11 +1403,11 @@ if (empty($_SESSION['active'])) {
 
               <div class="col-md-4 col-sm-12 form-group">
                 <label for="title">(*) Lugar de trabajo</label>
-                <input type="text" name="lugar_1exp_tip2" class="form-control" placeholder="(*) Lugar de trabajo" maxlength="45" required>
+                <input type="text" name="lugar_1exp_tip2" class="form-control" placeholder="(*) Lugar de trabajo" style="font-size: 13px; text-transform:uppercase;" required>
               </div>
               <div class="col-md-4 col-sm-12 form-group" id="div_centro_estudios">
                 <label for="title">(*) Cargo/Funciones</label>
-                <input type="text" name="cargo_funciones_1exp_tip2" class="form-control" placeholder="(*) Nombre de cargo" maxlength="45" required>
+                <input type="text" name="cargo_funciones_1exp_tip2" class="form-control" placeholder="(*) Nombre de cargo" style="font-size: 13px; text-transform:uppercase;" required>
               </div>
               <div class="col-md-4 col-sm-12 form-group" id="div_carrera">
                 <label for="title">(*) Fecha de Inicio</label>

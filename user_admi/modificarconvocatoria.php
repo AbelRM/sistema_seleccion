@@ -49,8 +49,9 @@ if (empty($_SESSION['active'])) {
   <div id="wrapper">
 
     <?php
+    $dni = $_GET['dni'];
     $dato_desencriptado = $_GET['dni'];
-    $dni = $desencriptar($dato_desencriptado);
+    // $dni = $desencriptar($dato_desencriptado);
 
     $sql = "SELECT * FROM usuarios where dni=$dni";
     $datos = mysqli_query($con, $sql) or die(mysqli_error($datos));;
@@ -124,13 +125,8 @@ if (empty($_SESSION['active'])) {
 
                       <div class="form-group col-md-3 col-sm-12">
                         <label for="disabled-input" class=" form-control-label">Año</label>
-                        <input type="text" class="form-control" name="año_con" value="<?php echo $añocon; ?>">
+                        <input type="text" class="form-control" name="anio_con" value="<?php echo $añocon; ?>">
                       </div>
-
-                      <!-- <div class="form-group col-md-6 col-sm-12">
-                        <label for="disabled-input" class=" form-control-label">Direccion Ejecutiva</label>
-                        <input type="text" class="form-control" name="direccion_ejec_iddireccion" value="<?php echo $dir_ejec; ?>">
-                      </div> -->
 
                       <div class="form-group col-md-3 col-sm-12">
                         <label for="disabled-input" class=" form-control-label">Desde</label>
@@ -157,11 +153,10 @@ if (empty($_SESSION['active'])) {
                     </div>
                     <div class="form-row" id="contenido">
                       <div class="col-md-12">
-
                         <div class="form-group row">
                           <label for="staticEmail" class="col-sm-6 col-form-label">% DE EVALUACION CURRICULAR:</label>
                           <div class="col-sm-1">
-                            <input type="text" class="form-control" id="porcen_eva_cu" value="<?php echo $porcen_eva_cu; ?>">
+                            <input type="text" class="form-control" name="porcen_eva_cu" value="<?php echo $porcen_eva_cu; ?>">
                           </div>
                           <label for="staticEmail" class="col-sm-4 col-form-label">%</label>
                         </div>
@@ -169,7 +164,7 @@ if (empty($_SESSION['active'])) {
                         <div class="form-group row">
                           <label for="staticEmail" class="col-sm-6 col-form-label">% DE EVALUACION DE ENTREVISTA:</label>
                           <div class="col-sm-1">
-                            <input type="text" class="form-control" id="porce_entrevista" value="<?php echo $porce_entrevista; ?>">
+                            <input type="text" class="form-control" name="porce_entrevista" value="<?php echo $porce_entrevista; ?>">
                           </div>
                           <label for="staticEmail" class="col-sm-4 col-form-label">%</label>
                         </div>
@@ -177,7 +172,7 @@ if (empty($_SESSION['active'])) {
                         <div class="form-group row">
                           <label for="staticEmail" class="col-sm-6 col-form-label">% DE EVALUACION DE EXÁMEN ESCRITO:</label>
                           <div class="col-sm-1">
-                            <input type="text" class="form-control" id="porce_exa_escrito" value="<?php echo $porce_exa_escrito; ?>">
+                            <input type="text" class="form-control" name="porce_exa_escrito" value="<?php echo $porce_exa_escrito; ?>">
                           </div>
                           <label for="staticEmail" class="col-sm-4 col-form-label">%</label>
                         </div>
@@ -185,7 +180,7 @@ if (empty($_SESSION['active'])) {
                         <div class="form-group row">
                           <label for="staticEmail" class="col-sm-6 col-form-label">% DE EVALUACION POR DISCAPACIDAD:</label>
                           <div class="col-sm-1">
-                            <input type="text" class="form-control" id="porce_discapacidad" value="<?php echo $porce_discapacidad; ?>">
+                            <input type="text" class="form-control" name="porce_discapacidad" value="<?php echo $porce_discapacidad; ?>">
                           </div>
                           <label for="staticEmail" class="col-sm-4 col-form-label">%</label>
                         </div>
@@ -194,15 +189,16 @@ if (empty($_SESSION['active'])) {
                         <div class="form-group row">
                           <label for="staticEmail" class="col-sm-6 col-form-label">% DE EVALUACION DE LIC. MILITAR:</label>
                           <div class="col-sm-1">
-                            <input type="text" class="form-control" id="porce_sermilitar" value="<?php echo $porce_sermilitar; ?>">
+                            <input type="text" class="form-control" name="porce_sermilitar" value="<?php echo $porce_sermilitar; ?>">
                           </div>
                           <label for="staticEmail" class="col-sm-4 col-form-label">%</label>
                         </div>
 
                       </div>
                     </div>
+
                     <div class="text-right">
-                      <button type="submit" class="btn btn-success"><i class="fa fa-plus"></i> Guardar</button>
+                      <button type="submit" class="btn btn-success">Siguiente <i class="fa fa-arrow-right"></i></button>
                     </div>
                   </form>
                 </div>

@@ -37,6 +37,7 @@ while ($r = $query->fetch_object()) {
   include 'funcs/mcript.php';
 
   $dato_desencriptado = $_GET['dni'];
+  echo $dato_desencriptado;
   $dni = $desencriptar($dato_desencriptado);
 
   $sql2 = "SELECT * FROM user where dni=$dni";
@@ -116,7 +117,7 @@ while ($r = $query->fetch_object()) {
                   </div>
                   <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">
                     <label class="font-weight-bolder">Estado civil</label>
-                    <select class="form-control" name="civil" id="civil" required>
+                    <select class="form-control" name="civil" id="civil">
                       <option selected>Elegir...</option>
                       <option value="SOLTERO(A)">Soltero(a)</option>
                       <option value="CASADO(A)">Casado(a)</option>
@@ -136,11 +137,11 @@ while ($r = $query->fetch_object()) {
 
                   <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">
                     <label class="font-weight-bolder">Cel. emergencia</label>
-                    <input class="form-control form-control-user" type="number" name="num_emer" id="num_emer" maxlength="9" required />
+                    <input class="form-control form-control-user" type="number" name="num_emer" id="num_emer" maxlength="9" />
                   </div>
                   <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
                     <label class="font-weight-bolder">Parentesco nro. emergencia</label>
-                    <input class="form-control form-control-user" placeholder="Nombre familiar" type="text" name="nomb_parent" id="nomb_parent" required style="text-transform: uppercase;" />
+                    <input class="form-control form-control-user" placeholder="Nombre familiar" type="text" name="nomb_parent" id="nomb_parent" style="text-transform: uppercase;" />
                   </div>
                   <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">
                     <label class="font-weight-bolder">R.U.C.</label>
@@ -148,7 +149,7 @@ while ($r = $query->fetch_object()) {
                   </div>
                   <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
                     <label class="font-weight-bolder">N° cuenta CCI</label>
-                    <input class="form-control form-control-user" placeholder="Banco de la Nación" type="number" name="cuenta_banc" id="cuenta_banc" maxlength="16" required />
+                    <input class="form-control form-control-user" placeholder="Banco de la Nación" type="number" name="cuenta_banc" id="cuenta_banc" maxlength="16" />
                   </div>
                   <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">
                     <label class="font-weight-bolder">Suspensión de 4ta.</label>
@@ -280,7 +281,7 @@ while ($r = $query->fetch_object()) {
 
                   <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">
                     <label class="font-weight-bolder" for="exampleInputEmail1">Tipo de Via</label>
-                    <select class="form-control form-control-user" name="tipo_via" id="tipo_via">
+                    <select class="form-control form-control-user" name="tipo_via">
                       <option value="AVENIDA">Avenida</option>
                       <option value="JIRON">Jiron</option>
                       <option value="CALLE">Calle</option>
@@ -297,7 +298,7 @@ while ($r = $query->fetch_object()) {
                   </div>
                   <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
                     <label class="font-weight-bolder">Nombre de via</label>
-                    <input class="form-control form-control-user" type="text" name="nomb_via" id="nomb_via" placeholder="Via" style="text-transform: uppercase; font-size: 14px;" />
+                    <input class="form-control form-control-user" type="text" name="nomb_via" placeholder="Nombre de via" style="text-transform: uppercase; font-size: 14px;" />
                   </div>
 
                   <!-- <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">
@@ -335,15 +336,15 @@ while ($r = $query->fetch_object()) {
                   </div> -->
                   <div class="col-md-2 col-sm-2 mb-2 mb-sm-0">
                     <label class="font-weight-bolder">Número #</label>
-                    <input class="form-control form-control-user" type="number" name="numero" id="numero" />
+                    <input class="form-control form-control-user" style="text-transform: uppercase; font-size: 14px;" type="text" name="numero" />
                   </div>
                   <div class="col-md-2 col-sm-2 mb-2 mb-sm-0">
                     <label class="font-weight-bolder">Mz.</label>
-                    <input class="form-control form-control-user" type="number" name="manzana" id="manzana" />
+                    <input class="form-control form-control-user" style="text-transform: uppercase; font-size: 14px;" type="text" name="manzana" />
                   </div>
                   <div class="col-md-2 col-sm-2 mb-2 mb-sm-0">
                     <label class="font-weight-bolder">Lt.</label>
-                    <input class="form-control form-control-user" type="number" name="lote" id="lote" />
+                    <input class="form-control form-control-user" style="text-transform: uppercase; font-size: 14px;" type="text" name="lote" />
                   </div>
                   <div class="col-md-6 col-sm-6 mb-2 mb-sm-0">
                     <label class="font-weight-bolder">Referencia</label>
@@ -373,22 +374,24 @@ while ($r = $query->fetch_object()) {
                 </div>
 
                 <div class="form-group" id="tabla_div" style="display:none">
-                  <div class="table-responsive" id="tabla">
+                  <div class="table-responsive">
 
-                    <table class="table table-bordered">
+                    <table class="table table-bordered" id="tabla">
                       <thead>
                         <tr class="bg-danger" style="text-align:center; font-size:0.813em;">
                           <th scope="col">Nombres</th>
                           <th scope="col">Apellidos</th>
                           <th scope="col">N° DNI</th>
                           <th scope="col">Parentesco</th>
+                          <th scope="col">Cargo</th>
+                          <th scope="col">Dirección/Oficina</th>
                           <th scope="col">Acción</th>
                         </tr>
                       </thead>
                       <tbody>
                         <tr class="fila-fija">
-                          <td><input type="text" name="nombre[]" placeholder="Nombres" class="form-control name_list" /></td>
-                          <td><input type="text" name="apellidos[]" placeholder="Apellidos completos" class="form-control name_list" /></td>
+                          <td><input type="text" name="nombre[]" style="text-transform: uppercase;" placeholder="Nombres" class="form-control name_list" /></td>
+                          <td><input type="text" name="apellidos[]" style="text-transform: uppercase;" placeholder="Apellidos completos" class="form-control name_list" /></td>
                           <td><input type="text" name="dni[]" maxlength="8" class="form-control name_list" /></td>
                           <td>
                             <select name="parentesco[]" class="form-control">
@@ -400,7 +403,9 @@ while ($r = $query->fetch_object()) {
                               <option value="ABUELO(A)">Abuelo(a)</option>
                             </select>
                           </td>
-                          <td class="eliminar"><input type="button" class="btn btn-danger" value=" - "></td>
+                          <td><input type="text" name="cargo[]" class="form-control name_list" /></td>
+                          <td><input type="text" name="area[]" class="form-control name_list" /></td>
+                          <td class="eliminar"><button type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button></td>
                         </tr>
                         </tdody>
                     </table>
@@ -409,7 +414,7 @@ while ($r = $query->fetch_object()) {
 
                 <div class="row d-flex justify-content-center" style="display:none">
                   <div class="form-inline p-2" style="display:none" id="boton_agregar">
-                    <button id="adicional" name="adicional" type="button" class="btn btn-warning"> AGREGAR FILA (+) </button>
+                    <button id="adicional" name="adicional" type="button" class="btn btn-warning"><i class="fa fa-plus"></i> Fila</button>
                   </div>
                 </div>
               </div>

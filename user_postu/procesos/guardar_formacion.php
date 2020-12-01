@@ -1,6 +1,6 @@
 <?php
 // Insert the content of connection.php file
-include('../conexion.php');
+include '../conexion.php';
 $dato_desencriptado = $_POST['dni_encriptado'];
 $dni = $_POST['dni'];
 $idpostulante = $_POST['postulante'];
@@ -48,15 +48,19 @@ if (isset($_POST['insertData'])) {
 
         $result = mysqli_query($con, $sql);
         if ($result) {
-          echo '<script> alert("Guardado exitosamente"); </script>';
+          // echo '<script> alert("Guardado exitosamente"); </script>';
           header('Location: ../formacion.php?dni=' . $dato_desencriptado);
         } else {
           echo '<script> alert("Error al guardar los datos"); </script>';
-          header('Location: ../formacion.php?dni=' . $dato_desencriptado);
+          echo "<script type=\"text/javascript\">history.go(-1);</script>";
+          // echo '<script> alert("Error al guardar los datos"); </script>';
+          // header('Location: ../formacion.php?dni=' . $dato_desencriptado);
         }
       } else {
         echo '<script> alert("Ocurrió algún error al subir el fichero. No pudo guardarse."); </script>';
-        header('Location: ../formacion.php?dni=' . $dato_desencriptado);
+        echo "<script type=\"text/javascript\">history.go(-1);</script>";
+        // echo '<script> alert("Ocurrió algún error al subir el fichero. No pudo guardarse."); </script>';
+        // header('Location: ../formacion.php?dni=' . $dato_desencriptado);
       }
     }
   } elseif ($tipo_estudios == '2') {
@@ -100,15 +104,17 @@ if (isset($_POST['insertData'])) {
           VALUES('$tipo_estudios','$nivel_estudios_tec','$centro_estudios','$carrera','$colegiatura,'$fecha_inicio','$fecha_fin','$idpostulante','$new_nombre','$licencia_conducir','$serums')";
         $result = mysqli_query($con, $sql);
         if ($result) {
-          echo '<script> alert("Guardado exitosamente"); </script>';
+          // echo '<script> alert("Guardado exitosamente"); </script>';
           header('Location: ../formacion.php?dni=' . $dato_desencriptado);
         } else {
-          echo '<script> alert("Error al guardar"); </script>';
-          header('Location: ../formacion.php?dni=' . $dato_desencriptado);
+          echo '<script> alert("Error al guardar los datos"); </script>';
+          echo "<script type=\"text/javascript\">history.go(-1);</script>";
         }
       } else {
-        echo "Ocurrió algún error al subir el fichero. No pudo guardarse.";
-        header('Location: ../formacion.php?dni=' . $dato_desencriptado);
+        echo '<script> alert("Ocurrió algún error al subir el fichero. No pudo guardarse."); </script>';
+        echo "<script type=\"text/javascript\">history.go(-1);</script>";
+        // echo "Ocurrió algún error al subir el fichero. No pudo guardarse.";
+        // header('Location: ../formacion.php?dni=' . $dato_desencriptado);
       }
     }
   } elseif ($tipo_estudios == '3') {
@@ -159,10 +165,12 @@ if (isset($_POST['insertData'])) {
 
             $result = mysqli_query($con, $sql);
             if ($result) {
-              echo '<script> alert("Guardado exitosamente"); </script>';
-              // header('Location: ../formacion.php?dni=' . $dato_desencriptado);
+              // echo '<script> alert("Guardado exitosamente"); </script>';
+              header('Location: ../formacion.php?dni=' . $dato_desencriptado);
             } else {
-              echo '<script> alert("Error al guardar PRIMERA!"); </script>';
+              echo '<script> alert("Ocurrió algún error al subir el fichero. No pudo guardarse."); </script>';
+              echo "<script type=\"text/javascript\">history.go(-1);</script>";
+              // echo '<script> alert("Error al guardar PRIMERA"); </script>';
               // header('Location: ../formacion.php?dni=' . $dato_desencriptado);
             }
           } elseif ($nivel_estudios == 'EGRESADO' || $nivel_estudios == 'BACHILLER') {
@@ -172,18 +180,21 @@ if (isset($_POST['insertData'])) {
 
             $result = mysqli_query($con, $sql);
             if ($result) {
-              echo '<script> alert("Guardado exitosamente"); </script>';
+              // echo '<script> alert("Guardado exitosamente"); </script>';
               header('Location: ../formacion.php?dni=' . $dato_desencriptado);
             } else {
-              echo '<script> alert("Error al guardar PRIMERA!"); </script>';
-              header('Location: ../formacion.php?dni=' . $dato_desencriptado);
+              echo '<script> alert("Error al guardar los datos"); </script>';
+              echo "<script type=\"text/javascript\">history.go(-1);</script>";
             }
           } else {
             echo '<script> alert("No es ESTUDIANTE, EGRESADO O BACHILLER, elegir correctamente"); </script>';
-            header('Location: ../formacion.php?dni=' . $dato_desencriptado);
+            echo "<script type=\"text/javascript\">history.go(-1);</script>";
+            // echo '<script> alert("No es ESTUDIANTE, EGRESADO O BACHILLER, elegir correctamente"); </script>';
+            // header('Location: ../formacion.php?dni=' . $dato_desencriptado);
           }
         } else {
-          echo "Ocurrió algún error al subir el fichero. No pudo guardarse.";
+          echo '<script> alert("Ocurrió algún error al subir el fichero. No pudo guardarse."); </script>';
+          echo "<script type=\"text/javascript\">history.go(-1);</script>";
         }
       }
     } else {
@@ -210,7 +221,8 @@ if (isset($_POST['insertData'])) {
       }
       //compruebo si las características del archivo son las que deseo
       if (!(strpos($tipo_archivo, "pdf") && ($tamano_archivo <= 2000000))) {
-        echo "La extensión o el tamaño de los archivos no es correcta. <br><br><table><tr><td><li>Solo se permiten archivos .pdf<br><li>se permiten archivos de 3 Mb máximo.</td></tr></table>";
+        echo '<script> alert("Ocurrió algún error al subir el fichero. No es PDF o supera los 2MB."); </script>';
+        echo "<script type=\"text/javascript\">history.go(-1);</script>";
       } else {
         if (move_uploaded_file($_FILES['archivo']['tmp_name'], $micarpeta . $new_nombre)) {
           $tipo_estudios = $_POST['tipo_estudios'];
@@ -234,11 +246,12 @@ if (isset($_POST['insertData'])) {
 
               $result = mysqli_query($con, $sql);
               if ($result) {
-                echo "consulta";
+
                 // echo '<script> alert("Guardado exitosamente"); </script>';
-                // header('Location: ../formacion.php?dni=' . $dato_desencriptado);
+                header('Location: ../formacion.php?dni=' . $dato_desencriptado);
               } else {
-                echo "erro consulta";
+                echo '<script> alert("Ocurrió algún error al guardar los datos."); </script>';
+                echo "<script type=\"text/javascript\">history.go(-1);</script>";
                 // echo '<script> alert("Error al guardar PRIMERA!"); </script>';
                 // header('Location: ../formacion.php?dni=' . $dato_desencriptado);
               }
@@ -250,29 +263,32 @@ if (isset($_POST['insertData'])) {
 
               $result = mysqli_query($con, $sql);
               if ($result) {
-                echo "consulta admin";
                 // echo '<script> alert("Guardado exitosamente"); </script>';
-                // header('Location: ../formacion.php?dni=' . $dato_desencriptado);
+                header('Location: ../formacion.php?dni=' . $dato_desencriptado);
               } else {
-                echo "erro consulta admin";
+                echo '<script> alert("Ocurrió algún error al guardar los datos"); </script>';
+                echo "<script type=\"text/javascript\">history.go(-1);</script>";
                 // echo '<script> alert("Error al guardar PRIMERA!"); </script>';
                 // header('Location: ../formacion.php?dni=' . $dato_desencriptado);
               }
             } else {
             }
           } else {
-            echo "erro NO ES TITULADO";
+            echo '<script> alert("Ocurrió algún error al guardar, no es TITULADO"); </script>';
+            echo "<script type=\"text/javascript\">history.go(-1);</script>";
             // echo '<script> alert("No es TITULADO, elegir correctamente"); </script>';
             // header('Location: ../formacion.php?dni=' . $dato_desencriptado);
           }
         } else {
-          echo "erro SBUIR ARCHIVO";
+          echo '<script> alert("Ocurrió algún error al subir el fichero. No pudo guardarse."); </script>';
+          echo "<script type=\"text/javascript\">history.go(-1);</script>";
           // echo "Ocurrió algún error al subir el fichero. No pudo guardarse.";
           // header('Location: ../formacion.php?dni=' . $dato_desencriptado);
         }
       }
     }
   } else {
-    echo "ERROR DE IF";
+    echo '<script> alert("Ocurrió algún error al acceder al if"); </script>';
+    echo "<script type=\"text/javascript\">history.go(-1);</script>";
   }
 }

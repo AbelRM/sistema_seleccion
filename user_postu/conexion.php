@@ -2,7 +2,7 @@
 $hostname = "localhost";
 //$hostname="192.160.0.75";
 $username = "root";
-$password = "123456";
+$password = "";
 $dbname = "sistema_seleccion";
 // $root='3306';
 

@@ -201,7 +201,10 @@ if (empty($_SESSION['active'])) {
                 <input type="hidden" name="dni_encriptado" value="<?php echo $dato_desencriptado ?>">
                 <input type="hidden" name="dni" value="<?php echo $dni ?>">
                 <input type="hidden" name="postulante" value="<?php echo $idpostulante ?>">
-
+                <div class="col-md-12 col-sm-12 form-group">
+                  <p class="text-danger font-weight-bolder">(*) Indica un campo obligatorio.</p>
+                  <p class="text-danger font-weight-bolder">(**) En el campo "FECHA" debe indicar la fecha de obtención del "NIVEL DE ESTUDIOS" que está registrando. En el caso de estudiante, debe indicar la fecha del ciclo culminado que está registrando.</p>
+                </div>
                 <div class="col-md-6 col-sm-12 form-group">
                   <label for="title">(*) Tipo estudio</label>
                   <select class="form-control" name="tipo_estudios" onChange="tipo_estudios_select(this)" required>
@@ -277,7 +280,11 @@ if (empty($_SESSION['active'])) {
                 </div>
 
                 <div class="col-md-6 col-sm-12 form-group" id="archivo">
-                  <div class="row">
+                  <label for="title">(*) Archivo para validar formación académica ingresada.</label>
+                  <input type="file" name="archivo" accept=".pdf" id="expe_archivo" required />
+                  <div id="peso_archivo_valido" class="font-weight-bolder text-primary"></div>
+                  <div id="peso_archivo_no" class="font-weight-bolder text-danger"></div>
+                  <!-- <div class="row">
                     <label for="title">(*) Elegir Archivo (No mayor a 2MB)</label>
                   </div>
                   <div class="row">
@@ -290,7 +297,7 @@ if (empty($_SESSION['active'])) {
                     </div>
                     <div id="peso_archivo_valido" class="font-weight-bolder text-primary"></div>
                     <div id="peso_archivo_no" class="font-weight-bolder text-danger"></div>
-                  </div>
+                  </div> -->
                 </div>
 
                 <div class="col-md-3 col-sm-12 form-group" id="div_tipo_profesional">
@@ -332,14 +339,8 @@ if (empty($_SESSION['active'])) {
                   </select>
                 </div>
               </div>
-
-              <div class="form-group">
-                <p>(*) Indica un campo obligatorio.</p>
-                <p>(**) En el campo "FECHA" debe indicar la fecha de obtención del "NIVEL DE ESTUDIOS" que está registrando.
-                  En el caso de estudiante, debe indicar la fecha del ciclo culminado que está registrando.</p>
-              </div>
               <div class="modal-footer">
-                <button type="submit" class="btn btn-primary" name="insertData">Guardar</button>
+                <button class="btn btn-primary" type="submit" name="insertData">Guardar</button>
               </div>
             </form>
           </div>
@@ -393,7 +394,10 @@ if (empty($_SESSION['active'])) {
     <!-- Page level custom scripts -->
     <script src="js/demo/chart-area-demo.js"></script>
     <script src="js/demo/chart-pie-demo.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="js/funciones.js"></script>
+    <script src="js/script_formacion.js"></script>
+
     <script>
       $(function() {
         $("#colegiatura_new").on('change', function() {

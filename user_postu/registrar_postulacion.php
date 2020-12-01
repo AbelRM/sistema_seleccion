@@ -260,21 +260,21 @@ if (empty($_SESSION['active'])) {
           success: function(r) {
             if (r == 1) {
               Swal.fire({
-                title: 'Te has registrado correctamente!',
-                text: 'Verifique el calendario, para resultados de evalacuación.',
-                icon: 'success',
-                confirmButtonText: 'Aceptar'
-              }).then(function() {
-                window.location = "mispostulaciones.php".$dni;
-              });
-
-            } else {
-              Swal.fire({
-                title: 'Error al postular!',
+                title: 'Error al postular',
                 text: r,
                 icon: 'error',
                 confirmButtonText: 'Aceptar',
               });
+            } else {
+              Swal.fire({
+                title: 'Te has registrado correctamente',
+                text: 'Verifique el calendario, para resultados de evalacuación.',
+                icon: 'success',
+                confirmButtonText: 'Aceptar'
+              }).then(function() {
+                window.location = "mispostulaciones.php?dni=" + r;
+              });
+
             }
           }
         });

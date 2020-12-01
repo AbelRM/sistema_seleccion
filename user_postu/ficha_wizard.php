@@ -35,10 +35,9 @@ while ($r = $query->fetch_object()) {
 <body class="bg-gradient-primary">
   <?php
   include 'funcs/mcript.php';
-
+  $dni = $_GET['dni'];
   $dato_desencriptado = $_GET['dni'];
-  echo $dato_desencriptado;
-  $dni = $desencriptar($dato_desencriptado);
+  // $dni = $desencriptar($dato_desencriptado);
 
   $sql2 = "SELECT * FROM user where dni=$dni";
   $datos = mysqli_query($con, $sql2) or die(mysqli_error($datos));;
@@ -60,7 +59,7 @@ while ($r = $query->fetch_object()) {
               <button class="btn btn-primary" data-toggle="modal" data-target="#logoutModal">Cerrar sesión</button>
             </div>
           </div>
-          <form id="msform" method="post" action="procesos/guardar_ficha.php">
+          <form id="msform" method="POST">
             <!-- progressbar -->
             <div class="row p-2">
               <div class="col-lg-2 col-md-2 col-sm-12 p-1">
@@ -87,6 +86,7 @@ while ($r = $query->fetch_object()) {
                 <div class="row">
                   <div class="col-7">
                     <h2 class="fs-title">DATOS PERSONALES COMPLEMENTARIOS:</h2>
+                    <p class="text-danger font-weight-bolder">Los que contengan este simbolo (*) son datos que no pueden dejarse vacios.</p>
                   </div>
                 </div>
                 <div class="form-group row">
@@ -96,12 +96,12 @@ while ($r = $query->fetch_object()) {
                     <input class="form-control form-control-user" type="text" value="<?php echo $fila['nombres'] . " " . $fila['ape_pat'] . " " . $fila['ape_mat']; ?>" disabled="true" />
                   </div>
                   <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
-                    <label class="font-weight-bolder">Fecha de nacimiento</label>
+                    <label class="font-weight-bolder">(*) Fecha de nacimiento</label>
                     <input class="form-control form-control-user" type="date" id="fech_nac" name="fech_nac" required />
                   </div>
                   <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">
-                    <label class="font-weight-bolder">Pais</label>
-                    <select class="form-control" name="pais" id="pais" required>
+                    <label class="font-weight-bolder">(*) Pais</label>
+                    <select class="form-control" name="pais" required>
                       <option selected>Elegir...</option>
                       <option value="PERU">PERU</option>
                       <option value="ECUADOR">ECUADOR</option>
@@ -116,8 +116,8 @@ while ($r = $query->fetch_object()) {
                     </select>
                   </div>
                   <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">
-                    <label class="font-weight-bolder">Estado civil</label>
-                    <select class="form-control" name="civil" id="civil">
+                    <label class="font-weight-bolder">(*) Estado civil</label>
+                    <select class="form-control" name="civil">
                       <option selected>Elegir...</option>
                       <option value="SOLTERO(A)">Soltero(a)</option>
                       <option value="CASADO(A)">Casado(a)</option>
@@ -127,8 +127,8 @@ while ($r = $query->fetch_object()) {
                     </select>
                   </div>
                   <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">
-                    <label class="font-weight-bolder">Sexo</label>
-                    <select class="form-control" name="sexo" id="sexo" required>
+                    <label class="font-weight-bolder">(*) Sexo</label>
+                    <select class="form-control" name="sexo" required>
                       <option selected>Elegir...</option>
                       <option value="MASCULINO">Masculino</option>
                       <option value="FEMENINO">Femenino</option>
@@ -136,66 +136,70 @@ while ($r = $query->fetch_object()) {
                   </div>
 
                   <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">
-                    <label class="font-weight-bolder">Cel. emergencia</label>
-                    <input class="form-control form-control-user" type="number" name="num_emer" id="num_emer" maxlength="9" />
+                    <label class="font-weight-bolder">(*) Cel. emergencia</label>
+                    <input class="form-control form-control-user" type="number" name="num_emer" maxlength="9" />
                   </div>
                   <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
-                    <label class="font-weight-bolder">Parentesco nro. emergencia</label>
+                    <label class="font-weight-bolder">(*) Parentesco nro. emergencia</label>
                     <input class="form-control form-control-user" placeholder="Nombre familiar" type="text" name="nomb_parent" id="nomb_parent" style="text-transform: uppercase;" />
                   </div>
                   <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">
-                    <label class="font-weight-bolder">R.U.C.</label>
-                    <input class="form-control form-control-user" type="number" name="ruc" id="ruc" maxlength="11" required />
+                    <label class="font-weight-bolder">(*) R.U.C.</label>
+                    <input class="form-control form-control-user" type="number" name="ruc" maxlength="11" />
                   </div>
                   <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
                     <label class="font-weight-bolder">N° cuenta CCI</label>
-                    <input class="form-control form-control-user" placeholder="Banco de la Nación" type="number" name="cuenta_banc" id="cuenta_banc" maxlength="16" />
+                    <input class="form-control form-control-user" placeholder="Banco de la Nación" type="number" name="cuenta_banc" maxlength="16" />
                   </div>
                   <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">
                     <label class="font-weight-bolder">Suspensión de 4ta.</label>
-                    <select class="form-control" name="cuarta" id="cuarta">
+                    <select class="form-control" name="cuarta">
                       <option value="NO" selected>NO</option>
                       <option value="SI">SI</option>
                     </select>
                   </div>
                   <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
-                    <label class="font-weight-bolder">Tipo de pensión</label>
+                    <label class="font-weight-bolder">(*) Tipo de pensión</label>
                     <select class="form-control custom-select" name="pension" id="inputSelect">
-                      <option value="NINGUNA" selected>Ninguna</option>
+                      <option value="NINGUNA">Ninguna</option>
                       <option value="ONP">ONP</option>
                       <option value="AFP">AFP</option>
                     </select>
                   </div>
-                  <div id="AFP" class="divOculto col-md-3 col-sm-6 mb-2 mb-sm-0">
-                    <label class="font-weight-bolder">Nombre de la AFP:</label>
-                    <input type="text" name="nombre_afp" class="form-control">
+                  <!-- aqui -->
+                  <div id="AFP" class="col-md-3 col-sm-6 mb-2 mb-sm-0">
+                    <label class="font-weight-bolder">(*) Nombre de la AFP:</label>
+                    <input type="text" name="nombre_afp" class="form-control" style="text-transform: uppercase; font-size: 13px;">
                   </div>
-                  <div id="AFP-2" class="divOculto col-md-3 col-sm-6 mb-2 mb-sm-0">
+                  <!-- aqui -->
+                  <div id="AFP-2" class="col-md-3 col-sm-6 mb-2 mb-sm-0">
                     <label class="font-weight-bolder">Código CUSSP (opcional):</label>
                     <input type="text" name="codigo_cussp" class="form-control">
                   </div>
-                  <div id="NINGUNA" class="divOculto col-md-3 col-sm-6 mb-2 mb-sm-0">
-                    <label class="font-weight-bolder">¿A cuál te gustaria pertenecer?</label>
+                  <!-- aqui -->
+                  <div id="NINGUNA" class="col-md-3 col-sm-6 mb-2 mb-sm-0">
+                    <label class="font-weight-bolder">(*) ¿A cuál pertenecerias?</label>
                     <select class="form-control custom-select" name="pertenecer_pension" id="pertenecer_pension">
-                      <option value="ONP" selected>ONP</option>
+                      <option value="ONP">ONP</option>
                       <option value="AFP">AFP</option>
                     </select>
                   </div>
-                  <div id="opcion-AFP" class="divOculto col-md-3 col-sm-6 mb-2 mb-sm-0">
-                    <label class="font-weight-bolder">Nombre de la AFP:</label>
-                    <input type="text" name="nombre_afp_pregunta" class="form-control">
+                  <!-- aqui -->
+                  <div id="opcion-AFP" class="col-md-3 col-sm-6 mb-2 mb-sm-0">
+                    <label class="font-weight-bolder">Nombre AFP que pertenecería:</label>
+                    <input type="text" name="nombre_afp_pregunta" class="form-control" style="text-transform: uppercase; font-size: 13px;">
                   </div>
 
                   <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">
                     <label class="font-weight-bolder">Discapacidad</label>
-                    <select class="form-control" name="discapacidad" id="discapacidad">
+                    <select class="form-control" name="discapacidad">
                       <option value="NO" selected>NO</option>
                       <option value="SI">SI</option>
                     </select>
                   </div>
                   <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">
                     <label class="font-weight-bolder">Tipo discapacidad</label>
-                    <select class="form-control" name="tip_discapacidad" id="tip_discapacidad">
+                    <select class="form-control" name="tip_discapacidad">
                       <option value="NINGUNA" select>Ninguna</option>
                       <option value="FISICA">Físicas</option>
                       <option value="SENSORIAL">Sensoriales</option>
@@ -204,8 +208,8 @@ while ($r = $query->fetch_object()) {
                     </select>
                   </div>
                   <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">
-                    <label class="font-weight-bolder">Grupo sanguineo</label>
-                    <select class="form-control" name="tip_sangre" id="tip_sangre">
+                    <label class="font-weight-bolder">(*) Grupo sanguineo</label>
+                    <select class="form-control" name="tip_sangre">
                       <option selected>Elegir...</option>
                       <option value="AB+">AB+</option>
                       <option value="AB-">AB-</option>
@@ -226,7 +230,7 @@ while ($r = $query->fetch_object()) {
                   </div>
                   <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
                     <label class="font-weight-bolder">¿Deportista calificado?</label>
-                    <select class="form-control" name="deportista_calif" id="deportista_calif">
+                    <select class="form-control" name="deportista_calif">
                       <option value="NO">NO</option>
                       <option value="20">Nivel 1 - Participado en juegos olimpicos...</option>
                       <option value="16">Nivel 2 - Participado en panamericanos...</option>
@@ -237,7 +241,7 @@ while ($r = $query->fetch_object()) {
                   </div>
                   <div class="col-md-6 col-sm-6 mb-2 mb-sm-0">
                     <label class="font-weight-bolder">Enfermedades / Alergias</label>
-                    <input class="form-control form-control-user" type="text" placeholder="Separado por comas" name="alergias" style="text-transform: uppercase;" />
+                    <input class="form-control form-control-user" type="text" placeholder="Separado por comas" name="alergias" style="text-transform: uppercase; font-size: 13px;" />
                   </div>
                 </div>
               </div>
@@ -249,6 +253,7 @@ while ($r = $query->fetch_object()) {
                 <div class="row">
                   <div class="col-7">
                     <h2 class="fs-title">DOMICILIO:</h2>
+                    <p class="text-danger font-weight-bolder">Los que contengan este simbolo (*) son datos que no pueden dejarse vacios.</p>
                   </div>
                 </div>
                 <div class="form-group row">
@@ -256,7 +261,7 @@ while ($r = $query->fetch_object()) {
                   <input type="hidden" id="idpostulante" name="idpostulante" value="<?php echo $idpostulante ?>" />
 
                   <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
-                    <label class="font-weight-bolder" for="name2">Departamento </label>
+                    <label class="font-weight-bolder" for="name2">(*) Departamento </label>
                     <select id="departamento_id1" class="form-control" name="departamento_id1" required>
                       <option value="">-- SELECCIONE --</option>
                       <?php foreach ($countries as $c) : ?>
@@ -266,14 +271,14 @@ while ($r = $query->fetch_object()) {
                   </div>
 
                   <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
-                    <label class="font-weight-bolder" for="name2">Provincia</label>
+                    <label class="font-weight-bolder" for="name2">(*) Provincia</label>
                     <select id="provincia_id1" class="form-control" name="provincia_id1" required>
                       <option value="">-- SELECCIONE --</option>
                     </select>
                   </div>
 
                   <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
-                    <label class="font-weight-bolder" for="exampleInputEmail1">Distrito</label>
+                    <label class="font-weight-bolder" for="exampleInputEmail1">(*) Distrito</label>
                     <select id="distrito_id1" class="form-control" name="distrito_id1" required>
                       <option value="">-- SELECCIONE --</option>
                     </select>
@@ -297,14 +302,9 @@ while ($r = $query->fetch_object()) {
                     </select>
                   </div>
                   <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
-                    <label class="font-weight-bolder">Nombre de via</label>
+                    <label class="font-weight-bolder">Nombre de la via</label>
                     <input class="form-control form-control-user" type="text" name="nomb_via" placeholder="Nombre de via" style="text-transform: uppercase; font-size: 14px;" />
                   </div>
-
-                  <!-- <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">
-                    <label class="font-weight-bolder">Número de via</label>
-                    <input class="form-control form-control-user" type="text" name="num_via" id="num_via" placeholder="Número" />
-                  </div> -->
                   <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">
                     <label class="font-weight-bolder" for="exampleInputEmail1">Tipo de Zona</label>
                     <select class="form-control form-control-user" name="tipo_zona" id="tipo_zona">
@@ -327,13 +327,8 @@ while ($r = $query->fetch_object()) {
                   </div>
                   <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
                     <label class="font-weight-bolder">Nombre de la zona</label>
-                    <input class="form-control form-control-user" type="text" name="nomb_zona" id="nomb_zona" placeholder="Zona" style="text-transform: uppercase; font-size: 14px;" />
+                    <input class="form-control form-control-user" type="text" name="nomb_zona" id="nomb_zona" placeholder="Nombre de la zona" style="text-transform: uppercase; font-size: 14px;" />
                   </div>
-
-                  <!-- <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">
-                    <label class="font-weight-bolder">Número de zona</label>
-                    <input class="form-control form-control-user" type="text" name="num_zona" id="num_zona" placeholder="Número" />
-                  </div> -->
                   <div class="col-md-2 col-sm-2 mb-2 mb-sm-0">
                     <label class="font-weight-bolder">Número #</label>
                     <input class="form-control form-control-user" style="text-transform: uppercase; font-size: 14px;" type="text" name="numero" />
@@ -347,8 +342,8 @@ while ($r = $query->fetch_object()) {
                     <input class="form-control form-control-user" style="text-transform: uppercase; font-size: 14px;" type="text" name="lote" />
                   </div>
                   <div class="col-md-6 col-sm-6 mb-2 mb-sm-0">
-                    <label class="font-weight-bolder">Referencia</label>
-                    <input class="form-control form-control-user" type="text" name="referencia" style="text-transform: uppercase; font-size: 14px;" placeholder="Indicar Avenida/Calle y/o Institucion cercana" />
+                    <label class="font-weight-bolder">(*) Referencia</label>
+                    <input class="form-control form-control-user" type="text" name="referencia" style="text-transform: uppercase; font-size: 13px;" placeholder="Indicar Avenida/Calle y/o Institucion cercana" />
                   </div>
                 </div>
               </div>
@@ -365,7 +360,7 @@ while ($r = $query->fetch_object()) {
                 </div>
 
                 <div class="col-md-6 col-sm-12 form-group">
-                  <label class="font-weight-bolder" for="title">¿Tiene familiares que laboran en la institución?</label>
+                  <label class="font-weight-bolder" for="title">¿Tiene familiares que laboran en la DIRESA - TACNA?</label>
                   <select class="form-control" name="familiares_lab" onChange="familiares_lab_select(this)" required>
                     <option value="0">Seleccione:</option>
                     <option value="SI">SI</option>
@@ -620,7 +615,7 @@ while ($r = $query->fetch_object()) {
                   </tbody>
                 </table>
               </div>
-              <input type="submit" name="insertar" class="next action-button" value="Siguiente" />
+              <input type="button" class="next action-button" value="Siguiente" />
               <input type="button" name="previous" class="previous action-button-previous" value="Atrás" />
             </fieldset>
 
@@ -633,13 +628,15 @@ while ($r = $query->fetch_object()) {
                   </div>
                 </div> <br><br>
                 <div class="row justify-content-center">
-                  <div class="col-6 text-center">
-                    <h5 class="purple-text text-center">Presione FINALIZAR si esta seguro de haber concluido!</h5>
-                    <h6 class="red-text">NOTA: No se olvide luego llenar sus datos profesionales y experiencia laboral.</h6>
+                  <div class="col-8 text-center">
+                    <h5 class="purple-text text-center">Presione FINALIZAR si esta seguro de haber concluido, caso contrario presione "Atrás" para verificar sus datos personales.</h5>
+                    <h6 class="red-text">NOTA: No se olvide luego llenar su formación académica, capacitaciones y experiencia laboral.</h6>
                   </div>
                 </div>
               </div>
-              <input type="submit" name="next" class="next action-button" value="Finalizar" />
+              <div class="row justify-content-center">
+                <button id="finalizar" class="btn btn-danger btn-lg">Finalizar</button>
+              </div>
               <input type="button" name="previous" class="previous action-button-previous" value="Atrás" />
             </fieldset>
           </form>
@@ -675,66 +672,8 @@ while ($r = $query->fetch_object()) {
 
   <!-- Custom scripts for all pages-->
   <script src="js/sb-admin-2.js"></script>
-
-  <script>
-    $(function() {
-      $("#inputSelect").on('change', function() {
-        var selectValue = $(this).val();
-        switch (selectValue) {
-          case "AFP":
-            $("#AFP").show();
-            $("#AFP-2").show();
-            $("#NINGUNA").hide();
-            break;
-
-          case "ONP":
-            $("#AFP").hide();
-            $("#AFP-2").hide();
-            $("#NINGUNA").hide();
-            break;
-          case "ONP":
-            $("#AFP").hide();
-            $("#AFP-2").hide();
-            $("#NINGUNA").hide();
-            break;
-
-          case "NINGUNA":
-            $("#NINGUNA").show();
-            $("#AFP").hide();
-            $("#AFP-2").hide();
-            break;
-        }
-      }).change();
-      $("#pertenecer_pension").on('change', function() {
-        var selectValue = $(this).val();
-        switch (selectValue) {
-          case "AFP":
-            $("#opcion-AFP").show();
-            break;
-
-          case "ONP":
-            $("#opcion-AFP").hide();
-            break;
-        }
-      }).change();
-    });
-  </script>
-
-
-  <script>
-    $(function() {
-      // Clona la fila oculta que tiene los campos base, y la agrega al final de la tabla
-      $("#adicional").on('click', function() {
-        $("#tabla tbody tr:eq(0)").clone().removeClass('fila-fija').appendTo("#tabla").find("input[type=text]").val("");
-      });
-
-      // Evento que selecciona la fila y la elimina 
-      $(document).on("click", ".eliminar", function() {
-        var parent = $(this).parents().get(0);
-        $(parent).remove();
-      });
-    });
-  </script>
+  <script src="js/ficha_wizard.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
   <script type="text/javascript">
     $(document).ready(function() {
@@ -771,25 +710,39 @@ while ($r = $query->fetch_object()) {
       });
     });
   </script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('#finalizar').click(function() {
+        var datos = $('#msform').serialize();
+        $.ajax({
+          type: "POST",
+          url: "procesos/guardar_ficha.php",
+          data: datos,
+          success: function(r) {
+            if (r == 1) {
+              Swal.fire({
+                title: 'Error al registrar',
+                text: r,
+                icon: 'error',
+                confirmButtonText: 'Aceptar',
+              });
+            } else {
+              Swal.fire({
+                title: 'Te has registrado correctamente',
+                text: 'Ahora vuelve a INICIAR SESIÓN para confirmar su usuario.',
+                icon: 'success',
+                confirmButtonText: 'Aceptar'
+              }).then(function() {
+                window.location = "../index.php";
+              });
+            }
+          }
+        });
 
-  <script>
-    function familiares_lab_select(sel) {
-      if (sel.value == "NO") {
-        tabla = document.getElementById("tabla_div");
-        tabla.style.display = "none";
-        boton_agregar = document.getElementById("boton_agregar");
-        boton_agregar.style.display = "none";
-
-      } else if (sel.value == "SI") {
-        tabla = document.getElementById("tabla_div");
-        tabla.style.display = "block";
-        boton_agregar = document.getElementById("boton_agregar");
-        boton_agregar.style.display = "block";
-
-      }
-    }
+        return false;
+      });
+    });
   </script>
-
 </body>
 
 </html>

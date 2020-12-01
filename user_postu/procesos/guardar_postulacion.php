@@ -2,7 +2,7 @@
 
 include '../conexion.php';
 
-$mensaje = '';
+
 $dni = $_POST['dni'];
 $idcon = $_POST['idcon'];
 $idpostulante = $_POST['idpostulante'];
@@ -69,21 +69,28 @@ if ($reque_tipo_estudios == '1') {
       if ($total_total_dias >= $total_anios_requerido) {
         if ($cargo = 'Chofer' || $cargo = 'Piloto de ambulancia') {
           $licencia_conducir = $row['brevete'];
-          echo $licencia_conducir;
           if ($licencia_conducir == 'A-IIb' || $licencia_conducir == 'A-IIIa' || $licencia_conducir == 'A-IIIb' || $licencia_conducir == 'A-IIIc') {
+            // echo "id_convocatoria";
+            // echo $idcon;
+            // echo "id_postilante";
+            // echo $idpostulante;
+            // echo "id_personal_req";
+            // echo $personal_req;
+            // echo "fecha";
+            // echo $date;
             $sql = "INSERT INTO detalle_convocatoria (convocatoria_idcon, postulante_idpostulante, personal_req_idpersonal, fecha_postulacion) 
             VALUES ('" . $idcon . "','" . $idpostulante . "','" . $personal_req . "','" . $date . "')";
 
             $result = MYSQLI_query($con, $sql);
             if ($result) {
-              echo "Se acepto tu postulación.";
+              echo $dni;
+              // echo "Error al guardar la postulación.";
               // header('Location: ../mispostulaciones.php?dni=' . $dni);
             } else {
               echo "Error al guardar la postulación.";
               // echo '<script> alert("Error al guardar la postulación."); 
               // window.history.back(-1);</script>';
             }
-            mysqli_close($con);
           } else {
             echo "No cumple con el tipo de licencia de conducir mínimo requerida: A-IIb";
             // echo '<script> alert("No cumple con el tipo de licencia de conducir mínimo requerida: A-IIb"); 
@@ -95,7 +102,7 @@ if ($reque_tipo_estudios == '1') {
 
           $result = MYSQLI_query($con, $sql);
           if ($result) {
-            echo "Se acepto tu postulación.";
+            echo $dni;
             // header('Location: ../mispostulaciones.php?dni=' . $dni);
           } else {
             echo "Error al guardar la postulación.";
@@ -151,7 +158,8 @@ if ($reque_tipo_estudios == '1') {
 
             $result = MYSQLI_query($con, $sql);
             if ($result) {
-              echo "Se acepto tu postulación.";
+              echo $dni;
+              // echo "Se acepto tu postulación.";
               // header('Location: ../mispostulaciones.php?dni=' . $dni);
             } else {
               echo "Error al guardar postulación";
@@ -168,7 +176,8 @@ if ($reque_tipo_estudios == '1') {
 
           $result = MYSQLI_query($con, $sql);
           if ($result) {
-            echo "Se acepto tu postulación.";
+            echo $dni;
+            // echo "Se acepto tu postulación.";
             // header('Location: ../mispostulaciones.php?dni=' . $dni);
           } else {
             echo "Error al guardar postulación";
@@ -228,7 +237,8 @@ if ($reque_tipo_estudios == '1') {
 
           $result = MYSQLI_query($con, $sql);
           if ($result) {
-            echo "Se realizó con éxito registrar la postulación.";
+            echo $dni;
+            // echo "Se realizó con éxito registrar la postulación.";
           } else {
             echo "Error al guardar la postulación.";
           }
@@ -275,7 +285,8 @@ if ($reque_tipo_estudios == '1') {
 
           $result = MYSQLI_query($con, $sql);
           if ($result) {
-            echo "Se realizó con éxito registrar la postulación.";
+            echo $dni;
+            // echo "Se realizó con éxito registrar la postulación.";
           } else {
             echo "Error al guardar la postulación.";
           }
@@ -331,7 +342,8 @@ if ($reque_tipo_estudios == '1') {
 
             $result = MYSQLI_query($con, $sql);
             if ($result) {
-              echo "Postulación registrada correctamente.";
+              echo $dni;
+              // echo "Postulación registrada correctamente.";
             } else {
               echo "Error al guardar la postulación.";
             }
@@ -378,7 +390,8 @@ if ($reque_tipo_estudios == '1') {
 
             $result = MYSQLI_query($con, $sql);
             if ($result) {
-              echo "Postulación registrada correctamente.";
+              echo $dni;
+              // echo "Postulación registrada correctamente.";
             } else {
               echo "Error al guardar la postulación.";
             }
@@ -430,7 +443,8 @@ if ($reque_tipo_estudios == '1') {
 
           $result = MYSQLI_query($con, $sql);
           if ($result) {
-            echo "Se realizó con éxito registrar la postulación.";
+            echo $dni;
+            // echo "Se realizó con éxito registrar la postulación.";
           } else {
             echo "Error al guardar la postulación.";
           }
@@ -477,7 +491,8 @@ if ($reque_tipo_estudios == '1') {
 
           $result = MYSQLI_query($con, $sql);
           if ($result) {
-            echo "Se realizó con éxito registrar la postulación.";
+            echo $dni;
+            // echo "Se realizó con éxito registrar la postulación.";
           } else {
             echo "Error al guardar la postulación.";
           }
@@ -542,7 +557,8 @@ if ($reque_tipo_estudios == '1') {
 
               $result = MYSQLI_query($con, $sql);
               if ($result) {
-                echo "Postulación registrada correctamente.";
+                echo $dni;
+                // echo "Postulación registrada correctamente.";
               } else {
                 echo "Error al guardar la postulación.";
               }
@@ -589,7 +605,8 @@ if ($reque_tipo_estudios == '1') {
 
               $result = MYSQLI_query($con, $sql);
               if ($result) {
-                echo "Postulación registrada correctamente.";
+                echo $dni;
+                // echo "Postulación registrada correctamente.";
               } else {
                 echo "Error al guardar la postulación.";
               }
@@ -638,7 +655,8 @@ if ($reque_tipo_estudios == '1') {
 
               $result = MYSQLI_query($con, $sql);
               if ($result) {
-                echo "Postulación registrada correctamente.";
+                echo $dni;
+                // echo "Postulación registrada correctamente.";
               } else {
                 echo "Error al guardar la postulación.";
               }
@@ -685,7 +703,8 @@ if ($reque_tipo_estudios == '1') {
 
               $result = MYSQLI_query($con, $sql);
               if ($result) {
-                echo "Postulación registrada correctamente.";
+                echo $dni;
+                // echo "Postulación registrada correctamente.";
               } else {
                 echo "Error al guardar la postulación.";
               }
@@ -738,14 +757,13 @@ if ($reque_tipo_estudios == '1') {
 
           $result = MYSQLI_query($con, $sql);
           if ($result) {
-            header('Location: ../mispostulaciones.php?dni=' . $dni);
+            echo $dni;
           } else {
             echo "Error al guardar la postulación.";
           }
           mysqli_close($con);
         } else {
-          echo '<script> alert("No cumple con el tiempo de experiencia laboral requerdo."); 
-              window.history.back(-1);</script>';
+          echo "No cumple con el tiempo de experiencia laboral requerdo.";
         }
       } elseif ($tipo_experiencia == 'meses') {
         $cantidad_experiencia = $rw['cantidad_experiencia'];
@@ -786,15 +804,14 @@ if ($reque_tipo_estudios == '1') {
 
           $result = MYSQLI_query($con, $sql);
           if ($result) {
-            header('Location: ../mispostulaciones.php?dni=' . $dni);
+            echo $dni;
+            // header('Location: ../mispostulaciones.php?dni=' . $dni);
           } else {
-            echo '<script> alert("Error al guardar la postulación."); 
-              window.history.back(-1);</script>';
+            echo "Error al guardar la postulación.";
           }
           mysqli_close($con);
         } else {
-          echo '<script> alert("No cumple con el tiempo de experiencia laboral requerdo."); 
-              window.history.back(-1);</script>';
+          echo "No cumple con el tiempo de experiencia laboral requerdo.";
         }
       }
     } elseif ($nivel_estudio == 'TITULADO') {
@@ -845,7 +862,8 @@ if ($reque_tipo_estudios == '1') {
 
                   $result = MYSQLI_query($con, $sql);
                   if ($result) {
-                    echo "Postulación registrada correctamente.";
+                    echo $dni;
+                    // echo "Postulación registrada correctamente.";
                   } else {
                     echo "Error al guardar la postulación.";
                   }
@@ -892,7 +910,8 @@ if ($reque_tipo_estudios == '1') {
 
                   $result = MYSQLI_query($con, $sql);
                   if ($result) {
-                    echo "Postulación registrada correctamente.";
+                    echo $dni;
+                    // echo "Postulación registrada correctamente.";
                   } else {
                     echo "Error al guardar la postulación.";
                   }
@@ -966,7 +985,8 @@ if ($reque_tipo_estudios == '1') {
 
                   $result = MYSQLI_query($con, $sql);
                   if ($result) {
-                    echo "Postulación registrada correctamente.";
+                    echo $dni;
+                    // echo "Postulación registrada correctamente.";
                   } else {
                     echo "Error al guardar la postulación.";
                   }
@@ -1013,11 +1033,11 @@ if ($reque_tipo_estudios == '1') {
 
                   $result = MYSQLI_query($con, $sql);
                   if ($result) {
-                    echo "Postulación registrada correctamente.";
+                    echo $dni;
+                    // echo "Postulación registrada correctamente.";
                   } else {
                     echo "Error al guardar la postulación.";
                   }
-                  mysqli_close($con);
                 } else {
                   echo "No cumple con el tiempo de experiencia laboral mínimo requerido.";
                 }

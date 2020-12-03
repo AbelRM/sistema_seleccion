@@ -109,7 +109,7 @@ if (empty($_SESSION['active'])) {
                     <dd class="col-sm-11">Todos los datos ingresados deben ser validados una vez pase los filtros de evaluación de curriculum vitae y entrevista, en caso se compruebe datos falsos será betado de toda convocatoria durante 1 año.</dd>
                   </dl>
                   <div class="row d-flex justify-content-center">
-                    <a href="nueva_convocatoria.php?dni=<?php echo $dato_desencriptado ?>" class="btn btn-primary">EMPEZAR!</a>
+                    <a href="formacion.php?dni=<?php echo $dato_desencriptado ?>" class="btn btn-primary">EMPEZAR</a>
                   </div>
                 </div>
               </div>

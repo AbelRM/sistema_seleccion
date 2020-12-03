@@ -1,9 +1,19 @@
 <?php
-  include "conexion.php";  
+include 'conexion.php';
+include 'funcs/mcript.php';
+session_start();
+if (empty($_SESSION['active'])) {
+  header("Location: ../index.php");
+}
+?>
+<?php
+include "conexion.php";
 
-  $query=$con->query("select * from departamento");
-  $countries = array();
-  while($r=$query->fetch_object()){ $countries[]=$r; }
+$query = $con->query("select * from departamento");
+$countries = array();
+while ($r = $query->fetch_object()) {
+  $countries[] = $r;
+}
 
 ?>
 
@@ -13,7 +23,7 @@
 <head>
 
   <meta charset="utf-8">
-  
+
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
@@ -39,18 +49,18 @@
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-    <?php   
-        include 'funcs/mcript.php';
-        
-        $dato_desencriptado = $_GET['dni'];
-        $dni = $desencriptar($dato_desencriptado);
-        
-        $sql2="SELECT * FROM usuarios where dni=$dni";
-        $datos=mysqli_query($con,$sql2) or die(mysqli_error()); ;
-        $fila= mysqli_fetch_array($datos);
-        include 'menu.php';
-        
-        //include 'modal_ver_convocatoria.php';
+    <?php
+    include 'funcs/mcript.php';
+
+    $dato_desencriptado = $_GET['dni'];
+    $dni = $desencriptar($dato_desencriptado);
+
+    $sql2 = "SELECT * FROM usuarios where dni=$dni";
+    $datos = mysqli_query($con, $sql2) or die(mysqli_error($datos));;
+    $fila = mysqli_fetch_array($datos);
+    include 'menu.php';
+
+    //include 'modal_ver_convocatoria.php';
     ?>
 
     <!-- Content Wrapper -->
@@ -59,11 +69,11 @@
       <div id="content">
         <!-- Topbar -->
         <?php
-            include_once 'nav.php';
+        include_once 'nav.php';
         ?>
         <!-- End of Topbar -->
 
-        <!-- Begin Page Content --> 
+        <!-- Begin Page Content -->
         <div class="container-fluid">
 
           <!-- Page Heading -->
@@ -76,142 +86,142 @@
               <h6 class="m-0 font-weight-bold text-primary">DATOS PERSONALES</h6>
             </div>
             <div class="card-body">
-                <form action="procesos/guardar_personales.php" method="post">
-                    <div class="form-card">
-                  
-                        <input type="hidden" id="dni_post" name="dni_post" value="<?php echo $fila['dni']; ?>">
-                       
-                        <div class="form-group row">
-                            <div class="col-md-5 col-sm-6 mb-2 mb-sm-0">
-                                <label>Nombres</label> 
-                                <input class="form-control form-control-user" type="text" value="<?php echo $fila['nombres']." ".$fila['ape_pat']." ".$fila['ape_mat']; ?>" disabled="true"/> 
-                            </div>
-                            <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">
-                                <label>D.N.I.</label> 
-                                <input class="form-control form-control-user" type="text" value="<?php echo $fila['dni']?>" disabled="true"/> 
-                            </div>
-                            <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
-                                <label>Fecha de nacimiento</label> 
-                                <input class="form-control form-control-user" value="<?php echo $fila['fech_nac']?>" disabled="true"/> 
-                            </div>
-                            <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">
-                                <label>Estado civil</label> 
-                                <select class="form-control" name="civil" id="civil">
-                                    <option selected>Elegir...</option>
-                                    <option value="SOLTERO(A)">Soltero(a)</option>
-                                    <option value="CASADO(A)">Casado(a)</option>
-                                    <option value="VIUDO(A)">Viudo(a)</option>
-                                    <option value="DIVORCIADO(A)">Divorciado(a)</option>
-                                    <option value="CONVIVIENTE">Conviviente</option>
-                                </select> 
-                            </div>
-                            <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">
-                                <label>Sexo</label> 
-                                <select class="form-control" name="sexo" id="sexo">
-                                    <option selected>Elegir...</option>
-                                    <option value="MASCULINO">Masculino</option>
-                                    <option value="FEMENINO">Femenino</option>
-                                </select> 
-                            </div>
-                            <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
-                                <label for="name1">Departamento</label>
-                                <select id="departamento_id" class="form-control" name="departamento_id" required>
-                                    <option value="">-- SELECCIONE --</option>
-                                    <?php foreach($countries as $c):?>
-                                        <option value="<?php echo $c->iddepartamento; ?>"><?php echo $c->departamento; ?></option>
-                                    <?php endforeach; ?>
-                                </select> 
-                            </div>
+              <form action="procesos/guardar_personales.php" method="post">
+                <div class="form-card">
 
-                            <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
-                                <label for="name1">Provincia</label>
-                                <select id="provincia_id" class="form-control" name="provincia_id" >
-                                    <option value="">-- SELECCIONE --</option>
-                                </select>                                 
-                            </div>
+                  <input type="hidden" id="dni_post" name="dni_post" value="<?php echo $fila['dni']; ?>">
 
-
-                            <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
-                                <label for="exampleInputEmail1">Distrito</label>
-                                <select id="distrito_id" class="form-control" name="distrito_id" required>
-                                    <option value="">-- SELECCIONE --</option>        
-                                </select>
-                            </div>
-                            
-                            <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">
-                                <label>Cel. emergencia</label> 
-                                <input class="form-control form-control-user" type="text" name="num_emer" id="num_emer"/> 
-                            </div>
-                            <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
-                                <label>Parentesco</label> 
-                                <input class="form-control form-control-user" placeholder="Nombre familiar" type="text" name="nomb_parent" id="nomb_parent"/> 
-                            </div>
-                            <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
-                                <label>R.U.C.</label> 
-                                <input class="form-control form-control-user" type="text" name="ruc" id="ruc"/> 
-                            </div>
-                            <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
-                                <label>N° cuenta bancaria</label> 
-                                <input class="form-control form-control-user" placeholder="Banco de la Nación" type="text" name="cuenta_banc" id="cuenta_banc"/> 
-                            </div>
-                            <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
-                                <label>Suspensión de 4ta.</label> 
-                                <select class="form-control" name="cuarta" id="cuarta">
-                                    <option value="NO" selected>NO</option>
-                                    <option value="SI">SI</option>
-                                </select> 
-                            </div>
-                            <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
-                                <label>Tipo de pensión</label> 
-                                <select class="form-control" name="pension" id="pension">
-                                    <option value="NINGUNA" selected>Ninguna</option>
-                                    <option value="ONP">ONP</option>
-                                    <option value="SPP">SPP</option>
-                                </select> 
-                            </div>
-                            <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">
-                                <label>Discapacidad</label> 
-                                <select class="form-control" name="discapacidad" id="discapacidad">
-                                    <option value="NO" selected>NO</option>
-                                    <option value="SI">SI</option>
-                                    
-                                </select>  
-                            </div>
-                            <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">
-                                <label>Tipo de discapacidad</label> 
-                                <select class="form-control" name="tip_discapacidad" id="tip_discapacidad">
-                                    <option value="NINGUNA" select>Ninguna</option>
-                                    <option value="FISICA">Físicas</option>
-                                    <option value="SENSORIAL">Sensoriales</option>
-                                    <option value="MENTAL">Mentales</option>
-                                    <option value="INTELECTUAL">Intelectuales</option>
-                                </select>  
-                            </div>
-                            <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">
-                                <label>Grupo sanguineo</label> 
-                                <select class="form-control" name="tip_sangre" id="tip_sangre">
-                                    <option selected>Elegir...</option>
-                                    <option value="AB+">AB+</option>
-                                    <option value="AB-">AB-</option>
-                                    <option value="A+">A+</option>
-                                    <option value="A-">A-</option>
-                                    <option value="B+">B+</option>
-                                    <option value="B-">B-</option>
-                                    <option value="0+">0+</option>
-                                    <option value="0-">0-</option>
-                                </select>  
-                            </div>
-                            <div class="col-md-6 col-sm-6 mb-2 mb-sm-0">
-                                <label>Enfermedades/Alergias</label> 
-                                <input class="form-control form-control-user" type="text" placeholder="Separado por comas" name="alergias" id="alergias"/> 
-                            </div>
-                        </div> 
+                  <div class="form-group row">
+                    <div class="col-md-5 col-sm-6 mb-2 mb-sm-0">
+                      <label>Nombres</label>
+                      <input class="form-control form-control-user" type="text" value="<?php echo $fila['nombres'] . " " . $fila['ape_pat'] . " " . $fila['ape_mat']; ?>" disabled="true" />
                     </div>
-                    <div class="d-flex justify-content-end">
-                      <button type="input" class="btn btn-dark">Siguiente</button>        
+                    <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">
+                      <label>D.N.I.</label>
+                      <input class="form-control form-control-user" type="text" value="<?php echo $fila['dni'] ?>" disabled="true" />
                     </div>
-                    
-                </form>
+                    <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
+                      <label>Fecha de nacimiento</label>
+                      <input class="form-control form-control-user" value="<?php echo $fila['fech_nac'] ?>" disabled="true" />
+                    </div>
+                    <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">
+                      <label>Estado civil</label>
+                      <select class="form-control" name="civil" id="civil">
+                        <option selected>Elegir...</option>
+                        <option value="SOLTERO(A)">Soltero(a)</option>
+                        <option value="CASADO(A)">Casado(a)</option>
+                        <option value="VIUDO(A)">Viudo(a)</option>
+                        <option value="DIVORCIADO(A)">Divorciado(a)</option>
+                        <option value="CONVIVIENTE">Conviviente</option>
+                      </select>
+                    </div>
+                    <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">
+                      <label>Sexo</label>
+                      <select class="form-control" name="sexo" id="sexo">
+                        <option selected>Elegir...</option>
+                        <option value="MASCULINO">Masculino</option>
+                        <option value="FEMENINO">Femenino</option>
+                      </select>
+                    </div>
+                    <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
+                      <label for="name1">Departamento</label>
+                      <select id="departamento_id" class="form-control" name="departamento_id" required>
+                        <option value="">-- SELECCIONE --</option>
+                        <?php foreach ($countries as $c) : ?>
+                          <option value="<?php echo $c->iddepartamento; ?>"><?php echo $c->departamento; ?></option>
+                        <?php endforeach; ?>
+                      </select>
+                    </div>
+
+                    <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
+                      <label for="name1">Provincia</label>
+                      <select id="provincia_id" class="form-control" name="provincia_id">
+                        <option value="">-- SELECCIONE --</option>
+                      </select>
+                    </div>
+
+
+                    <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
+                      <label for="exampleInputEmail1">Distrito</label>
+                      <select id="distrito_id" class="form-control" name="distrito_id" required>
+                        <option value="">-- SELECCIONE --</option>
+                      </select>
+                    </div>
+
+                    <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">
+                      <label>Cel. emergencia</label>
+                      <input class="form-control form-control-user" type="text" name="num_emer" id="num_emer" />
+                    </div>
+                    <div class="col-md-4 col-sm-6 mb-2 mb-sm-0">
+                      <label>Parentesco</label>
+                      <input class="form-control form-control-user" placeholder="Nombre familiar" type="text" name="nomb_parent" id="nomb_parent" />
+                    </div>
+                    <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
+                      <label>R.U.C.</label>
+                      <input class="form-control form-control-user" type="text" name="ruc" id="ruc" />
+                    </div>
+                    <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
+                      <label>N° cuenta bancaria</label>
+                      <input class="form-control form-control-user" placeholder="Banco de la Nación" type="text" name="cuenta_banc" id="cuenta_banc" />
+                    </div>
+                    <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
+                      <label>Suspensión de 4ta.</label>
+                      <select class="form-control" name="cuarta" id="cuarta">
+                        <option value="NO" selected>NO</option>
+                        <option value="SI">SI</option>
+                      </select>
+                    </div>
+                    <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
+                      <label>Tipo de pensión</label>
+                      <select class="form-control" name="pension" id="pension">
+                        <option value="NINGUNA" selected>Ninguna</option>
+                        <option value="ONP">ONP</option>
+                        <option value="SPP">SPP</option>
+                      </select>
+                    </div>
+                    <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">
+                      <label>Discapacidad</label>
+                      <select class="form-control" name="discapacidad" id="discapacidad">
+                        <option value="NO" selected>NO</option>
+                        <option value="SI">SI</option>
+
+                      </select>
+                    </div>
+                    <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">
+                      <label>Tipo de discapacidad</label>
+                      <select class="form-control" name="tip_discapacidad" id="tip_discapacidad">
+                        <option value="NINGUNA" select>Ninguna</option>
+                        <option value="FISICA">Físicas</option>
+                        <option value="SENSORIAL">Sensoriales</option>
+                        <option value="MENTAL">Mentales</option>
+                        <option value="INTELECTUAL">Intelectuales</option>
+                      </select>
+                    </div>
+                    <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">
+                      <label>Grupo sanguineo</label>
+                      <select class="form-control" name="tip_sangre" id="tip_sangre">
+                        <option selected>Elegir...</option>
+                        <option value="AB+">AB+</option>
+                        <option value="AB-">AB-</option>
+                        <option value="A+">A+</option>
+                        <option value="A-">A-</option>
+                        <option value="B+">B+</option>
+                        <option value="B-">B-</option>
+                        <option value="0+">0+</option>
+                        <option value="0-">0-</option>
+                      </select>
+                    </div>
+                    <div class="col-md-6 col-sm-6 mb-2 mb-sm-0">
+                      <label>Enfermedades/Alergias</label>
+                      <input class="form-control form-control-user" type="text" placeholder="Separado por comas" name="alergias" id="alergias" />
+                    </div>
+                  </div>
+                </div>
+                <div class="d-flex justify-content-end">
+                  <button type="input" class="btn btn-dark">Siguiente</button>
+                </div>
+
+              </form>
             </div>
           </div>
 
@@ -273,21 +283,21 @@
   <script src="js/demo/datatables-demo.js"></script>
 
   <script type="text/javascript">
-      $(document).ready(function(){
-          $("#departamento_id").change(function(){
-              $.get("provincia.php","departamento_iddepartamento="+$("#departamento_id").val(), function(data){
-                  $("#provincia_id").html(data);
-                  console.log(data);
-              });
-          });
-
-          $("#provincia_id").change(function(){
-              $.get("distrito.php","provincia_idprovincia="+$("#provincia_id").val(), function(data){
-                  $("#distrito_id").html(data);
-                  console.log(data);
-              });
-          });
+    $(document).ready(function() {
+      $("#departamento_id").change(function() {
+        $.get("provincia.php", "departamento_iddepartamento=" + $("#departamento_id").val(), function(data) {
+          $("#provincia_id").html(data);
+          console.log(data);
+        });
       });
+
+      $("#provincia_id").change(function() {
+        $.get("distrito.php", "provincia_idprovincia=" + $("#provincia_id").val(), function(data) {
+          $("#distrito_id").html(data);
+          console.log(data);
+        });
+      });
+    });
   </script>
 
 </body>

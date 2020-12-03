@@ -18,7 +18,7 @@ if (empty($_SESSION['active'])) {
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Listado de convocatorias CAS vigentes - SISTEMA DE SELECCIÓN DIRESA TACNA</title>
+  <title>Elegir tipo de convocatoria a postular - SISTEMA DE SELECCIÓN DIRESA TACNA</title>
 
   <!-- Custom fonts for this template -->
   <link rel="icon" type="image/png" href="img/icono_diresa.png" />
@@ -73,52 +73,41 @@ if (empty($_SESSION['active'])) {
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">CONVOCATORIAS CAS REGULAR Y COVID</h6>
+              <h6 class="m-0 font-weight-bold text-primary">ELEGIR TIPO CONVOCATORIA A POSTULAR</h6>
             </div>
             <div class="card-body">
-              <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                  <thead>
+              <div class="row d-flex justify-content-center">
+                <div class="col-md-4 col-sm-12">
+                  <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col-md-12 p-2 d-flex justify-content-center">
+                          <h5 class="font-weight-bold text-primary text-uppercase mb-1 text-center">Convocatoria de praticantes</h5>
+                        </div>
+                        <div class="col-md-12 p-2">
+                          <div class="col-md-12 d-2 d-flex justify-content-center">
+                            <a href="lista_conv_pract.php?dni=<?php echo $dni ?>" type="button" class="btn btn-primary">Elegir</a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
-                    <tr class="bg-danger" style="text-align:center; font-size:0.813em;">
-                      <th>N°</th>
-                      <th>Tipo concurso</th>
-                      <th>N° convocatoria</th>
-                      <th>Fecha inicio</th>
-                      <th>Fecha termino</th>
-                      <th>Estado</th>
-                      <th>Acciones</th>
-
-                    </tr>
-                  </thead>
-                  <?php
-                  $dni = $_GET['dni'];
-
-                  $sql = "SELECT * FROM convocatoria WHERE estado='ACTIVO'";
-
-                  $query = mysqli_query($con, $sql);
-                  while ($row = MySQLI_fetch_array($query)) {
-                  ?>
-                    <tr>
-                      <td><?php echo $row['idcon'] ?></td>
-                      <td style="font-size: 16px;"><?php echo $row['tipo_con'] ?></td>
-                      <td style="font-size: 14px;"><?php echo $row['num_con'] . "-" . $row['anio_con'] ?></td>
-                      <td style="font-size: 14px;"><?php echo $row['fech_ini'] ?></td>
-                      <td style="font-size: 14px;"><?php echo $row['fech_term'] ?></td>
-                      <td style="font-size: 14px;"><?php echo $row['estado'] ?></td>
-                      <td>
-                        <a href="cargo.php?idcon=<?php echo $row['idcon'] ?>&dni=<?php echo $dni ?>"><button type="button" class="btn btn-primary" style="margin: 1px;"><i class="fa fa-pencil-alt"></i> Postular</button></a>
-                      </td>
-
-
-                    </tr>
-                  <?php
-                  }
-                  ?>
-                  <tbody>
-
-                  </tbody>
-                </table>
+                <div class="col-md-4 col-sm-12">
+                  <div class="card border-left-danger shadow h-100 py-2">
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col-md-12 p-2 d-flex justify-content-center">
+                          <h5 class="font-weight-bold text-danger text-uppercase mb-1 text-center">Convocatoria de CAS REGULAR Y COVID</h5>
+                        </div>
+                        <div class="col-md-12 d-2 d-flex justify-content-center">
+                          <a href="listar_convo.php?dni=<?php echo $dni ?>" type="button" class="btn btn-danger">Elegir</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

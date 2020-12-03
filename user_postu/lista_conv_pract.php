@@ -18,7 +18,7 @@ if (empty($_SESSION['active'])) {
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Listado de convocatorias CAS vigentes - SISTEMA DE SELECCIÓN DIRESA TACNA</title>
+  <title>Listado de convocatorias de prácticas vigentes - SISTEMA DE SELECCIÓN DIRESA TACNA</title>
 
   <!-- Custom fonts for this template -->
   <link rel="icon" type="image/png" href="img/icono_diresa.png" />
@@ -73,39 +73,35 @@ if (empty($_SESSION['active'])) {
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">CONVOCATORIAS CAS REGULAR Y COVID</h6>
+              <h6 class="m-0 font-weight-bold text-primary">CONVOCATORIAS DE PRACTICANTES</h6>
             </div>
             <div class="card-body">
               <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
-
                     <tr class="bg-danger" style="text-align:center; font-size:0.813em;">
                       <th>N°</th>
-                      <th>Tipo concurso</th>
+                      <th>Tipo práctica</th>
                       <th>N° convocatoria</th>
                       <th>Fecha inicio</th>
                       <th>Fecha termino</th>
                       <th>Estado</th>
                       <th>Acciones</th>
-
                     </tr>
                   </thead>
                   <?php
-                  $dni = $_GET['dni'];
-
-                  $sql = "SELECT * FROM convocatoria WHERE estado='ACTIVO'";
+                  $sql = "SELECT * FROM practicas WHERE estado_con='ACTIVO'";
 
                   $query = mysqli_query($con, $sql);
                   while ($row = MySQLI_fetch_array($query)) {
                   ?>
                     <tr>
-                      <td><?php echo $row['idcon'] ?></td>
-                      <td style="font-size: 16px;"><?php echo $row['tipo_con'] ?></td>
-                      <td style="font-size: 14px;"><?php echo $row['num_con'] . "-" . $row['anio_con'] ?></td>
-                      <td style="font-size: 14px;"><?php echo $row['fech_ini'] ?></td>
-                      <td style="font-size: 14px;"><?php echo $row['fech_term'] ?></td>
-                      <td style="font-size: 14px;"><?php echo $row['estado'] ?></td>
+                      <td><?php echo $row['idpracticas'] ?></td>
+                      <td style="font-size: 14px;"><?php echo $row['tipo_practica'] ?></td>
+                      <td style="font-size: 14px;"><?php echo $row['num_convoc'] . "-" . $row['anio_convoc'] ?></td>
+                      <td style="font-size: 14px;"><?php echo $row['fech_inicio'] ?></td>
+                      <td style="font-size: 14px;"><?php echo $row['fech_termino'] ?></td>
+                      <td style="font-size: 14px;"><?php echo $row['estado_con'] ?></td>
                       <td>
                         <a href="cargo.php?idcon=<?php echo $row['idcon'] ?>&dni=<?php echo $dni ?>"><button type="button" class="btn btn-primary" style="margin: 1px;"><i class="fa fa-pencil-alt"></i> Postular</button></a>
                       </td>

@@ -1,3 +1,11 @@
+<?php
+include 'conexion.php';
+include 'funcs/mcript.php';
+session_start();
+if (empty($_SESSION['active'])) {
+  header("Location: ../index.php");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -123,7 +131,7 @@
                           <tr>
                             <th style="display:none;">id</th>
                             <th></th>
-                            <th colspan='4' style="color:#000; background:#85879666; font-size:0.813em;">Requerimientos requeridos</th>
+                            <th colspan='4' style="color:#000; background:#85879666; font-size:0.813em;">Requerimientos MÍNIMOS requeridos</th>
                           </tr>
                         </thead>
                         <?php
@@ -135,11 +143,12 @@
                             <td style="font-size: 12px;"></td>
                             <td style="font-size: 12px;">
                               <small style="font-weight:700; font-size: 14px;">Tipo estudio: </small><?php echo $rw['tipo_estudios'] ?><br>
-                              <small style="font-weight:700; font-size: 14px;">Nivel estudio: </small><?php echo $rw['nivel_estudio'] ?>
+                              <small style="font-weight:700; font-size: 14px;">Nivel estudio: </small><?php echo $rw['nivel_estudio'] ?><br>
+                              <small style="font-weight:700; font-size: 14px;">Ciclo requerido: </small><?php echo $rw['ciclo_actual'] ?>
                             </td>
                             <td style="font-size: 12px;">
                               <small style="font-weight:700; font-size: 14px;">Cantidad experiencia: </small><br><?php echo $rw['cantidad_experiencia'] ?>
-                              <?php if ($rw['nivel_estudio'] = 'anios') {
+                              <?php if ($rw['tipo_experiencia'] = 'anios') {
                                 echo "AÑO (S)";
                               } else {
                                 echo "MES (ES)";
@@ -149,6 +158,35 @@
                               <small style="font-weight:700; font-size: 14px;">Colegiatura: </small><?php echo $rw['colegiatura'] ?><br>
                               <small style="font-weight:700; font-size: 14px;">Habilitación: </small><?php echo $rw['habilitacion'] ?><br>
                               <small style="font-weight:700; font-size: 14px;">Serums: </small><?php echo $rw['serums'] ?><br>
+                              <small style="font-weight:700; font-size: 14px;">Licencia de conducir: </small><?php echo $rw['licencia_conducir'] ?>
+                            </td>
+                          </tr>
+                          <thead>
+                            <tr>
+                              <th style="display:none;">id</th>
+                              <th></th>
+                              <th colspan='4' style="color:#000; background:#85879666; font-size:0.813em;">Requerimientos MÁXIMOS requeridos</th>
+                            </tr>
+                          </thead>
+                          <tr>
+                            <!-- <td style=" font-size: 12px; display: none;"><?php echo $rw['id_requerimientos'] ?></td> -->
+                            <td style="font-size: 12px;"></td>
+                            <td style="font-size: 12px;">
+                              <small style="font-weight:700; font-size: 14px;">Tipo estudio: </small><?php echo $rw['reque_tipo_estudios_max'] ?><br>
+                              <small style="font-weight:700; font-size: 14px;">Nivel estudio: </small><?php echo $rw['nivel_estudio_max'] ?>
+                            </td>
+                            <td style="font-size: 12px;">
+                              <small style="font-weight:700; font-size: 14px;">Cantidad experiencia: </small><br><?php echo $rw['cantidad_experiencia'] ?>
+                              <?php if ($rw['tipo_experiencia'] = 'anios') {
+                                echo "AÑO (S)";
+                              } else {
+                                echo "MES (ES)";
+                              }  ?>
+                            </td>
+                            <td style="font-size: 12px;">
+                              <small style="font-weight:700; font-size: 14px;">Colegiatura: </small><?php echo $rw['colegiatura_max'] ?><br>
+                              <small style="font-weight:700; font-size: 14px;">Habilitación: </small><?php echo $rw['habilitacion_max'] ?><br>
+                              <small style="font-weight:700; font-size: 14px;">Serums: </small><?php echo $rw['serums_max'] ?><br>
                               <small style="font-weight:700; font-size: 14px;">Licencia de conducir: </small><?php echo $rw['licencia_conducir'] ?>
                             </td>
                           </tr>
@@ -190,7 +228,7 @@
   </a>
 
   <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="cerrarsesion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">

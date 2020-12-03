@@ -426,6 +426,7 @@ if (empty($_SESSION['active'])) {
                   <select name="tipo" id="tipo" class="form-control">
                     <option value="DIPLOMADO">Diplomado</option>
                     <option value="CURSO">Curso</option>
+                    <option value="ESPECIALIDAD">Especialidad</option>
                     <option value="SEMINARIO">Seminario</option>
                     <option value="OTRO">Otro</option>
                   </select>

@@ -237,7 +237,7 @@ if (empty($_SESSION['active'])) {
             </div>
             <div class="modal-footer">
               <a href="formacion.php?dni=<?php echo $dato_desencriptado  ?>" type="button" class="btn btn-default">Cancelar</a>
-              <button type="submit" name="editar" class="btn btn-success">Actualizar!</a>
+              <button type="submit" name="editar" class="btn btn-success">Actualizar</a>
             </div>
             </form>
           </div>

@@ -1,3 +1,20 @@
+$('#expe_archivo').bind('change', function () {
+  //this.files[0].size gets the size of your file.
+  var peso = (this.files[0].size);
+  if (peso <= 3000000) {
+    document.getElementById('peso_archivo_valido').innerHTML = "Archivo válido";
+    document.getElementById("peso_archivo_valido").style.display = "block";
+    document.getElementById("peso_archivo_no").style.display = "none";
+    // alert("Archivo valido");
+  } else {
+    document.getElementById('peso_archivo_no').innerHTML = "El archivo sobre pasa los 3Mb máximos";
+    document.getElementById("peso_archivo_valido").style.display = "none";
+    document.getElementById("peso_archivo_no").style.display = "block";
+    document.getElementById("expe_archivo").value = '';
+    // alert("Archivo NO valido");
+  }
+  // alert(this.files[0].size);
+});
 
 //TIPO 2
 $(document).ready(function(){

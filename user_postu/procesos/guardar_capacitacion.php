@@ -45,11 +45,12 @@ if (isset($_POST['insertData'])) {
 
       $result = mysqli_query($con, $sql);
       if ($result) {
-        echo '<script> alert("Guardado exitosamente"); </script>';
-        echo "<script type=\"text/javascript\">history.go(-1);</script>";
+        // echo '<script> alert("Guardado exitosamente"); </script>';
+        // echo "<script type=\"text/javascript\">history.go(-1);</script>"
+        header('Location: ../capacitacion.php?dni=' . $dato_desencriptado . '&list-messages');
       } else {
         echo '<script> alert("Error al guardar información."); </script>';
-        header('Location: ../capacitacion.php?dni=' . $dato_desencriptado);
+        header('Location: ../capacitacion.php?dni=' . $dato_desencriptado . '&list-messages');
       }
     } else {
       echo '<script> alert("Error al guardar el archivo"); </script>';
@@ -159,7 +160,8 @@ if (isset($_POST['insertData'])) {
 
       $result = mysqli_query($con, $sql);
       if ($result) {
-        echo "<script type=\"text/javascript\">history.go(-1);</script>";
+        header('Location: ../capacitacion.php?dni=' . $dato_desencriptado . '#list-messages');
+        // echo "<script type=\"text/javascript\">history.go(-1);</script>";
       } else {
         // echo '<script> alert("Error al guardar la información."); </script>';
         echo "<script type=\"text/javascript\">history.go(-1);</script>";

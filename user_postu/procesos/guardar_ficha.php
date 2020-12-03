@@ -6,54 +6,48 @@ $dni_post = $_POST['dni_post'];
 
 // DATOS PERSONALES
 $fech_nac = $_POST['fech_nac'];
-$pais = $_POST['pais'];
-$civil = $_POST['civil'];
-$sexo = $_POST['sexo'];
-$num_emer = $_POST['num_emer'];
-$nomb_parent = strtoupper($_POST['nomb_parent']);
-$ruc = $_POST['ruc'];
-$cuarta = $_POST['cuarta'];
-$cuenta_banc = $_POST['cuenta_banc'];
-$discapacidad = $_POST['discapacidad'];
-$tip_discapacidad = $_POST['tip_discapacidad'];
-$tip_sangre = $_POST['tip_sangre'];
-$alergias = strtoupper($_POST['alergias']);
-$servicio_militar = $_POST['servicio_militar'];
-$deportista_calif = $_POST['deportista_calif'];
+$pais = $_POST['pais']; //bien
+$civil = $_POST['civil']; //bien
+$sexo = $_POST['sexo']; //bien
+$num_emer = $_POST['num_emer']; //bien
+$nomb_parent = strtoupper($_POST['nomb_parent']); //bien
+$ruc = $_POST['ruc']; //bien
+$cuarta = $_POST['cuarta']; //bien
+$cuenta_banc = $_POST['cuenta_banc']; //bien
+$discapacidad = $_POST['discapacidad']; //buen
+$tip_discapacidad = $_POST['tip_discapacidad']; //bien
+$tip_sangre = $_POST['tip_sangre']; //bien
+$alergias = strtoupper($_POST['alergias']); //bien
+$servicio_militar = $_POST['servicio_militar']; //bien
+$deportista_calif = $_POST['deportista_calif']; //listo
 
 $pension = $_POST['pension'];
-if ($pension = 'NINGUNA') {
-  $pertenecer_pension = $_POST['pertenecer_pension'];
-  if ($pertenecer_pension = 'AFP') {
+if ($pension == 'NINGUNA') {
+  $pertenecer_pension = $_POST['pertenecer_pension']; //BIEN
+  if ($pertenecer_pension == 'AFP') {
     $nombre_afp_pregunta = $_POST['nombre_afp_pregunta'];
 
-    $sql = "UPDATE postulante SET estado_civil='" . $civil . "', sexo = '" . $sexo . "', fech_nac = '" . $fech_nac . "', num_cuenta = '" . $cuenta_banc . "',  celular_emer ='" . $num_emer . "',parentesco_emer='" . $nomb_parent . "',ruc ='" . $ruc . "',
-     discapacidad = '" . $discapacidad . "', tipo_discap = '" . $tip_discapacidad . "',tipo_sangre = '" . $tip_sangre . "', alergias = '" . $alergias . "',suspension_cuarta = '" . $cuarta . "',seguro = '" . $pension . "', desea_pertenecer_seguro = '" . $pertenecer_pension . "',
-     nombre_afp = '" . $nombre_afp_pregunta . "',pais = '" . $pais . "' ,servicio_militar = '" . $servicio_militar . "', 
+    $sql = "UPDATE postulante SET estado_civil='" . $civil . "', sexo = '" . $sexo . "',ruc ='" . $ruc . "', fech_nac = '" . $fech_nac . "', num_cuenta = '" . $cuenta_banc . "',  seguro = '" . $pension . "',suspension_cuarta = '" . $cuarta . "',celular_emer ='" . $num_emer . "',parentesco_emer='" . $nomb_parent . "', discapacidad = '" . $discapacidad . "', tipo_discap = '" . $tip_discapacidad . "',tipo_sangre = '" . $tip_sangre . "', alergias = '" . $alergias . "',pais = '" . $pais . "', servicio_militar = '" . $servicio_militar . "',  desea_pertenecer_seguro = '" . $pertenecer_pension . "', nombre_afp_desea = '" . $nombre_afp_pregunta . "' ,
      deportista_calificado = '" . $deportista_calif . "' WHERE idpostulante='" . $idpostulante . "' ";
+    $datos = mysqli_query($con, $sql);
+  } elseif ($pertenecer_pension = 'ONP') {
+    $sql = "UPDATE postulante SET estado_civil='" . $civil . "', sexo = '" . $sexo . "',ruc ='" . $ruc . "', fech_nac = '" . $fech_nac . "', num_cuenta = '" . $cuenta_banc . "',  seguro = '" . $pension . "',suspension_cuarta = '" . $cuarta . "',celular_emer ='" . $num_emer . "',parentesco_emer='" . $nomb_parent . "', discapacidad = '" . $discapacidad . "', tipo_discap = '" . $tip_discapacidad . "',tipo_sangre = '" . $tip_sangre . "', alergias = '" . $alergias . "',pais = '" . $pais . "', servicio_militar = '" . $servicio_militar . "',  desea_pertenecer_seguro = '" . $pertenecer_pension . "', deportista_calificado = '" . $deportista_calif . "' WHERE idpostulante='" . $idpostulante . "' ";
     $datos = mysqli_query($con, $sql);
   } else {
-    $sql = "UPDATE postulante SET estado_civil='" . $civil . "', sexo = '" . $sexo . "', fech_nac = '" . $fech_nac . "', num_cuenta = '" . $cuenta_banc . "',  celular_emer ='" . $num_emer . "',parentesco_emer='" . $nomb_parent . "',ruc ='" . $ruc . "',
-     discapacidad = '" . $discapacidad . "', tipo_discap = '" . $tip_discapacidad . "',tipo_sangre = '" . $tip_sangre . "', alergias = '" . $alergias . "',suspension_cuarta = '" . $cuarta . "',seguro = '" . $pension . "', desea_pertenecer_seguro = '" . $pertenecer_pension . "',
-     pais = '" . $pais . "' ,servicio_militar = '" . $servicio_militar . "', 
-     deportista_calificado = '" . $deportista_calif . "' WHERE idpostulante='" . $idpostulante . "' ";
-    $datos = mysqli_query($con, $sql);
+    echo "Error al agregar el tipo de pensión deseable.";
   }
-} elseif ($pension = 'AFP') {
-  $nombre_afp = $_POST['nombre_afp'];
-  $codigo_cussp = $_POST['codigo_cussp'];
-  $sql = "UPDATE postulante SET estado_civil='" . $civil . "', sexo = '" . $sexo . "', fech_nac = '" . $fech_nac . "', num_cuenta = '" . $cuenta_banc . "',  celular_emer ='" . $num_emer . "',parentesco_emer='" . $nomb_parent . "',ruc ='" . $ruc . "',
-     discapacidad = '" . $discapacidad . "', tipo_discap = '" . $tip_discapacidad . "', tipo_sangre = '" . $tip_sangre . "', alergias = '" . $alergias . "', suspension_cuarta = '" . $cuarta . "',seguro = '" . $pension . "', nombre_afp = '" . $nombre_afp . "',
-     codigo_cussp = '" . $codigo_cussp . "', pais = '" . $pais . "' ,servicio_militar = '" . $servicio_militar . "', 
-     deportista_calificado = '" . $deportista_calif . "' WHERE idpostulante='" . $idpostulante . "' ";
+} elseif ($pension == 'AFP') {
+  $nombre_afp = $_POST['nombre_afp']; //bien
+  $codigo_cussp = $_POST['codigo_cussp']; //bien
+  $sql = "UPDATE postulante SET estado_civil='" . $civil . "', sexo = '" . $sexo . "',ruc ='" . $ruc . "', fech_nac = '" . $fech_nac . "', num_cuenta = '" . $cuenta_banc . "',  seguro = '" . $pension . "',suspension_cuarta = '" . $cuarta . "',celular_emer ='" . $num_emer . "',parentesco_emer='" . $nomb_parent . "', discapacidad = '" . $discapacidad . "', tipo_discap = '" . $tip_discapacidad . "',tipo_sangre = '" . $tip_sangre . "', alergias = '" . $alergias . "',pais = '" . $pais . "', servicio_militar = '" . $servicio_militar . "', nombre_afp = '" . $nombre_afp . "' , codigo_cussp = '" . $codigo_cussp . "', deportista_calificado = '" . $deportista_calif . "' WHERE idpostulante='" . $idpostulante . "' ";
+  $datos = mysqli_query($con, $sql);
+} elseif ($pension == 'ONP') {
+  //ONP
+  $sql = "UPDATE postulante SET estado_civil='" . $civil . "', sexo = '" . $sexo . "',ruc ='" . $ruc . "', fech_nac = '" . $fech_nac . "', num_cuenta = '" . $cuenta_banc . "',  seguro = '" . $pension . "', suspension_cuarta = '" . $cuarta . "',celular_emer ='" . $num_emer . "',parentesco_emer='" . $nomb_parent . "', discapacidad = '" . $discapacidad . "', tipo_discap = '" . $tip_discapacidad . "',tipo_sangre = '" . $tip_sangre . "', alergias = '" . $alergias . "',pais = '" . $pais . "', servicio_militar = '" . $servicio_militar . "', 
+  deportista_calificado = '" . $deportista_calif . "' WHERE idpostulante='" . $idpostulante . "' ";
   $datos = mysqli_query($con, $sql);
 } else {
-  $nombre_afp = $_POST['nombre_afp'];
-  $codigo_cussp = $_POST['codigo_cussp'];
-
-  $sql = "UPDATE postulante SET estado_civil='" . $civil . "', sexo = '" . $sexo . "', fech_nac = '" . $fech_nac . "', num_cuenta = '" . $cuenta_banc . "',  celular_emer ='" . $num_emer . "',parentesco_emer='" . $nomb_parent . "',ruc ='" . $ruc . "',
-     discapacidad = '" . $discapacidad . "', tipo_discap = '" . $tip_discapacidad . "',tipo_sangre = '" . $tip_sangre . "', alergias = '" . $alergias . "', suspension_cuarta = '" . $cuarta . "',seguro = '" . $pension . "', pais = '" . $pais . "' ,servicio_militar = '" . $servicio_militar . "', deportista_calificado = '" . $deportista_calif . "' WHERE idpostulante='" . $idpostulante . "' ";
-  $datos = mysqli_query($con, $sql);
+  echo "No eligio correctamente el tipo de pensión que pertenece.";
 }
 
 
@@ -62,9 +56,9 @@ $tipo_via = $_POST['tipo_via'];
 $nomb_via = strtoupper($_POST['nomb_via']);
 $tipo_zona = $_POST['tipo_zona'];
 $nomb_zona = strtoupper($_POST['nomb_zona']);
-$numero = $_POST['numero'];
-$manzana = $_POST['manzana'];
-$lote = $_POST['lote'];
+$numero = strtoupper($_POST['numero']);
+$manzana = strtoupper($_POST['manzana']);
+$lote = strtoupper($_POST['lote']);
 $referencia = strtoupper($_POST['referencia']);
 $distrito1 = $_POST['distrito_id1'];
 
@@ -148,26 +142,37 @@ if ($datos == 1) {
           if ($item1 === false && $item2 === false && $item3 === false && $item4 === false && $item5 === false && $item6 === false) break;
         }
         session_start();
-        header('Location: ../index.php?dni=' . $dni_post);
+        if ($sqlRes) {
+          echo "Se agrego correctamente, continue.";
+        } else {
+          echo "Error al guardar datos familiares que laboren en la DIRESA.";
+        }
+
+        // header('Location: ../index.php?dni=' . $dni_post);
       } else {
         $sql3 = "INSERT INTO familia_post (postulante_idpostulante, familiar_trabajando) VALUES ('" . $idpostulante . "', '" . $familiares_lab . "')";
         $datos4 = mysqli_query($con, $sql3);
         session_start();
-        header('Location: ../index.php?dni=' . $dni_post);
+        if ($datos4) {
+          echo "Se agrego correctamente, continue.";
+        } else {
+          echo "Error al guardar datos de la pregunta.";
+        }
+        // header('Location: ../index.php?dni=' . $dni_post);
       }
     } else {
-      echo "error declaracion";
+      echo "Error al agregar los datos de la DECLARACIÓN JURADA.";
       // echo '<script> alert("Error al guardar la declaración jurada."); 
       //               window.history.back(-1);</script>';
     }
   } else {
-    echo "error domicilio";
+    echo "Error al agregar los DATOS DE DOMICILIO.";
     // echo '<script> alert("Error al guardar datos del domicilio"); 
     //                 window.history.back(-1);</script>';
   }
 } else {
-  echo "error datos postulante";
+  echo "Error al registrar los DATOS PERSONALES.";
   // echo '<script> alert("Error al guardar datos postulante."); 
-  //                   window.history.back(-1);</script>';
+  // window.history.back(-1);</script>';
 }
 $con->close();

@@ -1,3 +1,11 @@
+<?php
+include 'conexion.php';
+session_start();
+if (empty($_SESSION['active'])) {
+  header("Location: ../index.php");
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 

@@ -1,10 +1,18 @@
+<?php
+include 'conexion.php';
+include 'funcs/mcript.php';
+session_start();
+if (empty($_SESSION['active'])) {
+  header("Location: ../index.php");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
 
   <meta charset="utf-8">
-  
+
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
@@ -35,19 +43,19 @@
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-    <?php   
-        include 'conexion.php';
-        
-        include 'funcs/mcript.php';
-        $dato_desencriptado = $_GET['dni'];
-        $dni = $desencriptar($dato_desencriptado);
+    <?php
+    include 'conexion.php';
 
-        $sql2="SELECT * FROM usuarios where dni=$dni";
-        $datos=mysqli_query($con,$sql2) or die(mysqli_error()); ;
-        $fila= mysqli_fetch_array($datos);
-        include 'menu.php';
-        
-        //include 'modal_ver_convocatoria.php';
+    include 'funcs/mcript.php';
+    $dato_desencriptado = $_GET['dni'];
+    $dni = $desencriptar($dato_desencriptado);
+
+    $sql2 = "SELECT * FROM usuarios where dni=$dni";
+    $datos = mysqli_query($con, $sql2) or die(mysqli_error($datos));;
+    $fila = mysqli_fetch_array($datos);
+    include 'menu.php';
+
+    //include 'modal_ver_convocatoria.php';
     ?>
 
     <!-- Content Wrapper -->
@@ -56,7 +64,7 @@
       <div id="content">
         <!-- Topbar -->
         <?php
-            include_once 'nav.php';
+        include_once 'nav.php';
         ?>
         <!-- End of Topbar -->
 
@@ -71,8 +79,8 @@
             </div>
             <div class="card-body">
               <div class="table-responsive">
-                <table class ="thead-light" id="dataTable" width="100%" cellspacing="0">  
-                <thead>
+                <table class="thead-light" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
                     <tr>
                       <th>N°</th>
                       <th>Nombre</th>
@@ -85,33 +93,32 @@
                   </thead>
                   <?php
 
-                      $sql = "SELECT det.iddetalle_convocatoria, det.recibo, det.fecha_inscripcion, pos.nombres, con.num_con, con.tipo_con, car.cargo
+                  $sql = "SELECT det.iddetalle_convocatoria, det.recibo, det.fecha_inscripcion, pos.nombres, con.num_con, con.tipo_con, car.cargo
                       FROM detalle_convocatoria det
                       INNER JOIN postulante pos ON det.postulante_idpostulante= pos.idpostulante
 					            INNER JOIN  convocatoria  con ON det.convocatoria_idcon = con.idcon
                       INNER JOIN cargo car ON det.cargo_idcargo = car.idcargo";
-         
-                      $query=mysqli_query($con, $sql);
-                      while ($row= MySQLI_fetch_array($query))
-                      {
-                      ?>
-                      <tr>
-                        <td><?php echo $row['iddetalle_convocatoria'] ?></td>
-                        <td><?php echo $row['nombres'] ?></td>
-                        <td style="font-size: 16px;"><?php echo $row['tipo_con'] ?></td>
-                        <td style="font-size: 16px;"><?php echo $row['num_con'] ?></td>
-                        <td><?php echo $row['recibo'] ?></td>
-                        <td><?php echo $row['fecha_inscripcion'] ?></td>
-                        
-                        <td style="font-size: 14px;"><?php echo $row['cargo'] ?></td>
-                        
-                      </tr>
-                      <?php
-                      }
-                      ?>
-                      <!-- <input type="hidden" id="dni" name="dni" value="<?php echo $dni; ?>"> -->
+
+                  $query = mysqli_query($con, $sql);
+                  while ($row = MySQLI_fetch_array($query)) {
+                  ?>
+                    <tr>
+                      <td><?php echo $row['iddetalle_convocatoria'] ?></td>
+                      <td><?php echo $row['nombres'] ?></td>
+                      <td style="font-size: 16px;"><?php echo $row['tipo_con'] ?></td>
+                      <td style="font-size: 16px;"><?php echo $row['num_con'] ?></td>
+                      <td><?php echo $row['recibo'] ?></td>
+                      <td><?php echo $row['fecha_inscripcion'] ?></td>
+
+                      <td style="font-size: 14px;"><?php echo $row['cargo'] ?></td>
+
+                    </tr>
+                  <?php
+                  }
+                  ?>
+                  <!-- <input type="hidden" id="dni" name="dni" value="<?php echo $dni; ?>"> -->
                   <tbody>
-                    
+
                   </tbody>
                 </table>
               </div>

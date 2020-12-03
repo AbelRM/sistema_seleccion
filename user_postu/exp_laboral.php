@@ -436,7 +436,7 @@ if (empty($_SESSION['active'])) {
                         <div class="card-header header-formulario-danger">
                           <div class="row">
                             <div class="col-md-8 d-flex align-items-center">
-                              <h5 class="titulo-card" style="font-size: 16px;">Experiencia en la DIRESA TACNA</h5>
+                              <h5 class="titulo-card" style="font-size: 16px;">Experiencia en DIRESA, Red de Salud y Hospital en TACNA</h5>
                             </div>
                             <div class="col-md-4 d-flex justify-content-end">
                               <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#agregar_tipo2"><i class="fas fa-plus"></i> Nuevo</a>

@@ -312,13 +312,10 @@ if (isset($_POST['updateData4'])) {
         WHERE id_4puntos='" . $id_4puntos . "'";
         $result = mysqli_query($con, $sql);
         if ($result) {
-          echo '<script> alert("Guardado exitosamente"); </script>';
           echo "<script type=\"text/javascript\">history.go(-1);</script>";
-          // header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
         } else {
           echo '<script> alert("Error al guardar"); </script>';
           echo "<script type=\"text/javascript\">history.go(-1);</script>";
-          // header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
         }
       } else {
         echo '<script> alert("Error al guardar el archivo."); </script>';
@@ -344,14 +341,10 @@ if (isset($_POST['updateData4'])) {
 
     $result = mysqli_query($con, $sql);
     if ($result) {
-
-      echo "<script> alerta_aceptar(); </script>";
       echo "<script type=\"text/javascript\">history.go(-1);</script>";
-      // header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
     } else {
       echo '<script> alert("Error al guardar"); </script>';
       echo "<script type=\"text/javascript\">history.go(-1);</script>";
-      // header('Location: ../exp_laboral.php?dni=' . $dato_desencriptado);
     }
   }
 }

@@ -5,11 +5,11 @@ $micarpeta = $_SERVER['DOCUMENT_ROOT'] . '/sistema_seleccion/user_postu/archivos
 echo $micarpeta;
 // $dni = 45817607;
 
-// define('METHOD', 'AES-256-CBC');
-// define('SECRET_KEY', 'diresa.micox');
-// define('SECRET_IV', '101712');
-// class SED
-// {
+define('METHOD', 'AES-256-CBC');
+define('SECRET_KEY', 'diresa.micox');
+define('SECRET_IV', '101712');
+class SED
+{
 //   public static function encryption($string)
 //   {
 //     $output = FALSE;

@@ -141,7 +141,7 @@ while ($r = $query->fetch_object()) {
                     <input class="form-control form-control-user" type="text" name="num_emer" maxlength="9" />
                   </div>
                   <div class="col-md-3 col-sm-6 mb-2 mb-sm-0">
-                    <label class="font-weight-bolder">(*) Parentesco nro. emergencia</label>
+                    <label class="font-weight-bolder">(*) Contacto de emergencia</label>
                     <input class="form-control form-control-user" placeholder="Nombre familiar" type="text" name="nomb_parent" id="nomb_parent" style="text-transform: uppercase;" />
                   </div>
                   <div class="col-md-2 col-sm-6 mb-2 mb-sm-0">

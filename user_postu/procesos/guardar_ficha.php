@@ -145,9 +145,9 @@ if ($datos == 1) {
         if ($sqlRes) {
           $responder =  array('r' => 1, 'dni' => $dni_post, 'mensaje' => "Se agrego correctamente, continue.");
           echo json_encode($responder, JSON_UNESCAPED_UNICODE);
-          echo "Se agrego correctamente, continue.";
         } else {
-          echo "Error al guardar datos familiares que laboren en la DIRESA.";
+          $responder =  array('r' => 0, 'dni' => $dni_post, 'mensaje' => "Error al guardar familiar");
+          echo json_encode($responder, JSON_UNESCAPED_UNICODE);
         }
       } else {
         $sql3 = "INSERT INTO familia_post (postulante_idpostulante, familiar_trabajando) VALUES ('" . $idpostulante . "', '" . $familiares_lab . "')";

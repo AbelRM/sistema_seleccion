@@ -273,7 +273,6 @@ if (!empty($_SESSION['active'])) {
   <script src="public/js/alerta.js"></script>
   <script src='https://www.google.com/recaptcha/api.js'></script>
   <script src="public/plugins/sweetAlert/dist/sweetalert2.js"></script>
-
 </body>
 
 </html>

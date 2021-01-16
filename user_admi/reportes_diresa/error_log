@@ -1,0 +1,7 @@
+[10-Jan-2021 20:59:20 America/Lima] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, bool given in /home/siuuvupi/public_html/user_admi/reportes_diresa/relacion_postulantes.php on line 32
+[10-Jan-2021 20:59:20 America/Lima] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, bool given in /home/siuuvupi/public_html/user_admi/reportes_diresa/relacion_postulantes.php on line 66
+[10-Jan-2021 21:11:14 America/Lima] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, bool given in /home/siuuvupi/public_html/user_admi/reportes_diresa/resultado_curricular_aptos.php on line 41
+[10-Jan-2021 21:11:14 America/Lima] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, bool given in /home/siuuvupi/public_html/user_admi/reportes_diresa/resultado_curricular_aptos.php on line 80
+[10-Jan-2021 21:12:03 America/Lima] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, bool given in /home/siuuvupi/public_html/user_admi/reportes_diresa/resultado_curricular_no_aptos.php on line 41
+[10-Jan-2021 21:12:03 America/Lima] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, bool given in /home/siuuvupi/public_html/user_admi/reportes_diresa/resultado_curricular_no_aptos.php on line 82
+[10-Jan-2021 21:12:03 America/Lima] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, bool given in /home/siuuvupi/public_html/user_admi/reportes_diresa/resultado_curricular_no_aptos.php on line 116

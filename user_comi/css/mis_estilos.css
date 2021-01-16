@@ -1,0 +1,6 @@
+.clickable {
+  content: "Mostrar";
+}
+.clickable:before {
+  content: "Ocultar";
+}

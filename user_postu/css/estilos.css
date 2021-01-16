@@ -1,0 +1,199 @@
+.formulario-1,
+.formulario-2 {
+  display: none;
+}
+
+.grupo-formularios .formulario-1,
+.formulario-2 .card .card-header .titulo-card {
+  color: black;
+  font-weight: 600;
+  font-size: 1.15rem;
+}
+
+.header-formulario {
+  background: #1f618d;
+  color: #fff;
+}
+
+.header-formulario-danger {
+  background: #d52a1a;
+  color: #fff;
+}
+
+/* .titulos-1,.titulos-2,.titulos-3,.titulos-4,.titulos-5,.titulos-6,.titulos-7 {
+    display: none;
+} */
+
+.divOculto {
+  display: none;
+}
+
+.subir {
+  padding: 5px 10px;
+  background: #f55d3e;
+  color: #fff;
+  border: 0px solid #fff;
+}
+
+.subir:hover {
+  color: #fff;
+  background: #f7cb15;
+}
+
+/* INPUT 2 */
+/**********File Inputs**********/
+.container-input {
+  text-align: left;
+  background: #282828;
+  border-top: 5px solid #c39f77;
+  padding: 50px 0;
+  border-radius: 6px;
+  width: 50%;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+
+.inputfile {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+.inputfile + label {
+  max-width: 80%;
+  font-size: 1rem;
+  font-weight: 500;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: pointer;
+  display: inline-block;
+  overflow: hidden;
+  padding: 0.4rem 0.4rem;
+}
+
+.inputfile + label svg {
+  width: 1em;
+  height: 1em;
+  vertical-align: middle;
+  fill: currentColor;
+  margin-top: -0.25em;
+  margin-right: 0.25em;
+}
+
+.iborrainputfile {
+  font-size: 12px;
+  font-weight: normal;
+  font-family: "Nunito", "Lato";
+}
+
+/* style 1 */
+
+.inputfile-1 + label {
+  color: #fff;
+  background-color: #f55d3e;
+}
+
+.inputfile-1:focus + label,
+.inputfile-1.has-focus + label,
+.inputfile-1 + label:hover {
+  background-color: #f55d3e;
+}
+
+.lista-base {
+  list-style-type: none;
+}
+
+.lista-base .lista-item {
+  float: left;
+  background: #fff;
+  /* background-color: #F6E3CA; */
+  /* margin-right: 10px; */
+  border: #000 1px solid;
+}
+
+.lista-base .lista-item .texto-lista {
+  color: black;
+  padding: 0 4px;
+  text-decoration: none;
+}
+
+.lista-base .lista-item .texto-lista:hover {
+  background: #858796;
+  /* font-size: 18px; */
+  color: #fff;
+  border: #858796 1px solid;
+}
+
+/* PINTAR SELECT DE EXPERIENCIA */
+.color_lugar option[value="1"] {
+  color: #36b9cc;
+  font-weight: 600;
+}
+.color_lugar option[value="2"] {
+  color: #36b9cc;
+  font-weight: 600;
+}
+.color_lugar option[value="3"] {
+  color: #36b9cc;
+  font-weight: 600;
+}
+.color_lugar option[value="4"] {
+  color: #36b9cc;
+  font-weight: 600;
+}
+.color_lugar option[value="5"] {
+  color: #36b9cc;
+  font-weight: 600;
+}
+.color_lugar option[value="6"] {
+  color: #36b9cc;
+  font-weight: 600;
+}
+.color_lugar option[value="7"] {
+  color: #36b9cc;
+  font-weight: 600;
+}
+.color_lugar option[value="8"] {
+  color: #36b9cc;
+  font-weight: 600;
+}
+.color_lugar option[value="9"] {
+  color: #36b9cc;
+  font-weight: 600;
+}
+.color_lugar option[value="10"] {
+  color: #36b9cc;
+  font-weight: 600;
+}
+.color_lugar option[value="11"] {
+  color: #36b9cc;
+  font-weight: 600;
+}
+.color_lugar option[value="12"] {
+  color: #36b9cc;
+  font-weight: 600;
+}
+
+.color_lugar option[value="13"] {
+  color: #1cc88a;
+  font-weight: 600;
+}
+.color_lugar option[value="14"] {
+  color: #1cc88a;
+  font-weight: 600;
+}
+.color_lugar option[value="15"] {
+  color: #1cc88a;
+  font-weight: 600;
+}
+.color_lugar option[value="16"] {
+  color: #1cc88a;
+  font-weight: 600;
+}
+.color_lugar option[value="17"] {
+  color: #1cc88a;
+  font-weight: 600;
+}

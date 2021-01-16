@@ -1,0 +1,130 @@
+[29-Dec-2020 00:12:05 America/Lima] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, bool given in /home/siuuvupi/public_html/user_comi/reportes_diresa/relacion_postulantes_prac.php on line 35
+[29-Dec-2020 00:12:06 America/Lima] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, bool given in /home/siuuvupi/public_html/user_comi/reportes_diresa/relacion_postulantes_prac.php on line 69
+[29-Dec-2020 00:15:47 America/Lima] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, bool given in /home/siuuvupi/public_html/user_comi/reportes_diresa/relacion_postulantes_prac.php on line 35
+[29-Dec-2020 00:15:47 America/Lima] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, bool given in /home/siuuvupi/public_html/user_comi/reportes_diresa/relacion_postulantes_prac.php on line 69
+[29-Dec-2020 00:15:59 America/Lima] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, bool given in /home/siuuvupi/public_html/user_comi/reportes_diresa/relacion_postulantes_prac.php on line 35
+[29-Dec-2020 00:15:59 America/Lima] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, bool given in /home/siuuvupi/public_html/user_comi/reportes_diresa/relacion_postulantes_prac.php on line 69
+[29-Dec-2020 00:16:14 America/Lima] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, bool given in /home/siuuvupi/public_html/user_comi/reportes_diresa/relacion_postulantes_prac.php on line 35
+[29-Dec-2020 00:16:14 America/Lima] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, bool given in /home/siuuvupi/public_html/user_comi/reportes_diresa/relacion_postulantes_prac.php on line 69
+[29-Dec-2020 00:16:46 America/Lima] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, bool given in /home/siuuvupi/public_html/user_comi/reportes_diresa/resultado_curricular_aptos_prac.php on line 41
+[29-Dec-2020 00:16:46 America/Lima] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, bool given in /home/siuuvupi/public_html/user_comi/reportes_diresa/resultado_curricular_aptos_prac.php on line 80
+[29-Dec-2020 00:16:46 America/Lima] PHP Fatal error:  Uncaught Exception: FPDF error: Some data has already been output, can't send PDF file (output started at /home/siuuvupi/public_html/user_comi/reportes_diresa/resultado_curricular_aptos_prac.php:1) in /home/siuuvupi/public_html/user_comi/reportes_diresa/fpdf/fpdf.php:271
+Stack trace:
+#0 /home/siuuvupi/public_html/user_comi/reportes_diresa/fpdf/fpdf.php(1052): FPDF->Error('Some data has a...')
+#1 /home/siuuvupi/public_html/user_comi/reportes_diresa/fpdf/fpdf.php(999): FPDF->_checkoutput()
+#2 /home/siuuvupi/public_html/user_comi/reportes_diresa/resultado_curricular_aptos_prac.php(131): FPDF->Output()
+#3 {main}
+  thrown in /home/siuuvupi/public_html/user_comi/reportes_diresa/fpdf/fpdf.php on line 271
+[29-Dec-2020 00:17:14 America/Lima] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, bool given in /home/siuuvupi/public_html/user_comi/reportes_diresa/resultado_curricular_aptos_prac.php on line 41
+[29-Dec-2020 00:17:14 America/Lima] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, bool given in /home/siuuvupi/public_html/user_comi/reportes_diresa/resultado_curricular_aptos_prac.php on line 80
+[29-Dec-2020 00:17:14 America/Lima] PHP Fatal error:  Uncaught Exception: FPDF error: Some data has already been output, can't send PDF file (output started at /home/siuuvupi/public_html/user_comi/reportes_diresa/resultado_curricular_aptos_prac.php:1) in /home/siuuvupi/public_html/user_comi/reportes_diresa/fpdf/fpdf.php:271
+Stack trace:
+#0 /home/siuuvupi/public_html/user_comi/reportes_diresa/fpdf/fpdf.php(1052): FPDF->Error('Some data has a...')
+#1 /home/siuuvupi/public_html/user_comi/reportes_diresa/fpdf/fpdf.php(999): FPDF->_checkoutput()
+#2 /home/siuuvupi/public_html/user_comi/reportes_diresa/resultado_curricular_aptos_prac.php(131): FPDF->Output()
+#3 {main}
+  thrown in /home/siuuvupi/public_html/user_comi/reportes_diresa/fpdf/fpdf.php on line 271
+[29-Dec-2020 00:18:50 America/Lima] PHP Fatal error:  Uncaught Exception: FPDF error: Some data has already been output, can't send PDF file (output started at /home/siuuvupi/public_html/user_comi/reportes_diresa/resultado_curricular_aptos_prac.php:1) in /home/siuuvupi/public_html/user_comi/reportes_diresa/fpdf/fpdf.php:271
+Stack trace:
+#0 /home/siuuvupi/public_html/user_comi/reportes_diresa/fpdf/fpdf.php(1052): FPDF->Error('Some data has a...')
+#1 /home/siuuvupi/public_html/user_comi/reportes_diresa/fpdf/fpdf.php(999): FPDF->_checkoutput()
+#2 /home/siuuvupi/public_html/user_comi/reportes_diresa/resultado_curricular_aptos_prac.php(131): FPDF->Output()
+#3 {main}
+  thrown in /home/siuuvupi/public_html/user_comi/reportes_diresa/fpdf/fpdf.php on line 271
+[29-Dec-2020 00:26:08 America/Lima] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, bool given in /home/siuuvupi/public_html/user_comi/reportes_diresa/resultado_cv_entre_prac_aptos.php on line 36
+[29-Dec-2020 00:26:08 America/Lima] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, bool given in /home/siuuvupi/public_html/user_comi/reportes_diresa/resultado_cv_entre_prac_aptos.php on line 77
+[29-Dec-2020 00:26:08 America/Lima] PHP Fatal error:  Uncaught Exception: FPDF error: Some data has already been output, can't send PDF file (output started at /home/siuuvupi/public_html/user_comi/reportes_diresa/resultado_cv_entre_prac_aptos.php:1) in /home/siuuvupi/public_html/user_comi/reportes_diresa/fpdf/fpdf.php:271
+Stack trace:
+#0 /home/siuuvupi/public_html/user_comi/reportes_diresa/fpdf/fpdf.php(1052): FPDF->Error('Some data has a...')
+#1 /home/siuuvupi/public_html/user_comi/reportes_diresa/fpdf/fpdf.php(999): FPDF->_checkoutput()
+#2 /home/siuuvupi/public_html/user_comi/reportes_diresa/resultado_cv_entre_prac_aptos.php(139): FPDF->Output()
+#3 {main}
+  thrown in /home/siuuvupi/public_html/user_comi/reportes_diresa/fpdf/fpdf.php on line 271
+[29-Dec-2020 00:26:53 America/Lima] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, bool given in /home/siuuvupi/public_html/user_comi/reportes_diresa/resultado_cv_entre_prac_aptos.php on line 36
+[29-Dec-2020 00:26:53 America/Lima] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, bool given in /home/siuuvupi/public_html/user_comi/reportes_diresa/resultado_cv_entre_prac_aptos.php on line 77
+[29-Dec-2020 00:26:53 America/Lima] PHP Fatal error:  Uncaught Exception: FPDF error: Some data has already been output, can't send PDF file (output started at /home/siuuvupi/public_html/user_comi/reportes_diresa/resultado_cv_entre_prac_aptos.php:1) in /home/siuuvupi/public_html/user_comi/reportes_diresa/fpdf/fpdf.php:271
+Stack trace:
+#0 /home/siuuvupi/public_html/user_comi/reportes_diresa/fpdf/fpdf.php(1052): FPDF->Error('Some data has a...')
+#1 /home/siuuvupi/public_html/user_comi/reportes_diresa/fpdf/fpdf.php(999): FPDF->_checkoutput()
+#2 /home/siuuvupi/public_html/user_comi/reportes_diresa/resultado_cv_entre_prac_aptos.php(139): FPDF->Output()
+#3 {main}
+  thrown in /home/siuuvupi/public_html/user_comi/reportes_diresa/fpdf/fpdf.php on line 271
+[29-Dec-2020 00:27:30 America/Lima] PHP Fatal error:  Uncaught Exception: FPDF error: Some data has already been output, can't send PDF file (output started at /home/siuuvupi/public_html/user_comi/reportes_diresa/resultado_cv_entre_prac_aptos.php:1) in /home/siuuvupi/public_html/user_comi/reportes_diresa/fpdf/fpdf.php:271
+Stack trace:
+#0 /home/siuuvupi/public_html/user_comi/reportes_diresa/fpdf/fpdf.php(1052): FPDF->Error('Some data has a...')
+#1 /home/siuuvupi/public_html/user_comi/reportes_diresa/fpdf/fpdf.php(999): FPDF->_checkoutput()
+#2 /home/siuuvupi/public_html/user_comi/reportes_diresa/resultado_cv_entre_prac_aptos.php(139): FPDF->Output()
+#3 {main}
+  thrown in /home/siuuvupi/public_html/user_comi/reportes_diresa/fpdf/fpdf.php on line 271
+[29-Dec-2020 00:29:45 America/Lima] PHP Fatal error:  Uncaught Exception: FPDF error: Some data has already been output, can't send PDF file (output started at /home/siuuvupi/public_html/user_comi/reportes_diresa/resultado_cv_entre_prac_aptos.php:1) in /home/siuuvupi/public_html/user_comi/reportes_diresa/fpdf/fpdf.php:271
+Stack trace:
+#0 /home/siuuvupi/public_html/user_comi/reportes_diresa/fpdf/fpdf.php(1052): FPDF->Error('Some data has a...')
+#1 /home/siuuvupi/public_html/user_comi/reportes_diresa/fpdf/fpdf.php(999): FPDF->_checkoutput()
+#2 /home/siuuvupi/public_html/user_comi/reportes_diresa/resultado_cv_entre_prac_aptos.php(139): FPDF->Output()
+#3 {main}
+  thrown in /home/siuuvupi/public_html/user_comi/reportes_diresa/fpdf/fpdf.php on line 271
+[29-Dec-2020 00:30:14 America/Lima] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, bool given in /home/siuuvupi/public_html/user_comi/reportes_diresa/resultado_cv_entre_prac_total.php on line 36
+[29-Dec-2020 00:30:14 America/Lima] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, bool given in /home/siuuvupi/public_html/user_comi/reportes_diresa/resultado_cv_entre_prac_total.php on line 77
+[29-Dec-2020 00:30:14 America/Lima] PHP Fatal error:  Uncaught Exception: FPDF error: Some data has already been output, can't send PDF file (output started at /home/siuuvupi/public_html/user_comi/reportes_diresa/resultado_cv_entre_prac_total.php:1) in /home/siuuvupi/public_html/user_comi/reportes_diresa/fpdf/fpdf.php:271
+Stack trace:
+#0 /home/siuuvupi/public_html/user_comi/reportes_diresa/fpdf/fpdf.php(1052): FPDF->Error('Some data has a...')
+#1 /home/siuuvupi/public_html/user_comi/reportes_diresa/fpdf/fpdf.php(999): FPDF->_checkoutput()
+#2 /home/siuuvupi/public_html/user_comi/reportes_diresa/resultado_cv_entre_prac_total.php(139): FPDF->Output()
+#3 {main}
+  thrown in /home/siuuvupi/public_html/user_comi/reportes_diresa/fpdf/fpdf.php on line 271
+[29-Dec-2020 00:32:35 America/Lima] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, bool given in /home/siuuvupi/public_html/user_comi/reportes_diresa/resultado_cv_entre_prac_total.php on line 36
+[29-Dec-2020 00:32:35 America/Lima] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, bool given in /home/siuuvupi/public_html/user_comi/reportes_diresa/resultado_cv_entre_prac_total.php on line 77
+[29-Dec-2020 00:32:35 America/Lima] PHP Fatal error:  Uncaught Exception: FPDF error: Some data has already been output, can't send PDF file (output started at /home/siuuvupi/public_html/user_comi/reportes_diresa/resultado_cv_entre_prac_total.php:1) in /home/siuuvupi/public_html/user_comi/reportes_diresa/fpdf/fpdf.php:271
+Stack trace:
+#0 /home/siuuvupi/public_html/user_comi/reportes_diresa/fpdf/fpdf.php(1052): FPDF->Error('Some data has a...')
+#1 /home/siuuvupi/public_html/user_comi/reportes_diresa/fpdf/fpdf.php(999): FPDF->_checkoutput()
+#2 /home/siuuvupi/public_html/user_comi/reportes_diresa/resultado_cv_entre_prac_total.php(139): FPDF->Output()
+#3 {main}
+  thrown in /home/siuuvupi/public_html/user_comi/reportes_diresa/fpdf/fpdf.php on line 271
+[29-Dec-2020 00:33:36 America/Lima] PHP Fatal error:  Uncaught Exception: FPDF error: Some data has already been output, can't send PDF file (output started at /home/siuuvupi/public_html/user_comi/reportes_diresa/resultado_cv_entre_prac_aptos.php:1) in /home/siuuvupi/public_html/user_comi/reportes_diresa/fpdf/fpdf.php:271
+Stack trace:
+#0 /home/siuuvupi/public_html/user_comi/reportes_diresa/fpdf/fpdf.php(1052): FPDF->Error('Some data has a...')
+#1 /home/siuuvupi/public_html/user_comi/reportes_diresa/fpdf/fpdf.php(999): FPDF->_checkoutput()
+#2 /home/siuuvupi/public_html/user_comi/reportes_diresa/resultado_cv_entre_prac_aptos.php(139): FPDF->Output()
+#3 {main}
+  thrown in /home/siuuvupi/public_html/user_comi/reportes_diresa/fpdf/fpdf.php on line 271
+[29-Dec-2020 09:06:13 America/Lima] PHP Fatal error:  Uncaught Exception: FPDF error: Some data has already been output, can't send PDF file (output started at /home/siuuvupi/public_html/user_comi/reportes_diresa/resultado_cv_entre_prac_aptos.php:1) in /home/siuuvupi/public_html/user_comi/reportes_diresa/fpdf/fpdf.php:271
+Stack trace:
+#0 /home/siuuvupi/public_html/user_comi/reportes_diresa/fpdf/fpdf.php(1052): FPDF->Error('Some data has a...')
+#1 /home/siuuvupi/public_html/user_comi/reportes_diresa/fpdf/fpdf.php(999): FPDF->_checkoutput()
+#2 /home/siuuvupi/public_html/user_comi/reportes_diresa/resultado_cv_entre_prac_aptos.php(139): FPDF->Output()
+#3 {main}
+  thrown in /home/siuuvupi/public_html/user_comi/reportes_diresa/fpdf/fpdf.php on line 271
+[06-Jan-2021 11:17:45 America/Lima] PHP Fatal error:  Uncaught Exception: FPDF error: Some data has already been output, can't send PDF file (output started at /home/siuuvupi/public_html/user_comi/reportes_diresa/resultado_curricular_aptos_prac.php:1) in /home/siuuvupi/public_html/user_comi/reportes_diresa/fpdf/fpdf.php:271
+Stack trace:
+#0 /home/siuuvupi/public_html/user_comi/reportes_diresa/fpdf/fpdf.php(1052): FPDF->Error('Some data has a...')
+#1 /home/siuuvupi/public_html/user_comi/reportes_diresa/fpdf/fpdf.php(999): FPDF->_checkoutput()
+#2 /home/siuuvupi/public_html/user_comi/reportes_diresa/resultado_curricular_aptos_prac.php(131): FPDF->Output()
+#3 {main}
+  thrown in /home/siuuvupi/public_html/user_comi/reportes_diresa/fpdf/fpdf.php on line 271
+[06-Jan-2021 11:17:50 America/Lima] PHP Fatal error:  Uncaught Exception: FPDF error: Some data has already been output, can't send PDF file (output started at /home/siuuvupi/public_html/user_comi/reportes_diresa/resultado_curricular_aptos_prac.php:1) in /home/siuuvupi/public_html/user_comi/reportes_diresa/fpdf/fpdf.php:271
+Stack trace:
+#0 /home/siuuvupi/public_html/user_comi/reportes_diresa/fpdf/fpdf.php(1052): FPDF->Error('Some data has a...')
+#1 /home/siuuvupi/public_html/user_comi/reportes_diresa/fpdf/fpdf.php(999): FPDF->_checkoutput()
+#2 /home/siuuvupi/public_html/user_comi/reportes_diresa/resultado_curricular_aptos_prac.php(131): FPDF->Output()
+#3 {main}
+  thrown in /home/siuuvupi/public_html/user_comi/reportes_diresa/fpdf/fpdf.php on line 271
+[06-Jan-2021 11:18:44 America/Lima] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, bool given in /home/siuuvupi/public_html/user_comi/reportes_diresa/resultado_curricular_total_prac.php on line 41
+[06-Jan-2021 11:18:44 America/Lima] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, bool given in /home/siuuvupi/public_html/user_comi/reportes_diresa/resultado_curricular_total_prac.php on line 79
+[06-Jan-2021 11:18:44 America/Lima] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, bool given in /home/siuuvupi/public_html/user_comi/reportes_diresa/resultado_curricular_total_prac.php on line 123
+[06-Jan-2021 11:18:44 America/Lima] PHP Fatal error:  Uncaught Exception: FPDF error: Some data has already been output, can't send PDF file (output started at /home/siuuvupi/public_html/user_comi/reportes_diresa/resultado_curricular_total_prac.php:1) in /home/siuuvupi/public_html/user_comi/reportes_diresa/fpdf/fpdf.php:271
+Stack trace:
+#0 /home/siuuvupi/public_html/user_comi/reportes_diresa/fpdf/fpdf.php(1052): FPDF->Error('Some data has a...')
+#1 /home/siuuvupi/public_html/user_comi/reportes_diresa/fpdf/fpdf.php(999): FPDF->_checkoutput()
+#2 /home/siuuvupi/public_html/user_comi/reportes_diresa/resultado_curricular_total_prac.php(183): FPDF->Output()
+#3 {main}
+  thrown in /home/siuuvupi/public_html/user_comi/reportes_diresa/fpdf/fpdf.php on line 271
+[06-Jan-2021 11:23:49 America/Lima] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, bool given in /home/siuuvupi/public_html/user_comi/reportes_diresa/resultado_final_v1_prac.php on line 38
+[06-Jan-2021 11:23:49 America/Lima] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, bool given in /home/siuuvupi/public_html/user_comi/reportes_diresa/resultado_final_v1_prac.php on line 70
+[10-Jan-2021 09:49:59 America/Lima] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, bool given in /home/siuuvupi/public_html/user_comi/reportes_diresa/resultado_curricular_aptos.php on line 41
+[10-Jan-2021 09:49:59 America/Lima] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, bool given in /home/siuuvupi/public_html/user_comi/reportes_diresa/resultado_curricular_aptos.php on line 80
+[10-Jan-2021 09:51:46 America/Lima] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, bool given in /home/siuuvupi/public_html/user_comi/reportes_diresa/resultado_curricular_no_aptos.php on line 41
+[10-Jan-2021 09:51:46 America/Lima] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, bool given in /home/siuuvupi/public_html/user_comi/reportes_diresa/resultado_curricular_no_aptos.php on line 82
+[10-Jan-2021 09:51:46 America/Lima] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, bool given in /home/siuuvupi/public_html/user_comi/reportes_diresa/resultado_curricular_no_aptos.php on line 116
+[10-Jan-2021 09:59:42 America/Lima] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, bool given in /home/siuuvupi/public_html/user_comi/reportes_diresa/resultado_final_v1.php on line 37
+[10-Jan-2021 09:59:42 America/Lima] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, bool given in /home/siuuvupi/public_html/user_comi/reportes_diresa/resultado_final_v1.php on line 119
